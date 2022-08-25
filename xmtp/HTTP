@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//XML-DEV//DTD XHTML RDDL 1.0//EN" "http://www.rddl.org/rddl-xhtml.dtd">
+<html   xmlns="http://www.w3.org/1999/xhtml" 
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:rddl="http://www.rddl.org/"
+		xml:lang="en"
+		xml:base="http://www.openhealth.org/xmtp/HTTP">
+<head>
+	<title>Representing an HTTP transaction as RDF</title>
+	<link rel="stylesheet" type="text/css" href="../RDDL/xrd.css"/>
+</head>
+
+<body>
+<h1>Modelling HTTP in RDF</h1>
+<div class="head">
+<p><a href="http://www.openhealth.org/xmtp/HTTP">This version</a>: March 1, 2002</p>
+<p><a href="http://www.openhealth.org/xmtp/HTTP">Latest Version</a></p><!--<rddl:resource
+	xlink:role="http://www.w3.org/TR/html4.0"
+	xlink:arcrole="http://www.rddl.org/purposes#prior-version"
+	xlink:href="http://www.openhealth.org/documents/xmtp.htm">
+<p><a href="http://www.openhealth.org/documents/xmtp.htm">Previous Version</a>: 1998</p>
+</rddl:resource>-->
+<p>Author:</p>
+<ul> 
+<li><A href="mailto:jonathan@openhealth.org">Jonathan Borden</A>, <a href="http://www.openhealth.org">The Open Healthcare Group</a></li>
+</ul>
+</div>
+<h2>Abstract</h2>
+<p>The relationship between a <code>URI</code>, <code>resource</code> and <code>entity body</code> has been confusing to many and subject to much debate.
+A formalism is presented which hopefully will elucidate the basis of Fielding's "<a href="http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm">Representational State Transfer</a>" (REST).
+<h2>Representing HTTP as XMTP</h2>
+<p>The XML MIME Transformation Protocol (<a href="http://www.openhealth.org/xmtp/">XMTP</a>) 
+is used to represent an HTTP request and response. Resolution of a particular URI via the HTTP protocol involves an HTTP request message, an HTTP Method, and an HTTP response message.<p>
+<h2>Representing the HTTP transaction in RDF</h2>
+<p>Assuming the HTTP request and response messages were identified with <i>Message Ids</i>, the respective "mid:" URIs form the <code>object</code> of two RDF statement statements each whose 
+<code>subject</code> is the URI to be resolved e.g. <code>http://example.org/uri</code>. 
+The <code>predicate</code> of the statements is the URIref formed by the canonical URI of the HTTP protocol: <code>http://www.ietf.org/rfc/rfc2616</code> composed with the particular HTTP method name as fragment identifier e.g.
+<code>http://www.ietf.org/rfc/rfc2616#GET</code>.</p>
+<p>In N-Triples form:</p>
+<pre>
+@prefix http = &lt;http://www.ietf.org/rfc/rfc2616#&gt; .
+&lt;http://example.org/uri&gt; http:GET &lt;mid:xxx-request&gt; .
+&lt;mid:xxx-request&gt; rdf:type http:Request .
+&lt;http://example.org/uri&gt; http:GET &lt;mid:xxx-response&gt; .
+&lt;mid:xxx-response&gt; rdf:type http:Response .
+</pre>
+<p>When the request and response messages are not assigned URIs, they are treated as anonymous nodes. An RDF/XML syntax representation:</p>
+<pre>
+&lt;rdf:RDF xmlns:http="http://www.ietf.org/rfc/rfc2616#"
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xmlns="http://www.openhealth.org/xmtp#"&gt;
+&nbsp;&lt;http:GET&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;http:Request rdf:parseType="Resource"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Request-URI rdf:resource="http://example.org/uri" /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Host rdf:resource="http://example.org/uri" /&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Accept&gt;*/*&lt;/Accept&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/http:Request&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;http:Response rdf:parseType="Resource"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;http:Status&gt;200&lt;/http:Status&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Content-Type&gt;text/plain&lt;/Content-Type&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Body&gt;This is an example document entity&lt;/Body&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/http:Response&gt;
+&nbsp;&lt;/http:GET&gt;
+&lt;/rdf:RDF&gt;
+</pre>
+	<p class="clear">
+  	<a class="clear" href="http://www.jonathanborden-md.com"> </a>
+	<a class="clear" href="http://www.jonathanborden-md.com/jonathan-borden-cv.htm">Jonathan Borden</a>
+	<a class="clear" href="http://www.erieneurosurgery.com">ENS</a>
+	<a class="clear" href="http://www.erieneuroscience.org">ENI</a>
+	<a class="clear" href="http://www.erieneuroscience.com"></a>
+  </p>
+</body>
+</html>

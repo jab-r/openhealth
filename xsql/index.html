@@ -1,0 +1,27 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>OpenHealth XSQL XML <-> SQL translation</title>
+	<meta http-equiv="Keywords"
+		content="OpenHealth,SQL,XSQL,XML" />
+	<meta name="description"
+		content="The OpenHealth XSQL XML <-> SQL mapping" />
+</head>
+
+<body>
+<p>XSQL uses a simple schema to represent SQL in XML format. The DTD is below:
+<textarea cols="80" rows="20">
+<!ELEMENT sql:sql(sql:connect)>
+<!ATTLIST sql:sql xmlns:sql ”http://www.openhealth.org/xsql" #FIXED>
+<!ELEMENT sql:connect (sql:uid|sql:insert|sql:update|sql:delete|sql:select)*>
+<!ATTLIST sql:connect database CDATA #REQUIRED>
+<!ELEMENT sql:select (sql:where|sql:column|sql:all|sql:table)*>
+<!ELEMENT sql:all EMPTY>
+<!ELEMENT sql:table EMPTY>
+<!ATTLIST sql:table name NMTOKEN #REQUIRED>
+</textarea>
+
+
+</body>
+</html>

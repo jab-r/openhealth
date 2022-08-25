@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<xsl:stylesheet version="1.0"
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+				xmlns="http://www.openhealth.org/ASTM/operative.report">
+<xsl:include href="opnote-base.xsl" />
+<xsl:template name="cpt"><coded.value code.system.name="CPT">61793</coded.value><coded.value code.system.name="CPT">61795</coded.value><coded.value code.system.name="CPT">20660</coded.value></xsl:template>
+<xsl:template name="procedure"><procedure>Stereotactic Gamma Knife Radiosurgical Ablation of <xsl:value-of select="@Diagnosis" /> with Application of Leksell Stereotactic Frame</procedure></xsl:template>
+<xsl:template name="description"><description>
+<div xmlns="http://www.w3.org/1999/xhtml">
+<p>Application of Leksell Stereotactic Frame (20660): The patient was brought to the Gamma Knife Suite and a hibiclens scalp wash was performed. The patient received Valium 5mg p.o. preoperatively. Using standard sterile technique and 20mg Lidocaine the Leksell Stereotactic Frame was applied using 2 frontal and 2 posterior pins in the usual fashion. <xsl:if test="@shift">The frame was applied with a shift in the <xsl:value-of select="@shift" /> direction.</xsl:if></p>
+<p>The patient was transported to the MRI suite where a stereotactic MRI was performed after the administration of intravenous Gadolinium. The physics quality assurance was performed by <xsl:value-of select="@Physicist" />. The image set was transferred across the hospital ethernet using the DICOM protocol to the Gamma Knife Workstation. The patient was transported back to the Gamma Knife Unit. A three dimensional reconstruction of the target was performed. <xsl:if test="@Volume != ''">The volume was measured to be <xsl:value-of select="@Volume" /></xsl:if>. A three dimensional stereotactic treatment plan was created (61795) using <xsl:value-of select="@Isocenters" />&#160;<xsl:choose><xsl:when test="@Isocenters='1'">isocenter</xsl:when><xsl:otherwise>isocenters</xsl:otherwise></xsl:choose> and the <xsl:value-of select="@Collimators" /> collimator. A dose-volume histogram analysis revealed a coverage of <xsl:value-of select="@DVH" /> percent at the <xsl:value-of select="@Isodose" /> isodose. A treatment was prescribed in conjunction with <xsl:value-of select="@RadOncologist" /> of <xsl:value-of select="@Gray" /> Gray at the <xsl:value-of select="@Isodose" /> isodose.</p>
+<p>The Gamma Knife treatment procedure (61793) was carried out <xsl:choose><xsl:when test="@Isocenters='1'"></xsl:when><xsl:otherwise> to each of the <xsl:value-of select="@Isocenters" /> isocenters in turn </xsl:otherwise></xsl:choose> without complications. The patient received Decadron 4mg IV before and after the procedure.</p>
+<p>After completion of the procedure the stereotactic frame was removed. Betadine ointment was applied to the pin sites and a sterile head wrap was applied. The patient was discharged home with without complications. The sponge and needle count was correct and the conclusion of the procedure. The estimated blood loss was minimal. There were no specimens sent to pathology.</p>
+</div></description></xsl:template>
+</xsl:stylesheet>

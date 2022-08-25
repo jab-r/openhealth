@@ -1,0 +1,328 @@
+<!--
+	Copyright (c) 2000 Jonathan Borden, The Open Healthcare Group
+	Licensed upder http://www.openhealth.org/license
+
+	This module includes element and content definitions for 
+	general history and physical exam related documents.
+	
+	%astm.content defaults to (#PCDATA | %Flow.mix;)* and is a
+	candidate for addition of extended coded vocabularies. 
+	Modules which include this module can override content models on
+	an element by element basis by defining <!ENTITY % xxx.model "...">
+
+	PUBLIC "-//ASTM//DTD Admission/Discharge Summary Module 1.0//EN"
+
+-->
+<!-- summary of situation at admission
+	admitting diagnosis (by admitting physician)
+	chief complaint (by patient or relatives)
+	reason for admission (by referring physician)
+	summary of history
+		history of present illness
+		past history 
+		family history 
+		social history 
+
+	summary of physical examination
+	summary of lab data
+	known allergies
+
+-->
+<!ENTITY % NS.prefixed "IGNORE">
+<!-- <!ENTITY % ADS.prefixed "%NS.prefixed;"> -->
+<!ENTITY % ADS.prefixed "INCLUDE" >
+
+<!ENTITY % ASTM.base.module PUBLIC "-//ASTM//DTD E31.25 Base 1.0//EN" "ASTM.E31.25.dtd">
+
+<!ENTITY % astm.physical.exam.module PUBLIC "-//ASTM//DTD Physical Examination Module 1.0//EN" "physical.examination.module.dtd">
+<!ENTITY % astm.history.module PUBLIC "-//ASTM//DTD History Module 1.0//EN" "history.module.dtd">
+<!ENTITY % ads.namespace.uri "http://www.openhealth.org/ASTM/admission.discharge.summary">
+
+%ASTM.base.module;
+
+<!ENTITY % astm.content "(#PCDATA)">
+
+<!ENTITY % ads "ads">
+
+<![ %ADS.prefixed; [
+<!ENTITY % ads.prefix "%ads;:">
+<!ENTITY % ADS.xmlns.attrib "xmlns:ads CDATA #FIXED 'http://www.openhealth.org/ASTM/admission.discharge.summary'">
+]]>
+
+<!ENTITY % ADS.xmlns.attrib "xmlns CDATA #FIXED 'http://www.openhealth.org/ASTM/admission.discharge.summary'">
+
+<!ENTITY % ads.prefix "">
+<!ENTITY % ads.xmlns.attrib.name "xmlns:%ads;">
+
+<!ENTITY % admission.note.qname "%ads.prefix;admission.note">
+<!ENTITY % discharge.summary.qname "%ads.prefix;discharge.summary">
+<!ENTITY % history.and.physical.examination.qname "%ads.prefix;history.and.physical.examination">
+<!ENTITY % clinical.body.qname "%ads.prefix;clinical.body">
+
+<!ENTITY % admission.qname "%ads.prefix;admission">
+<!ENTITY % diagnoses.qname "%ads.prefix;diagnoses">
+<!ENTITY % diagnosis.qname "%ads.prefix;diagnosis">
+<!ENTITY % chief.complaint.qname "%ads.prefix;chief.complaint">
+<!ENTITY % reason.for.admission.qname "%ads.prefix;reason.for.admission">
+
+<!ENTITY % history.of.present.illness.qname "%ads.prefix;history.of.present.illness">
+<!--
+<!ENTITY % history.qname "%ads.prefix;history">
+
+<!ENTITY % past.medical.history.qname "%ads.prefix;past.medical.history">
+<!ENTITY % past.surgical.history.qname "%ads.prefix;past.surgical.history">
+<!ENTITY % family.history.qname "%ads.prefix;family.history">
+<!ENTITY % social.history.qname "%ads.prefix;social.history">
+<!ENTITY % review.of.systems.qname "%ads.prefix;review.of.systems">
+<!ENTITY % known.allergies.qname "%ads.prefix;known.allergies">
+<!ENTITY % medications.qname "%ads.prefix;medications">
+<!ENTITY % medication.qname "%ads.prefix;medication">
+<!ENTITY % physical.examination.qname "%ads.prefix;physical.examination">
+-->
+
+<!ENTITY % laboratory.data.qname "%ads.prefix;laboratory.data">
+<!ENTITY % diagnostic.studies.qname "%ads.prefix;diagnostic.studies">
+
+<!-- hospital course
+	diagnoses
+		main diagnosis
+		secondary diagnosis
+	operations and procedures
+	complications
+	consultations
+-->
+
+<!ENTITY % hospital.course.qname "%ads.prefix;hospital.course">
+<!ENTITY % description.qname "%ads.prefix;description">
+<!ENTITY % procedures.qname "%ads.prefix;procedures">
+<!ENTITY % complications.qname "%ads.prefix;complications">
+<!ENTITY % consultations.qname "%ads.prefix;consultations">
+<!ENTITY % procedure.qname "%ads.prefix;procedure">
+<!ENTITY % complication.qname "%ads.prefix;complication">
+<!ENTITY % consultation.qname "%ads.prefix;consultation">
+<!--
+situation at discharge
+	status of patient
+		cause of death
+		diagnosis at discharge
+	medications at discharge
+discharge plans
+	medication plan
+	follow-up activities
+instructions to patient and family
+	diet and physical activity (restrictions)
+	return to work
+-->
+
+<!ENTITY % discharge.qname "%ads.prefix;discharge">
+<!ENTITY % patient.status.qname "%ads.prefix;patient.status">
+<!ENTITY % cause.of.death.qname "%ads.prefix;cause.of.death">
+<!ENTITY % discharge.plan.qname "%ads.prefix;discharge.plan">
+<!ENTITY % medication.plan.qname "%ads.prefix;medication.plan">
+<!ENTITY % followup.qname "%ads.prefix;followup">
+<!ENTITY % restrictions.qname "%ads.prefix;restrictions">
+<!ENTITY % return.to.work.qname "%ads.prefix;return.to.work">
+<!-- for admission note -->
+
+<!ENTITY % assessment.model "%astm.content;">
+<!ENTITY % plan.model "%astm.content;">
+<!ENTITY % problem.list.model "(%problem.qname;)*">
+<!ENTITY % problem.description.model "%astm.content;">
+<!ENTITY % problem.model "(%problem.description.qname;,(%assessment.qname;)?,(%plan.qname;)?)">
+<!ENTITY % assessment.and.plan.model "(
+	#PCDATA | %Flow.mix; |
+	%assessment.qname; | %plan.qname;
+)*">
+<!ENTITY % assessment.qname "%ads.prefix;assessment">
+<!ENTITY % plan.qname "%ads.prefix;plan">
+<!ENTITY % problem.list.qname "%ads.prefix;problem.list">
+<!ENTITY % problem.qname "%ads.prefix;problem">
+<!ENTITY % problem.description.qname "%ads.prefix;problem.description">
+<!ENTITY % assessment.and.plan.qname "%ads.prefix;assessment.and.plan">
+<!ENTITY % history.and.physical.qname "%ads.prefix;history.and.physical">
+
+<!-- include physical exam vocabulary -->
+%astm.physical.exam.module;
+<!-- include history vocabulary -->
+%astm.history.module;
+<!-- now define models -->
+<!ENTITY % history.and.physical.mix "
+	%chief.complaint.qname;,
+	%history.of.present.illness.qname;,
+	%known.allergies.qname;,
+	%medications.qname;,
+	%history.qname;,
+	%physical.examination.qname;,
+	(%laboratory.data.qname;)?,
+	(%diagnostic.studies.qname;)? "
+>
+
+
+
+<!ENTITY % admission.model "(
+	%history.and.physical.mix;,
+	%diagnoses.qname;,
+	(%reason.for.admission.qname;)?
+)">
+
+<!ENTITY % history.and.physical.model "(%history.and.physical.mix;)">
+<!ENTITY % diagnoses.model "(%diagnosis.qname;)*">
+<!ENTITY % diagnosis.model "%astm.content;">
+<!ENTITY % chief.complaint.model "(#PCDATA)">
+<!ENTITY % reason.for.admission.model "%astm.content;">
+
+<!ENTITY % history.of.present.illness.model "%astm.content;">
+<!ENTITY % past.medical.history.model "%astm.content;">
+<!ENTITY % past.surgical.history.model "%astm.content;">
+<!ENTITY % family.history.model "%astm.content;">
+<!ENTITY % social.history.model "%astm.content;">
+<!ENTITY % review.of.systems.model "%astm.content;">
+<!ENTITY % known.allergies.model "%astm.content;">
+<!ENTITY % medications.model "(#PCDATA | %ASTM.Mix; | %medication.qname; )*">
+<!ENTITY % medication.model "%astm.content;">
+<!ENTITY % physical.examination.model "%astm.content;">
+<!ENTITY % laboratory.data.model "%astm.content;">
+<!ENTITY % diagnostic.studies.model "%astm.content;">
+
+<!ENTITY % hospital.course.model "(
+	%description.qname;,
+	(%diagnoses.qname;)?,
+	(%procedures.qname;)?,
+	(%complications.qname;)?,
+	(%consultations.qname;)?
+)">
+<!ENTITY % description.model "%astm.content;">
+<!ENTITY % procedures.model "(%procedure.qname;)*">
+<!ENTITY % complications.model "(%complication.qname;)*">
+<!ENTITY % consultations.model "(%consultation.qname;)*">
+<!ENTITY % procedure.model "%astm.content;">
+<!ENTITY % complication.model "%astm.content;">
+<!ENTITY % consultation.model "%astm.content;">
+
+<!ENTITY % discharge.model "(
+	(%assessment.and.plan.qname;)?,
+	(%patient.status.qname;)?,
+	(%diagnoses.qname;)?,
+	(%cause.of.death.qname;)?,
+	(%medications.qname;)?,
+	(%discharge.plan.qname;)?,
+)">
+
+<!ENTITY % patient.status.model "%astm.content;">
+<!ENTITY % cause.of.death.model "%astm.content;">
+<!ENTITY % discharge.plan.model "(
+	(%description.qname;)?,
+	(%medication.plan.qname;)?,
+	(%followup.qname;)?,
+	(%restrictions.qname;)?,
+	(%return.to.work.qname;)?
+)">
+
+<!ENTITY % medication.plan.model "%astm.content;">
+<!ENTITY % followup.model "%astm.content;">
+<!ENTITY % restrictions.model "%astm.content;">
+<!ENTITY % return.to.work.model "%astm.content;">
+<!ENTITY % assessment.model "%astm.content;">
+<!ENTITY % plan.model "%astm.content;">
+<!ENTITY % problem.list.model "(%problem.qname;)*">
+<!ENTITY % problem.description.model "%astm.content;">
+<!ENTITY % problem.model "(%problem.description.qname;,(%diagnosis.qname;)?,(%assessment.qname;)?,(%plan.qname;)?)">
+<!ENTITY % assessment.and.plan.model "(
+	#PCDATA | %ASTM.Mix;|
+	%diagnosis.qname;|
+	%assessment.qname;|
+	%plan.qname;|
+	%problem.qname;)*">
+
+<!ELEMENT %admission.note.qname; (%clinical.header.qname;,%clinical.body.qname;)>
+<!ATTLIST %admission.note.qname;
+	%astm.document.attrib;
+	%ADS.xmlns.attrib;
+>
+
+<!ELEMENT %admission.qname; %admission.model;>
+<!ELEMENT %diagnoses.qname; %diagnoses.model;>
+<!ELEMENT %diagnosis.qname; %diagnosis.model;>
+<!ELEMENT %chief.complaint.qname; %chief.complaint.model;>
+<!ELEMENT %reason.for.admission.qname; %reason.for.admission.model;>
+<!ELEMENT %history.qname; %history.model;>
+<!ELEMENT %history.of.present.illness.qname; %history.of.present.illness.model;>
+<!ELEMENT %past.medical.history.qname; %past.medical.history.model;>
+<!ELEMENT %past.surgical.history.qname; %past.surgical.history.model;>
+<!ELEMENT %family.history.qname; %family.history.model;>
+<!ELEMENT %social.history.qname; %social.history.model;>
+<!ELEMENT %review.of.systems.qname; %review.of.systems.model;>
+<!ELEMENT %known.allergies.qname; %known.allergies.model;>
+<!ELEMENT %medications.qname; %medications.model;>
+<!ELEMENT %medication.qname; %medication.model;>
+<!ELEMENT %physical.examination.qname; %physical.examination.model;>
+<!ELEMENT %laboratory.data.qname; %laboratory.data.model;>
+<!ELEMENT %diagnostic.studies.qname; %diagnostic.studies.model;>
+<!ELEMENT %hospital.course.qname; %hospital.course.model;>
+<!ELEMENT %description.qname; %description.model;>
+<!ELEMENT %procedures.qname; %procedures.model;>
+<!ELEMENT %complications.qname; %complications.model;>
+<!ELEMENT %consultations.qname; %consultations.model;>
+<!ELEMENT %procedure.qname; %procedure.model;>
+<!ELEMENT %complication.qname; %complication.model;>
+<!ELEMENT %consultation.qname; %consultation.model;>
+<!ELEMENT %discharge.qname; %discharge.model;>
+<!ELEMENT %patient.status.qname; %patient.status.model;>
+<!ELEMENT %cause.of.death.qname; %cause.of.death.model;>
+<!ELEMENT %discharge.plan.qname; %discharge.plan.model;>
+<!ELEMENT %medication.plan.qname; %medication.plan.model;>
+<!ELEMENT %followup.qname; %followup.model;>
+<!ELEMENT %restrictions.qname; %restrictions.model;>
+<!ELEMENT %return.to.work.qname; %return.to.work.model;>
+<!ELEMENT %problem.list.qname; %problem.list.model;>
+<!ELEMENT %problem.qname; %problem.model;>
+<!ELEMENT %problem.description.qname; %problem.description.model;>
+<!ELEMENT %assessment.qname; %assessment.model;>
+<!ELEMENT %plan.qname; %plan.model;>
+<!ELEMENT %assessment.and.plan.qname; %assessment.and.plan.model;>
+<!ELEMENT %history.and.physical.qname; %history.and.physical.model;>
+
+<!ATTLIST %admission.qname; %astm.content.attrib;>
+<!ATTLIST %diagnoses.qname; %astm.content.attrib;>
+<!ATTLIST %diagnosis.qname; %astm.content.attrib;>
+<!ATTLIST %chief.complaint.qname;  %astm.content.attrib;>
+<!ATTLIST %reason.for.admission.qname;  %astm.content.attrib;>
+<!ATTLIST %history.qname;  %astm.content.attrib;>
+<!ATTLIST %history.of.present.illness.qname;  %astm.content.attrib;>
+<!ATTLIST %past.medical.history.qname;  %astm.content.attrib;>
+<!ATTLIST %past.surgical.history.qname;  %astm.content.attrib;>
+<!ATTLIST %family.history.qname; %astm.content.attrib;>
+<!ATTLIST %social.history.qname;  %astm.content.attrib;>
+<!ATTLIST %review.of.systems.qname; %astm.content.attrib;>
+<!ATTLIST %known.allergies.qname; %astm.content.attrib;>
+<!ATTLIST %medications.qname; %astm.content.attrib;>
+<!ATTLIST %medication.qname; %astm.content.attrib;>
+<!ATTLIST %physical.examination.qname; %astm.content.attrib;>
+<!ATTLIST %laboratory.data.qname; %astm.content.attrib;>
+<!ATTLIST %diagnostic.studies.qname; %astm.content.attrib;>
+<!ATTLIST %hospital.course.qname; %astm.content.attrib;>
+<!ATTLIST %description.qname; %astm.content.attrib;>
+<!ATTLIST %procedures.qname; %astm.content.attrib;>
+<!ATTLIST %complications.qname; %astm.content.attrib;>
+<!ATTLIST %consultations.qname; %astm.content.attrib;>
+<!ATTLIST %procedure.qname; %astm.content.attrib;>
+<!ATTLIST %complication.qname; %astm.content.attrib;>
+<!ATTLIST %consultation.qname; %astm.content.attrib;>
+<!ATTLIST %discharge.qname;  %astm.content.attrib;>
+<!ATTLIST %patient.status.qname;  %astm.content.attrib;>
+<!ATTLIST %cause.of.death.qname;  %astm.content.attrib;>
+<!ATTLIST %discharge.plan.qname; %astm.content.attrib;>
+<!ATTLIST %medication.plan.qname; %astm.content.attrib;>
+<!ATTLIST %followup.qname; %astm.content.attrib;>
+<!ATTLIST %restrictions.qname; %astm.content.attrib;>
+<!ATTLIST %return.to.work.qname; %astm.content.attrib;>
+<!ATTLIST %problem.list.qname; %astm.content.attrib;>
+<!ATTLIST %problem.qname; %astm.content.attrib;>
+<!ATTLIST %problem.description.qname; %astm.content.attrib;>
+<!ATTLIST %assessment.qname; %astm.content.attrib;>
+<!ATTLIST %plan.qname; %astm.content.attrib;>
+<!ATTLIST %assessment.and.plan.qname; %astm.content.attrib;>
+<!ATTLIST %history.and.physical.qname; %astm.content.attrib;>
+
+
+

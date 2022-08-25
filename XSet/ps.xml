@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<propset xmlns="http://www.openhealth.org/XSet" xmlns:p="http://www.openhealth.org/XSet" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <classdef rcsnm="document">
+        <propdef datatype="node" rcsnm="prolog" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="element" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="Misc" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="characters">
+        <propdef datatype="char" rcsnm="characters" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="S">
+        <propdef datatype="char" rcsnm="S" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="NameChar">
+        <propdef datatype="node" rcsnm="NameChar" noderel="subnode" ac="Letter Digit c c c c CombiningChar Extender"/>
+    </classdef>
+    <classdef rcsnm="Name">
+        <propdef datatype="node" rcsnm="Name" noderel="subnode" ac="Letter c c"/>
+        <propdef datatype="node" rcsnm="NameChar" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="Names">
+        <propdef datatype="node" rcsnm="Name" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="Names" noderel="subnode" ac="c Name"/>
+    </classdef>
+    <classdef rcsnm="Nmtoken">
+        <propdef datatype="node" rcsnm="NameChar" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="Nmtokens">
+        <propdef datatype="node" rcsnm="Nmtoken" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="Nmtokens" noderel="subnode" ac="c Nmtoken"/>
+    </classdef>
+    <classdef rcsnm="EntityValue">
+        <propdef datatype="node" rcsnm="EntityValue" noderel="subnode" ac="Seq Seq"/>
+    </classdef>
+    <classdef rcsnm="AttValue">
+        <propdef datatype="node" rcsnm="AttValue" noderel="subnode" ac="Seq Seq"/>
+    </classdef>
+    <classdef rcsnm="SystemLiteral">
+        <propdef datatype="node" rcsnm="SystemLiteral" noderel="subnode" ac="Seq Seq"/>
+    </classdef>
+    <classdef rcsnm="PubidLiteral">
+        <propdef datatype="node" rcsnm="PubidLiteral" noderel="subnode" ac="Seq Seq"/>
+    </classdef>
+    <classdef rcsnm="PubidChar">
+        <propdef datatype="char" rcsnm="PubidChar" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="CharData"/>
+    <classdef rcsnm="Comment">
+        <propdef datatype="node" rcsnm="Comment" noderel="subnode" ac="Char Seq"/>
+    </classdef>
+    <classdef rcsnm="PI">
+        <propdef datatype="node" rcsnm="PITarget" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="S" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="Char" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="PITarget">
+        <propdef datatype="node" rcsnm="Name" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="CDSect">
+        <propdef datatype="node" rcsnm="CDStart" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="CData" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="CDEnd" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="CDStart"/>
+    <classdef rcsnm="CData">
+        <propdef datatype="node" rcsnm="Char" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="CDEnd"/>
+    <classdef rcsnm="prolog">
+        <propdef datatype="node" rcsnm="XMLDecl" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="Misc" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="doctypedecl" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="XMLDecl">
+        <propdef datatype="node" rcsnm="VersionInfo" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="EncodingDecl" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="SDDecl" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="S" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="VersionInfo">
+        <propdef datatype="node" rcsnm="S" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="Eq" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="VersionInfo" noderel="subnode" ac="Seq Seq"/>
+    </classdef>
+    <classdef rcsnm="Eq">
+        <propdef datatype="node" rcsnm="S" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="VersionNum">
+        <propdef datatype="char" rcsnm="VersionNum" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="Misc">
+        <propdef datatype="node" rcsnm="Misc" noderel="subnode" ac="Comment PI S"/>
+    </classdef>
+    <classdef rcsnm="doctypedecl">
+        <propdef datatype="node" rcsnm="S" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="Name" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="ExternalID" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="doctypedecl" noderel="subnode" ac="markupdecl PEReference S"/>
+    </classdef>
+    <classdef rcsnm="markupdecl">
+        <propdef datatype="node" rcsnm="markupdecl" noderel="subnode" ac="elementdecl AttlistDecl EntityDecl NotationDecl P1 Comment"/>
+    </classdef>
+    <classdef rcsnm="extSubset">
+        <propdef datatype="node" rcsnm="TextDecl" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="extSubsetDecl" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="extSubsetDecl">
+        <propdef datatype="node" rcsnm="extSubsetDecl" noderel="subnode" ac="markupdecl conditionSect PEReference S"/>
+    </classdef>
+    <classdef rcsnm="SDDecl">
+        <propdef datatype="node" rcsnm="S" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="Eq" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="SDDecl" noderel="subnode" ac="Seq Seq"/>
+    </classdef>
+    <classdef rcsnm="LanguageID">
+        <propdef datatype="node" rcsnm="Langcode" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="Subcode" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="Langcode">
+        <propdef datatype="node" rcsnm="Langcode" noderel="subnode" ac="ISO639Code IanaCode UserCode"/>
+    </classdef>
+    <classdef rcsnm="ISO639Code">
+        <propdef datatype="char" rcsnm="ISO639Code" noderel="subnode"/>
+        <propdef datatype="char" rcsnm="ISO639Code" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="IanaCode">
+        <propdef datatype="char" rcsnm="IanaCode" noderel="subnode"/>
+        <propdef datatype="char" rcsnm="IanaCode" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="UserCode">
+        <propdef datatype="char" rcsnm="UserCode" noderel="subnode"/>
+        <propdef datatype="char" rcsnm="UserCode" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="SubCode">
+        <propdef datatype="char" rcsnm="SubCode" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="element">
+        <propdef datatype="node" rcsnm="element" noderel="subnode" ac="EmptyElemTag Seq"/>
+    </classdef>
+    <classdef rcsnm="STag">
+        <propdef datatype="node" rcsnm="Name" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="S" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="Attribute" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="Attribute">
+        <propdef datatype="node" rcsnm="Name" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="Eq" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="AttValue" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="ETag">
+        <propdef datatype="node" rcsnm="Name" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="S" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="content">
+        <propdef datatype="node" rcsnm="CharData" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="content" noderel="subnode" ac="element Reference CDSect PI Comment"/>
+    </classdef>
+    <classdef rcsnm="EmptyElemTag">
+        <propdef datatype="node" rcsnm="Name" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="S" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="Attribute" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="elementdecl">
+        <propdef datatype="node" rcsnm="S" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="Name" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="contentSpec" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="contentspec">
+        <propdef datatype="node" rcsnm="contentspec" noderel="subnode" ac="string string Mixed children"/>
+    </classdef>
+    <classdef rcsnm="children">
+        <propdef datatype="node" rcsnm="children" noderel="subnode" ac="choice seq"/>
+        <propdef datatype="char" rcsnm="children" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="cp">
+        <propdef datatype="node" rcsnm="cp" noderel="subnode" ac="Name choice seq"/>
+        <propdef datatype="char" rcsnm="cp" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="choice">
+        <propdef datatype="node" rcsnm="S" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="cp" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="seq">
+        <propdef datatype="node" rcsnm="S" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="cp" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="Mixed">
+        <propdef datatype="node" rcsnm="S" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="Name" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="AttlistDecl">
+        <propdef datatype="node" rcsnm="S" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="Name" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="AttDef" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="AttDef">
+        <propdef datatype="node" rcsnm="S" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="Name" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="AttType" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="DefaultDecl" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="AttType">
+        <propdef datatype="node" rcsnm="AttType" noderel="subnode" ac="StringType TokenizedType EnumeratedType"/>
+    </classdef>
+    <classdef rcsnm="AttType"/>
+    <classdef rcsnm="TokenizedType">
+        <propdef datatype="node" rcsnm="TokenizedType" noderel="subnode" ac="string string string string string string string"/>
+    </classdef>
+    <classdef rcsnm="EnumeratedType">
+        <propdef datatype="node" rcsnm="EnumeratedType" noderel="subnode" ac="NotationType Enumeration"/>
+    </classdef>
+    <classdef rcsnm="NotationType">
+        <propdef datatype="node" rcsnm="S" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="Name" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="Enumeration">
+        <propdef datatype="node" rcsnm="S" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="Nmtoken" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="DefaultDecl">
+        <propdef datatype="node" rcsnm="DefaultDecl" noderel="subnode" ac="string string Seq"/>
+    </classdef>
+    <classdef rcsnm="conditionalSect">
+        <propdef datatype="node" rcsnm="conditionalSect" noderel="subnode" ac="includeSect ignoreSect"/>
+    </classdef>
+    <classdef rcsnm="includeSect">
+        <propdef datatype="node" rcsnm="S" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="extSubsetDecl" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="ignoreSect">
+        <propdef datatype="node" rcsnm="S" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="ignoreSectContents" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="ignoreSectContents">
+        <propdef datatype="node" rcsnm="Ignore" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="ignoreSectContents" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="Ignore">
+        <propdef datatype="node" rcsnm="Char" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="CharRef">
+        <propdef datatype="node" rcsnm="CharRef" noderel="subnode" ac="Seq Seq"/>
+    </classdef>
+    <classdef rcsnm="Reference">
+        <propdef datatype="node" rcsnm="Reference" noderel="subnode" ac="EntityRef CharRef"/>
+    </classdef>
+    <classdef rcsnm="EntityRef">
+        <propdef datatype="node" rcsnm="Name" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="PEReference">
+        <propdef datatype="node" rcsnm="Name" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="EntityDecl">
+        <propdef datatype="node" rcsnm="EntityDecl" noderel="subnode" ac="GEDecl PEDecl"/>
+    </classdef>
+    <classdef rcsnm="GEDecl">
+        <propdef datatype="node" rcsnm="S" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="Name" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="EntityDef" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="PEDecl">
+        <propdef datatype="node" rcsnm="S" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="Name" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="PEDef" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="EntityDef">
+        <propdef datatype="node" rcsnm="EntityDef" noderel="subnode" ac="EntityValue Seq"/>
+    </classdef>
+    <classdef rcsnm="PEDef">
+        <propdef datatype="node" rcsnm="PEDef" noderel="subnode" ac="EntityValue ExternalID"/>
+    </classdef>
+    <classdef rcsnm="ExternalID">
+        <propdef datatype="node" rcsnm="ExternalID" noderel="subnode" ac="Seq Seq"/>
+    </classdef>
+    <classdef rcsnm="NDataDecl">
+        <propdef datatype="node" rcsnm="S" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="Name" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="TextDecl">
+        <propdef datatype="node" rcsnm="VersionInfo" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="EncodingDecl" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="S" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="extParsedEnt">
+        <propdef datatype="node" rcsnm="TextDecl" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="content" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="extPE">
+        <propdef datatype="node" rcsnm="TextDecl" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="extSubsetDecl" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="EncodingDecl">
+        <propdef datatype="node" rcsnm="S" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="Eq" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="EncodingDecl" noderel="subnode" ac="Seq Seq"/>
+    </classdef>
+    <classdef rcsnm="EncName">
+        <propdef datatype="char" rcsnm="EncName" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="NotationDecl">
+        <propdef datatype="node" rcsnm="S" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="Name" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="NotationDecl" noderel="subnode" ac="ExternalID PublicID"/>
+    </classdef>
+    <classdef rcsnm="PublicID">
+        <propdef datatype="node" rcsnm="S" noderel="subnode"/>
+        <propdef datatype="node" rcsnm="PubidLiteral" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="Letter">
+        <propdef datatype="node" rcsnm="Letter" noderel="subnode" ac="BaseChar Ideographic"/>
+    </classdef>
+    <classdef rcsnm="BaseChar">
+        <propdef datatype="char" rcsnm="BaseChar" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="Ideographic">
+        <propdef datatype="char" rcsnm="Ideographic" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="CombiningChar">
+        <propdef datatype="char" rcsnm="CombiningChar" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="Digit">
+        <propdef datatype="char" rcsnm="Digit" noderel="subnode"/>
+    </classdef>
+    <classdef rcsnm="Extender">
+        <propdef datatype="char" rcsnm="Extender" noderel="subnode"/>
+    </classdef>
+</propset>

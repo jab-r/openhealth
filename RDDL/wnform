@@ -1,0 +1,25 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Wordnet-RDF/RDDL Browser</title>
+</head>
+
+<body bgcolor="silver">
+<h1>Wordnet 1.6 Viewer</h1>
+<p>The Wordnet viewer returns RDDL pages describing <code>xmlns.com/wordnet/1.6/</code> terms.</p>
+<form name="wn" action="http://www.w3.org/2000/06/webdata/xslt"
+	onSubmit="xmlfile.value = xmlfile.value + word.value" >
+<table>
+<input type="hidden" name="xslfile" value="http://www.rddl.org/wn2rddl.xsl">
+<input type="hidden" name="xmlfile" value="http://xmlns.com/wordnet/1.6/">
+<tr>
+	<td><p>Enter a word:</p></td>
+	<td><input type="text" name="word" size="32" maxlength="64" /></td>
+</tr>
+</table>
+<input type="submit" name="Submit" value="Submit" />
+</form>
+
+</body>
+</html>

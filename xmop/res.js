@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-16"?><SOAP:Envelope xmlns:SOAP="urn:schemas-xmlsoap-org:soap.v1"><SOAP:Body><m:CreateInstance xmlns:m="http://www.grovelogic.com/SOAP/XTRIME.MBXMLFactory.1"><result>1234</result></m:CreateInstance></SOAP:Body></SOAP:Envelope>

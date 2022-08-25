@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://description.org/schema/Creator"/>
+      <rdf:subject rdf:resource="http://www.w3.org/Home/Lassila"/>
+      <rdf:object rdf:resource="#/1/1/1"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <rdf:subject rdf:resource="#/1/1/1"/>
+      <rdf:object rdf:resource="http://description.org/schema/Creator"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Description"/>
+      <rdf:subject rdf:resource="#/1/1/1"/>
+      <rdf:object rdf:resource="http://www.w3.org/staffId/85740"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <rdf:subject rdf:resource="#/1/1/1/1"/>
+      <rdf:object rdf:resource=""/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <rdf:subject rdf:resource="http://www.w3.org/staffId/85740"/>
+      <rdf:object rdf:resource="http://description.org/schema/Person"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="file:/D:/rdf/test9.xml#resource"/>
+      <rdf:subject rdf:resource="http://description.org/schema/Person"/>
+      <rdf:object>http://description.org/schema/Person</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://description.org/schema/v/Name"/>
+      <rdf:subject rdf:resource="http://www.w3.org/staffId/85740"/>
+      <rdf:object>Ora Lassila</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://description.org/schema/v/Email"/>
+      <rdf:subject rdf:resource="http://www.w3.org/staffId/85740"/>
+      <rdf:object>lassila@w3.org</rdf:object>
+   </rdf:Statement>
+</rdf:RDF>

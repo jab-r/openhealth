@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://purl.org/metadata/dublin_core#Creator"/>
+      <rdf:subject rdf:resource="http://www.foo.com/cool.html"/>
+      <rdf:object rdf:resource="#CreatorsAlphabeticalBySurname"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <rdf:subject rdf:resource="#CreatorsAlphabeticalBySurname"/>
+      <rdf:object rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Seq"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#_1"/>
+      <rdf:subject rdf:resource="#CreatorsAlphabeticalBySurname"/>
+      <rdf:object>Mary Andrew</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#_2"/>
+      <rdf:subject rdf:resource="#CreatorsAlphabeticalBySurname"/>
+      <rdf:object>Jacky Crystal</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://purl.org/metadata/dublin_core#Identifier"/>
+      <rdf:subject rdf:resource="http://www.foo.com/cool.html"/>
+      <rdf:object rdf:resource="#MirroredSites"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <rdf:subject rdf:resource="#MirroredSites"/>
+      <rdf:object rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Bag"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#_1"/>
+      <rdf:subject rdf:resource="#MirroredSites"/>
+      <rdf:object rdf:resource="http://www.foo.com.au/cool.html"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#li"/>
+      <rdf:subject rdf:resource="#MirroredSites"/>
+      <rdf:object rdf:resource="http://www.foo.com.au/cool.html"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#_2"/>
+      <rdf:subject rdf:resource="#MirroredSites"/>
+      <rdf:object rdf:resource="http://www.foo.com.it/cool.html"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#li"/>
+      <rdf:subject rdf:resource="#MirroredSites"/>
+      <rdf:object rdf:resource="http://www.foo.com.it/cool.html"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://purl.org/metadata/dublin_core#Title"/>
+      <rdf:subject rdf:resource="http://www.foo.com/cool.html"/>
+      <rdf:object rdf:resource="#/1/1/3/1"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <rdf:subject rdf:resource="#/1/1/3/1"/>
+      <rdf:object rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Alt"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#_1"/>
+      <rdf:subject rdf:resource="#/1/1/3/1"/>
+      <rdf:object rdf:resource="#/1/1/3/1/1"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#li"/>
+      <rdf:subject rdf:resource="#/1/1/3/1"/>
+      <rdf:object rdf:resource="#/1/1/3/1/1"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <rdf:subject rdf:resource="#/1/1/3/1/1"/>
+      <rdf:object rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#li"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#value"/>
+      <rdf:subject rdf:resource="#/1/1/3/1/1"/>
+      <rdf:object>The Coolest Web Page</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#_2"/>
+      <rdf:subject rdf:resource="#/1/1/3/1"/>
+      <rdf:object rdf:resource="#/1/1/3/1/2"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#li"/>
+      <rdf:subject rdf:resource="#/1/1/3/1"/>
+      <rdf:object rdf:resource="#/1/1/3/1/2"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <rdf:subject rdf:resource="#/1/1/3/1/2"/>
+      <rdf:object rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#li"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#value"/>
+      <rdf:subject rdf:resource="#/1/1/3/1/2"/>
+      <rdf:object>Il Pagio di Web Fuba</rdf:object>
+   </rdf:Statement>
+</rdf:RDF>

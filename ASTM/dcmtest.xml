@@ -1,0 +1,7 @@
+<!DOCTYPE dcm:test SYSTEM "DICOMelements.dtd" [
+<!ENTITY % dcm "dcm:">
+<!ELEMENT dcm:test (dcm:group.length)>
+]>
+<dcm:test xmlns:dcm="http://www.openhealth.org/ASTM/1/DICOM">
+	<dcm:group.length><dcm:UL>123</dcm:UL></dcm:group.length>
+</dcm:test>

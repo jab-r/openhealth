@@ -1,0 +1,51 @@
+<owl:Ontology xmlns:owl="http://example.org/OWL#"
+		xmlns:schema="http://www.openhealth.org/WOWG/Schema.owl#"
+		xmlns="http://www.openhealth.org/WOWG/Schema.owl#"
+		xmlns:rdfs="rdfs"
+		xmlns:rdf="rdf"
+		xmlns:xsd="xsd">
+<Type rdf:id="c-type">
+<rdfs:comment>c-type = (a|b)*</rdfs:comment>
+	<seq>
+	  <Type>
+		<oneOf>
+		 <Element rdf:about="#a"/>
+		 <Element rdf:about="#b"/>			
+		</oneOf>
+		<minCardinality>0</minCardinality>
+	  </Type>
+	</seq>
+</Type>
+<Element rdf:ID="root">
+	<seq>
+		<Element rdf:about="#a"/>
+		<Element rdf:about="#b"/>
+		<Element rdf:about="#c"/>
+	</seq>
+</Element>
+<Element rdf:ID="a">
+	<oneOf>
+		<Element rdf:about="#b"/>
+		<Element rdf:about="#c"/>
+		<Element rdf:about="#d"/>
+	</oneOf>
+</Element>
+<Element rdf:ID="b">
+	<set>
+		<Attribute schema:name="foo"><Text/></Attribute>
+		<Attribute schema:name="bar"><xsd:integer/></Atrribute>
+	</set>
+	<oneOf>
+		<Text/>
+		<Element rdf:about="#b"/>
+		<Element rdf:about="#c"/>
+		<Element rdf:about="#d"/>
+	</oneOf>
+</Element>
+<Element rdf:ID="c">
+	<Ref rdf:resource="#c-type"/>
+</Element>
+<Element rdf:ID="d">
+	<Text />
+</Element>
+</owl:Ontology>

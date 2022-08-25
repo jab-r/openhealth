@@ -1,0 +1,100 @@
+default namespace rad = "http://www.openhealth.org/ASTM/radiology.report"
+datatypes xsd = "http://www.w3.org/2001/XMLSchema-datatypes"
+include "ASTM.E2182.rng"
+#<!-- by default disable DICOM SR -->
+
+#<![%use.dicom.rad;[
+#<!ENTITY % astm.dicom.rad.module PUBLIC "+//ASTM//DTD DICOMV3 1.0//EN" "astm.dicom.dtd">
+#%astm.dicom.rad.module;
+
+#<!ENTITY % astm.dicom.sr.module PUBLIC "+//ASTM//DTD DICOM SR 1.0//EN" "DICOMSR.dtd">
+#%astm.dicom.sr.module;
+
+
+dicom.sr = element dicom.sr{
+	dicom.sr.document.content.module?,
+	dicom.sr.document.general.module?,
+	dicom.sr.document.series.module?
+}
+
+
+
+study.instance.uid.model = text
+study.date.model = text
+study.time.model = text
+study.description.model = astm.content
+referenced.study.sequence.model = coded.value*
+procedure.code.sequence.model = coded.value*
+modality.model = text
+laterality.model = text
+protocol.name.model = text
+body.part.examined.model = text
+reason.for.study.model = astm.content
+contrast.bolus.agent.model = text 
+
+interpretation.text.model = astm.content
+impressions.model = astm.content
+interpretation.diagnosis.description.model = astm.content
+interpretation.diagnosis.code.sequence.model = coded.value*
+interpretation.id.model = text
+
+#<!--	gone to header
+##	 %dcm;ReferringPhysicianName?,
+##	 %dcm;StudyID?,
+##	 %dcm;AccessionNumber?,
+##	 %dcm;OperatorsName?,
+##	 %dcm;physicianOfRecord?,
+##	 %dcm;RequestingPhysician?,
+##	 %dcm;PerformingPhysicianName?,
+##	 %dcm;NameOfPhysicianReadingStudy?,
+##	 %dcm;InterpretationTranscriptionDate?,
+##	 %dcm;InterpretationAuthor?,
+#-->
+
+clinical.body.model =
+	 study.instance.uid?,
+	 study.date?,
+	 study.time?,
+	 study.description?,
+	 referenced.study.sequence?,
+	 procedure.code.sequence?,
+	 modality,
+	 laterality?,
+	 protocol.name?,
+	 body.part.examined?,
+	 reason.for.study?,
+	 contrast.bolus.agent?, 
+	 interpretation.text?,
+	 impressions?,
+	 interpretation.diagnosis.description?,
+	 interpretation.diagnosis.code.sequence?,
+	 interpretation.id?,
+	 dicom.sr*
+
+
+radiology.report.model =
+	clinical.header,
+	clinical.body
+
+radiology.report = element radiology.report { astm.content.attrib, radiology.report.model }
+
+clinical.body = element clinical.body { ch.attrib, clinical.body.model }
+study.instance.uid = element study.instance.uid { astm.content.attrib, study.instance.uid.model }
+study.date = element study.date { astm.content.attrib, study.date.model }
+study.time = element study.time { astm.content.attrib, study.time.model }
+study.description = element study.description { astm.content.attrib, study.description.model }
+referenced.study.sequence = element referenced.study.sequence { astm.content.attrib, referenced.study.sequence.model }
+procedure.code.sequence = element procedure.code.sequence { astm.content.attrib, procedure.code.sequence.model }
+modality = element modality { astm.content.attrib, modality.model }
+laterality = element laterality { astm.content.attrib, laterality.model }
+protocol.name = element protocol.name { astm.content.attrib, protocol.name.model }
+body.part.examined = element body.part.examined { astm.content.attrib, body.part.examined.model }
+reason.for.study = element reason.for.study { astm.content.attrib, reason.for.study.model }
+contrast.bolus.agent = element contrast.bolus.agent { astm.content.attrib, contrast.bolus.agent.model }
+interpretation.text = element interpretation.text { astm.content.attrib, interpretation.text.model }
+impressions = element impressions { astm.content.attrib, impressions.model }
+interpretation.diagnosis.description = element interpretation.diagnosis.description { astm.content.attrib, interpretation.diagnosis.description.model }
+interpretation.diagnosis.code.sequence = element interpretation.diagnosis.code.sequence { astm.content.attrib, interpretation.diagnosis.code.sequence.model }
+interpretation.id = element interpretation.id { astm.content.attrib, interpretation.id.model }
+
+

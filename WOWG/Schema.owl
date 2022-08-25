@@ -1,0 +1,52 @@
+<!DOCTYPE Ontology [
+<!ENTITY ont "http://www.daml.org/2001/03/daml+oil#">
+<!ENTITY col "http://www.openhealth.org/WOWG/collection.ont#">
+<!ENTITY this "http://www.openhealth.org/WOWG/Schema.owl#">
+<!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#">
+<!ENTITY xsd "http://www.w3.org/2001/XMLSchema">
+]>
+<Ontology xmlns:schema="&this;"
+		xmlns:rdf="&rdf;"
+		xmlns:rdfs="&rdfs;"
+		xmlns="&ont;"
+		xmlns:ont="&ont;"
+		>
+
+	<Class rdf:ID="Element">
+		<subClassOf rdf:resource="#Type"/>
+	</Class>
+	<Class rdf:ID="Attribute">
+		<subClassOf rdf:resource="#Type"/>
+	</Class>
+	<Class rdf:ID="Datatype">
+		<subClassOf rdf:resource="#Type"/>
+	</Class>
+	<Class rdf:ID="Type">
+		<subClassOf rdf:resource="&ont;Class"/>
+	</Class>
+	<Class rdf:ID="Text">
+		<subClassOf rdf:resource="#Datatype"/>
+		<ont:Restriction>
+			<ont:onProperty rdf:resource="&rdf;value" />
+			<ont:toClass rdf:resource="&xsd;#string" />
+		</ont:Restriction>
+	</Class>
+	<Class rdf:ID="Comment" />
+	<Class rdf:ID="PI"/>
+	<DatatypeProperty rdf:ID="name">
+		<maxCardinality>1</maxCardinality>
+		<rdfs:range rdf:resource="&xsd;#anyURI"/>
+		<rdfs:domain rdf:resource="#Type"/>
+	</DatatypeProperty>
+	<DatatypeProperty rdf:ID="ns">
+		<maxCardinality>1</maxCardinality>
+		<rdfs:range rdf:resource="&xsd;#anyURI"/>
+	</DatatypeProperty>
+	<Property rdf:ID="content">
+		<subPropertyOf rdf:resource="&col;sequence"/>
+	</Property>
+	<Property rdf:ID="attributes">
+		<subPropertyOf rdf:resource="&col;set"/>
+	</Property>
+</Ontology>

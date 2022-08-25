@@ -1,0 +1,50 @@
+// mbxml.idl : IDL source for mbxml.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (mbxml.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+	[
+		object,
+		uuid(F88F5559-5D84-11D2-9EFA-00105CAB062D),
+		dual,
+		helpstring("IMBXMLFactory Interface"),
+		pointer_default(unique)
+	]
+	interface IMBXMLFactory : IDispatch
+	{
+		[id(1), helpstring("method CreateInstance")] HRESULT CreateInstance([in] BSTR ProgID,[out,retval] IDispatch** ppObj);
+		[propget, id(2), helpstring("property TypeDescription")] HRESULT TypeDescription([in] BSTR ProgID,[out,retval] BSTR* pDesc);
+		[id(3), helpstring("method Attach")] HRESULT Attach([in] IUnknown* pObject,[out,retval] IUnknown** ppWrappedObject);
+	};
+[
+	uuid(6DFAB441-5D71-11D2-9EFA-00105CAB062D),
+	version(1.0),
+	helpstring("mbxml 1.0 Type Library")
+]
+library MBXMLLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(F88F555A-5D84-11D2-9EFA-00105CAB062D),
+		helpstring("XTRIME_MBXMLFactory Class")
+	]
+	coclass MBXMLFactory
+	{
+		[default] interface IMBXMLFactory;
+	};
+	[
+		uuid(F88F5560-5D84-11D2-9EFA-00105CAB062D),
+		helpstring("CMBXMLWrapper Class"),
+		noncreatable
+	]
+	coclass CMBXMLWrapper
+	{
+		[default] interface IUnknown;
+	};
+};

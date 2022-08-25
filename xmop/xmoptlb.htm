@@ -1,0 +1,51 @@
+<html>
+
+<head>
+<!--
+Copyright (c) 2000 Jonathan Borden ALL RIGHTS RESERVED
+
+This XSLT program generates a javascript proxy given an XMOP definition document for use on Microsoft IE5
+  
+You can redistribute this program and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+The GPL is available at http://www.gnu.org/copyleft/gpl.html
+
+If not, write to the Free Software
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+
+For a license under other than GPL contact the author at jborden@mediaone.net
+-->
+<title>XMOP Test Page</title>
+<script language="JavaScript">
+<!--
+function displayXMOP(ProgID) {
+	var cf;
+	var str;
+	str = '<?xml version="1.0" ?>\r\n<!DOCTYPE objectDef SYSTEM "http://jabr.ne.mediaone.net/documents/xmop.dtd">\r\n';
+	cf = new ActiveXObject("XTRIME.MBXMLFactory.1");
+	str += cf.TypeDescription(ProgID);
+	xmoptlb.value = str;
+}
+-->
+</script>
+
+</head>
+
+<body>
+<form action="dummy.asp" method="GET">
+<p>Enter a ProgID here: <input type="Text" name="progid" size="50"  value="" />
+<input type="button" value="Display" onClick="displayXMOP(progid.value)" /></p>
+</form>
+<p><textarea name="xmoptlb" rows="25" cols="70">
+
+</textarea> </p>
+</body>
+</html>

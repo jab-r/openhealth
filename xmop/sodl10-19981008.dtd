@@ -1,0 +1,130 @@
+<!-- *************************************************************************
+	Simple Object Definition Language (SODL) DTD
+		Copyright (c) Jonathan A. Borden ALL RIGHTS RESERVED
+	
+	Author: Jonathan Borden
+	Date:	10/8/1998
+	Version:	http://jabr.ne.mediaone.net/documents/sodl10-10081998.DTD
+	Current:	http://jabr.ne.mediaone.net/documents/sodl10.DTD
+
+	This is produced as part of the XPository(tm) project in the XTRIME(tm) package
+
+	XPository is a Web enabled XML based data repository
+	XTRIME is the eXtensible Transacted Internet Messaging Engine
+
+	Identifiers:
+
+	PUBLIC "-//XTRIME//DTD SODL V1.0//EN" "http://jabr.ne.mediaone.net/documents/sodl10.dtd"
+	SYSTEM "http//jabr.ne.mediaone.net/documents/sodl10.dtd"
+
+	-->
+<!-- ***************************************************************************
+	These correspond to VARIANT types
+		i4 	- VT_I4
+		i2 	- VT_I2
+		r4 	- VT_R4
+		r8 	- VT_R8
+		bool 	- VT_BOOL
+		ui1	- VT_UI1
+		char	- VT_I1
+		string	- VT_BSTR
+		date	- VT_DATE
+		object	- VT_UNKNOWN
+		disp	- VT_DISPATCH	
+		interface - VT_PTR
+		array	- VT_SAFEARRAY
+		udt	- VT_USERDEFINED
+		anytype	- VT_VARIANT
+		i8	- VT_I8
+		ui8	- VT_UI8
+		stream	- VT_STREAM
+		storage - VT_STORAGE
+	-->
+<!ENTITY % datatypes "i4|i2|r4|r8|i8|ui8|stream|storage|bool|ui1|char|string|date|object|disp|interface|array|udt|anytype">
+<!-- **************************************************************************
+	this corresponds to a coclass definition
+	transacted could be part of other however ...
+-->
+<!ELEMENT objectDef (interfaceDef+,other*)>
+<!ATTLIST objectDef 
+          name NMTOKEN #IMPLIED
+          uuid CDATA #IMPLIED
+	  transacted (not|new|requires|supports) "not"
+>
+
+<!ELEMENT other ANY>
+<!ELEMENT interfaceDef (method*,property*,other*)>
+<!ATTLIST interfaceDef 
+          name NMTOKEN #IMPLIED
+          uuid CDATA #REQUIRED
+          inheritsFrom NMTOKEN #IMPLIED>
+
+<!ELEMENT method (param*)>
+<!ATTLIST method 
+        name NMTOKEN #IMPLIED
+        id NMTOKEN #IMPLIED
+>
+<!ELEMENT property (%datatypes;|typedef)>
+<!ATTLIST property
+	name NMTOKEN #IMPLIED
+	type (%datatypes;) #REQUIRED
+	uuid CDATA #IMPLIED
+	interface NMTOKEN #IMPLIED
+>
+<!ELEMENT param (%datatypes;)>
+<!ATTLIST param
+	name NMTOKEN #IMPLIED
+	type (%datatypes;) #REQUIRED
+	uuid CDATA #IMPLIED
+	interface NMTOKEN #IMPLIED
+	access (in|out|inout) "inout"
+>
+<!ELEMENT i4 (#PCDATA)>
+<!ELEMENT i2 (#PCDATA)>
+<!ELEMENT r4 (#PCDATA)>
+<!ELEMENT r8 (#PCDATA)>
+<!ELEMENT string (#PCDATA)>
+<!ELEMENT char (#PCDATA)>
+<!ELEMENT bool (#PCDATA)>
+<!ELEMENT array (%datatypes;)*>
+<!ELEMENT interface (interfaceDef)>
+<!ATTLIST interface
+	uuid CDATA #REQUIRED
+	name NMTOKEN #IMPLIED
+>
+<!ELEMENT udt (enum|struct|typedef)>
+<!ATTLIST udt
+	uuid CDATA #IMPLIED
+	name NMTOKEN #IMPLIED
+>
+<!ELEMENT anytype (%datatypes;)>
+<!ELEMENT object (objectDef|interfaceDef|other)>
+<!ELEMENT dispatch (objectDef|interfaceDef|other)>
+<!ELEMENT stream (#PCDATA)>
+<!ATTLIST stream
+	encoding (binary|base64|quoted-printable) "binary"
+	href CDATA #IMPLIED
+>
+<!ELEMENT storage (#PCDATA)>
+<!ELEMENT enum (const)*>
+<!ATTLIST enum
+	name NMTOKEN #IMPLIED
+	uuid CDATA #IMPLIED
+>
+<!ELEMENT struct (property)*>
+<!ATTLIST struct
+	name NMTOKEN #IMPLIED
+	uuid CDATA #IMPLIED
+>
+<!ELEMENT const (%datatypes;)>
+<!ATTLIST const
+	type (%datatypes;|int|uint) #REQUIRED
+	name NMTOKEN #REQUIRED
+	id NMTOKEN #IMPLIED
+>
+<!ELEMENT typedef (#PCDATA)>
+<!ATTLIST typedef 
+	name NMTOKEN #IMPLIED
+	uuid CDATA #IMPLIED
+	type (%datatypes;) #REQUIRED
+>

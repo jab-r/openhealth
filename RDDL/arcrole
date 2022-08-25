@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//XML-DEV//DTD XHTML RDDL 1.0//EN" "rddl-xhtml.dtd">
+<html 	xmlns="http://www.w3.org/1999/xhtml" 
+		xmlns:xlink="http://www.w3.org/1999/xlink"
+		xmlns:rddl="http://www.rddl.org/">
+<head>
+	<title>Well Known Resource Directory Description Arcoles</title>
+	<link rel="stylesheet" type="text/css" href="xrd.css" />
+</head>
+
+<body>
+<h1>URIs For Commonly Defined Link Purposes</h1>
+<!-- note: below we define the id= as a subtype of the xlink:href= -->
+<h2>Schema related purposes</h2>
+<rddl:resource
+	id="schema-validation"
+	xlink:title="Schema Validation"
+	xlink:role="http://www.rddl.org/purposes#purpose"
+	xlink:arcrole="http://www.rddl.org/purposes#term"
+	xlink:href="#schema-validation"
+><div class="resource">
+ <h3>schema-validation</h3>
+ <p>Schema validation is performed on XML or SGML documents.</p>
+ </div>
+</rddl:resource>
+<rddl:resource
+	id="module"
+	xlink:title="Module"
+	xlink:role="http://www.rddl.org/purposes#purpose"
+	xlink:arcrole="http://www.rddl.org/purposes#term"
+	xlink:href="#module"
+><div class="resource">
+ <h3>module</h3>
+ <p>A module may be included as part of a schema or software program.</p>
+ </div>
+</rddl:resource>
+<rddl:resource
+	id="schema-module"
+	xlink:title="Schema Module"
+	xlink:role="http://www.rddl.org/purposes#module"
+	xlink:arcrole="http://www.rddl.org/purposes#term"
+	xlink:href="#schema-module"
+><div class="resource">
+ <h3>module</h3>
+ <p>A module may be included as part of a schema or software program.</p>
+ </div>
+</rddl:resource>
+</body>
+</html>

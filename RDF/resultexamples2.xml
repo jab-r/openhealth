@@ -1,0 +1,1213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <rdf:Statement>
+      <rdf:subject>#/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#subject</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/1/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/1/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">#/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/1/2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/1/2</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">file:/D:/rdf/xlinkexamples.xml#anElt</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#object</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/1/3</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/1/3</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">#/1/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/2</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/2/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/2/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://links.org/namespace/cite</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/2</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#subject</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/2/2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/2/2</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">#/1/1/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/2</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#object</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/2/3</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/2/3</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://www.foo.com/papers/crops.txt</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/3</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/3</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/3/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/3/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://www.w3.org/1999/02/22-rdf-syntax-ns#type</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/3</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#subject</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/3/2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/3/2</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://www.foo.com/papers/crops.txt</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/3</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#object</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/3/3</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/3/3</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://links.org/namespace/screed</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/4</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/4</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/4/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/4/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://www.w3.org/1999/02/22-rdf-syntax-ns#type</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/4</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#subject</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/4/2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/4/2</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://links.org/namespace/screed</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/4</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#object</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/4/3</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/4/3</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://www.w3.org/2000/01/rdf-schema#Class</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/5</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/5</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#subject</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/5/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/5/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://www.foo.com/papers/crops.txt</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/5</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/5/2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/5/2</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/5</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#object</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/5/3</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/5/3</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">recent paper</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/6</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/6</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#subject</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/6/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/6/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">#/1/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/6</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/6/2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/6/2</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/6</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#object</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/6/3</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/6/3</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">
+... In a </rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/7</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/7</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#subject</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/7/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/7/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">#/1/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/7</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/7/2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/7/2</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/7</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#object</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/7/3</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/7/3</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">, Dr. Taylor assumes that ...
+</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/8</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/8</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/8/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/8/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://www.w3.org/1999/xlink#label</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/8</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#subject</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/8/2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/8/2</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://example.org/p1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/8</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#object</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/8/3</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/8/3</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">parent</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/9</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/9</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/9/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/9/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://www.w3.org/1999/xlink#title</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/9</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#subject</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/9/2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/9/2</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://example.org/p1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/9</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#object</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/9/3</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/9/3</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">parent 1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/10</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/10</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/10/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/10/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://www.w3.org/1999/xlink#label</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/10</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#subject</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/10/2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/10/2</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://example.org/p2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/10</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#object</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/10/3</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/10/3</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">parent</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/11</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/11</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/11/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/11/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://www.w3.org/1999/xlink#title</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/11</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#subject</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/11/2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/11/2</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://example.org/p2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/11</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#object</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/11/3</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/11/3</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">parent 2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/12</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/12</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/12/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/12/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://www.w3.org/1999/xlink#label</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/12</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#subject</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/12/2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/12/2</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://example.org/c1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/12</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#object</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/12/3</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/12/3</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">child</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/13</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/13</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/13/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/13/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://www.w3.org/1999/xlink#title</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/13</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#subject</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/13/2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/13/2</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://example.org/c1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/13</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#object</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/13/3</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/13/3</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">child 1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/14</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/14</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/14/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/14/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://www.w3.org/1999/xlink#label</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/14</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#subject</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/14/2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/14/2</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://example.org/c2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/14</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#object</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/14/3</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/14/3</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">child</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/15</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/15</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/15/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/15/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://www.w3.org/1999/xlink#title</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/15</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#subject</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/15/2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/15/2</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://example.org/c2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/15</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#object</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/15/3</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/15/3</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">child 2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/16</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/16</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/16/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/16/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://www.w3.org/1999/xlink#label</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/16</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#subject</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/16/2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/16/2</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://example.org/c3</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/16</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#object</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/16/3</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/16/3</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">child</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/17</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/17</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/17/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/17/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://www.w3.org/1999/xlink#title</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/17</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#subject</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/17/2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/17/2</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://example.org/c3</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/17</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#object</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/17/3</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/17/3</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">child 3</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/18</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/18</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/18/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/18/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://www.w3.org/1999/xlink#label</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/18</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#subject</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/18/2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/18/2</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">#resC4</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/18</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#object</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/18/3</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/18/3</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">child</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/19</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/19</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/19/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/19/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://www.w3.org/1999/xlink#title</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/19</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#subject</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/19/2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/19/2</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">#resC4</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/19</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#object</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/19/3</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/19/3</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">#TITLE1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/20</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/20</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/20/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/20/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/20</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#subject</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/20/2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/20/2</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">#TITLE1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/20</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#object</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/20/3</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/20/3</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">This is the literal content</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/21</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/21</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/21/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/21/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://www.w3.org/1999/xlink#label</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/21</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#subject</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/21/2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/21/2</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">#resC5</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/21</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#object</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/21/3</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/21/3</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">child</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/22</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/22</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/22/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/22/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://www.w3.org/1999/xlink#title</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/22</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#subject</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/22/2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/22/2</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">#resC5</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/22</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#object</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/22/3</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/22/3</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">#TITLE2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/23</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/23</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/23/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/23/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/23</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#subject</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/23/2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/23/2</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">#TITLE2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/23</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#object</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/23/3</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/23/3</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">#/1/2/7/1/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/24</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/24</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#subject</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/24/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/24/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">#/1/2/7/1/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/24</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/24/2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/24/2</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/24</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#object</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/24/3</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/24/3</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">This is the mixed content</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/25</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/25</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/25/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/25/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://ex.org/GOGO</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/25</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#subject</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/25/2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/25/2</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://example.org/p1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/25</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#object</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/25/3</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/25/3</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://example.org/c1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/26</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/26</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/26/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/26/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://ex.org/GOGO</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/26</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#subject</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/26/2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/26/2</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://example.org/p1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/26</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#object</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/26/3</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/26/3</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://example.org/c2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/27</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/27</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/27/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/27/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://ex.org/GOGO</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/27</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#subject</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/27/2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/27/2</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://example.org/p1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/27</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#object</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/27/3</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/27/3</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://example.org/c3</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/28</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/28</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/28/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/28/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://ex.org/GOGO</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/28</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#subject</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/28/2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/28/2</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://example.org/p1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/28</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#object</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/28/3</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/28/3</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">#resC4</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/29</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/29</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/29/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/29/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://ex.org/GOGO</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/29</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#subject</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/29/2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/29/2</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://example.org/p1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/29</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#object</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/29/3</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/29/3</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">#resC5</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/30</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/30</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/30/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/30/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://ex.org/GOGO</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/30</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#subject</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/30/2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/30/2</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://example.org/p2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/30</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#object</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/30/3</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/30/3</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://example.org/c1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/31</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/31</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/31/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/31/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://ex.org/GOGO</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/31</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#subject</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/31/2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/31/2</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://example.org/p2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/31</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#object</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/31/3</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/31/3</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://example.org/c2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/32</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/32</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/32/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/32/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://ex.org/GOGO</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/32</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#subject</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/32/2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/32/2</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://example.org/p2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/32</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#object</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/32/3</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/32/3</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://example.org/c3</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/33</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/33</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/33/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/33/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://ex.org/GOGO</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/33</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#subject</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/33/2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/33/2</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://example.org/p2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/33</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#object</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/33/3</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/33/3</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">#resC4</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/34</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/34</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/34/1</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/34/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://ex.org/GOGO</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/34</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#subject</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/34/2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/34/2</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">http://example.org/p2</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/34</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#object</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Resource">#/1/34/3</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1/34/3</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">#resC5</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">
+[TRACE gen-state]
+	
+[..]
+</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:subject>#/1</rdf:subject>
+      <rdf:predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</rdf:predicate>
+      <rdf:object rdf:type="http://www.w3.org/2000/01/rdf-schema#Literal">
+[TRACE gen-state]
+	
+[..]
+</rdf:object>
+   </rdf:Statement>
+</rdf:RDF>

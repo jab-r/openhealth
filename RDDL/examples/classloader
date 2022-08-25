@@ -1,0 +1,38 @@
+<!--<!DOCTYPE html PUBLIC "-//XML-DEV//DTD XHTML RDDL 1.0//EN" "rddl-xhtml.dtd">-->
+<html 	xmlns="http://www.w3.org/1999/xhtml" 
+		xmlns:xlink="http://www.w3.org/1999/xlink"
+		xmlns:rddl="http://www.rddl.org/"
+		xml:base="http://www.rddl.org/examples"
+		xml:lang="en">
+<head>
+	<title>Test RDDL ClassLoader</title>
+	<link rel="stylesheet" type="text/css" href="../xrd.css" />
+</head>
+
+<body>
+<h1>Examples</h1>
+<rddl:resource 
+	id="xslt-extension"
+	xlink:role="http://www.rddl.org/natures/software#java"
+	xlink:arcrole="http://www.rddl.org/purposes/software#xslt-extension"
+	xlink:href="xslt-ext.jar"
+	xlink:title="XSLT Extension"
+	>
+	<div class="resource">
+	<p>An XSLT extension is known by the purpose URI <code>http://www.rddl.org/purposes/softare#xslt-extension</code>.</p>
+	</div>
+</rddl:resource>
+<rddl:resource 
+	id="test"
+	xlink:role="http://www.rddl.org/natures/software#java"
+	xlink:arcrole="http://www.rddl.org/purposes#test"
+	xlink:href="jar:http://www.rddl.org/examples/test-classloader.jar!/"
+	xlink:title="Test"
+	>
+	<div class="resource">
+	<p>A test purpose URI <code>http://www.rddl.org/purposes#test</code>.</p>
+	</div>
+</rddl:resource>
+</body>
+</html>
+

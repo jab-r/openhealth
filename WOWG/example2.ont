@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ont:Ontology xmlns:ont="http://www.openhealth.org/WOWG/webont#" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/03/rdf-schema#" xmlns="http://www.openhealth.org/WOWG/Schema.owl#" xmlns:schema="http://www.openhealth.org/WOWG/Schema.owl#">
+   <Element schema:name="a" schema:ns="">
+      <ont:subClassOf>
+         <Type>
+            <ont:Restriction>
+               <ont:onProperty rdf:resource="http://www.openhealth.org/WOWG/Schema.owl#name"/>
+               <ont:toValue>string</ont:toValue>
+            </ont:Restriction>
+            <ont:Restriction>
+               <ont:onProperty rdf:resource="http://www.openhealth.org/WOWG/Schema.owl#ns"/>
+               <ont:toValue>http://www.w3.org/2001/XMLSchema</ont:toValue>
+            </ont:Restriction>
+         </Type>
+      </ont:subClassOf>
+   </Element>
+   <Element schema:name="d" schema:ns=""/>
+   <Element schema:name="c" schema:ns=""/>
+   <Element schema:name="b" schema:ns=""/>
+   <Type schema:name="#root-type">
+      <ont:sequence rdf:parseType="ont:collection">
+         <Element><!--<xsd:element ref="a" />-->
+            <ont:Restriction>
+               <ont:onProperty rdf:resource="http://www.openhealth.org/WOWG/Schema.owl#name"/>
+               <ont:toValue>a</ont:toValue>
+            </ont:Restriction>
+         </Element>
+         <Element><!--<xsd:element ref="b" />-->
+            <ont:Restriction>
+               <ont:onProperty rdf:resource="http://www.openhealth.org/WOWG/Schema.owl#name"/>
+               <ont:toValue>b</ont:toValue>
+            </ont:Restriction>
+         </Element>
+         <Element><!--<xsd:element ref="c" />-->
+            <ont:Restriction>
+               <ont:onProperty rdf:resource="http://www.openhealth.org/WOWG/Schema.owl#name"/>
+               <ont:toValue>c</ont:toValue>
+            </ont:Restriction>
+         </Element>
+         <Type>
+            <ont:oneOf rdf:parseType="ont:collection">
+               <Element><!--<xsd:element ref="a" />-->
+                  <ont:Restriction>
+                     <ont:onProperty rdf:resource="http://www.openhealth.org/WOWG/Schema.owl#name"/>
+                     <ont:toValue>a</ont:toValue>
+                  </ont:Restriction>
+               </Element>
+               <Element><!--<xsd:element ref="b" />-->
+                  <ont:Restriction>
+                     <ont:onProperty rdf:resource="http://www.openhealth.org/WOWG/Schema.owl#name"/>
+                     <ont:toValue>b</ont:toValue>
+                  </ont:Restriction>
+               </Element>
+            </ont:oneOf>
+         </Type>
+      </ont:sequence>
+   </Type>
+   <Element schema:name="root" schema:ns=""><!--xs:annotation skipped: 
+			Comment describing your root element
+		--><!--xsd:complexType-->
+      <Type>
+         <ont:sequence rdf:parseType="ont:collection">
+            <Element><!--<xsd:element ref="a" />-->
+               <ont:Restriction>
+                  <ont:onProperty rdf:resource="http://www.openhealth.org/WOWG/Schema.owl#name"/>
+                  <ont:toValue>a</ont:toValue>
+               </ont:Restriction>
+            </Element>
+            <Element><!--<xsd:element ref="d" />-->
+               <ont:Restriction>
+                  <ont:onProperty rdf:resource="http://www.openhealth.org/WOWG/Schema.owl#name"/>
+                  <ont:toValue>d</ont:toValue>
+               </ont:Restriction>
+            </Element>
+            <Element><!--<xsd:element ref="b" />-->
+               <ont:Restriction>
+                  <ont:onProperty rdf:resource="http://www.openhealth.org/WOWG/Schema.owl#name"/>
+                  <ont:toValue>b</ont:toValue>
+               </ont:Restriction>
+            </Element>
+         </ont:sequence>
+      </Type>
+   </Element>
+</ont:Ontology>

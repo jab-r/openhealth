@@ -1,0 +1,22 @@
+<!DOCTYPE module [
+<!ENTITY ContentType.datatype "string">
+]>
+<module
+  xmlns="http://www.xml.gr.jp/xmlns/relaxCore"
+  targetNamespace="http://www.w3.org/1999/xhtml"
+  relaxCoreVersion="1.0"
+  moduleVersion="1.11">
+
+<elementRule role="param" type="emptyString"/>
+<tag name="param">
+  <ref role="id.attrib"/>
+  <attribute name="name" type="string" required="true"/>
+  <attribute name="value" type="string"/>
+  <attribute name="valuetype" type="string">
+    <enumeration value="data"/>
+    <enumeration value="ref"/>
+    <enumeration value="object"/>
+  </attribute>
+  <attribute name="type" type="&ContentType.datatype;"/>
+</tag>
+</module>

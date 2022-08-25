@@ -1,0 +1,515 @@
+<!DOCTYPE html public "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<HTML>
+
+<HEAD>
+
+<TITLE>X-Chart Opnote Generator</TITLE>
+
+<LINK rel="stylesheet" href="../OHCG_Style.css" />
+
+<script language="JavaScript">
+
+<!--
+
+function MM_preloadImages() { //v3.0
+
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+
+}
+
+
+
+function MM_findObj(n, d) { //v3.0
+
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document); return x;
+
+}
+
+
+
+function MM_nbGroup(event, grpName) { //v3.0
+
+  var i,img,nbArr,args=MM_nbGroup.arguments;
+
+  if (event == "init" && args.length > 2) {
+
+    if ((img = MM_findObj(args[2])) != null && !img.MM_init) {
+
+      img.MM_init = true; img.MM_up = args[3]; img.MM_dn = img.src;
+
+      if ((nbArr = document[grpName]) == null) nbArr = document[grpName] = new Array();
+
+      nbArr[nbArr.length] = img;
+
+      for (i=4; i < args.length-1; i+=2) if ((img = MM_findObj(args[i])) != null) {
+
+        if (!img.MM_up) img.MM_up = img.src;
+
+        img.src = img.MM_dn = args[i+1];
+
+        nbArr[nbArr.length] = img;
+
+    } }
+
+  } else if (event == "over") {
+
+    document.MM_nbOver = nbArr = new Array();
+
+    for (i=1; i < args.length-1; i+=3) if ((img = MM_findObj(args[i])) != null) {
+
+      if (!img.MM_up) img.MM_up = img.src;
+
+      img.src = (img.MM_dn && args[i+2]) ? args[i+2] : args[i+1];
+
+      nbArr[nbArr.length] = img;
+
+    }
+
+  } else if (event == "out" ) {
+
+    for (i=0; i < document.MM_nbOver.length; i++) {
+
+      img = document.MM_nbOver[i]; img.src = (img.MM_dn) ? img.MM_dn : img.MM_up; }
+
+  } else if (event == "down") {
+
+    if ((nbArr = document[grpName]) != null)
+
+      for (i=0; i < nbArr.length; i++) { img=nbArr[i]; img.src = img.MM_up; img.MM_dn = 0; }
+
+    document[grpName] = nbArr = new Array();
+
+    for (i=2; i < args.length-1; i+=2) if ((img = MM_findObj(args[i])) != null) {
+
+      if (!img.MM_up) img.MM_up = img.src;
+
+      img.src = img.MM_dn = args[i+1];
+
+      nbArr[nbArr.length] = img;
+
+  } }
+
+}
+
+//-->
+
+</script>
+
+</HEAD>
+
+<BODY onLoad="MM_preloadImages('../Images/Nav_Home_Down.gif','../Images/Nav_Home_Lite.gif','../Images/Nav_EMR_Down.gif','../Images/Nav_EMR_Lite.gif','../Images/Nav_XML_Down.gif','../Images/Nav_XML_Lite.gif','../Images/Nav_Specs_Down.gif','../Images/Nav_Specs_Lite.gif','../Images/Nav_Demo_Down.gif','../Images/Nav_Demo_Lite.gif','../Images/Nav_Download_Down.gif','../Images/Nav_Download_Lite.gif','../Images/Nav_Links_Down.gif','../Images/Nav_Links_Lite.gif','../Images/Nav_Contact_Down.gif','../Images/Nav_Contact_Lite.gif','../Images/Nav_Home_Down.gif','../Images/Nav_Home_Lite.gif','../Images/Nav_EMR_Down.gif','../Images/Nav_EMR_Lite.gif','../Images/Nav_XML_Down.gif','../Images/Nav_XML_Lite.gif','../Images/Nav_Specs_Down.gif','../Images/Nav_Specs_Lite.gif','../Images/Nav_Demo_Down.gif','../Images/Nav_Demo_Lite.gif','../Images/Nav_Download_Down.gif','../Images/Nav_Download_Lite.gif','../Images/Nav_Links_Down.gif','../Images/Nav_Links_Lite.gif','../Images/Nav_Contact_Down.gif','../Images/Nav_Contact_Lite.gif')" bgcolor="#ffffff">
+
+<table width="90%" border="0" cellspacing="0" cellpadding="0">
+
+  <tr> 
+
+    <td width="100"> 
+
+      <table width="100" border="0" cellspacing="0" cellpadding="0">
+
+        <tr> 
+
+          <td><IMG height=100 src="../Images/Logo.gif" width=100></td>
+
+        </tr>
+
+        <tr bgcolor="#008080"> 
+
+          <td>&nbsp;</td>
+
+        </tr>
+
+        <tr> 
+
+          <td><A href="../index.htm" onclick="MM_nbGroup('down','group1','Home','../Images/Nav_Home_Down.gif',1)" onmouseout="MM_nbGroup('out')" onmouseover="MM_nbGroup('over','Home','../Images/Nav_Home_Lite.gif','',1)"><IMG border=0 height=50 name=Home onload="" src="../Images/Nav_Home.gif" width=100></a></td>
+
+        </tr>
+
+        <tr> 
+
+          <td><A href="../emr.htm" onclick="MM_nbGroup('down','group1','EMR','../Images/Nav_EMR_Down.gif',1)" onmouseout="MM_nbGroup('out')" onmouseover="MM_nbGroup('over','EMR','../Images/Nav_EMR_Lite.gif','',1)"><IMG border=0 name=EMR onload="" src="../Images/Nav_EMR.gif"></a></td>
+
+        </tr>
+
+        <tr> 
+
+          <td><A href="../xml.htm" onclick="MM_nbGroup('down','group1','XML','../Images/Nav_XML_Down.gif',1)" onmouseout="MM_nbGroup('out')" onmouseover="MM_nbGroup('over','XML','../Images/Nav_XML_Lite.gif','',1)"><IMG border=0 name=XML onload="" src="../Images/Nav_XML.gif"></a></td>
+
+        </tr>
+
+        <tr> 
+
+          <td><A href="../specs.htm" onclick="MM_nbGroup('down','group1','Specifications','../Images/Nav_Specs_Down.gif',1)" onmouseout="MM_nbGroup('out')" onmouseover="MM_nbGroup('over','Specifications','../Images/Nav_Specs_Lite.gif','',1)"><IMG border=0 name=Specifications onload="" src="../Images/Nav_Specs.gif"></a></td>
+
+        </tr>
+
+        <tr> 
+
+          <td><A href="../opnote/index.htm" onclick="MM_nbGroup('down','group1','Demo','../Images/Nav_Demo_Down.gif',1)" onmouseout="MM_nbGroup('out')" onmouseover="MM_nbGroup('over','Demo','../Images/Nav_Demo_Lite.gif','../Images/Nav_Demo_Down.gif',1)"><IMG border=0 name=Demo onload="" src="../Images/Nav_Demo.gif"></a></td>
+
+        </tr>
+
+        <tr> 
+
+          <td><A href="../download.htm" onclick="MM_nbGroup('down','group1','Download','../Images/Nav_Download_Down.gif',1)" onmouseout="MM_nbGroup('out')" onmouseover="MM_nbGroup('over','Download','../Images/Nav_Download_Lite.gif','',1)"><IMG border=0 name=Download onload="" src="../Images/Nav_Download.gif"></a></td>
+
+        </tr>
+
+        <tr> 
+
+          <td><A href="../links.htm" onclick="MM_nbGroup('down','group1','Links','../Images/Nav_Links_Down.gif',1)" onmouseout="MM_nbGroup('out')" onmouseover="MM_nbGroup('over','Links','../Images/Nav_Links_Lite.gif','',1)"><IMG border=0 name=Links onload="" src="../Images/Nav_Links.gif"></a></td>
+
+        </tr>
+
+        <tr> 
+
+          <td><A href="../contact.htm" onclick="MM_nbGroup('down','group1','Contact','../Images/Nav_Contact_Down.gif',1)" onmouseout="MM_nbGroup('out')" onmouseover="MM_nbGroup('over','Contact','../Images/Nav_Contact_Lite.gif','',1)"><IMG border=0 name=Contact onload="" src="../Images/Nav_Contact.gif"></a></td>
+
+        </tr>
+
+        <tr bgcolor="#008080"> 
+
+          <td>&nbsp;</td>
+
+        </tr>
+
+        <tr> 
+
+          <td><IMG height=50 src="../Images/Nav_Bottom.gif" width=100></td>
+
+        </tr>
+
+      </table>
+
+    </td>
+
+    <td valign="top" class="Title"> 
+
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+        <tr> 
+
+          <td width="10">&nbsp;</td>
+
+          <td class="Header"> 
+
+            <div align="center" class="Header"><font size="+3" color="#008080" face="Verdana, Arial, Helvetica, sans-serif"><b class="Header">The 
+
+              Open Healthcare Group</b></font></div>
+
+          </td>
+
+        </tr>
+
+        <tr> 
+
+          <td width="10">&nbsp;</td>
+
+          <td>&nbsp;</td>
+
+        </tr>
+
+        <tr> 
+
+          <td width="10">&nbsp;</td>
+
+          <td> 
+
+            <div align="center"> 
+
+              <table width="450" border="0" cellspacing="0" cellpadding="0">
+
+                <tr> 
+
+                  <td width="11" align="right"> 
+
+                    <div align="right"><IMG height=25 src="../Images/Slogan_Left.gif" width=11></div>
+
+                  </td>
+
+                  <td bgcolor="#008080"> 
+
+                    <div align="center"><b><font face="Arial, Helvetica, sans-serif" color="#ffffff" class="Slogan">A 
+
+                      Smarter Way for Better Healthcare</font></b></div>
+
+                  </td>
+
+                  <td width="11"><IMG height=25 src="../Images/Slogan_Right.gif" width=11></td>
+
+                </tr>
+
+              </table>
+
+            </div>
+
+          </td>
+
+        </tr>
+
+        <tr> 
+
+          <td width="10">&nbsp;</td>
+
+          <td>&nbsp;</td>
+
+        </tr>
+
+        <tr> 
+
+          <td width="10">&nbsp;</td>
+
+          <td class="Title"> 
+
+            <div align="center" class="Title"><b><font face="Verdana, Arial, Helvetica, sans-serif" size="+3" color="#008080" class="Title">XChart 
+
+              Opnote Generator</font></b></div>
+
+          </td>
+
+        </tr>
+
+        <tr> 
+
+          <td width="10">&nbsp;</td>
+
+          <td>&nbsp;</td>
+
+        </tr>
+
+        <tr> 
+
+          <td width="10">&nbsp;</td>
+
+          <td>The OpenHealth <b><A href="Opnote.htm">XChart Opnote Generator</a></b> 
+
+            is an XML&nbsp;application which generates surgical operative reports 
+
+            via XSLT templates. This is purely a demonstration version, encryption 
+
+            and password protection has been turned off for demonstration purposes. 
+
+            Real patient names, identifiers and identifying information should 
+
+            not be entered into this unencrypted demonstration.</td>
+
+        </tr>
+
+        <tr> 
+
+          <td width="10">&nbsp;</td>
+
+          <td>&nbsp;</td>
+
+        </tr>
+
+        <tr> 
+
+          <td width="10">&nbsp;</td>
+
+          <td>&nbsp;</td>
+
+        </tr>
+
+        <tr> 
+
+          <td width="10">&nbsp;</td>
+
+          <td> 
+
+            <div align="center" class="Sub_Title"><font face="Arial, Helvetica, sans-serif" size="+2" color="#008080"><b><A href="Opnote.htm">Try 
+
+              It Out</a></b></font></div>
+
+          </td>
+
+        </tr>
+
+        <tr> 
+
+          <td width="10">&nbsp;</td>
+
+          <td>&nbsp;</td>
+
+        </tr>
+
+        <tr> 
+
+          <td width="10">&nbsp;</td>
+
+          <td> 
+
+            <div align="center" class="Sub_Title"><font face="Arial, Helvetica, sans-serif" size="+2" color="#008080"><b><A href="mailto:comments@openhealth.org">Comments?</a></b></font></div>
+
+          </td>
+
+        </tr>
+
+        <tr> 
+
+          <td width="10">&nbsp;</td>
+
+          <td>&nbsp;</td>
+
+        </tr>
+
+        <tr> 
+
+          <td width="10">&nbsp;</td>
+
+          <td> 
+
+            <div align="center"><font face="Arial, Helvetica, sans-serif" size="+2" color="#008080"><b><A href="technical.htm">How 
+
+              It Works</a></b></font></div>
+
+          </td>
+
+        </tr>
+
+        <tr> 
+
+          <td width="10">&nbsp;</td>
+
+          <td>&nbsp;</td>
+
+        </tr>
+
+        <tr> 
+
+          <td width="10">&nbsp;</td>
+
+          <td>
+            <DIV align=center><FONT color=#008080 
+            face="Arial, Helvetica, sans-serif" size=+2><B><A 
+            href="../download.htm">Download</A></B></FONT></DIV></td>
+
+        </tr>
+
+        <tr> 
+
+          <td width="10">&nbsp;</td>
+
+          <td>&nbsp;</td>
+
+        </tr>
+
+        <tr> 
+
+          <td width="10">&nbsp;</td>
+
+          <td> 
+
+            <div align="center" class="Sub_Title"><font size="+2" face="Arial, Helvetica, sans-serif"><b><font color="#008080">Please 
+
+              check back often for</font></b></font></div>
+
+          </td>
+
+        </tr>
+
+        <tr> 
+
+          <td width="10">&nbsp;</td>
+
+          <td> 
+
+            <div align="center" class="Sub_Title"><font size="+2" face="Arial, Helvetica, sans-serif"><b><font color="#008080">NEW 
+
+              RELEASES.</font></b></font></div>
+
+          </td>
+
+        </tr>
+
+        <tr>
+
+          <td width="10">&nbsp;</td>
+
+          <td>&nbsp;</td>
+
+        </tr>
+
+      </table>
+
+    </td>
+
+  </tr>
+
+  <tr> 
+
+    <td width="100">&nbsp;</td>
+
+    <td>&nbsp;</td>
+
+  </tr>
+
+  <tr> 
+
+    <td width="100">&nbsp;</td>
+
+    <td> 
+
+      <div align="center"><font color="#008080" face="Arial, Helvetica, sans-serif"><b>| 
+
+        <A href="index.htm" title="Home Page">Home</a> | <A href="../emr.htm" title="Learn about the Open Source Health Record">Open 
+
+        Source Health Record</a> | <A href="../xml.htm" title="Learn about XML and Healthcare"> 
+
+        XML and Healthcare</a> | <A href="../specs.htm" title="Open Healthcare Group Specifications"> 
+
+        Specifications </a>| <A href="index.htm" title="Open Healthcare Group Downloads">Demos</a> 
+
+        | <A href="../download.htm" title="Open Healthcare Group Downloads">Download</a> 
+
+        | <A href="../links.htm" 
+
+		title="Related Links">Links</a> | <A href="../contact.htm" title="Contact Us"> 
+
+        Contact Us</a> |</b></font></div>
+
+    </td>
+
+  </tr>
+
+  <tr> 
+
+    <td width="100">&nbsp;</td>
+
+    <td>&nbsp;</td>
+
+  </tr>
+
+  <tr> 
+
+    <td width="100">&nbsp;</td>
+
+    <td> 
+
+      <div align="center" class="Legal">Copyright © 2000 Healthcare Transaction 
+
+        Systems, LLC. All rights reserved.</div>
+
+    </td>
+
+  </tr>
+
+</table>
+
+<p>&nbsp;</p>
+
+</BODY>
+
+</HTML>
+

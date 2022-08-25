@@ -1,0 +1,70 @@
+<!DOCTYPE pathology.report PUBLIC "-//ASTM//DTD Pathology Report 1.0//EN" "pathology.report.dtd">
+<pathology.report xmlns="http://www.openhealth.org/ASTM/pathology.report">
+  <clinical.header xmlns="http://www.openhealth.org/ASTM/clinical.header">
+	<id type="AccessionNumber">5556666</id>
+	<id type="AccountNumber">12345</id>
+	<patient.encounter>
+		<id>ENC-11111</id>
+		<practice.setting>Pathology</practice.setting>
+		<date.time>2000-10-15</date.time>
+		<location>New England Medical Center</location>
+	</patient.encounter>
+	<provider>
+		<person.name>
+			<prefix type="title">Dr.</prefix>
+			<given>Jonathan</given>
+			<given type="MI">A.</given>
+			<family>Borden</family>
+			<suffix type="degree">M.D.</suffix>
+		</person.name>
+		<id type="license" authority="MA">12345</id>
+		<addr type="office">
+			<house.number>750</house.number>
+			<street>Washington Street</street>
+			<city>Boston</city>
+			<state>MA</state>
+			<zip>02111</zip>
+			<uri type="email">mailto:jonathan@openhealth.org</uri>
+			<telephone>617-636-7587</telephone>
+		</addr>
+		<type.code>Attending</type.code>
+		<function>Submitting Physician</function>
+	</provider>
+	<patient>
+		<person.name>
+			<given>John</given>
+			<given type="MI">Q</given>
+			<family>Doe</family>
+			<suffix>Jr.</suffix>
+		</person.name>
+		<id type="patient.identifier" authority="NEMC">111223344</id>
+		<id type="SSN" authority="SocialSecurity">111-22-3344</id>
+		<birth.date>1955-10-21</birth.date>
+	</patient>
+
+	<codes>
+		<coded.value code.system="CPT">63051</coded.value>
+		<coded.value code.system="CPT">69990</coded.value>
+		<coded.value code.system="ICD9">XXX.21</coded.value>
+	</codes>
+  </clinical.header>
+  <clinical.body>
+   <clinical.history>Headaches and a right hemiparesis</clinical.history>
+   <preoperative.diagnosis>Right Frontal Brain Tumor</preoperative.diagnosis>
+   <postoperative.diagnosis>same, probable Astrocytoma</postoperative.diagnosis>
+   <operative.procedure>Right Frontal Craniotomy for Excision of Brain Tumor</operative.procedure>
+   <operative.findings>A large vascular and necrotic tumor</operative.findings>
+   <parts>
+	<part name="A" >
+		<gross.description>fragments of reddish tissue</gross.description>
+		<tissue.source>frontal lobe</tissue.source>
+		<diagnosis>Malignant Astrocytoma, Grade II/III</diagnosis>
+	</part>
+	<part name="AFS" frozen="y">
+		<gross.description>fragments of reddish tissue</gross.description>
+		<tissue.source>frontal lobe</tissue.source>
+		<diagnosis>Malignant Astrocytoma</diagnosis>
+	</part>
+   </parts>
+  </clinical.body>
+</pathology.report>

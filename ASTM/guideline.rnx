@@ -1,0 +1,246 @@
+default namespace gem = "http://www.openhealth.org/ASTM/guideline"
+guideline.attrib =
+	attribute id {xsd:ID}?
+	attribute xml:lang {xsd:NMTOKEN}?
+	xlink.attrib?
+source.attrib = attribute source{"ngc"},
+               attribute id {xsd:ID}?,
+               attribute Options {text}?
+			   
+root = element guideline.document{
+			astm.document.attrib,
+			guideline.header,
+			guideline.body
+			}
+
+guideline.header = element guideline.header{
+		guideline.attrib,(identity | developer )*
+		}
+
+
+identity = element identity{guideline.attrib,
+		(guideline.title | citation | release.date | availability | status | 
+		companion.document | adaptation )*
+		}
+<!ATTLIST identity %guideline.attrib; >
+guideline.title  = element # { guideline.attrib, astm.content }
+<!ATTLIST guideline.title %guideline.attrib; >
+citation  = element citation{ guideline.attrib,(astm.content | guideline.length )*}
+<!ATTLIST citation %guideline.attrib; >
+guideline.length  = element # { guideline.attrib, astm.content }
+<!ATTLIST guideline.length %guideline.attrib; >
+release.date  = element # { guideline.attrib, astm.content }
+<!ATTLIST release.date %guideline.attrib; >
+availability  (#PCDATA | %ASTM.Mix; | electronic | print | contact )*>
+<!ATTLIST availability %guideline.attrib; >
+electronic  = element # { guideline.attrib, astm.content }
+<!ATTLIST electronic %guideline.attrib; >
+print  = element # { guideline.attrib, astm.content }
+<!ATTLIST print %guideline.attrib; >
+contact  = element # { guideline.attrib, astm.content }
+<!ATTLIST contact %guideline.attrib; >
+status  = element # { guideline.attrib, astm.content }
+<!ATTLIST status %guideline.attrib; >
+companion.document  (#PCDATA | %ASTM.Mix; | patient.resource )*>
+<!ATTLIST companion.document %guideline.attrib; >
+patient.resource  = element # { guideline.attrib, astm.content }
+<!ATTLIST patient.resource %guideline.attrib; >
+adaptation  = element # { guideline.attrib, astm.content }
+<!ATTLIST adaptation %guideline.attrib; >
+
+
+developer  (developer.name | committee.name | funding | endorser | comparable.guideline )*>
+<!ATTLIST developer %guideline.attrib; >
+developer.name  (#PCDATA | %ASTM.Mix; | developer.type )*>
+<!ATTLIST developer.name %guideline.attrib; >
+developer.type  = element # { guideline.attrib, astm.content }
+<!ATTLIST developer.type source (ngc) "ngc">
+<!ATTLIST developer.type id ID #IMPLIED>
+<!ATTLIST developer.type Options CDATA #IMPLIED>
+committee.name  (#PCDATA | %ASTM.Mix; | committee.expertise | committee.member  )*>
+<!ATTLIST committee.name %guideline.attrib; >
+committee.expertise  = element # { guideline.attrib, astm.content }
+<!ATTLIST committee.expertise %guideline.attrib; >
+committee.member  (#PCDATA | %ASTM.Mix; | member.expertise )*>
+<!ATTLIST committee.member %guideline.attrib; >
+member.expertise  = element # { guideline.attrib, astm.content }
+<!ATTLIST member.expertise %guideline.attrib; >
+funding  = element # { guideline.attrib, astm.content }
+<!ATTLIST funding %guideline.attrib; >
+endorser  = element # { guideline.attrib, astm.content }
+<!ATTLIST endorser %guideline.attrib; >
+comparable.guideline  = element # { guideline.attrib, astm.content }
+<!ATTLIST comparable.guideline %guideline.attrib; >
+
+guideline.body (purpose | intended.audience | development.method | target.population | knowledge.components | testing | revision.plan )*>
+<!ATTLIST guideline.body %guideline.attrib; >
+
+purpose (main.focus | category | rationale | objective | available.option | implementation.strategy | health.outcome | exception )*>
+<!ATTLIST purpose %guideline.attrib; >
+main.focus = element # { guideline.attrib, astm.content }
+<!ATTLIST main.focus %guideline.attrib;  >
+category  = element category { guideline.attrib, source,attrib,astm.content }
+
+rationale  = element # { guideline.attrib, astm.content }
+<!ATTLIST rationale %guideline.attrib; >
+objective  = element # { guideline.attrib, astm.content }
+<!ATTLIST objective %guideline.attrib; >
+available.option  = element # { guideline.attrib, astm.content }
+<!ATTLIST available.option %guideline.attrib; >
+implementation.strategy  = element # { guideline.attrib, astm.content }
+<!ATTLIST implementation.strategy %guideline.attrib; >
+health.outcome  = element # { guideline.attrib, astm.content }
+<!ATTLIST health.outcome %guideline.attrib; >
+exception  = element # { guideline.attrib, astm.content }
+<!ATTLIST exception %guideline.attrib; >
+
+intended.audience  = element intended.audience{ guideline.attrib,
+	(users | care.setting )*}
+<!ATTLIST intended.audience %guideline.attrib; >
+users  = element users{ guideline.attrib,
+			(astm.content | clinical.specialty | professional.group )*}
+
+clinical.specialty  = element clinical.specialty { guideline.attrib, source.attrib, astm.content }
+professional.group  = element professional.group { guideline.attrib, source.attrib, astm.content }
+care.setting  = element care.setting { guideline.attrib, astm.content }
+development.method  (description.evidence.collection | evidence.time.period | method.evidence.grading | description.evidence.combination | cost.analysis | specification.harm.benefit | quantification.harm.benefit | role.value.judgment | role.patient.preference | qualifying.statement )*>
+<!ATTLIST development.method %guideline.attrib; >
+description.evidence.collection  (#PCDATA | %ASTM.Mix; | method.evidence.collection | number.source.documents )*>
+<!ATTLIST description.evidence.collection %guideline.attrib; >
+method.evidence.collection  = element # { guideline.attrib, astm.content }
+<!ATTLIST method.evidence.collection  source   (ngc )  'ngc'
+                                      id      ID     #IMPLIED
+                                      Options CDATA  #IMPLIED >
+number.source.documents  = element # { guideline.attrib, astm.content }
+<!ATTLIST number.source.documents %guideline.attrib; >
+evidence.time.period  = element # { guideline.attrib, astm.content }
+<!ATTLIST evidence.time.period %guideline.attrib; >
+method.evidence.grading  (#PCDATA | %ASTM.Mix; | rating.scheme )*>
+<!ATTLIST method.evidence.grading  source   (ngc )  'ngc'
+                                   id      ID     #IMPLIED
+                                   Options CDATA  #IMPLIED >
+rating.scheme  = element # { guideline.attrib, astm.content }
+<!ATTLIST rating.scheme %guideline.attrib; >
+description.evidence.combination  (#PCDATA | %ASTM.Mix; | method.evidence.combination )*>
+<!ATTLIST description.evidence.combination %guideline.attrib; >
+method.evidence.combination  = element # { guideline.attrib, astm.content }
+<!ATTLIST method.evidence.combination  source   (ngc )  'ngc'
+                                       id      ID     #IMPLIED
+                                       Options CDATA  #IMPLIED >
+cost.analysis  = element # { guideline.attrib, astm.content }
+<!ATTLIST cost.analysis %guideline.attrib; >
+specification.harm.benefit  = element # { guideline.attrib, astm.content }
+<!ATTLIST specification.harm.benefit %guideline.attrib; >
+quantification.harm.benefit  = element # { guideline.attrib, astm.content }
+<!ATTLIST quantification.harm.benefit %guideline.attrib; >
+role.value.judgment  = element # { guideline.attrib, astm.content }
+<!ATTLIST role.value.judgment %guideline.attrib; >
+role.patient.preference  = element # { guideline.attrib, astm.content }
+<!ATTLIST role.patient.preference %guideline.attrib; >
+qualifying.statement  = element # { guideline.attrib, astm.content }
+<!ATTLIST qualifying.statement %guideline.attrib; >
+
+target.population  (eligibility | age | sex )*>
+<!ATTLIST target.population %guideline.attrib; >
+eligibility  (#PCDATA | %ASTM.Mix; | inclusion.criterion | exclusion.criterion )*>
+<!ATTLIST eligibility %guideline.attrib; >
+inclusion.criterion  = element # { guideline.attrib, astm.content }
+<!ATTLIST inclusion.criterion %guideline.attrib; >
+exclusion.criterion  = element # { guideline.attrib, astm.content }
+<!ATTLIST exclusion.criterion %guideline.attrib; >
+age  = element # { guideline.attrib, astm.content }
+<!ATTLIST age  source   (ngc )  'ngc'
+               id      ID     #IMPLIED
+               Options CDATA  #IMPLIED >
+sex  = element # { guideline.attrib, astm.content }
+<!ATTLIST sex  source   (ngc )  'ngc' id  ID  #IMPLIED  Options CDATA  #IMPLIED >
+knowledge.components  (recommendation | definition | algorithm )*>
+<!ATTLIST knowledge.components %guideline.attrib; >
+recommendation  (#PCDATA | %ASTM.Mix; | conditional | imperative )*>
+<!ATTLIST recommendation  %guideline.attrib; >
+conditional  (#PCDATA | %ASTM.Mix; | decision.variable | action | reason | evidence.quality | recommendation.strength | flexibility | logic | cost | link | reference | certainty )*>
+<!ATTLIST conditional %guideline.attrib; >
+decision.variable  (#PCDATA | %ASTM.Mix; | value | decision.variable.description | test.parameter | decision.variable.cost )*>
+<!ATTLIST decision.variable  source  CDATA #IMPLIED  id ID  #IMPLIED
+decision.variable.id CDATA  #IMPLIED >
+value  = element # { guideline.attrib, astm.content }
+<!ATTLIST value %guideline.attrib; >
+decision.variable.description  = element # { guideline.attrib, astm.content }
+<!ATTLIST decision.variable.description %guideline.attrib; >
+test.parameter  (#PCDATA | %ASTM.Mix; | sensitivity | specificity | predictive.value )*>
+<!ATTLIST test.parameter %guideline.attrib; >
+sensitivity  = element # { guideline.attrib, astm.content }
+<!ATTLIST sensitivity %guideline.attrib; >
+specificity  = element # { guideline.attrib, astm.content }
+<!ATTLIST specificity %guideline.attrib; >
+predictive.value  = element # { guideline.attrib, astm.content }
+<!ATTLIST predictive.value %guideline.attrib; >
+decision.variable.cost  = element # { guideline.attrib, astm.content }
+<!ATTLIST decision.variable.cost  source CDATA  #IMPLIED  id  ID  #IMPLIED >
+action  (#PCDATA | %ASTM.Mix; | action.benefit | action.risk.harm | action.description | action.cost )*>
+<!ATTLIST action source  CDATA  #IMPLIED  id  ID #IMPLIED
+   action.id CDATA  #IMPLIED >
+action.benefit  = element # { guideline.attrib, astm.content }
+<!ATTLIST action.benefit %guideline.attrib; >
+action.risk.harm  = element # { guideline.attrib, astm.content }
+<!ATTLIST action.risk.harm %guideline.attrib; >
+action.description  = element # { guideline.attrib, astm.content }
+<!ATTLIST action.description %guideline.attrib; >
+action.cost  = element # { guideline.attrib, astm.content }
+<!ATTLIST action.cost %guideline.attrib; >
+reason  = element # { guideline.attrib, astm.content }
+<!ATTLIST reason %guideline.attrib; >
+evidence.quality  = element # { guideline.attrib, astm.content }
+<!ATTLIST evidence.quality %guideline.attrib; >
+recommendation.strength  = element # { guideline.attrib, astm.content }
+<!ATTLIST recommendation.strength %guideline.attrib; >
+flexibility  = element # { guideline.attrib, astm.content }
+<!ATTLIST flexibility %guideline.attrib; >
+logic  = element # { guideline.attrib, astm.content }
+<!ATTLIST logic %guideline.attrib; >
+cost  = element # { guideline.attrib, astm.content }
+<!ATTLIST cost %guideline.attrib; >
+link  = element # { guideline.attrib, astm.content }
+<!ATTLIST link %guideline.attrib; >
+reference  = element # { guideline.attrib, astm.content }
+<!ATTLIST reference %guideline.attrib; >
+certainty  = element # { guideline.attrib, astm.content }
+<!ATTLIST certainty %guideline.attrib; >
+
+imperative  (#PCDATA | %ASTM.Mix; |directive | reason | evidence.quality | recommendation.strength | flexibility | logic | cost | link | reference | certainty  )*>
+<!ATTLIST imperative %guideline.attrib; >
+directive  (#PCDATA | %ASTM.Mix; |directive.benefit | directive.risk.harm | directive.description | directive.cost  )*>
+<!ATTLIST directive source CDATA  #IMPLIED id ID #IMPLIED
+     directive.id CDATA  #IMPLIED >
+directive.benefit  = element # { guideline.attrib, astm.content }
+<!ATTLIST directive.benefit %guideline.attrib; >
+directive.risk.harm  = element # { guideline.attrib, astm.content }
+<!ATTLIST directive.risk.harm %guideline.attrib; >
+directive.description  = element # { guideline.attrib, astm.content }
+<!ATTLIST directive.description %guideline.attrib; >
+directive.cost  = element # { guideline.attrib, astm.content }
+<!ATTLIST directive.cost %guideline.attrib; >
+definition  = element definition{(astm.content | term )*}
+<!ATTLIST definition %guideline.attrib; >
+term  = element term{
+			(astm.content  | term.meaning )*
+			}
+term.meaning  = element term.meaning { guideline.attrib, astm.content }
+algorithm  = element algorithm {
+		astm.content | (action.step | conditional.step | branch.step | synchronization.step )*
+		}
+action.step  = element # { guideline.attrib, astm.content }
+<!ATTLIST action.step %guideline.attrib; >
+conditional.step  = element # { guideline.attrib, astm.content }
+branch.step  = element # { guideline.attrib, astm.content }
+synchronization.step  = element # { guideline.attrib, astm.content }
+testing  (external.review | pilot.testing )*>
+external.review = element external.review{ (astm.content | review.method )*}
+review.method  = element # { guideline.attrib, source.attrib, astm.content }
+<!ATTLIST review.method  source   (ngc )  'ngc'
+                         id      ID     #IMPLIED
+                         Options CDATA  #IMPLIED >
+pilot.testing  = element # { guideline.attrib, astm.content }
+revision.plan  (expiration | scheduled.review )*>
+expiration  = element # { guideline.attrib, astm.content }
+scheduled.review  = element # { guideline.attrib, astm.content }

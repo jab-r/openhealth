@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://description.org/schema/students"/>
+      <rdf:subject rdf:resource="http://mycollege.edu/courses/6.001"/>
+      <rdf:object rdf:resource="#/1/1/1"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <rdf:subject rdf:resource="#/1/1/1"/>
+      <rdf:object rdf:resource="http://description.org/schema/students"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Bag"/>
+      <rdf:subject rdf:resource="#/1/1/1"/>
+      <rdf:object rdf:resource="#/1/1/1/1"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <rdf:subject rdf:resource="#/1/1/1/1"/>
+      <rdf:object rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Bag"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#li"/>
+      <rdf:subject rdf:resource="#/1/1/1/1"/>
+      <rdf:object rdf:resource="http://mycollege.edu/students/Amy"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="file:/D:/rdf/test11.xml#resource"/>
+      <rdf:subject rdf:resource="http://mycollege.edu/students/Amy"/>
+      <rdf:object>http://mycollege.edu/students/Amy</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#li"/>
+      <rdf:subject rdf:resource="#/1/1/1/1"/>
+      <rdf:object rdf:resource="http://mycollege.edu/students/Tim"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="file:/D:/rdf/test11.xml#resource"/>
+      <rdf:subject rdf:resource="http://mycollege.edu/students/Tim"/>
+      <rdf:object>http://mycollege.edu/students/Tim</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#li"/>
+      <rdf:subject rdf:resource="#/1/1/1/1"/>
+      <rdf:object rdf:resource="http://mycollege.edu/students/John"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="file:/D:/rdf/test11.xml#resource"/>
+      <rdf:subject rdf:resource="http://mycollege.edu/students/John"/>
+      <rdf:object>http://mycollege.edu/students/John</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#li"/>
+      <rdf:subject rdf:resource="#/1/1/1/1"/>
+      <rdf:object rdf:resource="http://mycollege.edu/students/Mary"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="file:/D:/rdf/test11.xml#resource"/>
+      <rdf:subject rdf:resource="http://mycollege.edu/students/Mary"/>
+      <rdf:object>http://mycollege.edu/students/Mary</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#li"/>
+      <rdf:subject rdf:resource="#/1/1/1/1"/>
+      <rdf:object rdf:resource="http://mycollege.edu/students/Sue"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="file:/D:/rdf/test11.xml#resource"/>
+      <rdf:subject rdf:resource="http://mycollege.edu/students/Sue"/>
+      <rdf:object>http://mycollege.edu/students/Sue</rdf:object>
+   </rdf:Statement>
+</rdf:RDF>

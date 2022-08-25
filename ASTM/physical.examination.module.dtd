@@ -1,0 +1,236 @@
+<!--
+	Copyright (c) 2000 Jonathan Borden, M.D., The Open Healthcare Group
+	Licensed upder http://www.openhealth.org/license
+
+	PUBLIC "-//ASTM//DTD Physical Examination Module 1.0//EN"
+	SYSTEM "http://www.openhealth.org/ASTM/physical.examination.module.dtd"
+-->
+
+<!ENTITY % ADS.prefixed "IGNORE">
+<!ENTITY % PE.prefixed "%ADS.prefixed;">
+
+<!ENTITY % pe "pe">
+
+<!ENTITY % pe.namespace.uri "http://www.openhealth.org/ASTM/physical.examination">
+<![ %PE.prefixed; [
+<!ENTITY % pe.prefix "%pe;:">
+]]>
+
+<!ENTITY % pe.prefix "">
+<!ENTITY % pe.xmlns.attrib.name "xmlns:%pe;">
+<!-- define terms here -->
+<!ENTITY % pe.normal.in.detail.qname "%pe.prefix;normal.in.detail">
+<!ENTITY % pe.normal.qname "%pe.prefix;normal">
+<!ENTITY % pe.grossly.normal.qname "%pe.prefix;grossly.normal">
+<!ENTITY % pe.not.tested.qname "%pe.prefix;not.tested">
+<!ENTITY % ASTM.PE.Mix "%ASTM.Mix; | %pe.normal.qname;|%pe.normal.in.detail.qname;|%pe.grossly.normal.qname;|%pe.not.tested.qname;">
+<!ENTITY % astm.pe.content "(#PCDATA | %ASTM.PE.Mix;)*">
+
+<!-- vocabulary -->
+<!ENTITY % physical.examination.qname "%pe.prefix;physical.examination">
+<!ENTITY % general.qname "%pe.prefix;general">
+<!ENTITY % vital.signs.qname "%pe.prefix;vital.signs">
+<!ENTITY % skin.qname "%pe.prefix;skin">
+<!ENTITY % HEENT.qname "%pe.prefix;HEENT">
+<!ENTITY % lymph.nodes.qname "%pe.prefix;lymph.nodes">
+<!ENTITY % chest.qname "%pe.prefix;chest">
+<!ENTITY % lungs.qname "%pe.prefix;lungs">
+<!ENTITY % breasts.qname "%pe.prefix;breasts">
+<!ENTITY % cardiovascular.qname "%pe.prefix;cardiovascular">
+<!ENTITY % abdomen.qname "%pe.prefix;abdomen">
+<!ENTITY % genitalia.qname "%pe.prefix;genitalia">
+<!ENTITY % anorectal.qname "%pe.prefix;anorectal">
+<!ENTITY % musculoskeletal.qname "%pe.prefix;musculoskeletal">
+<!ENTITY % neurologic.qname "%pe.prefix;neurologic">
+
+<!ENTITY % eyes.qname "%pe.prefix;eyes">
+<!ENTITY % ears.qname "%pe.prefix;ears">
+<!ENTITY % nose.qname "%pe.prefix;nose">
+<!ENTITY % mouth.and.throat.qname "%pe.prefix;mouth.and.throat">
+<!ENTITY % neck.qname "%pe.prefix;neck">
+<!ENTITY % lymph.nodes.qname "%pe.prefix;lymph.nodes">
+
+<!ENTITY % heart.qname "%pe.prefix;heart">
+<!ENTITY % peripheral.vascular.qname "%pe.prefix;peripheral.vascular">
+
+<!ENTITY % mental.status.qname "%pe.prefix;mental.status">
+<!ENTITY % cranial.nerves.qname "%pe.prefix;cranial.nerves">
+<!ENTITY % motor.qname "%pe.prefix;motor">
+<!ENTITY % sensory.qname "%pe.prefix;sensory">
+<!ENTITY % reflexes.qname "%pe.prefix;reflexes">
+
+<!ENTITY % general.mental.status.qname "%pe.prefix;general.mental.status">
+<!ENTITY % emotion.qname "%pe.prefix;emotion">
+<!ENTITY % perception.qname "%pe.prefix;perception">
+<!ENTITY % thought.process.qname "%pe.prefix;thought.process">
+<!ENTITY % orientation.qname "%pe.prefix;orientation">
+<!ENTITY % memory.qname "%pe.prefix;memory">
+<!ENTITY % impulse.control.qname "%pe.prefix;impulse.control">
+<!ENTITY % judgement.qname "%pe.prefix;judgement">
+<!ENTITY % insight.qname "%pe.prefix;insight">
+<!ENTITY % reliability.qname "%pe.prefix;reliability">
+
+<!ENTITY % physical.examination.model "(
+	#PCDATA | %ASTM.PE.Mix;|
+	%general.qname;|
+	%vital.signs.qname;|
+	%skin.qname;|
+	%HEENT.qname;|
+	%lymph.nodes.qname;|
+	%chest.qname;|
+	%lungs.qname;|
+	%breasts.qname;|
+	%cardiovascular.qname;|
+	%abdomen.qname;|
+	%genitalia.qname;|
+	%anorectal.qname;|
+	%musculoskeletal.qname;|
+	%neurologic.qname;)*
+">
+
+<!ENTITY % general.model "%astm.pe.content;">
+<!ENTITY % vital.signs.model "%astm.pe.content;">
+<!ENTITY % skin.model "%astm.pe.content;">
+<!ENTITY % HEENT.model "(#PCDATA | %ASTM.PE.Mix;|
+	%eyes.qname;|%ears.qname;|%nose.qname;|
+	%mouth.and.throat.qname;|
+	%neck.qname;
+)*">
+<!ENTITY % eyes.model "%astm.pe.content;">
+<!ENTITY % ears.model "%astm.pe.content;">
+<!ENTITY % nose.model "%astm.pe.content;">
+<!ENTITY % mouth.and.throat.model "%astm.pe.content;">
+<!ENTITY % neck.model "%astm.pe.content;">
+<!ENTITY % lymph.nodes.model "%astm.pe.content;">
+<!ENTITY % chest.model "%astm.pe.content;">
+<!ENTITY % lungs.model "%astm.pe.content;">
+<!ENTITY % breasts.model "%astm.pe.content;">
+<!ENTITY % cardiovascular.model "
+(#PCDATA | %ASTM.PE.Mix;|
+	%heart.qname;|%peripheral.vascular.qname;
+)*">
+<!ENTITY % heart.model "%astm.pe.content;">
+<!ENTITY % peripheral.vascular.model "%astm.pe.content;">
+<!ENTITY % abdomen.model "%astm.pe.content;">
+<!ENTITY % genitalia.model "%astm.pe.content;">
+<!ENTITY % anorectal.model "%astm.pe.content;">
+<!ENTITY % musculoskeletal.model "%astm.pe.content;">
+<!ENTITY % neurologic.model "(
+	#PCDATA | %ASTM.PE.Mix;|
+	%mental.status.qname;|%cranial.nerves.qname;|%motor.qname;|%sensory.qname;|%reflexes.qname;
+)*">
+<!ENTITY % cranial.nerves.model "%astm.pe.content;">
+<!ENTITY % motor.model "%astm.pe.content;">
+<!ENTITY % sensory.model "%astm.pe.content;">
+<!ENTITY % reflexes.model "%astm.pe.content;">
+
+<!ENTITY % mental.status.model "(#PCDATA | %ASTM.PE.Mix;|
+	%general.mental.status.qname;|
+	 %emotion.qname;|
+	 %perception.qname;|
+	 %thought.process.qname;|
+	 %orientation.qname;|
+	 %memory.qname;|
+	 %impulse.control.qname;|
+	 %judgement.qname;|
+	 %insight.qname;|
+	 %reliability.qname;
+)*">
+
+<!ENTITY % general.mental.status.model "%astm.pe.content;">
+<!ENTITY % emotion.model "%astm.pe.content;">
+<!ENTITY % perception.model "%astm.pe.content;">
+<!ENTITY % thought.process.model "%astm.pe.content;">
+<!ENTITY % orientation.model "%astm.pe.content;">
+<!ENTITY % memory.model "%astm.pe.content;">
+<!ENTITY % impulse.control.model "%astm.pe.content;">
+<!ENTITY % judgement.model "%astm.pe.content;">
+<!ENTITY % insight.model "%astm.pe.content;">
+<!ENTITY % reliability.model "%astm.pe.content;">
+
+
+<!--<!ELEMENT %physical.examination.qname; "%physical.examination.model;">-->
+<!ELEMENT %general.qname; %general.model;>
+<!ELEMENT %vital.signs.qname; %vital.signs.model;>
+<!ELEMENT %skin.qname; %skin.model;>
+<!ELEMENT %HEENT.qname; %HEENT.model;>
+<!ELEMENT %eyes.qname; %eyes.model;>
+<!ELEMENT %ears.qname; %ears.model;>
+<!ELEMENT %nose.qname; %nose.model;>
+<!ELEMENT %mouth.and.throat.qname; %mouth.and.throat.model;>
+<!ELEMENT %neck.qname; %neck.model;>
+<!ELEMENT %lymph.nodes.qname; %lymph.nodes.model;>
+<!ELEMENT %chest.qname; %chest.model;>
+<!ELEMENT %lungs.qname; %lungs.model;>
+<!ELEMENT %breasts.qname; %breasts.model;>
+<!ELEMENT %cardiovascular.qname; %cardiovascular.model;>
+<!ELEMENT %heart.qname; %heart.model;>
+<!ELEMENT %peripheral.vascular.qname; %peripheral.vascular.model;>
+<!ELEMENT %abdomen.qname; %abdomen.model;>
+<!ELEMENT %genitalia.qname; %genitalia.model;>
+<!ELEMENT %anorectal.qname; %anorectal.model;>
+<!ELEMENT %musculoskeletal.qname; %musculoskeletal.model;>
+<!ELEMENT %neurologic.qname; %neurologic.model;>
+<!ELEMENT %mental.status.qname; %mental.status.model;>
+<!ELEMENT %cranial.nerves.qname; %cranial.nerves.model;>
+<!ELEMENT %motor.qname; %motor.model;>
+<!ELEMENT %sensory.qname; %sensory.model;>
+<!ELEMENT %reflexes.qname; %reflexes.model;>
+
+<!ELEMENT %general.mental.status.qname; %general.mental.status.model;>
+<!ELEMENT %emotion.qname; %emotion.model;>
+<!ELEMENT %perception.qname; %perception.model;>
+<!ELEMENT %thought.process.qname; %thought.process.model;>
+<!ELEMENT %orientation.qname; %orientation.model;>
+<!ELEMENT %memory.qname; %memory.model;>
+<!ELEMENT %impulse.control.qname; %impulse.control.model;>
+<!ELEMENT %judgement.qname; %judgement.model;>
+<!ELEMENT %insight.qname; %insight.model;>
+<!ELEMENT %reliability.qname; %reliability.model;>
+
+<!ELEMENT %pe.normal.qname; EMPTY>
+<!ELEMENT %pe.normal.in.detail.qname; EMPTY>
+<!ELEMENT %pe.grossly.normal.qname; EMPTY>
+<!ELEMENT %pe.not.tested.qname; EMPTY>
+
+<!-- attlist -->
+<!ATTLIST %general.qname; %astm.content.attrib;>
+<!ATTLIST %vital.signs.qname; %astm.content.attrib;>
+<!ATTLIST %skin.qname; %astm.content.attrib;>
+<!ATTLIST %HEENT.qname; %astm.content.attrib;>
+<!ATTLIST %eyes.qname; %astm.content.attrib;>
+<!ATTLIST %ears.qname; %astm.content.attrib;>
+<!ATTLIST %nose.qname; %astm.content.attrib;>
+<!ATTLIST %mouth.and.throat.qname; %astm.content.attrib;>
+<!ATTLIST %neck.qname; %astm.content.attrib;>
+<!ATTLIST %lymph.nodes.qname; %astm.content.attrib;>
+<!ATTLIST %chest.qname; %astm.content.attrib;>
+<!ATTLIST %lungs.qname; %astm.content.attrib;>
+<!ATTLIST %breasts.qname; %astm.content.attrib;>
+<!ATTLIST %cardiovascular.qname; %astm.content.attrib;>
+<!ATTLIST %heart.qname; %astm.content.attrib;>
+<!ATTLIST %peripheral.vascular.qname; %astm.content.attrib;>
+<!ATTLIST %abdomen.qname; %astm.content.attrib;>
+<!ATTLIST %genitalia.qname; %astm.content.attrib;>
+<!ATTLIST %anorectal.qname; %astm.content.attrib;>
+<!ATTLIST %musculoskeletal.qname; %astm.content.attrib;>
+<!ATTLIST %neurologic.qname; %astm.content.attrib;>
+<!ATTLIST %mental.status.qname; %astm.content.attrib;>
+<!ATTLIST %cranial.nerves.qname; %astm.content.attrib;>
+<!ATTLIST %motor.qname; %astm.content.attrib;>
+<!ATTLIST %sensory.qname; %astm.content.attrib;>
+<!ATTLIST %reflexes.qname; %astm.content.attrib;>
+
+<!ATTLIST %general.mental.status.qname; %astm.content.attrib;>
+<!ATTLIST %emotion.qname; %astm.content.attrib;>
+<!ATTLIST %perception.qname; %astm.content.attrib;>
+<!ATTLIST %thought.process.qname; %astm.content.attrib;>
+<!ATTLIST %orientation.qname; %astm.content.attrib;>
+<!ATTLIST %memory.qname; %astm.content.attrib;>
+<!ATTLIST %impulse.control.qname; %astm.content.attrib;>
+<!ATTLIST %judgement.qname; %astm.content.attrib;>
+<!ATTLIST %insight.qname; %astm.content.attrib;>
+<!ATTLIST %reliability.qname; %astm.content.attrib;>
+
+
+

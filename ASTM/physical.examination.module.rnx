@@ -1,0 +1,96 @@
+default namespace pe = "http://www.openhealth.org/ASTM/physical.examination"
+pe.content = mixed { pe.normal|pe.normal.in.detail|pe.grossly.normal|pe.not.tested | (Flow.model|text)* }
+
+physical.examination.model =
+	pe.content |
+	(general|
+	vital.signs|
+	skin|
+	HEENT|
+	lymph.nodes|
+	chest|
+	lungs|
+	breasts|
+	cardiovascular|
+	abdomen|
+	genitalia|
+	anorectal|
+	musculoskeletal|
+	neurologic)*
+
+HEENT.model = pe.content | (
+	eyes|ears|nose|
+	mouth.and.throat|
+	neck
+)*
+
+cardiovascular.model =
+	pe.content | (
+	heart|peripheral.vascular
+)*
+
+neurologic.model =
+	pe.content | (
+	mental.status|cranial.nerves|motor|sensory|reflexes
+)*
+
+
+ mental.status.model = pe.content | (
+	general.mental.status|
+	 emotion|
+	 perception|
+	 thought.process|
+	 orientation|
+	 memory|
+	 impulse.control|
+	 judgement|
+	 insight|
+	 reliability
+)*
+
+general = element general { astm.content.attrib, pe.content }
+vital.signs = element vital.signs { astm.content.attrib, pe.content }
+skin = element skin { astm.content.attrib, pe.content }
+HEENT = element HEENT { astm.content.attrib, HEENT.model }
+eyes = element eyes { astm.content.attrib, pe.content }
+ears = element ears { astm.content.attrib, pe.content }
+nose = element nose { astm.content.attrib, pe.content }
+mouth.and.throat = element mouth.and.throat { astm.content.attrib, pe.content }
+neck = element neck { astm.content.attrib, pe.content }
+lymph.nodes = element lymph.nodes { astm.content.attrib, pe.content }
+chest = element chest { astm.content.attrib, pe.content }
+lungs = element lungs { astm.content.attrib, pe.content }
+breasts = element breasts { astm.content.attrib, pe.content }
+cardiovascular = element cardiovascular { astm.content.attrib, cardiovascular.model }
+heart = element heart { astm.content.attrib, pe.content }
+peripheral.vascular = element peripheral.vascular { astm.content.attrib, pe.content }
+abdomen = element abdomen { astm.content.attrib, pe.content }
+genitalia = element genitalia { astm.content.attrib, pe.content }
+anorectal = element anorectal { astm.content.attrib, pe.content }
+musculoskeletal = element musculoskeletal { astm.content.attrib, pe.content }
+neurologic = element neurologic { astm.content.attrib, neurologic.model }
+mental.status = element mental.status { astm.content.attrib, mental.status.model }
+cranial.nerves = element cranial.nerves { astm.content.attrib, pe.content }
+motor = element motor { astm.content.attrib, pe.content }
+sensory = element sensory { astm.content.attrib, pe.content }
+reflexes = element reflexes { astm.content.attrib, pe.content }
+
+general.mental.status = element general.mental.status { astm.content.attrib, pe.content }
+emotion = element emotion { astm.content.attrib, pe.content }
+perception = element perception { astm.content.attrib, pe.content }
+thought.process = element thought.process { astm.content.attrib, pe.content }
+orientation = element orientation { astm.content.attrib, pe.content }
+memory = element memory { astm.content.attrib, pe.content }
+impulse.control = element impulse.control { astm.content.attrib, pe.content }
+judgement = element judgement { astm.content.attrib, pe.content }
+insight = element insight { astm.content.attrib, pe.content }
+reliability = element reliability { astm.content.attrib, pe.content }
+
+pe.normal = element normal {empty}
+pe.normal.in.detail = element normal.in.detail {empty}
+pe.grossly.normal = element grossly.normal {empty}
+pe.not.tested = element not.tested {empty}
+
+
+
+

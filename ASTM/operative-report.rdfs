@@ -1,0 +1,118 @@
+<?xml version="1.0" ?>
+<rdf:RDF xml:lang="en"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+<rdfs:Class rdf:ID="Operative.Report">
+	<rdfs:subClassOf rdf:resource="http://www.openhealth.org/ASTM/E31.25-model.rdfs#ClinicalDocument"/>
+</rdfs:Class>
+<rdf:Property ID="preoperative.diagnosis">
+	<rdfs:range rdf:resource="http://www.openhealth.org/ASTM/E31.25-model.rdfs#PCDATA"/>
+	<rdfs:domain rdf:resource="#Operative.Report"/>
+</rdf:Property>
+<rdf:Property ID="postoperative.diagnosis">
+	<rdfs:range rdf:resource="http://www.openhealth.org/ASTM/E31.25-model.rdfs#PCDATA"/>
+	<rdfs:domain rdf:resource="#Operative.Report"/>
+</rdf:Property>
+<rdf:Property ID="procedure">
+	<rdfs:range rdf:resource="http://www.openhealth.org/ASTM/E31.25-model.rdfs#PCDATA"/>
+	<rdfs:domain rdf:resource="#Operative.Report"/>
+</rdf:Property>
+<rdf:Property ID="surgeon">
+	<rdfs:range rdf:resource="http://www.openhealth.org/ASTM/clinican-model.rdfs#Physician"/>
+	<rdfs:domain rdf:resource="#Operative.Report"/>
+</rdf:Property>
+<rdf:Property ID="assistant">
+	<rdfs:range rdf:resource="http://www.openhealth.org/ASTM/clinican-model.rdfs#Physician"/>
+	<rdfs:domain rdf:resource="#Operative.Report"/>
+</rdf:Property>
+<rdf:Property ID="anesthesia">
+	<rdfs:range rdf:resource="http://www.openhealth.org/ASTM/E31.25-model.rdfs#PCDATA"/>
+	<rdfs:domain rdf:resource="#Operative.Report"/>
+</rdf:Property>
+<rdf:Property ID="anesthesiologist">
+	<rdfs:range rdf:resource="http://www.openhealth.org/ASTM/clinican-model.rdfs#Provider"/>
+	<rdfs:domain rdf:resource="#Operative.Report"/>
+</rdf:Property>
+<rdf:Property ID="indications">
+	<rdfs:range rdf:resource="http://www.openhealth.org/ASTM/E31.25-model.rdfs#Block"/>
+	<rdfs:domain rdf:resource="#Operative.Report"/>
+</rdf:Property>
+<rdf:Property ID="description">
+	<rdfs:range rdf:resource="http://www.openhealth.org/ASTM/E31.25-model.rdfs#Block"/>
+	<rdfs:domain rdf:resource="#Operative.Report"/>
+</rdf:Property>
+<rdf:Property ID="findings">
+	<rdfs:range rdf:resource="http://www.openhealth.org/ASTM/E31.25-model.rdfs#Block"/>
+	<rdfs:domain rdf:resource="#Operative.Report"/>
+</rdf:Property>
+<rdf:Property ID="specimens">
+	<rdfs:range rdf:resource="http://www.openhealth.org/ASTM/E31.25-model.rdfs#Block"/>
+	<rdfs:domain rdf:resource="#Operative.Report"/>
+</rdf:Property>
+<rdf:Property ID="closure">
+	<rdfs:range rdf:resource="http://www.openhealth.org/ASTM/E31.25-model.rdfs#Block"/>
+	<rdfs:domain rdf:resource="#Operative.Report"/>
+</rdf:Property>
+<rdf:Property ID="intraoperative.pathology">
+	<rdfs:range rdf:resource="http://www.openhealth.org/ASTM/E31.25-model.rdfs#Block"/>
+	<rdfs:domain rdf:resource="#Operative.Report"/>
+</rdf:Property>
+<rdf:Property ID="permanent.pathology">
+	<rdfs:range rdf:resource="http://www.openhealth.org/ASTM/E31.25-model.rdfs#Block"/>
+	<rdfs:domain rdf:resource="#Operative.Report"/>
+</rdf:Property>
+<rdf:Property ID="drains">
+	<rdfs:range rdf:resource="http://www.openhealth.org/ASTM/E31.25-model.rdfs#PCDATA"/>
+	<rdfs:domain rdf:resource="#Operative.Report"/>
+</rdf:Property>
+<rdf:Property ID="counts">
+	<rdfs:range rdf:resource="http://www.openhealth.org/ASTM/E31.25-model.rdfs#PCDATA"/>
+	<rdfs:domain rdf:resource="#Operative.Report"/>
+</rdf:Property>
+<rdf:Property ID="estimated.blood.loss">
+	<rdfs:range rdf:resource="http://www.openhealth.org/ASTM/E31.25-model.rdfs#PCDATA"/>
+	<rdfs:domain rdf:resource="#Operative.Report"/>
+</rdf:Property>
+<rdf:Property ID="condition">
+	<rdfs:range rdf:resource="http://www.openhealth.org/ASTM/E31.25-model.rdfs#Block"/>
+	<rdfs:domain rdf:resource="#Operative.Report"/>
+</rdf:Property>
+<rdf:Property ID="disposition">
+	<rdfs:range rdf:resource="http://www.openhealth.org/ASTM/E31.25-model.rdfs#Block"/>
+	<rdfs:domain rdf:resource="#Operative.Report"/>
+</rdf:Property>
+<rdf:Property ID="followup">
+	<rdfs:range rdf:resource="http://www.openhealth.org/ASTM/E31.25-model.rdfs#Block"/>
+	<rdfs:domain rdf:resource="#Operative.Report"/>
+</rdf:Property>
+<rdfs:Class rdf:ID="Fluids">
+	<!--<rdfs:subClassOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Bag"/>-->
+</rdfs:Class>
+<rdfs:Class rdf:ID="Fluid">
+	<rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+</rdfs:Class>
+<rdf:Property ID="fluids">
+	<rdfs:range rdf:resource="#Fluids"/>
+	<rdfs:domain rdf:resource="#Operative.Report"/>
+</rdf:Property>
+<rdf:Property ID="fluid">
+	<rdfs:range rdf:resource="#Fluid"/>
+	<rdfs:domain rdf:resource="#Fluids"/>
+</rdf:Property>
+<rdf:Property ID="type">
+	<rdfs:range rdf:resource="http://www.openhealth.org/ASTM/E31.25-model.rdfs#CDATA"/>
+	<rdfs:domain rdf:resource="#Fluid"/>
+</rdf:Property>
+<rdf:Property ID="volume">
+	<rdfs:range rdf:resource="http://www.openhealth.org/ASTM/E31.25-model.rdfs#CDATA"/>
+	<rdfs:domain rdf:resource="#Fluid"/>
+</rdf:Property>
+<rdf:Property ID="status">
+	<rdfs:range rdf:resource="#GivenLoss"/>
+	<rdfs:domain rdf:resource="#Fluid"/>
+</rdf:Property>
+<rdfs:Class rdf:ID="GivenLoss">
+</rdfs:Class>
+<GivenLoss rdf:ID="given"/>
+<GivenLoss rdf:ID="loss"/>
+</rdf:RDF>

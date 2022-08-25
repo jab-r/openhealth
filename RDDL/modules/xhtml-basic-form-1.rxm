@@ -1,0 +1,155 @@
+<!DOCTYPE module [
+<!ENTITY ContentType.datatype "string">
+<!ENTITY Number.datatype "integer">
+<!ENTITY Character.datatype "string">
+]>
+<module
+  xmlns="http://www.xml.gr.jp/xmlns/relaxCore"
+  targetNamespace="http://www.w3.org/1999/xhtml"
+  relaxCoreVersion="1.0"
+  moduleVersion="1.11">
+
+<hedgeRule label="BlkNoForm.mix">
+  <choice>
+    <hedgeRef label="Heading.class"/>
+    <hedgeRef label="List.class"/>
+    <hedgeRef label="BlkStruct.class"/>
+    <hedgeRef label="BlkPhras.class"/>
+    <hedgeRef label="BlkPres.class"/>
+    <ref label="table"/>
+    <hedgeRef label="Block.extra"/>
+    <hedgeRef label="Misc.class"/>
+  </choice>
+</hedgeRule>
+
+<!-- Direct nesting of forms is explicitly prohibited.  To prohibit
+indirect nesting of forms, we have to significantly deviate from the
+XHTML Modularization CR.  -->
+
+<elementRule role="form">
+  <hedgeRef label="BlkNoForm.mix" occurs="+"/>
+</elementRule>
+
+<tag name="form">
+  <ref role="Common.attrib"/>
+  <attribute name="action" type="uriReference" required="true"/>
+  <attribute name="method">
+    <enumeration value="get"/>
+    <enumeration value="post"/>
+  </attribute>
+  <attribute name="enctype" type="&ContentType.datatype;"/>
+</tag>
+
+<!-- Direct nesting of labels is explicitly prohibited.  To prohibit
+indirect nesting of labels, we have to significantly deviate from the
+XHTML Modularization CR.  -->
+
+<elementRule role="label">
+  <mixed>
+    <choice occurs="*">
+      <ref label="input"/>
+      <ref label="select"/>
+      <ref label="textarea"/>
+      <hedgeRef label="InlStruct.class"/>
+      <hedgeRef label="InlPhras.class"/>
+      <hedgeRef label="I18n.class"/>
+      <hedgeRef label="InlPres.class"/>
+      <hedgeRef label="InlSpecial.class"/>
+      <hedgeRef label="Misc.class"/>
+    </choice>
+  </mixed>
+</elementRule>
+
+<tag name="label">
+  <ref role="Common.attrib"/>
+  <attribute name="for" type="IDREF"/>
+  <attribute name="accesskey" type="&Character.datatype;"/>
+</tag>
+
+<elementRule role="input" type="emptyString"/>
+
+<tag name="input">
+  <ref role="Common.attrib"/>
+  <attribute name="type" type="NMTOKEN">
+    <enumeration value="text"/>
+    <enumeration value="password"/>
+    <enumeration value="checkbox"/>
+    <enumeration value="radio"/>
+    <enumeration value="submit"/>
+    <enumeration value="reset"/>
+    <enumeration value="hidden"/>
+  </attribute>
+  <attribute name="name"          type="string"/>
+  <attribute name="value"        type="string"/>
+  <attribute name="checked">
+    <enumeration value="checked"/>
+  </attribute>
+  <attribute name="size"         type="string"/>
+  <attribute name="maxlength"    type="&Number.datatype;"/>
+  <attribute name="src"          type="uriReference"/>
+  <attribute name="accesskey"    type="&Character.datatype;"/>
+</tag>
+
+<elementRule role="select">
+  <ref label="option" occurs="+"/>
+</elementRule>
+
+<tag name="select">
+  <ref role="Common.attrib"/>
+  <attribute name="name"          type="string"/>
+  <attribute name="size"          type="&Number.datatype;"/>
+  <attribute name="multiple" type="NMTOKEN">
+    <enumeration value="multiple"/>
+  </attribute>
+</tag>
+
+<elementRule role="option">
+  <mixed><empty/></mixed>
+</elementRule>
+
+<tag name="option">
+  <ref role="Common.attrib"/>
+  <attribute name="selected">
+    <enumeration value="selected"/>
+  </attribute>
+  <attribute name="value" type="string"/>
+</tag>
+
+<elementRule role="textarea">
+  <mixed><empty/></mixed>  
+</elementRule>
+
+<tag name="textarea">
+  <ref role="Common.attrib"/>
+  <attribute name="name"         type="string"/>
+  <attribute name="rows"         type="&Number.datatype;" required="true"/>
+  <attribute name="cols"         type="&Number.datatype;" required="true"/>
+  <attribute name="accesskey"    type="&Character.datatype;"/>
+</tag>
+
+<!-- 
+
+<hedgeRule label="Form.class">
+  <ref label="form"/>
+</define>
+
+<hedgeRule label="Formctrl.class">
+  <choice>
+    <ref label="input"/>
+    <ref label="label"/>
+    <ref label="select"/>
+    <ref label="textarea"/>
+  </choice>
+</define>
+
+<hedgeRule label="Block.class">
+  <hedgeRef label="Form.class"/>
+</define>
+
+<hedgeRule label="Inline.class">
+  <hedgeRef label="Formctrl.class"/>
+</define>
+
+-->
+
+</module>

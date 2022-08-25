@@ -1,0 +1,229 @@
+<!-- *************************************************************************
+	Simple Object Definition Language (SODL) DTD
+		Copyright (c) 1998 Jonathan A. Borden ALL RIGHTS RESERVED
+	
+	Author: Jonathan Borden
+	Date:	10/15/1998
+	Version:	http://jabr.ne.mediaone.net/documents/sodl10-19981015.DTD
+	Current:	http://jabr.ne.mediaone.net/documents/sodl10.DTD
+
+	SODL is a lightweidht XML IDL. This is produced as part of the XPository(tm) project
+
+	XPository(tm) is a Web enabled XML based data repository
+	XTRIME(tm) is the eXtensible Transacted Internet Messaging Engine
+	XMOP(tm) XML Metadata Object Persistance
+
+	Identifiers:
+
+	PUBLIC "-//XPository//DTD SODL V1.0//EN" "http://jabr.ne.mediaone.net/documents/sodl10.dtd"
+	SYSTEM "http//jabr.ne.mediaone.net/documents/sodl10.dtd"
+
+	History:	19981008: DTD compiles
+			19981011: Microsoft Word 8 validates
+			19981015: support for monikers
+			19981023: oid (object id) for persistence
+
+	-->
+<!-- ***************************************************************************
+BACKGROUND:
+	  One of the difficulties of COM has been the requirement for the component author to manually
+	code object persistance through one of the IPersist derived interfaces.Persistance/serialization
+	is closely tied to copy semantics also known as "Marshal By Value" (MBV).
+
+	  XML Metadata Object Persistance (XMOP) provides a persistance service for COM
+	objects using the SODL DTD.
+
+	  The Marshal-by-XML (MBXML) component provides automatic XML based serialization services
+	to COM components. Other marshal by value techniques 
+	(ref: 	Box,D. http://www.develop.com/dbox/msj/0397.htm,
+		Borden,J. http://discuss.microsoft.com/SCRIPTS/WA-MSD.EXE?A2=ind9804A&L=DCOM&P=R2657)
+	rely on the object implementing the IPersistStream interface. MBXML aggregates COM objects through
+	the MBXMLFactory component and provides metadata based serialization and marshaling through the
+	implementation of a metadata driven IPersistStream interface and though this the IMarshal interface.
+
+	  In order to provide these services, XMOP employs the metadata within the component's typelibrary
+	(ITypeInfo interface). SODL provides an XML DTD which represents Typelibrary information. SODL is
+	a lightweight XML IDL designed for persistance. SODL can readily be extended to support full blown
+	MS and CORBA IDLs. As the typelibrary format is extended in COM+ such extensions will be incorporated
+	into future versions of XML IDL. SODL/XML IDL is also compatible with XML RPC.
+
+	-->
+<!-- ***************************************************************************
+USAGE:
+	  The MBXMLFactory is registered under the 
+		Progid:	XPository.XMOPLFactory.1
+		ClassID:{F88F555A-5D84-11D2-9EFA-00105CAB062D}
+
+	   The XMOPFactory implements the IXMOPFactory interface:
+	[
+		object,
+		uuid(F88F5559-5D84-11D2-9EFA-00105CAB062D),
+		dual
+	]
+	interface IXMOPFactory : IDispatch
+	{
+		[id(1)] HRESULT CreateInstance([in] BSTR ProgID,[out,retval] IDispatch** ppObj);
+		[propget, id(2)] HRESULT TypeDescription([in] BSTR ProgID,[out,retval] BSTR* pDesc);
+	};
+
+		The following JScript code demonstrates usage:
+
+		var cf;
+		var str;
+		cf = Server.CreateObject("XPository.XMOPFactory.1");
+		str = cf.TypeDescription(Request.QueryString("ProgID"));
+
+
+	 When used for MBV, SODL usage is automatic:
+
+		var obj;
+		obj = cf.CreateInstance("ThirdParty.Object.1");
+
+	 When obj is tranfered between COM apartments, it is automatically copied using
+	the IPersistStream and IMarshal interfaces implemented by a wrapper which aggregates the
+	base object.
+	-->
+<!-- ***************************************************************************
+LIMITATIONS:
+	The current version of XMOP places these requirements on the object:
+
+	1. The object's default interface must be [oleautomation] compatible.
+	2. This interface must describe object state as a set of get/put properties.
+	3. The properties must not be parameterized (i.e. true properties not methods).
+	4. The object must support being aggregated.
+	5. Any objects returned as properties must themselved support XMOP
+
+Note:
+		The wrapped object's IMarshal or IPersistStream interfaces will not be called or used
+	if implemented.
+	-->
+<!-- ***************************************************************************
+	These correspond to VARIANT types
+		i4 	- VT_I4
+		i2 	- VT_I2
+		r4 	- VT_R4
+		r8 	- VT_R8
+		bool 	- VT_BOOL
+		ui1	- VT_UI1
+		char	- VT_I1
+		string	- VT_BSTR
+		date	- VT_DATE
+		object	- VT_UNKNOWN
+		disp	- VT_DISPATCH	
+		interface - VT_PTR
+		array	- VT_SAFEARRAY
+		udt	- VT_USERDEFINED
+		anytype	- VT_VARIANT
+		i8	- VT_I8
+		ui8	- VT_UI8
+		stream	- VT_STREAM
+		storage - VT_STORAGE
+	-->
+<!ENTITY % datatypes "char|i2|i4|i8|r4|r8|ui1|ui4|ui8|stream|storage|bool|string|date|object|disp|interface|array|udt|anytype">
+<!ENTITY % udttypes "typedef|enum|struct">
+<!-- **************************************************************************
+	this corresponds to a coclass definition
+	transacted could be part of other however ...
+	moniker refers to an external object reference
+	oref is a handle to support serialization of graphs
+-->
+<!ELEMENT objectDef (interfaceDef+,other*)>
+<!ATTLIST objectDef 
+          name NMTOKEN #IMPLIED
+          uuid CDATA #IMPLIED
+	  transacted (not|new|requires|supports) "not"
+	  moniker CDATA #IMPLIED
+	  oref CDATA #IMPLIED
+	  oid ID #IMPLIED
+>
+
+<!ELEMENT other ANY>
+<!ELEMENT interfaceDef (method*,property*,base*,other*)>
+<!ATTLIST interfaceDef 
+          name NMTOKEN #IMPLIED
+          uuid CDATA #REQUIRED
+>
+<!ELEMENT base EMPTY>
+<!ATTLIST base
+	name NMTOKEN #IMPLIED
+	uuid CDATA #REQUIRED
+>
+<!ELEMENT method (param*)>
+<!ATTLIST method 
+        name NMTOKEN #IMPLIED
+        id CDATA #IMPLIED
+	type (%datatypes;) "void"
+	uuid CDATA #IMPLIED
+	interface NMTOKEN #IMPLIED
+>
+<!ELEMENT property (%datatypes;|%udttypes;)*>
+<!ATTLIST property
+	name NMTOKEN #IMPLIED
+	id CDATA #IMPLIED
+	type (%datatypes;) #REQUIRED
+	uuid CDATA #IMPLIED
+	interface NMTOKEN #IMPLIED
+>
+<!ELEMENT param ((%datatypes;|%udttypes;)?)>
+<!ATTLIST param
+	name NMTOKEN #IMPLIED
+	type (%datatypes;) #REQUIRED
+	uuid CDATA #IMPLIED
+	interface NMTOKEN #IMPLIED
+	access (in|out|inout) "inout"
+>
+<!ELEMENT i4 (#PCDATA)>
+<!ELEMENT i2 (#PCDATA)>
+<!ELEMENT r4 (#PCDATA)>
+<!ELEMENT r8 (#PCDATA)>
+<!ELEMENT string (#PCDATA)>
+<!ELEMENT char (#PCDATA)>
+<!ELEMENT bool (#PCDATA)>
+<!ELEMENT ui1 (#PCDATA)>
+<!ELEMENT i8 (#PCDATA)>
+<!ELEMENT ui4 (#PCDATA)>
+<!ELEMENT ui8 (#PCDATA)>
+<!ELEMENT decimal (#PCDATA)>
+<!ELEMENT date (#PCDATA)>
+<!ELEMENT array (%datatypes;)*>
+<!ELEMENT interface (objectDef|interfaceDef)>
+<!ATTLIST interface
+	uuid CDATA #REQUIRED
+	name NMTOKEN #IMPLIED
+>
+<!ELEMENT udt (%udttypes;)>
+<!ATTLIST udt
+	uuid CDATA #IMPLIED
+	name NMTOKEN #IMPLIED
+>
+<!ELEMENT anytype (%datatypes;)>
+<!ELEMENT object ((objectDef|interfaceDef)+|other)>
+<!ELEMENT disp ((objectDef|interfaceDef)+|other)>
+<!ELEMENT stream (#PCDATA)>
+<!ATTLIST stream
+	encoding (binary|base64|quoted-printable) "binary"
+	href CDATA #IMPLIED
+>
+<!ELEMENT storage (#PCDATA)>
+<!ELEMENT enum (const)*>
+<!ATTLIST enum
+	name NMTOKEN #IMPLIED
+	uuid CDATA #IMPLIED
+>
+<!ELEMENT struct (property)*>
+<!ATTLIST struct
+	name NMTOKEN #IMPLIED
+	uuid CDATA #IMPLIED
+>
+<!ELEMENT const (%datatypes;)>
+<!ATTLIST const
+	type (%datatypes;|int|uint) #REQUIRED
+	name NMTOKEN #REQUIRED
+	id NMTOKEN #IMPLIED
+>
+<!ELEMENT typedef ((%datatypes;)?)>
+<!ATTLIST typedef 
+	name NMTOKEN #IMPLIED
+	uuid CDATA #IMPLIED
+	type (%datatypes;) #REQUIRED
+>

@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>
+      Formal Grammar for RDF 1.0
+    </title>
+  </head>
+  <body>
+    <p>
+      The RDF 1.0 formal grammar is defined according to the pattern language
+      of <a
+      href="http://www.cis.upenn.edu/~hahosoya/xduce/papers.html">XDuce</a> and
+      the <a href="http://www.w3.org/TR/xmlschema-formal/">XML Schema
+      Formalism</a>.
+    </p>
+    <p>
+      The grammar presented here is namespace aware, in that QName symbols
+      represent the expanded element or attribute name, and the
+      <em>namespace</em> pattern represents the namespace URI of the current
+      type. For example the pattern <em>~[namespace]</em> matches any element
+      which has a non null namespace URI, and
+      <em>~[namespace[&quot;http://example.org#&quot;]]</em> matches any
+      element in the &quot;http://example.org#&quot; namespace.
+    </p>
+    <ol>
+      <li>
+        namespace rdf = &quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;
+      </li>
+      <li>
+        type RDF = <strong>rdf:RDF[</strong>obj*<strong>]</strong>
+      </li>
+      <li>
+        type obj = description | container
+      </li>
+      <li>
+	 <pre>
+type description = 
+	<b>rdf:Description[</b>
+		idAboutAttr?,
+		bagIdAttr?,
+		propAttr?,
+		propertyElt*
+	<b>]</b> |
+	typedNode</pre></li>
+      <li>
+        type container = sequence | bag | alternative
+      </li>
+      <li>
+        type idAboutAttr = idAttr | aboutAttr
+      </li>
+      <li>
+        type idAttr = @<strong>rdf:ID[</strong>ID<strong>]</strong>
+      </li>
+      <li>
+        type aboutAttr = @<b>rdf:about[</b>URIreference<b>]</b>
+      </li>
+      <li>
+        type propAttr = typeAttr | @~[namespace]
+      </li>
+      <li>
+        type typeAttr = @<b>rdf:type[</b>URIreference<b>]</b>
+      </li>
+      <li>
+<pre>
+type propertyElt =
+    ~[namespace,idAttr?,value] |
+    ~[namespace,idAttr?,parseLiteral,literal] |
+    ~[namespace,idAttr?,parseResource,propertyElt*] |
+    ~[namespace,idRefAttr?,bagIdAttr?,propAttr*]
+</pre>
+      </li>
+      <li>
+        type typedNode =
+        ~[namespace,idAboutAttr?,badIdAttr?,propAttr*,propertyElt*]
+      </li>
+      <li>
+        type idRefAttr = (idAttr?,resourceAttr)
+      </li>
+      <li>
+        type value = obj | String
+      </li>
+      <li>
+<pre>
+type sequence = 
+	<b>rdf:Seq[</b>
+		idAttr?,
+		memberAttr*,
+		member*
+	<b>]</b>
+</pre></li>
+      <li>
+        type bag = <b>rdf:Bag[</b>idAttr?,memberAttr*,member*<b>]</b>
+      </li>
+      <li>
+        type alternative = <b>rdf:Alt[</b>idAttr?,(memberAttr+,member*)|member+<strong>]</strong>
+      </li>
+      <li>
+        type member = referencedItem | inlineItem
+      </li>
+      <li>
+        type referencedItem = <strong>rdf:li[</strong>resourceAttr<strong>]</strong>
+      </li>
+      <li>
+<pre>
+type inlineItem = 
+	<b>rdf:li[</b>@xml:lang?,
+		(value |
+		(parseLiteral,literal) |
+		(parseResource,propertyElt*))
+	<b>]</b>
+</pre>
+      </li>
+      <li>
+        type parseLiteral = @<b>rdf:parseType[</b>&quot;Literal&quot;<strong>]</strong>
+      </li>
+      <li>
+        type parseResource = @<b>rdf:parseType[</b>&quot;Resource&quot;<strong>]</strong>
+      </li>
+	  <li>
+	  	type literal = any*
+	  </li>
+      <li>
+        type memberAttr = @~[ namespace[rdf], name["_",Integer], string ]
+      </li>
+      <li>
+        type bagIdAttr = @<b>rdf:bagId[</b>ID<strong>]</strong>
+      </li>
+      <li>
+        type resourceAttr = @<b>rdf:resource[</b>URIreference<strong>]</strong>
+      </li>
+      <li>
+        type any = ~[@~,(String|any)*]
+      </li>
+    </ol>
+    <p>
+      Jonathan Borden, Tufts University, <a
+      href="mailto:jonathan@openhealth.org">The Open Healthcare Group</a> June
+      20, 2001
+    </p>
+	<p class="clear">
+  	<a class="clear" href="http://www.jonathanborden-md.com"> </a>
+	<a class="clear" href="http://www.jonathanborden-md.com/jonathan-borden-cv.htm">Jonathan Borden</a>
+	<a class="clear" href="http://www.erieneurosurgery.com">ENS</a>
+	<a class="clear" href="http://www.erieneuroscience.org">ENI</a>
+	<a class="clear" href="http://www.erieneuroscience.com"></a>
+  </p>
+  </body>
+</html>
+

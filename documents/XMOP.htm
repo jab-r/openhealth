@@ -1,0 +1,97 @@
+<html>
+<head>
+<title>XMOP: XML Metadata Object Persistence</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta copyright="Copyright (c) 1998-2000 Jonathan Borden ALL RIGHTS RESERVED"><link REL="STYLESHEET" type="text/css" href="docstyle.css">
+</head>
+<body bgColor="#ffffff" class="sansserif">
+<h1>XML Metadata Object Persistence</h1>
+<p align="center"></p>
+<p align="center">Jonathan Borden</p>
+<P align="center">Copyright (c) 1998-2000 ALL RIGHTS RESERVED</P>
+<p align="center">Contact: mailto:<A href="mailto:jborden@mediaone.net">jborden@mediaone.net</A></p>
+<p align="center">The XMOP project has been released under 
+GPL <A href="http://www.openhealth.org/xmop/" name="signup" title="XMOP directory">here</A></p><h2><a name="Abstract"></a>Abstract</h2>XML Metadata Object Persistence (XMOP) 
+allows interoperation between object technologies such as Java, Microsoft COM 
+and CORBA. Java provides automatic serialization capabilites for simple classes 
+yet for classes which contain string and array members, developers have to hand 
+code the serialization methods. COM does not provide automatic serialization for 
+simple nor complex objects. Developers code COM serialization/persistence 
+through the IPersist derived interfaces. XMOP provides serialization and 
+persistence capabilities to both Java and COM objects. Using XML based 
+serialization has several benefits:
+<UL>
+	<li>Objects can be marshaled between different object 
+  systems e.g. COM &lt;-&gt; Java
+	<li>Objects can be transported between different Java VMs 
+  e.g. Microsoft &lt;-&gt; Sun</li>
+</UL>
+<P>XML is coming under use to make Web remote procedure calls (<a href="http://www.xmlrpc.com" name="XML-RPC">XML-RPC</a>). <a href="http://search.ietf.org/internet-drafts/draft-box-http-soap-01.txt" name="Simple Object Access Protocol">SOAP</a> is 
+a technique that is gaining industry support, especially from <a href="http://www.msdn.microsoft.com/xml/general/soapspec-v1.asp">Microsoft</a>, but 
+whose technology is not Microsoft specific. The XMOP project releases <a href="http://www.gnu.org/copyleft/gpl.html">GPL</a> source 
+to easily make client side SOAP calls through automatic generation of a 
+javascript proxy from XMOP descriptions. XMOP also releases GPL source to make 
+server side SOAP calls. Both the client and server sides employ <a href="http://www.w3.org/TR/xslt">XSLT</a>.</P><h2><a name="Introduction"></a>Introduction</h2>
+<p>XML Metadata Object Persistence (XMOP) is unique in 
+currently available object serialization mechanisms in that it is not directly 
+tied to a particular object system. While at the same time providing an 
+automatic serialization facility for COM components, use of XML provides the 
+ability to interoperate with Java and is not tied to a particular Java VM.</p>
+<p>XMOP employs the Simple Object Definition Language (<A href="sodl.htm">SODL</A>) and its 
+<A href="xmop.dtd">DTD</A>. Using 
+introspection an object is serialized in the XMOP document format.</p>
+<p>XMOP uses a class factory object which wraps the actual 
+object. By examining the COM typelibrary or java reflection, the structure of 
+the object is serialized using XMOP.</p>
+<P>The XMOP document is a description of the interfaces, properties and methods of 
+an object. This description can be transformed (XSLT) into a javascript proxy (for 
+example), which encapsulates a call on the object. Such a call can be via SOAP, 
+XML-RPC or RMI, either of which is transparent to the client.</P>
+<p>Object Model</p><h3>XMOPFactory</h3>
+<p>The XMOPFactory object implements the IXMOPFactory 
+interface</p>
+<p>interface IXMOPFactory {</p>
+<blockquote>
+<p>Object CreateInstance(string ClassName);</p>
+<p>string getTextDescription(string ClassName);</p>
+<p>Object Attach(Object obj);</p></blockquote>
+<p>};</p>
+<p>class XMOPFactory implements IXMOPFactory</p>
+<p>{</p>
+<p>};</p>
+<p>The COM mapping:</p>
+<p>interface IXMOPFactory : IDispatch {</p>
+<blockquote>
+<p>[id(1)] HRESULT CreateInstance([in] BSTR ProgID, 
+  [out,retval] IUnknown** ppObject);</p>
+<p>[id(2),propget] HRESULT TextDescription([in] BSTR 
+  ProgID,[out,retval] BSTR* pszDescription);</p>
+<p>[id(3)] HRESULT Attach([in] IUnknown* 
+  pObject,[out,retval] IUnknown** ppWrappedObject);</p>
+<p>};</p></blockquote>
+<p>coclass XMOPFactory{</p>
+<blockquote>
+<p>[default] interface IXMOPFactory;</p></blockquote>
+<p>};</p>
+<p>Here's the actual for real <A href="mbxml.idl">IDL file:</A></p>
+<p>&nbsp;</p><h2><a name="Discussion"></a>Discussion</h2>
+<p>The XMOP projects can be obtained at <A href="http://www.openhealth.org/xmop/">http://www.openhealth.org/xmop/</A> 
+    . This project includes a MSVC 5 project (the COM 
+side assumes windows). The current project has been updated to use the IE5 DOM 
+and the beta version of the Microsoft XSLT processor "MSXML2".</p>
+<p>The java side employs the IBM4J DOM parser. IBM4J has 
+provided source and is freely available. It should not be at all dificult to 
+modify the source to employ other DOM java parsers. I have not yet started a SAX 
+implementation.</p>
+<p>The concept of object serialization is closely tied to 
+the concept of marshaling whereby an object is transmitted across excecution 
+space boundaries. Several projects have demonstrated XML serialization of Java 
+classes.<A href="#References">*</A> The <A href="#References">Koala</A> project integrates with the Java class at the Serializable 
+interface, providing a hook into the serialization stream itself. XMOP is a 
+metadata driven serialization technique and employs the introspection facility.</p><h2><a name="Refs"></a>References</h2>
+<p><a href="http://www.jxml.com/coins/index.html">Coins</a> XML &lt;-&gt; JavaBeans integration</p>
+<p><a href="http://www.inria.fr/koala/XML/serialization/">Koala</a> XML serialization for Java</p>
+<P><A href="http://search.ietf.org/internet-drafts/draft-box-http-soap-01.txt">SOAP</A> Simple Object Access Protocol, an XML-RPC 
+protocol, more information can be found at DevelopMentor's <A href="http://www.develop.com/SOAP">SOAP site</A>.</P>
+</body>
+</html>

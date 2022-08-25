@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <rdf:subject rdf:resource="#/1"/>
+      <rdf:object rdf:resource="file:/D:/rdf/test1.xml#test"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="file:/D:/rdf/test1.xml#x"/>
+      <rdf:subject rdf:resource="#/1"/>
+      <rdf:object>this is a test"yes it is</rdf:object>
+   </rdf:Statement>
+</rdf:RDF>

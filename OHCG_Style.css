@@ -1,0 +1,120 @@
+.Header  {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 24pt;
+	font-weight : bold;
+	color : #45618F;
+	text-align : center;
+	filter : Shadow(Color=silver, Direction=down)?, Direction=?);
+}
+
+.Slogan  {
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : 14pt;
+	font-weight : bold;
+	background-color : #45618F;
+	color : #FFFFFF;
+	text-align : center;
+	vertical-align : middle;
+}
+
+
+body  {
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : 12pt;
+scrollbar-face-color: #45618F;
+scrollbar-shadow-color: #003333;
+scrollbar-highlight-color: #003333;
+scrollbar-3dlight-color: #003333; 
+scrollbar-darkshadow-color: #003333;
+scrollbar-track-color: #003333; 
+scrollbar-arrow-color: #45618F;
+
+}
+
+a:link  {
+	font-weight : bold;
+	color : #45618F;
+}
+
+a:active  {
+	text-decoration : none;
+	font-weight : bold;
+}
+
+a:visited  {
+	font-weight : bold;
+	color : #008080;
+}
+a:clear {
+	color : #FFFFFF;
+	font-weight: bold;
+	}
+a:hover  {
+	color : #FF3333;
+	font-weight : bold;
+	text-decoration : underline;
+}
+
+.Legal  {
+	font-family : "Times New Roman", Times, serif;
+	font-size : 10pt;
+}
+
+.Title  {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 24pt;
+	font-weight : bold;
+	font-variant : small-caps;
+	text-align : center;
+	color : #45618F;
+}
+
+.News_Title  {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 18pt;
+	font-style : italic;
+	text-align : center;
+	vertical-align : middle;
+	height : 50px;
+}
+
+.News_Body  {
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : 13pt;
+	font-weight : bold;
+	text-align : center;
+}
+
+.Sub_Title  {
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : 14pt;
+	font-weight : bold;
+}
+
+.XChart  {
+	font-family : Book Antiqua;
+	font-size : 28pt;
+	font-weight : bold;
+	color : 007FFF;
+	text-align : center;
+	vertical-align: bottom;
+	filter : Shadow(Color=silver, Direction=down)?, Direction=?);
+}
+
+.XChart2  {
+	font-family : Book Antiqua;
+	font-size : 24pt;
+	font-weight : bold;
+	color : Blue;
+	text-align : center;
+	vertical-align : top;
+	filter : Shadow(Color=silver, Direction=down)?, Direction=?);
+}
+.slogan2  {
+	font-family : Century Gothic;
+	font-style : italic;
+	vertical-align : sub;
+}
+.button  {
+	color : #45618F;
+}

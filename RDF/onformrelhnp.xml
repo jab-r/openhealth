@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="formgen.xsl" ?>
+<form>
+<variable name="XF" value="ONLHNP"/>
+<default-fields />
+<field type="choose" name="laterality">
+	<option value="Right" />
+	<option value="Left" />
+</field>
+<field type="choose" name="Interspace">
+	<option value="L3-4" />
+	<option value="L4-5" />
+	<option value="L5-S1" selected="true"/>
+</field>
+<field type="option" name="annulus" label="Annulus incised?" selected='true' />
+<field type="option" name="xray" label="Localizing X-ray?" selected='true' />
+<field type="block" name="disc-appearance" label="Disc Appearance" rows="3" cols="60" value="" />
+<field type="block" name="discectomy" label="Discectomy Description" rows="3" cols="60" value="" />
+<field type="option" name="depomedrol" label="Depomedrol?" selected='true' />
+<field type="text" name="EBL" size="16" maxLength="64" value="minimal"/>
+</form>

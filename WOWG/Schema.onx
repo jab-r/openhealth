@@ -1,0 +1,29 @@
+# Non-XML OWL syntax
+# see Schema.owl
+
+namespace ont = "http://www.daml.org/2001/03/daml+oil#"
+namespace col = "http://www.openhealth.org/WOWG/collection.ont#"
+default namespace = "http://www.openhealth.org/WOWG/Schema.owl#"
+namespace rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+namespace rdfs "http://www.w3.org/2000/01/rdf-schema#"
+namespace xsd = "http://www.w3.org/2001/XMLSchema"
+
+class Element (subClassOf Type )
+class Attribute( subClassOf Type )
+class Datatype( subClassof Type )
+class Type( subClassOf ont:Class )
+class Text( subClassOf Datatype,
+			property rdf:value(value xsd:string) )
+class Comment()
+class PI()
+datatypeProperty name(
+			optional,
+			range xsd:anyURI,
+			domain Type)
+datatypeProperty ns(
+			optional,
+			range xsd:anyURI
+			)
+property content( subPropertyOf col:sequence )
+
+property attributes( subPropertyOf col:set )

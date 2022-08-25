@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Proposed RDF Abstract Syntax</title>
+	<link rel="stylesheet" href="../RDDL/xrd.css" type="text/css"/>
+</head>
+
+<body>
+<h1>RDF Abstract Syntax</h1>
+<p>Author: Jonathan Borden <a href="mailto:jonathan@openhealth.org">jonathan@openhealth.org</a> This version: <a href="http://www.openhealth.org/RDF/RDFAbstractSyntax-20010524.html">May 24, 2001</a></p>
+<h2>Introduction</h2>
+	<p>This document defines an <em>Abstract Syntax</em> or <em>Infoset</em> for RDF [<a href="#RDF-MS">1</a>].
+	RDF Statements are commonly refered to as triples of {predicate,subject,object}. In practice RDF Datastores may
+	supplement the triple with associated information. This abstract syntax defines the supplemented information items.</p>
+<h2>Context</h2>
+<p>A Context is a set of Statements</p>
+<h2>Statement</h2>
+<p>A Statement is represented by the 7-tuple: <b>&lt;predicate,subject,object, contextURI,id, index, asserted&gt;</b></p>
+<h3>predicate</h3>
+<p>A predicate is an <code>atom</code>. An <code>atom</code> matches the EBNF production <b>(quantvar | URIref)</b> where <code>URIref</code> is a URI Reference as defined by RFC 2396 and 
+<code>quantvar</code> is a quantified variable matching the production <b>('?', Name)</b></p>
+<h3>subject</h3>
+<p>A subject is an atom.</p>
+<h3>object</h3>
+<p>An object is an atom. Note that literal strings may be represented by the <code>data:</code> URI scheme.</p>
+<h3>contextURI</h3>
+<p>A context is represented by a URI, directly analogous to the base URI information item in an XML Infoset.</p>
+<h3>id</h3>
+<p>An RDF Statement may have an optional <code>id</code> by which the statement is refered to (combined with the contextURI).</p>
+<h3>index</h3>
+<p>The <code>index</code> gives the index of a statement within a context in document order. 
+The index allows preservation of statement order as if each RDF &lt;Description&gt; defines a container, and folds the RDF concept of 
+container directly into the RDF Abstract Syntax.</p>
+<h3>asserted</h3>
+<p>A boolean flag indicating whether the statement is <code>asserted</code> within the context.</p>
+<h2>Referring to Statements by Index</h2>
+<p>A statement may be referred to by <code>index</code> using a syntax consistent with the <code>ChildSeq</code> syntax of XPointer []. For example,
+the 2nd statement in a context is referred to as:</p>
+<p><b>/2</b></p>
+<p>This syntax allows reference to a particular statement in a context <em>as if</em> the context were an <i>&lt;rdf:Seq&gt;</i> container.
+<h2>Examples:</h2>
+<p>The statement:</p>
+<p><em>(not (says jon (color sky blue))</em></p>
+<p>is represented by the Statements:</p>
+<ol>
+<li>&lt;not,#s2,,ctx-foo,s1,1,true&gt;</li>
+<li>&lt;says,jon,#/3,ctx-foo,s2,2,false&gt;</li>
+<li>&lt;color,sky,blue,ctx-foo,,3,false&gt;</li>
+</ol>
+
+<a id="RDF-MS">[1]</a><a href="http://www.w3.org/TR/REC-rdf-syntax">W3C RDF Model and Syntax 1.0</a>
+</body>
+</html>

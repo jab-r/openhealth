@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.openhealth.org/editor/2000-08#person"/>
+      <rdf:subject rdf:resource="http://www.openhealth.org/editor/test"/>
+      <rdf:object rdf:resource="#/1/1/1"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <rdf:subject rdf:resource="#/1/1/1"/>
+      <rdf:object rdf:resource="http://www.openhealth.org/editor/2000-08#person"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="file:/D:/rdf/test3.xml#role"/>
+      <rdf:subject rdf:resource="#/1/1/1"/>
+      <rdf:object>patient</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="file:/D:/rdf/test3.xml#UID"/>
+      <rdf:subject rdf:resource="#/1/1/1"/>
+      <rdf:object>123</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#value"/>
+      <rdf:subject rdf:resource="#/1/1/1"/>
+      <rdf:object>pppppppppp</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.example.com/s/another"/>
+      <rdf:subject rdf:resource="http://www.openhealth.org/editor/test"/>
+      <rdf:object>pppp</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.example.com/v/aaaaa"/>
+      <rdf:subject rdf:resource="http://www.openhealth.org/editor/test"/>
+      <rdf:object rdf:resource="#/1/1/3"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <rdf:subject rdf:resource="#/1/1/3"/>
+      <rdf:object rdf:resource="http://www.example.com/v/aaaaa"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="file:/D:/rdf/test3.xml#attr"/>
+      <rdf:subject rdf:resource="#/1/1/3"/>
+      <rdf:object>123</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.example.com/v/bbbbb"/>
+      <rdf:subject rdf:resource="#/1/1/3"/>
+      <rdf:object>123456</rdf:object>
+   </rdf:Statement>
+</rdf:RDF>

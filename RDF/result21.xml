@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<webdata>
+   <arc>
+      <subject>http://www.openhealth.org/editor/test</subject>
+      <predicate>person</predicate>
+      <webobject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123'])</webobject>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123'])</subject>
+      <predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</predicate>
+      <webobject>person</webobject>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123'])</subject>
+      <predicate>name</predicate>
+      <webobject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/name)</webobject>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/name)</subject>
+      <predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</predicate>
+      <webobject>name</webobject>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/name)</subject>
+      <predicate>last</predicate>
+      <object>Doe</object>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/name)</subject>
+      <predicate>first</predicate>
+      <object>James</object>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/name/last)</subject>
+      <predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</predicate>
+      <webobject>last</webobject>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/name/last)</subject>
+      <predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</predicate>
+      <object>Doe</object>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/name/first)</subject>
+      <predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</predicate>
+      <webobject>first</webobject>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/name/first)</subject>
+      <predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</predicate>
+      <object>James</object>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/name/middle)</subject>
+      <predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</predicate>
+      <webobject>middle</webobject>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/name/title)</subject>
+      <predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</predicate>
+      <webobject>title</webobject>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/name/suffix)</subject>
+      <predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</predicate>
+      <webobject>suffix</webobject>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123'])</subject>
+      <predicate>gender</predicate>
+      <object>M</object>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123'])</subject>
+      <predicate>id</predicate>
+      <webobject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/id)</webobject>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/id)</subject>
+      <predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</predicate>
+      <webobject>id</webobject>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/id)</subject>
+      <predicate>SSN</predicate>
+      <object>000-111-1234</object>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/id/DOB)</subject>
+      <predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</predicate>
+      <webobject>DOB</webobject>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/id/SSN)</subject>
+      <predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</predicate>
+      <webobject>SSN</webobject>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/id/SSN)</subject>
+      <predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</predicate>
+      <object>000-111-1234</object>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123'])</subject>
+      <predicate>address</predicate>
+      <webobject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/address[@type='home'])</webobject>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/address[@type='home'])</subject>
+      <predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</predicate>
+      <webobject>address</webobject>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/address[@type='home']/street)</subject>
+      <predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</predicate>
+      <webobject>street</webobject>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/address[@type='home']/city)</subject>
+      <predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</predicate>
+      <webobject>city</webobject>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/address[@type='home']/state)</subject>
+      <predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</predicate>
+      <webobject>state</webobject>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/address[@type='home']/zip)</subject>
+      <predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</predicate>
+      <webobject>zip</webobject>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/address[@type='home'])</subject>
+      <predicate>type</predicate>
+      <object>home</object>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123'])</subject>
+      <predicate>address</predicate>
+      <webobject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/address[@type='work'])</webobject>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/address[@type='work'])</subject>
+      <predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</predicate>
+      <webobject>address</webobject>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/address[@type='work']/street)</subject>
+      <predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</predicate>
+      <webobject>street</webobject>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/address[@type='work']/city)</subject>
+      <predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</predicate>
+      <webobject>city</webobject>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/address[@type='work']/state)</subject>
+      <predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</predicate>
+      <webobject>state</webobject>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/address[@type='work']/zip)</subject>
+      <predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</predicate>
+      <webobject>zip</webobject>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/address[@type='work'])</subject>
+      <predicate>type</predicate>
+      <object>work</object>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/name)</subject>
+      <predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</predicate>
+      <webobject>name</webobject>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/name)</subject>
+      <predicate>last</predicate>
+      <object>Doe</object>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/name)</subject>
+      <predicate>first</predicate>
+      <object>James</object>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/gender)</subject>
+      <predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</predicate>
+      <webobject>gender</webobject>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/gender)</subject>
+      <predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</predicate>
+      <object>M</object>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/id)</subject>
+      <predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</predicate>
+      <webobject>id</webobject>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/id)</subject>
+      <predicate>SSN</predicate>
+      <object>000-111-1234</object>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/address[@type='home'])</subject>
+      <predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</predicate>
+      <webobject>address</webobject>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/address[@type='home'])</subject>
+      <predicate>type</predicate>
+      <object>home</object>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/address[@type='work'])</subject>
+      <predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</predicate>
+      <webobject>address</webobject>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123']/address[@type='work'])</subject>
+      <predicate>type</predicate>
+      <object>work</object>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123'])</subject>
+      <predicate>role</predicate>
+      <object>patient</object>
+   </arc>
+   <arc>
+      <subject>#xpointer(/rdf:RDF/rdf:Description/person[@role='patient' and @UID='123'])</subject>
+      <predicate>UID</predicate>
+      <object>123</object>
+   </arc>
+</webdata>

@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//XML-DEV//DTD XHTML RDDL 1.0//EN" "rddl-xhtml.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>
+      RDF XML Surface Syntax
+    </title>
+  </head>
+  <body>
+    <h1>
+      Simplified Surface Syntax for RDF XML
+    </h1>
+    <p>
+      <A href="mailto:jonathan@openhealth.org">Jonathan Borden</a> Tufts
+      University School of Medicine, <a href="http://www.openhealth.org">The
+      Open Healthcare Group</a>
+    </p>
+    <p>
+      A simplified surface syntax for RDF is proposed. Its major
+      characteristics are:
+    </p>
+    <ol>
+      <li>
+        namespace = <a
+        
+  href="http://www.openhealth.org/RDF/RDFSbstractSyntax-20010617" 
+ >http://www.openhealth.org/RDF/RDFSurfaceSyntax-20010617</a>
+      <li>
+        defined as tree regular expression 
+      <li>
+        attribute aboutQ="ex:name" accepts QName as value 
+  indicating subject 
+      <li>
+        attribute resourceQ="ex:value" accepts QName as value 
+  indicating object 
+      <li>
+        rdf:parseType="Resource" is default 
+      <li>
+        The subject or object of a statement may be either a 
+  qualified name, a quantified variable or another statement. 
+      <li>
+        ?x defines a quantified variable, ...x&nbsp;a row variable
+      </li>
+    </ol>
+    <h2>
+      Syntax
+    </h2>
+    <p>
+      The surface XML syntax for RDF 1.0 can be described in terms of a tree
+      regular expression. This form can be thought of as expressing constraints
+      on the XML Infoset which arises when parsing an RDF document. The
+      advantage of expressing the syntax in this form over EBNF, is that a tree
+      regular expression (e.g RELAXNG/TREX schema <a
+      href="http://relaxng.org">http://relaxng.org</a> ) already takes into
+      account the rules of XML syntax + XML namespaces, e.g. correctly handles
+      namespace prefixes, empty elements, mixed content, whitespace, attribute
+      ordering etc. Such schemata are also described as "hedge regular
+      expressions" or "hedge automata" <a
+      href="http://www.oasis-open.org/cover/hedgeAutomata.html">http://www.oasis-open.org/cover/hedgeAutomata.html</a>.
+    </p>
+    <p>
+      The tree regular expression schema for RDF 1.0 is available <a
+      href="http://www.openhealth.org/RDF/RDF1.rng">here</a>. This schema
+      handles several proposed updates such as the requirement that the
+      "rdf:about" and "rdf:ID" attributes be
+      prefixed/qualified.
+    </p>
+    <p>
+      A tree regular expression for the proposed syntax is available <a
+      href="http://www.openhealth.org/RDF/RDF.rng">here</a>.
+    </p>
+    <p>
+      The <em>obj</em> pattern is described thus:
+    </p>
+    <p>
+      &lt;define name="obj"&gt;
+      <br >
+       &nbsp;&lt;choice&gt;
+      <br >
+       &nbsp;&nbsp;&lt;ref name="description"/&gt;
+      <br >
+       &nbsp;&nbsp;&lt;ref name="container"/&gt;
+      <br >
+       &nbsp;&lt;/choice&gt;
+      <br >
+       &lt;/define&gt;
+    </p>
+    <p>
+      The <em>description, container, idAboutAttr, idAttr</em> patterns are
+      described thus:
+    </p>
+    <p>
+      &lt;define name="description"&gt;
+      <br >
+       &nbsp;&lt;choice&gt;
+      <br >
+      &nbsp;&nbsp; &lt;element name="Description"&gt;
+      <br >&nbsp;&nbsp;&nbsp;&nbsp; &lt;optional&gt;
+      <br >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;ref name="idAboutAttr"/&gt;
+      <br >&nbsp;&nbsp;&nbsp;&nbsp; &lt;/optional&gt;
+      <br >&nbsp;&nbsp;&nbsp;&nbsp; &lt;optional&gt;
+      <br >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;ref name="bagIdAttr"/&gt;
+      <br >&nbsp;&nbsp;&nbsp;&nbsp; &lt;/optional&gt;
+      <br >&nbsp;&nbsp;&nbsp;&nbsp; &lt;zeroOrMore&gt;
+      <br >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;ref name="propAttr"/&gt;
+      <br >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/zeroOrMore&gt;
+      <br >
+      &nbsp;&nbsp; &lt;/element&gt;
+      <br >
+      &nbsp;&nbsp; &lt;ref name="typedNode"/&gt;
+      <br >
+       &nbsp;&lt;/choice&gt;
+      <br >
+      &lt;/define&gt;
+    </p>
+    <p>
+      &nbsp;&lt;define name="container"&gt;
+      <br >
+       &nbsp;&lt;choice&gt;
+      <br >
+      &nbsp;&nbsp;&nbsp;&nbsp; &lt;ref name="sequence"/&gt;
+      <br >
+      &nbsp;&nbsp;&nbsp;&nbsp; &lt;ref name="bag"/&gt;
+      <br >
+      &nbsp;&nbsp;&nbsp;&nbsp; &lt;ref name="alternative"/&gt;
+      <br >
+       &nbsp;&lt;/choice&gt;
+      <br >
+      &lt;/define&gt;
+    </p>
+    <p>
+      &lt;define name="idAboutAttr"&gt;
+      <br >
+       &nbsp;&lt;choice&gt;
+      <br >
+      &nbsp;&nbsp;&nbsp;&nbsp; &lt;ref name="idAttr"/&gt;
+      <br >
+      &nbsp;&nbsp;&nbsp;&nbsp; &lt;ref name="aboutAttr"/&gt;
+      <br >
+      &nbsp;&nbsp;&nbsp;&nbsp; &lt;ref name="aboutQAttr"/&gt;
+      <br >
+       &nbsp;&lt;/choice&gt;
+      <br >
+      &lt;/define&gt;
+    </p>
+    <p>
+      &lt;define name="idAttr"&gt;
+      <br >
+      &nbsp; &lt;attribute name="rdf:ID"&gt;
+      <br >
+      &nbsp;&nbsp;&nbsp;&nbsp; &lt;data type="ID"/&gt;
+      <br >
+      &nbsp; &lt;/attribute&gt;
+      <br >
+       &lt;/define&gt;
+      <br >
+    </p>
+    <p>
+      An example:
+    </p>
+<pre>
+         &lt;web:RDF xmlns:web="http://www.openhealth.org/RDF/SurfaceSyntax"
+                  xmlns:ex="http://example.org/ex"&gt;
+           &lt;web:Description web:aboutQ="ex:Jon"&gt;
+            &lt;ex:says&gt;
+             &lt;ex:color web:aboutQ="ex:sky" web:resourceQ= "ex:blue"/&gt;
+            &lt;/ex:says&gt;
+           &lt;/web:Description&gt;
+         &lt;/web:RDF&gt;
+   
+</pre>
+    <p>
+      =&gt;
+    </p>
+    <ul>
+      <li>
+        [ex:says, ex:Jon,[ex:color ex:sky ex:blue]]
+      </li>
+    </ul>
+  </body>
+</html>
+

@@ -1,0 +1,416 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>XMTP: XML MIME Transformation Protocol</title>
+<meta content="text/html; charset=iso-8859-1"
+http-equiv="Content-Type" />
+<meta content="XML, MIME, SMTP, XMTP, E-mail, Mail, Protocol"
+http-equiv="Keywords" name="Keywords" />
+<meta
+content="XMTP XML MIME Transformation Protocol defines an XML MIME integration"
+ http-equiv="Description" name="Description" />
+<meta content="jborden@mediaone.net" http-equiv="Reply-to"
+name="Reply-to" />
+<link type="text/css" href="docstyle.css" rel="stylesheet" />
+</head>
+<body bgcolor="#ffffff" class="sansserif">
+<h1><a href="http://www.openhealth.org">The OpenHealth Group</a></h1>
+
+<h1>XML MIME Transformation Protocol (XMTP)</h1>
+
+<p>Copyright (c) 1998-2000 Jonathan Borden ALL RIGHTS RESERVED</p>
+
+<p>Contact: <A href="mailto:jborden@mediaone.net">Jonathan
+Borden</a></p>
+<p><em>See updated <a href="http://www.openhealth.org/xmtp">specification and project</a></em></p>
+<h2><a id="Abstract" name="Abstract"></a>Abstract</h2>
+
+<p>The XML MIME Transformation Protocol (XMTP) is a mapping of
+MIME/SMTP to XML. MIME is the lingua franca of the Web. Both the
+HTTP and SMTP protocols are MIME based. As XML gains in popularity
+it is useful to be able to represent MIME messages as XML
+documents. This mapping is straightforward and demonstrates
+handling of binary data in XML documents as base64 encodings.</p>
+
+<p>Using XMTP, SMTP messages can be transformed via XSLT into HTML
+pages for viewing. XMTP has been used to implement a telemedicine consultation system using SMTP e-mail and HTML</p>
+
+<h2>Contents</h2>
+
+<ol>
+<li><a
+ 
+  href="#Abstract" 
+ >
+Abstract</a>
+
+<li><a href="#MIME">
+MIME</a>
+
+<li><a href="#XMTP">
+XMTP Protocol</a>
+
+<li><a
+ 
+  href="#Sample%20message" 
+ >
+A Sample Message</a>
+
+<li><a
+ 
+  href="#RFC822_Format" 
+ >
+MIME/RFC822 Format</a>
+
+<li><a
+ 
+  href="#XMTP_Format" 
+ >
+XMTP Format</a>
+
+<li><a
+ 
+  href="#Script" 
+ >SMTP
+Script (Mail script)</a>
+
+<li><a href="#Test">
+Test facility</a></li>
+</ol>
+
+<h2><a id="MIME" name="MIME"></a>MIME</h2>
+
+<p>The first standards for the transmission of text messages over
+the Internet (then the Arpanet) were defined by <a
+ href="http://www.faqs.org/rfcs/rfc821.html">RFC 821</a>/<a
+ href="http://www.faqs.org/rfcs/rfc822.html">822</a>. Multimedia
+Internet Message Extensions (<a
+ href="http://www.faqs.org/rfcs/rfc2045.html">MIME</a>) extended
+this format for the representation of multimedia types. The basic
+organization of a MIME message is:</p>
+
+<p>Headers</p>
+
+<p>&lt;CR&gt;&lt;LF&gt;</p>
+
+<p>&lt;CR&gt;&lt;LF&gt;</p>
+
+<p>Body</p>
+
+<p>MIME messages are used in both the <a
+ href="http://www.faqs.org/rfcs/rfc788.html">SMTP</a> and <a
+ href="http://www.faqs.org/rfcs/rfc1945.html">HTTP</a> protocols and
+hence are the essential basic datatype of the Internet.</p>
+
+<h2><a id="XMTP" name="XMTP"></a>The XMTP protocol</h2>
+
+<p>Mapping the MIME format into XML allows the integration of MIME
+messages into XML systems. This mapping is straightforward:</p>
+
+<ol>
+<li>The root element of the document is &lt;MIME&gt; 
+  
+
+<li>XMTP uses the XML namespace 
+  xmlns:mime="http://www.grovelogic.com/xmtp" declared as &lt;MIME xmlns:mime= 
+  "http://www.grovelogic.com/xmtp"&gt; 
+  
+
+<li>Headers become elements 
+  
+
+<li>Header parameters become attributes of the header 
+  element. 
+  
+
+<li>The body is represented by the element &lt;BODY&gt; 
+  
+
+<li>Multipart MIME types are represented as &lt;MIME&gt; 
+  elements within the &lt;Parts&gt; element. 
+  
+
+<li>The Content-Type header defines the type of information
+contained in the body. The Content-Transfer-Encoding header defines
+the format (e.g. base64 or binary).</li>
+</ol>
+
+<h3>A sample message</h3>
+
+<h4><a id="RFC822_Format" name="RFC822_Format"></a>First the
+original MIME/RFC822 message</h4>
+
+<p><span class="tagPurple">Received</span>: from jabr
+(jabr.ne.mediaone.net [24.128.34.211])<br >
+by chmls05.mediaone.net (8.8.7/8.8.7) with SMTP id XAA27071<br >
+for &lt;test-xmtp@jabr.ne.mediaone.net&gt;; Tue, 13 Oct 1998
+23:42:47 -0400 (EDT)<br >
+<span class="tagPurple">From</span>: "Borden, Jonathan"
+&lt;jborden@mediaone.net&gt;<br >
+<span class="tagPurple">To</span>: "XMTP"
+&lt;test-xmtp@jabr.ne.mediaone.net&gt;<br >
+<span class="tagPurple">Subject</span>: this is a simple
+message<br >
+<span class="tagPurple">Date</span>: Tue, 13 Oct 1998 23:33:49
+-0400<br >
+<span class="tagPurple">Message-ID</span>:
+&lt;001501bdf723$74f03fe0$d3228018@jabr.ne.mediaone.net&gt;<br >
+<span class="tagPurple">MIME-Version</span>: 1.0<br >
+<span class="tagPurple">Content-Type</span>:
+multipart/alternative;<br >
+<span
+ class="tagBlue">boundary</span>="----=_NextPart_000_0016_01BDF701.EDDE9FE0"<br >
+
+<span class="tagPurple">X-Priority</span>: 3 (Normal)<br >
+<span class="tagPurple">X-MSMail-Priority</span>: Normal<br >
+<span class="tagPurple">X-Mailer</span>: Microsoft Outlook 8.5,
+Build 4.71.2173.0<br >
+<span class="tagPurple">X-MimeOLE</span>: Produced By Microsoft
+MimeOLE V4.72.3110.3<br >
+<span class="tagPurple">Importance</span>: Normal</p>
+
+<p>This is a multi-part message in MIME format.</p>
+
+<p>------=_NextPart_000_0016_01BDF701.EDDE9FE0<br >
+<span class="tagPurple">Content-Type</span>: text/plain;<br >
+<span class="tagBlue">charset</span>="iso-8859-1"<br >
+<span class="tagPurple">Content-Transfer-Encoding</span>: 7bit</p>
+
+<p>Here is the text of the message ... its being transmitted in
+'HTML' format<br >
+but the text is a separate part for e-mail readers that don't
+understand<br >
+HTML. We can't assume that all valid HTML is XML so we have to
+escape all of<br >
+the HTML ... or use a CDATA section</p>
+
+<p>jon</p>
+
+<p>------=_NextPart_000_0016_01BDF701.EDDE9FE0<br >
+<span class="tagPurple">Content-Type</span>: text/html;<br >
+<span class="tagBlue">charset</span>="iso-8859-1"<br >
+<span class="tagPurple">Content-Transfer-Encoding</span>:
+quoted-printable</p>
+
+<p>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD W3 HTML//EN"&gt;<br >
+&lt;HTML&gt;<br >
+&lt;HEAD&gt;</p>
+
+<p>&lt;META content=3D"text/html; charset=3Diso-8859-1" =<br >
+http-equiv=3DContent-Type&gt;<br >
+&lt;META content=3D'"MSHTML 4.72.3110.7"'
+name=3DGENERATOR&gt;<br >
+&lt;/HEAD&gt;<br >
+&lt;BODY bgColor=3D#ffffff&gt;<br >
+&lt;P&gt;&lt;FONT size=3D2&gt;Here is the text of the
+&lt;STRONG&gt;&lt;FONT color=3D#0000ff =<br >
+face=3D""=20<br >
+size=3D5&gt;message&lt;/FONT&gt;&lt;/STRONG&gt; ... its being
+transmitted in 'HTML' =<br >
+format but=20<br >
+the text is a separate part for e-mail readers that don't
+understand =<br >
+HTML. We=20<br >
+can't assume that all valid HTML is XML so we have to &lt;FONT
+=<br >
+color=3D#ff0000=20<br >
+face=3D"" size=3D5&gt;escape &lt;/FONT&gt;all of the HTML ... .or
+use a CDATA=20</p>
+
+<p>
+section&lt;BR&gt;&lt;BR&gt;jon&lt;BR&gt;&lt;/FONT&gt;&lt;/P&gt;&lt;/BODY&gt;&lt;/HTML&gt;</p>
+
+<p>------=_NextPart_000_0016_01BDF701.EDDE9FE0--</p>
+
+<p></p>
+
+<h4><a id="XMTP_Format" name="XMTP_Format"></a>Now the XMTP
+message</h4>
+
+<p><br >
+&lt;<span class="tagPurple">MIME <span class="tagBlue">
+xmlns:mime</span>="http://www.grovelogic.com/xmtp" <span
+ class="tagBlue">
+xmlns</span>="http://www.grovelogic.com/xmtp"&gt;</span><br >
+&lt;<span class="tagPurple">Content-Type</span> <span
+ class="tagBlue">
+boundary</span>="----=_NextPart_000_0016_01BDF701.EDDE9FE0"<span
+ class="tagBlue"></span>&gt;multipart/alternative&lt;/<span
+ class="tagPurple">Content-Type</span>&gt;<br >
+&lt;<span
+ class="tagPurple">Content-transfer-encoding</span>&gt;binary&lt;/<span
+ class="tagPurple">Content-transfer-encoding</span>&gt;<br >
+&lt;<span class="tagPurple">Date</span>&gt;Tue, 13 Oct 1998
+23:33:49 -0400&lt;/<span class="tagPurple">Date</span>&gt;<br >
+&lt;<span class="tagPurple">From</span>&gt;&amp;quot;Borden,
+Jonathan&amp;quot; &amp;lt;jborden@mediaone.net&amp;gt;&lt;/<span
+ class="tagPurple">From</span>&gt;<br >
+&lt;<span
+ class="tagPurple">Importance</span>&gt;Normal&lt;/Importance&gt;<br >
+
+&lt;<span
+ class="tagPurple">Message-ID</span>&gt;&amp;lt;001501bdf723$74f03fe0$d3228018@jabr.ne.mediaone.net&amp;gt;&lt;/<span
+ class="tagPurple">Message-ID</span>&gt;<br >
+&lt;<span class="tagPurple">MIME-Version</span>&gt;1.0&lt;/<span
+ class="tagPurple">MIME-Version</span>&gt;<br >
+&lt;<span class="tagPurple">Received</span>&gt;from jabr
+(jabr.ne.mediaone.net [24.128.34.211])<br >
+by chmls05.mediaone.net (8.8.7/8.8.7) with SMTP id XAA27071<br >
+for &amp;lt;test-xmtp@jabr.ne.mediaone.net&amp;gt;; Tue, 13 Oct
+1998 23:42:47 -0400 (EDT)&lt;/<span
+ class="tagPurple">Received</span>&gt;<br >
+&lt;<span class="tagPurple">Subject</span>&gt;this is a simple
+message&lt;/<span class="tagPurple">Subject</span>&gt;<br >
+&lt;<span class="tagPurple">To</span>&gt;&amp;quot;XMTP&amp;quot;
+&amp;lt;test-xmtp@jabr.ne.mediaone.net&amp;gt;&lt;/<span
+ class="tagPurple">To</span>&gt;<br >
+&lt;<span class="tagPurple">X-Mailer</span>&gt;Microsoft Outlook
+8.5, Build 4.71.2173.0&lt;/X-Mailer&gt;<br >
+&lt;<span class="tagPurple">X-MimeOLE</span>&gt;Produced By
+Microsoft MimeOLE V4.72.3110.3&lt;/<span
+ class="tagPurple">X-MimeOLE</span>&gt;<br >
+&lt;<span
+ class="tagPurple">X-MSMail-Priority</span>&gt;Normal&lt;/<span
+ class="tagPurple">X-MSMail-Priority</span>&gt;<br >
+&lt;<span class="tagPurple">X-Priority</span>&gt;3
+(Normal)&lt;/<span class="tagPurple">X-Priority</span>&gt;<br >
+&lt;<span class="tagPurple">mime:BODY</span>&gt;<br >
+&lt;<span class="tagPurple">Parts</span>&gt;<br >
+&lt;<span class="tagPurple">MIME</span> <span class="tagPurple">
+<span class="tagBlue">
+xmlns:mime</span>="http://www.grovelogic.com/xmtp"
+xmlns="urn:xpository:xmtp"</span>&gt;<br >
+&lt;<span class="tagPurple">Content-Type</span> <span
+ class="tagBlue">charset</span>="iso-8859-1"<span
+ class="tagBlue"></span>&gt;text/plain&lt;/<span
+ class="tagPurple">Content-Type</span>&gt;<br >
+&lt;<span
+ class="tagPurple">Content-transfer-encoding</span>&gt;7bit&lt;/<span
+ class="tagPurple">Content-transfer-encoding</span>&gt;<br >
+&lt;<span class="tagPurple">mime:BODY</span> <span class="tagBlue">
+xmlns</span>=""&gt;&lt;![CDATA[<br >
+Here is the text of the message ... its being transmitted in 'HTML'
+format<br >
+but the text is a separate part for e-mail readers that don't
+understand<br >
+HTML. We can't assume that all valid HTML is XML so we have to
+escape all of<br >
+the HTML ... or use a CDATA section</p>
+
+<p><br >
+]]&gt;&lt;/<span class="tagPurple">mime:BODY</span>&gt;<br >
+&lt;/<span class="tagPurple">MIME</span>&gt;<br >
+&lt;<span class="tagPurple">MIME</span>&gt;<br >
+&lt;<span class="tagPurple">Content-Type</span> <span
+ class="tagBlue">charset</span>="iso-8859-1"&gt;text/html&lt;/<span
+ class="tagPurple">Content-Type</span>&gt;<br >
+&lt;<span
+ class="tagPurple">Content-transfer-encoding</span>&gt;binary&lt;/<span
+ class="tagPurple">Content-transfer-encoding</span>&gt;<br >
+&lt;<span class="tagPurple">mime:BODY</span> xmlns=""&gt;<br >
+&lt;![CDATA[&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD W3
+HTML//EN"&gt;<br >
+&lt;HTML&gt;&lt;HEAD&gt;<br >
+&lt;META content=3D"text/html; charset=3Diso-8859-1" =<br >
+http-equiv=3DContent-Type&gt;<br >
+&lt;META content=3D'"MSHTML 5.00.0910.1309"'
+name=3DGENERATOR&gt;&lt;/HEAD&gt;<br >
+&lt;BODY bgColor=3D#ffffff&gt;<br >
+&lt;P&gt;&lt;FONT size=3D2&gt;Here is the text of the message ...
+its being =<br >
+transmitted in=20<br >
+'HTML' format but the text is a separate part for e-mail readers
+that =<br >
+don't=20<br >
+understand&amp;nbsp; HTML. We can't assume that all valid HTML is
+XML so we =<br >
+have to=20<br >
+escape all of the HTML ... or use a CDATA=20<br >
+section&lt;BR&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;BR&gt;&lt;BR&gt;&amp;nbsp;=20<br >
+
+&lt;/FONT&gt;&lt;/P&gt;&lt;/BODY&gt;&lt;/HTML&gt;]]&gt;&lt;/<span
+ class="tagPurple">mime:BODY</span>&gt;<br >
+&lt;/<span class="tagPurple">MIME</span>&gt;<br >
+&lt;/<span class="tagPurple">Parts</span>&gt;<br >
+&lt;/<span class="tagPurple">mime:<span
+ class="tagPurple">BODY</span></span>&gt;<br >
+&lt;/<span class="tagPurple">MIME</span>&gt;</p>
+
+<h3><a id="Script" name="Script"></a>Example script</h3>
+
+<p>The XMTP test facility was programmed using the XTRIME XMTP
+server and the following script:</p>
+
+<blockquote>
+<p>&lt;?XTRIME Language="JavaScript" ?&gt;</p>
+
+<p>var SMTP =   Ctx.CreateInstance("XTRIME.SMTPMessage.1");</p>
+
+<p>var MIME = SMTP.MIME;</p>
+
+<p>SMTP.To = Request.Header("From"); // reply back to the
+sender</p>
+
+<p>SMTP.From = Request.Header("To");</p>
+
+<p>MIME.Header("Content-Type") = "text/plain"; // send the reply
+back as the body of the message</p>
+
+<p>MIME.Header("MIME-Version") = "1.0"; // always</p>
+
+<p>MIME.Header("Reply-To") =  "&lt;jborden@mediaone.net&gt;"; // any
+questions go to me :-))</p>
+
+<p>Request.MessageType = 3; // this means use XML format for the
+MIME message</p>
+
+<p>SMTP.Body = Request; // this 'assigns' the body of the SMTP
+message to the MIME Request ...</p>
+
+<p>SMTP.Send(); // send it</p>
+
+<p>Ctx.Commit(); // commit the transaction and *really* do it</p>
+</blockquote>
+
+<h3><a id="Test" name="Test"></a>Using the XMTP test facility</h3>
+
+<p>Tthe XMTP protocol is demonstrated in action by sending a
+message to:</p>
+
+<p><A href="mailto:test-xmtp@jabr.ne.mediaone.net">
+test-xmtp@jabr.ne.mediaone.net</a></p>
+
+<p>When the XMTP server gets the message, it runs the above script
+which generates the E-mail reply. In this case the body of the
+message is the request transformed into XML.</p>
+
+<p>The <a
+ href="http://www.grovelogic.com/xmtp/listxmtp.asp?User=xmtp-board">
+XMTP-BOARD</a> is an XML/XSL e-mail demonstration system. Post a
+message by sending E-mail, including attached GIF and JPEG images
+to: <A href="mailto:xmtp-board@jabr.ne.mediaone.net">
+mailto:xmtp-board@jabr.ne.mediaone.net</a>.</p>
+
+<p>The board can be viewed by browing the link: <a
+ href="http://www.grovelogic.com/xmtp/listxmtp.asp?User=xmtp-board">
+http://jabr.ne.mediaone.net/xmtp/listxmtp.asp?User=xmtp-board</a></p>
+
+<p>This demo employs XML and IE5 version of XSL. A server side
+XSL transformation which can be viewed in non XML/XSL browsers cane
+be viewed <a
+ href="http://www.grovelogic.com/xmtp/listxmtp.asp?User=xmtp-board&amp;Format=HTML">
+here</a>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p></p>
+
+<p>&nbsp;</p>
+
+<p></p>
+</body>
+</html>
+

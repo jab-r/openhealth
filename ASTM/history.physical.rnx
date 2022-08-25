@@ -1,0 +1,16 @@
+include "ASTM.E2182.rng"
+include "admission.discharge.module.rng"
+
+root = history.and.physical.examination
+
+clinical.body.model =
+	history.and.physical,
+	assessment.and.plan
+
+history.and.physical.examination = element history.and.physical.examination {
+	astm.document.attrib,
+	clinical.header,
+	clinical.body
+	}
+clinical.body = element clinical.body {clinical.body.model}
+

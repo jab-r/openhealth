@@ -1,0 +1,9 @@
+<web:RDF xmlns:web="http://www.openhealth.org/RDF/SurfaceSyntax-20010614#"
+         xmlns:ex="http://example.org/ex">
+<web:Description web:aboutQ="ex:Jon">
+         <ex:says>
+             <ex:color web:aboutQ="ex:sky" web:resourceQ="ex:blue"/>
+         </ex:says>
+</web:Description>
+</web:RDF>
+   

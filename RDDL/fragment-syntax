@@ -1,0 +1,358 @@
+<title>i-d-frags-borden.html</title>
+<body >
+<html><head><title>A generic fragment identifier syntax</title>
+<STYLE type='text/css'>
+    .title { color: #990000; font-size: 22px; line-height: 22px; font-weight: bold; text-align: right;
+             font-family: helvetica, arial, sans-serif }
+    .filename { color: #666666; font-size: 18px; line-height: 28px; font-weight: bold; text-align: right;
+                  font-family: helvetica, arial, sans-serif }
+    p.copyright { color: #000000; font-size: 10px;
+                  font-family: verdana, charcoal, helvetica, arial, sans-serif }
+    p { margin-left: 2em; margin-right: 2em; }
+    li { margin-left: 3em;  }
+    ol { margin-left: 2em; margin-right: 2em; }
+    ul.text { margin-left: 2em; margin-right: 2em; }
+    pre { margin-left: 3em; color: #333333 }
+    ul.toc { color: #000000; line-height: 16px;
+             font-family: verdana, charcoal, helvetica, arial, sans-serif }
+    H3 { color: #333333; font-size: 16px; line-height: 16px; font-family: helvetica, arial, sans-serif }
+    H4 { color: #000000; font-size: 14px; font-family: helvetica, arial, sans-serif }
+    TD.header { color: #ffffff; font-size: 10px; font-family: arial, helvetica, san-serif; valign: top }
+    TD.author-text { color: #000000; font-size: 10px;
+                     font-family: verdana, charcoal, helvetica, arial, sans-serif }
+    TD.author { color: #000000; font-weight: bold; margin-left: 4em; font-size: 10px; font-family: verdana, charcoal, helvetica, arial, sans-serif }
+    A:link { color: #990000; font-size: 10px; text-transform: uppercase; font-weight: bold;
+             font-family: MS Sans Serif, verdana, charcoal, helvetica, arial, sans-serif }
+    A:visited { color: #333333; font-weight: bold; font-size: 10px; text-transform: uppercase;
+                font-family: MS Sans Serif, verdana, charcoal, helvetica, arial, sans-serif }
+    A:name { color: #333333; font-weight: bold; font-size: 10px; text-transform: uppercase;
+             font-family: MS Sans Serif, verdana, charcoal, helvetica, arial, sans-serif }
+    .link2 { color:#ffffff; font-weight: bold; text-decoration: none;
+             font-family: monaco, charcoal, geneva, MS Sans Serif, helvetica, monotype, verdana, sans-serif;
+             font-size: 9px }
+    .RFC { color:#666666; font-weight: bold; text-decoration: none;
+           font-family: monaco, charcoal, geneva, MS Sans Serif, helvetica, monotype, verdana, sans-serif;
+           font-size: 9px }
+    .hotText { color:#ffffff; font-weight: normal; text-decoration: none;
+               font-family: charcoal, monaco, geneva, MS Sans Serif, helvetica, monotype, verdana, sans-serif;
+               font-size: 9px }
+</style>
+</head>
+<body bgcolor="#ffffff"text="#000000" alink="#000000" vlink="#666666" link="#990000">
+<table border="0" cellpadding="0" cellspacing="2" width="30" height="15" align="right"><tr><td bgcolor="#990000" align="center" width="30" height="15"><a href="#toc" CLASS="link2"><font face="monaco, MS Sans Serif" color="#ffffff" size="1"><b>&nbsp;TOC&nbsp;</b></font></a><br></td></tr></table>
+<table width="66%" border="0" cellpadding="0" cellspacing="0"><tr><td><table width="100%" border="0" cellpadding="2" cellspacing="1">
+<tr valign="top"><td width="33%" bgcolor="#666666" class="header">Network Working Group</td><td width="33%" bgcolor="#666666" class="header">J. Borden</td></tr>
+<tr valign="top"><td width="33%" bgcolor="#666666" class="header">Internet-Draft</td><td width="33%" bgcolor="#666666" class="header">The Open Healthcare Group</td></tr>
+<tr valign="top"><td width="33%" bgcolor="#666666" class="header">Expires: December 12, 2001</td><td width="33%" bgcolor="#666666" class="header">S. St.Laurent</td></tr>
+<tr valign="top"><td width="33%" bgcolor="#666666" class="header">&nbsp;</td><td width="33%" bgcolor="#666666" class="header">June 13, 2001</td></tr>
+</table></td></tr></table>
+<div align="right"><font face="monaco, MS Sans Serif" color="#990000" size="+3"><b><br><span class="title">A generic fragment identifier syntax</span></b></font></div>
+<div align="right"><font face="monaco, MS Sans Serif" color="#666666" size="+2"><b><span class="filename">draft-borden-frag-00.txt</span></b></font></div>
+<font face="verdana, helvetica, arial, sans-serif" size="2">
+
+<h3>Status of this Memo</h3>
+<p>
+This document is an Internet-Draft and is in full conformance with all provisions of Section 10 of RFC2026.</p>
+<p>
+Internet-Drafts are working documents of the Internet Engineering
+Task Force (IETF), its areas, and its working groups.
+Note that other groups may also distribute working documents as
+Internet-Drafts.</p>
+<p>
+Internet-Drafts are draft documents valid for a maximum of six months
+and may be updated, replaced, or obsoleted by other documents at any time.
+It is inappropriate to use Internet-Drafts as reference material or to cite
+them other than as "work in progress."</p>
+<p>
+The list of current Internet-Drafts can be accessed at
+<a href='http://www.ietf.org/ietf/1id-abstracts.txt'>http://www.ietf.org/ietf/1id-abstracts.txt</a>.</p>
+<p>
+The list of Internet-Draft Shadow Directories can be accessed at
+<a href='http://www.ietf.org/shadow.html'>http://www.ietf.org/shadow.html</a>.</p>
+<p>
+This Internet-Draft will expire on December 12, 2001.</p>
+
+<h3>Copyright Notice</h3>
+<p>
+Copyright (C) The Internet Society (2001). All Rights Reserved.</p>
+
+<h3>Abstract</h3>
+
+<p>
+Generally fragment identifiers have been specified as unique identifiers for 
+parts of a document. Such identifiers have been specified as SGML/XML IDs e.g. 
+in HTML. This usage is identical to the <a href="#XPtr">XPointer</a>[2] "raw name" form. Specifications 
+constraining the behavior of user agents such as <a href="#SMIL">SMIL</a>[6], <a href="#XHTML">XHTML</a>[13], and <a href="#SVG">SVG</a>[8] have all supported that basic 
+usage, though some extend it.
+</p>
+<a name="toc"><br><hr size="1" shade="0"></a>
+<table border="0" cellpadding="0" cellspacing="2" width="30" height="15" align="right"><tr><td bgcolor="#990000" align="center" width="30" height="15"><a href="#toc" CLASS="link2"><font face="monaco, MS Sans Serif" color="#ffffff" size="1"><b>&nbsp;TOC&nbsp;</b></font></a><br></td></tr></table>
+<h3>Table of Contents</h3>
+<ul compact class="toc">
+<b><a href="#anchor1">1.</a>&nbsp;
+Introduction<br></b>
+<b><a href="#anchor2">2.</a>&nbsp;
+Names<br></b>
+<b><a href="#anchor3">3.</a>&nbsp;
+Numeric fragments<br></b>
+<b><a href="#anchor4">4.</a>&nbsp;
+Scheme based fragments<br></b>
+<b><a href="#anchor5">5.</a>&nbsp;
+Declaration of support for schemes<br></b>
+<b><a href="#anchor6">6.</a>&nbsp;
+General Syntax<br></b>
+<b><a href="#rfc.references">&#167;</a>&nbsp;
+References<br></b>
+<b><a href="#rfc.authors">&#167;</a>&nbsp;
+Authors' Addresses<br></b>
+<b><a href="#anchor7">A.</a>&nbsp;
+Acknowledgements<br></b>
+<b><a href="#anchor8">B.</a>&nbsp;
+Revision History<br></b>
+<b><a href="#rfc.copyright">&#167;</a>&nbsp;
+Full Copyright Statement<br></b>
+</ul>
+<br clear="all">
+
+<a name="anchor1"><br><hr size="1" shade="0"></a>
+<table border="0" cellpadding="0" cellspacing="2" width="30" height="15" align="right"><tr><td bgcolor="#990000" align="center" width="30" height="15"><a href="#toc" CLASS="link2"><font face="monaco, MS Sans Serif" color="#ffffff" size="1"><b>&nbsp;TOC&nbsp;</b></font></a><br></td></tr></table>
+<h3>1.&nbsp;Introduction</h3>
+
+<p>
+Frequently <a href="#URI">URI references</a>[1], which may contain a fragment identifier, are used 
+independent of their resolution into a particular document, or document 
+fragment, at a particular point in time.
+</p>
+
+<p>
+A notable example is use of a URI 
+reference as an <a href="#XMLNS">XML Namespace</a>[4] name. In the current situation a the syntax of the 
+fragment identifier part of a URI reference is defined by the MIME media type of 
+the referenced document as in an HTTP transaction. This media type is not fixed, 
+and may change from time to time and from reference to reference, or according 
+to request headers such as with content negotiation.
+</p>
+
+<p>
+It turns out that the 
+fragment identifier syntax is often constant from media type to media type. In 
+order to enable robust use of fragment identifiers, particularly outside a 
+particular HTTP transaction, we propose a generic, media type independent, 
+fragment identifier syntax. This fragment identifier syntax is compatible with 
+current usage of fragment identifiers, and is generally compatible with future 
+proposed syntaxes such as <a href="#XPtr">XPointer</a>[2]. 
+</p>
+
+<p>
+This specification does not itself specify how user agents are to process or 
+interpret fragment identifiers, such as may be specified with individual MIME 
+media type registrations, rather provides a consistent syntax for fragment 
+identifiers and a registration mechanism for schemes associated with fragment 
+identifier syntaxes. 
+</p>
+
+<a name="anchor2"><br><hr size="1" shade="0"></a>
+<table border="0" cellpadding="0" cellspacing="2" width="30" height="15" align="right"><tr><td bgcolor="#990000" align="center" width="30" height="15"><a href="#toc" CLASS="link2"><font face="monaco, MS Sans Serif" color="#ffffff" size="1"><b>&nbsp;TOC&nbsp;</b></font></a><br></td></tr></table>
+<h3>2.&nbsp;Names</h3>
+
+<p>
+The short form of a fragment identifier is a Name. A Name is used as the 
+fragment identifier for HTML, and is equivalent to the Bare Name form of 
+<a href="#XPtr">XPointer</a>[2] except that the Name need not be an SGML/XML ID, rather the mechanism 
+for locating document fragments by name is determined by the application. 
+</p>
+
+<a name="anchor3"><br><hr size="1" shade="0"></a>
+<table border="0" cellpadding="0" cellspacing="2" width="30" height="15" align="right"><tr><td bgcolor="#990000" align="center" width="30" height="15"><a href="#toc" CLASS="link2"><font face="monaco, MS Sans Serif" color="#ffffff" size="1"><b>&nbsp;TOC&nbsp;</b></font></a><br></td></tr></table>
+<h3>3.&nbsp;Numeric fragments</h3>
+
+<p>
+A numeric fragment is of the form: ('/' Number)+ e.g.
+#/10/24
+This conforms to the <a href="#XPtr">XPointer</a>[2] child sequence syntax, however may be used by 
+non-XML media types. For example a particular frame of a video clip might be 
+represented as: 
+#/100025
+ranges are expressed as /1-10 and lists as /1,2,5,20
+</p>
+
+<a name="anchor4"><br><hr size="1" shade="0"></a>
+<table border="0" cellpadding="0" cellspacing="2" width="30" height="15" align="right"><tr><td bgcolor="#990000" align="center" width="30" height="15"><a href="#toc" CLASS="link2"><font face="monaco, MS Sans Serif" color="#ffffff" size="1"><b>&nbsp;TOC&nbsp;</b></font></a><br></td></tr></table>
+<h3>4.&nbsp;Scheme based fragments</h3>
+
+<p>
+The full form of a fragment identifier uses the Scheme '(' string ')' Form. This 
+form is consistent with the <a href="#XPtr">XPointer</a>[2] full xpointer form, hence this valid full 
+XPointers conform to this proposed syntax. This specification defines the 
+following scheme names:
+</p>
+
+<p>
+
+<blockquote class="text"><dl>
+
+<dt>xpath:</dt>
+<dd>
+the content is a valid XPath 
+</dd>
+
+<dt>xmlns:</dt>
+<dd>
+the content defines a namespace prefix mapping 
+</dd>
+
+<dt>xpointer:</dt>
+<dd>
+the content is a valid XPointer 
+</dd>
+
+</dl></blockquote>
+
+</p>
+
+<a name="anchor5"><br><hr size="1" shade="0"></a>
+<table border="0" cellpadding="0" cellspacing="2" width="30" height="15" align="right"><tr><td bgcolor="#990000" align="center" width="30" height="15"><a href="#toc" CLASS="link2"><font face="monaco, MS Sans Serif" color="#ffffff" size="1"><b>&nbsp;TOC&nbsp;</b></font></a><br></td></tr></table>
+<h3>5.&nbsp;Declaration of support for schemes</h3>
+
+<p>
+A namespace may declare support for a particular scheme or set of schemes via a <a href="#RDDL">RDDL</a>[5] description. The id of a RDDL resource describing a scheme should be the 
+same as the name of the scheme. The RDDL nature or the resource should be URI 
+reference identifying the scheme. The RDDL purpose of the scheme should be the 
+URI: http://www.rddl.org/fragment-syntax#scheme. For example:
+</p>
+</font><pre>&lt;div id="xpointer">
+ &lt;rddl:resource 
+   xlink:arcrole="http://www.rddl.org/fragment-syntax#scheme"
+   xlink:href="http://www.w3.org/TR/xptr"
+   />
+
+&lt;/div></pre><font face="verdana, helvetica, arial, sans-serif" size="2">
+
+<a name="anchor6"><br><hr size="1" shade="0"></a>
+<table border="0" cellpadding="0" cellspacing="2" width="30" height="15" align="right"><tr><td bgcolor="#990000" align="center" width="30" height="15"><a href="#toc" CLASS="link2"><font face="monaco, MS Sans Serif" color="#ffffff" size="1"><b>&nbsp;TOC&nbsp;</b></font></a><br></td></tr></table>
+<h3>6.&nbsp;General Syntax</h3>
+</font><pre>FragmentId ::= Name | NumberPart | (FragmentPart (S? FragmentPart)) 
+NumberPart ::= ('/' , Number,(('-'|','),Number))*)+ 
+FragmentPart ::= Scheme '(' SchemeSpecificExpr? ')' 
+SchemeSpecificExpr ::= StringWithBalancedParens 
+StringWithBalancedParens ::= [^()^^|^^^^|^^)|^^(]* ('(' StringWithBalancedParens 
+')' [^()^^|^^^^|^^)|^^(]*)* 
+'^^' escapes '^', '^)' escapes ')' and '^(' escapes '(' </pre><font face="verdana, helvetica, arial, sans-serif" size="2">
+
+<a name="rfc.references"><br><hr size="1" shade="0"></a>
+<table border="0" cellpadding="0" cellspacing="2" width="30" height="15" align="right"><tr><td bgcolor="#990000" align="center" width="30" height="15"><a href="#toc" CLASS="link2"><font face="monaco, MS Sans Serif" color="#ffffff" size="1"><b>&nbsp;TOC&nbsp;</b></font></a><br></td></tr></table>
+<h3>
+References</h3>
+<table width="99%" border="0">
+<tr><td class="author-text" valign="top"><b><a name="URI">[1]</a></b></td>
+<td class="author-text"><a href="mailto:timbl@w3.org">Berners-Lee, T.</a>, <a href="mailto:fielding@ics.uci.edu">Fielding, R.</a> and <a href="mailto:masinter@parc.xerox.com">L. Masinter</a>, "<a href="ftp://ftp.isi.edu/in-notes/rfc2396.txt">Uniform Resource Identifiers (URI): Generic Syntax</a>", RFC 2396, August 1998.</td></tr>
+<tr><td class="author-text" valign="top"><b><a name="XPtr">[2]</a></b></td>
+<td class="author-text">DeRose, S., Daniel Jr., R. and E. Maler, "<a href="http://www.w3.org/TR/xptr">XML Pointer Language (XPointer)</a>", World Wide Web Consortium Working Draft xptr, July 1999.</td></tr>
+<tr><td class="author-text" valign="top"><b><a name="XML">[3]</a></b></td>
+<td class="author-text">Bray, T., Paoli, J. and C. Sperberg-McQueen, "<a href="http://www.w3.org/TR/REC-xml">Extensible Markup Language (XML) 1.0</a>", World Wide Web Consortium Recommendation REC-xml, February 1998.</td></tr>
+<tr><td class="author-text" valign="top"><b><a name="XMLNS">[4]</a></b></td>
+<td class="author-text">Bray, T., Hollander, D. and A. Layman, "<a href="http://www.w3.org/TR/REC-xml-names/">Namespaces in XML</a>", World Wide Web Consortium Recommendation REC-xml-names, January 1999.</td></tr>
+<tr><td class="author-text" valign="top"><b><a name="RDDL">[5]</a></b></td>
+<td class="author-text">Borden, J. and T. Bray, "<a href="http://www.rddl.org">Resource Directory Description Language (RDDL)</a>", June 2001.</td></tr>
+<tr><td class="author-text" valign="top"><b><a name="SMIL">[6]</a></b></td>
+<td class="author-text">Ayars, J., Bulterman, D., Cohen, A., Day, K., Hodge, E., Hoschka, P., Hyche, E., Jourdan, M., Kim, M., Kubota, K., Lanphier, R., Layaida, N., Michel, T., Newman, D., van Ossenbruggen, J., Rutledge, L., Saccocio, B., Schmitz, P. and W. ten Kate, "<a href="http://www.w3.org/TR/smil20/">Synchronized Multimedia Integration Language (SMIL 2.0) Specification</a>", World Wide Web Consortium Proposed Recommendation PR-smil20, June 2001.</td></tr>
+<tr><td class="author-text" valign="top"><b><a name="RFC2616">[7]</a></b></td>
+<td class="author-text">Fielding, R., Gettys, J., Mogul, J., Nielsen, H., Masinter, L., Leach, P. and T. Berners-Lee, "<a href="ftp://ftp.isi.edu/in-notes/rfc2616.txt">Hypertext Transfer Protocol -- HTTP/1.1</a>", RFC 2616, June 1999.</td></tr>
+<tr><td class="author-text" valign="top"><b><a name="SVG">[8]</a></b></td>
+<td class="author-text">Ferraiolo, J., "<a href="http://www.w3.org/TR/SVG">Scalable Vector Graphics (SVG)</a>", World Wide Web Consortium Working Draft SVG, August 1999.</td></tr>
+<tr><td class="author-text" valign="top"><b><a name="XBase">[9]</a></b></td>
+<td class="author-text">Marsh, J., "<a href="http://www.w3.org/TR/xmlbase">XML Base (XBase)</a>", World Wide Web Consortium Working Draft xmlbase, February 2000.</td></tr>
+<tr><td class="author-text" valign="top"><b><a name="XLink">[10]</a></b></td>
+<td class="author-text">DeRose, S., Maler, E., Orchard, D. and B. Trafford, "<a href="http://www.w3.org/TR/xlink/">XML Linking Language (XLink)</a>", World Wide Web Consortium Working Draft xlink, July 1999.</td></tr>
+<tr><td class="author-text" valign="top"><b><a name="XSLT">[11]</a></b></td>
+<td class="author-text">Clark , J., "<a href="http://www.w3.org/TR/xslt">XSL Transformations (XSLT) Version 1.0</a>", World Wide Web Consortium Recommendation xslt, November 1999.</td></tr>
+<tr><td class="author-text" valign="top"><b><a name="RFC2629">[12]</a></b></td>
+<td class="author-text">Rose, M., "<a href="ftp://ftp.isi.edu/in-notes/rfc2629.txt">Writing I-Ds and RFCs using XML</a>", RFC 2629, June 1999.</td></tr>
+<tr><td class="author-text" valign="top"><b><a name="XHTML">[13]</a></b></td>
+<td class="author-text">Pemberton, S. and . et al, "<a href="http://www.w3.org/TR/xhtml1">XHTML 1.0: The Extensible HyperText Markup Language</a>", World Wide Web Consortium Recommendation REC-xhtml1, January 2000.</td></tr>
+</table>
+
+<a name="rfc.authors"><br><hr size="1" shade="0"></a>
+<table border="0" cellpadding="0" cellspacing="2" width="30" height="15" align="right"><tr><td bgcolor="#990000" align="center" width="30" height="15"><a href="#toc" CLASS="link2"><font face="monaco, MS Sans Serif" color="#ffffff" size="1"><b>&nbsp;TOC&nbsp;</b></font></a><br></td></tr></table>
+<h3>Authors' Addresses</h3>
+<table width="99%" border="0" cellpadding="0" cellspacing="0">
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Jonathan Borden</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">The Open Healthcare Group</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">114 Merriam Street</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Weston, MA  02493</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">US</td></tr>
+<tr><td class="author" align="right">EMail:&nbsp;</td>
+<td class="author-text"><a href="mailto:jborden@mediaone.net">jborden@mediaone.net</a></td></tr>
+<tr><td class="author" align="right">URI:&nbsp;</td>
+<td class="author-text"><a href="http://openhealth.org">http://openhealth.org</a></td></tr>
+<tr cellpadding="3"><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Simon St.Laurent</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">1259 Dryden Road</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Ithaca, New York  14850</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">USA</td></tr>
+<tr><td class="author" align="right">EMail:&nbsp;</td>
+<td class="author-text"><a href="mailto:simonstl@simonstl.com">simonstl@simonstl.com</a></td></tr>
+<tr><td class="author" align="right">URI:&nbsp;</td>
+<td class="author-text"><a href="http://www.simonstl.com/">http://www.simonstl.com/</a></td></tr>
+</table>
+
+<a name="anchor7"><br><hr size="1" shade="0"></a>
+<table border="0" cellpadding="0" cellspacing="2" width="30" height="15" align="right"><tr><td bgcolor="#990000" align="center" width="30" height="15"><a href="#toc" CLASS="link2"><font face="monaco, MS Sans Serif" color="#ffffff" size="1"><b>&nbsp;TOC&nbsp;</b></font></a><br></td></tr></table>
+<h3>Appendix A.&nbsp;Acknowledgements</h3>
+
+<p>
+
+</p>
+
+<a name="anchor8"><br><hr size="1" shade="0"></a>
+<table border="0" cellpadding="0" cellspacing="2" width="30" height="15" align="right"><tr><td bgcolor="#990000" align="center" width="30" height="15"><a href="#toc" CLASS="link2"><font face="monaco, MS Sans Serif" color="#ffffff" size="1"><b>&nbsp;TOC&nbsp;</b></font></a><br></td></tr></table>
+<h3>Appendix B.&nbsp;Revision History</h3>
+
+<p>
+[To be deleted before publication.]
+</p>
+<a name="rfc.copyright"><br><hr size="1" shade="0"></a>
+<table border="0" cellpadding="0" cellspacing="2" width="30" height="15" align="right"><tr><td bgcolor="#990000" align="center" width="30" height="15"><a href="#toc" CLASS="link2"><font face="monaco, MS Sans Serif" color="#ffffff" size="1"><b>&nbsp;TOC&nbsp;</b></font></a><br></td></tr></table>
+<h3>Full Copyright Statement</h3>
+<p class='copyright'>
+Copyright (C) The Internet Society (2001). All Rights Reserved.</p>
+<p class='copyright'>
+This document and translations of it may be copied and furnished to
+others, and derivative works that comment on or otherwise explain it
+or assist in its implementation may be prepared, copied, published and
+distributed, in whole or in part, without restriction of any kind,
+provided that the above copyright notice and this paragraph are
+included on all such copies and derivative works. However, this
+document itself may not be modified in any way, such as by removing
+the copyright notice or references to the Internet Society or other
+Internet organizations, except as needed for the purpose of
+developing Internet standards in which case the procedures for
+copyrights defined in the Internet Standards process must be
+followed, or as required to translate it into languages other than
+English.</p>
+<p class='copyright'>
+The limited permissions granted above are perpetual and will not be
+revoked by the Internet Society or its successors or assigns.</p>
+<p class='copyright'>
+This document and the information contained herein is provided on an
+&quot;AS IS&quot; basis and THE INTERNET SOCIETY AND THE INTERNET ENGINEERING
+TASK FORCE DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING
+BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION
+HEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED WARRANTIES OF
+MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.</p>
+<h3>Acknowledgement</h3>
+<p class='copyright'>
+Funding for the RFC Editor function is currently provided by the
+Internet Society.</p>
+</font></body></html>
+
+</body>

@@ -1,0 +1,37 @@
+<!ELEMENT rdf:RDF (propertySet)+>
+<!ATTLIST rdf:RDF
+	xmlns:rdf CDATA #FIXED "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:rdfs CDATA #FIXED "http://www.w3.org/2000/01/rdf-schema#"
+	xmlns:xset CDATA #FIXED "http://www.openhealth.org/XSet"
+	rdf:parseType NMTOKEN "Resource"
+>
+<!ELEMENT propertySet (production)*>
+<!ATTLIST propertySet
+	rdf:about CDATA #IMPLIED
+	rdf:ID NMTOKEN #IMPLIED
+	targetNamespace CDATA #IMPLIED
+>
+<!ELEMENT production (Seq|Alt)>
+<!ATTLIST production
+	id ID #REQUIRED
+	p CDATA #IMPLIED
+>
+<!ELEMENT Seq ANY>
+<!ATTLIST Seq
+	occurs CDATA #IMPLIED
+>
+<!ELEMENT Alt ANY>
+<!ATTLIST Alt 
+	occurs CDATA #IMPLIED
+>
+<!ELEMENT c EMPTY>
+<!ATTLIST c
+	char CDATA #IMPLIED
+	hex CDATA #IMPLIED
+	pattern CDATA #IMPLIED
+	occurs CDATA #IMPLIED
+>
+<!ELEMENT string EMPTY>
+<!ATTLIST string
+	value CDATA #REQUIRED
+>

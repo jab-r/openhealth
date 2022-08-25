@@ -1,0 +1,281 @@
+<!-- 
+	Copyright (c) Jonathan Borden, The Open Healthcare Group all rights reserved
+	Licensed under http://www.openhealth.org/license
+	
+	PUBLIC "-//ASTM//DTD Clinical Header 1.0//EN"
+	SYSTEM "http://www.openhealth.org/ASTM/clinical.header.dtd
+	
+	This DTD defines an ASTM E31.25 Clinical Document Header, 
+	this DTD is included by the Base ASTM DTD.
+-->
+
+<!ENTITY % NS.prefixed "IGNORE">
+<!ENTITY % CH.prefixed "%NS.prefixed;">
+
+<!ENTITY % astm-xlink.mod 
+	PUBLIC "-//ASTM//ENTITIES XLink 1.0//EN" 
+	"astm-xlink.mod">
+%astm-xlink.mod;
+<!ENTITY % ch.namespace.uri "'http://www.openhealth.org/ASTM/clinical.header'">
+<!ENTITY % ch "ch">
+
+<![ %CH.prefixed; [
+<!ENTITY % ch.prefix "%ch;:">
+<!ENTITY % ch.namespace.attrib "
+	xmlns:%ch; CDATA #FIXED 'http://www.openhealth.org/ASTM/clinical.header'
+">
+]]>
+
+<!ENTITY % ch.prefix "">
+<!ENTITY % ch.namespace.attrib "
+	xmlns CDATA #FIXED 'http://www.openhealth.org/ASTM/clinical.header'
+">
+
+<!ENTITY % ch.attrib " 
+	ID ID #IMPLIED
+   	confidentiality IDREF  #IMPLIED
+	note CDATA #IMPLIED
+	xml:lang NMTOKEN #IMPLIED
+">
+<!--<!ENTITY % ch.xmlns.attrib.name "xmlns:%ch;">-->
+<!ENTITY % ch-qname.mod 
+	PUBLIC "-//ASTM//ENTITIES Clinical Header QName  Module 1.0//EN" 
+	"clinical.header-qname-1.mod">
+%ch-qname.mod;
+
+
+<!ENTITY % ch.person.type "%person.name.qname;,(%id.qname;)*,(%addr.qname;)*">
+<!ENTITY % ch.organization.type "(%organization.name.qname;)?,(%id.qname;)*,(%addr.qname;)*">
+<!ENTITY % ch.actor.type "%ch.person.type;,(%type.code.qname;)?,(%date.time.qname;)?">
+<!ENTITY % ch.authenticator.type "%ch.actor.type;,(%signature.qname;)?">
+
+<!ENTITY % ch.datetime.model "(#PCDATA)">
+<!ENTITY % coded.value.model "(#PCDATA)">
+<!ENTITY % coded.value.attrib.list "
+    code.system NMTOKEN #IMPLIED
+    code.system.name CDATA #IMPLIED
+    version NMTOKEN #IMPLIED
+">
+<!ENTITY % clinical.header.model "(
+	(%id.qname;)*,
+	(%version.number.qname;)?,
+	(%confidentiality.code.qname;)*,
+	(%patient.encounter.qname;)?,
+	(%authenticator.qname;)*,
+	(%legal.authenticator.qname;)*,
+	(%intended.recipient.qname;)*,
+	(%originator.qname;)?,
+	(%originating.organization.qname;)?,
+	(%transcriptionist.qname;)?,
+	(%provider.qname;)+,
+	(%service.actor.qname;)*,
+	%patient.qname;,
+	(%events.qname;)?,
+	(%codes.qname;)?,
+	(%related.document.qname;)*
+)">
+
+<!ENTITY % text.model "(#PCDATA)">
+<!ENTITY % id.attribs "%ch.attrib;
+	root CDATA #IMPLIED
+	authority CDATA #IMPLIED
+	type CDATA #IMPLIED
+	valid.time CDATA #IMPLIED
+">
+<!ENTITY % patient.encounter.model "(
+	(%id.qname;)?,
+	(%practice.setting.qname;)?,
+	(%date.time.qname;)?,
+	(%location.qname;)?
+)">
+<!ENTITY % patient.encounter.attrib "%ch.attrib;">
+<!ENTITY % service.actor.model "(
+	(%person.name.qname;|%organization.name.qname;),
+	(%id.qname;)*,
+	(%addr.qname;)*,
+  	(%type.code.qname;)?,
+  	(%function.qname;)?,
+  	(%date.time.qname;)?
+)">
+<!ENTITY % provider.model "(%ch.actor.type;,(%function.qname;)?)">
+<!ENTITY % service.target.model "(
+	%ch.actor.type;,
+  	(%birth.date.qname;)?,
+  	(%gender.qname;)?
+)">
+<!ENTITY % events.model "(%event.qname;)*">
+<!ENTITY % event.model "(%event.name.qname;,%date.time.qname;,(%staff.qname;)?,(%comments.qname;)?)">
+<!ENTITY % person.name.model "(
+	%family.qname;|
+	%given.qname;|
+	%middle.qname;|
+	%prefix.qname;|
+	%suffix.qname;|
+	%delimiter.qname;
+	)*
+">
+<!ENTITY % addr.model "(
+	%country.qname;|
+	%city.qname;|
+	%state.qname;|
+	%street.qname;|
+	%zip.qname;|
+	%house.number.qname;|
+	%direction.qname;|
+	%post.office.box.qname;|
+	%telephone.qname;|
+	%uri.qname;|
+	%delimiter.qname;
+	)*"
+>
+
+<!ELEMENT %clinical.header.qname; %clinical.header.model;>
+<!ATTLIST %clinical.header.qname; 
+	%ch.attrib;
+	%ch.namespace.attrib;
+>
+<!-- id -->
+<!ELEMENT %id.qname; %text.model;>
+<!ATTLIST %id.qname; %id.attribs; %xlink.attrib;>
+<!ELEMENT %version.number.qname; %text.model;>
+<!ATTLIST %version.number.qname; %ch.attrib;>
+
+<!ELEMENT %confidentiality.code.qname; %coded.value.model;>
+<!ATTLIST %confidentiality.code.qname; %ch.attrib; %coded.value.attrib.list;>
+<!ELEMENT %patient.encounter.qname; %patient.encounter.model;>
+<!ATTLIST %patient.encounter.qname; %patient.encounter.attrib;>
+<!-- service actors -->
+<!ELEMENT %authenticator.qname; (%ch.authenticator.type;)>
+<!ATTLIST %authenticator.qname; %ch.attrib;>
+<!ELEMENT %legal.authenticator.qname; (%ch.authenticator.type;)>
+<!ATTLIST %legal.authenticator.qname; %ch.attrib;>
+<!ELEMENT %originator.qname; (%ch.actor.type;)>
+<!ATTLIST %originator.qname; %ch.attrib;>
+<!ELEMENT %intended.recipient.qname; (%ch.actor.type;)>
+<!ATTLIST %intended.recipient.qname; %ch.attrib;>
+<!ELEMENT %transcriptionist.qname; (%ch.actor.type;)>
+<!ATTLIST %transcriptionist.qname; %ch.attrib;>
+<!ELEMENT %provider.qname; %provider.model;>
+<!ATTLIST %provider.qname; %ch.attrib;>
+<!ELEMENT %service.actor.qname; %service.actor.model;>
+<!ATTLIST %service.actor.qname; %ch.attrib; %xlink.attrib;>
+<!-- service targets -->
+<!ELEMENT %patient.qname; %service.target.model;>
+<!ATTLIST %patient.qname; %ch.attrib; %xlink.attrib;>
+<!ELEMENT %events.qname; %events.model;>
+<!ATTLIST %events.qname; %ch.attrib;>
+<!ELEMENT %codes.qname; (%coded.value.qname;)*>
+<!ATTLIST %codes.qname; %ch.attrib;>
+<!ELEMENT %related.document.qname; ANY>
+<!ATTLIST %related.document.qname; %xlink.simple.attrib;>
+
+<!ELEMENT %practice.setting.qname; %text.model;>
+<!ATTLIST %practice.setting.qname; %ch.attrib;>
+<!ELEMENT %date.time.qname; %ch.datetime.model;>
+<!ATTLIST %date.time.qname; %ch.attrib;>
+<!ELEMENT %location.qname; %text.model;>
+<!ATTLIST %location.qname; %ch.attrib;>
+
+<!ELEMENT %event.qname; %event.model;>
+<!ATTLIST %event.qname; %ch.attrib;>
+<!ELEMENT %event.name.qname; %text.model;>
+<!ATTLIST %event.name.qname; %ch.attrib;>
+<!ELEMENT %staff.qname; (%ch.person.type;)>
+<!ATTLIST %staff.qname; %ch.attrib;>
+<!ELEMENT %comments.qname; %text.model;>
+<!ATTLIST %comments.qname; %ch.attrib;>
+<!--
+	person.name
+-->
+<!ELEMENT %person.name.qname; %person.name.model;>
+<!ATTLIST %person.name.qname;
+	%ch.attrib; 
+	type CDATA #IMPLIED>
+<!ELEMENT %family.qname; %text.model;>
+<!ATTLIST %family.qname; %ch.attrib; type CDATA #IMPLIED>
+<!ELEMENT %given.qname; %text.model;>
+<!ATTLIST %given.qname; %ch.attrib; type CDATA #IMPLIED>
+<!ELEMENT %middle.qname; %text.model;>
+<!ATTLIST %middle.qname; %ch.attrib; type CDATA #IMPLIED>
+<!ELEMENT %prefix.qname; %text.model;>
+<!ATTLIST %prefix.qname;
+	%ch.attrib; type CDATA #IMPLIED>
+<!ELEMENT %suffix.qname; %text.model;>
+<!ATTLIST %suffix.qname;
+	%ch.attrib; type CDATA #IMPLIED>
+<!ELEMENT %delimiter.qname; %text.model;>
+<!ATTLIST %delimiter.qname;
+	%ch.attrib; type CDATA #IMPLIED>
+<!-- organization -->
+<!ELEMENT %organization.name.qname; %text.model;>
+<!ATTLIST %organization.name.qname; %ch.attrib;>
+<!--
+	addr
+-->
+<!ELEMENT %addr.qname; %addr.model;>
+<!ATTLIST %addr.qname; %ch.attrib;
+	type CDATA #IMPLIED>
+<!--
+     elements required for addr
+  -->
+<!ELEMENT %country.qname; %text.model;>
+<!ATTLIST %country.qname; %ch.attrib;
+	type CDATA #IMPLIED>
+<!ELEMENT %city.qname; %text.model;>
+<!ATTLIST %city.qname; %ch.attrib;
+	type CDATA #IMPLIED>
+<!ELEMENT %state.qname; %text.model;>
+<!ATTLIST %state.qname; %ch.attrib;
+	type CDATA #IMPLIED>
+<!ELEMENT %zip.qname; %text.model;>
+<!ATTLIST %zip.qname; %ch.attrib;
+	type CDATA #IMPLIED>
+<!ELEMENT %street.qname; %text.model;>
+<!ATTLIST %street.qname; %ch.attrib;
+	type CDATA #IMPLIED>
+<!ELEMENT %house.number.qname; %text.model;>
+<!ATTLIST %house.number.qname; %ch.attrib;
+	type CDATA #IMPLIED>
+<!ELEMENT %direction.qname; %text.model;>
+<!ATTLIST %direction.qname; %ch.attrib;
+	type CDATA #IMPLIED>
+<!ELEMENT %address.locator.qname; %text.model;>
+<!ATTLIST %address.locator.qname; %ch.attrib;
+	type CDATA #IMPLIED>
+<!ELEMENT %post.office.box.qname; %text.model;>
+<!ATTLIST %post.office.box.qname; %ch.attrib;
+	type CDATA #IMPLIED>
+<!--
+	allows 	<uri type="email">jonathan@openhealth.org</uri>
+		<uri type="homepage">http://www.openhealth.org</uri>
+
+	alternatively
+		<uri type="home">mailto:jonathan@openhealth.org</uri>
+		<uri type="work">mailto:jborden@lifespan.org</uri>
+-->
+<!ELEMENT %uri.qname; %text.model;>
+<!ATTLIST %uri.qname; %ch.attrib;
+	type CDATA #IMPLIED>
+<!ELEMENT %telephone.qname; %text.model;>
+<!ATTLIST %telephone.qname; %ch.attrib;
+	type CDATA #IMPLIED>
+
+<!ELEMENT %coded.value.qname; %coded.value.model;>
+<!ATTLIST %coded.value.qname; %ch.attrib; %coded.value.attrib.list; %xlink.attrib;>
+
+<!ELEMENT %signature.qname; %coded.value.model;>
+<!ATTLIST %signature.qname; %ch.attrib; %coded.value.attrib.list;>
+
+<!ELEMENT %type.code.qname; %coded.value.model;>
+<!ATTLIST %type.code.qname; %ch.attrib; %coded.value.attrib.list; %xlink.attrib;>
+<!ELEMENT %function.qname; %coded.value.model;>
+<!ATTLIST %function.qname; %ch.attrib; %coded.value.attrib.list; %xlink.attrib;>
+
+
+<!ELEMENT %birth.date.qname; %ch.datetime.model;>
+<!ATTLIST %birth.date.qname; %ch.attrib;>
+<!ELEMENT %gender.qname; %text.model;>
+<!ATTLIST %gender.qname; %ch.attrib;>
+
+<!ELEMENT %originating.organization.qname; (%ch.organization.type;)>
+<!ATTLIST %originating.organization.qname; %ch.attrib;>

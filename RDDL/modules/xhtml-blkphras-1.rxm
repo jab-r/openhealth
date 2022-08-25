@@ -1,0 +1,116 @@
+<module
+  xmlns="http://www.xml.gr.jp/xmlns/relaxCore"
+  targetNamespace="http://www.w3.org/1999/xhtml"
+  relaxCoreVersion="1.0"
+  moduleVersion="1.11">
+
+<elementRule role="address">
+  <mixed>
+    <hedgeRef label="Inline.mix" occurs="*"/>
+  </mixed>
+</elementRule>
+
+
+<tag name="address">
+  <ref role="Common.attrib"/>
+</tag>
+
+<elementRule role="blockquote">
+  <hedgeRef label="Block.mix" occurs="+"/>
+</elementRule>
+
+
+<tag name="blockquote">
+  <ref role="Common.attrib"/>
+  <attribute name="cite" type="uriReference"/>
+</tag>
+
+<elementRule role="pre">
+  <mixed>
+    <hedgeRef label="pre.content"/>
+<!--
+    <choice occurs="*">
+      <hedgeRef label="InlStruct.class"/>
+      <hedgeRef label="InlPhras.class"/>
+      <ref label="tt"/>
+      <ref label="i"/>
+      <ref label="b"/>
+      <hedgeRef label="I18n.class"/>
+      <hedgeRef label="Anchor.class"/>
+      <ref label="script"/>
+      <ref label="map"/>
+      <hedgeRef label="Inline.extra"/>
+    </choice>
+-->
+  </mixed>
+</elementRule>
+
+<tag name="pre">
+  <ref role="Common.attrib"/>
+  <attribute name="space"
+	     namespace="http://www.w3.org/1999/xhtml" type="NMTOKEN">
+    <enumeration value="preserve"/>
+  </attribute>
+</tag>
+
+<elementRule role="h1">
+  <mixed>
+    <hedgeRef label="Inline.mix" occurs="*"/>
+  </mixed>
+</elementRule>
+
+<tag name="h1">
+  <ref role="Common.attrib"/>
+</tag>
+
+<elementRule role="h2">
+  <mixed>
+    <hedgeRef label="Inline.mix" occurs="*"/>
+  </mixed>
+</elementRule>
+
+<tag name="h2">
+  <ref role="Common.attrib"/>
+</tag>
+
+<elementRule role="h3">
+  <mixed>
+    <hedgeRef label="Inline.mix" occurs="*"/>
+  </mixed>
+</elementRule>
+
+<tag name="h3">
+  <ref role="Common.attrib"/>
+</tag>
+
+<elementRule role="h4">
+  <mixed>
+    <hedgeRef label="Inline.mix" occurs="*"/>
+  </mixed>
+</elementRule>
+
+<tag name="h4">
+  <ref role="Common.attrib"/>
+</tag>
+
+<elementRule role="h5">
+  <mixed>
+    <hedgeRef label="Inline.mix" occurs="*"/>
+  </mixed>
+</elementRule>
+
+<tag name="h5">
+  <ref role="Common.attrib"/>
+</tag>
+
+<elementRule role="h6">
+  <mixed>
+    <hedgeRef label="Inline.mix" occurs="*"/>
+  </mixed>
+</elementRule>
+
+<tag name="h6">
+  <ref role="Common.attrib"/>
+</tag>
+
+</module>

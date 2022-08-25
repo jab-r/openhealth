@@ -1,0 +1,270 @@
+<!-- 
+American Society for Testing and Materials (ASTM) E31.25 Guideline Element Module (GEM) DTD last revised 1/30/2002 
+
+PUBLIC IDENTIFIER "-//ASTM//DTD Guideline 1.0//EN"
+SYSTEM IDENTIFIER "http://www.openhealth.org/ASTM/guideline.dtd"
+XML Namespace "http://www.openhealth.org/ASTM/guideline"
+
+-->
+<!-- the default is not to prefix namespace qualified elements -->
+<!ENTITY % NS.prefixed "IGNORE">
+<!-- prefix xlink attributes -->
+<!ENTITY % XLINK.namespace.prefixed "INCLUDE">
+<!-- base module for E31.25 XML DTDs -->
+<!ENTITY % ASTM.base.module PUBLIC "-//ASTM//DTD E31.25 Base 1.0//EN" "ASTM.E31.25.dtd">
+
+%ASTM.base.module;
+<!-- GEM namespace -->
+<!ENTITY % GEM.xmlns.attrib "xmlns CDATA #FIXED 'http://www.openhealth.org/ASTM/guideline'">
+<!-- common attributes -->
+<!ENTITY % guideline.attrib "
+	id ID #IMPLIED 
+	xml:lang NMTOKEN #IMPLIED
+	%xlink.simple.attrib;
+">
+
+<!ELEMENT guideline.document (guideline.header , guideline.body )>
+<!ATTLIST guideline.document %GEM.xmlns.attrib; %astm.document.attrib;>
+
+<!ELEMENT guideline.header  (identity | developer )*>
+<!ATTLIST guideline.header %guideline.attrib; >
+
+<!ELEMENT identity (guideline.title | citation | release.date | availability | status | companion.document | adaptation )*>
+<!ATTLIST identity %guideline.attrib; >
+<!ELEMENT guideline.title  %astm.content;>
+<!ATTLIST guideline.title %guideline.attrib; >
+<!ELEMENT citation  (#PCDATA | %ASTM.Mix; | guideline.length )*>
+<!ATTLIST citation %guideline.attrib; >
+<!ELEMENT guideline.length  %astm.content;>
+<!ATTLIST guideline.length %guideline.attrib; >
+<!ELEMENT release.date  %astm.content;>
+<!ATTLIST release.date %guideline.attrib; >
+<!ELEMENT availability  (#PCDATA | %ASTM.Mix; | electronic | print | contact )*>
+<!ATTLIST availability %guideline.attrib; >
+<!ELEMENT electronic  %astm.content;>
+<!ATTLIST electronic %guideline.attrib; >
+<!ELEMENT print  %astm.content;>
+<!ATTLIST print %guideline.attrib; >
+<!ELEMENT contact  %astm.content;>
+<!ATTLIST contact %guideline.attrib; >
+<!ELEMENT status  %astm.content;>
+<!ATTLIST status %guideline.attrib; >
+<!ELEMENT companion.document  (#PCDATA | %ASTM.Mix; | patient.resource )*>
+<!ATTLIST companion.document %guideline.attrib; >
+<!ELEMENT patient.resource  %astm.content;>
+<!ATTLIST patient.resource %guideline.attrib; >
+<!ELEMENT adaptation  %astm.content;>
+<!ATTLIST adaptation %guideline.attrib; >
+
+
+<!ELEMENT developer  (developer.name | committee.name | funding | endorser | comparable.guideline )*>
+<!ATTLIST developer %guideline.attrib; >
+<!ELEMENT developer.name  (#PCDATA | %ASTM.Mix; | developer.type )*>
+<!ATTLIST developer.name %guideline.attrib; >
+<!ELEMENT developer.type  %astm.content;>
+<!ATTLIST developer.type source (ngc) "ngc">
+<!ATTLIST developer.type id ID #IMPLIED>
+<!ATTLIST developer.type Options CDATA #IMPLIED>
+<!ELEMENT committee.name  (#PCDATA | %ASTM.Mix; | committee.expertise | committee.member  )*>
+<!ATTLIST committee.name %guideline.attrib; >
+<!ELEMENT committee.expertise  %astm.content;>
+<!ATTLIST committee.expertise %guideline.attrib; >
+<!ELEMENT committee.member  (#PCDATA | %ASTM.Mix; | member.expertise )*>
+<!ATTLIST committee.member %guideline.attrib; >
+<!ELEMENT member.expertise  %astm.content;>
+<!ATTLIST member.expertise %guideline.attrib; >
+<!ELEMENT funding  %astm.content;>
+<!ATTLIST funding %guideline.attrib; >
+<!ELEMENT endorser  %astm.content;>
+<!ATTLIST endorser %guideline.attrib; >
+<!ELEMENT comparable.guideline  %astm.content;>
+<!ATTLIST comparable.guideline %guideline.attrib; >
+
+<!ELEMENT guideline.body (purpose | intended.audience | development.method | target.population | knowledge.components | testing | revision.plan )*>
+<!ATTLIST guideline.body %guideline.attrib; >
+
+<!ELEMENT purpose (main.focus | category | rationale | objective | available.option | implementation.strategy | health.outcome | exception )*>
+<!ATTLIST purpose %guideline.attrib; >
+<!ELEMENT main.focus %astm.content;>
+<!ATTLIST main.focus %guideline.attrib;  >
+<!ELEMENT category  %astm.content;>
+<!ATTLIST category source (ngc) "ngc">
+<!ATTLIST category id ID #IMPLIED>
+<!ATTLIST category Options CDATA #IMPLIED>
+<!ELEMENT rationale  %astm.content;>
+<!ATTLIST rationale %guideline.attrib; >
+<!ELEMENT objective  %astm.content;>
+<!ATTLIST objective %guideline.attrib; >
+<!ELEMENT available.option  %astm.content;>
+<!ATTLIST available.option %guideline.attrib; >
+<!ELEMENT implementation.strategy  %astm.content;>
+<!ATTLIST implementation.strategy %guideline.attrib; >
+<!ELEMENT health.outcome  %astm.content;>
+<!ATTLIST health.outcome %guideline.attrib; >
+<!ELEMENT exception  %astm.content;>
+<!ATTLIST exception %guideline.attrib; >
+
+<!ELEMENT intended.audience  (users | care.setting )*>
+<!ATTLIST intended.audience %guideline.attrib; >
+<!ELEMENT users  (#PCDATA | %ASTM.Mix; | clinical.specialty | professional.group )*>
+<!ATTLIST users %guideline.attrib; >
+<!ELEMENT clinical.specialty  %astm.content;>
+<!ATTLIST clinical.specialty  source   (ngc )  'ngc'
+                              id      ID     #IMPLIED
+                              Options CDATA  #IMPLIED >
+<!ELEMENT professional.group  %astm.content;>
+<!ATTLIST professional.group  source   (ngc )  'ngc'
+                              id      ID     #IMPLIED
+                              Options CDATA  #IMPLIED >
+<!ELEMENT care.setting  %astm.content;>
+<!ATTLIST care.setting %guideline.attrib; >
+
+<!ELEMENT development.method  (description.evidence.collection | evidence.time.period | method.evidence.grading | description.evidence.combination | cost.analysis | specification.harm.benefit | quantification.harm.benefit | role.value.judgment | role.patient.preference | qualifying.statement )*>
+<!ATTLIST development.method %guideline.attrib; >
+<!ELEMENT description.evidence.collection  (#PCDATA | %ASTM.Mix; | method.evidence.collection | number.source.documents )*>
+<!ATTLIST description.evidence.collection %guideline.attrib; >
+<!ELEMENT method.evidence.collection  %astm.content;>
+<!ATTLIST method.evidence.collection  source   (ngc )  'ngc'
+                                      id      ID     #IMPLIED
+                                      Options CDATA  #IMPLIED >
+<!ELEMENT number.source.documents  %astm.content;>
+<!ATTLIST number.source.documents %guideline.attrib; >
+<!ELEMENT evidence.time.period  %astm.content;>
+<!ATTLIST evidence.time.period %guideline.attrib; >
+<!ELEMENT method.evidence.grading  (#PCDATA | %ASTM.Mix; | rating.scheme )*>
+<!ATTLIST method.evidence.grading  source   (ngc )  'ngc'
+                                   id      ID     #IMPLIED
+                                   Options CDATA  #IMPLIED >
+<!ELEMENT rating.scheme  %astm.content;>
+<!ATTLIST rating.scheme %guideline.attrib; >
+<!ELEMENT description.evidence.combination  (#PCDATA | %ASTM.Mix; | method.evidence.combination )*>
+<!ATTLIST description.evidence.combination %guideline.attrib; >
+<!ELEMENT method.evidence.combination  %astm.content;>
+<!ATTLIST method.evidence.combination  source   (ngc )  'ngc'
+                                       id      ID     #IMPLIED
+                                       Options CDATA  #IMPLIED >
+<!ELEMENT cost.analysis  %astm.content;>
+<!ATTLIST cost.analysis %guideline.attrib; >
+<!ELEMENT specification.harm.benefit  %astm.content;>
+<!ATTLIST specification.harm.benefit %guideline.attrib; >
+<!ELEMENT quantification.harm.benefit  %astm.content;>
+<!ATTLIST quantification.harm.benefit %guideline.attrib; >
+<!ELEMENT role.value.judgment  %astm.content;>
+<!ATTLIST role.value.judgment %guideline.attrib; >
+<!ELEMENT role.patient.preference  %astm.content;>
+<!ATTLIST role.patient.preference %guideline.attrib; >
+<!ELEMENT qualifying.statement  %astm.content;>
+<!ATTLIST qualifying.statement %guideline.attrib; >
+
+<!ELEMENT target.population  (eligibility | age | sex )*>
+<!ATTLIST target.population %guideline.attrib; >
+<!ELEMENT eligibility  (#PCDATA | %ASTM.Mix; | inclusion.criterion | exclusion.criterion )*>
+<!ATTLIST eligibility %guideline.attrib; >
+<!ELEMENT inclusion.criterion  %astm.content;>
+<!ATTLIST inclusion.criterion %guideline.attrib; >
+<!ELEMENT exclusion.criterion  %astm.content;>
+<!ATTLIST exclusion.criterion %guideline.attrib; >
+<!ELEMENT age  %astm.content;>
+<!ATTLIST age  source   (ngc )  'ngc'
+               id      ID     #IMPLIED
+               Options CDATA  #IMPLIED >
+<!ELEMENT sex  %astm.content;>
+<!ATTLIST sex  source   (ngc )  'ngc' id  ID  #IMPLIED  Options CDATA  #IMPLIED >
+<!ELEMENT knowledge.components  (recommendation | definition | algorithm )*>
+<!ATTLIST knowledge.components %guideline.attrib; >
+<!ELEMENT recommendation  (#PCDATA | %ASTM.Mix; | conditional | imperative )*>
+<!ATTLIST recommendation  %guideline.attrib; >
+<!ELEMENT conditional  (#PCDATA | %ASTM.Mix; | decision.variable | action | reason | evidence.quality | recommendation.strength | flexibility | logic | cost | link | reference | certainty )*>
+<!ATTLIST conditional %guideline.attrib; >
+<!ELEMENT decision.variable  (#PCDATA | %ASTM.Mix; | value | decision.variable.description | test.parameter | decision.variable.cost )*>
+<!ATTLIST decision.variable  source  CDATA #IMPLIED  id ID  #IMPLIED
+decision.variable.id CDATA  #IMPLIED >
+<!ELEMENT value  %astm.content;>
+<!ATTLIST value %guideline.attrib; >
+<!ELEMENT decision.variable.description  %astm.content;>
+<!ATTLIST decision.variable.description %guideline.attrib; >
+<!ELEMENT test.parameter  (#PCDATA | %ASTM.Mix; | sensitivity | specificity | predictive.value )*>
+<!ATTLIST test.parameter %guideline.attrib; >
+<!ELEMENT sensitivity  %astm.content;>
+<!ATTLIST sensitivity %guideline.attrib; >
+<!ELEMENT specificity  %astm.content;>
+<!ATTLIST specificity %guideline.attrib; >
+<!ELEMENT predictive.value  %astm.content;>
+<!ATTLIST predictive.value %guideline.attrib; >
+<!ELEMENT decision.variable.cost  %astm.content;>
+<!ATTLIST decision.variable.cost  source CDATA  #IMPLIED  id  ID  #IMPLIED >
+<!ELEMENT action  (#PCDATA | %ASTM.Mix; | action.benefit | action.risk.harm | action.description | action.cost )*>
+<!ATTLIST action source  CDATA  #IMPLIED  id  ID #IMPLIED
+   action.id CDATA  #IMPLIED >
+<!ELEMENT action.benefit  %astm.content;>
+<!ATTLIST action.benefit %guideline.attrib; >
+<!ELEMENT action.risk.harm  %astm.content;>
+<!ATTLIST action.risk.harm %guideline.attrib; >
+<!ELEMENT action.description  %astm.content;>
+<!ATTLIST action.description %guideline.attrib; >
+<!ELEMENT action.cost  %astm.content;>
+<!ATTLIST action.cost %guideline.attrib; >
+<!ELEMENT reason  %astm.content;>
+<!ATTLIST reason %guideline.attrib; >
+<!ELEMENT evidence.quality  %astm.content;>
+<!ATTLIST evidence.quality %guideline.attrib; >
+<!ELEMENT recommendation.strength  %astm.content;>
+<!ATTLIST recommendation.strength %guideline.attrib; >
+<!ELEMENT flexibility  %astm.content;>
+<!ATTLIST flexibility %guideline.attrib; >
+<!ELEMENT logic  %astm.content;>
+<!ATTLIST logic %guideline.attrib; >
+<!ELEMENT cost  %astm.content;>
+<!ATTLIST cost %guideline.attrib; >
+<!ELEMENT link  %astm.content;>
+<!ATTLIST link %guideline.attrib; >
+<!ELEMENT reference  %astm.content;>
+<!ATTLIST reference %guideline.attrib; >
+<!ELEMENT certainty  %astm.content;>
+<!ATTLIST certainty %guideline.attrib; >
+
+<!ELEMENT imperative  (#PCDATA | %ASTM.Mix; |directive | reason | evidence.quality | recommendation.strength | flexibility | logic | cost | link | reference | certainty  )*>
+<!ATTLIST imperative %guideline.attrib; >
+<!ELEMENT directive  (#PCDATA | %ASTM.Mix; |directive.benefit | directive.risk.harm | directive.description | directive.cost  )*>
+<!ATTLIST directive source CDATA  #IMPLIED id ID #IMPLIED
+     directive.id CDATA  #IMPLIED >
+<!ELEMENT directive.benefit  %astm.content;>
+<!ATTLIST directive.benefit %guideline.attrib; >
+<!ELEMENT directive.risk.harm  %astm.content;>
+<!ATTLIST directive.risk.harm %guideline.attrib; >
+<!ELEMENT directive.description  %astm.content;>
+<!ATTLIST directive.description %guideline.attrib; >
+<!ELEMENT directive.cost  %astm.content;>
+<!ATTLIST directive.cost %guideline.attrib; >
+<!ELEMENT definition  (#PCDATA | %ASTM.Mix; | term )*>
+<!ATTLIST definition %guideline.attrib; >
+<!ELEMENT term  (#PCDATA | %ASTM.Mix; | term.meaning )*>
+<!ATTLIST term %guideline.attrib; >
+<!ELEMENT term.meaning  %astm.content;>
+<!ATTLIST term.meaning %guideline.attrib; >
+<!ELEMENT algorithm  (#PCDATA | %ASTM.Mix; |action.step | conditional.step | branch.step | synchronization.step )*>
+<!ATTLIST algorithm %guideline.attrib; >
+<!ELEMENT action.step  %astm.content;>
+<!ATTLIST action.step %guideline.attrib; >
+<!ELEMENT conditional.step  %astm.content;>
+<!ATTLIST conditional.step %guideline.attrib; >
+<!ELEMENT branch.step  %astm.content;>
+<!ATTLIST branch.step %guideline.attrib; >
+<!ELEMENT synchronization.step  %astm.content;>
+<!ATTLIST synchronization.step %guideline.attrib; >
+<!ELEMENT testing  (external.review | pilot.testing )*>
+<!ATTLIST testing %guideline.attrib; >
+<!ELEMENT external.review  (#PCDATA | %ASTM.Mix; | review.method )*>
+<!ATTLIST external.review %guideline.attrib; >
+<!ELEMENT review.method  %astm.content;>
+<!ATTLIST review.method  source   (ngc )  'ngc'
+                         id      ID     #IMPLIED
+                         Options CDATA  #IMPLIED >
+<!ELEMENT pilot.testing  %astm.content;>
+<!ATTLIST pilot.testing %guideline.attrib; >
+<!ELEMENT revision.plan  (expiration | scheduled.review )*>
+<!ATTLIST revision.plan %guideline.attrib; >
+<!ELEMENT expiration  %astm.content;>
+<!ATTLIST expiration %guideline.attrib; >
+<!ELEMENT scheduled.review  %astm.content;>
+<!ATTLIST scheduled.review %guideline.attrib; >

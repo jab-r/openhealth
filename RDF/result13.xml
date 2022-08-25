@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <rdf:subject rdf:resource="#pages"/>
+      <rdf:object rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Bag"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#_1"/>
+      <rdf:subject rdf:resource="#pages"/>
+      <rdf:object rdf:resource="#/1/1/1"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="file:/D:/rdf/test13.xml#resource"/>
+      <rdf:subject rdf:resource="#/1/1/1"/>
+      <rdf:object>http://foo.org/foo.html</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#li"/>
+      <rdf:subject rdf:resource="#pages"/>
+      <rdf:object rdf:resource="http://foo.org/foo.html"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="file:/D:/rdf/test13.xml#resource"/>
+      <rdf:subject rdf:resource="http://foo.org/foo.html"/>
+      <rdf:object>http://foo.org/foo.html</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#_2"/>
+      <rdf:subject rdf:resource="#pages"/>
+      <rdf:object rdf:resource="#/1/1/2"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="file:/D:/rdf/test13.xml#resource"/>
+      <rdf:subject rdf:resource="#/1/1/2"/>
+      <rdf:object>http://bar.org/bar.html</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#li"/>
+      <rdf:subject rdf:resource="#pages"/>
+      <rdf:object rdf:resource="http://bar.org/bar.html"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="file:/D:/rdf/test13.xml#resource"/>
+      <rdf:subject rdf:resource="http://bar.org/bar.html"/>
+      <rdf:object>http://bar.org/bar.html</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://description.org/schema/Creator"/>
+      <rdf:subject rdf:resource="#/1/2"/>
+      <rdf:object>Ora Lassila</rdf:object>
+   </rdf:Statement>
+</rdf:RDF>

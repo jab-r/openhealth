@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>
+      Defining relationships between URIs and resources using predicate
+      calculus and schemata
+    </title>
+    <link rel="stylesheet" type="text/css" href="xrd.css" />
+  </head>
+  <body>
+    <h1>
+      Defining logical relationships between documents, schemata, URIs,
+      resources and entities
+    </h1>
+    <p>
+      <a href="mailto:jonathan@openhealth.org">Jonathan Borden</a> <a
+      href="http://www.openhealth.org">The Open Healthcare Group</a> May 4,
+      2001
+    </p>
+    <p>
+      This paper forms the foundation for a schema independent type framework. 
+	  The relationship between URIs, Resources and Entities are formally defined. 
+	  XML Namespaces are defined using tuples.
+    </p>
+	<p>We define a <em>schema</em> generically through a validity predicate. This predicate tests an instance
+	with respect to a schema. This predicate serves to define the set of <em>Instances</em> of a particular schema.
+	</p>
+    <h3 class="theorem">
+      [1] valid(a,A) := a document <em>a</em> is valid with respect to a schema
+      <em>A</em>
+    </h3>
+    <p>
+      The predicate <em>valid(a,A)</em> is true for all documents
+      <em>a</em>which are valid with respect to a schema <em>A</em>. Validity
+      with respect to a particular schema is defined by the particular schema
+      specification.
+    </p>
+    <h3 class="theorem">
+      [2] Instances(A) := for all a valid(a,A) => a in Instances(A)
+    </h3>
+    <p>
+      The set of all documents valid with respect to a schema <em>A</em>.
+    </p>
+    <!--
+    <h2 id="instance-equivalence">Definition: instance equivalence</h2>
+    <h3 class="theorem">[3] equivalent(<b>a</b>,<b>b</b>) := There exists 
+    &lt;t,t'&gt; such that <b>b = t(a)</b> and <b>a =      t'(b)</b></h3>
+    <p>A document <i>a</i> is equivalent to another document <i>b</i> if there exists a transform <i>t</i> which produces
+    <i>b</i> from <i>a</i>, and there exists a transform <i>t'</i> which produces <i>a</i> from <i>b</i>.
+    </p>
+    -->
+    <h2 id="schema-equivalence">
+      Definition: schema equality
+    </h2>
+    <h3 class="theorem">
+      [3] equal(A,B) := Instances(A) = Instances(B)
+    </h3>
+    <p>
+      The schemata A and B are equal if the set of documents valid with respect
+      to A is equal to the set of documents valid with respect to B. Note, the
+      schemata may have different specifications (e.g. DTD vs. XML Schema).
+      This predicate provides a way to test for equality of schema having
+      different specifications (e.g. an XML Schema equal to a TREX schema)
+    </p>
+    <h2>
+      Definition: schema equivalence
+    </h2>
+    <h3 class="theorem">
+      [4] equivalent(A,B) &lt;=&gt; There exists &lt;t,t&#39;&gt; such that dataPreserving(t) and for all
+      <em>a</em> in Instances(A) there exists b in Instances(B) such that <em>b
+      = t(a)</em> and <em>a = t&#39;(b)</em> and for all <em>b</em> in
+      Instances(B) there exists a in Instances(A) such that <em>b = t(a)</em>
+      and <em>a = t&#39;(b)</em>.
+    </h3>
+    <p class="theorem">
+      Two schemata are equivalent if there exists a pair of transforms capable
+      of transforming instances of A into instances of B and vis versa.
+    </p>
+	<h3 class="theorem">
+		[4a] dataPreserving(t) => for all d Data(d) = Data(t(d)) 
+	</h3>
+	<h3 class="theorem">
+		[4d] Data(d) := for all n in Nodes(d) text(n) or attribute(n) => value(n) in Data(d)
+	</h3>
+    <!--
+    <h2 id="instance-restriction">Definition: instance restriction</h2>
+    <h3 class="theorem">[6] restriction(a,b) :=  There exists <em>t</em> such that <em>a = t(b)</em> but 
+     there is no <em>t'</em> such that <em>b =      t'(a)</em></h3>
+    <p><em>a</em> is a restriction of <em>b</em> if a transformation exists that maps <em>b</em> to <em>a</em> but not exists a 
+    transform t' that maps a into b.</p>
+    <p class="ednote">Note: not sure this works...</p>
+    -->
+	<p>We move on to define a generic type hierarchy built on membership in schema instance sets.</p>
+    <h2 id="schema-restriction">
+      Definition: schema restriction
+    </h2>
+    <h3 class="theorem">
+      [5] restriction(A,B) := Instances(<em>A</em>) &lt; Instances(<em>B</em>)
+    </h3>
+    <h2 class="theorem">
+      Definition: schema extension
+    </h2>
+    <h3 class="theorem">
+      [6] extension(A,B) := restriction(B,A)
+    </h3>
+    <p>
+      Extension is the inverse of restriction.
+    </p>
+    <h2 class="theorem">
+      Definition: Class subType restriction
+    </h2>
+    <h3 class="theorem">
+      [7] typeOf(x,c<sub>r</sub>) := x in Instances(c) 
+    </h3>
+    <h3 class="theorem">
+      [7a] restriction(c,c<sub>r</sub>) &lt;=&gt; Instances(c) &lt;
+      Instances(c<sub>r</sub>)
+    </h3>
+    <p>
+      A class may be a subType of another class. There are two types of subType
+      class relationships: extension and restruction. In the restriction
+      subType relationship: <em>derivation by restriction</em>, a subClass is a
+      proper subSet of the parent class.
+    </p>
+    <h2 class="theorem">
+      Definition: Class subType extension
+    </h2>
+    <h3 class="theorem">
+      [8] extension(c,c<sub>e</sub>) &lt;=&gt; Instances(c<sub>e</sub>) &lt;
+      Instances(c)
+    </h3>
+    <h3 class="theorem">
+      [9] subClassOf(c<sub>s</sub>,c) &lt;=&gt; Instances(c<sub>s</sub>) &lt;=
+      Instances(c)
+    </h3>
+    <h2>
+      URI Resources and Entities
+    </h2>
+	<p>In this section we define a simple set of relationships between URIs, Resources and Entities. 
+	A Resource is defined in RFC 2396 as the conceptual mapping of a URI. A URI may be resolved into an entity which represents the
+	resource at a particular point in time. A URI is thus mapped to a set of entities which may vary over time and/or the conditions on which
+	the entity has been retrieved given the URI (e.g. content negotiation). 
+	</p>
+    <h2 class="theorem">
+      Definition: URI Resource Equivalence
+    </h2>
+    <h3 class="theorem">
+      [10] equivalent(URI<sub>a</sub>,URI<sub>b</sub>) :=
+      Entities(URI<sub>a</sub>) = Entities(URI<sub>b</sub>) and cardinality(Entities(URI<sub>a</sub>)) > 0
+    </h3>
+	<p>Two URIs are equivalent when they map to the same set of entities.</p>
+    <h3 class="theorem">
+      [11] equivalent(A,B) &lt;=&gt; exists URI<sub>a</sub> such that A = resource(URI<sub>a</sub>) and 
+	  exists URI<sub>b</sub> such that B =
+      resource(URI<sub>b</sub>) and equivalent(URI<sub>a</sub>,URI<sub>b</sub>)
+    </h3>
+    <p>
+      Two resources <em>a</em> and <em>b</em> are equivalent if the set of
+      <em>entities</em> given the URI<sub>a</sub> and URI<sub>b</sub> are equal
+      where URI<sub>a</sub> identifies <em>a</em> and URI<sub>b</sub>
+      identifies <em>b</em>.
+    </p>
+	<p>
+		An issue arises given the mapping of a URI to a set of entities and a URI reference to a particular node within an entity.
+		Some usages of the term <em>resource</em> do not distinguish between the entity retrieved from resolution of a URI, from the node
+		obtained from resolution of the URI and a fragment identifier (together a URI reference).
+	</p>
+	<!--
+	<p>Here we distinguish a <em>Schema</em> which is bound to a URI, 
+	from a <em>Class</em> which is bound to a URI reference, and relate this distinction to the XML concept of a namespace qualified name: <em>QName</em>. We go on to formally define a namespace and its relationship to the URI reference which defines it.</p>
+    
+	<h2 class="theorem">
+      Definition: Schema Identification
+    </h2>
+    <h3 class="theorem">
+      [12] schema(URI<sub>S</sub>) := exists schema S such that
+      Entities(URI<sub>S</sub>) &lt;= Instances(S)
+    </h3>
+    <p>
+      The schema of a URI is defined as the schema S such that the set of
+      entities which correspond to the URI are all members of the set of
+      instances of S.
+    </p>
+	-->
+    <!--<h2 class="theorem">
+      Definition: Class Identification
+    </h2>
+    <h3 class="theorem">
+      [13] class(URIref<sub>c</sub>) := exists class C such that
+      Entities(URIref<sub>c</sub>) &lt;= Instances(C)
+    </h3>
+    <p>
+      The class of a URI reference is defined as the class C such that each
+      member of the set of entities corresponding to the URI is a member of the
+      instances of the class c.
+    </p>-->
+    <h3 class="theorem">
+      [13] QName := &lt;URIreference,localname&gt;
+    </h3>
+    <h3 class="theorem">
+      [14] URI(Qname) := URIPart(URIReference(QName))+&#39;#&#39;+localname(QName)
+    </h3>
+    <p>
+      A namespace qualified name (QName) is a pair consisting of a namespace
+      URI reference and a localname. The URI reference corresponding to a QName
+      is formed by composing the URI part of the namespace URI reference with
+      the localname as a fragment identifier.
+    </p>
+    <h2 class="theorem">
+      Definition: XML Namespace
+    </h2>
+    <h3 class="theorem">
+      [15] resourceDescription(id) := &lt;title,nature,purpose,lang,href&gt;
+    </h3>
+    <h3 class="theorem">
+      [16] Namespace(URI) := for each id in Ids(Entities(URI)) => resourceDescription(id) in Namespace(URI)
+    </h3>
+	<p class="ednote">Note: Is this correct syntax to express "the set of resource descriptions identified by the set of ids in the entity obtained from the namespace URI"?</p>
+    <p>
+      According to the <a href="http://www.rddl.org/">RDDL specification</a> a
+      <em>namespace</em> is formally defined as a set of tuples each which
+      defines a <em>resource description</em>. A resource description has an
+      <em>id</em>, a <em>title</em>, a <em>nature</em>, a <em>purpose</em>, a <em>language</em> and refers to a URI which
+      identifies the resource being described. 
+    </p>
+	<h2 class="theorem">Definition: Hierarchical URIs</h2>
+	<h3 class="theorem">[17] hierarchical(URI) => Exists Children(URI) such that for each uri in Children(URI) => startsWithEquivalent(URI,uri)</h3>
+	<p>A hierachical URI has a set of child URIs each of which starts with a URI prefix equivalent to the parent URI</p>
+	<p>The next section describes the relationships between URIs, fragment identifiers, and what they identify. 
+	URIs identify a <em>resources</em>. URIs are rendered at various points in time and under various situations such as content negotiation into a set of <em>entities</em>. 
+	A rendered entity typically is associated with a MIME media type which defines the document format. 
+	Formats are typically specified using <em>grammars</em> such as EBNF. Generally a grammar defines a parse tree or directed labelled graph in which an entity defines a set of related nodes.
+	In the absense of a well defined logical structure, an entity transferred over a network as a stream of characters can be represented as a root node and a series of ordered child nodes, one for each character. 
+	Generically a document is represented as a set of nodes.</p>
+	<h2 class="theorem">Definition: Node Identifier (Fragment Identifier)</h2>
+	<h3 class="theorem">[18] node(id,e) := for all e in Entities(URI) node(id,e) => id in Ids(e)</h3>
+	<p>Every identifier id in the set of identifiers of an entity (Ids(e)) identifies a node</p>
+	<h3 class="theorem">[19] rootNode(e) := node("",e)</h3>
+	<h3 class="theorem">[20] AbstractNodeSet(URIref) := for all e in Entities(uriPart(URIref)) exists n = node(fragmentPart(URIref),e) => n in AbstractNodeSet(URIref)</h3>
+	<p>A URI reference is defined to identify an <em>abstract node</em>. 
+	The node is termed <em>abstract</em> because a URI identifies a single abstract 
+	<em>resource</em> yet references a <em>set of entities</em>. 
+	For each entity in this set, the fragment identifier identifies a single <em>node</em> hence the abstract node is instanciated as this set of concrete nodes.
+	In a similar fashion to which a URI indicates a single resource and a set of entities, a URI reference indicates a single abstract node and set of nodes. 
+	The relationships between URI, URI reference, Resource, Entity, Abstract Node and Node are represented by the following table:
+	<table border="1">
+		<tr><td>URI</td><td>URI reference</td></tr>
+		<tr><td>Resource</td><td>Abstract Node</td></tr>
+		<tr><td>Entity</td><td>Node</td></tr>
+	</table>
+	</p>
+	<h2 class="theorem">Definition: Class Identification</h2>
+	<h3 class="theorem">[21] node(URIref,S) &lt;=&gt; exists e in Entities(uriPart(URIref)) such that e in Instances(S) and exists n = node(fragmentPart(URIref),e) </h3>
+	<p>A node may be subclassed with respect to a schema.</p>
+  </body>
+</html>
+

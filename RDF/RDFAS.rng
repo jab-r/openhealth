@@ -1,0 +1,115 @@
+<?xml version="1.0" ?>
+<!-- 
+	Copyright (c) 2001 Jonathan Borden &lt;jonathan@openhealth.org&gt;
+	
+	A tree regular expression for the RDF AbstractSyntax
+	
+	This schema may be freely used as long as this copyright notice is included in this or 
+	derivative works and you agree that the author accepts no liability nor responsibility 
+	for any use of this document.
+-->
+<grammar xmlns="http://relaxng.org/ns/structure/0.9"
+		ns="http://www.openhealth.org/RDF/RDFAbstractSyntax#"
+		xmlns:rdfas="http://www.openhealth.org/RDF/RDFAbstractSyntax#"
+		xmlns:rdf="http://www.openhealth.org/RDF/RDFSurfaceSyntax#"
+		datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+<include href="RDF.rng"/>
+<define name="statement">
+ <element name="Statement">
+ 	<optional>
+		<ref name="idAboutAttr"/>
+	</optional>
+	<interleave>
+		<ref name="predicate"/>
+		<ref name="subject"/>
+		<ref name="object"/>
+		<!--<element name="predicate">
+			<choice>
+				<ref name="resourceAttr"/>
+				<ref name="resourceQAttr"/>
+			</choice>
+			<empty/>
+		</element>-->
+	</interleave>
+ </element>
+</define>
+<define name="predicate">
+	<element name="predicate">
+		<ref name="word"/>
+	</element>
+</define>
+<define name="subject">
+ <element name="subject">
+	<ref name="term"/>
+ </element>
+</define>
+<define name="object">
+ <element name="object">
+	<ref name="term"/>
+ </element>
+</define>
+<define name="subjectObject.model">
+   <choice>
+		<ref name="resourceAttr"/>
+		<ref name="resourceQAttr"/>
+		<ref name="varAttr"/>
+		<group>
+		    <optional>
+				<ref name="bagIdAttr"/>
+			</optional>
+			<zeroOrMore>
+				<ref name="obj"/>
+			</zeroOrMore>
+		</group>
+	</choice>
+</define>
+<define name="varAttr">
+	<attribute name="rdfas:variable">
+		<data type="NMTOKENS"/>
+	</attribute>
+</define>
+<define name="variable">
+	<element name="Variable">
+		<attribute name="rdfas:name">
+			<data type="NMTOKEN"/>
+		</attribute>
+		<empty/>
+	</element>
+</define>
+<define name="bundle">
+	<element name="rdf:Seq">
+	  <zeroOrMore>
+		<element name="rdf:li">
+			<ref name="term"/>
+		</element>
+	  </zeroOrMore>
+	</element>
+</define>
+<define name="word">
+	<choice>
+		<element name="URIRef">
+			<ref name="resourceAttr"/>
+			<empty/>
+		</element>
+		<element name="QName">			
+			<ref name="resourceQAttr"/>
+			<empty/>
+		</element>
+		<element name="Literal">
+			<mixed>
+				<zeroOrMore>
+					<ref name="any"/>
+				</zeroOrMore>
+			</mixed>
+		</element>
+		<ref name="variable"/>
+	</choice>
+</define>
+<define name="term">
+	<choice>
+		<ref name="word"/>
+		<ref name="statement"/>
+		<ref name="bundle"/>
+	</choice>
+</define>
+</grammar>

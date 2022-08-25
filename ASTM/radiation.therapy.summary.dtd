@@ -1,0 +1,119 @@
+<!-- 
+
+	Copyright (c) Jonathan Borden, The Open Healthcare Group all rights reserved
+	Licensed under http://www.openhealth.org/license
+
+	PUBLIC "-//ASTM//DTD Radiation Therapy Summary 1.0//EN"
+	SYSTEM "http://www.openhealth.org/ASTM/radiation.thereapy.summary.dtd"
+
+	
+	This DTD defines an ASTM E31.25 standard Radiation Therapy Summary
+
+-->
+
+<!ENTITY % ASTM.base.module PUBLIC "-//ASTM//DTD E31.25 Base 1.0/EN" "ASTM.E31.25.dtd">
+<!ENTITY % astm.dicom.module PUBLIC "-//ASTM//DTD DICOMV3 1.0//EN" "astm.dicom.dtd">
+<!ENTITY % astm.dicom.rt.module PUBLIC "-//ASTM//DTD DICOM RT 1.0//EN" "DICOMRT.dtd">
+<!ENTITY % XRT.xmlns "http://www.openhealth.org/ASTM/radiation.therapy.summary">
+
+%ASTM.base.module;
+
+<!ENTITY % NS.prefixed "IGNORE">
+<!ENTITY % XRT.prefixed "%NS.prefixed;">
+
+<![ %XRT.prefixed; [
+<!ENTITY % xrt "xrt">
+<!ENTITY % xrt.prefix "%xrt;:">
+<!ENTITY % XRT.xmlns.attrib "xmlns:xrt CDATA #FIXED 'http://www.openhealth.org/ASTM/radiation.therapy.summary'">
+]]>
+<!ENTITY % xrt "">
+<!ENTITY % xrt.prefix "">
+<!ENTITY % XRT.xmlns.attrib "xmlns CDATA #FIXED 'http://www.openhealth.org/ASTM/radiation.therapy.summary'">
+
+<!ENTITY % use.dicom "IGNORE">
+
+<![%use.dicom;[
+%astm.dicom.module;
+%astm.dicom.rt.module;
+]]>
+
+
+
+<!ENTITY % radiation.therapy.summary.qname "%xrt.prefix;radiation.therapy.summary">
+<!ENTITY % clinical.history.qname "%xrt.prefix;clinical.history">
+<!ENTITY % treatments.qname "%xrt.prefix;treatments">
+<!ENTITY % completion.report.qname "%xrt.prefix;completion.report">
+<!ENTITY % patient.followup.qname "%xrt.prefix;patient.followup">
+<!ENTITY % clinical.body.qname "%xrt.prefix;clinical.body">
+<!ENTITY % treatment.qname "%xrt.prefix;treatment">
+<!ENTITY % region.treated.qname "%xrt.prefix;region.treated">
+<!ENTITY % energy.MeV.qname "%xrt.prefix;energy.MeV">
+<!ENTITY % tumor.dose.cGy.qname "%xrt.prefix;tumor.dose.cGy">
+<!ENTITY % start.date.qname "%xrt.prefix;start.date">
+<!ENTITY % end.date.qname "%xrt.prefix;end.date">
+<!ENTITY % number.of.fractions.qname "%xrt.prefix;number.of.fractions">
+<!ENTITY % fraction.dose.cGy.qname "%xrt.prefix;fraction.dose.cGy">
+<!ENTITY % dicom.rt.treatment.summary.record.module.qname "%xrt.prefix;dicom.rt.treatment.summary.record.module">
+
+<!ELEMENT %radiation.therapy.summary.qname; (
+	 %clinical.header.qname;, 
+	 %clinical.body.qname;
+)>
+
+<!ATTLIST %radiation.therapy.summary.qname;
+ 	%astm.document.attrib;
+	%XRT.xmlns.attrib;
+>
+<!ELEMENT %clinical.body.qname; (
+	%clinical.history.qname;,
+	%treatments.qname;,
+	%completion.report.qname;,
+	(%patient.followup.qname;)?,
+	(%dicom.rt.treatment.summary.record.module.qname;)?
+)>
+<!ATTLIST %clinical.body.qname; %ch.attrib;>
+
+<!ELEMENT %clinical.history.qname; %astm.content;>
+<!ATTLIST %clinical.history.qname; %astm.content.attrib;>
+<!ELEMENT %completion.report.qname; %astm.content;>
+<!ATTLIST %completion.report.qname; %astm.content.attrib;>
+<!ELEMENT %patient.followup.qname; (#PCDATA)>
+<!ATTLIST %patient.followup.qname; %astm.content.attrib;>
+<!ELEMENT %treatments.qname; (%treatment.qname;)*>
+<!ATTLIST %treatments.qname; %astm.content.attrib;>
+<!ELEMENT %treatment.qname; (
+	%region.treated.qname;,
+	%energy.MeV.qname;,
+	%tumor.dose.cGy.qname;,
+	%start.date.qname;,
+	%end.date.qname;,
+	%number.of.fractions.qname;,
+	%fraction.dose.cGy.qname;
+)>	
+<!ATTLIST %treatment.qname; %astm.content.attrib;>
+<!ELEMENT %region.treated.qname; (#PCDATA)>
+<!ATTLIST %region.treated.qname; %astm.content.attrib;>
+<!ELEMENT %energy.MeV.qname; (#PCDATA)>
+<!ATTLIST %energy.MeV.qname; %astm.content.attrib;>
+<!ELEMENT %tumor.dose.cGy.qname; (#PCDATA)>
+<!ATTLIST %tumor.dose.cGy.qname; %astm.content.attrib;>
+<!ELEMENT %start.date.qname; (#PCDATA)>
+<!ATTLIST %start.date.qname; %astm.content.attrib;>
+<!ELEMENT %end.date.qname; (#PCDATA)>
+<!ATTLIST %end.date.qname; %astm.content.attrib;>
+<!ELEMENT %number.of.fractions.qname; (#PCDATA)>
+<!ATTLIST %number.of.fractions.qname; %astm.content.attrib;>
+<!ELEMENT %fraction.dose.cGy.qname; (#PCDATA)>
+<!ATTLIST %fraction.dose.cGy.qname; %astm.content.attrib;>
+
+
+
+
+
+
+
+
+
+
+	 
+

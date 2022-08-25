@@ -1,0 +1,31 @@
+<!ELEMENT objectDef (interfaceDef+,other*)>
+<!ATTLIST objectDef 
+          name NMTOKEN #REQUIRED
+          uuid CDATA #REQUIRED
+	  transacted (not|new|requires|supports) "not"
+>
+
+<!ELEMENT other ANY>
+<!ELEMENT interfaceDef (method*,param*)>
+<!ATTLIST objectDef 
+          name NMTOKEN #REQUIRED
+          uuid CDATA #REQUIRED
+          inheritsFrom NMTOKEN #IMPLIED>
+
+<!ELEMENT method (param*)>
+<!ATTLIST method 
+        name NMTOKEN #REQUIRED
+        id NMTOKEN #IMPLIED
+>
+<!ELEMENT property (#PCDATA)>
+<!ATTLIST property
+	name NMTOKEN #IMPLIED
+	dt NMTOKEN #REQUIRED
+>
+<!ELEMENT param (#PCDATA)>
+<!ATTLIST param
+	name NMTOKEN #IMPLIED
+	dt NMTOKEN #REQUIRED
+	type (get|put|getput) "getput"
+>
+	

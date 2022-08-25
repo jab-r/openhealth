@@ -1,0 +1,50 @@
+# RELAXNG non-XML grammar for RDFxt
+# Jonathan Borden 3/7/2002
+namespace local = ""
+namespace rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+namespace rdfx = "http://www.openhealth.org/RDF/RDFxtSyntax"
+datatypes xsd = "http://www.w3.org/2001/XMLSchema-datatypes"
+
+start = (RDF | RDFxt)
+
+# handle rdf:RDF as RDF
+RDF = element rdf:RDF{attribute rdf:ID{xsd:NMTOKEN}?,rdf1_bundle}
+# extend other namespace qualified root elements with bundles
+RDFxt = element * - (local:*|rdf:*){bundle}
+
+# an RDF 1 bundle is a bag of statements
+rdf1_bundle = desc*
+
+# a bundle can be either sentences or rdf:Descriptions
+bundle = 	(sentence|desc)*
+
+# a sentence may have variables and 
+# is considered like a function that accepts a bundle of arguments
+# variables are not namespace qualified
+sentence = 	element * - (local:*){var*,bundle}
+var = 		element local:*{empty} | attribute local:*{""}
+# an rdf:Description or typedNode
+desc = 	element (rdf:Description |rdf:Alt| rdf:Seq| rdf:Bag | (* - (rdf:*|local:*))) {
+				(attribute rdf:about{anyURI}|
+				 attribute rdf:ID{xsd:NMTOKEN})?,
+				 attribute rdf:bagID{xsd:NMTOKEN}?,
+				 attribute rdf:type{anyURI}?,
+				predobj*
+			}
+# predicate = (element * - (rdf:*,local:*)) | element rdf:li | element rdf:value
+predobj = 	element (rdf:li | rdf:value | (* - (rdf:*|local:*)))
+			{
+				attribute rdf:ID{xsd:NMTOKEN}?,
+				attribute rdf:bagID{xsd:NMTOKEN}?,
+				(obj | 
+				attribute rdf:resource{anyURI} |
+				(attribute rdf:parseType{"Resource"},obj+) |
+				(attribute rdf:parseType{xsd:NMTOKEN - "Resource"}, any))
+			} |
+			predAttr
+predAttr = 	attribute * - (local:*|rdf:*){text} | attribute rdf:value {text}
+obj = 		desc | 
+			text |
+			RDF 
+any =		mixed { element * { attribute * { text }*, any }* }
+

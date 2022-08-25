@@ -1,0 +1,166 @@
+<?xml version="1.0" ?>
+<!-- 
+	Copyright (c) 2001 Jonathan Borden &lt;jonathan@openhealth.org&gt;
+	
+	A tree regular expression for the RDF AbstractSyntax
+	
+	This schema may be freely used as long as this copyright notice is included in this or 
+	derivative works and you agree that the author accepts no liability nor responsibility 
+	for any use of this document.
+-->
+<grammar xmlns="http://relaxng.org/ns/structure/0.9"
+		ns="http://www.openhealth.org/RDF/WebSyntax#"
+		xmlns:rdfas="http://www.openhealth.org/RDF/RDFAbstractSyntax#"
+		xmlns:rdf="http://www.openhealth.org/RDF/WebSyntax#"
+		datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+<define name="statement">
+ <element name="st">
+ 	<optional>
+		<ref name="idAttr"/>
+	</optional>
+	<interleave>
+		<choice>
+			<ref name="predicate"/>
+			<ref name="predicateAttr"/>
+		</choice>
+		<choice>
+			<ref name="subject"/>
+			<ref name="subjectAttr"/>
+		</choice>
+		<choice>
+			<ref name="object"/>
+			<ref name="objectAttr"/>
+		</choice>
+	</interleave>
+ </element>
+</define>
+<define name="predicate">
+	<element name="p">
+		<choice>
+		 <ref name="wordAttr"/>
+		 <ref name="word"/>
+		</choice>
+	</element>
+</define>
+<define name="subject">
+ <element name="s">
+		<choice>
+		 <ref name="termAttr"/>
+		 <ref name="term"/>
+		</choice>
+ </element>
+</define>
+<define name="object">
+ <element name="object">
+		<choice>
+		 <ref name="termAttr"/>
+		 <ref name="term"/>
+		</choice>
+ </element>
+</define>
+<define name="variableAttr">
+	<attribute name="rdf:variable">
+		<data type="NMTOKENS"/>
+	</attribute>
+</define>
+<define name="variable">
+	<element name="variable">
+		<attribute name="rdf:name">
+			<data type="NMTOKEN"/>
+		</attribute>
+		<empty/>
+	</element>
+</define>
+<define name="bundle">
+ 	<optional>
+		<ref name="idAttr"/>
+	</optional>
+	<element name="b">
+	  <zeroOrMore>
+	  	<choice>
+			<ref name="term"/>
+			<element name="li">
+				<ref name="termAttr"/>
+			</element>
+		</choice>
+	  </zeroOrMore>
+	</element>
+</define>
+<define name="word">
+	<choice>
+		<element name="uri">
+			<choice>
+				<group>
+				 <ref name="resourceAttr"/>
+				 <empty/>
+				</group>
+				<data type="anyURI"/>
+			</choice>
+		</element>
+		<choice>
+			<element name="qname">			
+			  <choice>
+				<group>
+				 <ref name="nameAttr"/>
+				 <empty/>
+				</group>
+				<data type="NMTOKEN"/>
+			  </choice>
+			</element>
+			<ref name="any"/>
+		</choice>
+		<element name="Literal">
+			<mixed>
+				<zeroOrMore>
+					<ref name="any"/>
+				</zeroOrMore>
+			</mixed>
+		</element>
+		<ref name="variable"/>
+	</choice>
+</define>
+<define name="wordAttr">
+	<choice>
+		<attribute name="rdf:URIRef">
+			<data type="anyURI"/>
+		</element>
+		<attribute name="rdf:ID">
+			<data type="ID"/>
+		</attribute>
+		<attribute name="rdf:qname">			
+			<data type="QName"/>
+		</element>
+		<attribute name="rdf:literal">
+			<string/>
+		</element>
+		<attribute name="rdf:variable">
+			<data type="QName"/>
+		</attribute>
+	</choice>
+</define>
+<define name="term">
+	<choice>
+		<ref name="word"/>
+		<ref name="statement"/>
+		<ref name="bundle"/>
+	</choice>
+</define>
+<define name="termAttr">
+	<ref name="wordAttr"/>
+</define>
+<define name="idAttr">
+	<attribute name="rdf:ID">
+		<data type="ID"/>
+	</attribute>
+</define>
+<define name="resourceAttr">
+	<attribute name="rdf:href">
+		<data type="anyURI"/>
+	</attribute>
+</define>
+<define name="nameAttr">
+	<attribute name="rdf:name">
+		<data type="QName"/>
+	</attribute>
+</define>
+</grammar>

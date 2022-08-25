@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" ns="http://www.openhealth.org/ASTM/admission.discharge.summary" xmlns:ads="http://www.openhealth.org/ASTM/admission.discharge.summary">
+  <include href="ASTM.E2182.rng"/>
+  <include href="history.module.rng"/>
+  <include href="physical.examination.module.rng"/>
+  <define name="root">
+    <choice>
+      <ref name="admission.note"/>
+      <ref name="discharge.summary"/>
+    </choice>
+  </define>
+  <define name="history.and.physical.model">
+    <ref name="chief.complaint"/>
+    <ref name="history.of.present.illness"/>
+    <ref name="known.allergies"/>
+    <ref name="medications"/>
+    <ref name="history"/>
+    <ref name="physical.examination"/>
+    <optional>
+      <ref name="laboratory.data"/>
+    </optional>
+    <optional>
+      <ref name="diagnostic.studies"/>
+    </optional>
+  </define>
+  <define name="admission.note">
+    <element name="admission.note">
+      <ref name="astm.document.attrib"/>
+      <ref name="clinical.header"/>
+      <ref name="clinical.body"/>
+    </element>
+  </define>
+  <define name="admission">
+    <element name="admission">
+      <ref name="astm.content.attrib"/>
+      <group>
+        <ref name="history.and.physical.model"/>
+        <ref name="diagnoses"/>
+        <optional>
+          <ref name="reason.for.admission"/>
+        </optional>
+      </group>
+    </element>
+  </define>
+  <define name="diagnoses">
+    <element name="diagnoses">
+      <ref name="astm.content.attrib"/>
+      <zeroOrMore>
+        <ref name="diagnosis"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="diagnosis">
+    <element name="diagnosis">
+      <ref name="astm.content.attrib"/>
+      <ref name="astm.content"/>
+    </element>
+  </define>
+  <define name="chief.complaint">
+    <element name="chief.complaint">
+      <ref name="astm.content.attrib"/>
+      <text/>
+    </element>
+  </define>
+  <define name="reason.for.admission">
+    <element name="reason.for.admission">
+      <ref name="astm.content.attrib"/>
+      <ref name="astm.content"/>
+    </element>
+  </define>
+  <define name="history">
+    <element name="history">
+      <ref name="astm.content.attrib"/>
+      <ref name="history.model"/>
+    </element>
+  </define>
+  <define name="history.of.present.illness">
+    <element name="history.of.present.illness">
+      <ref name="astm.content.attrib"/>
+      <ref name="astm.content"/>
+    </element>
+  </define>
+  <define name="past.medical.history">
+    <element name="past.medical.history">
+      <ref name="astm.content.attrib"/>
+      <ref name="astm.content"/>
+    </element>
+  </define>
+  <define name="past.surgical.history">
+    <element name="past.surgical.history">
+      <ref name="astm.content.attrib"/>
+      <ref name="astm.content"/>
+    </element>
+  </define>
+  <define name="family.history">
+    <element name="family.history">
+      <ref name="astm.content.attrib"/>
+      <ref name="astm.content"/>
+    </element>
+  </define>
+  <define name="social.history">
+    <element name="social.history">
+      <ref name="astm.content.attrib"/>
+      <ref name="astm.content"/>
+    </element>
+  </define>
+  <define name="review.of.systems">
+    <element name="review.of.systems">
+      <ref name="astm.content.attrib"/>
+      <ref name="astm.content"/>
+    </element>
+  </define>
+  <define name="known.allergies">
+    <element name="known.allergies">
+      <ref name="astm.content.attrib"/>
+      <ref name="astm.content"/>
+    </element>
+  </define>
+  <define name="medications">
+    <element name="medications">
+      <ref name="astm.content.attrib"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="Flow.model"/>
+          <ref name="medication"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="medication">
+    <element name="medication">
+      <ref name="astm.content.attrib"/>
+      <ref name="astm.content"/>
+    </element>
+  </define>
+  <define name="physical.examination">
+    <element name="physical.examination">
+      <ref name="astm.content.attrib"/>
+      <ref name="physical.examination.model"/>
+    </element>
+  </define>
+  <define name="laboratory.data">
+    <element name="laboratory.data">
+      <ref name="astm.content.attrib"/>
+      <ref name="astm.content"/>
+    </element>
+  </define>
+  <define name="diagnostic.studies">
+    <element name="diagnostic.studies">
+      <ref name="astm.content.attrib"/>
+      <ref name="astm.content"/>
+    </element>
+  </define>
+  <define name="hospital.course.model">
+    <ref name="description"/>
+    <optional>
+      <ref name="diagnoses"/>
+    </optional>
+    <optional>
+      <ref name="procedures"/>
+    </optional>
+    <optional>
+      <ref name="complications"/>
+    </optional>
+    <optional>
+      <ref name="consultations"/>
+    </optional>
+  </define>
+  <define name="hospital.course">
+    <element name="hospital.course">
+      <ref name="astm.content.attrib"/>
+      <ref name="hospital.course.model"/>
+    </element>
+  </define>
+  <define name="description">
+    <element name="description">
+      <ref name="astm.content.attrib"/>
+      <ref name="astm.content"/>
+    </element>
+  </define>
+  <define name="procedures">
+    <element name="procedures">
+      <ref name="astm.content.attrib"/>
+      <zeroOrMore>
+        <ref name="procedure"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="complications">
+    <element name="complications">
+      <ref name="astm.content.attrib"/>
+      <zeroOrMore>
+        <ref name="complication"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="consultations">
+    <element name="consultations">
+      <ref name="astm.content.attrib"/>
+      <zeroOrMore>
+        <ref name="consultation"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="procedure">
+    <element name="procedure">
+      <ref name="astm.content.attrib"/>
+      <ref name="astm.content"/>
+    </element>
+  </define>
+  <define name="complication">
+    <element name="complication">
+      <ref name="astm.content.attrib"/>
+      <ref name="astm.content"/>
+    </element>
+  </define>
+  <define name="consultation">
+    <element name="consultation">
+      <ref name="astm.content.attrib"/>
+      <ref name="astm.content"/>
+    </element>
+  </define>
+  <define name="discharge.model">
+    <optional>
+      <ref name="assessment.and.plan"/>
+    </optional>
+    <optional>
+      <ref name="patient.status"/>
+    </optional>
+    <optional>
+      <ref name="diagnoses"/>
+    </optional>
+    <optional>
+      <ref name="cause.of.death"/>
+    </optional>
+    <optional>
+      <ref name="medications"/>
+    </optional>
+    <optional>
+      <ref name="discharge.plan"/>
+    </optional>
+  </define>
+  <define name="discharge">
+    <element name="discharge">
+      <ref name="astm.content.attrib"/>
+      <ref name="discharge.model"/>
+    </element>
+  </define>
+  <define name="patient.status">
+    <element name="patient.status">
+      <ref name="astm.content.attrib"/>
+      <ref name="astm.content"/>
+    </element>
+  </define>
+  <define name="cause.of.death">
+    <element name="cause.of.death">
+      <ref name="astm.content.attrib"/>
+      <ref name="astm.content"/>
+    </element>
+  </define>
+  <define name="discharge.plan">
+    <element name="discharge.plan">
+      <ref name="astm.content.attrib"/>
+      <group>
+        <optional>
+          <ref name="description"/>
+        </optional>
+        <optional>
+          <ref name="medication.plan"/>
+        </optional>
+        <optional>
+          <ref name="followup"/>
+        </optional>
+        <optional>
+          <ref name="restrictions"/>
+        </optional>
+        <optional>
+          <ref name="return.to.work"/>
+        </optional>
+      </group>
+    </element>
+  </define>
+  <define name="medication.plan">
+    <element name="medication.plan">
+      <ref name="astm.content.attrib"/>
+      <ref name="astm.content"/>
+    </element>
+  </define>
+  <define name="followup">
+    <element name="followup">
+      <ref name="astm.content.attrib"/>
+      <ref name="astm.content"/>
+    </element>
+  </define>
+  <define name="restrictions">
+    <element name="restrictions">
+      <ref name="astm.content.attrib"/>
+      <ref name="astm.content"/>
+    </element>
+  </define>
+  <define name="return.to.work">
+    <element name="return.to.work">
+      <ref name="astm.content.attrib"/>
+      <ref name="astm.content"/>
+    </element>
+  </define>
+  <define name="problem.list">
+    <element name="problem.list">
+      <ref name="astm.content.attrib"/>
+      <zeroOrMore>
+        <ref name="problem"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="problem">
+    <element name="problem">
+      <ref name="astm.content.attrib"/>
+      <ref name="problem.description"/>
+      <optional>
+        <ref name="diagnosis"/>
+      </optional>
+      <optional>
+        <ref name="assessment"/>
+      </optional>
+      <optional>
+        <ref name="plan"/>
+      </optional>
+    </element>
+  </define>
+  <define name="problem.description">
+    <element name="problem.description">
+      <ref name="astm.content.attrib"/>
+      <ref name="astm.content"/>
+    </element>
+  </define>
+  <define name="assessment">
+    <element name="assessment">
+      <ref name="astm.content.attrib"/>
+      <ref name="astm.content"/>
+    </element>
+  </define>
+  <define name="plan">
+    <element name="plan">
+      <ref name="astm.content.attrib"/>
+      <ref name="astm.content"/>
+    </element>
+  </define>
+  <define name="assessment.and.plan.model">
+    <choice>
+      <ref name="Flow.model"/>
+      <interleave>
+        <ref name="diagnosis"/>
+        <ref name="assessment"/>
+        <ref name="plan"/>
+      </interleave>
+      <zeroOrMore>
+        <ref name="problem"/>
+      </zeroOrMore>
+    </choice>
+  </define>
+  <define name="assessment.and.plan">
+    <element name="assessment.and.plan">
+      <ref name="astm.content.attrib"/>
+      <ref name="assessment.and.plan.model"/>
+    </element>
+  </define>
+  <define name="history.and.physical">
+    <element name="history.and.physical">
+      <ref name="astm.content.attrib"/>
+      <ref name="history.and.physical.model"/>
+    </element>
+  </define>
+</grammar>

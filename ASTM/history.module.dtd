@@ -1,0 +1,269 @@
+<!--
+	Copyright (c) 2000 Jonathan Borden, M.D., The Open Healthcare Group
+	Licensed upder http://www.openhealth.org/license
+
+	PUBLIC "-//ASTM//DTD History Module 1.0//EN"
+-->
+<!ENTITY % ADS.prefixed "IGNORE">
+
+<!ENTITY % his "his">
+
+<!ENTITY % his.namespace.uri "http://www.openhealth.org/ASTM/history">
+<![ %ADS.prefixed; [
+<!ENTITY % his.prefix "%his;:">
+]]>
+
+<!ENTITY % his.prefix "">
+<!ENTITY % not.questioned.qname "%his.prefix;not.questioned">
+<!ENTITY % normal.qname "%his.prefix;normal">
+<!ENTITY % ASTM.HIS.Mix "%ASTM.Mix; | %normal.qname; | %not.questioned.qname;">
+<!ENTITY % astm.his.content "(#PCDATA | %ASTM.HIS.Mix; )*">
+
+<!ENTITY % history.qname "%his.prefix;history">
+<!ENTITY % past.medical.history.qname "%his.prefix;past.medical.history">
+<!ENTITY % past.surgical.history.qname "%his.prefix;past.surgical.history">
+<!ENTITY % psychiatric.history.qname "%his.prefix;psychiatric.history">
+<!ENTITY % obstetrical.gynecologic.history.qname "%his.prefix;obstetrical.gynecologic.history">
+<!ENTITY % habits.qname "%his.prefix;habits">
+<!ENTITY % family.history.qname "%his.prefix;family.history">
+<!ENTITY % social.history.qname "%his.prefix;social.history">
+<!ENTITY % dental.history.qname "%his.prefix;dental.history">
+<!ENTITY % perinatal.history.qname "%his.prefix;perinatal.history">
+<!ENTITY % medication.history.qname "%his.prefix;medication.history">
+<!ENTITY % immunizations.qname "%his.prefix;immunizations">
+<!ENTITY % substance.abuse.qname "%his.prefix;substance.abuse">
+<!ENTITY % diet.qname "%his.prefix;diet">
+<!ENTITY % education.qname "%his.prefix;education">
+<!ENTITY % work.history.qname "%his.prefix;work.history">
+
+<!ENTITY % known.allergies.qname "%his.prefix;known.allergies">
+<!ENTITY % drug.allergies.qname "%his.prefix;drug.allergies">
+<!ENTITY % food.allergies.qname "%his.prefix;food.allergies">
+<!ENTITY % environmental.allergies.qname "%his.prefix;environmental.allergies">
+<!ENTITY % other.allergies.qname "%his.prefix;other.allergies">
+<!ENTITY % allergy.types "
+	patient-reported (y|n) #IMPLIED
+	clinician-reported (y|n) #IMPLIED
+	family-reported (y|n) #IMPLIED
+">
+<!ENTITY % allergy.qname "%his.prefix;allergy">
+
+<!ENTITY % medications.qname "%his.prefix;medications">
+<!ENTITY % medication.qname "%his.prefix;medication">
+
+<!ENTITY % review.of.systems.qname "%his.prefix;review.of.systems">
+<!ENTITY % general.qname "%his.prefix;general">
+<!ENTITY % skin.qname "%his.prefix;skin">
+<!ENTITY % head.qname "%his.prefix;head">
+<!ENTITY % eyes.qname "%his.prefix;eyes">
+<!ENTITY % ears.qname "%his.prefix;ears">
+<!ENTITY % nose.qname "%his.prefix;nose">
+<!ENTITY % mouth.and.throat.qname "%his.prefix;mouth.and.throat">
+<!ENTITY % neck.qname "%his.prefix;neck">
+<!ENTITY % breasts.qname "%his.prefix;breasts">
+<!ENTITY % respiratory.qname "%his.prefix;respiratory">
+<!ENTITY % cardiac.qname "%his.prefix;cardiac">
+<!ENTITY % gastrointestinal.qname "%his.prefix;gastrointestinal">
+
+<!ENTITY % urinary.qname "%his.prefix;urinary">
+<!ENTITY % genital.qname "%his.prefix;genital">
+<!ENTITY % musculoskeletal.qname "%his.prefix;musculoskeletal">
+<!ENTITY % peripheral.vascular.qname "%his.prefix;peripheral.vascular">
+<!ENTITY % neurologic.qname "%his.prefix;neurologic">
+<!ENTITY % hematologic.qname "%his.prefix;hematologic">
+<!ENTITY % endocrine.qname "%his.prefix;endocrine">
+<!ENTITY % psychiatric.qname "%his.prefix;psychiatric">
+<!-- model definitions-->
+<!ENTITY % history.model "(
+	(%past.medical.history.qname;)?,
+	(%past.surgical.history.qname;)?,
+	(%obstetrical.gynecologic.history.qname;)?,
+	(%habits.qname;)?,
+	(%family.history.qname;)?,
+	(%social.history.qname;)?,
+	(%dental.history.qname;)?,
+	(%perinatal.history.qname;)?,
+	(%medication.history.qname;)?,
+	(%immunizations.qname;)?,
+	(%substance.abuse.qname;)?,
+	(%diet.qname;)?,
+	(%education.qname;)?,
+	(%work.history.qname;)?,
+	(%review.of.systems.qname;)?
+)">
+
+<!ENTITY % past.medical.history.model "%astm.his.content;">
+<!ENTITY % past.surgical.history.model "%astm.his.content;">
+<!ENTITY % psychiatric.history.model "%astm.his.content;">
+<!ENTITY % obstetrical.gynecologic.history.model "%astm.his.content;">
+<!ENTITY % habits.model "%astm.his.content;">
+<!ENTITY % family.history.model "%astm.his.content;">
+<!ENTITY % social.history.model "%astm.his.content;">
+<!ENTITY % dental.history.model "%astm.his.content;">
+<!ENTITY % perinatal.history.model "%astm.his.content;">
+<!ENTITY % medication.history.model "%astm.his.content;">
+<!ENTITY % immunizations.model "%astm.his.content;">
+<!ENTITY % substance.abuse.model "%astm.his.content;">
+<!ENTITY % diet.model "%astm.his.content;">
+<!ENTITY % education.model "%astm.his.content;">
+<!ENTITY % work.history.model "%astm.his.content;">
+
+<!ENTITY % ASTM.Allergies.Mix "
+		%drug.allergies.qname;|
+		%food.allergies.qname;|
+		%environmental.allergies.qname;|
+		%other.allergies.qname;">
+
+<!ENTITY % known.allergies.model "(#PCDATA | %ASTM.HIS.Mix; | %ASTM.Allergies.Mix;)*
+">
+<!ENTITY % ASTM.allergies.model "(#PCDATA | %ASTM.HIS.Mix; | %allergy.qname; )*">
+<!ENTITY % drug.allergies.model "%ASTM.allergies.model;">
+<!ENTITY % food.allergies.model "%ASTM.allergies.model;">
+<!ENTITY % environmental.allergies.model "%ASTM.allergies.model;">
+<!ENTITY % other.allergies.model "%ASTM.allergies.model;">
+<!ENTITY % allergy.model "%astm.his.content;">
+
+<!ENTITY % medications.model "(#PCDATA | %ASTM.HIS.Mix; | %medication.qname;)*">
+<!ENTITY % medication.model "%astm.his.content;">
+
+<!ENTITY % review.of.systems.model "(
+	#PCDATA | %ASTM.HIS.Mix; | 
+	%general.qname;|%skin.qname;|%head.qname;|
+	%eyes.qname;|%ears.qname;|%nose.qname;|
+	%mouth.and.throat.qname;|%neck.qname;|%breasts.qname;|
+	%respiratory.qname;|%cardiac.qname;|%gastrointestinal.qname;|
+	%urinary.qname;|%musculoskeletal.qname;|%peripheral.vascular.qname;|
+	%neurologic.qname;|%endocrine.qname;|%psychiatric.qname;)*
+">
+<!ENTITY % general.model "%astm.his.content;">
+<!ENTITY % skin.model "%astm.his.content;">
+<!ENTITY % head.model "%astm.his.content;">
+<!ENTITY % eyes.model "%astm.his.content;">
+<!ENTITY % ears.model "%astm.his.content;">
+<!ENTITY % nose.model "%astm.his.content;">
+<!ENTITY % mouth.and.throat.model "%astm.his.content;">
+<!ENTITY % neck.model "%astm.his.content;">
+<!ENTITY % breasts.model "%astm.his.content;">
+<!ENTITY % respiratory.model "%astm.his.content;">
+<!ENTITY % cardiac.model "%astm.his.content;">
+<!ENTITY % gastrointestinal.model "%astm.his.content;">
+
+<!ENTITY % urinary.model "%astm.his.content;">
+<!ENTITY % genital.model "%astm.his.content;">
+<!ENTITY % musculoskeletal.model "%astm.his.content;">
+<!ENTITY % peripheral.vascular.model "%astm.his.content;">
+<!ENTITY % neurologic.model "%astm.his.content;">
+<!ENTITY % hematologic.model "%astm.his.content;">
+<!ENTITY % endocrine.model "%astm.his.content;">
+<!ENTITY % psychiatric.model "%astm.his.content;">
+<!-- element definitions -->
+<!ELEMENT %past.medical.history.qname; %past.medical.history.model;>
+<!ELEMENT %past.surgical.history.qname; %past.surgical.history.model;>
+<!ELEMENT %psychiatric.history.qname; %psychiatric.history.model;>
+<!ELEMENT %obstetrical.gynecologic.history.qname; %obstetrical.gynecologic.history.model;>
+<!ELEMENT %habits.qname; %habits.model;>
+<!ELEMENT %family.history.qname; %family.history.model;>
+<!ELEMENT %social.history.qname; %social.history.model;>
+<!ELEMENT %dental.history.qname; %dental.history.model;>
+<!ELEMENT %perinatal.history.qname; %perinatal.history.model;>
+<!ELEMENT %medication.history.qname; %medication.history.model;>
+<!ELEMENT %immunizations.qname; %immunizations.model;>
+<!ELEMENT %substance.abuse.qname; %substance.abuse.model;>
+<!ELEMENT %diet.qname; %diet.model;>
+<!ELEMENT %education.qname; %education.model;>
+<!ELEMENT %work.history.qname; %work.history.model;>
+
+<!ELEMENT %known.allergies.qname; %known.allergies.model;>
+<!ELEMENT %drug.allergies.qname; %drug.allergies.model;>
+<!ELEMENT %food.allergies.qname; %food.allergies.model;>
+<!ELEMENT %environmental.allergies.qname; %environmental.allergies.model;>
+<!ELEMENT %other.allergies.qname; %other.allergies.model;>
+
+<!ELEMENT %allergy.qname; %allergy.model;>
+<!ATTLIST %allergy.qname;
+	%allergy.types;
+>
+
+<!ELEMENT %medications.qname; %medications.model;>
+<!ELEMENT %medication.qname; %medication.model;>
+
+<!ELEMENT %review.of.systems.qname; %review.of.systems.model;>
+<!ELEMENT %general.qname; %general.model;>
+<!ELEMENT %skin.qname; %skin.model;>
+<!ELEMENT %head.qname; %head.model;>
+<!ELEMENT %eyes.qname; %eyes.model;>
+<!ELEMENT %ears.qname; %ears.model;>
+<!ELEMENT %nose.qname; %nose.model;>
+<!ELEMENT %mouth.and.throat.qname; %mouth.and.throat.model;>
+<!ELEMENT %neck.qname; %neck.model;>
+<!ELEMENT %breasts.qname; %breasts.model;>
+<!ELEMENT %respiratory.qname; %respiratory.model;>
+<!ELEMENT %cardiac.qname; %cardiac.model;>
+<!ELEMENT %gastrointestinal.qname; %gastrointestinal.model;>
+
+<!ELEMENT %urinary.qname; %urinary.model;>
+<!ELEMENT %genital.qname; %genital.model;>
+<!ELEMENT %musculoskeletal.qname; %musculoskeletal.model;>
+<!ELEMENT %peripheral.vascular.qname; %peripheral.vascular.model;>
+<!ELEMENT %neurologic.qname; %neurologic.model;>
+<!ELEMENT %hematologic.qname; %hematologic.model;>
+<!ELEMENT %endocrine.qname; %endocrine.model;>
+<!ELEMENT %psychiatric.qname; %psychiatric.model;>
+
+<!ELEMENT %normal.qname; EMPTY>
+<!ELEMENT %not.questioned.qname; EMPTY>
+
+<!-- attribute definitions -->
+
+<!ATTLIST %past.medical.history.qname; %astm.content.attrib;>
+<!ATTLIST %past.surgical.history.qname; %astm.content.attrib;>
+<!ATTLIST %psychiatric.history.qname; %astm.content.attrib;>
+<!ATTLIST %obstetrical.gynecologic.history.qname; %astm.content.attrib;>
+<!ATTLIST %habits.qname; %astm.content.attrib;>
+<!ATTLIST %family.history.qname; %astm.content.attrib;>
+<!ATTLIST %social.history.qname; %astm.content.attrib;>
+<!ATTLIST %dental.history.qname; %astm.content.attrib;>
+<!ATTLIST %perinatal.history.qname; %astm.content.attrib;>
+<!ATTLIST %medication.history.qname; %astm.content.attrib;>
+<!ATTLIST %immunizations.qname; %astm.content.attrib;>
+<!ATTLIST %substance.abuse.qname; %astm.content.attrib;>
+<!ATTLIST %diet.qname; %astm.content.attrib;>
+<!ATTLIST %education.qname; %astm.content.attrib;>
+<!ATTLIST %work.history.qname; %astm.content.attrib;>
+
+<!ATTLIST %known.allergies.qname; %astm.content.attrib;>
+<!ATTLIST %drug.allergies.qname; %astm.content.attrib;>
+<!ATTLIST %food.allergies.qname; %astm.content.attrib;>
+<!ATTLIST %environmental.allergies.qname; %astm.content.attrib;>
+<!ATTLIST %other.allergies.qname; %astm.content.attrib;>
+
+<!ATTLIST %allergy.qname; %astm.content.attrib;>
+
+<!ATTLIST %medications.qname; %astm.content.attrib;>
+<!ATTLIST %medication.qname; %astm.content.attrib;>
+
+<!ATTLIST %review.of.systems.qname; %astm.content.attrib;>
+<!ATTLIST %general.qname; %astm.content.attrib;>
+<!ATTLIST %skin.qname; %astm.content.attrib;>
+<!ATTLIST %head.qname; %astm.content.attrib;>
+<!ATTLIST %eyes.qname; %astm.content.attrib;>
+<!ATTLIST %ears.qname; %astm.content.attrib;>
+<!ATTLIST %nose.qname; %astm.content.attrib;>
+<!ATTLIST %mouth.and.throat.qname; %astm.content.attrib;>
+<!ATTLIST %neck.qname; %astm.content.attrib;>
+<!ATTLIST %breasts.qname; %astm.content.attrib;>
+<!ATTLIST %respiratory.qname; %astm.content.attrib;>
+<!ATTLIST %cardiac.qname; %astm.content.attrib;>
+<!ATTLIST %gastrointestinal.qname; %astm.content.attrib;>
+
+<!ATTLIST %urinary.qname; %astm.content.attrib;>
+<!ATTLIST %genital.qname; %astm.content.attrib;>
+<!ATTLIST %musculoskeletal.qname; %astm.content.attrib;>
+<!ATTLIST %peripheral.vascular.qname; %astm.content.attrib;>
+<!ATTLIST %neurologic.qname; %astm.content.attrib;>
+<!ATTLIST %hematologic.qname; %astm.content.attrib;>
+<!ATTLIST %endocrine.qname; %astm.content.attrib;>
+<!ATTLIST %psychiatric.qname; %astm.content.attrib;>
+
+
+

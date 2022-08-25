@@ -1,0 +1,38 @@
+<module
+  xmlns="http://www.xml.gr.jp/xmlns/relaxCore"
+  targetNamespace="http://www.w3.org/1999/xhtml"
+  relaxCoreVersion="1.0"
+  moduleVersion="1.12">
+
+<!-- Notations and architectures should be defined by internal subsets. -->
+
+<!-- include moduleLocation="xhtml-datatypes-1.rxm" /-->
+
+<!-- user defined datatypes do not exists in RELAX Core  -->
+
+
+
+<!-- placeholder for XLink support module -->
+
+<!-- include moduleLocation="xhtml-xlink.mod"/ -->
+
+
+
+<!-- qnames are not required, since RELAX Namespace covers qualification. -->
+
+
+
+<!-- include moduleLocation="xhtml-events-1.rxm"/ -->
+
+
+
+<include moduleLocation="xhtml-attribs-1.rxm"/>
+
+<!-- placeholder for content model redeclarations -->
+<!-- Note: this precedes the next <include>, only
+because DTDs adopt the first-dcl-wins policy.  -->
+
+<!-- charent should be defined by internal subsets. -->
+
+</module>
+

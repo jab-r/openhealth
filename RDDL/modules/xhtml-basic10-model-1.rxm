@@ -1,0 +1,241 @@
+<module
+  xmlns="http://www.xml.gr.jp/xmlns/relaxCore"
+  targetNamespace="http://www.w3.org/1999/xhtml"
+  relaxCoreVersion="1.0"
+  moduleVersion="2.8">
+
+<interface>
+  <export label="Misc.class"/>
+  <export label="InlStruct.class"/>
+  <export label="InlPhras.class"/>
+  <export label="InlPres.class"/>
+  <export label="I18n.class"/>
+  <export label="Anchor.class"/>
+  <export label="InlSpecial.class"/>
+  <export label="InlForm.class"/>
+  <export label="Inline.class"/>
+  <export label="InlNoAnchor.class"/>
+  <export label="InlNoAnchor.mix"/>
+  <export label="Inline.mix"/>
+  <export label="Heading.class"/>
+  <export label="List.class"/>
+  <export label="Table.class"/>
+  <export label="Form.class"/>
+  <export label="BlkStruct.class"/>
+  <export label="BlkPhras.class"/>
+  <export label="BlkPres.class"/>
+  <export label="BlkSpecial.class"/>
+  <export label="Block.class"/>
+  <export label="Block.mix"/>
+  <export label="FlowNoTable.mix"/>
+  <export label="Flow.mix"/>
+</interface>
+
+<hedgeRule label="HeadOpts.mix">
+  <choice occurs="*">
+    <ref label="meta"/>
+    <ref label="link"/>
+    <ref label="object"/>
+  </choice>
+</hedgeRule>
+
+<hedgeRule label="Misc.class">
+  <none/>
+</hedgeRule>
+
+<hedgeRule label="InlStruct.class">
+  <choice>
+    <ref label="br"/>
+    <ref label="span"/>
+  </choice>
+</hedgeRule>
+
+<hedgeRule label="InlPhras.class">
+  <choice>
+    <ref label="em"/>
+    <ref label="strong"/>
+    <ref label="dfn"/>
+    <ref label="code"/>
+    <ref label="samp"/>
+    <ref label="kbd"/>
+    <ref label="var"/>
+    <ref label="cite"/>
+    <ref label="abbr"/>
+    <ref label="acronym"/>
+    <ref label="q"/>
+  </choice>
+</hedgeRule>
+
+<hedgeRule label="InlPres.class">
+  <none/>
+</hedgeRule>
+
+<hedgeRule label="I18n.class">
+  <none/>
+</hedgeRule>
+
+<hedgeRule label="Anchor.class">
+  <ref label="a"/>
+</hedgeRule>
+
+<hedgeRule label="InlSpecial.class">
+  <choice>
+    <ref label="img"/>
+    <ref label="object"/>
+  </choice>
+</hedgeRule>
+
+<hedgeRule label="InlForm.class">
+  <choice>
+    <ref label="input"/>
+    <ref label="select"/>
+    <ref label="textarea"/>
+    <ref label="label"/>
+  </choice>
+</hedgeRule>
+
+<hedgeRule label="Inline.extra">
+  <none/>
+</hedgeRule>
+
+<hedgeRule label="Inline.class">
+  <choice>
+    <hedgeRef label="InlStruct.class"/>
+    <hedgeRef label="InlPhras.class"/>
+    <hedgeRef label="Anchor.class"/>
+    <hedgeRef label="InlSpecial.class"/>
+    <hedgeRef label="InlForm.class"/>
+    <hedgeRef label="Inline.extra"/>
+  </choice>
+</hedgeRule>
+
+<hedgeRule label="InlNoAnchor.class">
+  <choice>
+    <hedgeRef label="InlStruct.class"/>
+    <hedgeRef label="InlPhras.class"/>
+    <hedgeRef label="InlSpecial.class"/>
+    <hedgeRef label="InlForm.class"/>
+    <hedgeRef label="Inline.extra"/>
+  </choice>
+</hedgeRule>
+
+<hedgeRule label="InlNoAnchor.mix">
+  <choice>
+    <hedgeRef label="InlNoAnchor.class"/>
+    <hedgeRef label="Misc.class"/>
+  </choice>
+</hedgeRule>
+
+<hedgeRule label="Inline.mix">
+  <choice>
+    <hedgeRef label="Inline.class"/>
+    <hedgeRef label="Misc.class"/>
+  </choice>
+</hedgeRule>
+
+<!-- Block Elements  ......................... -->
+
+<hedgeRule label="Heading.class">
+  <choice>
+    <ref label="h1"/>
+    <ref label="h2"/>
+    <ref label="h3"/>
+    <ref label="h4"/>
+    <ref label="h5"/>
+    <ref label="h6"/>
+  </choice>
+</hedgeRule>
+
+<hedgeRule label="List.class">
+  <choice>
+    <ref label="ul"/>
+    <ref label="ol"/>
+    <ref label="dl"/>
+  </choice>
+</hedgeRule>
+
+<hedgeRule label="Table.class">
+  <ref label="table"/>
+</hedgeRule>
+
+<hedgeRule label="Form.class">
+  <ref label="form"/>
+</hedgeRule>
+
+<hedgeRule label="BlkStruct.class">
+  <choice>
+    <ref label="p"/>
+    <ref label="div"/>
+  </choice>
+</hedgeRule>
+
+<hedgeRule label="BlkPhras.class">
+  <choice>
+    <ref label="pre"/>
+    <ref label="blockquote"/>
+    <ref label="address"/>
+  </choice>
+</hedgeRule>
+
+<hedgeRule label="BlkPres.class">
+  <none/>
+</hedgeRule>
+
+<hedgeRule label="BlkSpecial.class">
+  <choice>
+    <hedgeRef label="Table.class"/>
+    <hedgeRef label="Form.class"/>
+  </choice>
+</hedgeRule>
+
+<hedgeRule label="Block.extra">
+  <none/>
+</hedgeRule>
+
+<hedgeRule label="Block.class">
+  <choice>
+    <hedgeRef label="BlkStruct.class"/>
+    <hedgeRef label="BlkPhras.class"/>
+    <hedgeRef label="BlkSpecial.class"/>
+    <hedgeRef label="Block.extra"/>
+  </choice>
+</hedgeRule>
+
+<hedgeRule label="Block.mix">
+  <choice>
+    <hedgeRef label="Heading.class"/>
+    <hedgeRef label="List.class"/>
+    <hedgeRef label="Block.class"/>
+    <hedgeRef label="Misc.class"/>
+  </choice>
+</hedgeRule>
+
+<!-- All Content Elements  ................... -->
+
+<!-- declares all content except tables
+-->
+
+<hedgeRule label="FlowNoTable.mix">
+  <choice>
+    <hedgeRef label="Heading.class"/>
+    <hedgeRef label="List.class"/>
+    <hedgeRef label="BlkStruct.class"/>
+    <hedgeRef label="BlkPhras.class"/>
+    <hedgeRef label="Form.class"/>
+    <hedgeRef label="Block.extra"/>
+    <hedgeRef label="Inline.class"/>
+    <hedgeRef label="Misc.class"/>
+  </choice>
+</hedgeRule>
+
+<hedgeRule label="Flow.mix">
+  <choice>
+    <hedgeRef label="Heading.class"/>
+    <hedgeRef label="List.class"/>
+    <hedgeRef label="Block.class"/>
+    <hedgeRef label="Inline.class"/>
+    <hedgeRef label="Misc.class"/>
+  </choice>
+</hedgeRule>
+
+</module>

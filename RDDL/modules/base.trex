@@ -1,0 +1,23 @@
+<!-- Base Module -->
+
+<grammar xmlns="http://www.thaiopensource.com/trex">
+
+<define name="base">
+  <element name="base">
+    <ref name="base.attlist"/>
+  </element>
+</define>
+
+<define name="base.attlist">
+  <attribute name="href">
+    <ref name="URI.datatype"/>
+  </attribute>
+</define>
+
+<define name="head.content" combine="interleave">
+  <optional>
+    <ref name="base"/>
+  </optional>
+</define>
+
+</grammar>

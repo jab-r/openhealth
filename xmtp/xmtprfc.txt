@@ -1,0 +1,264 @@
+Network Working Group                                          J. Borden
+Request for Comments: nnnn                     The Open HealthCare Group
+Category: Standards Track                                     June, 2000
+
+Page 1
+
+   A mapping from RFC822/MIME to XML
+
+Status of this Memo
+
+	This document specifies an Internet standards track protocol for
+the Internet community, and requests discussion and suggestions for 
+improvements. Please refer to the current edition of the "Internet 
+Official Protocol Standards" (STD 1) for the standardization state and 
+status of this protocol. This memo is to be submitted as an Internet
+Draft. Its current state is early. Distribution of this memo will be
+unlimited once submitted.
+
+Copyright Notice
+
+	Copyright (c) The Internet Society (2000). All Rights Reserved.
+
+Introduction
+
+	The XML MIME Transformation Protocol (XMTP) defines a mapping 
+between RFC822/MIME messages and XML documents. The mapping is 
+straightforward and allows MIME messages to be integrated into XML 
+processing systems. For example an SMTP e-mail can be transformed by XSLT 
+into an HTML page for viewing within a browser.
+
+Protocol
+
+	The RFC822/MIME message corresponds to an XML document having a 
+root "mime" element in XML namespace "http://www.openhealth.org/xmtp" 
+e.g.
+
+	<mime:MIME xmlns:mime="http://www.openhealth.org/xmtp">
+	...
+	</mime:MIME>
+
+Headers
+
+	The RFC822/MIME headers are represented as elements within the 
+mime root. The value of the header becomes the content of the element. 
+Parameters are represented as attributes of the header element.
+
+        <MIME xmlns="http://www.openhealth.org/xmtp">
+             <From>jborden@mediaone.net</From>
+             <To>jon@openhealth.org</To>
+             <Content-Type charset="iso-8859-1"
+              >text/html</Content-Type>
+             <Content-Transfer-Encoding
+              >quoted-printable</Content-Transfer-Encoding>
+	...
+        </MIME>
+
+Body
+
+	The body is contained within the <Body> element. The XMTP 
+namespace does not apply to the contents of the Body element. The 
+XMTP namespace does apply to parts of a multipart body.
+
+        <MIME xmlns:mime="http://www.openhealth.org/xmtp"
+                   xmlns="http://www.openhealth.org/xmtp">
+             <From>jborden@mediaone.net</mime:From>
+             <To>jon@openhealth.org</mime:To>
+             <Content-Type>text/plain</Content-Type>
+	     <mime:Body xmlns="">This is the message body</mime:Body>
+        </MIME>
+
+Multipart messages
+
+	The body of a multipart message will contain the element <Parts>. 
+Each part consists of a mime message which is represented as a <mime> 
+subelement of the Parts root.
+
+        <MIME xmlns:mime="http://www.openhealth.org/xmtp"
+                   xmlns="http://www.openhealth.org/xmtp">
+             <From>jborden@mediaone.net</mime:From>
+             <To>jon@openhealth.org</mime:To>
+             <Content-Type>multipart/related</Content-Type>
+	     <mime:Body xmlns="">
+               <mime:Part xmlns="http://www.openhealth.org/xmtp">
+                 <Content-ID>xxxxx$yyyyy@openhealth.org</Content-ID>
+                 <Body >The contents of this part are text</Body>
+               </mime:Part>
+             </mime:Body>
+        </MIME>
+
+Examples
+
+	A simple text RFC822 message:
+
+   Received: from jabr (jabr.ne.mediaone.net [24.128.34.211])
+     by chmls05.mediaone.net (8.8.7/8.8.7) with SMTP id XAA27071
+     for <test-xmtp@jabr.ne.mediaone.net>; Tue, 13 Oct 1998 23:42:47 -0400 (EDT)
+   From: "Borden, Jonathan" <jborden@mediaone.net>
+   To: "XMTP" <test-xmtp@jabr.ne.mediaone.net>
+   Subject: this is a simple message
+   Date: Tue, 13 Oct 1998 23:33:49 -0400
+   Message-ID: <001501bdf723$74f03fe0$d3228017@jabr.ne.mediaone.net>
+   MIME-Version: 1.0
+   Content-Type: text/plain
+   Content-Transfer-Encoding: 7bit
+
+   This is a simple text message which will be converted into XML as shown
+   below
+
+
+
+The XMTP message
+
+   <MIME xmlns:mime="http://www.openhealth.org/xmtp"
+          xmlns="http://www.openhealth.org/xmtp">
+   <Content-Type>text/plain</Content-Type>
+   <Content-transfer-encoding>7bit</Content-transfer-encoding>
+   <Date>Tue, 13 Oct 1998 23:33:49 -0400</Date>
+   <From>&quot;Borden, Jonathan&quot; &lt;jborden@mediaone.net&gt;</From>
+   <Importance>Normal</Importance>
+   <Message-ID
+    >&lt;001501bdf723$74f03fe0$d3228017@jabr.ne.mediaone.net&gt;</Message-ID>
+   <MIME-Version>1.0</MIME-Version>
+   <Received>from jabr (jabr.ne.mediaone.net [24.128.34.211])
+   by chmls05.mediaone.net (8.8.7/8.8.7) with SMTP id XAA27071
+   for &lt;test-xmtp@jabr.ne.mediaone.net&gt;; 
+   Tue, 13 Oct 1998 23:42:47 -0400         (EDT)</Received>
+   <Subject>this is a simple message</Subject>
+   <To>&quot;XMTP&quot; &lt;test-xmtp@jabr.ne.mediaone.net&gt;</To>
+   <Body>This is a simple text message which will be converted into XML as shown
+   below</Body>
+   </MIME>
+
+A multipart message:
+
+   Received: from jabr (jabr.ne.mediaone.net [24.128.34.211])
+     by chmls05.mediaone.net (8.8.7/8.8.7) with SMTP id XAA27071
+     for <test-xmtp@jabr.ne.mediaone.net>; Tue, 13 Oct 1998 23:42:47 -0400 (EDT)
+   From: "Borden, Jonathan" <jborden@mediaone.net>
+   To: "XMTP" <test-xmtp@jabr.ne.mediaone.net>
+   Subject: this is a simple message
+   Date: Tue, 13 Oct 1998 23:33:49 -0400
+   Message-ID: <001501bdf723$74f03fe0$d3228018@jabr.ne.mediaone.net>
+   MIME-Version: 1.0
+   Content-Type: multipart/alternative;
+     boundary="----=_NextPart_000_0016_01BDF701.EDDE9FE0"
+   Importance: Normal
+
+   This is a multi-part message in MIME format.
+
+   ------=_NextPart_000_0016_01BDF701.EDDE9FE0
+   Content-Type: text/plain; charset="iso-8859-1"
+   Content-Transfer-Encoding: 7bit
+
+   Here is the text of the message ... its being transmitted in 'HTML' format
+   but the text is a separate part for e-mail readers that don't understand
+   HTML. We can't assume that all valid HTML is XML so we have to escape all of
+   the HTML ... or use a CDATA section
+
+   jon
+
+   ------=_NextPart_000_0016_01BDF701.EDDE9FE0
+   Content-Type: text/html; charset="iso-8859-1"
+   Content-Transfer-Encoding: quoted-printable
+
+   <!DOCTYPE HTML PUBLIC "-//W3C//DTD W3 HTML//EN">
+   <HTML>
+   <HEAD>
+
+    <META content=3D"text/html; charset=3Diso-8859-1" =
+    http-equiv=3DContent-Type>
+    <META content=3D'"MSHTML 4.72.3110.7"' name=3DGENERATOR>
+    </HEAD>
+    <BODY bgColor=3D#ffffff>
+    <P><FONT size=3D2>Here is the text of the <STRONG><FONT color=3D#0000ff =
+    face=3D""=20
+    size=3D5>message</FONT></STRONG> ... its being transmitted in 'HTML' =
+    format but=20
+    the text is a separate part for e-mail readers that don't understand =
+    HTML. We=20
+    can't assume that all valid HTML is XML so we have to <FONT =
+    color=3D#ff0000=20
+    face=3D"" size=3D5>escape </FONT>all of the HTML ... .or use a CDATA=20
+
+    section<BR><BR>jon<BR></FONT></P></BODY></HTML>
+
+    ------=_NextPart_000_0016_01BDF701.EDDE9FE0--
+
+
+The XMTP multipart message
+
+    <MIME xmlns:mime="http://www.openhealth.org/xmtp" 
+         xmlns="http://www.openhealth.org/xmtp">
+    <Content-Type boundary="----=_NextPart_000_0016_01BDF701.EDDE9FE0"
+    >multipart/alternative</Content-Type>
+    <Content-transfer-encoding>binary</Content-transfer-encoding>
+    <Date>Tue, 13 Oct 1998 23:33:49 -0400</Date>
+    <From>&quot;Borden, Jonathan&quot; &lt;jborden@mediaone.net&gt;</From>
+    <Importance>Normal</Importance>
+    <Message-ID
+     >&lt;001501bdf723$74f03fe0$d3228018@jabr.ne.mediaone.net&gt;</Message-ID>
+    <MIME-Version>1.0</MIME-Version>
+    <Received>from jabr (jabr.ne.mediaone.net [24.128.34.211])
+     by chmls05.mediaone.net (8.8.7/8.8.7) with SMTP id XAA27071
+     for &lt;test-xmtp@jabr.ne.mediaone.net&gt;; Tue, 13 Oct 1998 23:42:47 -0400
+     (EDT)</Received>
+    <Subject>this is a simple message</Subject>
+    <To>&quot;XMTP&quot; &lt;test-xmtp@jabr.ne.mediaone.net&gt;</To>
+    <mime:Body>
+    <Parts>
+    <MIME xmlns:mime="http://www.openhealth.org/xmtp" 
+          xmlns="http://www.openhealth.org/xmtp">
+    <Content-Type charset="iso-8859-1">text/plain</Content-Type>
+    <Content-transfer-encoding>7bit</Content-transfer-encoding>
+    <mime:Body xmlns=""><![CDATA[
+    Here is the text of the message ... its being transmitted in 'HTML' format
+    but the text is a separate part for e-mail readers that don't understand
+    HTML. We can't assume that all valid HTML is XML so we have to escape all of
+    the HTML ... or use a CDATA section
+
+
+    ]]></mime:Body>
+    </MIME>
+    <MIME>
+    <Content-Type charset="iso-8859-1">text/html</Content-Type>
+    <Content-transfer-encoding>binary</Content-transfer-encoding>
+    <mime:BODY xmlns="">
+    <![CDATA[<!DOCTYPE HTML PUBLIC "-//W3C//DTD W3 HTML//EN">
+    <HTML><HEAD>
+    <META content=3D"text/html; charset=3Diso-8859-1" =
+    http-equiv=3DContent-Type>
+    <META content=3D'"MSHTML 5.00.0910.1309"' name=3DGENERATOR></HEAD>
+    <BODY bgColor=3D#ffffff>
+    <P><FONT size=3D2>Here is the text of the message ... its being =
+    transmitted in=20
+    'HTML' format but the text is a separate part for e-mail readers that =
+    don't=20
+    understand&nbsp; HTML. We can't assume that all valid HTML is XML so we =
+    have to=20
+    escape all of the HTML ... or use a CDATA=20
+    section<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<BR><BR>&nbsp;=20
+    </FONT></P></BODY></HTML>]]></mime:Body>
+    </MIME>
+    </Parts>
+    </mime:Body>
+    </MIME>
+
+References
+	RFC 822
+	MIME
+	XML 1.0
+	XML Namespaces
+	XSLT
+
+Author Address
+
+	Jonathan Borden
+	The Open Heathcare Group
+	Floor 5, Liongate
+	500 Boylston Street
+	Boston MA 02110
+
+	jborden@mediaone.net
+
+

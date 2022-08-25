@@ -1,0 +1,175 @@
+<!-- Basic Tables Module -->
+
+<grammar xmlns="http://www.thaiopensource.com/trex">
+
+<define name="table">
+  <element name="table">
+    <ref name="table.attlist"/>
+    <optional>
+      <ref name="caption"/>
+    </optional>
+    <oneOrMore>
+      <ref name="tr"/>
+    </oneOrMore>
+  </element>
+</define>
+
+<define name="table.attlist">
+  <ref name="Common.attrib"/>
+  <optional>
+    <attribute name="summary">
+      <ref name="Text.datatype"/>
+    </attribute>
+  </optional>
+</define>
+
+<define name="caption">
+  <element name="caption">
+    <ref name="caption.attlist"/>
+    <ref name="Inline.model"/>
+  </element>
+</define>
+
+<define name="caption.attlist">
+  <ref name="Common.attrib"/>
+</define>
+
+<define name="tr">
+  <element name="tr">
+    <ref name="tr.attlist"/>
+    <oneOrMore>
+      <choice>
+        <ref name="th"/>
+        <ref name="td"/>
+      </choice>
+    </oneOrMore>
+  </element>
+</define>
+
+<define name="tr.attlist">
+  <ref name="Common.attrib"/>
+  <ref name="CellHAlign.attrib"/>
+  <ref name="CellVAlign.attrib"/>
+</define>
+
+<define name="th">
+  <element name="th">
+    <ref name="th.attlist"/>
+    <concur>
+      <ref name="Flow.model"/>
+      <ref name="Cell.concur"/>
+    </concur>
+  </element>
+</define>
+
+<define name="th.attlist">
+  <ref name="Cell.attrib"/>
+</define>
+
+<define name="td">
+  <element name="td">
+    <ref name="td.attlist"/>
+    <concur>
+      <ref name="Flow.model"/>
+      <ref name="Cell.concur"/>
+    </concur>
+  </element>
+</define>
+
+<define name="td.attlist">
+  <ref name="Cell.attrib"/>
+</define>
+
+<define name="Cell.concur">
+  <grammar>
+    <start name="not.excluded">
+      <zeroOrMore>
+        <choice>
+          <element>
+	    <not>
+	      <name>table</name>
+	    </not>
+            <zeroOrMore>
+              <attribute>
+	        <anyName/>
+	      </attribute>
+            </zeroOrMore>
+	    <ref name="not.excluded"/>
+          </element>
+          <anyString/>
+	</choice>
+      </zeroOrMore>
+    </start>
+  </grammar>
+</define>
+
+<define name="Cell.attrib">
+  <ref name="Common.attrib"/>
+  <optional>
+    <attribute name="abbr">
+      <ref name="Text.datatype"/>
+    </attribute>
+  </optional>
+  <optional>
+    <attribute name="axis"/>
+  </optional>
+  <optional>
+    <attribute name="headers">
+      <ref name="IDREFS.datatype"/>
+    </attribute>
+  </optional>
+  <ref name="scope.attrib"/>
+  <optional>
+    <attribute name="rowspan">
+      <ref name="Number.datatype"/>
+    </attribute>
+  </optional>
+  <optional>
+    <attribute name="colspan">
+      <ref name="Number.datatype"/>
+    </attribute>
+  </optional>
+  <ref name="CellHAlign.attrib"/>
+  <ref name="CellVAlign.attrib"/>
+</define>
+
+<define name="CellHAlign.attrib">
+  <optional>
+    <attribute name="align">
+      <choice>
+	<string>left</string>
+	<string>center</string>
+	<string>right</string>
+      </choice>
+    </attribute>
+  </optional>
+</define>
+
+<define name="CellVAlign.attrib">
+  <optional>
+    <attribute name="valign">
+      <choice>
+	<string>top</string>
+	<string>middle</string>
+	<string>bottom</string>
+      </choice>
+    </attribute>
+  </optional>
+</define>
+
+<define name="scope.attrib">
+  <optional>
+    <attribute name="scope">
+      <choice>
+	<string>row</string>
+	<string>col</string>
+      </choice>
+    </attribute>
+  </optional>
+</define>
+
+<define name="Block.class" combine="choice">
+  <ref name="table"/>
+</define>
+
+</grammar>

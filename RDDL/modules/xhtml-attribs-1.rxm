@@ -1,0 +1,68 @@
+<!DOCTYPE module [
+<!ENTITY Text.datatype "string">
+<!ENTITY LanguageCode.datatype "string">
+<!ENTITY NMTOKENS "string">
+]>
+<!--
+When necessary, the following roles should be redefined 
+by the upcoming feature of RELAX Core.
+
+Core.extra.attrib, Common.extra.attrib, Events.attrib
+
+-->
+
+<module
+  xmlns="http://www.xml.gr.jp/xmlns/relaxCore"
+  targetNamespace="http://www.w3.org/1999/xhtml"
+  relaxCoreVersion="1.0"
+  moduleVersion="1.13">
+
+<attPool role="id.attrib">
+  <attribute name="id" type="ID"/>
+</attPool>
+
+<attPool role="class.attrib">
+  <attribute name="class" type="&NMTOKENS;"/>
+</attPool>
+
+<attPool role="title.attrib">
+  <attribute name="title" type="&Text.datatype;"/>
+</attPool>
+
+<attPool role="Core.extra.attrib"/>  <!-- place holder -->
+
+<attPool role="Core.attrib">
+  <ref role="id.attrib"/>
+  <ref role="class.attrib"/>
+  <ref role="title.attrib"/>
+  <ref role="Core.extra.attrib"/>
+</attPool>
+
+<attPool role="lang.attrib">
+  <attribute
+	name="lang"
+	namespace="http://www.w3.org/1999/xhtml"
+	type="&LanguageCode.datatype;"/>
+  <!-- Hmm, do we need the lang attribute as well?  -->
+</attPool>
+
+<attPool role="I18n.attrib">
+  <ref role="dir.attrib"/>
+  <ref role="lang.attrib"/>
+</attPool>
+
+<attPool role="Common.extra.attrib"/>
+
+<!-- intrinsic event attributes declared previously -->
+
+<attPool role="Events.attrib"/>
+
+<attPool role="Common.attrib">
+  <ref role="Core.attrib"/>
+  <ref role="I18n.attrib"/>
+  <ref role="Events.attrib"/>
+  <ref role="Common.extra.attrib"/>
+</attPool>
+
+
+</module>

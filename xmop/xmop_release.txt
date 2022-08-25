@@ -1,0 +1,50 @@
+/*
+Copyright (c) 1998-2000 Jonathan Borden ALL RIGHTS RESERVED
+
+XML Metadata Object Persistence
+  
+You can redistribute this program and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+The GPL is available at http://www.gnu.org/copyleft/gpl.html
+
+If not, write to the Free Software
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+*/
+
+XML MetaData Object Persistence
+
+This version circa 2/20/2000 implements javascript proxy generation of SOAP calls 
+using XMOP object descriptors.
+
+SOAPproxygen.asp?ProgID=YOUR.Component.1
+
+generates a javascript SOAP proxy and allows:
+
+var obj = new YOUR_Component_1("http://www.somewhere.org/SOAP/soapcall.asp");
+
+var result = obj.SomeMethod("a",1,"b");
+
+****Installation****
+
+Unzip files to desired directories.
+
+c/> regsvr32 delegate.dll
+c/> regsvr32 mbxml.dll
+
+testproxy.html assumes the default url:
+
+http://localhost/xmop/soapcall.asp
+
+ToDo:
+java proxy generation,mozilla integration etc.
+
+Jonathan Borden
+jborden@mediaone.net

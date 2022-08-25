@@ -1,0 +1,623 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>
+         Simplified syntax mapping RDF to XML
+      </title>
+      <meta name="keywords" content="XML,RDF,XLink" />
+      <link type="text/css" href="../OHCG_Style.css" rel="stylesheet" />
+<style type="text/css">
+ :link { color: #0000ff }
+ :visited { color: #800080 }
+</style>
+   </head>
+   <body>
+      <h2>
+         Extracting and reifying RDF from XML
+      </h2>
+      <h3>
+         Serializing RDF and edge labelled graphs in XML
+      </h3>
+      <p>
+         One of the issues in serializing RDF to XML, and extracting RDF from
+         arbitrary or colloquial XML is that the XML object model (DOM) is a
+         node labelled graph and the RDF object model forms an edge labelled
+         graph.
+      </p>
+      <p>
+         Several mechanism have been proposed to simplifiy the RDF syntax:
+         After implementing Sergey Melnik's <a href=
+         "http://www-db.stanford.edu/~melnik/rdf/syntax.html">simplified RDF
+         syntax</a> using Tim Connolly's rdfp.xsl as a base, I have
+         subsequently implemented Tim Berniers-Lee's <a href=
+         "http://www.w3.org/DesignIssues/Syntax.html">strawman syntax</a>:
+      </p>
+      <p>
+         "The major difference between this syntax and <a href=
+         "http://www.w3.org/TR/REC-rdf-syntax/">RDF 1.0 M&amp;S</a> is that RDF
+         edges correspond to elements, and RDF nodes are implicit. It is
+         basically as the M&amp;S syntax with <code>parseType=resource</code>is
+         a default."
+      </p>
+      <p>
+         This proposal, with its attendant implementation has the following
+         properties:
+      </p>
+      <ol>
+         <li>
+            Uses rdf:parseType='Resource' as default
+         </li>
+         <li>
+            Does not add to current rdf vocabulary
+         </li>
+         <li>
+            Implements XLink2RDF proposal (now with extended links)
+         </li>
+         <li>
+            Implements rdf:aboutEach, rdf collections and bagID
+         </li>
+         <li>
+            Transforms to &lt;rdf:Statement&gt;&lt;rdf:predicate
+            .../&gt;...&lt;/rdf:Statement&gt; form
+         </li>
+         <li>
+            Transforms colloqial XML into RDF Statements
+         </li>
+         <li>
+            *** Transformation of the output of a transformation results in
+            <strong>reification</strong>
+         </li>
+      </ol>
+      <h3>
+         The XSLT implementation
+      </h3>
+      <p>
+         The current XSLT implementation incorporates Jason Diamond's original
+         <a href="http://injektilo.org/rdf/rdf.xsl">rdf.xsl</a> (nice work!). I
+         have placed a copy at <a href=
+         "http://www.openhealth.org/RDF/rdf.xsl">http://www.openhealth.org/RDF/rdf.xsl</a>
+         which is &lt;xsl:include&gt;d into the current implementation:
+      </p>
+      <p>
+          <a href=
+         "http://www.openhealth.org/RDF/rdfExtractify.xsl">http://www.openhealth.org/RDF/rdfExtractify.xsl</a>
+      </p>
+      <p>
+         To use, also download <a href=
+         "http://www.openhealth.org/RDF/rdf.xsl">http://www.openhealth.org/RDF/rdf.xsl</a>
+         into the same directory
+      </p>
+      <!--<H4>Try it out</H4>
+
+          <form action="http://www.w3.org/2000/06/webdata/xslt" method="GET">
+
+            <input type="hidden" name="xslfile" value="http://www.openhealth.org/RDF/rdfExtractify.xsl" />
+
+            <p>XML or RDF file: <input type="text" name="xmlfile" size="48" /></p>
+
+            <p><input type="submit" value="extractify" /></p>
+
+          </form>-->
+      <p>
+          
+      </p>
+      <h3>
+         How to name anonymous class instances?
+      </h3>
+      <p>
+         In the Melnick proposal, class instances are named by use of the
+         rdf:instance attribute. When we indicate that an element maps to a
+         class instance through use of the rdf:type instance the member appears
+         anonymous, or is it? As in the XLink2RDF proposal, nodes can be named
+         using XPointer fragment identifiers. XPointers can be generated from
+         an element using several techniques:
+      </p>
+      <ol>
+         <li>
+            <a href="http://www.w3.org/TR/xptr#bare-names">'Bare names'</a>
+            Value of ID or rdf:ID attribute e.g. #foo
+         </li>
+         <li>
+            <a href="http://www.w3.org/TR/xptr#child-seqs">ChildSeq</a> e.g.
+            #/1/1/1
+         </li>
+         <li>
+            XPath indices e.g. #xpointer(/foo[1]/bar[2])
+         </li>
+         <li>
+            XPathattributese.g.#xpointer(/foo[@bar='123']/baz[@bop='whatever'])
+         </li>
+      </ol>
+      <p>
+         An example XML document using simplified RDF syntax
+      </p>
+<pre>
+&lt;t:person
+
+  rdf:about="http://www.openhealth.org/people/JohnDoe.xml"
+
+        xmlns:t="http://www.openhealth.org/types"&gt;
+
+    &lt;t:name rdf:type="PersonName"&gt;           
+
+        &lt;t:first&gt;John&lt;/t:first&gt;
+
+  &lt;t:last&gt;Doe&lt;/t:last&gt;
+
+    &lt;/t:name&gt;
+
+    &lt;t:pid t:entity="NEMC"&gt;123-45-6789&lt;/t:pid&gt;
+
+    &lt;t:SSN&gt;000-11-1234&lt;/t:SSN&gt;
+
+    &lt;t:patient rdf:type="Role"&gt;
+
+       &lt;t:primary-care-physician rdf:resource=".../DrJones.xml" /&gt;
+
+    &lt;/t:patient&gt;
+
+    &lt;t:address rdf:type="Address" loc="home"&gt;
+
+      &lt;t:street&gt;750 Washington Street&lt;/t:street&gt;
+
+      &lt;t:city&gt;Boston&lt;/t:city&gt;
+
+      &lt;t:state&gt;MA&lt;/t:state&gt;
+
+    &lt;/t:address&gt;
+
+&lt;/t:person&gt;
+
+</pre>
+      <p>
+         And transformed via rdfExtractify:
+      </p>
+      <p>
+         &lt;rdf:RDF
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/&gt;<br />
+                &lt;rdf:subject
+         rdf:resource="http://www.openhealth.org/people/JohnDoe.xml"/&gt;<br />
+                &lt;rdf:object
+         rdf:resource="http://www.openhealth.org/types#person"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.openhealth.org/types#name"/&gt;<br />
+                &lt;rdf:subject
+         rdf:resource="http://www.openhealth.org/people/JohnDoe.xml"/&gt;<br />
+                &lt;rdf:object rdf:resource="#/1/1"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/1"/&gt;<br />
+                &lt;rdf:object rdf:resource="PersonName"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.openhealth.org/types#first"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/1"/&gt;<br />
+                &lt;rdf:object&gt;John&lt;/rdf:object&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.openhealth.org/types#last"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/1"/&gt;<br />
+                &lt;rdf:object&gt;Doe&lt;/rdf:object&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.openhealth.org/types#pid"/&gt;<br />
+                &lt;rdf:subject
+         rdf:resource="http://www.openhealth.org/people/JohnDoe.xml"/&gt;<br />
+                &lt;rdf:object rdf:resource="#/1/2"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/2"/&gt;<br />
+                &lt;rdf:object
+         rdf:resource="http://www.openhealth.org/types#pid"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.openhealth.org/types#entity"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/2"/&gt;<br />
+                &lt;rdf:object&gt;NEMC&lt;/rdf:object&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#value"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/2"/&gt;<br />
+                &lt;rdf:object&gt;123-45-6789&lt;/rdf:object&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.openhealth.org/types#SSN"/&gt;<br />
+                &lt;rdf:subject
+         rdf:resource="http://www.openhealth.org/people/JohnDoe.xml"/&gt;<br />
+                &lt;rdf:object&gt;000-11-1234&lt;/rdf:object&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.openhealth.org/types#patient"/&gt;<br />
+                &lt;rdf:subject
+         rdf:resource="http://www.openhealth.org/people/JohnDoe.xml"/&gt;<br />
+                &lt;rdf:object rdf:resource="#/1/4"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/4"/&gt;<br />
+                &lt;rdf:object rdf:resource="Role"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.openhealth.org/types#primary-care-physician"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/4"/&gt;<br />
+                &lt;rdf:object
+         rdf:resource="http://www.openhealth.org/people/DrJones.xml"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/&gt;<br />
+                &lt;rdf:subject
+         rdf:resource="http://www.openhealth.org/people/DrJones.xml"/&gt;<br />
+                &lt;rdf:object
+         rdf:resource="http://www.openhealth.org/types#primary-care-physician"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.openhealth.org/types#address"/&gt;<br />
+                &lt;rdf:subject
+         rdf:resource="http://www.openhealth.org/people/JohnDoe.xml"/&gt;<br />
+                &lt;rdf:object rdf:resource="#/1/5"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/5"/&gt;<br />
+                &lt;rdf:object rdf:resource="Address"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="file:/D:/rdf/test.xml#loc"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/5"/&gt;<br />
+                &lt;rdf:object&gt;home&lt;/rdf:object&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.openhealth.org/types#street"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/5"/&gt;<br />
+                &lt;rdf:object&gt;750 Washington
+         Street&lt;/rdf:object&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.openhealth.org/types#city"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/5"/&gt;<br />
+                &lt;rdf:object&gt;Boston&lt;/rdf:object&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.openhealth.org/types#state"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/5"/&gt;<br />
+                &lt;rdf:object&gt;MA&lt;/rdf:object&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+          &lt;/rdf:RDF&gt;
+      </p>
+      <p>
+         And the reified result:
+      </p>
+      <p>
+         &lt;rdf:RDF
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/1"/&gt;<br />
+                &lt;rdf:object
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/1"/&gt;<br />
+                &lt;rdf:object
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#subject"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/1"/&gt;<br />
+                &lt;rdf:object
+         rdf:resource="http://www.openhealth.org/people/JohnDoe.xml"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#object"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/1"/&gt;<br />
+                &lt;rdf:object
+         rdf:resource="http://www.openhealth.org/types#person"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/2"/&gt;<br />
+                &lt;rdf:object
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/2"/&gt;<br />
+                &lt;rdf:object
+         rdf:resource="http://www.openhealth.org/types#name"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#subject"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/2"/&gt;<br />
+                &lt;rdf:object
+         rdf:resource="http://www.openhealth.org/people/JohnDoe.xml"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#object"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/2"/&gt;<br />
+                &lt;rdf:object rdf:resource="#/1/1"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/3"/&gt;<br />
+                &lt;rdf:object
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/3"/&gt;<br />
+                &lt;rdf:object
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#subject"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/3"/&gt;<br />
+                &lt;rdf:object rdf:resource="#/1/1"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#object"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/3"/&gt;<br />
+                &lt;rdf:object rdf:resource="PersonName"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             ...
+      </p>
+      <p>
+            &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#object"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/13"/&gt;<br />
+                &lt;rdf:object
+         rdf:resource="http://www.openhealth.org/people/DrJones.xml"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/14"/&gt;<br />
+                &lt;rdf:object
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/14"/&gt;<br />
+                &lt;rdf:object
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#subject"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/14"/&gt;<br />
+                &lt;rdf:object
+         rdf:resource="http://www.openhealth.org/people/DrJones.xml"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#object"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/14"/&gt;<br />
+                &lt;rdf:object
+         rdf:resource="http://www.openhealth.org/types#primary-care-physician"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/15"/&gt;<br />
+                &lt;rdf:object
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/15"/&gt;<br />
+                &lt;rdf:object
+         rdf:resource="http://www.openhealth.org/types#address"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#subject"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/15"/&gt;<br />
+                &lt;rdf:object
+         rdf:resource="http://www.openhealth.org/people/JohnDoe.xml"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#object"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/15"/&gt;<br />
+                &lt;rdf:object rdf:resource="#/1/5"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/16"/&gt;<br />
+                &lt;rdf:object
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/16"/&gt;<br />
+                &lt;rdf:object
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#subject"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/16"/&gt;<br />
+                &lt;rdf:object rdf:resource="#/1/5"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#object"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/16"/&gt;<br />
+                &lt;rdf:object rdf:resource="Address"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/17"/&gt;<br />
+                &lt;rdf:object
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/17"/&gt;<br />
+                &lt;rdf:object
+         rdf:resource="file:/D:/rdf/test.xml#loc"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#subject"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/17"/&gt;<br />
+                &lt;rdf:object rdf:resource="#/1/5"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#object"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/17"/&gt;<br />
+                &lt;rdf:object&gt;home&lt;/rdf:object&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/18"/&gt;<br />
+                &lt;rdf:object
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/18"/&gt;<br />
+                &lt;rdf:object
+         rdf:resource="http://www.openhealth.org/types#street"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#subject"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/18"/&gt;<br />
+                &lt;rdf:object rdf:resource="#/1/5"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#object"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/18"/&gt;<br />
+                &lt;rdf:object&gt;750 Washington
+         Street&lt;/rdf:object&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/19"/&gt;<br />
+                &lt;rdf:object
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/19"/&gt;<br />
+                &lt;rdf:object
+         rdf:resource="http://www.openhealth.org/types#city"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#subject"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/19"/&gt;<br />
+                &lt;rdf:object rdf:resource="#/1/5"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#object"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/19"/&gt;<br />
+                &lt;rdf:object&gt;Boston&lt;/rdf:object&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/20"/&gt;<br />
+                &lt;rdf:object
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/20"/&gt;<br />
+                &lt;rdf:object
+         rdf:resource="http://www.openhealth.org/types#state"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#subject"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/20"/&gt;<br />
+                &lt;rdf:object rdf:resource="#/1/5"/&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+             &lt;rdf:Statement&gt;<br />
+                &lt;rdf:predicate
+         rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#object"/&gt;<br />
+                &lt;rdf:subject rdf:resource="#/1/20"/&gt;<br />
+                &lt;rdf:object&gt;MA&lt;/rdf:object&gt;<br />
+             &lt;/rdf:Statement&gt;<br />
+          &lt;/rdf:RDF&gt;
+      </p>
+      <p>
+         <img alt="error-file:TidyOut.log" src="person graph.GIF" />
+      </p>
+      <p>
+          
+      </p>
+      <p>
+         Comments are welcome
+      </p>
+      <p>
+         Jonathan Borden
+      </p>
+      <p>
+         <a href="mailto:jonathan@openhealth.org">jonathan@openhealth.org</a>
+      </p>
+      <p>
+         September 21, 2000
+      </p>
+<p class="clear">
+  	<a class="clear" href="http://www.jonathanborden-md.com"></a>
+	<a class="clear" href="http://www.jonathanborden-md.com/jonathan-borden-cv.htm"></a>
+	<a class="clear" href="http://www.erieneurosurgery.com"></a>
+	<a class="clear" href="http://www.erieneuroscience.org"></a>
+	<a class="clear" href="http://www.erieneuroscience.com"></a>
+  </p>
+   </body>
+</html>

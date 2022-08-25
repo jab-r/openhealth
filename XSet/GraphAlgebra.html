@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<title>Defining relationships between URIs and resources using predicate calculus and schemata</title>
+	<link rel="stylesheet" type="text/css" href="xset.css" />
+</head>
+
+<body>
+<h1>Defining relationships between URIs and resources using predicate calculus and schemata</h1>
+<p><A href="mailto:jonathan@openhealth.org">Jonathan Borden</A> <a href="http://www.openhealth.org">The Open Healthcare Group</a>
+<h3 class="theorem">[1] Valid(a,A) := a document <em>x</em> is valid with respect to a schema <em>A</em></h3>
+<p>The predicate <em>valid(a,A)</em> is true for all documents <em>a</em> which are valid with respect to a schema <em>A.</em></p>
+<h3 class="theorem">[2] Instances(A) := the set of all <em>a</em> such that Valid(a,A)</h3>
+<p>The set of all documents valid with respect to a schema <em>A</em>.</p>
+<h2 id="instance-equivalence">Theorem: instance equivalence</h2>
+<h3 class="theorem">[3] equivalent(<b>a</b>,<b>b</b>) := exists(<b>t</b>) and exists(<b>t'</b>) such that <b>b = t(a)</b> and <b>a =    t'(b)</b></h3>
+<p>A document <i>a</i> is equivalent to another document <i>b</i> if there exists a transform <i>t</i> which produces
+<i>b</i> from <i>a</i>, and there exists a transform <i>t'</i> which produces <i>a</i> from <i>b</i>.
+</p>
+<h2 id="schema-equivalence">Theorem: schema equivalence</h2>
+<h3 class="theorem">[4] Equivalent(A,B) := Instances(A) = 
+Instances(B)</h3>
+<p>The schemata A and&nbsp;B are equivalent if the set of 
+documents valid with respect to A is equal to the set of documents valid with 
+respect to B.</p>
+<h2>Corrollary for instance equivalence</h2>
+<h3 class="theorem">[4a] equivalent(a,b) := exists schema A 
+and exists schema B, such that <em>a</em> in Instances(A) and <em>b</em> in Instances(B) and Equivalent(A,B)</h3>
+<h2 id="instance-restriction">Theorem: instance restriction</h2>
+<h3 class="theorem">[5] restriction(a,b) := exists <i>t</i> such that <i>a = t(b)</i> but not exists <i>t'</i> such that <i>b =    t'(a)</i></h3>
+<p><i>a</i> is a restriction of <i>b</i> if a transformation exists that maps <i>b</i> to <i>a</i> but not exists a 
+transform t' that maps a into b.</p>
+<h2 id="schema-restriction">Theorem: schema restriction</h2>
+<h3 class="theorem">[6] Restriction(A,B) := 
+SubsetOf(Instances( <i>A)</i>,Instances(<EM>B))</EM> and 
+not(SubsetOf(Instances(B),Instances(A)))</h3>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!--
+	Copyright (c) 2000 Jonathan Borden, The Open Healthcare Group
+	
+	PUBLIC "+//ASTM//DTD DICOMV3 1.0//EN"
+	SYSTEM "http://www.openhealth.org/ASTM/astm.dicom.dtd"
+-->
+<!ENTITY % DICOM.prefixed "INCLUDE">
+
+<!ENTITY % astm.dicom.base.module PUBLIC "+//ASTM//DTD DICOM Base 1.0//EN" "astm.dicom.base.dtd">
+<!ENTITY % astm.dicom.entities.module PUBLIC "+//ASTM//ENTITIES DICOM Entities 1.0//EN" 'astm.dicom.entities.dtd'>
+<!ENTITY % astm.dicom.elements.module PUBLIC "+//ASTM//DTD DICOM Elements 1.0//EN" 'astm.dicom.elements.dtd'>
+%astm.dicom.base.module;
+%astm.dicom.elements.module;
+%ASTM.dicom.entities.module;

@@ -1,0 +1,340 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:base="http://www.openhealth.org/ASTM/clinical-header"
+		xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:rddl="http://www.rddl.org/"
+		xmlns:xlink="http://www.w3.org/1999/xlink">
+   <head>
+      <title>
+         ASTM E2182 Clinical Header namespace description
+      </title>
+   </head>
+   <body>
+      <h1>
+         Clinical Header namespace description (RDDL)
+      </h1>
+      <p>
+         Clinical documents are constructed of a header and a body. The header
+         is a structure that is consistent from one type of document to
+         another. The clinical body varies depending on the document type. For
+         example, one might have an operative report or a discharge summary.
+         Both have a clinical header of the same structure, but the body varies
+         in structure, containing information specific to the type of document.
+      </p>
+      <div id="ch.attrib">
+         <h3>
+            ch.attrib
+         </h3>
+         <p>
+            Clinical Header attributes
+         </p>
+<pre>
+ch.attrib = 
+ attribute ID{xsd:ID}?,
+ attribute confidentiality{xsd:IDREF}?,
+ attribute note{xsd:string}?,
+ attribute xml:lang{xsd:NMTOKEN}?
+</pre>
+      </div>
+      <div id="ch.person.type">
+         <h3>
+            ch.person.type
+         </h3>
+         <p>
+            A clinical header person type consists of a person.name, zero or
+            more ids and zero or more addresses.
+         </p>
+<pre>
+ch.person.type =
+ person.name,
+ id*,
+ addr*
+</pre>
+      </div>
+      <div id="ch.organization.type">
+         <h3>
+            ch.organization.type
+         </h3>
+<pre>
+ch.organization.type =
+ organization.name?,
+ id*,
+ addr*
+</pre>
+      </div>
+      <div id="ch.actor.type">
+         <h3>
+            ch.actor.type
+         </h3>
+         <p>
+            ch.actor.type = ch.person.type,type.code?,date.time?
+         </p>
+      </div>
+      <div id="ch.authenticator.type">
+         <h3>
+            ch.authenticator.type
+         </h3>
+         <p>
+            ch.authenticator.type = ch.actor.type,signature?
+         </p>
+      </div>
+      <p>
+         ch.datetime.model = text
+      </p>
+      <p>
+         coded.value.model = text
+      </p>
+<pre>
+coded.value.attrib.list =
+    attribute code.system {xsd:NMTOKEN}?,
+    attribute code.system.name {xsd:string}?,
+    attribute version {xsd:NMTOKEN}?
+</pre>
+      <div id="clinical.header">
+<pre>
+clinical.header =
+   element clinical.header{
+   ch.attrib,
+   id*,
+   version.number?,
+   confidentiality.code*,
+   patient.encounter?,
+   authenticator*,
+   legal.authenticator*,
+   intended.recipient*,
+   originator?,
+   originating.organization?,
+ transcriptionist?,
+ provider+,
+ service.actor*,
+ patient,
+ events?,
+ codes?,
+ related.document*}
+</pre>
+      </div>
+      <div id="service.actor">
+<pre>
+service.actor = 
+ element service.actor {
+  ch.attrib,
+  xlink,
+  (person.name|organization.name),
+  id*,
+  addr*,
+  type.code?,
+  function?,
+  date.time?
+  }
+</pre>
+      </div>
+      <div id="provider">
+<pre>
+provider = element 
+ provider{
+  ch.attrib,
+  ch.actor.type,
+  function?}
+</pre>
+      </div>
+      <p>
+         service.target.model = ch.actor &amp; birth.date? &amp; gender? events
+         = element events{ch.attrib,event*} event = element event{ch.attrib,
+         (event.name &amp; date.time &amp; staff? &amp; comments?) } # 
+         <!-- id -->
+      </p>
+      <div id="id">
+<pre>
+id = element id {ch.attrib,
+ attribute root{xsd:string}?,
+ attribute authority{xsd:string}?,
+ attribute type{xsd:string}?,
+ attribute valid.time{xsd:string}?,
+ xlink, text}
+</pre>
+      </div>
+      <p>
+         version.number = element version.number {ch.attrib,text}
+         confidentiality.code = element confidentiality.code{ ch.attrib,
+         coded.value.attrib.list, coded.value.model}
+      </p>
+      <div id="patient.encounter">
+<pre>
+patient.encounter = 
+ element patient.encounter{
+  ch.attrib,
+  (id? &amp;
+  practice.setting? &amp;
+  date.time? &amp;
+  location)
+  }
+</pre>
+      </div>
+      <h2>
+         Service Actors
+      </h2>
+<pre>
+authenticator = element authenticator{
+         ch.attrib, 
+   ch.authenticator.type } 
+legal.authenticator = element legal.authenticator{ 
+  ch.attrib, ch.authenticator.type }
+originator = element originator {
+   ch.attrib,ch.actor.type} 
+intended.recipient = element intended.recipient {
+   ch.attrib,ch.actor.type} 
+transcriptionist = element transcriptionist {ch.attrib,ch.actor.type}
+</pre>
+       
+      <div id="patient">
+         <h2>
+            Service Targets
+         </h2>
+<pre>
+patient = element patient {
+ ch.attrib,xlink,
+ service.target.model
+ }
+</pre>
+      </div>
+      <p>
+         codes = element codes { ch.attrib, coded.value* } related.document =
+         element related.document { xlink.simple, any } practice.setting =
+         element practice.setting {ch.attrib,text} date.time = element
+         date.time { ch.attrib, ch.datetime.model } location = element location
+         {ch.attrib,text} event.name = element event.name {ch.attrib,text}
+         staff = element staff{ ch.attrib, ch.person.type } comments = element
+         comments {ch.attrib,text} # <!--
+                   #person.name
+                   #-->
+      </p>
+      <div id="person.name">
+         <h3>
+            person.name
+         </h3>
+         <p>
+            A person name may have any number of the following elements in any
+            order. A particular order and set of delimiters may determine the
+            text string representation of a name.
+         </p>
+<pre>
+person.name = element person.name{
+ ch.attrib, attribute type{text}?,
+ (family|
+ given|
+ middle|
+ prefix|
+ suffix|
+ delimiter
+ )*}
+</pre>
+      </div>
+      <p>
+         name.component.type = ch.attrib,attribute type{text}?,text family =
+         element family {name.component.type} given = element given
+         {name.component.type} middle = element middle {name.component.type}
+         prefix = element prefix {name.component.type} suffix = element suffix
+         {name.component.type} delimiter = element delimiter
+         {name.component.type} # <!-- organization -->organization.name =
+         element organization.name {ch.attrib,text} # <!--
+                   # addr
+                   #-->
+      </p>
+      <div id="addr">
+<pre>
+addr = element addr {
+ ch.attrib,attribute type{text}?,
+ (
+ country|
+ city|
+ state|
+ street|
+ zip|
+ house.number|
+ direction|
+ post.office.box|
+ telephone|
+ uri|
+ delimiter
+ )*}
+</pre>
+      </div>
+      <p>
+         addr.component.type = ch.attrib,attribute type{text}?,text
+      </p>
+<pre>
+ 
+</pre>
+      <div id="country">
+      </div>
+<pre>
+<br />
+country = element country {addr.component.type}
+  city = element city {addr.component.type}
+ state = element state {addr.component.type}
+ zip = element zip {addr.component.type}
+ street = element street {addr.component.type}
+ house.number = element house.number {addr.component.type}
+ direction = element direction {addr.component.type}
+ address.locator = element address.locator {addr.component.type}
+ post.office.box = element post.office.box {addr.component.type}
+</pre>
+      <p>
+         # <!--
+                  # allows<uri type="email">jonathan@openhealth.org</uri>##<uri type="homepage">http://www.openhealth.org</uri>##
+                  ## alternatively
+                  ##<uri type="home">mailto:jonathan@openhealth.org</uri>##<uri type="work">mailto:jborden@lifespan.org</uri>##-->
+      </p>
+<pre>
+uri = element uri {addr.component.type}
+telephone = element telephone {addr.component.type}
+
+coded.value = element coded.value {ch.attrib,xlink,coded.value.attrib.list,coded.value.model}
+signature = element signature {ch.attrib,coded.value.attrib.list,coded.value.model}
+
+type.code = element type.code {ch.attrib,xlink,coded.value.attrib.list,coded.value.model}
+function = element function {ch.attrib,xlink,coded.value.attrib.list,coded.value.model}
+</pre>
+      <div id="birth.date">
+<pre>
+birth.date = element birth.date {
+ ch.attrib,
+ ch.datetime.model
+ }
+</pre>
+      </div>
+      <div id="gender">
+         <p>
+            gender = element gender {ch.attrib,text}
+         </p>
+      </div>
+      <div class="originating.organization">
+<pre>
+originating.organization = element originating.organization{
+ ch.attrib,
+ ch.organization.type
+ }
+</pre>
+      </div>
+      <rddl:resource id="DTD" xlink:href="clinical.header.dtd"
+      xlink:arcrole="http://www.rddl.org/purposes#validation"
+      xlink:role="http://www.isi.edu/in-notes/iana/assignments/media-types/application/xml-dtd"
+       xlink:type="simple">
+         <h3>
+            DTD
+         </h3>
+         <p>
+            The ASTM E2182 Clinical Header DTD <a
+            href="http://www.openhealth.org/ASTM/clinical.header.dtd">http://www.openhealth.org/ASTM/clinical.header.dtd</a>
+         </p>
+      </rddl:resource>
+      <rddl:resource id="RELAXNG" xlink:href="clinical.header.rng"
+      xlink:arcrole="http://www.rddl.org/purposes#schema-validation"
+      xlink:role="http://relaxng.org/ns/structure/1.0" xlink:type="simple">
+         <h3>
+            RELAXNG Grammar
+         </h3>
+      </rddl:resource>
+   </body>
+</html>
+

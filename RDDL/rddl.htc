@@ -1,0 +1,81 @@
+<PUBLIC:COMPONENT>
+<PUBLIC:PROPERTY NAME="xlink:href" INTERNALNAME="xhref" />
+<PUBLIC:PROPERTY NAME="xlink:title" INTERNALNAME="xtitle" />
+<PUBLIC:PROPERTY NAME="xlink:role" INTERNALNAME="nature" />
+<PUBLIC:PROPERTY NAME="xlink:arcrole" INTERNALNAME="purpose" />
+<PUBLIC:PROPERTY NAME="xml:lang" INTERNALNAME="xlang" />
+<PUBLIC:PROPERTY NAME="xml:base" INTERNALNAME="xbase" />
+<PUBLIC:PROPERTY NAME="id" INTERNALNAME="rid" />
+<PUBLIC:ATTACH EVENT="onmouseover" ONEVENT="Hilite()" />
+<PUBLIC:ATTACH EVENT="onmouseout"  ONEVENT="Restore()" />
+<PUBLIC:ATTACH EVENT="onclick" 		ONEVENT="Click()" />
+<SCRIPT LANGUAGE="JavaScript">
+   var normalColor, normalSpacing;
+ 	var xhref = null;
+	var xtitle = null;
+	var nature = null;
+	var purpose = null;
+	var xlang,xbase,rid;
+function showtip(current,e,text){
+
+if (document.all){
+	var thetitle,thetitles;
+	thetitle=text.split('<br>');
+	if (thetitle.length>1){
+	  thetitles='';
+	  for (i=0;i<thetitle.length;i++)
+		thetitles+=thetitle[i];
+	  current.title=thetitles;
+	}
+	else
+	current.title=text
+} else if (document.layers){
+	document.tooltip.document.write('<layer bgColor="white" style="border:1px solid black;font-size:12px;">'+text+'</layer>');
+	document.tooltip.document.close();
+	document.tooltip.left=e.pageX+5;
+	document.tooltip.top=e.pageY+5;
+	document.tooltip.visibility="show";
+}
+}
+function hidetip(){
+	if (document.layers)
+	document.tooltip.visibility="hidden";
+}
+
+//<div id="tooltip" style="position:absolute;visibility:hidden"></div>
+   function Hilite()
+   {
+     // save original values
+     normalColor  = runtimeStyle.color;  
+     normalSpacing= runtimeStyle.letterSpacing;
+ 
+     runtimeStyle.color  = "red";//#ffa";
+	 runtimeStyle.cursor = "hand";
+	 var str = "Resource: "+xtitle+" Nature="+nature;
+	 if (purpose != null)
+	 	str += " Purpose="+purpose;
+	 if (xhref != null)
+	 	str += " Href="+xhref;
+	 window.status = str;
+	 showtip(window.event.srcElement,window.event,str);
+	 window.event.cancelBubble = true;
+     //runtimeStyle.letterSpacing = 2;
+   }
+
+   function Restore()
+   {
+     // restore original values
+     runtimeStyle.color  = normalColor;
+	 window.status = "";
+	 window.event.cancelBubble = true;
+	 hidetip();
+     //runtimeStyle.letterSpacing = normalSpacing;
+   }
+   function Click()
+   {
+   	window.event.cancelBubble = true;
+   	window.location.href = xhref;
+   }
+</SCRIPT>
+</PUBLIC:COMPONENT>
+

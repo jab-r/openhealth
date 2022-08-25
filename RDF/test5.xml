@@ -1,0 +1,20 @@
+<person 
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	rdf:ID="JohnDoe" 
+    rdf:type="http://www.openhealth.org/types/Person">
+    <name rdf:type="PersonName">           
+        <first>John</first>
+		<last>Doe</last>
+    </name>
+    <pid entity="NEMC">123-45-6789</pid>
+    <SSN>000-11-1234</SSN>
+    <patient rdf:type="Role">
+    	 <primary-care-physician rdf:resource="http://www.xchart.net/providers/DrJones.xml" />
+    </patient>
+    <address rdf:type="Address" loc="home">
+      <street>750 Washington Street</street>
+      <city>Boston</city>
+      <state>MA</state>
+    </address>
+</person>
+

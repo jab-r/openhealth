@@ -1,0 +1,15 @@
+<module
+  xmlns="http://www.xml.gr.jp/xmlns/relaxCore"
+  targetNamespace="http://www.w3.org/1999/xhtml"
+  relaxCoreVersion="1.0"
+  moduleVersion="1.11">
+
+<include moduleLocation="xhtml-inlstruct-1.rxm"/>
+
+<include moduleLocation="xhtml-inlphras-1.rxm"/>
+
+<include moduleLocation="xhtml-blkstruct-1.rxm"/>
+
+<include moduleLocation="xhtml-blkphras-1.rxm"/>
+
+</module>

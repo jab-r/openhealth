@@ -1,0 +1,41 @@
+-- .......................................................................... --
+-- File catalog  ............................................................ --
+
+--  RDDL Catalog Data File
+
+    See "Entity Management", SGML Open Technical Resolution 9401 for detailed
+    information on supplying and using catalog data. This document is available
+    from OASIS at URL:
+
+        <http://www.oasis-open.org/html/tr9401.html>
+--
+
+-- .......................................................................... --
+-- SGML declaration associated with XML  .................................... --
+
+OVERRIDE YES
+
+SGMLDECL "xml1.dcl"
+OVERRIDE	YES
+-- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: --
+
+-- XHTML Basic DTD modular driver file  ..................................... --
+
+PUBLIC "-//XML-DEV//DTD XHTML RDDL 1.0//EN"                       "rddl-xhtml.dtd"
+
+-- XHTML Basic framework module ............................................. --
+
+PUBLIC "-//XML-DEV//ENTITIES RDDL Document Model 1.0//EN" "xhtml-rddl-model-1.mod"
+PUBLIC "-//XML-DEV//ENTITIES RDDL QName Module 1.0//EN"  "rddl-qname-1.mod"
+
+        -- Oasis entity catalog for XHTML 1.0 --
+
+PUBLIC  "-//XML-DEV//DTD RDDL XHTML 1.0 Strict//EN"        "rddl-xhtml1-strict.dtd"
+PUBLIC  "-//XML-DEV//DTD RDDL XHTML 1.0 Transitional//EN"  "rddl-xhtml1-transitional.dtd"
+PUBLIC  "-//XML-DEV//DTD RDDL XHTML 1.0 Frameset//EN"      "rddl-xhtml1-frameset.dtd"
+
+        -- ISO latin 1 entity set for Extensible HTML (XML 1.0 format) --
+
+PUBLIC	"-//W3C//ENTITIES Latin 1 for XHTML//EN"  "xhtml-lat1.ent"
+PUBLIC	"-//W3C//ENTITIES Symbols for XHTML//EN" "xhtml-symbol.ent"
+PUBLIC	"-//W3C//ENTITIES Special for XHTML//EN" "xhtml-special.ent"

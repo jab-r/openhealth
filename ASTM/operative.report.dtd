@@ -1,0 +1,185 @@
+<!-- 
+
+	Copyright (c) Jonathan Borden, The Open Healthcare Group all rights reserved
+	Licensed under http://www.openhealth.org/license
+
+	PUBLIC "-//ASTM//DTD Operative Report 1.0//EN"
+	SYSTEM "http://www.openhealth.org/ASTM/operative.report.dtd"
+
+	This DTD defines an ASTM E31.25 standard Operative Report
+-->
+
+<!-- 
+	include the base ASTM E31.25 module
+	by default namespace prefixes are not enabled.
+	Namespace prefixes are controlled by the ENTITY % use.namespace which is defined as
+		<!ENTITY % use.namespace "IGNORE">
+	To enable namespace prefixes define <!ENTITY % use.namespace "INCLUDE"> prior to including this DTD 
+	(e.g. in the internal subset)
+-->
+
+<!ENTITY % ASTM.base.module PUBLIC "-//ASTM//DTD E31.25 Base 1.0//EN" "ASTM.E31.25.dtd">
+<!ENTITY % ON.xmlns "'http://www.openhealth.org/ASTM/operative.report'">
+
+%ASTM.base.module;
+
+<!ENTITY % NS.prefixed "IGNORE">
+<!ENTITY % OR.prefixed "%NS.prefixed;">
+
+<![ %OR.prefixed; [
+<!ENTITY % on "or">
+<!ENTITY % on.prefix "%on;:">
+<!ENTITY % ON.xmlns.attrib "xmlns:or CDATA #FIXED 'http://www.openhealth.org/ASTM/operative.report'">
+]]>
+
+<!ENTITY % on ''>
+<!ENTITY % on.prefix ''>
+<!ENTITY % ON.xmlns.attrib "xmlns CDATA #FIXED 'http://www.openhealth.org/ASTM/operative.report'">
+<!-- 
+	a "qname" is an XML qualified name, when namespace support is disabled the ENTITY
+	"on.prefix" is null
+-->
+
+<!ENTITY % operative.report.qname "%on.prefix;operative.report">
+<!ENTITY % clinical.body.qname "%on.prefix;clinical.body">
+<!ENTITY % preoperative.diagnosis.qname "%on.prefix;preoperative.diagnosis">
+<!ENTITY % postoperative.diagnosis.qname "%on.prefix;postoperative.diagnosis">
+<!ENTITY % procedure.qname "%on.prefix;procedure">
+<!ENTITY % surgeon.qname "%on.prefix;surgeon">
+<!ENTITY % anesthesia.qname "%on.prefix;anesthesia">
+<!ENTITY % indications.qname "%on.prefix;indications">
+<!ENTITY % prep.qname "%on.prefix;prep">
+<!ENTITY % medications.qname "%on.prefix;medications">
+<!ENTITY % description.qname "%on.prefix;description">
+<!ENTITY % findings.qname "%on.prefix;findings">
+<!ENTITY % specimens.qname "%on.prefix;specimens">
+<!ENTITY % closure.qname "%on.prefix;closure">
+<!ENTITY % complications.qname "%on.prefix;complications">
+<!ENTITY % pathology.intraoperative.qname "%on.prefix;pathology.intraoperative">
+
+<!ENTITY % pathology.permanent.qname "%on.prefix;pathology.permanent">
+<!ENTITY % drains.qname "%on.prefix;drains">
+<!ENTITY % counts.qname "%on.prefix;counts">
+<!ENTITY % estimated.blood.loss.qname "%on.prefix;estimated.blood.loss">
+<!ENTITY % fluids.qname "%on.prefix;fluids">
+<!ENTITY % patient.condition.qname "%on.prefix;patient.condition">
+<!ENTITY % disposition.qname "%on.prefix;disposition">
+<!ENTITY % followup.qname "%on.prefix;followup">
+<!ENTITY % medication.qname "%on.prefix;medication">
+<!ENTITY % fluid.qname "%on.prefix;fluid">
+
+<!ENTITY % operative.report.model "(
+	 %clinical.header.qname;, 
+	 %clinical.body.qname;
+)">
+<!ENTITY % clinical.body.model "(
+	 %preoperative.diagnosis.qname;,
+	 %postoperative.diagnosis.qname;,
+	 %procedure.qname;,
+	 %anesthesia.qname;,
+	 %indications.qname;,
+	 (%prep.qname;)?,
+	 (%medications.qname;)?,
+	 %description.qname;,
+	 (%findings.qname;)?,
+	 (%specimens.qname;)?,
+	 (%closure.qname;)?,
+	 (%complications.qname;)?,
+	 (%pathology.intraoperative.qname;)?,
+	 (%pathology.permanent.qname;)?,
+	 (%drains.qname;)?,
+	 (%counts.qname;)?,
+	 (%estimated.blood.loss.qname;)?,
+	 (%fluids.qname;)?,
+	 (%patient.condition.qname;)?,
+	 (%disposition.qname;)?,
+	 (%followup.qname;)?
+)">
+<!ELEMENT %operative.report.qname; %operative.report.model;>
+<!ATTLIST %operative.report.qname; 
+	%astm.document.attrib;
+	%ON.xmlns.attrib;
+	>
+
+<!ELEMENT %clinical.body.qname; %clinical.body.model;>
+<!ATTLIST %clinical.body.qname; %ch.attrib;>
+
+<!-- moved to clinical.header as providers role="" 
+	 (%surgeon.qname;)+,
+	 (%assistant.qname;)*,
+	 (%anesthesiologist.qname;)*,
+-->
+
+<!ELEMENT %preoperative.diagnosis.qname; %text.model;>
+<!ATTLIST %preoperative.diagnosis.qname; %astm.content.attrib;>
+
+<!ELEMENT %postoperative.diagnosis.qname; %text.model;>
+<!ATTLIST %postoperative.diagnosis.qname; %astm.content.attrib;>
+
+<!ELEMENT %procedure.qname; %text.model;>
+<!ATTLIST %procedure.qname; %astm.content.attrib;>
+
+<!ELEMENT %anesthesia.qname; %text.model;>
+<!ATTLIST %anesthesia.qname; %astm.content.attrib;>
+
+<!ELEMENT %indications.qname; %astm.content;>
+<!ATTLIST %indications.qname; %astm.content.attrib;>
+
+<!ELEMENT %prep.qname; %astm.content;>
+<!ATTLIST %prep.qname; %astm.content.attrib;>
+
+<!ELEMENT %medications.qname; (#PCDATA | %ASTM.Mix; | %medication.qname; )*>
+<!ATTLIST %medications.qname; %astm.content.attrib;>
+<!ELEMENT %medication.qname; (#PCDATA)>
+<!ATTLIST %medication.qname; %astm.content.attrib;>
+
+<!ELEMENT %description.qname; %astm.content;>
+<!ATTLIST %description.qname; %astm.content.attrib;>
+
+<!ELEMENT %findings.qname; %astm.content;>
+<!ATTLIST %findings.qname; %astm.content.attrib;>
+
+<!ELEMENT %specimens.qname; %astm.content;>
+<!ATTLIST %specimens.qname; %astm.content.attrib;>
+
+<!ELEMENT %closure.qname; %astm.content;>
+<!ATTLIST %closure.qname; %astm.content.attrib;>
+
+<!ELEMENT %complications.qname; %astm.content;>
+<!ATTLIST %complications.qname; %astm.content.attrib;>
+
+<!ELEMENT %drains.qname; %astm.content;>
+<!ATTLIST %drains.qname; %astm.content.attrib;>
+
+<!ELEMENT %counts.qname; %astm.content;>
+<!ATTLIST %counts.qname; %astm.content.attrib;>
+
+<!ELEMENT %pathology.intraoperative.qname; %astm.content;>
+<!ATTLIST %pathology.intraoperative.qname; %astm.content.attrib;>
+
+<!ELEMENT %pathology.permanent.qname; %astm.content;>
+<!ATTLIST %pathology.permanent.qname; %astm.content.attrib;>
+
+<!ELEMENT %estimated.blood.loss.qname; (#PCDATA)>
+<!ATTLIST %estimated.blood.loss.qname; %astm.content.attrib;>
+
+<!ELEMENT %fluids.qname; (%fluid.qname;)*>
+<!ATTLIST %fluids.qname; %astm.content.attrib;>
+
+<!ELEMENT %fluid.qname; (#PCDATA)>
+<!ATTLIST %fluid.qname; %astm.content.attrib;
+	status (given|loss) #REQUIRED
+	volume CDATA #IMPLIED
+	>
+
+<!ELEMENT %patient.condition.qname; %astm.content;>
+<!ATTLIST %patient.condition.qname; %astm.content.attrib;>
+
+<!ELEMENT %disposition.qname; %astm.content;>
+<!ATTLIST %disposition.qname; %astm.content.attrib;>
+
+<!ELEMENT %followup.qname; %astm.content;>
+<!ATTLIST %followup.qname; %astm.content.attrib;>
+
+
+

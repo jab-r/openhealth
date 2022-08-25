@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:s="http://www.example.com/s/"
+	xmlns:v="http://www.example.com/v/">
+	<rdf:Description rdf:about="http://www.openhealth.org/editor/test">
+		<e:person xmlns:e="http://www.openhealth.org/editor/2000-08#" role="patient" UID="123">pppppppppp</e:person>
+		<s:another>pppp</s:another>
+		<v:aaaaa attr="123"><v:bbbbb>123456</v:bbbbb></v:aaaaa>
+	</rdf:Description>
+</rdf:RDF>

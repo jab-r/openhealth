@@ -1,0 +1,195 @@
+<!-- 
+	Copyright (c) Jonathan Borden, The Open Healthcare Group all rights reserved
+	Licensed under http://www.openhealth.org/license
+
+	PUBLIC "-//ASTM//DTD Radiology Report 1.0//EN"
+	SYSTEM "http://www.openhealth.org/ASTM/radiology.report.dtd"
+
+	This DTD defines an ASTM E31.25 standard Radiology Report
+-->
+<!-- 
+	include the base ASTM E31.25 module
+	by default namespaces are not enabled.
+	Namespaces are controlled by the ENTITY % use.namespace which is defined as
+		<!ENTITY % use.namespace "IGNORE">
+	To enable namespaces define <!ENTITY % use.namespace "INCLUDE"> prior to including this DTD 
+	(e.g. in the internal subset)
+-->
+
+
+
+<!ENTITY % ASTM.base.module PUBLIC "-//ASTM//DTD E31.25 Base 1.0//EN" "ASTM.E31.25.dtd">
+<!ENTITY % RAD.xmlns "http://www.openhealth.org/ASTM/radiology.report">
+<!ENTITY % XHTML.xmlns  "http://www.w3.org/1999/xhtml" >
+
+%ASTM.base.module;
+<!-- by default disable DICOM SR -->
+<!ENTITY % use.dicom.rad "IGNORE">
+
+<!ENTITY % NS.prefixed "IGNORE">
+<!ENTITY % RAD.prefixed "%NS.prefixed;">
+
+<![ %RAD.prefixed; [
+<!ENTITY % rad "rad">
+<!ENTITY % rad.prefix "%rad;:">
+<!ENTITY % RAD.xmlns.attrib 'xmlns:%rad; CDATA #FIXED "%RAD.xmlns;"'>
+]]>
+
+<!ENTITY % rad "">
+<!ENTITY % rad.prefix "">
+<!ENTITY % RAD.xmlns.attrib 'xmlns CDATA #FIXED "http://www.openhealth.org/ASTM/radiology.report"'>
+
+<![%use.dicom.rad;[
+<!ENTITY % astm.dicom.rad.module PUBLIC "+//ASTM//DTD DICOMV3 1.0//EN" "astm.dicom.dtd">
+%astm.dicom.rad.module;
+
+<!ENTITY % astm.dicom.sr.module PUBLIC "+//ASTM//DTD DICOM SR 1.0//EN" "DICOMSR.dtd">
+%astm.dicom.sr.module;
+
+
+<!ELEMENT %dicom.sr.qname; (
+	(%dicom.sr.document.content.module.qname;)?,
+	(%dicom.sr.document.general.module.qname;)?,
+	(%dicom.sr.document.series.module.qname;)?
+)>
+]]>
+
+<!ENTITY % radiology.report.qname "%rad.prefix;radiology.report">
+<!ENTITY % clinical.body.qname "%rad.prefix;clinical.body">
+<!ENTITY % study.instance.uid.qname "%rad.prefix;study.instance.uid">
+<!ENTITY % study.date.qname "%rad.prefix;study.date">
+<!ENTITY % study.time.qname "%rad.prefix;study.time">
+<!ENTITY % study.description.qname "%rad.prefix;study.description">
+<!ENTITY % referenced.study.sequence.qname "%rad.prefix;referenced.study.sequence">
+<!ENTITY % procedure.code.sequence.qname "%rad.prefix;procedure.code.sequence">
+<!ENTITY % modality.qname; "%rad.prefix;modality">
+<!ENTITY % laterality.qname "%rad.prefix;laterality">
+<!ENTITY % protocol.name.qname "%rad.prefix;protocol.name">
+<!ENTITY % body.part.examined.qname "%rad.prefix;body.part.examined">
+<!ENTITY % reason.for.study.qname "%rad.prefix;reason.for.study">
+<!ENTITY % contrast.bolus.agent.qname "%rad.prefix;contrast.bolus.agent"> 
+<!ENTITY % interpretation.text.qname "%rad.prefix;interpretation.text">
+<!ENTITY % impressions.qname "%rad.prefix;impressions">
+<!ENTITY % interpretation.diagnosis.description.qname "%rad.prefix;interpretation.diagnosis.description">
+<!ENTITY % interpretation.diagnosis.code.sequence.qname "%rad.prefix;interpretation.diagnosis.code.sequence">
+<!ENTITY % interpretation.id.qname "%rad.prefix;interpretation.id">
+<!ENTITY % dicom.sr.qname "%rad.prefix;dicom.sr">
+
+<!ENTITY % study.instance.uid.model "(#PCDATA)">
+<!ENTITY % study.date.model "(#PCDATA)">
+<!ENTITY % study.time.model "(#PCDATA)">
+<!ENTITY % study.description.model "%astm.content;">
+<!ENTITY % referenced.study.sequence.model "(%coded.value.qname;)*">
+<!ENTITY % procedure.code.sequence.model "(%coded.value.qname;)*">
+<!ENTITY % modality.model "(#PCDATA)">
+<!ENTITY % laterality.model "(#PCDATA)">
+<!ENTITY % protocol.name.model "(#PCDATA)">
+<!ENTITY % body.part.examined.model "(#PCDATA)">
+<!ENTITY % reason.for.study.model "%astm.content;">
+<!ENTITY % contrast.bolus.agent.model "(#PCDATA)"> 
+
+<!ENTITY % interpretation.text.model "%astm.content;">
+<!ENTITY % impressions.model "%astm.content;">
+<!ENTITY % interpretation.diagnosis.description.model "%astm.content;">
+<!ENTITY % interpretation.diagnosis.code.sequence.model "(%coded.value.qname;)*">
+<!ENTITY % interpretation.id.model "(#PCDATA)">
+
+<!--	gone to header
+	 %dcm;ReferringPhysicianName?,
+	 %dcm;StudyID?,
+	 %dcm;AccessionNumber?,
+	 %dcm;OperatorsName?,
+	 %dcm;physicianOfRecord?,
+	 %dcm;RequestingPhysician?,
+	 %dcm;PerformingPhysicianName?,
+	 %dcm;NameOfPhysicianReadingStudy?,
+	 %dcm;InterpretationTranscriptionDate?,
+	 %dcm;InterpretationAuthor?,
+-->
+
+<!ENTITY % clinical.body.model "(
+	 (%study.instance.uid.qname;)?,
+	 (%study.date.qname;)?,
+	 (%study.time.qname;)?,
+	 (%study.description.qname;)?,
+	 (%referenced.study.sequence.qname;)?,
+	 (%procedure.code.sequence.qname;)?,
+	 %modality.qname;,
+	 (%laterality.qname;)?,
+	 (%protocol.name.qname;)?,
+	 (%body.part.examined.qname;)?,
+	 (%reason.for.study.qname;)?,
+	 (%contrast.bolus.agent.qname;)?, 
+	 (%interpretation.text.qname;)?,
+	 (%impressions.qname;)?,
+	 (%interpretation.diagnosis.description.qname;)?,
+	 (%interpretation.diagnosis.code.sequence.qname;)?,
+	 (%interpretation.id.qname;)?,
+	 (%dicom.sr.qname;)*	
+)">
+
+<!ENTITY % radiology.report.model "(
+	%clinical.header.qname;,
+	%clinical.body.qname;
+)">
+
+<!ELEMENT %radiology.report.qname; %radiology.report.model;>
+<!ATTLIST %radiology.report.qname; 
+	%astm.document.attrib;
+	%RAD.xmlns.attrib;
+	>
+
+<!ELEMENT %clinical.body.qname; %clinical.body.model;>
+<!ATTLIST %clinical.body.qname; %ch.attrib;>
+
+<!ELEMENT %study.instance.uid.qname; %study.instance.uid.model;>
+<!ATTLIST %study.instance.uid.qname; %astm.content.attrib;>
+
+<!ELEMENT %study.date.qname; %study.date.model; >
+<!ATTLIST %study.date.qname; %astm.content.attrib;>
+
+<!ELEMENT %study.time.qname; %study.time.model; >
+<!ATTLIST %study.time.qname; %astm.content.attrib;>
+
+<!ELEMENT %study.description.qname; %study.description.model; >
+<!ATTLIST %study.description.qname; %astm.content.attrib;>
+
+<!ELEMENT %referenced.study.sequence.qname; %referenced.study.sequence.model; >
+<!ATTLIST %referenced.study.sequence.qname; %astm.content.attrib;>
+
+<!ELEMENT %procedure.code.sequence.qname; %procedure.code.sequence.model; >
+<!ATTLIST %procedure.code.sequence.qname; %astm.content.attrib;>
+
+<!ELEMENT %modality.qname; %modality.model; >
+<!ATTLIST %modality.qname; %astm.content.attrib;>
+
+<!ELEMENT %laterality.qname; %laterality.model; >
+<!ATTLIST %laterality.qname; %astm.content.attrib;>
+
+<!ELEMENT %protocol.name.qname; %protocol.name.model; >
+<!ATTLIST %protocol.name.qname; %astm.content.attrib;>
+
+<!ELEMENT %body.part.examined.qname; %body.part.examined.model; >
+<!ATTLIST %body.part.examined.qname; %astm.content.attrib;>
+
+<!ELEMENT %reason.for.study.qname; %reason.for.study.model; >
+<!ATTLIST %reason.for.study.qname; %astm.content.attrib;>
+
+<!ELEMENT %contrast.bolus.agent.qname; %contrast.bolus.agent.model; >
+<!ATTLIST %contrast.bolus.agent.qname; %astm.content.attrib;>
+
+<!ELEMENT %interpretation.text.qname; %interpretation.text.model; >
+<!ATTLIST %interpretation.text.qname; %astm.content.attrib;>
+
+<!ELEMENT %impressions.qname; %impressions.model; >
+<!ATTLIST %impressions.qname; %astm.content.attrib;>
+
+<!ELEMENT %interpretation.diagnosis.description.qname; %interpretation.diagnosis.description.model; >
+<!ATTLIST %interpretation.diagnosis.description.qname; %astm.content.attrib;>
+
+<!ELEMENT %interpretation.diagnosis.code.sequence.qname; %interpretation.diagnosis.code.sequence.model;>
+<!ATTLIST %interpretation.diagnosis.code.sequence.qname; %astm.content.attrib;>
+
+<!ELEMENT %interpretation.id.qname; %interpretation.id.model;>
+<!ATTLIST %interpretation.id.qname; %astm.content.attrib;>
+

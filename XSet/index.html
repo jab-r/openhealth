@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//XML-DEV//DTD XHTML RDDL 1.0//EN" "http://www.rddl.org/rddl-xhtml.dtd">
+<html 
+		xmlns="http://www.w3.org/1999/xhtml" 
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:rddl="http://www.rddl.org/"
+		xml:lang="en"
+		xml:base="http://www.openhealth.org/XSet">
+<head>
+	<title>XSet: an XML property set description of XML</title>
+	<link rel="stylesheet" href="http://www.rddl.org/xrd.css" />
+</head>
+<body>
+<h2>The Resource Directory Description (RDDL) for the XSet namespace.</h2>
+<p>XSet is an XML property set description of XML 1.0 and XML namespaces. The 
+description is a result of translating the Extended <a href="http://www.stud.ifi.uio.no/~lmariusg/download/artikler/bnf.html">Backus-Naur</a> Form (EBNF) 
+productions into an XML language: the production rule langage (PRL).</p>
+<p>XSet <A href="xml.xml">xml.xml</A> is an RDF description of the productions in XML 1.0 and XML 
+Namespaces. RDF is used to provide metadata about the production set, including 
+that it is "about" XML 1.0 and "about" XML Namespaces. RDF adds very little 
+overhead to the property set which is itself a compact description. 
+EBNF maps nicely to the RDF syntax notions of sequences "Seq" and alternates "Alt". 
+XSet <code>Seq</code> and <code>Alt</code> are subclassed from RDF M&amp;S 1.0 <code>Seq</code> and <code>Alt</code> however parse with the implicit assumption
+that each child element is a member.</p>
+<p>The XSet grove is mapped to XML grove processing software through an XSet <code>expansion</code> where the contents of each matched production
+is wrapped in an element whose name or GI is the id of the production. For example 
+the document:</p> 
+<pre>
+&lt;simple&gt;abc&lt;/simple&gt;
+</pre>
+<p>expands to:</p>
+<pre>
+&lt;element&gt;
+&#160;&#160;&lt;STag&gt;
+&#160;&#160;&#160;&lt;Name&gt;simple&lt;/Name&gt;
+&#160;&#160;&lt;/STag&gt;
+&#160;&#160;&lt;content&gt;
+&#160;&#160;&#160;&lt;CharData&gt;abc&lt;/CharData&gt;
+&#160;&#160;&lt;/content&gt;
+&lt;/element&gt;
+</pre>
+<p>XSet enables XPath based indexing and addressing of the full fidelity grove 
+of an XML document . Bonsai is a pruning and compression diagram which maps the 
+full XSet specification onto a subset or grove plan. Examples of XSet bonsai are 
+1) the <a href="http://www.w3.org/tr/xml-infoset">XML Infoset</a>, 2) the <a href="http://www.w3.org/tr/xpath">XPath</a> data model, 3) 
+the DOM data model, 4) Common XML and 5) Eric van der Vlist's <a href="http://www.xml.com/pub/2000/08/09/xslt/xslt.html">technique</a> of exposing entities through the SAX model</p><h3>Projects:</h3>
+<p>Using <A title="The XSet property set for XML" href="xml.xml" >XSet</A> and an <A href="xsetrdfs.xsl">XSLT transformation</A>, an <A href="rdfs.xml">RDF Schema</A> for XML is 
+derived.</p>
+<p>Using <A href="xml.xml">XSet</A> and <A href="propset.xsl">another XSLT transformation</A>, we are working on deriving an ISO 
+<A href="ps.xml">Property Set for XML.</A></p>
+<p>Using XSet and yet another XSLT transformation we plan to derive an XML 
+Schema Description for XML.</p>
+<p>Using yet another XSLT transformation we plan to product a subsetting 
+mechanism, or grove plan, to simplify the XSet "grove" into desired levels of 
+detail.</p>
+<p>An <A href="apigen.xsl">XSLT transform</A> can be used to derive IDL descriptions of APIs</p><h3>Background:</h3>
+<p>ISO Groves and Property Sets are a formal mechanism to unify the 
+addressing schemes of HyTime and DSSSL. Groves allow addressing and linking into 
+multimedia formats which have defined Property Sets: essentially a "grand 
+unified theory" of addressing.</p>
+<p>In practice, EBNF grammars are widely used to specify formats including XML, 
+MIME, URIs etc. The XSet production language is proposed as an alternative to 
+ISO Groves to enable grove based processing of formats defined in EBNF.</p>
+<h2>Production Language:</h2>
+<p>The production language is a simple XML schema language for EBNF grammars.</p>
+<div id="propertySet">
+<h3>element propertySet</h3>
+<h4>attribute rdf:about="URI"</h4><p>a URI containing the EBNF 
+grammar</p>
+<div id="targetNamespace">
+<h4>attribute targetNamespace</h4>
+<p>a URI indicating the target namespace of elements corresponding to
+production ids for the grammar described by the propertySet</p>
+</div>
+</div>
+<div id="production">
+<h3>element production</h3>
+<h4>attribute id</h4><p>names the production rule</p>
+<h4>attribute p</h4><p>the number of the production in the propertySet</p>
+</div>
+<div id="Seq">
+<h3>element Seq</h3><p>declares a sequence e.g. (a b c)</p>
+</div>
+<div id="Alt">
+<h3>element Alt</h3><p>declares a list of alternatives e.g. (a | b | c)</p>
+</div>
+<div id="occurs">
+<h3>attribute occurs</h3>
+<p><strong>occurs </strong>is an attribute having values ('*' | '+' | '?') where 
+'*' denotes minOccurs="0" '+' denotes minOccurs="1" and '?' denotes 
+minOccurs="0" and maxOccurs="1"</p>
+</div>
+<div id="c">
+<h3>element c</h3>
+<p><strong>c</strong> declares a character either having value: char, hex or 
+pattern (regexp)</p>
+<div id="char">
+<h4>attribute char</h4>
+<p>A character representing the value</p>
+</div>
+<div id="hex">
+<h4>attribute hex</h4>
+<p>A hexadecimal number representing the value of the character</p>
+</div>
+<div id="pattern">
+<h4>attribute pattern</h4>
+<p>A regular expression pattern constraining the value</p>
+</div>
+</div>
+<div id="string">
+<h3>element string</h3>
+<p><strong>string</strong> declares a constant string (shorthand for Seq of 
+<strong>c</strong>)</p>
+</div>
+<div id="exclude">
+<h3>element exclude</h3>
+<p>&lt;<strong>exclude</strong>&gt; rule &lt;/<strong>exclude</strong>&gt; 
+declares an exclusion pattern for the containing element</p>
+</div>
+<div id="contstraint">
+<h3>constraint</h3>
+<p>&lt;constraint name, type, test=XPathExpression&gt;</p>
+<p>A <strong>constraint </strong>defines named constrains which apply to 
+productions e.g. Validity Constraint</p>
+<h4>attribute type</h4>
+<p>The <strong>type </strong>of a constraint is used to group constraints into 
+categories e.g. VC = validity constraint, WFC = well formnedness constraint, NSC 
+= namespace constraint</p>
+<h4>attribute test</h4>
+<p><strong>test </strong>is a boolean XPath expression used to define the 
+constraint</p><h3>&nbsp;</h3>
+</div>
+<h3>Examples:</h3>
+<p>[1] document := prolog element Misc*</p>
+<p>&lt;r:production name="document" p="1"&gt;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;r:Seq&gt;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;prolog /&gt;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;element /&gt;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;Misc occurs="*"/&gt;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/r:Seq&gt;</p>
+<p>&lt;/r:production&gt;</p>
+<rddl:resource
+	id="RDFS Schema"
+	xlink:title="RDF Schema for XSet Property Set Production Language"
+	xlink:href="pspl.rdfs"
+	xlink:role="http://www.w3.org/2000/01/rdf-schema#"
+	xlink:arcrole="http://www.rddl.org/purposes#schema-validation"
+>
+<div class="resource">
+	<h2>The RDF Schema for the XSet Property Set Production Language (PSPL)</h2>
+	<p>A simple <a href="pspl.rdfs">RDF Schema</a> describes PSPL</p>
+</div>
+</rddl:resource>
+<rddl:resource
+	id="DTD"
+	xlink:title="DTD for XSet Property Set Production Language"
+	xlink:href="XSet.dtd"
+	xlink:role="http://www.isi.edu/in-notes/iana/assignments/media-types/text/xml-dtd"
+	xlink:arcrole="http://www.rddl.org/purposes#validation"
+>
+<div class="resource">
+	<h2>The DTD for the XSet Property Set Production Language (PSPL)</h2>
+	<p>A simple <a href="XSet.dtd">DTD</a> describes PSPL</p>
+</div>
+</rddl:resource>
+<h2>XML 1.0 related resources</h2>
+<rddl:resource
+	id="XMLPS"
+	xlink:title="XSet Property Set for XML 1.0"
+	xlink:href="xml.xml"
+	xlink:role="http://www.openhealth.org/XSet"
+	xlink:arcrole="http://www.openhealth.org/XSet#propertySet"
+>
+<div class="resource">
+	<h3>The XML 1.0 property set</h3>
+	<p>A property set for <a href="xml.xml">XML 1.0</a></p>
+</div>
+</rddl:resource>
+<rddl:resource
+	id="XMLRDFS"
+	xlink:title="RDF Schema for XML 1.0"
+	xlink:href="rdfs.xml"
+	xlink:role="http://www.w3.org/2000/01/rdf-schema#"
+	xlink:arcrole="http://www.openhealth.org/XSet#propertySet"
+>
+<div class="resource">
+	<h3>The XML 1.0 property set as an RDF Schema</h3>
+	<p>An RDF Schema for <a href="rdfs.xml">XML 1.0</a> generated from the XML 1.0 property set.</p>
+</div>
+</rddl:resource>
+<rddl:resource
+	id="XSET2RDFS"
+	xlink:title="XSLT XSet to RDFS"
+	xlink:href="xsetrdfs.xsl"
+	xlink:role="http://www.w3.org/1999/XSL/Transform"
+	xlink:arcrole="http://www.w3.org/2000/01/rdf-schema#"
+>
+<div class="resource">
+	<h3>An XSLT transform from XSet to RDFS</h3>
+	<p><a href="xsetrdfs.xsl">This XSLT transform</a> generates an RDF Schema from an XSet property set.</p>
+</div>
+</rddl:resource>
+<rddl:resource
+	id="XMLSchema"
+	xlink:title="XML Infoset XML Schema"
+	xlink:href="http://www.cogsci.ed.ac.uk/~richard/infoset/20010216/"
+	xlink:role="http://www.w3.org/2000/10/XMLSchema"
+	xlink:arcrole="http://www.rddl.org/purposes#directory"
+>
+<div class="resource">
+	<h3>An XML Schema for the XML Infoset</h3>
+	<p>By Richard Tobin, <a href="http://www.cogsci.ed.ac.uk/~richard/infoset/20010216/">this directory</a> contains an XML Schema for an XML representation of the XML Infoset.</p>
+</div>
+</rddl:resource>
+	<p class="clear">
+  	<a class="clear" href="http://www.jonathanborden-md.com"> </a>
+	<a class="clear" href="http://www.jonathanborden-md.com/jonathan-borden-cv.htm">Jonathan Borden</a>
+	<a class="clear" href="http://www.erieneurosurgery.com">ENS</a>
+	<a class="clear" href="http://www.erieneuroscience.org">ENI</a>
+	<a class="clear" href="http://www.erieneuroscience.com"></a>
+  </p>
+</body>
+</html>

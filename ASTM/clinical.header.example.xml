@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<!DOCTYPE clinical.header SYSTEM "clinical.header.dtd">
+<clinical.header xmlns="http://www.openhealth.org/ASTM/clinical.header">
+	<provider>
+		<person.name>
+			<prefix type="title">Dr.</prefix>
+			<given>Jonathan</given>
+			<given>Alan</given>
+			<family>Borden</family>
+			<suffix type="degree">M.D.</suffix>
+		</person.name>
+		<id type="license" authority="MA">12345</id>
+		<addr type="office">
+			<house.number>750</house.number>
+			<street>Washington Street</street>
+			<city>Boston</city>
+			<state>MA</state>
+			<zip>02111</zip>
+			<uri type="email">mailto:jonathan@openhealth.org</uri>
+			<telephone>617-636-7587</telephone>
+		</addr>
+	</provider>
+	<patient>
+		<person.name><family>John Q. Doe</family></person.name>
+	</patient>
+</clinical.header>

@@ -1,0 +1,24 @@
+.table {
+	FONT-FAMILY: Arial; FONT-STYLE: normal; FONT-WEIGHT: bold; TEXT-ALIGN: center
+}
+.roman {
+	FONT-FAMILY: sans-serif; FONT-STYLE: normal; FONT-WEIGHT: normal
+}
+H1 {
+	FONT-FAMILY: sans-serif; TEXT-ALIGN: center
+}
+H2 {
+	FONT-FAMILY: sans-serif; LIST-STYLE: decimal; TEXT-ALIGN: left; TEXT-INDENT: 20pt
+}
+H3 {
+	FONT-FAMILY: sans-serif; LIST-STYLE: decimal
+}
+.sansserif {
+	FONT-FAMILY: sans-serif
+}
+.tagPurple {
+	COLOR: #9900ff; FONT-FAMILY: sans-serif
+}
+.tagBlue {
+	COLOR: #0000ff; FONT-FAMILY: sans-serif
+}

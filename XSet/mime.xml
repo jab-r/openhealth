@@ -1,0 +1,543 @@
+<!-- 
+	Copyright (c) 2000 Jonathan Borden, All rights reserved
+	The MIME XProductionSet
+-->
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	xmlns="http://www.openhealth.org/EBNF">
+<rdf:Description rdf:about="rfc:2045">
+<!-- RFC 2045 productions
+Appendix A - Collected Grammar
+
+   This appendix contains the complete BNF grammar for all the syntax
+   specified by this document.
+
+   By itself, however, this grammar is incomplete.  It refers by name to
+   several syntax rules that are defined by RFC 822.  Rather than
+   reproduce those definitions here, and risk unintentional differences
+   between the two, this document simply refers the reader to RFC 822
+   for the remaining definitions. Wherever a term is undefined, it
+   refers to the RFC 822 definition.
+
+  attribute := token
+               ; Matching of attributes
+               ; is ALWAYS case-insensitive.
+  composite-type := "message" / "multipart" / extension-token
+  -->
+<production name="attribute" p="1">
+	<token />
+</production>
+<production name="composite-type" p="2">
+	<Alt>
+		<string value="message"/>
+		<string value="multipart"/>
+		<extension-token/>
+	</Alt>
+</production>
+ <!-- content := "Content-Type" ":" type "/" subtype
+             *(";" parameter)
+             ; Matching of media type and subtype
+             ; is ALWAYS case-insensitive.
+
+  description := "Content-Description" ":" *text
+  -->
+<production name="content" p="3">
+	<Seq>
+		<string value="Content-Type"/>
+		<c char=":"/>
+		<type/>
+		<c char="/"/>
+		<subtype/>
+		<Seq occurs="*">
+			<c char=";"/>
+			<parameter/>
+		</Seq>
+	</Seq>
+</production>
+<production name="description" p="4">
+	<Seq>
+		<string value="Content-Description"/>
+		<text occurs="*" />
+	</Seq>
+</production>  
+<!--
+  discrete-type := "text" / "image" / "audio" / "video" /
+                   "application" / extension-token
+
+  encoding := "Content-Transfer-Encoding" ":" mechanism
+
+  entity-headers := [ content CRLF ]
+                    [ encoding CRLF ]
+                    [ id CRLF ]
+                    [ description CRLF ]
+                    *( MIME-extension-field CRLF )
+
+  extension-token := ietf-token / x-token
+  -->
+<production name="discrete-type" p="5">
+	<Alt>
+		<string value="text"/>
+		<string value="image"/>
+		<string value="audio"/>
+		<string value="video"/>
+		<string value="application"/>
+		<extension-token/>
+	</Alt>
+</production>
+<production name="encoding" p="6">
+	<Seq>
+		<string value="Content-Transfer-Encoding"/>
+		<c char=":"/>
+		<mechanism/>
+	</Seq>
+</production>
+<production name="entity-headers" p="7">
+	<Seq>
+		<Seq occurs="?">
+			<content/><CRLF/>
+		</Seq>
+		<Seq occurs="?">
+			<encoding/><CRLF/>
+		</Seq>
+		<Seq occurs="?">
+			<id/><CRLF/>
+		</Seq>
+		<Seq occurs="?">
+			<description/><CRLF/>
+		</Seq>
+		<Seq occurs="*">
+			<MIME-extension-field/><CRLF/>
+		</Seq>
+	</Seq>
+</production>
+<production name="extension-token" p="8">
+	<Alt>
+		<ietf-token/>
+		<x-token/>
+	</Alt>
+</production>    
+  <!--
+
+  hex-octet := "=" 2(DIGIT / "A" / "B" / "C" / "D" / "E" / "F")
+               ; Octet must be used for characters > 127, =,
+               ; SPACEs or TABs at the ends of lines, and is
+               ; recommended for any character not listed in
+               ; RFC 2049 as "mail-safe".
+
+  iana-token := <A publicly-defined extension token. Tokens
+                 of this form must be registered with IANA
+                 as specified in RFC 2048.>
+
+  ietf-token := <An extension token defined by a
+                 standards-track RFC and registered
+                 with IANA.>
+
+  id := "Content-ID" ":" msg-id
+-->
+<production name="hex-octet">
+	<Seq>
+	  <c char="="/>
+	  <Alt occurs="2">
+	 	<DIGIT/>
+	 	<c char="A"/><c char="B"/>
+	 	<c char="C"/><c char="D"/>
+		<c char="E"/><c char="F"/>
+	  </Alt>
+	 </Seq>
+</production>
+<production name="id">
+	<Seq>
+	<string value="Content-ID"/>
+	<c char=":"/>
+	<msg-id/>
+	</Seq>
+</production>
+<!--
+  mechanism := "7bit" / "8bit" / "binary" /
+               "quoted-printable" / "base64" /
+               ietf-token / x-token
+-->
+<production name="mechanism">
+	<Alt>
+		<string value="7bit"/><string value="8bit"/><string value="binary"/>
+        <string value="quoted-printable"/><string value="base64"/>
+        <ietf-token/><x-token/>
+	</Alt>
+</production>
+<!--
+
+  MIME-extension-field := <Any RFC 822 header field which
+                           begins with the string
+                           "Content-">
+
+  MIME-message-headers := entity-headers
+                          fields
+                          version CRLF
+                          ; The ordering of the header
+                          ; fields implied by this BNF
+                          ; definition should be ignored.
+
+***** BUGBUG BUGBUG BUGBUG *******
+
+THIS MEANS THAT THE BNF IS WRONG!! NEEDS TO BE REDONE - JB
+
+**********************************
+	MIME-message-headers := (*header version *header)
+	MIME-part-headers := *header
+	header := (entity-header|field)	
+-->
+<production name="entity-header" p="8a">
+	<Alt>
+		<Seq occurs="?">
+			<content/><CRLF/>
+		</Seq>
+		<Seq occurs="?">
+			<encoding/><CRLF/>
+		</Seq>
+		<Seq occurs="?">
+			<id/><CRLF/>
+		</Seq>
+		<Seq occurs="?">
+			<description/><CRLF/>
+		</Seq>
+		<Seq occurs="*">
+			<MIME-extension-field/><CRLF/>
+		</Seq>
+	</Alt>
+</production>
+<production name="header" p="8b">
+	<Alt>
+		<entity-header/>
+		<field/>
+	</Alt>
+</production>
+<production name="MIME-part-headers" p="8c">
+	<header occurs="*"/>
+</production>
+<production name="MIME-message-headers" p="8d">
+	<Seq><header occurs="*"/><version/><header occurs="*"/></Seq>
+</production>
+
+<!--
+***********************************				  
+						  
+  MIME-part-headers := entity-headers
+                       [fields]
+                       ; Any field not beginning with
+                       ; "content-" can have no defined
+                       ; meaning and may be ignored.
+                       ; The ordering of the header
+                       ; fields implied by this BNF
+                       ; definition should be ignored.
+
+  parameter := attribute "=" value
+-->
+<production name="parameter" p="9">
+	<Seq><attribute/><c char="="/><value/></Seq>
+</production>
+
+<!--
+  ptext := hex-octet / safe-char
+
+  qp-line := *(qp-segment transport-padding CRLF)
+             qp-part transport-padding
+
+  qp-part := qp-section
+             ; Maximum length of 76 characters
+
+  qp-section := [*(ptext / SPACE / TAB) ptext]
+
+  qp-segment := qp-section *(SPACE / TAB) "="
+                ; Maximum length of 76 characters
+
+  quoted-printable := qp-line *(CRLF qp-line)
+
+  safe-char := <any octet with decimal value of 33 through
+               60 inclusive, and 62 through 126>
+               ; Characters not listed as "mail-safe" in
+               ; RFC 2049 are also not recommended.
+
+  subtype := extension-token / iana-token
+
+  token := 1*<any (US-ASCII) CHAR except SPACE, CTLs,
+              or tspecials>
+
+  transport-padding := *LWSP-char
+                       ; Composers MUST NOT generate
+                       ; non-zero length transport
+                       ; padding, but receivers MUST
+                       ; be able to handle padding
+                       ; added by message transports.
+
+  tspecials :=  "(" / ")" / "<" / ">" / "@" /
+                "," / ";" / ":" / "\" / <">
+                "/" / "[" / "]" / "?" / "="
+                ; Must be in quoted-string,
+                ; to use within parameter values
+
+  type := discrete-type / composite-type
+
+  value := token / quoted-string
+
+  version := "MIME-Version" ":" 1*DIGIT "." 1*DIGIT
+
+  x-token := <The two characters "X-" or "x-" followed, with
+              no  intervening white space, by any token>
+
+
+-->
+<!-- rfc 2046 productions
+  Appendix A:
+   This appendix contains the complete BNF grammar for all the syntax
+   specified by this document.
+
+   By itself, however, this grammar is incomplete.  It refers by name to
+   several syntax rules that are defined by RFC 822.  Rather than
+   reproduce those definitions here, and risk unintentional differences
+   between the two, this document simply refers the reader to RFC 822
+   for the remaining definitions. Wherever a term is undefined, it
+   refers to the RFC 822 definition.
+
+     boundary := 0*69<bchars> bcharsnospace
+
+     bchars := bcharsnospace / " "
+
+     bcharsnospace := DIGIT / ALPHA / "'" / "(" / ")" /
+                      "+" / "_" / "," / "-" / "." /
+                      "/" / ":" / "=" / "?"
+
+     body-part := <"message" as defined in RFC 822, with all
+                   header fields optional, not starting with the
+                   specified dash-boundary, and with the
+                   delimiter not occurring anywhere in the
+                   body part.  Note that the semantics of a
+                   part differ from the semantics of a message,
+                   as described in the text.>
+
+     close-delimiter := delimiter "-""-" ; this is inside XML comment - -
+
+     dash-boundary := "-""-" boundary	; again - - inside XML comment
+                      ; boundary taken from the value of
+                      ; boundary parameter of the
+                      ; Content-Type field.
+
+     delimiter := CRLF dash-boundary
+
+     discard-text := *(*text CRLF)
+                     ; May be ignored or discarded.
+
+     encapsulation := delimiter transport-padding
+                      CRLF body-part
+
+     epilogue := discard-text
+
+     multipart-body := [preamble CRLF]
+                       dash-boundary transport-padding CRLF
+                       body-part *encapsulation
+
+                       close-delimiter transport-padding
+                       [CRLF epilogue]
+
+     preamble := discard-text
+
+     transport-padding := *LWSP-char
+                          ; Composers MUST NOT generate
+                          ; non-zero length transport
+                          ; padding, but receivers MUST
+                          ; be able to handle padding
+                          ; added by message transports.
+-->
+<!-- RFC 822 productions
+
+     D.  ALPHABETICAL LISTING OF SYNTAX RULES
+
+     address     =  mailbox                      ; one addressee
+                 /  group                        ; named list
+     addr-spec   =  local-part "@" domain        ; global address
+     ALPHA       =  <any ASCII alphabetic character>
+                                                 ; (101-132, 65.- 90.)
+                                                 ; (141-172, 97.-122.)
+     atom        =  1*<any CHAR except specials, SPACE and CTLs>
+     authentic   =   "From"       ":"   mailbox  ; Single author
+                 / ( "Sender"     ":"   mailbox  ; Actual submittor
+                     "From"       ":" 1#mailbox) ; Multiple authors
+                                                 ;  or not sender
+     CHAR        =  <any ASCII character>        ; (  0-177,  0.-127.)
+     comment     =  "(" *(ctext / quoted-pair / comment) ")"
+     CR          =  <ASCII CR, carriage return>  ; (     15,      13.)
+     CRLF        =  CR LF
+     ctext       =  <any CHAR excluding "(",     ; => may be folded
+                     ")", "\" & CR, & including
+                     linear-white-space>
+     CTL         =  <any ASCII control           ; (  0- 37,  0.- 31.)
+                     character and DEL>          ; (    177,     127.)
+     date        =  1*2DIGIT month 2DIGIT        ; day month year
+                                                 ;  e.g. 20 Jun 82
+     dates       =   orig-date                   ; Original
+                   [ resent-date ]               ; Forwarded
+     date-time   =  [ day "," ] date time        ; dd mm yy
+                                                 ;  hh:mm:ss zzz
+     day         =  "Mon"  / "Tue" /  "Wed"  / "Thu"
+                 /  "Fri"  / "Sat" /  "Sun"
+     delimiters  =  specials / linear-white-space / comment
+     destination =  "To"          ":" 1#address  ; Primary
+                 /  "Resent-To"   ":" 1#address
+                 /  "cc"          ":" 1#address  ; Secondary
+                 /  "Resent-cc"   ":" 1#address
+                 /  "bcc"         ":"  #address  ; Blind carbon
+                 /  "Resent-bcc"  ":"  #address
+     DIGIT       =  <any ASCII decimal digit>    ; ( 60- 71, 48.- 57.)
+     domain      =  sub-domain *("." sub-domain)
+     domain-literal =  "[" *(dtext / quoted-pair) "]"
+     domain-ref  =  atom                         ; symbolic reference
+     dtext       =  <any CHAR excluding "[",     ; => may be folded
+                     "]", "\" & CR, & including
+                     linear-white-space>
+     extension-field =
+                   <Any field which is defined in a document
+                    published as a formal extension to this
+                    specification; none will have names beginning
+                    with the string "X-">
+
+     August 13, 1982              - 44 -                      RFC #822
+
+     Standard for ARPA Internet Text Messages
+
+     field       =  field-name ":" [ field-body ] CRLF
+     fields      =    dates                      ; Creation time,
+                      source                     ;  author id & one
+                    1*destination                ;  address required
+                     *optional-field             ;  others optional
+     field-body  =  field-body-contents
+                    [CRLF LWSP-char field-body]
+     field-body-contents =
+                   <the ASCII characters making up the field-body, as
+                    defined in the following sections, and consisting
+                    of combinations of atom, quoted-string, and
+                    specials tokens, or else consisting of texts>
+     field-name  =  1*<any CHAR, excluding CTLs, SPACE, and ":">
+     group       =  phrase ":" [#mailbox] ";"
+     hour        =  2DIGIT ":" 2DIGIT [":" 2DIGIT]
+                                                 ; 00:00:00 - 23:59:59
+     HTAB        =  <ASCII HT, horizontal-tab>   ; (     11,       9.)
+     LF          =  <ASCII LF, linefeed>         ; (     12,      10.)
+     linear-white-space =  1*([CRLF] LWSP-char)  ; semantics = SPACE
+                                                 ; CRLF => folding
+     local-part  =  word *("." word)             ; uninterpreted
+                                                 ; case-preserved
+     LWSP-char   =  SPACE / HTAB                 ; semantics = SPACE
+     mailbox     =  addr-spec                    ; simple address
+                 /  phrase route-addr            ; name & addr-spec
+     message     =  fields *( CRLF *text )       ; Everything after
+                                                 ;  first null line
+                                                 ;  is message body
+     month       =  "Jan"  /  "Feb" /  "Mar"  /  "Apr"
+                 /  "May"  /  "Jun" /  "Jul"  /  "Aug"
+                 /  "Sep"  /  "Oct" /  "Nov"  /  "Dec"
+     msg-id      =  "<" addr-spec ">"            ; Unique message id
+     optional-field =
+                 /  "Message-ID"        ":"   msg-id
+                 /  "Resent-Message-ID" ":"   msg-id
+                 /  "In-Reply-To"       ":"  *(phrase / msg-id)
+                 /  "References"        ":"  *(phrase / msg-id)
+                 /  "Keywords"          ":"  #phrase
+                 /  "Subject"           ":"  *text
+                 /  "Comments"          ":"  *text
+                 /  "Encrypted"         ":" 1#2word
+                 /  extension-field              ; To be defined
+                 /  user-defined-field           ; May be pre-empted
+     orig-date   =  "Date"        ":"   date-time
+     originator  =   authentic                   ; authenticated addr
+                   [ "Reply-To"   ":" 1#address] )
+     phrase      =  1*word                       ; Sequence of words
+
+     August 13, 1982              - 45 -                      RFC #822
+
+     Standard for ARPA Internet Text Messages
+
+     qtext       =  <any CHAR excepting <">,     ; => may be folded
+                     "\" & CR, and including
+                     linear-white-space>
+     quoted-pair =  "\" CHAR                     ; may quote any char
+     quoted-string = <"> *(qtext/quoted-pair) <">; Regular qtext or
+                                                 ;   quoted chars.
+     received    =  "Received"    ":"            ; one per relay
+                       ["from" domain]           ; sending host
+                       ["by"   domain]           ; receiving host
+                       ["via"  atom]             ; physical path
+                      *("with" atom)             ; link/mail protocol
+                       ["id"   msg-id]           ; receiver msg id
+                       ["for"  addr-spec]        ; initial form
+                        ";"    date-time         ; time received
+
+     resent      =   resent-authentic
+                   [ "Resent-Reply-To"  ":" 1#address] )
+     resent-authentic =
+                 =   "Resent-From"      ":"   mailbox
+                 / ( "Resent-Sender"    ":"   mailbox
+                     "Resent-From"      ":" 1#mailbox  )
+     resent-date =  "Resent-Date" ":"   date-time
+     return      =  "Return-path" ":" route-addr ; return address
+     route       =  1#("@" domain) ":"           ; path-relative
+     route-addr  =  "<" [route] addr-spec ">"
+     source      = [  trace ]                    ; net traversals
+                      originator                 ; original mail
+                   [  resent ]                   ; forwarded
+     SPACE       =  <ASCII SP, space>            ; (     40,      32.)
+     specials    =  "(" / ")" / "<" / ">" / "@"  ; Must be in quoted-
+                 /  "," / ";" / ":" / "\" / <">  ;  string, to use
+                 /  "." / "[" / "]"              ;  within a word.
+     sub-domain  =  domain-ref / domain-literal
+     text        =  <any CHAR, including bare    ; => atoms, specials,
+                     CR & bare LF, but NOT       ;  comments and
+                     including CRLF>             ;  quoted-strings are
+                                                 ;  NOT recognized.
+     time        =  hour zone                    ; ANSI and Military
+     trace       =    return                     ; path to sender
+                    1*received                   ; receipt tags
+     user-defined-field =
+                   <Any field which has not been defined
+                    in this specification or published as an
+                    extension to this specification; names for
+                    such fields must be unique and may be
+                    pre-empted by published extensions>
+     word        =  atom / quoted-string
+
+     August 13, 1982              - 46 -                      RFC #822
+
+     Standard for ARPA Internet Text Messages
+
+     zone        =  "UT"  / "GMT"                ; Universal Time
+                                                 ; North American : UT
+                 /  "EST" / "EDT"                ;  Eastern:  - 5/ - 4
+                 /  "CST" / "CDT"                ;  Central:  - 6/ - 5
+                 /  "MST" / "MDT"                ;  Mountain: - 7/ - 6
+                 /  "PST" / "PDT"                ;  Pacific:  - 8/ - 7
+                 /  1ALPHA                       ; Military: Z = UT;
+     <">         =  <ASCII quote mark>           ; (     42,      34.)
+-->
+<!-- RFC 2047 productions
+2. Syntax of encoded-words
+
+   An 'encoded-word' is defined by the following ABNF grammar.  The
+   notation of RFC 822 is used, with the exception that white space
+   characters MUST NOT appear between components of an 'encoded-word'.
+
+   encoded-word = "=?" charset "?" encoding "?" encoded-text "?="
+
+   charset = token    ; see section 3
+
+   encoding = token   ; see section 4
+
+   token = 1*<Any CHAR except SPACE, CTLs, and especials>
+
+   especials = "(" / ")" / "<" / ">" / "@" / "," / ";" / ":" / "
+               <"> / "/" / "[" / "]" / "?" / "." / "="
+
+   encoded-text = 1*<Any printable ASCII character other than "?"
+                     or SPACE>
+                  ; (but see "Use of encoded-words in message
+                  ; headers", section 5)
+-->
+</rdf:Description>
+</rdf:RDF>

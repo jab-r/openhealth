@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//XML-DEV//DTD XHTML TDDL 1.0//EN" "http://www.rddl.org/tddl-xhtml.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xml:base="http://www.rddl.org/tddl"
+	  xmlns:tddl="http://www.rddl.org/tddl">
+<head>
+	<title>Terminology Definition Description Language (TDDL) 1.0</title>
+	<link rel="stylesheet" href="http://www.rddl.org/xrd.css" type="text/css" />
+</head>
+
+<body>
+<h1>Terminology Definition Description Language (TDDL) 1.0</h1>
+<p>TDDL is an extension of XHTML Basic designed to describe terminologies. 
+TDDL incorporates RDF Schema concepts, syntax and functionality. This document is a TDDL description of TDDL.</p>
+<h2>Background</h2>
+<p>TDDL is designed to serve as a way to define terminologies in a way that is both human and machine readable.
+It is inspired by and borrows concepts from:</p>
+<ul>
+<li>Dan Connolly's <a href="http://www.w3.org/2000/07/hs78/">HyperRDF</a></li>
+<li><a href="http://www.rddl.org/">RDDL</a></li>
+<li><a href="http://www.w3.org/TR/rdf-schema/">RDF Schema</a></li>
+<li><a href="http://www.daml.org/2001/03/daml+oil-index">DAML+OIL</a></li>
+<li>Simon St. Laurent's<a href="http://purl.oclc.org/NET/xpdl">XPDL</a></li>
+</ul>
+<p>TDDL incorporates RDF Schema into XHTML as an extension of XHTML Basic.</p>
+<p><strong>This draft is highly experimental.</strong></p>
+<!-- Resource -->
+<tddl:Resource
+	id="Resource"
+	>
+	<div class="resource">
+		<h2>Resource</h2>
+		<p>The root of all things in TDDL is <code>Resource</code>. Every <code>Resource</code> is itself an rdf:Resource. 
+		   Literal things can be encoded as URIs via the <code>data:</code> scheme.
+		</p>
+	</div>
+</tddl:Resource>
+<!-- Class -->
+<tddl:Class
+	id="Class"
+	>
+	<tddl:subClassOf tddl:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+	<div class="resource">
+		<h2>Class</h2>
+		<p>A tddl:Class is a Class derived from rdfs:Class.</p>
+	</div>
+</tddl:Class>
+<!-- Property -->
+<tddl:Class
+	id="Property"
+	>
+	<tddl:subClassOf tddl:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+	<div class="resource">
+		<h2>Property</h2>
+		<p>A Property is a Class derived from rdfs:Property.</p>
+	</div>
+</tddl:Class>
+<!-- subClassOf -->
+<tddl:Property
+		id="subClassOf"
+><div class="resource">
+		<h2>subClassOf</h2>
+		<p>The <code>subClassOf</code> a <code>Class</code> defines the class as derived from another class.</p>
+	<tddl:subPropertyOf tddl:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf">
+		<p><code>tddl:subClassOf</code> is derived from RDF Schema <code>subClassOf</code>.</p>
+	</tddl:subPropertyOf>
+</div>
+</tddl:Property>
+<!-- subPropertyOf -->
+<tddl:Property
+		id="subPropertyOf"
+><div class="resource">
+		<h2>subPropertyOf</h2>
+		<p>The <code>subPropertyOf</code> a <code>Property</code> defines the property as derived from another property.</p>
+	<tddl:subPropertyOf tddl:resource="http://www.w3.org/2000/01/rdf-schema#subPropertyOf">
+		<p><code>tddl:subPropertyOf</code> is derived from RDF Schema <code>subPropertyOf</code>.</p>
+	</tddl:subPropertyOf>
+</div>
+</tddl:Property>
+<!-- range -->
+<tddl:Property
+		id="range"
+><div class="resource">
+		<h2>range</h2>
+		<p>The <code>range</code> of a <code>Property</code> defines what <code>value</code> a Property may have.</p>
+	<tddl:subPropertyOf tddl:resource="http://www.w3.org/2000/01/rdf-schema#subPropertyOf">
+		<p><code>tddl:range</code> is derived <code>rdfs:range</code>.</p>
+	</tddl:subPropertyOf>
+</div>
+</tddl:Property>
+<!-- domain -->
+<tddl:Property
+		id="domain"
+><div class="resource">
+		<h2>domain</h2>
+		<p>The <code>domain</code> of a <code>Property</code> defines which Classes a Property may pertain to. A Property may have multiple domains.</p>
+	<tddl:subPropertyOf tddl:resource="http://www.w3.org/2000/01/rdf-schema#subPropertyOf">
+		<p><code>tddl:domain</code> is derived <code>rdfs:domain</code>.</p>
+	</tddl:subPropertyOf>
+</div>
+</tddl:Property>
+<!-- type -->
+<h2>Attributes</h2>
+<tddl:Property
+	id="type"
+	>
+	<tddl:subPropertyOf tddl:resource="rdf:type">
+	<div class="resource">
+		<h2>tddl:type</h2>
+		<p>A tddl:type is an rdf:type.</p>
+	</div>
+	</tddl:subPropertyOf>
+	<tddl:range tddl:resource="tddl:Resource"/>
+	<tddl:domain tddl:resource="tddl:Resource"/>
+</tddl:Property>
+<!-- resource -->
+<tddl:Resource
+	id="resource">
+	<tddl:subClassOf tddl:resource="rdf:resource">
+	<div class="resource">
+		<h3>tddl:resource</h3>
+		<p>A tddl:resource is a rdf:resource. It is an attribute whose value is a URI reference</p>
+	</tddl:subClassOf>
+	</div>
+</tddl:Resource>
+<h3>id and about</h3>
+<tddl:Property
+	id="about"
+	<tddl:subPropertyOf tddl:resource="rdf:about"/>
+	<p><code>tddl:about</code> is derived from <code>rdf:about</code>.</p>
+</tddl:Property>
+<tddl:Property
+	id="id"
+	<tddl:subPropertyOf tddl:resource="rdf:ID"/>
+</tddl:Property>
+<p>A <code>Class</code>,<code>Property</code>, or <code>Resource</code> may have either <code>id</code> or <code>tddl:about</code>
+but not both</p>
+</body>
+</html>

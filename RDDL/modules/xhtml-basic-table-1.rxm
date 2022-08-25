@@ -1,0 +1,108 @@
+<!DOCTYPE module [
+<!ENTITY Text.datatype "string">
+<!ENTITY Number.datatype "integer">
+<!ENTITY IDREFS "string">
+]>
+<module
+  xmlns="http://www.xml.gr.jp/xmlns/relaxCore"
+  targetNamespace="http://www.w3.org/1999/xhtml"
+  relaxCoreVersion="1.0"
+  moduleVersion="1.11">
+
+<attPool role="CellHAlign.attrib">
+  <attribute name="align">
+    <enumeration value="left"/>
+    <enumeration value="center"/>
+    <enumeration value="right"/>
+  </attribute>
+</attPool>
+
+<attPool role="CellVAlign.attrib">
+  <attribute name="valign">
+    <enumeration value="top"/>
+    <enumeration value="middle"/>
+    <enumeration value="bottom"/>
+  </attribute>
+</attPool>
+
+<attPool role="scope.attrib">
+  <attribute name="scope">
+    <enumeration value="row"/>
+    <enumeration value="col"/>
+  </attribute>
+</attPool>
+
+<elementRule role="table">
+  <sequence>
+    <ref label="caption"/>
+    <ref label="tr" occurs="+"/>
+  </sequence>
+</elementRule>
+
+<tag name="table">
+  <ref role="Common.attrib"/>
+  <attribute name="summary" type="&Text.datatype;"/>
+</tag>
+
+<elementRule role="caption">
+  <mixed>
+    <hedgeRef label="Inline.mix" occurs="*"/>
+  </mixed>
+</elementRule>
+
+<tag name="caption">
+  <ref role="Common.attrib"/>
+</tag>
+
+<elementRule role="tr">
+  <choice occurs="+">
+    <ref label="th"/>
+    <ref label="td"/>
+  </choice>
+</elementRule>
+
+<tag name="tr">
+  <ref role="Common.attrib"/>
+  <ref role="CellHAlign.attrib"/>
+  <ref role="CellVAlign.attrib"/>
+</tag>
+
+<elementRule role="th">
+  <mixed>
+    <hedgeRef label="FlowNoTable.mix" occurs="*"/>
+  </mixed>
+</elementRule>
+
+<tag name="th">
+  <ref role="Common.attrib"/>
+  <ref role="CellHAlign.attrib"/>
+  <ref role="CellVAlign.attrib"/>
+  <ref role="scope.attrib"/>
+  <attribute name="abbr"         type="&Text.datatype;"/>
+  <attribute name="axis"         type="string"/>
+  <attribute name="headers"      type="&IDREFS;"/>         
+  <attribute name="rowspan"      type="&Number.datatype;"/>
+  <attribute name="colspan"      type="&Number.datatype;"/>
+
+</tag>
+
+
+<elementRule role="td">
+  <mixed>
+    <hedgeRef label="FlowNoTable.mix" occurs="*"/>
+  </mixed>
+</elementRule>
+
+<tag name="td">
+  <ref role="Common.attrib"/>
+  <ref role="CellHAlign.attrib"/>
+  <ref role="CellVAlign.attrib"/>
+  <ref role="scope.attrib"/>
+  <attribute name="abbr"         type="&Text.datatype;"/>
+  <attribute name="axis"         type="string"/>
+  <attribute name="headers"      type="&IDREFS;"/>         
+  <attribute name="rowspan"      type="&Number.datatype;"/>
+  <attribute name="colspan"      type="&Number.datatype;"/>
+</tag>
+
+</module>

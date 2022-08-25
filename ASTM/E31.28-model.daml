@@ -1,0 +1,386 @@
+<?xml version="1.0" ?>
+<rdf:RDF xml:lang="en"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+   xmlns="http://www.daml.org/2001/03/daml+oil#"
+   xmlns:clinical="http://www.openhealth.org/ASTM/clinical-model.rdfs"
+   xmlns:rdfx="http://www.openhealth.org/RDF/RDFxtSyntax">
+<Ontology rdf:about="">
+  <versionInfo></versionInfo>
+  <rdfs:comment>This ontology [attempts to] models the ASTM E2182 Standard for Clinical Documents</rdfs:comment>
+  <imports rdf:resource="http://www.daml.org/2001/03/daml+oil"/>
+</Ontology>
+
+<Class rdf:ID="ClinicalDocument">
+	<rdfs:comment>A clinical document has a clinical.header and a clinical.body</rdfs:comment>
+	<rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+	<subClassOf>
+		<Restriction>
+			<onProperty rdf:resource="#clinical.header"/>
+			<toClass rdf:resource="#ClinicalHeader"/>
+			<cardinality>1</cardinality>
+		</Restriction>
+	</subClassOf>
+	<subClassOf>
+		<Restriction>
+			<onProperty rdf:resource="#clinical.body"/>
+			<toClass rdf:resource="#ClinicalBody"/>
+			<cardinality>1</cardinality>
+		</Restriction>
+	</subClassOf>
+</Class>
+<Class rdf:ID="ClinicalHeader">
+	<rdfs:comment>The ASTM E2182/E2183 XML Healthcare Document Architecture http://www.openhealth.org/ASTM/clinical.header.dtd</rdfs:comment>
+	<rdfs:comment>Formal grammar: http://www.openhealth.org/ASTM/clinical.header.rnx</rdfs:comment>
+	<rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+	<subClassOf>
+		<Restriction>
+			<onProperty rdf:resource="#patient.encounter"/>
+			<toClass rdf:resource="#PatientEncounter"/>
+			<maxCardinality>1</maxCardinality>
+		</Restriction>
+	</subClassOf>
+	<subClassOf>
+		<Restriction>
+			<onProperty rdf:resource="#provider"/>
+			<toClass rdf:resource="#Provider"/>
+			<minCardinality>1</minCardinality>
+		</Restriction>
+	</subClassOf>
+	<subClassOf>
+		<Restriction>
+			<onProperty rdf:resource="#patient"/>
+			<toClass rdf:resource="#Patient"/>
+			<cardinality>1</cardinality>
+		</Restriction>
+	</subClassOf>
+	<subClassOf>
+		<Restriction>
+			<onProperty rdf:resource="#id"/>
+			<toClass rdf:resource="#Identifier"/>
+		</Restriction>
+	</subClassOf>
+</Class>
+<ObjectProperty rdf:ID="clinical.header">
+  <rdf:type rdf:resource="http://www.daml.org/2001/03/daml+oil#UniqueProperty"/>
+  <rdfs:range rdf:resource="#ClinicalHeader"/>
+  <rdfs:domain rdf:resource="#ClinicalDocument"/>
+</ObjectProperty>
+<Class rdf:ID="Person">
+	<subClassOf>
+		<Restriction>
+			<onProperty rdf:resource="#person.name"/>
+			<toClass rdf:resource="#PersonName"/>
+			<minCardinality>1</minCardinality>
+		</Restriction>
+	</subClassOf>
+	<subClassOf>
+		<Restriction>
+			<onProperty rdf:resource="#id"/>
+			<toClass rdf:resource="#Identifier"/>
+			<minCardinality>0</minCardinality>
+		</Restriction>
+	</subClassOf>
+	<subClassOf>
+		<Restriction>
+			<onProperty rdf:resource="#address"/>
+			<toClass rdf:resource="#Address"/>
+			<minCardinality>0</minCardinality>
+		</Restriction>
+	</subClassOf>
+</Class>
+<Class rdf:ID="Actor">
+	<subClassOf rdf:resource="#Person"/>
+	<subClassOf>
+		<Restriction>
+			<onProperty rdf:resource="#type.code"/>
+			<toClass rdf:resource="#Literal"/>
+			<minCardinality>0</minCardinality>
+			<maxCardinality>1</maxCardinality>
+		</Restriction>
+	</subClassOf>
+	<subClassOf>
+		<Restriction>
+			<onProperty rdf:resource="#date.time"/>
+			<toClass rdf:resource="#Date"/>
+			<minCardinality>0</minCardinality>
+			<maxCardinality>1</maxCardinality>
+		</Restriction>
+	</subClassOf>
+</Class>
+<Class rdf:ID="Authenticator">
+	<subClassOf rdf:resource="#Actor"/>
+	<subClassOf>
+		<Restriction>
+			<onProperty rdf:resource="#signature"/>
+			<toClass rdf:resource="#Literal"/>
+		</Restriction>
+	</subClassOf>
+</Class>
+<Class rdf:ID="ServiceTarget">
+	<subClassOf rdf:resource="#Actor"/>
+	<subClassOf>
+		<Restriction>
+			<onProperty rdf:resource="#birth.date"/>
+			<toClass rdf:resource="#Date"/>
+		</Restriction>
+	</subClassOf>
+	<subClassOf>
+		<Restriction>
+			<onProperty rdf:resource="#gender"/>
+			<oneOf rdf:parseType="daml:collection">
+				<Thing rdf:ID="Male"/>
+				<Thing rdf:ID="Female"/>
+			</oneOf>
+		</Restriction>
+	</subClassOf>
+</Class>
+<Class rdf:ID="Patient">
+	<subClassOf rdf:resource="#ServiceTarget"/>
+</Class>
+<Class rdf:ID="PersonName">
+	<rdfs:comment>
+		A PersonName is consists of a list of items, 
+		each of which may be repeated (interleaved) 
+		and each of which is a string
+	</rdfs:comment>
+	<subClassOf>
+		<Restriction>
+			<onProperty rdf:resource="family"/>
+			<toClass rdf:resource="#string"/>
+		</Restriction>
+	</subClassOf>
+	<subClassOf>
+		<Restriction>
+			<onProperty rdf:resource="given"/>
+			<toClass rdf:resource="#string"/>
+		</Restriction>
+	</subClassOf>
+	<subClassOf>
+		<Restriction>
+			<onProperty rdf:resource="middle"/>
+			<toClass rdf:resource="#string"/>
+		</Restriction>
+	</subClassOf>
+	<subClassOf>
+		<Restriction>
+			<onProperty rdf:resource="prefix"/>
+			<toClass rdf:resource="#string"/>
+		</Restriction>
+	</subClassOf>
+	<subClassOf>
+		<Restriction>
+			<onProperty rdf:resource="suffix"/>
+			<toClass rdf:resource="#string"/>
+		</Restriction>
+	</subClassOf>
+	<subClassOf>
+		<Restriction>
+			<onProperty rdf:resource="delimiter"/>
+			<toClass rdf:resource="#string"/>
+		</Restriction>
+	</subClassOf>
+</Class>
+<DatatypeProperty rdf:ID="family">
+	<rdfs:range rdf:resource="#Literal"/>
+</DatatypeProperty>
+<DatatypeProperty rdf:ID="given">
+	<rdfs:range rdf:resource="#Literal"/>
+</DatatypeProperty>
+<DatatypeProperty rdf:ID="middle">
+	<rdfs:range rdf:resource="#Literal"/>
+</DatatypeProperty>
+<DatatypeProperty rdf:ID="suffix">
+	<rdfs:range rdf:resource="#Literal"/>
+</DatatypeProperty>
+<DatatypeProperty rdf:ID="prefix">
+	<rdfs:range rdf:resource="#Literal"/>
+</DatatypeProperty>
+<DatatypeProperty rdf:ID="delimiter">
+	<rdfs:range rdf:resource="#Literal"/>
+</DatatypeProperty>
+<ObjectProperty ID="patient">
+	<rdfs:range rdf:resource="#Patient"/>
+</ObjectProperty>
+<rdf:Property ID="authenticator">
+	<rdfs:domain rdf:resource="#ClinicalHeader"/>
+	<rdfs:range rdf:resource="http://www.openhealth.org/ASTM/clinical-model.rdfs#Provider"/>
+</rdf:Property>
+<rdf:Property ID="legal.authenticator">
+	<rdfs:domain rdf:resource="#ClinicalHeader"/>
+	<rdfs:range rdf:resource="http://www.openhealth.org/ASTM/clinical-model.rdfs#Provider"/>
+</rdf:Property>
+<rdf:Property ID="originator">
+	<rdfs:domain rdf:resource="#ClinicalHeader"/>
+	<rdfs:range rdf:resource="http://www.openhealth.org/ASTM/clinical-model.rdfs#Person"/>
+</rdf:Property>
+<rdf:Property ID="transcriptionist">
+	<rdfs:domain rdf:resource="#ClinicalHeader"/>
+	<rdfs:range rdf:resource="http://www.openhealth.org/ASTM/clinical-model.rdfs#Person"/>
+</rdf:Property>
+<rdf:Property ID="encounter">
+	<rdfs:domain rdf:resource="#ClinicalHeader"/>
+	<rdfs:range rdf:resource="http://www.openhealth.org/ASTM/clinical-model.rdfs#Encounter"/>
+</rdf:Property>
+<rdfs:Class rdf:ID="Actors" />
+<rdf:Property ID="actors">
+	<rdfs:domain rdf:resource="#ClinicalHeader"/>
+	<rdfs:range rdf:resource="#Actors"/>
+</rdf:Property>
+<rdf:Property ID="actor">
+	<rdfs:domain rdf:resource="#Actors"/>
+	<rdfs:range rdf:resource="http://www.openhealth.org/ASTM/clinical-model.rdfs#Actor"/>
+</rdf:Property>
+<rdfs:Class rdf:ID="TypedValue">
+	<rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+</rdfs:Class>
+<rdfs:Class rdf:ID="Attribute">
+	<rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+</rdfs:Class>
+<rdf:Property ID="type">
+	<rdfs:range rdf:resource="#Attribute"/>
+	<rdfs:domain rdf:resource="#TypedValue"/>
+	<rdfs:domain rdf:resource="#Address"/>
+</rdf:Property>
+<rdf:Property ID="value">
+	<rdfs:range rdf:resource="#PCDATA"/>
+	<rdfs:domain rdf:resource="#TypedValue"/>
+</rdf:Property>
+<rdfs:Class ID="PersonName">
+	<rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+</rdfs:Class>
+<rdf:Property rdf:ID="family">
+	<rdfs:range rdf:resource="#PCDATA"/>
+	<rdfs:domain rdf:resource="#PersonName"/>
+</rdf:Property>
+<rdf:Property ID="given">
+	<rdfs:range rdf:resource="#PCDATA"/>
+	<rdfs:domain rdf:resource="#PersonName"/>
+</rdf:Property>
+<rdf:Property ID="middle">
+	<rdfs:range rdf:resource="#PCDATA"/>
+	<rdfs:domain rdf:resource="#PersonName"/>
+</rdf:Property>
+<rdf:Property ID="prefix">
+	<rdfs:range rdf:resource="#PCDATA"/>
+	<rdfs:domain rdf:resource="#PersonName"/>
+</rdf:Property>
+<rdf:Property ID="suffix">
+	<rdfs:range rdf:resource="#PCDATA"/>
+	<rdfs:domain rdf:resource="#PersonName"/>
+</rdf:Property>
+<rdf:Property ID="delimiter">
+	<rdfs:range rdf:resource="#PCDATA"/>
+	<rdfs:domain rdf:resource="#PersonName"/>
+</rdf:Property>
+<rdf:Class rdf:ID="Address"/>
+<rdf:Property ID="street">
+	<rdfs:domain rdf:resource="#Address"/>
+	<rdfs:range rdf:resource="#PCDATA"/>
+</rdf:Property>
+<rdf:Property ID="city">
+	<rdfs:domain rdf:resource="#Address"/>
+	<rdfs:range rdf:resource="#PCDATA"/>
+</rdf:Property>
+<rdf:Property ID="state">
+	<rdfs:domain rdf:resource="#Address"/>
+	<rdfs:range rdf:resource="#PCDATA"/>
+</rdf:Property>
+<rdf:Property ID="zip">
+	<rdfs:domain rdf:resource="#Address"/>
+	<rdfs:range rdf:resource="#PCDATA"/>
+</rdf:Property>
+<rdf:Property ID="telephone">
+	<rdfs:domain rdf:resource="#Address"/>
+	<rdfs:range rdf:resource="#TypedValue"/>
+</rdf:Property>
+<rdf:Property ID="email">
+	<rdfs:domain rdf:resource="#Address"/>
+	<rdfs:range rdf:resource="#TypedValue"/>
+</rdf:Property>
+<rdf:Property ID="uri">
+	<rdfs:domain rdf:resource="#Address"/>
+	<rdfs:range rdf:resource="#TypedValue"/>
+</rdf:Property>
+
+<rdf:Property ID="id">
+	<rdfs:range rdf:resource="#PCDATA"/>
+	<rdfs:domain rdf:resource="#ClinicalDocument"/>
+</rdf:Property>
+<rdfs:Class rdf:ID="Events">
+	<rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+</rdfs:Class>
+<rdfs:Class rdf:ID="Event">
+	<rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+</rdfs:Class>
+<rdf:Property ID="event.name">
+	<rdfs:range rdf:resource="#PCDATA"/>
+	<rdfs:domain rdf:resource="#Event"/>
+</rdf:Property>
+<rdf:Property ID="date.time">
+	<rdfs:range rdf:resource="#PCDATA"/>
+	<rdfs:domain rdf:resource="#Event"/>
+</rdf:Property>
+<rdf:Property ID="staff">
+	<rdfs:range rdf:resource="http://www.openhealth.org/ASTM/clinical-model.rdfs#Provider"/>
+	<rdfs:domain rdf:resource="#Event"/>
+</rdf:Property>
+<rdf:Property ID="comments">
+	<rdfs:range rdf:resource="#PCDATA"/>
+	<rdfs:domain rdf:resource="#Event"/>
+</rdf:Property>
+<rdf:Property ID="codes">
+	<rdfs:range rdf:resource="#Codes"/>
+	<rdfs:domain rdf:resource="#ClinicalHeader"/>
+</rdf:Property>
+<rdf:Property ID="code">
+	<rdfs:range rdf:resource="#Code"/>
+	<rdfs:domain rdf:resource="#Codes"/>
+</rdf:Property>
+<rdf:Property ID="events">
+	<rdfs:range rdf:resource="#Events"/>
+	<rdfs:domain rdf:resource="#ClinicalHeader"/>
+</rdf:Property>
+<rdf:Property ID="event">
+	<rdfs:range rdf:resource="#Event"/>
+	<rdfs:domain rdf:resource="#Events"/>
+</rdf:Property>
+<rdfs:Class rdf:ID="Identifier">
+	<rdfs:subClassOf rdf:resource="#TypedValue"/>
+</rdfs:Class>
+<rdfs:Class rdf:ID="Code">
+	<rdfs:subClassOf rdf:resource="#TypedValue"/>
+</rdfs:Class>
+<rdf:Property ID="issuer">
+	<rdf:range rdf:resource="http://www.openhealth.org/ASTM/clinical-model.rdfs#Organization"/>
+	<rdf:domain rdf:resource="#Identifier"/>
+	<rdf:domain rdf:resource="#Code"/>
+</rdf:Property>
+<rdf:Property ID="version">
+	<rdf:range rdf:resource="#PCDATA"/>
+	<rdf:domain rdf:resource="#Code"/>
+</rdf:Property>
+<rdf:Property ID="valid">
+	<rdf:range rdf:resource="#DateRange"/>
+	<rdf:domain rdf:resource="#Identifier"/>
+</rdf:Property>
+<rdfs:Class ID="DateRange"/>
+<rdfs:Class ID="DateTimeRange"/>
+<rdf:Property ID="start.date">
+	<rdf:range rdf:resource="#PCDATA"/>
+	<rdf:domain rdf:resource="#DateRange"/>
+</rdf:Property>
+<rdf:Property ID="end.date">
+	<rdf:range rdf:resource="#PCDATA"/>
+	<rdf:domain rdf:resource="#DateRange"/>
+</rdf:Property>
+<rdf:Property ID="start.date.time">
+	<rdf:range rdf:resource="#PCDATA"/>
+	<rdf:domain rdf:resource="#DateTimeRange"/>
+</rdf:Property>
+<rdf:Property ID="end.date.time">
+	<rdf:range rdf:resource="#PCDATA"/>
+	<rdf:domain rdf:resource="#DateTimeRange"/>
+</rdf:Property>
+
+</rdf:RDF>

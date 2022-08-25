@@ -1,0 +1,34 @@
+<!DOCTYPE Ontology [
+<!ENTITY ont "http://www.daml.org/2001/03/daml+oil#">
+<!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#">
+]>
+<Ontology
+		xmlns:rdf="&rdf;"
+		xmlns:rdfs="&rdfs;"
+		xmlns="&ont;"
+		xmlns:ont="&ont;"
+		>
+<ont:Property rdf:ID="listProperty">
+   <ont:subPropertyOf rdf:resource="&ont;ObjectProperty"/>
+   <rdfs:range rdf:resouce="&ont;List"/>
+</ont:Property>
+
+<!-- the "setProperty" is derived from the "listProperty" but the List is intepreted as a Set -->
+
+<ont:Property rdf:ID="setProperty">
+    <ont:subPropertyOf rdf:resource="#listProperty"/>
+</ont:Property>
+
+<!-- 
+	Properties such as "ont:oneOf" are derived from "setProperty". 
+	Properties such as "ont:sequence" are derived from "listProperty".
+-->
+<Property rdf:ID="sequence" ><subPropertyOf rdf:resource="#listProperty"/></Property>
+<Property rdf:ID="oneOf" ><subPropertyOf rdf:resource="#setProperty"/></Property>
+<Property rdf:ID="set" ><subPropertyOf rdf:resource="#setProperty"/></Property>
+
+<Property rdf:ID="intersectionOf"><subPropertyOf rdf:resource="#setProperty"/></Property>
+<Property rdf:ID= "unionOf"><subPropertyOf rdf:resource="#setProperty"/></Property>
+
+</Ontology>

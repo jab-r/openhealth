@@ -1,0 +1,25 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>XMLRPC Adder</title>
+	
+	<script type="text/javascript" src="XMLRPCproxygen.asp?class=SOAP.Adder.1" ></script>
+	<script>
+	function add(a,b){
+		var proxy = new SOAP_Adder_1("xmlrpccall.asp");
+		document.open();
+		var res = proxy.Plus(a,b);
+		alert(res);
+		document.write(res);
+		document.close();
+	};
+	</script>
+</head>
+<body>
+<input type="Text" name="a" value="1" size="4" maxlength="12" />
+<input type="Text" name="b" value="1" size="4" maxlength="12" />
+<input type="Button" name="Sum" value="Sum" onclick="add(a.value,b.value)" />
+<P>&nbsp;</P><A href="../default.htm" name="home">home</A>&nbsp; <A href="../documents/xmop.htm" name="xmop">XMOP</A>
+</body>
+</html>

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" ns="http://www.openhealth.org/ASTM/radiology.report" xmlns:rad="http://www.openhealth.org/ASTM/radiology.report">
+  <include href="ASTM.E2182.rng"/>
+  <define name="dicom.sr">
+    <element name="dicom.sr">
+      <optional>
+        <ref name="dicom.sr.document.content.module"/>
+      </optional>
+      <optional>
+        <ref name="dicom.sr.document.general.module"/>
+      </optional>
+      <optional>
+        <ref name="dicom.sr.document.series.module"/>
+      </optional>
+    </element>
+  </define>
+  <define name="study.instance.uid.model">
+    <text/>
+  </define>
+  <define name="study.date.model">
+    <text/>
+  </define>
+  <define name="study.time.model">
+    <text/>
+  </define>
+  <define name="study.description.model">
+    <ref name="astm.content"/>
+  </define>
+  <define name="referenced.study.sequence.model">
+    <zeroOrMore>
+      <ref name="coded.value"/>
+    </zeroOrMore>
+  </define>
+  <define name="procedure.code.sequence.model">
+    <zeroOrMore>
+      <ref name="coded.value"/>
+    </zeroOrMore>
+  </define>
+  <define name="modality.model">
+    <text/>
+  </define>
+  <define name="laterality.model">
+    <text/>
+  </define>
+  <define name="protocol.name.model">
+    <text/>
+  </define>
+  <define name="body.part.examined.model">
+    <text/>
+  </define>
+  <define name="reason.for.study.model">
+    <ref name="astm.content"/>
+  </define>
+  <define name="contrast.bolus.agent.model">
+    <text/>
+  </define>
+  <define name="interpretation.text.model">
+    <ref name="astm.content"/>
+  </define>
+  <define name="impressions.model">
+    <ref name="astm.content"/>
+  </define>
+  <define name="interpretation.diagnosis.description.model">
+    <ref name="astm.content"/>
+  </define>
+  <define name="interpretation.diagnosis.code.sequence.model">
+    <zeroOrMore>
+      <ref name="coded.value"/>
+    </zeroOrMore>
+  </define>
+  <define name="interpretation.id.model">
+    <text/>
+  </define>
+  <define name="clinical.body.model">
+    <optional>
+      <ref name="study.instance.uid"/>
+    </optional>
+    <optional>
+      <ref name="study.date"/>
+    </optional>
+    <optional>
+      <ref name="study.time"/>
+    </optional>
+    <optional>
+      <ref name="study.description"/>
+    </optional>
+    <optional>
+      <ref name="referenced.study.sequence"/>
+    </optional>
+    <optional>
+      <ref name="procedure.code.sequence"/>
+    </optional>
+    <ref name="modality"/>
+    <optional>
+      <ref name="laterality"/>
+    </optional>
+    <optional>
+      <ref name="protocol.name"/>
+    </optional>
+    <optional>
+      <ref name="body.part.examined"/>
+    </optional>
+    <optional>
+      <ref name="reason.for.study"/>
+    </optional>
+    <optional>
+      <ref name="contrast.bolus.agent"/>
+    </optional>
+    <optional>
+      <ref name="interpretation.text"/>
+    </optional>
+    <optional>
+      <ref name="impressions"/>
+    </optional>
+    <optional>
+      <ref name="interpretation.diagnosis.description"/>
+    </optional>
+    <optional>
+      <ref name="interpretation.diagnosis.code.sequence"/>
+    </optional>
+    <optional>
+      <ref name="interpretation.id"/>
+    </optional>
+    <zeroOrMore>
+      <ref name="dicom.sr"/>
+    </zeroOrMore>
+  </define>
+  <define name="radiology.report.model">
+    <ref name="clinical.header"/>
+    <ref name="clinical.body"/>
+  </define>
+  <define name="radiology.report">
+    <element name="radiology.report">
+      <ref name="astm.content.attrib"/>
+      <ref name="radiology.report.model"/>
+    </element>
+  </define>
+  <define name="clinical.body">
+    <element name="clinical.body">
+      <ref name="ch.attrib"/>
+      <ref name="clinical.body.model"/>
+    </element>
+  </define>
+  <define name="study.instance.uid">
+    <element name="study.instance.uid">
+      <ref name="astm.content.attrib"/>
+      <ref name="study.instance.uid.model"/>
+    </element>
+  </define>
+  <define name="study.date">
+    <element name="study.date">
+      <ref name="astm.content.attrib"/>
+      <ref name="study.date.model"/>
+    </element>
+  </define>
+  <define name="study.time">
+    <element name="study.time">
+      <ref name="astm.content.attrib"/>
+      <ref name="study.time.model"/>
+    </element>
+  </define>
+  <define name="study.description">
+    <element name="study.description">
+      <ref name="astm.content.attrib"/>
+      <ref name="study.description.model"/>
+    </element>
+  </define>
+  <define name="referenced.study.sequence">
+    <element name="referenced.study.sequence">
+      <ref name="astm.content.attrib"/>
+      <ref name="referenced.study.sequence.model"/>
+    </element>
+  </define>
+  <define name="procedure.code.sequence">
+    <element name="procedure.code.sequence">
+      <ref name="astm.content.attrib"/>
+      <ref name="procedure.code.sequence.model"/>
+    </element>
+  </define>
+  <define name="modality">
+    <element name="modality">
+      <ref name="astm.content.attrib"/>
+      <ref name="modality.model"/>
+    </element>
+  </define>
+  <define name="laterality">
+    <element name="laterality">
+      <ref name="astm.content.attrib"/>
+      <ref name="laterality.model"/>
+    </element>
+  </define>
+  <define name="protocol.name">
+    <element name="protocol.name">
+      <ref name="astm.content.attrib"/>
+      <ref name="protocol.name.model"/>
+    </element>
+  </define>
+  <define name="body.part.examined">
+    <element name="body.part.examined">
+      <ref name="astm.content.attrib"/>
+      <ref name="body.part.examined.model"/>
+    </element>
+  </define>
+  <define name="reason.for.study">
+    <element name="reason.for.study">
+      <ref name="astm.content.attrib"/>
+      <ref name="reason.for.study.model"/>
+    </element>
+  </define>
+  <define name="contrast.bolus.agent">
+    <element name="contrast.bolus.agent">
+      <ref name="astm.content.attrib"/>
+      <ref name="contrast.bolus.agent.model"/>
+    </element>
+  </define>
+  <define name="interpretation.text">
+    <element name="interpretation.text">
+      <ref name="astm.content.attrib"/>
+      <ref name="interpretation.text.model"/>
+    </element>
+  </define>
+  <define name="impressions">
+    <element name="impressions">
+      <ref name="astm.content.attrib"/>
+      <ref name="impressions.model"/>
+    </element>
+  </define>
+  <define name="interpretation.diagnosis.description">
+    <element name="interpretation.diagnosis.description">
+      <ref name="astm.content.attrib"/>
+      <ref name="interpretation.diagnosis.description.model"/>
+    </element>
+  </define>
+  <define name="interpretation.diagnosis.code.sequence">
+    <element name="interpretation.diagnosis.code.sequence">
+      <ref name="astm.content.attrib"/>
+      <ref name="interpretation.diagnosis.code.sequence.model"/>
+    </element>
+  </define>
+  <define name="interpretation.id">
+    <element name="interpretation.id">
+      <ref name="astm.content.attrib"/>
+      <ref name="interpretation.id.model"/>
+    </element>
+  </define>
+</grammar>

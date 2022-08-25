@@ -1,0 +1,38 @@
+<!--
+	Copyright (c) 2000 Jonathan Borden, The Open Healthcare Group
+	licensed under http://www.openhealth.org/license
+	
+	PUBLIC "-//ASTM//DTD E31.25 Base 1.0//EN"
+	SYSTEM "http://www.openhealth.org/ASTM/ASTM.E31.25.dtd"	
+-->
+<!-- default: dpn't prefix elements -->
+<!ENTITY % NS.prefixed "IGNORE">
+<!-- prefix xlink attributes -->
+<!ENTITY % XLINK.namespace.prefixed "INCLUDE">
+<!-- include ASTM XHTML Basic Module -->
+<!ENTITY % ASTM-XHTML-module.dtd PUBLIC "-//ASTM//DTD ASTM XHTML 1.0//EN" "astm-xhtml.dtd">
+%ASTM-XHTML-module.dtd;
+<!-- define %astm.content as text or XHTML -->
+<!ENTITY % ASTM.Mix "%Flow.mix;">
+<!ENTITY % astm.content "(#PCDATA | %ASTM.Mix;)*">
+
+<!ENTITY % ASTM.xlink-module.mod PUBLIC "-//ASTM//ENTITIES XLink 1.0//EN" "astm-xlink.mod">
+%ASTM.xlink-module.mod;
+<!-- end xlink-module -->
+<!-- clinical header attributes -->
+<!ENTITY % ch.attrib " 
+	ID ID #IMPLIED
+   	confidentiality IDREF  #IMPLIED
+	note CDATA #IMPLIED
+	xml:lang NMTOKEN #IMPLIED
+">
+<!-- include clinical header module -->
+<!ENTITY % ASTM.clinical.header.dtd PUBLIC "-//ASTM//DTD Clinical Header 1.0//EN" "clinical.header.dtd">
+%ASTM.clinical.header.dtd;
+
+<!ENTITY % astm.content.attrib "%ch.attrib; %xlink.attrib;">
+<!ENTITY % astm.document.attrib "
+	xml:base CDATA #IMPLIED
+	xml:lang NMTOKEN #IMPLIED
+	%xlink.namespace.attrib;
+">

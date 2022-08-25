@@ -1,0 +1,343 @@
+<!DOCTYPE html PUBLIC "-//XML-DEV//DTD XHTML RDDL 1.0//EN" "rddl-xhtml.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>
+      Proposed RDF Abstract Syntax
+    </title>
+    <link rel="stylesheet" href="../RDDL/xrd.css" type="text/css" />
+  </head>
+  <body>
+    <h1>
+      RDF Abstract Syntax
+    </h1>
+    <p>
+      Editors:
+    </p>
+    <p>
+      Jonathan Borden <A
+      href="mailto:jonathan@openhealth.org">jonathan@openhealth.org</A>
+    </p>
+    <p>
+      Pat Hayes <A href="mailto:pat.hayes@ai.uwf.edu">phayes@ai.uwf.edu</A>
+    </p>
+    <p>
+      Drew McDermott <A
+      href="mailto:drew.mcdermott@yale.edu">drew.mcdermott@yale.edu</A>
+    </p>
+    <p>
+      This version: <a
+      href="http://www.openhealth.org/RDF/RDFAbstractSyntax-20010626.html">June
+      26, 2001</a>
+    </p>
+    <p>
+      <a href="http://www.openhealth.org/RDF/RDFAbstractSyntax.html">Latest
+      version</a>
+    </p>
+    <p>
+      Previous version: <a
+      href="http://www.openhealth.org/RDF/RDFAbstractSyntax-20010619.html">June
+      19, 2001</a>
+    </p>
+    <h2>
+      Introduction
+    </h2>
+    <p>
+      This document defines an <em>Abstract Syntax</em> or <em>Infoset</em> for
+      RDF [<A href="#RDF-MS">1</A>]. RDF Statements are commonly refered to as
+      triples of {predicate,subject,object}. In practice it is useful to group
+      triples into sets of statements termed: <em>Bundles</em>.
+    </p>
+    <p>
+      This document has no official status. It arose after many discussions on the www-rdf-logic@w3.org mailing list and
+	  irc://irc.openprojects.org/rdfig group.
+    </p>
+
+	<p>In RDF a statement is composed of a triple whose elements are members of the set of terms of discourse. These terms have been called
+	<em>Resources</em> however to avoid conflation with resources as defined by RFC 2396, we will call these <em>terms</em>.
+	</p>
+	<p>In order to further discuss these <em>terms</em> it is useful to describe types, in particular note that constraints are placed on the type which a
+	<em>predicate</em> may assume, this type is called a <em>word</em>.
+	</p>
+    <h3>
+      word
+    </h3>
+    <p>
+      A <em>word</em> is either a URI
+      reference, a quantified variable or a literal. A literal is a string or
+      quoted piece of XML. A <em>word</em> is a type of RDF <em>resource</em>.
+    </p>
+    <p>
+      word ::= (URIreference | variable | literal)
+    </p>
+	<p>
+		<i>Note that an XML QName is used as shorthand for a URI reference and used interchangably with URI reference in this paper and its examples.</i>
+	</p>
+    <h3>
+      term
+    </h3>
+	<p>A term is either a word a statement or a bundle. A <em>term</em> is a type of RDF <em>resource</em>.
+	</p>
+    <p>
+      term ::= (word | statement | bundle)
+    </p>
+	<h2>
+      Statement
+    </h2>
+    <p>
+      A statement is a triple composed of a predicate, a subject and an object. A <em>statement</em> is a type of RDF <em>resource.</em>
+    </p>
+    <p>
+      statement ::= [predicate,subject,object]
+    </p>
+    <h2>
+      Bundle
+    </h2>
+    <p>
+      A bundle is a collection of terms. A <em>bundle</em> is a type of RDF <em>resource</em>. A <em>bundle</em> might be represented as an
+	  RDF <em>collection</em>.
+    </p>
+    <p>
+      the
+      world ::= (bundle*)
+    </p>
+    <p>
+      bundle ::=
+       &nbsp; {term*}
+    </p>
+    <h3>
+      variable
+    </h3>
+    <p>
+      variable := ('?' Name) Name as defined in XML 1.0
+    </p>
+    <h3>
+      predicate
+    </h3>
+    <p>
+      A predicate is a word.
+    </p>
+    <h3>
+      subject
+    </h3>
+    <p>
+      A subject is a term.
+    </p>
+    <h3>
+      object
+    </h3>
+    <p>
+      An object is a term.
+    </p>
+    <h4>
+      Purpose of the Bundle
+    </h4>
+    <p>
+      The bundle allows separation of statements into lists which can be
+      asserted as a group. Bundles allow 'coloring' of subgraphs. The
+      document from which a set of statements arises forms a bundle
+      (represented by its URI). Bundles can 'contain' other bundles. 
+    </p>
+    <h2>
+      Application of predicates to bundles.
+    </h2>
+	<h3>
+      n-ary predicate
+    </h3>
+    <p>
+		The <em>type</em> of a statement can be expressed as the <em>type</em> of its predicate, subject and object.
+		Using a subject which is of type <em>bundle</em> an n-ary predicate may be modelled by applying
+		each of the terms in a bundle to the predicate. e.g.:</p>
+    <p>
+      or(a b c d e) -&gt; [or {a b c d e} nil]
+    </p>
+    <p>
+      predicate<sup>n</sup>.bundle := 
+      predicate<sup>n</sup>(nth(1,bundle),nth(2,bundle) ... nth(n,bundle))
+    </p>
+    <p>
+      the subject is of type bundle and holds the argument list, the object is
+      nil
+    </p>
+    <h2>
+      Implementation of bundles via RDF triples
+    </h2>
+	<p>Although this abstract syntax does not require a particular implementation, 
+	one might express a bundle as either a collection or list of triples.
+	</p>
+	<h3>bundles as collections</h3>
+	<p>Expressed as a collection, each statement in a bundle is a member of the 
+	collection which represents the bundle. For example:</p>
+	<ul>
+		<li>[rdf:type #foo rdf:Collection]</li>
+		<li>[rdf:_1 #foo [color sky blue]]</li>
+		<li>[rdf:_2 #foo [color leaf green]]</li>
+	</ul>
+	<h3>bundles as lists</h3>
+    <p>
+      The special predicate "rdf:etc" is used to indicate a list cell where the first element of the list is the subject and the 
+rest of the list is the object. The special URI "rdf:nil" signals the end of a list.
+    </p>
+    <p>
+      (or a b c d
+      e) -&gt; [or a [etc b [etc c [etc d [etc e nil]]]]]
+    </p>
+    <p>
+      predicates are applied to a list as:  predicate(first(list),rest(list))
+    </p>
+    <h2>
+      Examples:
+    </h2>
+    <h3>
+       sentences
+    </h3>
+	<p>A sentence is generally a statement that contains a statement or bundle as 
+its predicate or object i.e. it contains nested statements. </p>
+    <p>
+      The following sentence is represented as an
+      RDF statement/triple:
+    </p>
+    <p>
+      <em>[not [if [color sky blue][color leaf green]]]</em>
+    </p>
+<pre>
+predicate: not - type qname
+subject:  [if [color sky blue][color leaf green]] - type statement
+    predicate: if - type qname
+    subject: [color sky blue] - type statement
+    object:  [color leaf green] - type statement
+object: nil
+ 
+</pre>
+    <p>
+      [or a b c d e f g]
+    </p>
+<pre>
+predicate: or - type qname
+subject: {a b c d e f g} type bundle
+object: nil
+ 
+</pre>
+<p>as list:</p>
+<pre>
+predicate: or -type qname
+subject: a - type qname
+object: [etc b ...] - type statement
+	predicate: etc - type qname
+	subject: b - type qname
+	object: [etc c ...] - type statement
+</pre>
+    <p>
+      [if [and [color sky blue][color leaf green]] [season summer]]
+    </p>
+<pre>
+&lt;rdf:If&gt;
+  &lt;rdf:And&gt;
+    &lt;ex:color rdf:aboutQ="ex:sky" rdf:resourceQ="ex:blue"/&gt;
+    &lt;ex:color rdf:aboutQ="ex:leaf" rdf:resourceQ="ex:green"/&gt;
+  &lt;/rdf:And&gt;
+  &lt;ex:season rdf:aboutQ="ex:summer"/&gt;
+&lt;/rdf:If&gt;
+</pre>
+    <h3>
+      Queries as FOPL quantified variables
+    </h3>
+    <p>
+      The Squish [<A href="#SQUISH">2</A>] query: (dc:creator, foo,
+      ?x)(foaf:mbox, ?x, mailto:jonathan@openhealth.org)(foaf:surname, ?x, "Borden")
+    </p>
+    <p>
+      is represented as the bundle:
+    </p>
+    <ol>
+      <li>
+        [dc:creator,foo,?x] 
+      <li>
+        [foaf:mbox,?x,mailto:jonathan@openhealth.org]
+      </li>
+      <li>
+        [foaf:surname,?x,"Borden"]
+      </li>
+      <li>
+        [foaf:givenName,?x,"Jonathan"]
+      </li>
+    </ol>
+    <p>
+      In the context of a query, variables are existentially quantified over
+      the conjunction of the bundle
+    </p>
+    <p><pre>
+[exists ?x 
+		[and {
+			[dc:creator, foo, ?x],
+			[foaf:mbox, ?x, mailto:jonathan@openhealth.org]
+			[foaf:surname, ?x, "Borden"]
+			[foaf:givenName, ?x, "Jonathan"]
+			}
+		]
+]
+    </pre></p>
+    <h2>
+      Sentences
+    </h2>
+    <p>
+      Sentences are collected into bundles. A sentence is a 
+subgraph which has as its root a statement that incorporates or
+      nests other terms and sentences. The root or top level
+      statements within a particular bundle are those statements which are not referred
+      as the subject or object of any other statement within the
+      context, that is they are direct elements of the bundle.
+    </p>
+<p>A language which is defined as an extension of RDF defines the syntactic 
+structure and semantics of its sentences. The syntax may be defined in an 
+extension of EBNF where "{" and "}" are used to delimit a bundle and "[" and "]" 
+are used to delimit a statement:</p>
+<ul>
+<li>bundle ::= '{' term* '}'</li>
+<li>statement ::= '[' predicate subject object ']'</li>
+<li>term ::= (word | {word term*} | [term term term])</li>
+</ul>
+<h2>'KIF' in RDF</h2>
+<p>an example of the sentence definitions for a KIF-like language in RDF are as 
+follows:</p>
+<ul>
+<li>
+sentence ::= (relAtomicSentence | propSentence |quantSentence)
+</li>
+<li>
+relAtomicSentence ::= [term {term*} nil]
+</li>
+<li>
+propSentence ::= ([not sentence nil] | [(and|or) {sentence*} nil] | [(iff|implies) sentence sentence])
+</li>
+<li>
+quantSentence ::= [(forall|exist) variable|{variable+} sentence]
+</li>
+</ul>
+    <ol>
+      <li>
+        <a id="RDF-MS"></a><a href="http://www.w3.org/TR/REC-rdf-syntax">W3C
+        RDF Model and Syntax 1.0</a>
+      <li>
+        <a id="SQUISH"></a><a href="http://swordfish.rdfweb.org/rdfquery/">ILRT
+        Squish</a>
+      <li>
+        <a href="http://www-db.stanford.edu/~melnik/rdf/db.html">RDF DB</a>
+      <li>
+        <a href="http://lists.w3.org/Archives/Public/www-rdf-interest/2000Feb/0172.html">1</a>
+      <li>
+        <a href="http://www.w3.org/DesignIssues/Notation3.html">N3</a>
+      <li>
+        <a href="http://public.research.mimesweeper.com/RDF/RDFContexts.html" >Klyne's Contexts</a>
+      </li>
+	  <li><a href="http://www.openhealth.org/RDF/RDFSurfaceSyntax">RDF in RELAXNG</a></li>
+    </ol>
+	<p class="clear">
+  	<a class="clear" href="http://www.jonathanborden-md.com"> </a>
+	<a class="clear" href="http://www.jonathanborden-md.com/jonathan-borden-cv.htm">Jonathan Borden</a>
+	<a class="clear" href="http://www.erieneurosurgery.com">ENS</a>
+	<a class="clear" href="http://www.erieneuroscience.org">ENI</a>
+	<a class="clear" href="http://www.erieneuroscience.com"></a>
+  </p>
+  </body>
+</html>
+

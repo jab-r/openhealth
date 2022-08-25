@@ -1,0 +1,26 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>SOAP Adder</title>
+<script type="text/javascript" src="SOAPproxygen.asp?class=SOAP.Adder.1" ></script>
+<script>function add(a,b){
+		var proxy = new SOAP_Adder_1("soapcall.asp");
+		document.open();
+		var res = proxy.Plus(a,b);
+		alert(res);
+		document.write(res);
+		document.close();
+	};
+</script>
+</head>
+<body>
+<P>Testing the SOAP protocol. A remote call will be made on a SOAP.Adder.1 
+component.</P>
+<P>
+<input name="a" value="1" size="4" maxlength="12">
+<input name="b" value="1" size="4" maxlength="12">
+<input type="button" name="Sum" value="Sum" onClick="add(a.value,b.value)"></P>
+<P>&nbsp;</P><A href="../default.htm" name="home">home</A>&nbsp; <A href="../documents/xmop.htm" name="xmop">XMOP</A>
+</body>
+</html>

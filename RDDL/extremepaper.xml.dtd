@@ -1,0 +1,999 @@
+<!-- Formal Public Identifier:
+"-//GCA//DTD EXTREMEPAPER.DTD 20000306 XML Vers 1.0//EN"
+-->
+
+<!-- ========================================================== -->
+<!--  NAME:      DTD for GCA Extreme Papers.                    -->
+<!--                                                            -->
+<!--  PURPOSE:   To encode papers presented at the GCA          -->
+<!--             Extreme conference, thus allowing the          -->
+<!--             Proceedings to be made into print pages and    -->
+<!--             electronic products prior to the conference    -->
+<!--             and ensuring that the papers have uniform      -->
+<!--             structure and appearance.                      -->
+<!--                                                            -->
+<!--  NOTES:     1. This DTD requires XML version of several    -->
+<!--                ISO entity sets                             -->
+<!--             2. This DTD incorporates an XML version of the -->
+<!--                OASIS (SGML Open) table module.             -->
+<!--                                                            -->
+<!--  MODIFIED:  Mulberry Technologies, Inc.                    -->
+<!--             PH:  +1 301-315-9631                           -->
+<!--             FAX: +1 301-315-8285                           -->
+<!--             info@mulberrytech.com                          -->
+<!--  VERSION 1  Based on MTPAPER.DTD Version 1.1               -->
+<!--             modifed 1999/03/30 for MT'99.                  -->
+<!--             MTPAPER.DTD Version 1.0 based on               -->
+<!--             GCAPAPER.DTD Version 2.0.1.2                   -->
+<!--             modifed 1997/05/09 for SGML/XML'97             -->
+<!--                                                            -->
+<!--  WRITTEN:   ATLIS Consulting Group  (Lawrence A. Beck)     -->
+<!--             Silver Spring, Maryland 20852                  -->
+<!--  ORIG DATE: 1996-02 (For SGML'96)                          -->
+<!-- ========================================================== -->
+<!-- Mulberry internal version control:
+     $Id: extremepaper.xml.dtd,v 1.4 2000-03-06 19:03:41-04 tkg Exp $
+                                                                -->
+<!-- ========================================================== -->
+<!--                    Change History                          -->
+<!-- ========================================================== -->
+<!--                                                            -->
+<!-- No.    REASON for/DESCRIPTION of CHANGE               DATE -->
+<!--                                                            -->
+<!-- ========================================================== -->
+
+
+<!-- ========================================================== -->
+<!--                    NOTATION DECLARATIONS                   -->
+<!--                    (Notations for tiff and eps             -->
+<!--                    and linespecific are included)          -->
+<!-- ========================================================== -->
+
+
+<!--                    TIFF                                    -->
+<!--                    TIFF files may be provided in either
+                        uncompressed or LZW compressed forms    -->
+<!NOTATION tiff        PUBLIC
+"-//ISBN 0-7923-9432-1::Graphic Notation//NOTATION
+Aldus/Microsoft Tagged Interchange File Format//EN"               >
+
+
+<!--                    ENCAPSULATED POSTSCRIPT                 -->
+<!--                    Encapsulated Postscript file should be
+                        ASCII, have embedded fonts and not
+                        contain a preview.                      -->
+<!NOTATION eps          PUBLIC
+"-//ISBN 0-7923-9432-1::Graphic Notation//NOTATION Adobe Systems
+Encapsulated Postscript//EN"                                      >
+
+
+<!--                     Line-specific for verbatim text        -->
+<!NOTATION linespecific  SYSTEM
+"line ends and leading white space must be preserved on output"   >
+
+
+<!-- ========================================================== -->
+<!--                    SPECIAL CHARACTER ENTITY SETS           -->
+<!-- ========================================================== -->
+
+<!-- XML versions of the standard ISO special character entity
+     sets are invoked. The named files should be in the same
+     system subdirectory as this DTD file.                      -->
+
+<!ENTITY % ISOlat1 SYSTEM "ISOlat1.pen">
+
+<!ENTITY % ISOlat2 SYSTEM "ISOlat2.pen">
+
+<!ENTITY % ISOgrk3 SYSTEM "ISOgrk3.pen">
+
+<!ENTITY % ISOdia  SYSTEM "ISOdia.pen">
+
+<!ENTITY % ISOnum  SYSTEM "ISOnum.pen">
+
+<!ENTITY % ISOpub  SYSTEM "ISOpub.pen">
+
+<!ENTITY % ISOtech SYSTEM "ISOtech.pen">
+
+%ISOlat1; %ISOlat2; %ISOgrk3;
+%ISOdia;  %ISOnum;  %ISOpub;  %ISOtech;
+
+
+<!-- ========================================================== -->
+<!--                      PARAMETER ENTITIES for CONTENT MODELS -->
+<!-- ========================================================== -->
+
+
+<!--                      EMPHASIS TYPES                        -->
+<!ENTITY % emphs          "highlight | sub | super"               >
+
+
+<!--                      PHRASE-LEVEL ELEMENTS                 -->
+<!--                      (small, floating inside text)         -->
+<!ENTITY % phrase         "acronym | acronym.grp | bibref | cit |
+                           fnref | ftnote | inline.graphic |
+                           sgml |  xref "                         >
+
+
+<!--                      LIST TYPES                            -->
+<!ENTITY % lists          "deflist | randlist | seqlist"          >
+
+
+<!--                      PARAGRAPH-LEVEL ITEMS                 -->
+<!--                      (at the same level as a paragraph)    -->
+<!ENTITY % paralevel      "figure | graphic | %lists; | lquote |
+                          note | table"                           >
+
+
+<!--                      PARAGRAPH CONTENT                     -->
+<!--                      (inside a paragraph)                  -->
+<!ENTITY % paratext       "%emphs; | graphic | %lists; | %phrase; |
+                           sgml.block | verbatim"                 >
+
+
+<!--                      TABLE ENTRY CONTENT                   -->
+<!--                      (inside an <entry>)                   -->
+<!ENTITY % paracon        "#PCDATA | %emphs; | graphic |
+                           %lists; | %phrase;"                    >
+
+
+<!--                      ELEMENTS INSIDE AN ADDRESS            -->
+<!ENTITY % address.elems  "aline | city | state | province |
+                           cntry | postcode | phone | fax |
+                           email | web"                           >
+
+
+<!--ENTITY % yesorno      Is defined in the table module        -->
+
+
+<!-- ========================================================== -->
+<!--                    SGML OPEN TABLE MODEL                   -->
+<!-- ========================================================== -->
+<!-- This DTD uses the SGML Open modification of the CALS table
+     model to insure that most implementors can process it.     -->
+
+<!-- For ease of use, the model is included here directly rather
+     than being referenced in an external file.                 -->
+
+<!-- EXCHANGE TABLE MODEL DECLARATION MODULE (XML Version)         -->
+
+<!-- This entity includes a set of element and attribute declarations
+     that partially defines the Exchange table model.  However, the
+     model is not well-defined without the accompanying natural
+     language description of the semantics (meanings) of these
+     various elements, attributes, and attribute values.  The
+     semantic writeup, also available from SGML Open, should be used
+     in conjunction with this entity.                              -->
+
+<!-- In order to use the Exchange table model, various parameter
+     entity declarations are required.  A brief description is as
+     follows:
+
+ENTITY NAME      WHERE USED              WHAT IT IS
+
+%bodyatt         In ATTLIST of:          Additional (non-table related)
+                 table element(s)        attributes on the overall
+                                         (wrapper) table element(s)
+
+%yesorno         In ATTLIST of:          An attribute declared value
+                 almost all elements     for a "boolean" attribute
+
+%titles          In content model of:    The "title" part of the model
+                 table element(s)        group for the table element(s)
+
+%paracon         In content model of:    The "text" (logical content)
+                 <entry>                 of the model group for <entry>
+
+%tbl.table.name  In declaration of:      The name(s) of the "table"
+                 table element(s)        element(s)
+
+%tbl.table-titles.mdl
+                 In content model of:    The model group for the title
+                 table elements(s)       part of the content model for
+                                         table element(s)
+
+%tbl.table-main.mdl
+                 In content model of:    The model group for the main part
+                 table elements(s)       (not including titles) of the
+                                         content model for table element(s)
+
+%tbl.table.mdl   In content model of:    The model group for the content
+                 table elements(s)       model for table element(s),
+                                         often (and by default) defined
+                                         in terms of %tbl.table-titles.mdl
+                                         and %tbl.table-main.mdl
+
+%tbl.table.att   In ATTLIST of:          Additional attributes on the
+                 table element(s)        table element(s)
+
+%tbl.tgroup.mdl  In content model of:    The model group for the content
+                 <tgroup>                model for <tgroup>
+
+%tbl.tgroup.att  In ATTLIST of:          Additional attributes on the
+                 <tgroup>                <tgroup> element
+
+%tbl.tbody.att   In ATTLIST of:          Additional attributes on the
+                 <tbody>                 <tbody> element
+
+%tbl.colspec.att In ATTLIST of:          Additional attributes on the
+                 <colspec>               <colspec> element
+
+%tbl.hdft.name   In declaration of:      The name(s) of the table
+                 head/foot element(s)    head and foot element(s)
+
+%tbl.hdft.mdl    In content model of:    The model group for the content
+                 head/foot element(s)    model for head/foot element(s)
+
+%tbl.hdft.att    In ATTLIST of:          Additional attributes on the
+                 head/foot element(s)    head/foot element(s)
+
+
+%tbl.row.mdl     In content model of:    The model group for the content
+                 <row>                   model for <row>
+
+%tbl.row.att     In ATTLIST of:          Additional attributes on the
+                 <row>                   <row> element
+
+%tbl.entry.mdl   In content model of:    The model group for the content
+                 <entry>                 model for <entry>
+
+%tbl.entry.att   In ATTLIST of:          Additional attributes on the
+                 <entry>                 <entry> element
+
+     This set of declarations will use the default definitions shown
+     below for any of these parameter entities that are not declared
+     before this set of declarations is referenced.
+                                                                   -->
+
+<!-- These definitions are not directly related to the table model,
+     but are used in the default CALS table model and may be defined
+     elsewhere (and prior to the inclusion of this table module) in
+     the referencing DTD.                                          -->
+
+
+<!ENTITY % bodyatt "">
+<!ENTITY % yesorno 'CDATA'  >
+<!-- no if zero(s), yes if any other digits value -->
+
+<!ENTITY % titles  'title?'>
+
+<!ENTITY % paracon '#PCDATA' >
+<!-- default for use in entry content -->
+
+<!-- The parameter entities as defined below change and simplify the
+     CALS table model as published (as part of the Example DTD) in
+     MIL-HDBK-28001.  The resulting simplified DTD has support from
+     the SGML Open vendors and is therefore more interoperable among
+     different systems.
+
+     These following declarations provide the Exchange default
+     definitions for these entities.  However, these entities can be
+     redefined (by giving the appropriate parameter entity
+     declaration(s) prior to the reference to this Table Model
+     declaration set entity) to fit the needs of the current
+     application.
+
+     Note, however, that changes may have significant effect on the
+     ability to interchange table information.  These changes may
+     manifest themselves in useability, presentation, and possible
+     structure information degradation.                            -->
+
+<!ENTITY % tbl.table.name       "table">
+<!ENTITY % tbl.table-titles.mdl "%titles;,">
+<!ENTITY % tbl.table-main.mdl   "tgroup+">
+<!ENTITY % tbl.table.mdl        "%tbl.table-titles.mdl; %tbl.table-main.mdl;">
+<!ENTITY % tbl.table.att        "
+    pgwide      %yesorno;       #IMPLIED ">
+<!ENTITY % tbl.tgroup.mdl       "colspec*,thead?,tbody">
+<!ENTITY % tbl.tgroup.att       "">
+<!ENTITY % tbl.tbody.att        "">
+<!ENTITY % tbl.colspec.att      "">
+<!ENTITY % tbl.hdft.name        "thead">
+<!ENTITY % tbl.hdft.mdl         "row+">
+<!ENTITY % tbl.hdft.att         "">
+<!ENTITY % tbl.row.mdl          "entry+">
+<!ENTITY % tbl.row.att          "">
+<!ENTITY % tbl.entry.mdl        "(%paracon;)*">
+<!ENTITY % tbl.entry.att        "">
+
+<!-- =====  Element and attribute declarations follow. =====  -->
+
+<!--
+Default declarations previously defined in this entity and
+referenced below include:
+ENTITY % tbl.table.name       "table"
+ENTITY % tbl.table-titles.mdl "%titles;,"
+ENTITY % tbl.table-main.mdl   "tgroup+"
+ENTITY % tbl.table.mdl        "%tbl.table-titles; %tbl.table-main.mdl;"
+ENTITY % tbl.table.att        "
+                        pgwide          %yesorno;       #IMPLIED "
+-->
+
+<!ELEMENT %tbl.table.name;     (%tbl.table.mdl;) >
+
+<!ATTLIST %tbl.table.name;
+        frame           (top|bottom|topbot|all|sides|none) #IMPLIED
+        colsep          %yesorno;                          #IMPLIED
+        rowsep          %yesorno;                          #IMPLIED
+        %tbl.table.att;
+        %bodyatt;
+>
+
+<!--
+     Default declarations previously defined in this entity and
+     referenced below include:
+     ENTITY % tbl.tgroup.mdl    "colspec*,thead?,tbody"
+     ENTITY % tbl.tgroup.att    ""
+-->
+
+<!ELEMENT tgroup     (%tbl.tgroup.mdl;) >
+
+<!ATTLIST tgroup
+        cols            CDATA                              #REQUIRED
+        colsep          %yesorno;                          #IMPLIED
+        rowsep          %yesorno;                          #IMPLIED
+        align           (left|right|center|justify|char)   #IMPLIED
+        %tbl.tgroup.att;
+>
+
+<!--
+     Default declarations previously defined in this entity and
+     referenced below include:
+     ENTITY % tbl.colspec.att   ""
+-->
+
+<!ELEMENT colspec     EMPTY >
+
+<!ATTLIST colspec
+        colnum          CDATA                              #IMPLIED
+        colname         CDATA                              #IMPLIED
+        colwidth        CDATA                              #IMPLIED
+        colsep          %yesorno;                          #IMPLIED
+        rowsep          %yesorno;                          #IMPLIED
+        align           (left|right|center|justify|char)   #IMPLIED
+        char            CDATA                              #IMPLIED
+        charoff         CDATA                              #IMPLIED
+        %tbl.colspec.att;
+>
+
+<!--
+     Default declarations previously defined in this entity and
+     referenced below include:
+     ENTITY % tbl.hdft.name     "thead"
+     ENTITY % tbl.hdft.mdl      "row+"
+     ENTITY % tbl.hdft.att      ""
+-->
+
+<!ELEMENT %tbl.hdft.name;     (%tbl.hdft.mdl;) >
+
+<!ATTLIST %tbl.hdft.name;
+        valign          (top|middle|bottom)                #IMPLIED
+        %tbl.hdft.att;
+>
+
+<!--
+     Default declarations previously defined in this entity and
+     referenced below include:
+     ENTITY % tbl.tbody.att     ""
+-->
+
+<!ELEMENT tbody     (row+)>
+
+<!ATTLIST tbody
+        valign          (top|middle|bottom)                #IMPLIED
+        %tbl.tbody.att;
+>
+
+<!--
+     Default declarations previously defined in this entity and
+     referenced below include:
+     ENTITY % tbl.row.mdl       "entry+"
+     ENTITY % tbl.row.att       ""
+-->
+
+<!ELEMENT row     (%tbl.row.mdl;) >
+
+<!ATTLIST row
+        rowsep          %yesorno;                          #IMPLIED
+        valign          (top|middle|bottom)                #IMPLIED
+        %tbl.row.att;
+>
+
+
+<!--
+     Default declarations previously defined in this entity and
+     referenced below include:
+     ENTITY % paracon           "#PCDATA"
+     ENTITY % tbl.entry.mdl     "(%paracon;)*"
+     ENTITY % tbl.entry.att     ""
+-->
+
+<!ELEMENT entry      %tbl.entry.mdl;  >
+
+<!ATTLIST entry
+        colname         CDATA                              #IMPLIED
+        namest          CDATA                              #IMPLIED
+        nameend         CDATA                              #IMPLIED
+        morerows        CDATA                              #IMPLIED
+        colsep          %yesorno;                          #IMPLIED
+        rowsep          %yesorno;                          #IMPLIED
+        align           (left|right|center|justify|char)   #IMPLIED
+        char            CDATA                              #IMPLIED
+        charoff         CDATA                              #IMPLIED
+        valign          (top|middle|bottom)                #IMPLIED
+        %tbl.entry.att;
+>
+<!-- ======= End of XML version of SGML Open Table Model ====== -->
+
+<!-- ========================================================== -->
+<!--                    ELEMENT DECLARATIONS                    -->
+<!-- ========================================================== -->
+
+<!--                      PAPER                                 -->
+<!--                      The "secnumbers" attribute indicates
+                          whether the <section>, <subsec1>,
+                          <subsec2>, and <subsec3> elements should
+                          be formatted as numbered sections; for
+                          example, <section><title>Section</></>
+                          = "1. Section", <subsec1><title>
+                          Subsection 1</></> = "1.1 Subsection 1",
+                          etc.  Section numbering is
+                          all-or-nothing and is turned on by
+                          setting the "secnumbers" attribute to 1:
+                          'secnumbers="1"'.                     -->
+<!ELEMENT paper           (front, body, rear?)                    >
+<!ATTLIST paper      secnumbers %yesorno;           "0"           >
+
+
+<!-- ========================================================== -->
+<!--                    FRONT MATTER ELEMENTS                   -->
+<!-- ========================================================== -->
+
+<!--                      FRONT MATTER                          -->
+<!--                      The abstract is optional because this DTD
+                          is used for the Conference Chair
+                          introductions and other introductory
+                          material, but abstracts should be
+                          included in all technical papers.     -->
+<!ELEMENT front           (title, subt?, author+, keywords?,
+                           abstract?)                             >
+
+
+<!--                      TITLE DEFINITIONS                     -->
+
+<!--                      MAIN TITLE                            -->
+<!--                      The TITLE tag is used for: headings
+                          within the paper, figure captions, etc.
+                          Each type of title is formatted
+                          appropriately for the context.        -->
+<!ELEMENT title           (#PCDATA|%emphs;|%phrase;)*           >
+
+<!--                      SUBORDINATE TITLE                     -->
+<!ELEMENT subt            (#PCDATA|%emphs;|%phrase;)*           >
+
+
+<!-- ========================================================== -->
+<!--                    AUTHOR INFORMATION ELEMENTS             -->
+<!-- ========================================================== -->
+
+<!--                      AUTHOR                                -->
+<!--                      Multiple authors are allowed inside
+                          Front Matter. The author tag must be
+                          repeated for each author.
+                              The "contact" attribute indicates
+                          who is the primary contact when the
+                          paper has multiple authors.  "contact"
+                          defaults to "0" but should be set to "1"
+                          to indicate the corresponding author; it
+                          should remain "0" for all other authors.
+
+                                                                -->
+<!ELEMENT author          (fname, surname, jobtitle?, address, bio)
+                                                                  >
+<!ATTLIST author           contact   %yesorno;     "1"            >
+
+
+<!--                      FIRST NAMES & middle initial (if any) -->
+<!ELEMENT fname           (#PCDATA)                               >
+
+
+<!--                      SURNAME (last name)                   -->
+<!ELEMENT surname         (#PCDATA)                               >
+
+
+<!--                      AUTHOR'S JOB TITLE                    -->
+<!ELEMENT jobtitle        (#PCDATA)                               >
+
+
+<!--                      AUTHOR'S ADDRESS                      -->
+<!ELEMENT address         (affil, subaffil*, (%address.elems;)*)  >
+
+
+<!--                      BIOGRAPHY                             -->
+<!ELEMENT bio             (para+)                                 >
+
+
+<!-- ========================================================== -->
+<!--                    ADDRESS COMPONENT ELEMENTS              -->
+<!-- ========================================================== -->
+
+<!--                      Address component elements are provided
+                          for some possible components (including
+                          electronic) of an Author's address.
+                          An Address consists of an Affiliation, a
+                          possible Sub. Affiliation, then a number
+                          of Alines followed by the other named
+                          components as needed. Author's
+                          Affiliation is  required, all other
+                          components are optional.              -->
+
+
+<!--                      AUTHOR'S AFFILIATION
+                          (company, university, etc.)           -->
+<!ELEMENT affil           (#PCDATA|%emphs;)*                    >
+
+
+<!--                      AUTHOR'S SUBORDINATE AFFILIATION
+                          (department, division, etc.)          -->
+<!ELEMENT subaffil        (#PCDATA|%emphs;)*                    >
+
+
+<!--                      ADDRESS LINES for street, bldg, suite,
+                          etc. (anything not listed below)      -->
+<!ELEMENT aline           (#PCDATA)                               >
+
+
+<!--                      CITY, TOWN, VILLAGE, ETC              -->
+<!ELEMENT city            (#PCDATA)                               >
+
+
+<!--                      STATE (for US addresses)              -->
+<!ELEMENT state           (#PCDATA)                               >
+
+
+<!--                      PROVINCE                              -->
+<!ELEMENT province        (#PCDATA)                               >
+
+
+<!--                      POSTCODE
+                          Is used for a US ZIP Code or other
+                          national postal designator.           -->
+<!ELEMENT postcode        (#PCDATA)                               >
+
+
+<!--                      COUNTRY OF RESIDENCE                  -->
+<!ELEMENT cntry           (#PCDATA)                               >
+
+
+<!--                      VOICE NUMBER                          -->
+<!ELEMENT phone           (#PCDATA)                               >
+
+
+<!--                      FAX NUMBER                            -->
+<!ELEMENT fax             (#PCDATA)                               >
+
+
+<!--                      ELECTRONIC E-MAIL ADDRESS             -->
+<!ELEMENT email           (#PCDATA)                               >
+
+
+<!--                      WEB PAGE ADDRESS (URL)                -->
+<!ELEMENT web             (#PCDATA)                               >
+
+
+<!-- ========================================================== -->
+<!--                    FRONT MATTER BLOCK STRUCTURES           -->
+<!-- ========================================================== -->
+
+<!--                      ABSTRACT
+                          Is used to identify the paper's abstract.
+                          Abstracts SHOULD BE INCLUDED for all
+                          technical papers, but may not be needed
+                          for Conference Chair Introductions and
+                          and other Introductory material.
+                          Generates the Section heading "ABSTRACT"
+                                                                -->
+<!ELEMENT abstract        (para+)                                 >
+
+
+<!--                      KEYWORDS SECTION
+                          Contains one or more Keywords (if any).
+                          Keywords are words or phrases used to
+                          name subject matter highlights.
+                          If printed or displayed in the
+                          Proceedings, the Keyword will generate
+                          the Section heading "KEYWORDS", followed
+                          by a simple list.  Keywords may also be
+                          used to construct an index            -->
+<!ELEMENT keywords        (keyword+)                              >
+
+
+<!--                      KEYWORD
+                          Identifies each individual word or
+                          phrase contained in KEYWORDS Section.
+                          If printed or displayed in the
+                          Proceedings, each Keyword will display
+                          on a line by itself.                  -->
+<!ELEMENT keyword         (#PCDATA)                               >
+
+
+<!-- ========================================================== -->
+<!--                    BODY and SECTION MODELS                 -->
+<!-- ========================================================== -->
+
+<!--                      BODY
+                          The body of the paper may be divided
+                          into sections.  Each section may be
+                          divided into lower-level subsections.
+                          A main section and three subordinate
+                          subsection levels are provided.  Each
+                          section or subsection must have a title.
+                          Sections will be numbered if the
+                          "secnumbers" attribute on <gcapaper>
+                          is set to "1".                        -->
+
+<!ELEMENT body            (((para|%paralevel;)+, section*) |
+                          section+)                               >
+
+<!--                      PARAGRAPH                             -->
+<!ELEMENT para            (#PCDATA|%paratext;)*                 >
+<!ATTLIST para       id   ID                       #IMPLIED       >
+
+<!ELEMENT section         (title,
+                          (((para|%paralevel;)+, subsec1*) |
+                           subsec1+))                             >
+<!ATTLIST section    id   ID                      #IMPLIED        >
+
+<!ELEMENT subsec1         (title,
+                          (((para|%paralevel;)+, subsec2*) |
+                           subsec2+))                             >
+<!ATTLIST subsec1    id   ID                      #IMPLIED        >
+
+<!ELEMENT subsec2         (title,
+                          (((para|%paralevel;)+, subsec3*) |
+                           subsec3+))                             >
+<!ATTLIST subsec2    id   ID                      #IMPLIED        >
+
+<!ELEMENT subsec3         (title, (para|%paralevel;)+)            >
+<!ATTLIST subsec3    id   ID                      #IMPLIED        >
+
+
+<!-- ========================================================== -->
+<!--                    REAR MATTER ELEMENTS                    -->
+<!-- ========================================================== -->
+
+<!ELEMENT rear            (acknowl?, bibliog?)                    >
+
+
+<!--                      ACKNOWLEDGEMENTS SECTION
+                          Generates the section head
+                          "ACKNOWLEDGEMENTS"                    -->
+<!ELEMENT acknowl         (para)+                                 >
+
+
+<!-- ========================================================== -->
+<!--                    BIBLIOGRAPHY SECTION                    -->
+<!-- ========================================================== -->
+
+<!--                      BIBLIOGRAPHY                          -->
+<!--                      Generates Section head "BIBLIOGRAPHY"
+                          Formats like a definition list (in 2
+                          columns) with the BIBREF being the term
+                          (first column) and the PUB being the
+                          definition (2nd column).              -->
+<!ELEMENT bibliog         (bibitem)+                              >
+
+
+<!--                      BIBLIOGRAPHIC ITEM                    -->
+<!ELEMENT bibitem         (bib, pub)                              >
+<!ATTLIST bibitem    id   ID                       #IMPLIED       >
+
+<!--                      BIBLIOGRAPHIC DESIGNATOR
+                          BIB contains whatever designator the
+                          author uses to identify publications
+                          listed in the bibliography
+                          (e.g., [LAB 87]).  BIB generates the
+                          square "[]" brackets fore & aft.      -->
+<!ELEMENT bib             (#PCDATA)                               >
+
+
+<!--                      PUBLICATION                           -->
+<!ELEMENT pub             (#PCDATA|%emphs;)*                    >
+
+
+<!--                      BIBLIOGRAPHIC REFERENCE               -->
+<!--                      The attribute "refloc" points from a
+                          floating BIBREF to the ID of the relevant
+                          Bibliographic Item. The <bibref> formats
+                          as the same text as the formatted <bib>
+                          element within the <bibitem> being
+                          referenced.  For example, for the bibitem
+                          <bibitem id="bib1"><bib>LAB 87</>...</>,
+                          the bibliographic reference <bibref
+                          refid="bib1"> formats as "[LAB 87]".  -->
+
+<!ELEMENT bibref          EMPTY                                   >
+<!ATTLIST bibref     refloc    IDREF               #REQUIRED      >
+
+
+<!-- ========================================================== -->
+<!--                    GENERAL ELEMENTS                        -->
+<!-- ========================================================== -->
+
+<!-- ========================================================== -->
+<!--                    PARAGRAPH-LEVEL ELEMENTS                -->
+<!-- ========================================================== -->
+
+<!--                      LONG QUOTATION
+                          (Block Quote, Extract, or extended quote)
+                          Will set in a font other than the default
+                          paragraph font and may use a different
+                          indent pattern.                       -->
+<!ELEMENT lquote          (para)+                                 >
+
+
+<!--                      NOTE IN TEXT
+                          Generates the run-in head "NOTE: "    -->
+<!ELEMENT note            (para)+                                 >
+
+<!--ELEM  para            PARAGRAPH is defined with Body/Section-->
+
+
+<!--                      VERBATIM                              -->
+<!--                      The VERBATIM element is generally
+                          formatted "as is", but is possible, for
+                          example, to make parts of it bold. All
+                          spaces and line endings are preserved.
+                          VERBATIM will set in a monospace font.-->
+<!ELEMENT verbatim        (#PCDATA|highlight)*                    >
+<!ATTLIST verbatim   format NOTATION (linespecific) "linespecific">
+
+
+<!-- ========================================================== -->
+<!--                  FIGURE ELEMENTS (PARAGRAPH-LEVEL)         -->
+<!-- ========================================================== -->
+
+<!--                      FIGURE                                -->
+<!ELEMENT figure          (title?, caption?,
+                          (graphic|verbatim|para)+)               >
+<!ATTLIST figure id       ID                          #IMPLIED    >
+
+
+<!--                      FIGURE CAPTION                        -->
+<!--                      Description of the contents of the
+                          figure, note about some feature of the
+                          figure, or note about the source of the
+                          figure. This is in addition to the
+                          (usually brief) descriptive title
+                          of the figure.  Figure Titles and Figure
+                          Captions will look distinctly different,
+                          by position or typography or both.    -->
+<!ELEMENT caption         (para+)                                 >
+
+
+<!--                      GRAPHIC                               -->
+<!--                      GRAPHIC may be used by itself for an
+                          unnumbered, untitled illustration, or
+                          used in FIGURE when the illustration
+                          should be numbered and, optionally,
+                          titled.
+                          The "figname" attribute contains an
+                          entity reference that identifies the
+                          graphic.
+                          The "scale" attribute contains a number
+                          that indicates the percentage the graphic
+                          should be scaled.  -->
+<!ELEMENT graphic         EMPTY                                   >
+<!ATTLIST graphic
+                 figname  ENTITY                      #REQUIRED
+                 scale    CDATA                       "100"       >
+
+
+<!--                      INLINE GRAPHIC                        -->
+<!--                      Graphic appearing in a line of text,
+                          and, presumably, approximately the same
+                          size as the surrounding text, such as an
+                          icon.
+                          The "figname" attribute contains an
+                          entity reference that identifies the
+                          graphic.                              -->
+<!ELEMENT inline.graphic
+                          EMPTY                                   >
+<!ATTLIST inline.graphic
+                 figname  ENTITY                      #REQUIRED   >
+
+
+<!-- ========================================================== -->
+<!--                    LISTS (PARAGRAPH-LEVEL)                 -->
+<!-- ========================================================== -->
+
+<!--                      RANDOM LIST (unordered)               -->
+<!--                      The "style" attribute indicates what
+                          type of list is desired. A simple list
+                          is one with no item prefix.           -->
+<!ELEMENT randlist        (title?, li+)                           >
+<!ATTLIST randlist
+                    style (simple | bulleted | dashed) "bulleted" >
+
+
+<!--                      SEQUENTIAL (ordered) LIST             -->
+<!--                      The "number" attribute indicates the
+                          type of prefix desired:
+                          (e.g.    arabic    1, 2, 3, 4,...
+                                   ualpha    A, B, C, D,...
+                                   uroman    I, II, III, IV,...
+                                   lalpha    a, b, c, d,...
+                                   lroman    i, ii, iii, iv,...)-->
+<!ELEMENT seqlist         (title?, li+)                           >
+<!ATTLIST seqlist
+                   number (arabic | ualpha | uroman | lalpha |
+                           lroman)                    "arabic"    >
+
+
+<!--                      LIST ITEM                             -->
+<!ELEMENT li              (para)+                                 >
+
+
+<!--                      DEFINITION LIST                       -->
+<!--                      A two-column list (which may have both an
+                          overall list title and column headings)
+                          where the first column is term and the
+                          second column is a definition/explanation
+                          of that term.                         -->
+<!ELEMENT deflist         (title?,
+                          (term.heading, def.heading?)?,
+                           def.item+)                             >
+
+
+<!-- ========================================================== -->
+<!--                      DEFINITION LIST ELEMENTS              -->
+<!-- ========================================================== -->
+
+<!--                      DEFINITION LIST: TERM HEADING         -->
+<!ELEMENT term.heading
+                          (#PCDATA|%emphs;|%phrase;)*           >
+
+
+<!--                      DEFINITION LIST: DEFINITION HEADING   -->
+<!ELEMENT def.heading
+                          (#PCDATA|%emphs;|%phrase;)*           >
+
+
+<!--                      DEFINITION LIST: ITEM                 -->
+<!ELEMENT def.item        (def.term, def)                         >
+
+
+<!--                      DEFINITION LIST TERM                  -->
+<!ELEMENT def.term        (#PCDATA|%emphs;|%phrase;)*           >
+
+
+<!--                      DEFINITION                            -->
+<!ELEMENT def             (para)+                                 >
+
+
+<!-- ========================================================== -->
+<!--                    PHRASE-LEVEL ELEMENTS                   -->
+<!-- ========================================================== -->
+
+<!--                      ACRONYM GROUP                         -->
+<!--                      (The acronym and the expansion in 1 box.)
+                          The first time an acronym is used in the
+                          text of a paper, Acronym Group can be
+                          used to supply the definition as well as
+                          the acronym at that point in the text.
+                             For subsequent uses, the
+                          definition is not necessary. Acronym
+                          Groups will be formatted as "ACRONYM
+                          (Expansion)" (e.g., "GCA (Graphic
+                          Communications Association)").  Acronyms
+                          and expansions may also be extracted for
+                          use in a glossary published as part of
+                          the proceedings.                      -->
+<!--                      ACRONYM GROUP                         -->
+<!ELEMENT acronym.grp
+                          (acronym, expansion?)                   >
+
+
+<!--                      ACRONYM (the actual acronym)          -->
+<!ELEMENT acronym         (#PCDATA)                               >
+
+
+<!--                      ACRONYM EXPANSION
+                          (the expansion of the acronym)        -->
+<!ELEMENT expansion       (#PCDATA)                               >
+
+<!--ELEM bibref           BIBREF is defined with Bibliography   -->
+
+
+<!--                      CITATION (Cited Title)
+                          Title of book, paper, or article that is
+                          mentioned by the author in a sentence.
+                          The intent of <cit> is to allow a
+                          reference to another document to take
+                          a special typographic treatment, such
+                          as italics.
+                                                                -->
+<!ELEMENT cit             (#PCDATA|%emphs;)*                    >
+
+
+<!--                      FOOTNOTE                              -->
+<!ELEMENT ftnote          (para)+                                 >
+<!ATTLIST ftnote      id  ID                            #REQUIRED >
+
+
+<!--                      FOOTNOTE REFERENCE
+                          The attribute "refloc" is used to point
+                          to the ID of the footnote being
+                          referenced.                           -->
+<!ELEMENT fnref           EMPTY                                   >
+<!ATTLIST fnref      refloc    IDREF               #REQUIRED      >
+
+<!--ELEM inline.graphic   INLINE GRAPHIC is defined with Figure -->
+
+
+<!--                      INLINE and BLOCK SGML CODE FRAGMENTS
+                            <sgml> is an inline element for SGML
+                          expressions that are on a single line,
+                          possibly mixed with other text.
+                            Use <sgml.block> for multiple
+                          lines of SGML, or use <verbatim> for
+                          blocks of text that are not SGML.
+                            SGML will set in a monospace font.
+                          Use &lt; and &gt; entities, etc., to
+                          represent SGML delimiters in element
+                          content (these will not be supplied by
+                          a stylesheet).                        -->
+<!ELEMENT sgml            (#PCDATA)                               >
+<!ELEMENT sgml.block      (#PCDATA)                               >
+
+
+<!--                      CROSS REFERENCE                       -->
+<!--                      The attribute "refloc" is used to point to
+                          the ID of the item being referenced.
+                          The attribute "type" specifies the type
+                          of the cross reference.  TYPE="number"
+                          generates the number of the referenced
+                          element (if it is numbered, and the
+                          result is undefined for references to
+                          elements that are not numbered).  For
+                          example, 'See figure <xref type="number"
+                          refloc="fg0001">' would be formatted as
+                          'See figure 2'.
+                          TYPE="title" generates the title of the
+                          referenced element (if it does contain
+                          a title element, and the result is
+                          undefined for references to elements
+                          that do not contain titles).  For
+                          example, 'See the section "<xref
+                          type="title" refloc="sec02">"' would be
+                          formatted as 'See the section "Using
+                          Cross References"'.                   -->
+<!ELEMENT xref            EMPTY                                   >
+<!ATTLIST xref       refloc IDREF                  #REQUIRED
+                     type   (number | title)       "number"       >
+
+
+<!-- ========================================================== -->
+<!--                    EMPHASIS ELEMENTS (PHRASE-LEVEL)        -->
+<!-- ========================================================== -->
+
+<!--                      SUBSCRIPT                             -->
+<!ELEMENT sub             (#PCDATA|%emphs;)*                    >
+
+
+<!--                      SUPERSCRIPT                           -->
+<!ELEMENT super           (#PCDATA|%emphs;)*                    >
+
+
+<!--                      HIGHLIGHTED TEXT
+                          The "style" attribute indicates the type
+                          of highlighting desired
+                          (e.g.        bold     BOLD
+                                       ital     ITALIC
+                                       bital    BOLD-ITALIC
+                                       rom      ROMAN
+                                       under    UNDERSCORE)     -->
+<!ELEMENT highlight       (#PCDATA|%emphs;|%phrase;)*           >
+<!ATTLIST highlight   style (bold|ital|bital|rom|under) #REQUIRED >
+
+
+<!-- =========  End GCA Markup Technologies Paper DTD ========= -->

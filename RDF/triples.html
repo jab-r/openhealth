@@ -1,0 +1,68 @@
+
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<P>Why triples? It has been stated that an RDF based on 
+triples is too low level to be useful. I cannot say whether triples are useful 
+to any particular person for any specific purpose. I would like to suggest some 
+questions that people may find useful in deciding whether triples and by 
+extension RDF may be useful for a particular project or purpose.</P>
+<P>In this article I consider RDF as a simplified XML infoset.</P>
+<P>If triples are too low level to be useful as a basic on 
+which to develop a predicate logic language, other candidates would be a pure 
+text based syntax or an XML based syntax. The benefit of XML is not that it is 
+often the very 'best' syntax for people to read or write but particularly that 
+it is generally the best compromise as a syntax that is both human and machine 
+readable. That was perhaps the initial reason why XML became as popular as it is 
+today. I have absolutely no doubt that any particular piece of information 
+encoded in XML could be similarly encoded in s-expressions but that has become 
+an entirely moot point. Indeed the layout and transformation language that 
+generally preceded XSLT was DSSSL - a derivative of Scheme. So certainly the 
+developers of XML were well aware of Lisp. What has happened is that the web 
+community has decided on the XML syntax and people are generally interested in putting up with any particular shortcomings of 
+XML in the interest of being able to take advantage of the available software 
+for parsing, manipulating, storing and transmitting XML.</P>
+<P>Let us further examine the implications of developing a logic or for that 
+matter any other, language on XML itself or alternatively on the RDF XML 
+syntax.</P>
+<P>XML 1.0 may represent directed labelled graphs. Representing trees is 
+straightfoward and well accepted. Representing links in XML 1.0 can be done by 
+entities. Yet entities add complexity to the XML abstract syntax and most real 
+world interfaces (e.g. SAX, DOM, XPath) do not provide sufficient detail 
+concerning such XML 1.0 constructs as entities (which require DTDs) in order to 
+make XML 1.0 a reasonable platform itself on which to represent DLGs.</P>
+<P>Additional facilities have been built on XML 1.0 to enable integration with the Web, namely the 
+XML namespaces recommendation, RDF and XLink. The namespaces recommendation has been 
+controversial for several reasons but particularly because of the lack of 
+direction given toward what a namespace name URI reference ought reference. RDDL 
+has emerged as a reasonable solution to this issue, one which models a namespace 
+as a proper set of resources.</P>
+<P>However namespaces&nbsp;do not easily work with DTDs, so accepting&nbsp;XML 
+namespaces leaves the problem of how to represent DLGs in a namespace aware 
+fashion.</P>
+<P>XLink and RDF are both W3C recommendations aimed at answering this 
+question.</P>
+<P>The XML 1.0 abstract syntax&nbsp;is described by a set of 57 EBNF productions 
+which themselves can&nbsp;be represented in XML/RDF [XSet]. Common programming 
+level interfaces such as SAX, DOM and XPath used a simplified verion of this 
+abstract syntax which generally corresponds to the XML Infoset. Much debate 
+occurs as to what level of detail the commonly accepted subset ought capture. 
+There is general agreement that whether an XML attribute is delimited by a 
+single or double quote character is not important. Nor is the order of 
+attributes. The fact that an information item is an attribute vs. element and 
+the order of child elements is significant.</P>
+<P>The RDF 'Infoset' or abstract syntax can be considered a yet simplified XML 
+infoset where the origin of an item/object as from either an attribute or child 
+element is not important, nor is the order of child elements (Syntactic 
+conventions do enable cpature of order in rdf:Seqs).</P>
+<P>What is gained by this simplification? An RDF abstract syntax can generally 
+be stored in a single table with three columns. As such, the possibility exists 
+to use RDF client side applications on handheld clients (for example) whereas 
+the need to deploy a full XML enabled database would provide greater overhead. 
+This, along with a simplified application and query model are the sole benefits 
+of the triple model over the XML Infoset (or full XML grove) in their 
+entirety.</P>
+</body>
+</html>

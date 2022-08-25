@@ -1,0 +1,224 @@
+# ASTM E2182 Clinical Header
+# Jonathan Borden
+# RELAX NG syntax expressed in non-XML syntax.
+default namespace ch = "http://www.openhealth.org/ASTM/clinical.header"
+namespace local = ""
+datatypes xsd = "http://www.w3.org/2001/XMLSchema-datatypes"
+
+ch.attrib = 
+	attribute ID{xsd:ID}?,
+	attribute confidentiality{xsd:IDREF}?,
+	attribute note{text}?,
+	attribute xml:lang{xsd:NMTOKEN}?
+
+# <!--# <!ENTITY % ch.person.type "%person.name.qname;,(%id.qname;)*,(%addr.qname;)*">-->
+ch.person.type =
+	person.name,
+	id*,
+	addr*
+
+# <!--# <!ENTITY % ch.organization.type "(%organization.name.qname;)?,(%id.qname;)*,(%addr.qname;)*">-->
+ch.organization.type =
+	organization.name?,
+	id*,
+	addr*
+# <!--# <!ENTITY % ch.actor.type "%ch.person.type;,(%type.code.qname;)?,(%date.time.qname;)?">-->
+ch.actor.type = ch.person.type,type.code?,date.time?
+# <!--!ENTITY % ch.authenticator.type "%ch.actor.type;,(%signature.qname;)?">-->
+ch.authenticator.type = ch.actor.type,signature?
+
+ch.datetime.model = text
+coded.value.model = text
+coded.value.attrib.list =
+    attribute code.system {xsd:NMTOKEN}?,
+    attribute code.system.name {text}?,
+    attribute version {xsd:NMTOKEN}?
+
+clinical.header =
+   element clinical.header{
+	  ch.attrib,
+			id*,
+			version.number?,
+			confidentiality.code*,
+			patient.encounter?,
+			authenticator*,
+			legal.authenticator*,
+			intended.recipient*,
+			originator?,
+			originating.organization?,
+	transcriptionist?,
+	provider+,
+	service.actor*,
+	patient,
+	events?,
+	codes?,
+	related.document*}
+
+service.actor = 
+	element service.actor {
+		ch.attrib,
+		xlink.attrib?,
+		(person.name|organization.name),
+		id*,
+		addr*,
+		type.code?,
+		function?,
+		date.time?
+		}
+provider = element 
+	provider{
+		ch.attrib,
+		ch.actor.type,
+		function?}
+service.target.model = 
+	ch.actor.type &
+  	birth.date? &
+  	gender?
+
+events = element events{ch.attrib,event*}
+event = element event{ch.attrib, (event.name & date.time & staff? & comments?) }
+
+# <!-- id -->
+id = element id {ch.attrib,
+	attribute root{text}?,
+	attribute authority{text}?,
+	attribute type{text}?,
+	attribute valid.time{text}?,
+	xlink.attrib?, text}
+version.number = element version.number {ch.attrib,text}
+
+confidentiality.code = element 
+	confidentiality.code{
+		ch.attrib,
+		coded.value.attrib.list,
+		coded.value.model}
+
+patient.encounter = 
+	element patient.encounter{
+		ch.attrib,
+		(id? &
+		practice.setting? &
+		date.time? &
+		location)
+		}
+# <!-- service actors -->
+authenticator = element authenticator{
+	ch.attrib,
+	ch.authenticator.type
+	}
+
+legal.authenticator = element legal.authenticator{
+	ch.attrib,
+	ch.authenticator.type
+	}
+originator = element originator {ch.attrib,ch.actor.type}
+intended.recipient = element intended.recipient {ch.attrib,ch.actor.type}
+transcriptionist = element transcriptionist {ch.attrib,ch.actor.type}
+# <!-- service targets -->
+patient = element patient {
+	ch.attrib,xlink.attrib?,
+	service.target.model
+	}
+codes = element codes 
+	{ ch.attrib,
+	  coded.value*
+	}
+related.document = element related.document
+	{ 
+		xlink.attrib | any
+	}
+practice.setting = element practice.setting {ch.attrib,text}
+date.time = element date.time {
+	ch.attrib,
+	ch.datetime.model
+	}
+location = element location {ch.attrib,text}
+event.name = element event.name {ch.attrib,text}
+staff = element staff{
+	ch.attrib,
+	ch.person.type
+	}
+comments = element comments {ch.attrib,text}
+
+# <!--
+#person.name
+#-->
+person.name = element person.name{
+	ch.attrib, attribute type{text}?,
+	(family|
+	given|
+	middle|
+	prefix|
+	suffix|
+	delimiter
+	)*}
+family = element family {ch.attrib,attribute type{text}?,text}
+given = element given {ch.attrib,attribute type{text}?,text}
+middle = element middle {ch.attrib,attribute type{text}?,text}
+prefix = element prefix {ch.attrib,attribute type{text}?,text}
+suffix = element suffix {ch.attrib,attribute type{text}?,text}
+delimiter = element delimiter {ch.attrib,attribute type{text}?,text}
+# <!-- organization -->
+organization.name = element organization.name {ch.attrib,text}
+# <!--
+#	addr
+#-->
+addr = element addr {
+	ch.attrib,attribute type{text}?,
+	(
+	country|
+	city|
+	state|
+	street|
+	zip|
+	house.number|
+	direction|
+	post.office.box|
+	telephone|
+	uri|
+	delimiter
+	)*}
+
+# <!--
+#     elements required for addr
+#  -->
+country = element country {ch.attrib,attribute type{text}?,text}
+city = element city {ch.attrib,attribute type{text}?,text}
+state = element state {ch.attrib,attribute type{text}?,text}
+zip = element zip {ch.attrib,attribute type{text}?,text}
+street = element street {ch.attrib,attribute type{text}?,text}
+house.number = element house.number {ch.attrib,attribute type{text}?,text}
+direction = element direction {ch.attrib,attribute type{text}?,text}
+address.locator = element address.locator {ch.attrib,attribute type{text}?,text}
+post.office.box = element post.office.box {ch.attrib,attribute type{text}?,text}
+
+# <!--
+#	allows 	<uri type="email">jonathan@openhealth.org</uri>
+##		<uri type="homepage">http://www.openhealth.org</uri>
+##
+##	alternatively
+##		<uri type="home">mailto:jonathan@openhealth.org</uri>
+##		<uri type="work">mailto:jborden@lifespan.org</uri>
+##-->
+uri = element uri {ch.attrib,attribute type{text}?,text}
+telephone = element telephone {ch.attrib,attribute type{text}?,text}
+
+coded.value = element coded.value {ch.attrib,xlink.attrib?,coded.value.attrib.list,coded.value.model}
+signature = element signature {ch.attrib,coded.value.attrib.list,coded.value.model}
+
+type.code = element type.code {ch.attrib,xlink.attrib?,coded.value.attrib.list,coded.value.model}
+function = element function {ch.attrib,xlink.attrib?,coded.value.attrib.list,coded.value.model}
+
+birth.date = element birth.date {
+	ch.attrib,
+	ch.datetime.model
+	}
+gender = element gender {ch.attrib,text}
+originating.organization = element originating.organization{
+	ch.attrib,
+	ch.organization.type
+	}
+	
+
+any =
+  mixed { element * { attribute * { text }*, any }* }

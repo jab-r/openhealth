@@ -1,0 +1,387 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+
+<head>
+<meta Http-equiv="Keywords" CONTENT="XML SODL IDL Object Specification">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description"
+content="XML: Simple Object Definition Language DTD, an XML based IDL">
+<meta name="keywords"
+content="XML, DTD ,Metadata,SODL, Object, IDL, XIDL, XPostitory, XMOP, Borden">
+<title>Simple Object Description Language 1.0</title>
+<link REL=STYLESHEET type="text/css" href="docstyle.css">
+</head>
+
+<body class="sansserif" LINK="#0000ff">
+
+<p>Copyright(c) Jonathan Borden October 10, 1998</p>
+
+<p>Contact Information:<a href="mailto:sodl-info@jabr.ne.mediaone.net">sodl-info
+</a>or <a href="mailto:jborden@mediaone.net">jborden@mediaone.net</a></p>
+
+<h1>The Simple Object Definition Language</h1>
+
+<p>Abstract: The Simple Object Definition Language (SODL) is an 
+  XML IDL DTD which allows objects to be described in a fashion compatible with 
+  Interface Definition Language (IDL) used in COM and CORBA&nbsp; object systems. 
+  SODL is a simplfied XML IDL designed to be compatible with currently available 
+  and widely used non-XML IDLs. SODL allows objects to be described as well as 
+  serialized for transport across networks. These serialization/marshalling techniques 
+  can be readily integrated into Object RPC over XML transports. SODL is the DTD 
+  employed for the XML Metadata Object Persistence (XMOP) service of the XPository(tm) 
+  system. The initial implementation of XMOP (XML Metadata Object Persistance) 
+  uses the SODL 1.0 DTD and is compatible with Microsoft IDL and COM Automation 
+  objects.</p>
+<p>&nbsp;</p>
+
+<p>This document discusses three issues 
+<ol class="roman">
+  <li>DTD for the Simple Object Definition Language (SODL) </li>
+  <li>Use of SODL for meta-data based serialization/marshalling (marshal by value) 
+  </li>
+  <li>Use of the multipart/related MIME type for compound document based serialization/marshalling 
+  </li>
+</ol>
+<ol>
+  <li>Object Definition <a HREF="#Object_Def">*</a> </li>
+  <ol>
+    <li>A Simple Object Description Language (SODL) </li>
+    <ol>
+      <li>Representation of Simple Types<a HREF="#Simple_Types">*</a></li>
+      <li>Representing Object Types <a HREF="#Object_Types">*</a> 
+        </li>
+      <ol>
+        <li>Links to remote objects <a HREF="#_Toc418774190">*</a></li>
+        <li>By value Objects described by SODL <a HREF="#_Toc418774191">*</a></li>
+        <li>By value Objects described by a compound document <a
+HREF="#_Toc418774192">*</a> </li>
+        <li><span class="roman">Multipart/related MIME type (RFC 2112) <a HREF="#_Toc418774193">*</a></span></li>
+        <li><span class="roman">Activating the marshalled object using a script 
+          <a
+HREF="#_Toc418774194">*</a></span></li>
+      </ol>
+    </ol>
+    <li>Applications <a HREF="#Applications">*</a> </li>
+    <ol>
+      <li>Class store <a HREF="#Class_Store">*</a></li>
+      <li>COM interopability <a HREF="#COM_interop">*</a> </li>
+    </ol>
+  </ol>
+</ol>   
+<h2><a NAME="Object_Def">Object Definition</a> </h2>
+  <p>This specification deals primarily with ways to represent distributed
+  objects using XML, and ways to transport objects over network protocols such as HTTP.</p>
+  <p>The common thread among distributed object systems such as DCOM, CORBA
+  and java/RMI is the concept of the interface. We communicate with objects using interfaces
+  and objects may have one or more individual interfaces. In COM, interfaces are exposed
+  using QueryInterface, in CORBA using multiple inheritance.</p>
+  <p>Both DCOM/DCE-RPC and CORBA employ Interface Definition Languages which
+  serve as meta-data languages for objects. A DTD for the Simple Object Description Language
+  (SODL) is presented below.</p> <ol>
+    <li><p class="roman">A <a href="sodl10.dtd">Simple
+      Object Definition Language (SODL)</a></p>
+    </li>
+  </ol>
+  <li>
+  <p class="roman"><a NAME="Simple_Types">Representation of Simple Types</a></p>
+  </li>
+
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The following 
+  types are defined by SODL:</p>
+
+<table border="1" width="63%" class="table">
+  <tr>
+    <td width="24%">C++/IDL Type</td>
+    <td width="76%">SODL Type</td>
+    <td width="76%">COM Automation type</td>
+  </tr>
+  <tr>
+    <td width="24%">long</td>
+    <td width="76%">i4</td>
+    <td width="76%">VT_I4</td>
+  </tr>
+  <tr>
+    <td width="24%">short</td>
+    <td width="76%">i2</td>
+    <td width="76%">VT_I2</td>
+  </tr>
+  <tr>
+    <td width="24%">int64</td>
+    <td width="76%">i8</td>
+    <td width="76%">VT_I8</td>
+  </tr>
+  <tr>
+    <td width="24%">char</td>
+    <td width="76%">char</td>
+    <td width="76%">VT_I1</td>
+  </tr>
+  <tr>
+    <td width="24%">unsigned char</td>
+    <td width="76%">ui1</td>
+    <td width="76%">VT_UI1</td>
+  </tr>
+  <tr>
+    <td width="24%">unsigned short</td>
+    <td width="76%">ui2</td>
+    <td width="76%">VT_UI2</td>
+  </tr>
+  <tr>
+    <td width="24%">unsigned long</td>
+    <td width="76%">ui4</td>
+    <td width="76%">VT_UI4</td>
+  </tr>
+  <tr>
+    <td width="24%">unsigned int64</td>
+    <td width="76%">ui8</td>
+    <td width="76%">VT_UI8</td>
+  </tr>
+  <tr>
+    <td width="24%">int</td>
+    <td width="76%">int</td>
+    <td width="76%">VT_INT</td>
+  </tr>
+  <tr>
+    <td width="24%">unsigned int</td>
+    <td width="76%">uint</td>
+    <td width="76%">VT_UINT</td>
+  </tr>
+  <tr>
+    <td width="24%">float</td>
+    <td width="76%">r4</td>
+    <td width="76%">VT_R4</td>
+  </tr>
+  <tr>
+    <td width="24%">double</td>
+    <td width="76%">r8</td>
+    <td width="76%">VT_R8</td>
+  </tr>
+  <tr>
+    <td width="24%">DATE</td>
+    <td width="76%">date</td>
+    <td width="76%">VT_DATE</td>
+  </tr>
+  <tr>
+    <td width="24%">BSTR</td>
+    <td width="76%">string</td>
+    <td width="76%">VT_BSTR</td>
+  </tr>
+  <tr>
+    <td width="24%">enum</td>
+    <td width="76%">udt/enum</td>
+    <td width="76%">VT_USERDEFINED</td>
+  </tr>
+  <tr>
+    <td width="24%">struct</td>
+    <td width="76%">udt/struct</td>
+    <td width="76%">VT_USERDEFINED</td>
+  </tr>
+  <tr>
+    <td width="24%">interface</td>
+    <td width="76%">interfaceDef/object</td>
+    <td width="76%">VT_UNKNOWN</td>
+  </tr>
+  <tr>
+    <td width="24%">dispinterface</td>
+    <td width="76%">interfaceDef/disp</td>
+    <td width="76%">VT_DISPATCH</td>
+  </tr>
+  <tr>
+    <td width="24%">coclass</td>
+    <td width="76%">objectDef</td>
+    <td width="76%">VT_UNKNOWN</td>
+  </tr>
+  <tr>
+    <td width="24%">SAFEARRAY</td>
+    <td width="76%">array</td>
+    <td width="76%">VT_SAFEARRAY/VT_ARRAY</td>
+  </tr>
+  <tr>
+    <td width="24%">IStream*</td>
+    <td width="76%">stream</td>
+    <td width="76%">VT_STREAM</td>
+  </tr>
+  <tr>
+    <td width="24%">IStorage*</td>
+    <td width="76%">storage</td>
+    <td width="76%">VT_STORAGE</td>
+  </tr>
+  <tr>
+    <td width="24%">BLOB</td>
+    <td width="76%">blob</td>
+    <td width="76%">VT_BLOB</td>
+  </tr>
+</table>
+
+<p class="roman">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This table is
+necessarily simplified because there is not always a one-one correspondance between types.
+
+<ol>
+  <li>
+    <p class="roman"><a NAME="Object_Types">Representing Object Types</a></p>
+  </li>
+  <p>Properties which are themselves objects are represented in one of several
+  ways:<ol>
+    <li><a NAME="_Toc418774190">Links to remote objects</a>
+    </li>
+    <p>An object which is instanciated on a remote machine is represented as a
+    link to a URI which represents the object e.g. <a
+    HREF="http://www.jabrtech.com/objects/object34">http://www.jabrtech.com/objects/object34</a></p>
+    <p>&nbsp;</p>
+    <li>
+      <a NAME="ByValue_objects">By value Objects described by 
+        SODL</a>
+    </li>
+    <p>Many objects may be marshalled by value using SODL. The uid associated
+    with the objectDef may be used to associate the object with code used to instanciate the
+    object, though it is possible to create objects and associate properties with names and
+    values from the definition alone.</p>
+    <p>e.g.</p>
+    <p>&lt;objectDef uuid=&quot;&#133;&quot;
+    name=&quot;JABR.DataObject&quot;&gt;</p>
+    <p>&lt;interfaceDef uuid=&quot;&#133;&quot;
+    name=&quot;IJABRDataInterface&quot;&gt;</p>
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <small>&lt;property
+    name=&quot;X&quot; type=&quot;string&quot;&gt;&lt;string&gt;This is the value of the
+    string property&lt;/string&gt;&lt;/property&gt;</small></p>
+    <p class="roman"><small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &lt;property name=&quot;Y&quot;
+    type=&quot;i4&quot;&gt;&lt;i4&gt;12345&lt;/i4&gt;&lt;/property&gt;</small></p>
+    <p class="roman"><small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &lt;property id=&quot;1&quot; type=&quot;string&quot;&gt;&lt;string&gt;An unnamed
+    property&lt;/string&gt;&lt;/property&gt;</small></p>
+    <p class="roman"><small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &lt;property name=&quot;Example&quot;
+    type=&quot;string&quot;&gt;&lt;i4&gt;4567&lt;/i4&gt;&lt;/property&gt;</small></p>
+    <p class="roman"><small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &lt;!-- this property will be coerced to type = &quot;string&quot;&nbsp; though it must
+    have a valid i4 value--&gt;</small></p>
+    <p class="roman">&lt;/interfaceDef&gt;</p>
+    <p class="roman">&lt;/objectDef&gt;</p>
+    <h3 class="roman">Examples:</h3>
+    <p class="roman"><a href="word8tlb.xml">The encoding
+    for Word.Document.8</a></p>
+    <li>
+      <p class="roman"><a NAME="ByValue_ObjectsCD">By value Objects described 
+        by a compound document</a></p>
+    </li>
+    <p class="roman">Objects which are associated with large amounts of binary data are not
+    efficiently marshalled using SODL alone. Binary data streams are represented with URIs.
+    URIs often point to external data streams. In order to represent binary data streams in
+    the same message as the descriptive SODL/XML data, the multipart/related MIME type is used
+    to represent the marshalled object. The Content-ID field of individual multipart/related
+    parts is used as an internal link to the binary stream.</p>
+    <li>
+      <p class="roman"><a NAME="MULTIPART_REL">Multipart/related MIME type (RFC 
+        2112)</a></p>
+    </li>
+    <p class="roman">Multipart/related MIME messages represent compound documents in a
+    straightforward and efficient manner. Individual parts represent individual streams in the
+    compound document. Individual parts may themselves have the multipart/related MIME type
+    and hence represent sub-storages of the compound document. Boundary strings are used to
+    delimit individual parts. The <a HREF="cid:XXXX">cid:XXXX</a> is used as a URI to an
+    internal Content-ID:XXXX named part.</p>
+    <p class="roman">Marshalling an object using a multipart/related message is analagous to
+    marshalling an object using file transfer.</p>
+    <p class="roman">e.g.</p>
+    <p class="roman">Content-Type: multipart/related; boundary=xxxxxxxxxx;</p>
+    <p class="roman">--xxxxxxxxxx</p>
+    <p class="roman">Content-Type: text/xml</p>
+    <p class="roman">Content-ID: Contents</p>
+    <p class="roman">&lt;?xml version=&quot;1.0&quot; ?&gt;</p>
+    <p class="roman">&lt;objectDef uid=&quot;&#133;&quot;&gt;</p>
+    <p class="roman">&lt;property name=&quot;Width&quot; type=&quot;i4&quot;&gt;</p>
+    <p class="roman">&nbsp;&nbsp;&nbsp; &lt;i4&gt;1024&lt;/i4&gt;</p>
+    <p class="roman">&lt;/property&gt;</p>
+    <p class="roman">&lt;property name=&quot;Height&quot; type=&quot;i4&quot;&gt;</p>
+    <p class="roman">&nbsp;&nbsp;&nbsp; &lt;i4&gt;1024&lt;/i4&gt;&gt;</p>
+    <p class="roman">&lt;/property&gt;</p>
+    <p class="roman">&lt;property name=&quot;BitCount&quot; type=&quot;i2&quot;&gt;</p>
+    <blockquote>
+      <p class="roman">&lt;i4&gt;16&lt;/i4&gt;</p>
+    </blockquote>
+    <p class="roman">&lt;/property&gt;</p>
+    <p class="roman">&lt;property name=&quot;Pixels&quot; type=&quot;stream&quot;</p>
+    <p class="roman">&lt;stream href=<a HREF="cid:Pixels">cid:Pixels</a> /&gt;</p>
+    <p class="roman">&lt;/property&gt;</p>
+    <p class="roman">--xxxxxxxxxx</p>
+    <p class="roman">Content-Type: application/binary</p>
+    <p class="roman">Content-Transfer-Encoding: Little-Endian</p>
+    <p class="roman">Content-ID: Pixels</p>
+    <p class="roman">Content-Length: 524288</p>
+    <p class="roman">....binary data here...</p>
+    <p class="roman">--xxxxxxxxxx</p>
+    <p class="roman">&nbsp;</p>
+    <p class="roman">&nbsp;</p>
+    <li>
+      <p class="roman"><a NAME="Scripting">Activating the marshalled object using 
+        a script</a></p>
+    </li>
+  </ol>
+  <p class="roman">In order to run a defined script on object transfer (using marshal by
+  value), a script is placed into a text stream within the multipart/related message. The
+  object is loaded from the compound document and bound to the script variable
+  &quot;this&quot;. E.g.</p>
+  <p class="roman">Content-Type: multipart/related; boundary=xxxxxxxxxx;</p>
+  <p class="roman">--xxxxxxxxxx</p>
+  <p class="roman">Content-Type: text/xml</p>
+  <p class="roman">Content-ID: Contents</p>
+  <p class="roman">&lt;?xml version=&quot;1.0&quot; ?&gt;</p>
+  <p class="roman">&lt;objectDef uid=&quot;&#133;&quot;&gt;</p>
+  <p class="roman">&lt;property&gt;&lt;name&gt;Width&lt;/name&gt;</p>
+  <p class="roman">&lt;value&gt;&lt;i4&gt;1024&lt;/i4&gt;&lt;/value&gt;</p>
+  <p class="roman">&lt;/property&gt;</p>
+  <p class="roman">&lt;property&gt;&lt;name&gt;Height&lt;/name&gt;</p>
+  <p class="roman">&lt;value&gt;&lt;i4&gt;1024&lt;/i4&gt;&lt;/value&gt;</p>
+  <p class="roman">&lt;/property&gt;</p>
+  <p class="roman">&lt;property&gt;&lt;name&gt;BitCount&lt;/name&gt;</p>
+  <p class="roman">&lt;value&gt;&lt;i4&gt;16&lt;/i4&gt;&lt;/value&gt;</p>
+  <p class="roman">&lt;/property&gt;</p>
+  <p class="roman">&lt;property&gt;&lt;name&gt;BitCount&lt;/name&gt;</p>
+  <p class="roman">&lt;value&gt;&lt;i4&gt;16&lt;/i4&gt;&lt;/value&gt;</p>
+  <p class="roman">&lt;/property&gt;</p>
+  <p class="roman">&lt;property&gt;&lt;name&gt;Pixels&lt;/name&gt;</p>
+  <p class="roman">&lt;value&gt;&lt;stream href=<a HREF="cid:Pixels">cid:Pixels</a>
+  /&gt;&lt;/value&gt;</p>
+  <p class="roman">&lt;/property&gt;</p>
+  <p class="roman">--xxxxxxxxxx</p>
+  <p class="roman">Content-Type: application/binary</p>
+  <p class="roman">Content-Transfer-Encoding: Little-Endian</p>
+  <p class="roman">Content-ID: Pixels</p>
+  <p class="roman">Content-Length: 524288</p>
+  <p class="roman">....binary data here...</p>
+  <p class="roman">--xxxxxxxxxx</p>
+  <p class="roman">Content-Type: text/script</p>
+  <p class="roman">Content-ID: ActivationScript</p>
+  <p class="roman">&lt;script language=&quot;JavaScript&quot;&gt;</p>
+  <p class="roman">var width = this.Width;</p>
+  <p class="roman">var height = this.Height;</p>
+  <p class="roman">var doc = document.open;</p>
+  <p class="roman">doc.body.insertAdjacentHTML(&quot;BeforeEnd&quot;, &quot;&lt;object
+  classid=&#146;&quot; + this.uid +&quot;&#146;&quot; + &quot;&lt;param width = &quot; +
+  width + &quot; height = &quot; + height &quot;&gt;</p>
+  <p class="roman">&lt;param image = this.Pixels&gt;&gt;&quot;); </p>
+  <p class="roman">&lt;/script&gt;</p>
+  <p class="roman">--xxxxxxxxxxx</p>
+  <p class="roman">&nbsp;</p>
+  <li>
+    <a NAME="Applications">Applications</a>
+  </li>
+  <ol>
+    <li>
+      <a NAME="ClassStore">Class store</a>
+    </li>
+    <p>A well known mechanism can be used to return an object definition in
+    response to a query. This will allow clients to query servers about objects they support.
+    The response is delivered in SODL.</p>
+    <li>
+      <a NAME="COM_interop">COM interopability</a>
+<p>COM Typelibaries can be readily converted to and from SODL allowing
+common scripting languages to use SODL marshalled objects. Contact JABR Technology
+Corporation for implementation.</p>    </li>
+  </ol>
+</ol>
+
+
+
+</body></html>

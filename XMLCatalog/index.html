@@ -1,0 +1,482 @@
+<!DOCTYPE html PUBLIC "-//XML Catalog//DTD XML Namespace Catalog 1.0//EN" "xcat-xhtml.dtd">
+
+<html 	xmlns="http://www.w3.org/1999/xhtml" 
+
+		xmlns:xlink="http://www.w3.org/1999/xlink"
+
+		xmlns:xcat="http://www.openhealth.org/XMLCatalog/">
+
+<head>
+
+<title>XML Namespace Catalog Format</title>
+
+<link href="W3C-REC.css" type="text/css" rel="stylesheet"/>
+
+	<link href="xcat.css" type="text/css" rel="stylesheet"/>
+
+	<!-- DTD defaults namespace below - shown for clarification -->
+
+	<xcat:resource xmlns="http://www.openhealth.org/XMLCatalog/"
+
+	   xlink:type="simple"
+
+	   xlink:arcrole="http://www.w3.org/TR/REC-CSS"
+
+	   xlink:href="http://www.openhealth.org/XMLCatalog/xcat.css" 
+
+	   public="-//XML Catalog//CSS XML Namespace Catalog 1.0//EN"
+
+	   content-type="text/css"
+
+	   />
+
+
+
+	<xcat:resource xmlns="http://www.openhealth.org/XMLCatalog/"
+
+	   xlink:type="simple"
+
+	   xlink:arcrole="http://www.w3.org/TR/REC-xml#dt-doctype"
+
+	   xlink:role="http://www.w3.org/TR/xhtml-basic/"
+
+	   xlink:href="http://www.openhealth.org/XMLCatalog/xcat-xhtml.dtd" 
+
+	   public="-//XML Catalog//DTD XML Namespace Catalog 1.0//EN"
+
+	   content-type="text/xml-dtd"
+
+	   />
+
+	<xcat:resource
+
+		xlink:type="simple"
+
+		xlink:title="XHTML1 Strict DTD"
+
+		xlink:role="http://www.w3.org/tr/xhtml1/DTD/xhtml1-strict.dtd"
+
+		xlink:arcrole="http://www.w3.org/TR/REC-xml#dt-doctype"
+
+		xlink:href="xcat-xhtml1-strict.dtd" 
+
+		public="-//XML Catalog//DTD XHTML Strict 1.0//EN"
+
+		content-type="text/xml-dtd"
+
+		/>
+
+ 	<xcat:resource 
+
+	   	xlink:type="simple"
+
+		xlink:title="XHTML1 Transitional DTD"
+
+		xlink:role="http://www.w3.org/tr/xhtml1/DTD/xhtml1-transitional.dtd"
+
+		xlink:arcrole="http://www.w3.org/TR/REC-xml#dt-doctype"
+
+		xlink:href="xcat-xhtml1-transitional.dtd" 
+
+		public="-//XML Catalog//DTD XHTML Transitional 1.0//EN"
+
+		content-type="text/xml-dtd"
+
+	  	/>
+
+	<xcat:resource 
+
+		xlink:type="simple"
+
+		xlink:title="XHTML1 Frameset DTD"
+
+		xlink:role="http://www.w3.org/tr/xhtml1/DTD/xhtml1-frameset.dtd"
+
+		xlink:arcrole="http://www.w3.org/TR/REC-xml#dt-doctype"
+
+		xlink:href="xcat-xhtml1-frameset.dtd" 
+
+		public="-//XML Catalog//DTD XHTML Frameset 1.0//EN"
+
+		content-type="text/xml-dtd"
+
+	   	/>
+
+	 <xcat:resource 
+
+	   xlink:type="simple"
+
+	   xlink:title="XML Schema"
+
+	   xlink:arcrole="http://www.w3.org/2000/10/XMLSchema"
+
+	   xlink:href="http://www.openhealth.org/XMLCatalog/xcat-xhtml1.xsd" 
+
+	   public="-//XML Catalog//XSD XHTML 1.0//EN"
+
+	   content-type="application/xml"
+
+	   />
+
+	 <xcat:resource 
+
+	   xlink:type="simple"
+
+	   xlink:title="OASIS Catalog"
+
+	   xlink:arcrole="http://www.oasis-open.org/html/a401.htm"
+
+	   xlink:href="xcat-xhtml.soc" 
+
+	   public="-//XML Catalog//SOC XCAT XHTML 1.0//EN"
+
+	   content-type="application/SGML-Open-Catalog"
+
+	   />
+
+</head>
+
+<body>
+<p>Note: this specification has been superceded by the <a href="../RDDL/">Resource Directory Description Language</a></p>
+<h1>XML Namespace Catalog Format</h1>
+
+<div class="head">
+
+<p><A href="xcat-20010102.htm">This version</A>: January 2,&nbsp;2001</p>
+
+<p><a href="../RDDL/">Latest Version</a>: January 2, 2001</p>
+
+<p><A href="xcat-20010101.htm">Previous Version</A>: January 1, 2000</p>
+
+<p>Editor: <A href="mailto:jonathan@openhealth.org">Jonathan Borden</A></p>
+
+</div>
+<p>Note: you are looking at the actual&nbsp;XML&nbsp; Namespace Catalog for the "http://www.openhealth.org/XMLCatalog/" namespace.
+
+</p>
+
+<h2>Introduction</h2>
+
+<p>This proposal defines a format for an&nbsp;XML Namespace Catalog. An 
+
+XML Namespace Catalog serves as a text description of an XML Namespace [<A href="#xml-names">1</A>] and 
+
+includes links to resources associated with the namespace such as schemata, 
+
+stylesheets and/or other resources associated with the namespace URI. An XML Catalog may 
+
+also map Formal Public Identifiers into System Identifiers defined as URI 
+
+references [<A href="#RFC2396">2</A>]. 
+
+An XML Namespace Catalog is designed to be suitable for service as the body of a 
+
+resource returned by deferencing a URI serving as an XML Namespace name.</p>
+
+<p>The XML Namespace Catalog format is an extension of XHTML with a new element named "resource". The resource element serves as an
+
+XLink to the referenced resource.</p>
+
+<p>This document defines the syntax and semantics of the XML Namespace Catalog Format, and also serves as an XML Catalog for the namespace <code>http://www.openhealth.org/XMLCatalog/</code>.
+
+<p>The XML Namespace Catalog 1.0 DTD has been produced as an extension of XHTML Basic 1.0 [<A href="#rec-xhtml-basic">5</A>].</p>
+
+<a name="resource" id="resource"><h2>resource</h2></a>
+
+<p>The resource element is qualified with the namespace URI <code>http://www.openhealth.org/XMLCatalog/</code></p>
+
+<p>The resource element represents an XLink with two additional attributes <a href="#public" class="attribute">public</a> and <a href="#content-type" class="attribute">content-type</a> which
+
+provide for optional formal public identifiers and/or content type specifiers.</p>
+
+<table class="eg" cellpadding="5" border="1" bgcolor="#99ffff" width="100%" summary="Example"><tr><td>
+
+<pre class="dtd">
+
+&lt;!ELEMENT xcat:resource
+
+&lt;!ATTLIST xcat:resource
+
+  %Common.attrib;
+
+  xmlns:xcat		CDATA #FIXED 'http://www.openhealth.org/XMLCatalog/'
+
+  xlink:type	(simple)	#FIXED "simple"
+
+  xlink:role	CDATA		#IMPLIED
+
+  xlink:arcrole CDATA		#IMPLIED
+
+  xlink:title	CDATA		#IMPLIED
+
+  xlink:href	CDATA		#REQUIRED
+
+  public	CDATA		#IMPLIED	-- public identifier
+
+  content-type	CDATA		#IMPLIED
+
+  &gt;
+
+</pre></td></tr></table>
+
+<a id="xlink:arcrole"><h2>xlink:arcrole</h2></a>
+
+<p>A URI.</p>
+
+<p>The <code>xlink:arcrole</code> defines the type of the link. [<a href="#note-xlink2rdf">6</a>]</p>
+
+<p>The <code>xlink:arcrole</code> may a schema defining the referenced document, e.g. xhtml, XSD, RDF Schema. In this case such schemata
+
+are named by a URI. The URI should be well known. For example:
+
+<ul>
+
+	<li><code>XHTML</code> may be referenced by <code>http://www.w3.org/1999/xhtml</code></li>
+
+	<li><code>XSD</code> may be referenced by <code>http://www.w3.org/2000/10/XMLSchema</code></li>
+
+	<li><code>RDF Schema</code> may be referenced by <code>http://www.w3.org/2000/01/rdf-schema</code></li>
+
+</ul> </p>
+
+<h2 id="xlink:role" class="attribute">xlink:role</h2>
+
+<p>A URI.</p>
+
+<p>The <code>xlink:role</code> of the link can be used to distinguish among related 
+
+schemata such as for strict, transitional and frameset. The <code>xlink:role</code> of a link should be thought of as the
+
+type of the resource referenced by the link.</p>
+
+<p>A further discussion about the relationships between these attributes and resource types is available in the W3C Note XLink2RDF [<a href="#note-xlink2rdf">6</a>].</p>
+
+<div class="issue"><p class=".ednote">Ed. need to further discuss uses of and compare xmlink:arcrole and xlink:role</p></div>
+
+<a id="xlink:href"><h2>xlink:href</h2></a>
+
+<p>The xlink:href contains a mandatory URI referencing the target resource</p>
+
+<h2 id="content-type">content-type</h2>
+
+<p>An optional attribute defining the media content type</p>
+
+<h2 id="public">public</h2>
+
+<p>An optional attribute defining a formal public identifier</p>
+
+
+
+<p>The <a href="#resource" class="element">resource</a> element may be placed within the html <span class="element">head</span> or
+
+may be placed in the html <span class="element">body</span>. The <span class="pentity">%Flow.mix</span> entity has been
+
+redefined to contain "<span class="element">resource</span>" so it rougly may be placed anywhere a "<span class="element">p</span>" tag may be placed.</p>
+
+<h2>Resources within the header</h2><p>This example demonstrates resource within the header:</p>
+
+<!--<table class="eg" cellpadding="5" border="1" bgcolor="#99ffff" width="100%" summary="Example"><tr><td>-->
+
+<pre class="example">
+
+&lt;html 
+
+		xmlns="http://www.w3.org/1999/xhtml"
+
+		xmlns:xlink="http://www.w3.org/1999/xlink"
+
+		xmlns:xcat="http://www.openhealth.org/XMLCatalog/"&gt;
+
+   &lt;head&gt;
+
+  	&lt;xcat:resource 
+
+	   xlink:type="simple"
+
+	   xlink:arcrole="http://www.w3.org/TR/REC-xml#dt-doctype"
+
+	   xlink:role="http://www.w3.org/TR/xhtml-basic/"
+
+	   xlink:href="http://www.openhealth.org/XMLCatalog/xcat-xhtml.dtd" 
+
+	   public="-//XML Catalog//DTD XML Namespace Catalog 1.0//EN"
+
+	   content-type="text/xml-dtd"
+
+	   /&gt;
+
+	&lt;xcat:resource
+
+		xlink:type="simple"
+
+		xlink:title="XHTML1 Strict DTD"
+
+		xlink:role="http://www.w3.org/tr/xhtml1/DTD/xhtml1-strict.dtd"
+
+		xlink:arcrole="http://www.w3.org/TR/REC-xml#dt-doctype"
+
+		xlink:href="xcat-xhtml1-strict.dtd" 
+
+		public="-//XML Catalog//DTD XHTML Strict 1.0//EN"
+
+		content-type="text/xml-dtd"
+
+		/&gt;
+
+ 	&lt;xcat:resource 
+
+	   	xlink:type="simple"
+
+		xlink:title="XHTML1 Transitional DTD"
+
+		xlink:role="http://www.w3.org/tr/xhtml1/DTD/xhtml1-transitional.dtd"
+
+		xlink:arcrole="http://www.w3.org/TR/REC-xml#dt-doctype"
+
+		xlink:href="xcat-xhtml1-transitional.dtd" 
+
+		public="-//XML Catalog//DTD XHTML Transitional 1.0//EN"
+
+		content-type="text/xml-dtd"
+
+	  	/&gt;
+
+	&lt;xcat:resource 
+
+		xlink:type="simple"
+
+		xlink:title="XHTML1 Frameset DTD"
+
+		xlink:role="http://www.w3.org/tr/xhtml1/DTD/xhtml1-frameset.dtd"
+
+		xlink:arcrole="http://www.w3.org/TR/REC-xml#dt-doctype"
+
+		xlink:href="xcat-xhtml1-frameset.dtd" 
+
+		public="-//XML Catalog//DTD XHTML Frameset 1.0//EN"
+
+		content-type="text/xml-dtd"
+
+	   	/&gt;
+
+	 &lt;xcat:resource 
+
+	   xlink:type="simple"
+
+	   xlink:title="XML Schema"
+
+	   xlink:arcrole="http://www.w3.org/2000/10/XMLSchema"
+
+	   xlink:href="http://www.openhealth.org/XMLCatalog/xcat-xhtml1.xsd" 
+
+	   public="-//XML Catalog//XSD XHTML 1.0//EN"
+
+	   content-type="application/xml"
+
+	   /&gt;
+
+	 &lt;xcat:resource 
+
+	   xlink:type="simple"
+
+	   xlink:title="OASIS Catalog"
+
+	   xlink:arcrole="http://www.oasis-open.org/html/a401.htm"
+
+	   xlink:href="xcat-xhtml.soc" 
+
+	   public="-//XML Catalog//SOC XCAT XHTML 1.0//EN"
+
+	   content-type="application/SGML-Open-Catalog"
+
+	   /&gt;
+
+ &lt;/head&gt;
+
+ &lt;body&gt;...description goes here ...&lt;/body&gt;
+
+&lt;/html&gt;
+
+</pre><!--</td></tr></table>-->
+
+<h2>Resources within the body</h2>
+
+<p>In another example resources can be placed within the body, allowing intermingling of text descriptions and resource links.</p>
+
+<pre class="example">
+
+&lt;html&gt;
+
+	&lt;head&gt;&lt;/head&gt;
+
+	&lt;body&gt;
+
+	 &lt;xcat:resource 
+
+	   xlink:type="simple"
+
+	   xlink:title="XML Schema"
+
+	   xlink:arcrole="http://www.w3.org/2000/10/XMLSchema"
+
+	   xlink:href="http://www.openhealth.org/XMLCatalog/xcat-xhtml1.xsd" 
+
+	   public="-//XML Catalog//XSD XHTML 1.0//EN"
+
+	   content-type="application/xml"
+
+	   &gt; &lt;p&gt;Here is the description of the XSD Schema being described 
+
+	   within a &lt;a class="element" href="#resource"&gt;resource&lt;/a&gt; tag.&lt;/p&gt;
+
+	 &lt;/xcat:resource&gt;
+
+	&lt;/body&gt;
+
+ &lt;/html&gt;
+
+</pre>
+
+	 <xcat:resource 
+
+	   xlink:type="simple"
+
+	   xlink:title="XML Schema"
+
+	   xlink:arcrole="http://www.w3.org/2000/10/XMLSchema"
+
+	   xlink:href="http://www.openhealth.org/XMLCatalog/xcat-xhtml1.xsd" 
+
+	   public="-//XML Catalog//XSD XHTML 1.0//EN"
+
+	   content-type="application/xml"
+
+	   ><p>Here is the description of the XSD Schema being described within a <a class="element" href="#resource">resource</a> tag.</p>
+
+	   </xcat:resource>
+
+
+
+<a id="References">
+
+<h2>References</h2></a>
+
+<ol>
+
+<li type="1"><a id="xml-names"><a href="http://www.w3.org/TR/REC-xml-names">W3C XML Names</a></a>
+
+<li type="1"><a id="rfc2396"><a href="http://www.ietf.org/rfc/rfc2396.txt">IETF RFC 2396</a></a>
+
+<li type="1"><a id="rec-xhtml1"><a href="http://www.w3.org/tr/xhtml1">W3C XHTML 1.0</a></a>
+
+<li type="1"><a id="rec-xlink"><a href="http://www.w3.org/tr/xlink">W3C XLink</a></a>
+
+<li type="1"><a id="rec-xhtml-basic"><a href="http://www.w3.org/TR/xhtml-basic">W3C XHTML Basic 1.0</a></a></li>
+
+<li type="1"><a id="note-xlink2rdf"><a href="http://www.w3.org/TR/xlink2rdf/">W3C Note Harvesting RDF Statements from XLinks</a></a></li>
+
+</ol>
+
+</body>
+
+</html>

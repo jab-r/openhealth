@@ -1,0 +1,68 @@
+# Operative report
+default namespace on = "http://www.openhealth.org/ASTM/operative.report"
+namespace ch = "http://www.openhealth.org/ASTM/clinical.header"
+namespace astm = "http://www.openhealth.org/ASTM/E2182"
+datatypes xsd = "http://www.w3.org/2001/XMLSchema-datatypes"
+
+include "ASTM.E2182.rng"
+
+clinical.body.model = (
+	 preoperative.diagnosis,
+	 postoperative.diagnosis,
+	 procedure,
+	 anesthesia,
+	 indications,
+	 prep?,
+	 medications?,
+	 description,
+	 findings?,
+	 specimens?,
+	 closure?,
+	 complications?,
+	 pathology.intraoperative?,
+	 pathology.permanent?,
+	 drains?,
+	 counts?,
+	 estimated.blood.loss?,
+	 fluids?,
+	 patient.condition?,
+	 disposition?,
+	 followup?
+)
+start = element operative.report {astm.document.attrib,clinical.header,clinical.body}
+clinical.body = element clinical.body{
+	ch.attrib,
+	clinical.body.model
+}
+
+preoperative.diagnosis = element preoperative.diagnosis {astm.content.attrib, text}
+postoperative.diagnosis = element postoperative.diagnosis {astm.content.attrib, text}
+procedure = element procedure {astm.content.attrib, text}
+anesthesia = element anesthesia {astm.content.attrib, text}
+indications = element indications {astm.content.attrib, astm.content}
+prep = element prep {astm.content.attrib, astm.content}
+medications = element medications {astm.content.attrib,(astm.content | medication)*}
+medication = element medication{astm.content.attrib, text}
+description = element description {astm.content.attrib, astm.content}
+findings = element findings {astm.content.attrib, astm.content}
+specimens = element specimens {astm.content.attrib, astm.content}
+closure = element closure {astm.content.attrib, astm.content}
+complications = element complications {astm.content.attrib, astm.content}
+drains = element drains {astm.content.attrib, astm.content}
+counts = element counts {astm.content.attrib, astm.content}
+pathology.intraoperative = element pathology.intraoperative{astm.content.attrib, astm.content}
+pathology.permanent = element pathology.permanent {astm.content.attrib, astm.content}
+estimated.blood.loss = element estimated.blood.loss {astm.content.attrib, text}
+fluids = element fluids{astm.content.attrib,fluid*}
+fluid = element fluid {
+	astm.content.attrib,
+	attribute status{"given"|"loss"},
+	attribute volume{text}?,
+	text}
+patient.condition = element patient.condition {astm.content.attrib, astm.content}
+disposition = element disposition {astm.content.attrib, astm.content}
+followup = element followup {astm.content.attrib, astm.content}
+
+
+
+

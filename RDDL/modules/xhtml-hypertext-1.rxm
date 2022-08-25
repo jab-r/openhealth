@@ -1,0 +1,35 @@
+<!DOCTYPE module [
+<!ENTITY Charset.datatype "string">
+<!ENTITY ContentType.datatype "string">
+<!ENTITY LanguageCode.datatype "string">
+<!ENTITY LinkTypes.datatype "string">
+<!ENTITY Character.datatype "string">
+<!ENTITY Number.datatype "integer">
+]>
+<module
+  xmlns="http://www.xml.gr.jp/xmlns/relaxCore"
+  targetNamespace="http://www.w3.org/1999/xhtml"
+  relaxCoreVersion="1.0"
+  moduleVersion="1.10">
+
+<elementRule role="a">
+  <mixed>
+    <hedgeRef label="InlNoAnchor.mix" occurs="*"/>
+  </mixed>
+</elementRule>
+
+<tag name="a">
+  <ref role="Common.attrib"/>
+  <attribute name="href"         type="uriReference"/>
+  <attribute name="charset"      type="&Charset.datatype;"/>
+  <attribute name="type"         type="&ContentType.datatype;"/>
+  <attribute name="hreflang"     type="&LanguageCode.datatype;"/>
+  <attribute name="rel"          type="&LinkTypes.datatype;"/>
+  <attribute name="rev"          type="&LinkTypes.datatype;"/>
+  <attribute name="accesskey"    type="&Character.datatype;"/>
+  <attribute name="tabindex"     type="&Number.datatype;"/>
+  <attribute name="nature" namespace="http://www.rddl.org/" type="uriReference" />
+  <attribute name="purpose" namespace="http://www.rddl.org/" type="uriReference" />
+</tag>
+
+</module>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <rdf:subject rdf:resource="#JohnDoe"/>
+      <rdf:object rdf:resource="file:/D:/rdf/test5.xml#person"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="file:/D:/rdf/test5.xml#name"/>
+      <rdf:subject rdf:resource="#JohnDoe"/>
+      <rdf:object rdf:resource="#/1/1"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <rdf:subject rdf:resource="#/1/1"/>
+      <rdf:object rdf:resource="PersonName"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="file:/D:/rdf/test5.xml#first"/>
+      <rdf:subject rdf:resource="#/1/1"/>
+      <rdf:object>John</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="file:/D:/rdf/test5.xml#last"/>
+      <rdf:subject rdf:resource="#/1/1"/>
+      <rdf:object>Doe</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="file:/D:/rdf/test5.xml#pid"/>
+      <rdf:subject rdf:resource="#JohnDoe"/>
+      <rdf:object rdf:resource="#/1/2"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <rdf:subject rdf:resource="#/1/2"/>
+      <rdf:object rdf:resource="file:/D:/rdf/test5.xml#pid"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="file:/D:/rdf/test5.xml#entity"/>
+      <rdf:subject rdf:resource="#/1/2"/>
+      <rdf:object>NEMC</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#value"/>
+      <rdf:subject rdf:resource="#/1/2"/>
+      <rdf:object>123-45-6789</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="file:/D:/rdf/test5.xml#SSN"/>
+      <rdf:subject rdf:resource="#JohnDoe"/>
+      <rdf:object>000-11-1234</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="file:/D:/rdf/test5.xml#patient"/>
+      <rdf:subject rdf:resource="#JohnDoe"/>
+      <rdf:object rdf:resource="#/1/4"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <rdf:subject rdf:resource="#/1/4"/>
+      <rdf:object rdf:resource="Role"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="file:/D:/rdf/test5.xml#primary-care-physician"/>
+      <rdf:subject rdf:resource="#/1/4"/>
+      <rdf:object rdf:resource="http://www.xchart.net/providers/DrJones.xml"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <rdf:subject rdf:resource="http://www.xchart.net/providers/DrJones.xml"/>
+      <rdf:object rdf:resource="file:/D:/rdf/test5.xml#primary-care-physician"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="file:/D:/rdf/test5.xml#address"/>
+      <rdf:subject rdf:resource="#JohnDoe"/>
+      <rdf:object rdf:resource="#/1/5"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <rdf:subject rdf:resource="#/1/5"/>
+      <rdf:object rdf:resource="Address"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="file:/D:/rdf/test5.xml#loc"/>
+      <rdf:subject rdf:resource="#/1/5"/>
+      <rdf:object>home</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="file:/D:/rdf/test5.xml#street"/>
+      <rdf:subject rdf:resource="#/1/5"/>
+      <rdf:object>750 Washington Street</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="file:/D:/rdf/test5.xml#city"/>
+      <rdf:subject rdf:resource="#/1/5"/>
+      <rdf:object>Boston</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="file:/D:/rdf/test5.xml#state"/>
+      <rdf:subject rdf:resource="#/1/5"/>
+      <rdf:object>MA</rdf:object>
+   </rdf:Statement>
+</rdf:RDF>

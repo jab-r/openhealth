@@ -1,0 +1,232 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>
+         Structured Datatypes and the Ontology Web Language
+      </title>
+	  <link href="http://www.rddl.org/xrd.css" type="text/css" rel="stylesheet"/>
+   </head>
+   <body>
+   	  <h1>Structured Datatypes and the Ontology Web Language</h1>
+	  <h2>A proposed issue for the Web Ontology Working Group</h2>
+      <p>
+         Integrating structured (e.g. XML and multimedia) datatypes into the
+         ontology web language falls within the charter and an explicit
+         requirement of the Ontology Web Language.
+      </p>
+      <p>
+         Dan Brickley has posted a terrific (IMHO) summary of the requirement:
+         <a
+         href="http://lists.w3.org/Archives/Public/public-webont-comments/2002Apr/0004.html">
+         http://lists.w3.org/Archives/Public/public-webont-comments/2002Apr/0004.html</a>
+      </p>
+      <p>
+         The XML and before that, the SGML, communities have had a long
+         interest in the graphical representation and manipulation of
+         structured, including multimedia, information, which has been called
+         &quot;Groves&quot; (Graphical Representation Of property
+         ValuES) [1,2]. Such representations lead themselves naturally as RDF
+         descriptions [3]. It has been the explicit hope that an RDF Schema
+         description of the XML Infoset will allow &quot;validation&quot; of an
+         RDF/Infoset representation of an XML document [4].
+      </p>
+      <p>
+         I propose that WebOnt accept this challenge (my preliminary work
+         suggests that we are up to the task). Integrating XML and XML Schema
+         datatypes in this fashion will provide a concrete and tangible benefit
+         provided by OWL to the XML community, as well as properly allowing OWL
+         to reason about structured XML and multimedia datatypes.
+      </p>
+      <p>
+         RDF Core is developing MT extensions for simple or concrete datatypes.
+         The proposal which is outlined below is not a duplication of this
+         effort, rather directed at complex or structured datatypes. I will
+         discuss why the approach taken by RDF Datatypes, while perfectly
+         reasonable for concrete datatypes, cannot be directly extended to
+         structured datatypes, primarily due to some technical details with
+         respect to XML Schema.
+      </p>
+      <p>
+         To summarize:
+      </p>
+      <p>
+         1) There is a desire to incorporate and reason about structured
+         datatypes (e.g. XML Schema complexTypes)
+      </p>
+      <p>
+         2) RDF Datatypes, and by extension OWL&#39;s DatatypeProperty deals
+         with concrete or string based datatypes (e.g. XML Schema simpleTypes).
+         A preliminary WD is at <a
+         href="http://www-nrc.nokia.com/sw/rdf-datatyping.html">http://www-nrc.nokia.com/sw/rdf-datatyping.html</a>
+      </p>
+      <p>
+         3) Technical issues involved with integration of general XML types,
+         XML Schema datatypes  and XQuery formal types are discussed below.
+      </p>
+      <p>
+         4) A proposed solution to the problem of integrating general XML
+         Schema datatypes is presented.
+      </p>
+      <h2>
+         Issues involved with integration of XML types and XML Schema datatypes
+         into OWL:
+      </h2>
+      <p>
+         In a perfect RDF world there would be a URIreference for each XML
+         Schema type (otherwise known as an XML Schema particle). It turns out
+         that XML Schema <em>has</em> defined URIs for a fixed set of basic
+         datatypes but this involves doing a bit of weirdness with internal XML
+         subsets and labelling these specific XML Schema particles with
+         &quot;id&quot;s. Suffice to say that 99.9% of XML Schemas in the wild
+         don&#39;t go to this effort, nor should our solution mandate it. See
+         <a
+         href="http://www.w3.org/2001/XMLSchema.xsd">http://www.w3.org/2001/XMLSchema.xsd</a>
+         for details.
+      </p>
+      <p>
+         For those of you at home, XML Schema type names are XML QNames (e.g.
+         xsd:string) and at face value it should be, and is, possible to derive
+         a URIreference from a QName, the problem being that an XML Schema may
+         use the same QName for each of an element, attribute, simple and
+         complex type definition. That is the QName does not uniquely define an
+         XML Schema particle.
+      </p>
+      <p>
+         RDF Datatypes assume XML Schema simple types, so for this specific
+         purpose a URIreference would work -- although there is nothing in the
+         XML world connecting an XML Schema particle name=&quot;foo&quot;
+         attribute value to a URIreference but that is another issue.
+      </p>
+      <p>
+         XML Schema&#39;s overloading of particle names was an explicit design
+         decision taken directly from how XML 1.0 itself defines types and type
+         names. XML 1.0 (<a
+         href="http://www.w3.org/TR/REC-xml">http://www.w3.org/TR/REC-xml</a>)
+         defines an <em>element type</em> as the GI or name of the element.
+         Element and attribute names are, however, not disjoint. e.g. the
+         following is perfectly legal XML:
+      </p>
+      <p>
+         &lt;foo foo=&quot;12345&quot; /&gt;
+      </p>
+      <p>
+         An attribute itself has a type, either CDATA which is text, ID which
+         is a unique identifier, IDREF whose values reference an element with
+         such a uniquely identifying attribute, NMTOKEN which provides
+         constraints on the string (e.g. no whitespace), NMTOKENS which allows
+         multiple NMTOKENS, IDREFS etc.
+      </p>
+      <p>
+         It is apparent that creating a URIreference by composing an XML
+         document&#39;s base URI with the element or attribute name will not
+         uniquely identify the element or attribute type definition i.e. the
+         part in the DTD or document type definition (this is because elements
+         and attributes share symbol spaces). This has been carried over to XML
+         Schema.
+      </p>
+      <p>
+         In XML Schema:
+      </p>
+      <p>
+         &lt;xsd:element name=&quot;foo&quot; /&gt;
+      </p>
+      <p>
+         &lt;xsd:attribute name=&quot;foo&quot; /&gt;
+      </p>
+      <p>
+         &lt;xsd:simpleType name=&quot;foo&quot; /&gt;
+      </p>
+      <p>
+         &lt;xsd:complexType name=&quot;foo&quot; /&gt;
+      </p>
+      <p>
+         are all allowed in the same schema, indeed:
+      </p>
+      <p>
+         &lt;xsd:element name=&quot;foo&quot; type=&quot;foo&quot; /&gt;
+      </p>
+      <p>
+         defines an element &quot;foo&quot; which has a type defined by the
+         complex type whose name=&quot;foo&quot;.
+      </p>
+      <p>
+         XML Schema does however define a type heirarchy, and it is the goal of
+         this proposal to seemlessly integrate the XML Schema type heirarchy
+         into the OWL class heirarchy. Indeed an XML Schema processor, which
+         accepts an input XML infoset and adnorns it with types (and other bits
+         of information) to produce a &quot;post schema validation
+         infoset&quot; or PSVI in XML Schema terms, can be seen as a
+         specialized &#39;classifier&#39; that operates on
+         &#39;StructuredProperty&#39; values.
+      </p>
+      <h2>
+         A proposed solution
+      </h2>
+      <p>
+         Class membership of instances can be represented by a subClassOf
+         relationship between the class composed of a single individual and a
+         particular super class. An individual represents some particular RDF
+         graph. In the case of an XML document, or part of an XML document,
+         there exists an Infoset representation. The infoset is modelled as an
+         RDF graph in a very straightforward fashion. Indeed a simple XSLT
+         transform converts an arbitrary XML document into the RDF graph form
+         (e.g. <a
+         href="http://www.openhealth.org/WOWG/XMLtoSchema.xsl">http://www.openhealth.org/WOWG/XMLtoSchema.xsl</a>)
+      </p>
+      <p>
+         Any of an XML Schema [5], or XQuery formal type [6], or other schema
+         language represented as a DOM Abstract Schema [7], may represent
+         constraints on a particular piece of XML such that the type defines a
+         class whose instance set is the set of XML data values whose Infoset
+         conforms to the constraints defined by the type declaration.
+      </p>
+      <p>
+         As such, one can develop, in principle, an OWL class definition such
+         that instances of infoset graphs which represent pieces of XML
+         conforming to a particular type, are members of the class.
+      </p>
+      <p>
+         This work has begun by the development of XSLT transforms that
+         transform instances of XML Schemas and XQuery formal language type
+         declarations into OWL Class definitions: <a
+         href="http://www.openhealth.org/WOWG/XSDtoSchema.xsl">http://www.openhealth.org/WOWG/XSDtoSchema.xsl</a>
+         and <a
+         href="http://www.openhealth.org/WOWG/RNGtoSchema.xsl">http://www.openhealth.org/WOWG/RNGtoSchema.xsl</a>
+         -- although these transforms are not yet complete, this serves as an
+         outline of how the proposed solution would work and how an OWL
+         processor might actually go about deciding, for example, whether a
+         piece of XML does belong to a particular class. It should be noted
+         that this approach will work both for classes defined by an XML Schema
+         QName as well as classes written directly in OWL.
+      </p>
+      <pre>
+         Jonathan Borden, M.D.
+         Assistant Professor of Neurosurgery
+         Tufts-New England Medical Center
+         Boston MA
+		 <a href="mailto:jonathan@openhealth.org">jonathan@openhealth.org</a>
+		 <a href="http://www.openhealth.org">The Open Health Care Group</a>
+		 <a href="http://www.openhealth.org">WebOnt stuff</a>
+      </pre>
+      <h2>
+         References:
+      </h2>
+	  <ul>
+      <li>[1] Groves: <a
+         href="http://www.oasis-open.org/cover/groves.html">http://www.oasis-open.org/cover/groves.html</a></li>
+      <li>[2] Groves illustrated: <a
+         href="http://www.cogsci.ed.ac.uk/~ht/grove.html">http://www.cogsci.ed.ac.uk/~ht/grove.html</a></li>
+      <li>[3] The XML grove as RDF: <a
+         href="http://www.openhealth.org/XSet">http://www.openhealth.org/XSet</a></li>
+      <li>[4] RDF Schema for XML Infoset <a
+         href="http://www.w3.org/TR/xml-infoset-rdfs">http://www.w3.org/TR/xml-infoset-rdfs</a></li>
+      <li>[5] XQuery formal semantics: <a
+         href="http://www.w3.org/TR/query-semantics/">http://www.w3.org/TR/query-semantics/</a></li>
+      <li>[6] XML Schema Part 1: <a
+         href="http://www.w3.org/TR/xmlschema-1">http://www.w3.org/TR/xmlschema-1</a></li>
+      <li>[7] DOM Level 3 Abstract Schema: <a
+         href="http://www.w3.org/TR/DOM-Level-3-ASLS/abstract-schemas.html">http://www.w3.org/TR/DOM-Level-3-ASLS/abstract-schemas.html</a></li></ul>
+   </body>
+</html>
+

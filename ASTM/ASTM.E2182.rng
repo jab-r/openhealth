@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" xmlns:default="http://www.openhealth.org/ASTM/E2182">
+  <include href="astm.xlink.rng"/>
+  <include href="astm.xhtml.rng"/>
+  <include href="clinical.header.rng"/>
+  <define name="astm.content">
+    <ref name="Flow.model"/>
+  </define>
+  <define name="astm.content.attrib">
+    <ref name="ch.attrib"/>
+    <optional>
+      <ref name="xlink.attrib"/>
+    </optional>
+  </define>
+  <define name="astm.document.attrib">
+    <optional>
+      <attribute name="xml:base">
+        <data type="anyURI"/>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="xml:lang">
+        <data type="NMTOKEN"/>
+      </attribute>
+    </optional>
+  </define>
+</grammar>

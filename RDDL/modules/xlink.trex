@@ -1,0 +1,54 @@
+<!-- XLink Module -->
+
+<grammar 
+	ns="http://www.w3.org/1999/xlink"
+	xmlns="http://www.thaiopensource.com/trex">
+
+<define name="XLINK.type.attrib">
+  <attribute name="type" ns="http://www.w3.org/1999/xlink">
+    <choice>
+		<string>simple</string>
+		<string>extended</string>
+		<string>arc</string>
+		<string>locator</string>
+		<string>resource</string>
+	</choice>
+  </attribute>
+</define>
+<define name="XLINK.href.attrib">
+ <optional>
+  <attribute name="href" ns="http://www.w3.org/1999/xlink">
+    <ref name="URI.datatype" />
+  </attribute>
+  </optional>
+</define>
+<define name="XLINK.arcrole.attrib">
+ <optional>
+  <attribute name="arcrole" ns="http://www.w3.org/1999/xlink">
+    <ref name="URI.datatype" />
+  </attribute>
+ </optional>
+</define>
+<define name="XLINK.role.attrib">
+ <optional>
+  <attribute name="role" ns="http://www.w3.org/1999/xlink">
+    <ref name="URI.datatype" />
+  </attribute>
+  </optional>
+</define>
+<define name="XLINK.title.attrib">
+ <optional>
+  <attribute name="title" ns="http://www.w3.org/1999/xlink">
+    <ref name="Text.datatype" />
+  </attribute>
+ </optional>
+</define>
+<define name="XLINK.simple.attlist" combine="group">
+  <ref name="XLINK.type.attrib"/>
+  <ref name="XLINK.href.attrib"/>
+  <ref name="XLINK.role.attrib"/>
+  <ref name="XLINK.arcrole.attrib"/>
+  <ref name="XLINK.title.attrib"/>
+</define>
+
+</grammar>

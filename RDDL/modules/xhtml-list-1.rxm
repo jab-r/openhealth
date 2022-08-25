@@ -1,0 +1,64 @@
+<module
+  xmlns="http://www.xml.gr.jp/xmlns/relaxCore"
+  targetNamespace="http://www.w3.org/1999/xhtml"
+  relaxCoreVersion="1.0"
+  moduleVersion="1.11">
+
+<elementRule role="dl">
+  <choice occurs="+">
+    <ref label="dt"/>
+    <ref label="dd"/>
+  </choice>
+</elementRule>
+
+<tag name="dl">
+  <ref role="Common.attrib"/>
+</tag>
+
+<elementRule role="dt">
+  <mixed>
+    <hedgeRef label="Inline.mix" occurs="*"/>
+  </mixed>
+</elementRule>
+
+<tag name="dt">
+  <ref role="Common.attrib"/>
+</tag>
+
+<elementRule role="dd">
+  <mixed>
+    <hedgeRef label="Flow.mix" occurs="*"/>
+  </mixed>
+</elementRule>
+
+<tag name="dd">
+  <ref role="Common.attrib"/>
+</tag>
+
+<elementRule role="ol">
+  <ref label="li" occurs="+"/>
+</elementRule>
+
+<tag name="ol">
+  <ref role="Common.attrib"/>
+</tag>
+
+<elementRule role="ul">
+  <ref label="li" occurs="+"/>
+</elementRule>
+
+<tag name="ul">
+  <ref role="Common.attrib"/>
+</tag>
+
+<elementRule role="li">
+  <mixed>
+    <hedgeRef label="Flow.mix" occurs="*"/>
+  </mixed>
+</elementRule>
+
+<tag name="li">
+  <ref role="Common.attrib"/>
+</tag>
+
+</module>

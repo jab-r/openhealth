@@ -1,0 +1,212 @@
+<?xml version="1.0" ?>
+<rdf:RDF xml:lang="en"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+   xmlns:clinical="http://www.openhealth.org/ASTM/clinical-model.rdfs">
+<rdfs:Class rdf:ID="PCDATA">
+	<rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+</rdfs:Class>
+<rdfs:Class rdf:ID="Block">
+	<rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+</rdfs:Class>
+<rdf:Property ID="block">
+	<rdfs:subClassOf rdf:resource="#PCDATA"/>
+	<rdfs:subClassOf rdf:resource="#Block"/>
+</rdf:Property>
+<rdfs:Class rdf:ID="ClinicalDocument">
+	<rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+</rdfs:Class>
+<rdfs:Class rdf:ID="ClinicalHeader">
+	<rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+</rdfs:Class>
+
+<rdf:Property ID="clinical.header">
+	<rdfs:range rdf:resource="#ClinicalHeader"/>
+	<rdfs:domain rdf:resource="#ClinicalDocument"/>
+</rdf:Property>
+<rdf:Property ID="patient">
+	<rdfs:domain rdf:resource="#ClinicalHeader"/>
+	<rdfs:range rdf:resource="http://www.openhealth.org/ASTM/clinical-model.rdfs#Patient"/>
+</rdf:Property>
+<rdf:Property ID="authenticator">
+	<rdfs:domain rdf:resource="#ClinicalHeader"/>
+	<rdfs:range rdf:resource="http://www.openhealth.org/ASTM/clinical-model.rdfs#Provider"/>
+</rdf:Property>
+<rdf:Property ID="legal.authenticator">
+	<rdfs:domain rdf:resource="#ClinicalHeader"/>
+	<rdfs:range rdf:resource="http://www.openhealth.org/ASTM/clinical-model.rdfs#Provider"/>
+</rdf:Property>
+<rdf:Property ID="originator">
+	<rdfs:domain rdf:resource="#ClinicalHeader"/>
+	<rdfs:range rdf:resource="http://www.openhealth.org/ASTM/clinical-model.rdfs#Person"/>
+</rdf:Property>
+<rdf:Property ID="transcriptionist">
+	<rdfs:domain rdf:resource="#ClinicalHeader"/>
+	<rdfs:range rdf:resource="http://www.openhealth.org/ASTM/clinical-model.rdfs#Person"/>
+</rdf:Property>
+<rdf:Property ID="encounter">
+	<rdfs:domain rdf:resource="#ClinicalHeader"/>
+	<rdfs:range rdf:resource="http://www.openhealth.org/ASTM/clinical-model.rdfs#Encounter"/>
+</rdf:Property>
+<rdfs:Class rdf:ID="Actors" />
+<rdf:Property ID="actors">
+	<rdfs:domain rdf:resource="#ClinicalHeader"/>
+	<rdfs:range rdf:resource="#Actors"/>
+</rdf:Property>
+<rdf:Property ID="actor">
+	<rdfs:domain rdf:resource="#Actors"/>
+	<rdfs:range rdf:resource="http://www.openhealth.org/ASTM/clinical-model.rdfs#Actor"/>
+</rdf:Property>
+<rdfs:Class rdf:ID="TypedValue">
+	<rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+</rdfs:Class>
+<rdfs:Class rdf:ID="Attribute">
+	<rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+</rdfs:Class>
+<rdf:Property ID="type">
+	<rdfs:range rdf:resource="#Attribute"/>
+	<rdfs:domain rdf:resource="#TypedValue"/>
+	<rdfs:domain rdf:resource="#Address"/>
+</rdf:Property>
+<rdf:Property ID="value">
+	<rdfs:range rdf:resource="#PCDATA"/>
+	<rdfs:domain rdf:resource="#TypedValue"/>
+</rdf:Property>
+<rdfs:Class ID="PersonName">
+	<rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+</rdfs:Class>
+<rdf:Property rdf:ID="family">
+	<rdfs:range rdf:resource="#PCDATA"/>
+	<rdfs:domain rdf:resource="#PersonName"/>
+</rdf:Property>
+<rdf:Property ID="given">
+	<rdfs:range rdf:resource="#PCDATA"/>
+	<rdfs:domain rdf:resource="#PersonName"/>
+</rdf:Property>
+<rdf:Property ID="middle">
+	<rdfs:range rdf:resource="#PCDATA"/>
+	<rdfs:domain rdf:resource="#PersonName"/>
+</rdf:Property>
+<rdf:Property ID="prefix">
+	<rdfs:range rdf:resource="#PCDATA"/>
+	<rdfs:domain rdf:resource="#PersonName"/>
+</rdf:Property>
+<rdf:Property ID="suffix">
+	<rdfs:range rdf:resource="#PCDATA"/>
+	<rdfs:domain rdf:resource="#PersonName"/>
+</rdf:Property>
+<rdf:Property ID="delimiter">
+	<rdfs:range rdf:resource="#PCDATA"/>
+	<rdfs:domain rdf:resource="#PersonName"/>
+</rdf:Property>
+<rdf:Class rdf:ID="Address"/>
+<rdf:Property ID="street">
+	<rdfs:domain rdf:resource="#Address"/>
+	<rdfs:range rdf:resource="#PCDATA"/>
+</rdf:Property>
+<rdf:Property ID="city">
+	<rdfs:domain rdf:resource="#Address"/>
+	<rdfs:range rdf:resource="#PCDATA"/>
+</rdf:Property>
+<rdf:Property ID="state">
+	<rdfs:domain rdf:resource="#Address"/>
+	<rdfs:range rdf:resource="#PCDATA"/>
+</rdf:Property>
+<rdf:Property ID="zip">
+	<rdfs:domain rdf:resource="#Address"/>
+	<rdfs:range rdf:resource="#PCDATA"/>
+</rdf:Property>
+<rdf:Property ID="telephone">
+	<rdfs:domain rdf:resource="#Address"/>
+	<rdfs:range rdf:resource="#TypedValue"/>
+</rdf:Property>
+<rdf:Property ID="email">
+	<rdfs:domain rdf:resource="#Address"/>
+	<rdfs:range rdf:resource="#TypedValue"/>
+</rdf:Property>
+<rdf:Property ID="uri">
+	<rdfs:domain rdf:resource="#Address"/>
+	<rdfs:range rdf:resource="#TypedValue"/>
+</rdf:Property>
+
+<rdf:Property ID="id">
+	<rdfs:range rdf:resource="#PCDATA"/>
+	<rdfs:domain rdf:resource="#ClinicalDocument"/>
+</rdf:Property>
+<rdfs:Class rdf:ID="Events">
+	<rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+</rdfs:Class>
+<rdfs:Class rdf:ID="Event">
+	<rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+</rdfs:Class>
+<rdf:Property ID="event.name">
+	<rdfs:range rdf:resource="#PCDATA"/>
+	<rdfs:domain rdf:resource="#Event"/>
+</rdf:Property>
+<rdf:Property ID="date.time">
+	<rdfs:range rdf:resource="#PCDATA"/>
+	<rdfs:domain rdf:resource="#Event"/>
+</rdf:Property>
+<rdf:Property ID="staff">
+	<rdfs:range rdf:resource="http://www.openhealth.org/ASTM/clinical-model.rdfs#Provider"/>
+	<rdfs:domain rdf:resource="#Event"/>
+</rdf:Property>
+<rdf:Property ID="comments">
+	<rdfs:range rdf:resource="#PCDATA"/>
+	<rdfs:domain rdf:resource="#Event"/>
+</rdf:Property>
+<rdf:Property ID="codes">
+	<rdfs:range rdf:resource="#Codes"/>
+	<rdfs:domain rdf:resource="#ClinicalHeader"/>
+</rdf:Property>
+<rdf:Property ID="code">
+	<rdfs:range rdf:resource="#Code"/>
+	<rdfs:domain rdf:resource="#Codes"/>
+</rdf:Property>
+<rdf:Property ID="events">
+	<rdfs:range rdf:resource="#Events"/>
+	<rdfs:domain rdf:resource="#ClinicalHeader"/>
+</rdf:Property>
+<rdf:Property ID="event">
+	<rdfs:range rdf:resource="#Event"/>
+	<rdfs:domain rdf:resource="#Events"/>
+</rdf:Property>
+<rdfs:Class rdf:ID="Identifier">
+	<rdfs:subClassOf rdf:resource="#TypedValue"/>
+</rdfs:Class>
+<rdfs:Class rdf:ID="Code">
+	<rdfs:subClassOf rdf:resource="#TypedValue"/>
+</rdfs:Class>
+<rdf:Property ID="issuer">
+	<rdf:range rdf:resource="http://www.openhealth.org/ASTM/clinical-model.rdfs#Organization"/>
+	<rdf:domain rdf:resource="#Identifier"/>
+	<rdf:domain rdf:resource="#Code"/>
+</rdf:Property>
+<rdf:Property ID="version">
+	<rdf:range rdf:resource="#PCDATA"/>
+	<rdf:domain rdf:resource="#Code"/>
+</rdf:Property>
+<rdf:Property ID="valid">
+	<rdf:range rdf:resource="#DateRange"/>
+	<rdf:domain rdf:resource="#Identifier"/>
+</rdf:Property>
+<rdfs:Class ID="DateRange"/>
+<rdfs:Class ID="DateTimeRange"/>
+<rdf:Property ID="start.date">
+	<rdf:range rdf:resource="#PCDATA"/>
+	<rdf:domain rdf:resource="#DateRange"/>
+</rdf:Property>
+<rdf:Property ID="end.date">
+	<rdf:range rdf:resource="#PCDATA"/>
+	<rdf:domain rdf:resource="#DateRange"/>
+</rdf:Property>
+<rdf:Property ID="start.date.time">
+	<rdf:range rdf:resource="#PCDATA"/>
+	<rdf:domain rdf:resource="#DateTimeRange"/>
+</rdf:Property>
+<rdf:Property ID="end.date.time">
+	<rdf:range rdf:resource="#PCDATA"/>
+	<rdf:domain rdf:resource="#DateTimeRange"/>
+</rdf:Property>
+
+</rdf:RDF>

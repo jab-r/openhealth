@@ -1,0 +1,22 @@
+<!-- XHTML Basic -->
+
+<grammar ns="http://www.w3.org/1999/xhtml"
+         xmlns="http://relaxng.org/ns/structure/1.0">
+
+<include href="xhtml/datatypes.rng"/>
+<include href="xhtml/attribs.rng"/>
+<!--<include href="xhtml/struct.rng"/>-->
+<include href="xhtml/text.rng"/>
+<include href="xhtml/hypertext.rng"/>
+<include href="xhtml/list.rng"/>
+<!--<include href="xhtml/basic-form.rng"/>-->
+<include href="xhtml/basic-table.rng"/>
+<include href="xhtml/image.rng"/>
+<!--<include href="xhtml/param.rng"/>
+<include href="xhtml/object.rng"/>
+<include href="xhtml/meta.rng"/>
+<include href="xhtml/link.rng"/>
+<include href="xhtml/base.rng"/>-->
+
+</grammar>
+

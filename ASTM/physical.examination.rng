@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" ns="http://www.openhealth.org/ASTM/physical.examination" xmlns:pe="http://www.openhealth.org/ASTM/physical.examination">
+  <define name="pe.content">
+    <mixed>
+      <choice>
+        <ref name="pe.normal"/>
+        <ref name="pe.normal.in.detail"/>
+        <ref name="pe.grossly.normal"/>
+        <ref name="pe.not.tested"/>
+        <zeroOrMore>
+          <choice>
+            <ref name="Flow.model"/>
+            <text/>
+          </choice>
+        </zeroOrMore>
+      </choice>
+    </mixed>
+  </define>
+  <define name="physical.examination.model">
+    <choice>
+      <ref name="pe.content"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="general"/>
+          <ref name="vital.signs"/>
+          <ref name="skin"/>
+          <ref name="HEENT"/>
+          <ref name="lymph.nodes"/>
+          <ref name="chest"/>
+          <ref name="lungs"/>
+          <ref name="breasts"/>
+          <ref name="cardiovascular"/>
+          <ref name="abdomen"/>
+          <ref name="genitalia"/>
+          <ref name="anorectal"/>
+          <ref name="musculoskeletal"/>
+          <ref name="neurologic"/>
+        </choice>
+      </zeroOrMore>
+    </choice>
+  </define>
+  <define name="HEENT.model">
+    <choice>
+      <ref name="pe.content"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="eyes"/>
+          <ref name="ears"/>
+          <ref name="nose"/>
+          <ref name="mouth.and.throat"/>
+          <ref name="neck"/>
+        </choice>
+      </zeroOrMore>
+    </choice>
+  </define>
+  <define name="cardiovascular.model">
+    <choice>
+      <ref name="pe.content"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="heart"/>
+          <ref name="peripheral.vascular"/>
+        </choice>
+      </zeroOrMore>
+    </choice>
+  </define>
+  <define name="neurologic.model">
+    <choice>
+      <ref name="pe.content"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="mental.status"/>
+          <ref name="cranial.nerves"/>
+          <ref name="motor"/>
+          <ref name="sensory"/>
+          <ref name="reflexes"/>
+        </choice>
+      </zeroOrMore>
+    </choice>
+  </define>
+  <define name="mental.status.model">
+    <choice>
+      <ref name="pe.content"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="general.mental.status"/>
+          <ref name="emotion"/>
+          <ref name="perception"/>
+          <ref name="thought.process"/>
+          <ref name="orientation"/>
+          <ref name="memory"/>
+          <ref name="impulse.control"/>
+          <ref name="judgement"/>
+          <ref name="insight"/>
+          <ref name="reliability"/>
+        </choice>
+      </zeroOrMore>
+    </choice>
+  </define>
+  <define name="general">
+    <element name="general">
+      <ref name="astm.content.attrib"/>
+      <ref name="pe.content"/>
+    </element>
+  </define>
+  <define name="vital.signs">
+    <element name="vital.signs">
+      <ref name="astm.content.attrib"/>
+      <ref name="pe.content"/>
+    </element>
+  </define>
+  <define name="skin">
+    <element name="skin">
+      <ref name="astm.content.attrib"/>
+      <ref name="pe.content"/>
+    </element>
+  </define>
+  <define name="HEENT">
+    <element name="HEENT">
+      <ref name="astm.content.attrib"/>
+      <ref name="HEENT.model"/>
+    </element>
+  </define>
+  <define name="eyes">
+    <element name="eyes">
+      <ref name="astm.content.attrib"/>
+      <ref name="pe.content"/>
+    </element>
+  </define>
+  <define name="ears">
+    <element name="ears">
+      <ref name="astm.content.attrib"/>
+      <ref name="pe.content"/>
+    </element>
+  </define>
+  <define name="nose">
+    <element name="nose">
+      <ref name="astm.content.attrib"/>
+      <ref name="pe.content"/>
+    </element>
+  </define>
+  <define name="mouth.and.throat">
+    <element name="mouth.and.throat">
+      <ref name="astm.content.attrib"/>
+      <ref name="pe.content"/>
+    </element>
+  </define>
+  <define name="neck">
+    <element name="neck">
+      <ref name="astm.content.attrib"/>
+      <ref name="pe.content"/>
+    </element>
+  </define>
+  <define name="lymph.nodes">
+    <element name="lymph.nodes">
+      <ref name="astm.content.attrib"/>
+      <ref name="pe.content"/>
+    </element>
+  </define>
+  <define name="chest">
+    <element name="chest">
+      <ref name="astm.content.attrib"/>
+      <ref name="pe.content"/>
+    </element>
+  </define>
+  <define name="lungs">
+    <element name="lungs">
+      <ref name="astm.content.attrib"/>
+      <ref name="pe.content"/>
+    </element>
+  </define>
+  <define name="breasts">
+    <element name="breasts">
+      <ref name="astm.content.attrib"/>
+      <ref name="pe.content"/>
+    </element>
+  </define>
+  <define name="cardiovascular">
+    <element name="cardiovascular">
+      <ref name="astm.content.attrib"/>
+      <ref name="cardiovascular.model"/>
+    </element>
+  </define>
+  <define name="heart">
+    <element name="heart">
+      <ref name="astm.content.attrib"/>
+      <ref name="pe.content"/>
+    </element>
+  </define>
+  <define name="peripheral.vascular">
+    <element name="peripheral.vascular">
+      <ref name="astm.content.attrib"/>
+      <ref name="pe.content"/>
+    </element>
+  </define>
+  <define name="abdomen">
+    <element name="abdomen">
+      <ref name="astm.content.attrib"/>
+      <ref name="pe.content"/>
+    </element>
+  </define>
+  <define name="genitalia">
+    <element name="genitalia">
+      <ref name="astm.content.attrib"/>
+      <ref name="pe.content"/>
+    </element>
+  </define>
+  <define name="anorectal">
+    <element name="anorectal">
+      <ref name="astm.content.attrib"/>
+      <ref name="pe.content"/>
+    </element>
+  </define>
+  <define name="musculoskeletal">
+    <element name="musculoskeletal">
+      <ref name="astm.content.attrib"/>
+      <ref name="pe.content"/>
+    </element>
+  </define>
+  <define name="neurologic">
+    <element name="neurologic">
+      <ref name="astm.content.attrib"/>
+      <ref name="neurologic.model"/>
+    </element>
+  </define>
+  <define name="mental.status">
+    <element name="mental.status">
+      <ref name="astm.content.attrib"/>
+      <ref name="mental.status.model"/>
+    </element>
+  </define>
+  <define name="cranial.nerves">
+    <element name="cranial.nerves">
+      <ref name="astm.content.attrib"/>
+      <ref name="pe.content"/>
+    </element>
+  </define>
+  <define name="motor">
+    <element name="motor">
+      <ref name="astm.content.attrib"/>
+      <ref name="pe.content"/>
+    </element>
+  </define>
+  <define name="sensory">
+    <element name="sensory">
+      <ref name="astm.content.attrib"/>
+      <ref name="pe.content"/>
+    </element>
+  </define>
+  <define name="reflexes">
+    <element name="reflexes">
+      <ref name="astm.content.attrib"/>
+      <ref name="pe.content"/>
+    </element>
+  </define>
+  <define name="general.mental.status">
+    <element name="general.mental.status">
+      <ref name="astm.content.attrib"/>
+      <ref name="pe.content"/>
+    </element>
+  </define>
+  <define name="emotion">
+    <element name="emotion">
+      <ref name="astm.content.attrib"/>
+      <ref name="pe.content"/>
+    </element>
+  </define>
+  <define name="perception">
+    <element name="perception">
+      <ref name="astm.content.attrib"/>
+      <ref name="pe.content"/>
+    </element>
+  </define>
+  <define name="thought.process">
+    <element name="thought.process">
+      <ref name="astm.content.attrib"/>
+      <ref name="pe.content"/>
+    </element>
+  </define>
+  <define name="orientation">
+    <element name="orientation">
+      <ref name="astm.content.attrib"/>
+      <ref name="pe.content"/>
+    </element>
+  </define>
+  <define name="memory">
+    <element name="memory">
+      <ref name="astm.content.attrib"/>
+      <ref name="pe.content"/>
+    </element>
+  </define>
+  <define name="impulse.control">
+    <element name="impulse.control">
+      <ref name="astm.content.attrib"/>
+      <ref name="pe.content"/>
+    </element>
+  </define>
+  <define name="judgement">
+    <element name="judgement">
+      <ref name="astm.content.attrib"/>
+      <ref name="pe.content"/>
+    </element>
+  </define>
+  <define name="insight">
+    <element name="insight">
+      <ref name="astm.content.attrib"/>
+      <ref name="pe.content"/>
+    </element>
+  </define>
+  <define name="reliability">
+    <element name="reliability">
+      <ref name="astm.content.attrib"/>
+      <ref name="pe.content"/>
+    </element>
+  </define>
+  <define name="pe.normal">
+    <element name="normal">
+      <empty/>
+    </element>
+  </define>
+  <define name="pe.normal.in.detail">
+    <element name="normal.in.detail">
+      <empty/>
+    </element>
+  </define>
+  <define name="pe.grossly.normal">
+    <element name="grossly.normal">
+      <empty/>
+    </element>
+  </define>
+  <define name="pe.not.tested">
+    <element name="not.tested">
+      <empty/>
+    </element>
+  </define>
+</grammar>

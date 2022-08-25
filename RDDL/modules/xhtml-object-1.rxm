@@ -1,0 +1,41 @@
+<!DOCTYPE module [
+<!ENTITY ContentType.datatype "string">
+<!ENTITY Text.datatype "string">
+<!ENTITY Length.datatype "integer">
+<!ENTITY Number.datatype "integer">
+]>
+<module
+  xmlns="http://www.xml.gr.jp/xmlns/relaxCore"
+  targetNamespace="http://www.w3.org/1999/xhtml"
+  relaxCoreVersion="1.0"
+  moduleVersion="1.11">
+
+<elementRule role="object">
+  <mixed>
+    <choice occurs="*">
+      <hedgeRef label="Flow.mix"/>
+      <ref label="param"/>
+    </choice>
+  </mixed>
+</elementRule>
+
+<tag name="object">
+  <ref role="Common.attrib"/>
+  <attribute name="declare" type="string">
+    <enumeration value="declare"/>
+  </attribute>
+  <attribute name="classid"  type="uriReference"/>
+  <attribute name="codebase"  type="uriReference"/>
+  <attribute name="data"  type="uriReference"/>
+  <attribute name="type"  type="&ContentType.datatype;"/>
+  <attribute name="codetype" type="&ContentType.datatype;"/>
+  <attribute name="archive"  type="uriReference"/>
+  <attribute name="standby"      type="&Text.datatype;"/>
+  <attribute name="height"       type="&Length.datatype;"/>
+  <attribute name="width"        type="&Length.datatype;"/>
+  <attribute name="name"         type="string"/>
+  <attribute name="tabindex"     type="&Number.datatype;"/>
+</tag>
+
+
+</module>

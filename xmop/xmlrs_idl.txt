@@ -1,0 +1,66 @@
+// Copyright (c) 1997 Jonathan Borden ALL RIGHTS RESERVED
+// xmlrs.idl : IDL source for xmlrs.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (xmlrs.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+	[
+		object,
+		uuid(61231FB2-CDAA-11D1-9E5E-00801935B0CE),
+		dual,
+		helpstring("IXMLRS Interface"),
+		pointer_default(unique)
+	]
+	interface IXMLRS : IDispatch
+	{
+// Output header flag  header default = "<?xml version="1.0" ?>
+		[propget, id(1)] HRESULT OutputHeader([out, retval] BOOL *pVal);
+		[propput, id(1)] HRESULT OutputHeader([in] BOOL newVal);
+		[propget, id(2)] HRESULT XMLHeader([out, retval] BSTR *pVal);
+		[propput, id(2)] HRESULT XMLHeader([in] BSTR newVal);
+//
+// tag name of each Row
+//
+		[propget, id(3)] HRESULT ItemName([out, retval] BSTR *pVal);
+		[propput, id(3)] HRESULT ItemName([in] BSTR newVal);
+//
+// the main doctype
+//
+		[propget, id(4)] HRESULT DocType([out, retval] BSTR *pVal);
+		[propput, id(4)] HRESULT DocType([in] BSTR newVal);
+//
+// include DTD with results??
+// if true -> builds DTD on the fly from table definition
+//
+		[propget, id(5)] HRESULT DTD([out, retval] BOOL *pVal);
+		[propput, id(5)] HRESULT DTD([in] BOOL newVal);
+// include the body 
+// if false only return DTD
+		[propget, id(6)] HRESULT Body([out, retval] BOOL *pVal);
+		[propput, id(6)] HRESULT Body([in] BOOL newVal);
+// do it!
+		[id(7)] HRESULT AutoFormat([in] IDispatch* pdispRS);
+	};
+[
+	uuid(61231FA3-CDAA-11D1-9E5E-00801935B0CE),
+	version(1.0),
+	helpstring("xmlrs 1.0 Type Library")
+]
+library XMLRSLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(61231FB3-CDAA-11D1-9E5E-00801935B0CE),
+		helpstring("JABR XMLRS Class")
+	]
+	coclass XMLRS
+	{
+		[default] interface IXMLRS;
+	};
+};

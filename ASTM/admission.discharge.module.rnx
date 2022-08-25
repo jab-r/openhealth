@@ -1,0 +1,113 @@
+
+default namespace ads = "http://www.openhealth.org/ASTM/admission.discharge.summary"
+include "ASTM.E2182.rng"
+include "history.module.rng"
+include "physical.examination.module.rng"
+
+root = admission.note|discharge.summary
+
+history.and.physical.model = 	chief.complaint,
+	history.of.present.illness,
+	known.allergies,
+	medications,
+	history,
+	physical.examination,
+	laboratory.data?,
+	diagnostic.studies?
+
+admission.note  = element admission.note{ 
+						astm.document.attrib,
+						clinical.header,
+						element clinical.body { ch.attrib,
+							admission,
+							assessment.and.plan
+						}
+						}
+discharge.summary = element discharge.summary {
+						astm.document.attrib,
+						clinical.header,
+						element clinical.body {	ch.attrib,
+										admission,
+										hospital.course,
+										discharge}
+						}
+
+admission = element admission {astm.content.attrib,
+	history.and.physical.model,
+	diagnoses,
+	reason.for.admission?
+}
+diagnoses = element diagnoses {astm.content.attrib, diagnosis* }
+diagnosis = element diagnosis {astm.content.attrib, astm.content }
+chief.complaint = element chief.complaint {astm.content.attrib, text }
+reason.for.admission = element reason.for.admission {astm.content.attrib, astm.content }
+history = element history {astm.content.attrib, history.model }
+history.of.present.illness = element history.of.present.illness {astm.content.attrib, astm.content }
+past.medical.history = element past.medical.history {astm.content.attrib, astm.content }
+past.surgical.history = element past.surgical.history {astm.content.attrib, astm.content }
+family.history = element family.history {astm.content.attrib, astm.content }
+social.history = element social.history {astm.content.attrib, astm.content }
+review.of.systems = element review.of.systems {astm.content.attrib, astm.content }
+known.allergies = element known.allergies {astm.content.attrib, astm.content }
+medications = element medications {astm.content.attrib, (Flow.model|medication)* }
+medication = element medication {astm.content.attrib, astm.content }
+physical.examination = element physical.examination {astm.content.attrib, physical.examination.model }
+laboratory.data = element laboratory.data {astm.content.attrib, astm.content }
+diagnostic.studies = element diagnostic.studies {astm.content.attrib, astm.content }
+hospital.course.model = 
+	description,
+	diagnoses?,
+	procedures?,
+	complications?,
+	consultations?
+hospital.course = element hospital.course {astm.content.attrib, hospital.course.model }
+description = element description {astm.content.attrib, astm.content }
+procedures = element procedures {astm.content.attrib, procedure* }
+complications = element complications {astm.content.attrib, complication* }
+consultations = element consultations {astm.content.attrib, consultation* }
+procedure = element procedure {astm.content.attrib, astm.content }
+complication = element complication {astm.content.attrib, astm.content }
+consultation = element consultation {astm.content.attrib, astm.content }
+discharge.model = 	assessment.and.plan?,
+	patient.status?,
+	diagnoses?,
+	cause.of.death?,
+	medications?,
+	discharge.plan?
+
+discharge = element discharge {astm.content.attrib, discharge.model }
+patient.status = element patient.status {astm.content.attrib, astm.content }
+cause.of.death = element cause.of.death {astm.content.attrib, astm.content }
+discharge.plan = element discharge.plan {astm.content.attrib,
+(
+	description?,
+	medication.plan?,
+	followup?,
+	restrictions?,
+	return.to.work?
+)}
+medication.plan = element medication.plan {astm.content.attrib, astm.content }
+followup = element followup {astm.content.attrib, astm.content }
+restrictions = element restrictions {astm.content.attrib, astm.content }
+return.to.work = element return.to.work {astm.content.attrib, astm.content }
+problem.list = element problem.list {astm.content.attrib, problem* }
+problem = element problem {astm.content.attrib, 
+	problem.description,diagnosis?,assessment?,plan? 
+}
+problem.description = element problem.description {astm.content.attrib, astm.content }
+assessment = element assessment {astm.content.attrib, astm.content }
+plan = element plan {astm.content.attrib, astm.content }
+assessment.and.plan.model =
+		Flow.model |
+		(diagnosis &
+		 assessment &
+		 plan) |
+		 problem*
+assessment.and.plan = element assessment.and.plan {astm.content.attrib, 
+		assessment.and.plan.model
+}
+history.and.physical = element history.and.physical {astm.content.attrib, 
+	history.and.physical.model
+}
+
+

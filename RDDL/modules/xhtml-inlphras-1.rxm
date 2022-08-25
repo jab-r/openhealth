@@ -1,0 +1,117 @@
+<module
+  xmlns="http://www.xml.gr.jp/xmlns/relaxCore"
+  targetNamespace="http://www.w3.org/1999/xhtml"
+  relaxCoreVersion="1.0"
+  moduleVersion="1.10">
+
+<elementRule role="abbr">
+  <mixed>
+    <hedgeRef label="Inline.mix" occurs="*"/>
+  </mixed>
+</elementRule>
+
+<tag name="abbr">
+  <ref role="Common.attrib"/>
+</tag>
+
+<elementRule role="acronym">
+  <mixed>
+    <hedgeRef label="Inline.mix" occurs="*"/>
+  </mixed>
+</elementRule>
+
+<tag name="acronym">
+  <ref role="Common.attrib"/>
+</tag>
+
+<elementRule role="cite">
+  <mixed>
+    <hedgeRef label="Inline.mix" occurs="*"/>
+  </mixed>
+</elementRule>
+
+<tag name="cite">
+  <ref role="Common.attrib"/>
+</tag>
+
+<elementRule role="code">
+  <mixed>
+    <hedgeRef label="Inline.mix" occurs="*"/>
+  </mixed>
+</elementRule>
+
+<tag name="code">
+  <ref role="Common.attrib"/>
+</tag>
+
+<elementRule role="dfn">
+  <mixed>
+    <hedgeRef label="Inline.mix" occurs="*"/>
+  </mixed>
+</elementRule>
+
+<tag name="dfn">
+  <ref role="Common.attrib"/>
+</tag>
+
+<elementRule role="em">
+  <mixed>
+    <hedgeRef label="Inline.mix" occurs="*"/>
+  </mixed>
+</elementRule>
+
+<tag name="em">
+  <ref role="Common.attrib"/>
+</tag>
+
+<elementRule role="kbd">
+  <mixed>
+    <hedgeRef label="Inline.mix" occurs="*"/>
+  </mixed>
+</elementRule>
+
+<tag name="kbd">
+  <ref role="Common.attrib"/>
+</tag>
+
+<elementRule role="q">
+  <mixed>
+    <hedgeRef label="Inline.mix" occurs="*"/>
+  </mixed>
+</elementRule>
+
+<tag name="q">
+  <ref role="Common.attrib"/>
+</tag>
+
+<elementRule role="samp">
+  <mixed>
+    <hedgeRef label="Inline.mix" occurs="*"/>
+  </mixed>
+</elementRule>
+
+<tag name="samp">
+  <ref role="Common.attrib"/>
+</tag>
+
+<elementRule role="strong">
+  <mixed>
+    <hedgeRef label="Inline.mix" occurs="*"/>
+  </mixed>
+</elementRule>
+
+<tag name="strong">
+  <ref role="Common.attrib"/>
+</tag>
+
+<elementRule role="var">
+  <mixed>
+    <hedgeRef label="Inline.mix" occurs="*"/>
+  </mixed>
+</elementRule>
+
+<tag name="var">
+  <ref role="Common.attrib"/>
+</tag>
+
+</module>

@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//XML-DEV//DTD XHTML RDDL 1.0//EN" "rddl-xhtml.dtd">
+<html 	xmlns="http://www.w3.org/1999/xhtml" 
+		xmlns:xlink="http://www.w3.org/1999/xlink"
+		xmlns:rddl="http://www.rddl.org/">
+<head>
+<title>XML Resource Directory Description Language</title>
+	<link href="xrd.css" type="text/css" rel="stylesheet"/>
+	<base href="http://www.rddl.org/" />
+</head>
+<body>
+<h1>Resource Directory Description Language (RDDL)</h1>
+<div class="head">
+<p><a href="http://www.openhealth.org/RDDL/20010107/rddl-20010107.htm">This version</a>: January 7, 2001</p>
+<p><a href="http://www.openhealth.org/RDDL/">Latest Version</a></p>
+<p><a href="http://www.openhealth.org/RDDL/20010103/rddl-20010103.htm">Previous Version</a>: January 3, 2001</p>
+<p>Editors:</p>
+<ul> 
+<li><a href="mailto:jonathan@openhealth.org">Jonathan Borden</a>, <a href="http://www.openhealth.org">The Open Healthcare Group</a></li>
+<li><a href="mailto:tbray@textuality.com">Tim Bray</a>, <a href="http://antarcti.ca">Antarcti.ca Systems</a> </li>
+</ul>
+</div>
+
+<div id="intro">
+<h2>Introduction</h2>
+<p>This document defines Resource Directory Description Language (RDDL). A
+Resource Directory provides a text description of some class of resources and
+of other resources related to that class.
+It also contains a directory of links to these related resources.
+An example of a class of resources is that defined by an 
+<a href="http://www.w3.org/TR/REC-xml-names/">XML Namespace</a>.
+Examples of such related resources include schemas, 
+stylesheets, and executable code.
+A Resource Directory Description is designed to be suitable for service as the body of a 
+resource returned by deferencing a URI serving as an XML Namespace name.</p>
+<p>The Resource Directory Description Language is an extension of XHTML Basic
+1.0 with a new element named <code>resource</code>. 
+This element serves as an
+XLink to the referenced resource.</p>
+<p>This document defines the syntax and semantics of the Resource Directory Description Language, 
+and also serves as a Resource Directory Description for the namespace 
+<code>http://www.rddl.org/</code>.</p>
+<p>The Resource Directory Description 1.0 DTD 
+is an extension of XHTML Basic 1.0 [<a href="#rec-xhtml-basic">5</a>], according to
+<a href="http://www.w3.org/TR/xhtml-modularization/">Modularization for
+XHTML</a>.</p>
+
+</div>
+<div id="background">
+<h2>Background</h2>
+<p>The Resource Directory Description Language was initially proposed and
+specified after discussion on the XML-DEV mailing list.</p>
+<p>This document has no official standing and has not been considered nor
+approved by any organization.</p>
+<p>The background behind and initial history of RDDL has been described on the <a href="http://xml.coverpages.org/rddl.html#rddlBackground">XML Coverpages</a>
+and <a href="http://www.xmlhack.com/read.php?item=974">xmlhack</a>. <a href="contrib.htm">Many people</a> have contributed to RDDL.</p>
+</div>
+<div id="resource">
+<h2>The <code>rddl:resource</code> Element</h2>
+<p>The <code>resource</code> element is in a namespace whose name
+is <code>http://www.rddl.org/</code>.
+In this discussion, we assume the use of the namespace prefix
+<code>rddl</code> for this name, and refer to this element as <code>rddl:resource</code>.</p>
+<p>The <code>rddl:resource</code> element represents a simple xlink, using the
+attributes defined in the XLink namespace.</p>
+
+<p>The <code>rddl:resource</code> element is placed within the html
+<code>body</code>. The XHTML <span class="pentity">%Flow.mix</span> entity has been
+redefined to contain <code>rddl:resource</code> so it roughly may be placed anywhere a <code>p</code> tag may be placed.</p>
+<p>The <code>rddl:resource</code> element itself uses the <span class="pentity">%Flow.mix</span> content model, and <strong>should</strong> have content 
+which describes the associated resource.</p>
+<table class="eg" cellpadding="5" border="1" bgcolor="#99ffff" width="100%" summary="Example"><tr><td>
+<pre class="dtd">
+&lt;!ELEMENT rddl:resource (#PCDATA | %Flow.mix;)*&gt;
+&lt;!ATTLIST rddl:resource
+  id ID #IMPLIED
+  xml:lang NMTOKEN #IMPLIED
+  xmlns:rddl	CDATA #FIXED 'http://www.rddl.org/'
+  xlink:type	(simple|extended|arc|locator|resource)	#FIXED "simple"
+  xlink:arcrole CDATA		#REQUIRED
+  xlink:href	CDATA		#IMPLIED
+  xlink:role	CDATA		#FIXED 'http://www.rddl.org/#resource'
+  xlink:title	CDATA		#IMPLIED
+  xlink:embed	CDATA		#FIXED "none"
+  xlink:actuate	CDATA		#FIXED "none"
+  &gt;
+</pre></td></tr></table>
+<p>The definition above has been edited for clarity. </p>
+</div>
+
+<div id="attributes">
+<h2>Attributes</h2>
+<div id="arcrole">
+<h3>xlink:arcrole</h3>
+<p>The value of this attribute must be supplied and must a URI reference.
+It provides a machine-readable identifier for the type of the related resource.
+Software perfoming resource resolution may dispatch on the this value.</p>
+<p>When the related resource is an XML namespace compliant document and when the resource can be
+distinguished by the namespace of the root element, this namespace URI can be used as the value of the
+<code>xlink:arcrole</code> attribute.</p>
+<p>It is anticipated that many related-resource types will be well known.
+A list of well-known resource types may be found at 
+<a href="arcrole.htm">http://www.rddl.org/arcrole.htm</a>
+(which itself is an RDDL directory).
+<div id="specification"><p>The well known names defined in <a href="arcrole.htm">arcrole.htm</a> are 
+<code>specifications</code> which they name.</p>
+<p><code>Arcroles.htm</code> contains a mapping of the well known URI to the namespace of the root element of a document
+conforming to the particular specification.</p>
+</div>
+</p>
+</div>
+<div id="role">
+<h3>xlink:role</h3>
+<p>The value of this attribute must be a URI reference.
+In this version of RDDL the only legal value is   
+<code>http://www.rddl.org/#resource</code>. This URI reference corresponds to the qualified name <code>rddl:resource</code>.
+</p>
+</div>
+<div id="specification">
+</div>
+<!--
+<p>In general it will not be otherwise specified but may be used to distinguish among related 
+schemata such as for HTML strict, transitional and frameset. The <code>xlink:role</code> of a link should be thought of as the
+type of the resource referenced by the link.</p>
+<div class="issue"><p class=".ednote">Ed. need to further discuss uses of and
+compare xmlink:arcrole and xlink:role</p>
+-->
+<div id="href">
+<h3>xlink:href</h3>
+<p>This XLink <a href="http://www.w3.org/TR/2000/PR-xlink-20001220/#link-locators">locator</a>
+attribute's
+value is a  URI reference to the target related resource</p>
+</div>
+<div class="xlink:title">
+<h3>xlink:title</h3>
+<p>A human readable short descriptive title. 
+This should be specified but not be seen as a replacement for descriptive content.</p>
+</div>
+<div class="xlink:title">
+<h3>xlink:show and xlink:actuate</h3>
+<p>Not used. The only legal value is "none".</p>
+</div>
+</div>
+<div class="res_defs">
+<h2 name="res_defs">Related Resources for RDDL</h2>
+<!-- start resource definitions -->
+<rddl:resource
+	   xlink:arcrole="arcroles.htm#CSS"
+	   xlink:href="xrd.css" 
+	   >
+<div id="CSS" class="resource">
+<h3>CSS Stylesheet</h3>
+<p>A <a href="xrd.css">CSS stylesheet</a> used to provide the "look-and-feel"
+of this document, suitable in general for RDDL documents.</p> 
+</div>
+</rddl:resource>
+
+<rddl:resource
+	   xlink:arcrole="arcroles.htm#DTD"
+	   xlink:href="rddl-xhtml.dtd"
+	   >
+<div id="DTD" class="resource">
+<h3>DTD</h3>
+<p>A <a href="rddl-xhtml.dtd">DTD</a> for RDDL, defined as an extension of XHTML Basic 1.0 
+using Modularization for XHTML</p>
+</div>
+</rddl:resource>
+<rddl:resource
+	   xlink:arcrole="arcroles.htm#RDFS"
+	   xlink:href="rddl.rdfs"
+	  >
+<div id="RDFS" class="resource">
+<h3>RDF Schema</h3>
+<p>An <a href="rddl.rdfs">RDF Schema</a> for RDDL.</p>
+</div>
+</rddl:resource>
+<rddl:resource
+	   xlink:arcrole="arcroles.htm#SOCAT"
+	   xlink:href="rddl.soc"
+	   >
+<div id="SOCAT" class="resource">
+<h3>OASIS Open Catalog</h3>
+<p>The OASIS Open Catalog Format catalog for RDDL. 
+This <a href="rddl.soc">catalog</a> defines PUBLIC and SYSTEM identifiers related to the DTD.</p>
+</div>
+</rddl:resource>
+<rddl:resource
+	   xlink:arcrole="arcroles.htm#ZIP"
+	   xlink:href="rddl-20010106.zip"
+	   >
+<div id="ZIP" class="resource">
+<h3>ZIP</h3>
+<p>The RDDL spec, DTDs and other contents of the directory, 
+zipped for <a href="rddl-20010106.zip">download</a>.</p>
+</div>
+</rddl:resource>
+<rddl:resource
+	   xlink:arcrole="arcroles.htm#Project"
+	   xlink:href="org/rddl/"
+	   >
+<div class="resource">
+<h3>Java API</h3>
+<p>An example of a Java API for RDDL, code
+to implement it based on SAX is here <a href="org/rddl/">here</a>. This code is shown as an example 
+and is not-normative to the specification.</p>
+</div>
+</rddl:resource>
+<rddl:resource
+	   id="JAR"
+	   xlink:arcrole="arcroles.htm#JAR"
+	   xlink:href="rddl.jar"
+	   >
+<div class="resource">
+<h3>JAR</h3>
+<p>The above code packaged as a <a href="rddl.jar">java archive</a>. </p>
+<p>An example of how it might be used in the case where an XML Schema for the namespace is desired:</p>
+<pre class="dtd">
+&nbsp;&nbsp;RDDLURL rurl = new RDDLURL(
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"http://www.rddl.org/", 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"http://www.w3.org/2000/10/XMLSchema"
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;); // a namespace URI, the root namespace
+	InputStream is = rurl.getInputStream(); // and you get the XSD
+	...
+</pre>
+<rddl:resource
+	xlink:title="Java Archive Content Type" 
+	xlink:role="#resource"
+	xlink:arcrole="#content-type"
+	xlink:href="#JAR_CT"
+	><p>The <code>content-type</code> of a JAR archive is <code><span id="JAR_CT">application/java-archive</span></code></p>
+	</rddl:resource>
+</div>
+</rddl:resource>
+<rddl:resource
+	   xlink:arcrole="http://www.rddl.org/arcroles.htm#XSLT"
+	   xlink:href="rddlapi.xsl"
+	   >
+<div class="resource">
+<h3>XSLT API</h3>
+<p>An example of an <a href="rddlapi.xsl">XSLT</a> for RDDL, which accepts a param "arcrole". The transform inserts the document
+referenced by xlink:href in the output. This code is shown as an example 
+and is not-normative to the specification.</p>
+</div>
+</rddl:resource>
+<!-- end resource definitions -->
+</div>
+
+
+<div class="References">
+<h2>References</h2>
+<ol>
+<li type="1"><a id="xml-names"><a href="http://www.w3.org/TR/REC-xml-names">W3C XML Names</a></a></li>
+<li type="1"><a id="rfc2396"><a href="http://www.ietf.org/rfc/rfc2396.txt">IETF RFC 2396</a></a></li>
+<li type="1"><a id="rec-xhtml1"><a href="http://www.w3.org/tr/xhtml1">W3C XHTML 1.0</a></a></li>
+<li type="1"><a id="rec-xlink"><a href="http://www.w3.org/tr/xlink">W3C XLink</a></a></li>
+<li type="1"><a id="rec-xhtml-basic"><a href="http://www.w3.org/TR/xhtml-basic">W3C XHTML Basic 1.0</a></a></li>
+<li type="1"><a id="note-xlink2rdf"><a
+href="http://www.w3.org/TR/xlink2rdf/">W3C Note Harvesting RDF Statements from
+XLinks</a></a></li>
+</ol>
+</div>
+</body>
+</html>

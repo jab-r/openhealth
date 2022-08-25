@@ -1,0 +1,587 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>
+         Layering OWL on RDF with unasserted triples
+      </title>
+	  <link type="text/css" href="http://www.rddl.org/xrd.css" rel="stylesheet"/>
+   </head>
+   <body>
+      <h1>
+         Layering OWL on RDF using unasserted triples
+      </h1>
+	  <h2>The Web Ontology WG</h2>
+	  <p><a href="http://www.openhealth.org/WOWG/DTTF">Current version</a></p>
+      <p>
+         <a href="http://www.openhealth.org/WOWG/DTTF-20020527">This version: May 27, 2002</a>
+      </p>
+      <p>
+         Editor: Jonathan Borden <a
+         href="mailto:jonathan@openhealth.org">jonathan@openhealth.org</a> 
+		 <a href="http://www.openhealth.org">The Open Health Care Group</a> 
+		 <a href="http://www.openhealth.org/WOWG/">WebOnt stuff</a>
+      </p>
+      <p>
+         The WebOnt WG has been debating the issues surrounding the layering of
+         OWL onto RDF for the existence of the WG with seemingly no end. At its
+         core, the issue regards the ability to create a new language on top of
+         an existing language in which everything which is said, is said to be
+         a truth, the new language looses its ability to add anything to the
+         equation or worse paradoxes ensue.
+      </p>
+      <p>
+         The effort to both develop OWL as an extension to RDF and assert each
+         and every triple, appears to have been akin to an attempt to stuff a
+         balloon filled with water into a cube whose volume is less than that
+         of the balloon: every attempt to stuff the balloon in results in some
+         part of the balloon squeezing itself out somewhere.
+      </p>
+      <h2>
+         The Problem
+      </h2>
+      <p>
+         Peter Patel-Schneider has provided multiple and lengthly discourses on
+         the paradoxes that ensue as a result of OWL as a  &quot;same
+         syntax&quot; extension of RDF.
+      </p>
+      <p>
+         <a
+         href="http://lists.w3.org/Archives/Public/www-webont-wg/2002Feb/0172.html">
+         http://lists.w3.org/Archives/Public/www-webont-wg/2002Feb/0172.html</a>
+      </p>
+      <p>
+         The problem seems to be a result of the requirement for:
+      </p>
+      <p>
+         1) all RDF triples to be asserted i.e. &quot;truths&quot;
+      </p>
+      <p>
+         2) classes as instances
+      </p>
+      <p>
+         3) OWL&#39;s need to support commonsense entailments e.g.
+         intersectionOf(student,employee) &lt;=&gt;
+         intersectionOf(employee,student)
+      </p>
+      <p>
+         -- Pat Hayes <a
+         href="http://lists.w3.org/Archives/Public/www-webont-wg/2002May/0059.html">
+         http://lists.w3.org/Archives/Public/www-webont-wg/2002May/0059.html</a>
+      </p>
+      <p>
+         -- Peter Patel-Schneider <a
+         href="http://lists.w3.org/Archives/Public/www-webont-wg/2002May/0064.html">
+         http://lists.w3.org/Archives/Public/www-webont-wg/2002May/0064.html</a>
+      </p>
+      <p>
+         -- Peter Patel-Schneider <a
+         href="http://lists.w3.org/Archives/Public/www-webont-wg/2002Apr/0240.html">
+         http://lists.w3.org/Archives/Public/www-webont-wg/2002Apr/0240.html</a>
+      </p>
+      <p>
+         &gt; _:1 fowl:onProperty rdf:type .<br />
+         &gt; _:1 fowl:hasClass _:2 .<br />
+         &gt; _:2 fowl:OneOf _:3 .<br />
+         &gt; _:3 fowl:first _:4 .<br />
+         &gt; _:3 fowl:rest fowl:nil .<br />
+         &gt; _:4 fowl:complementOf _:1 .<br />
+         &gt;<br />
+         &gt;   _:1 is the set of objects<br />
+         &gt;   that are related to a particular complement of _:1<br />
+         &gt;   via rdf:type<br />
+         &gt;<br />
+         &gt;   if x rdf:type _:1<br />
+         &gt;   then x rdf:type _:4<br />
+         &gt;   but _:1 and _:4 are complements<br />
+         &gt;<br />
+         &gt;   so not x rdf:type _:1<br />
+         &gt;   if not x rdf:type _:1<br />
+         &gt;   then x rdf:type _:4<br />
+         &gt;   because _:1 and _:4 are complements<br />
+         &gt;<br />
+         &gt;   but then x rdf:type _:1<br />
+         &gt;<br />
+      </p>
+	<p>
+         -- Peter Patel-Schneider quoted in <a
+         href="http://lists.w3.org/Archives/Public/www-webont-wg/2002May/0057.html">
+         http://lists.w3.org/Archives/Public/www-webont-wg/2002May/0057.html</a>
+      </p>
+      <p>
+         Pat Hayes states the problem such paradoxes cause for the Semantic
+         Web:
+      </p>
+      <p>
+         [[
+      </p>
+      <cite>Look, the paradoxes are not a programming problem, and they
+      don&#39;t have anything to do with non-termination. (A non-terminating
+      process corresponds to something that is undecideable, roughly, not to a
+      paradox.) If the SW tried to do reasoning in the presence of paradoxes,
+      the problem would not be that code fails to terminate. All the reasoning
+      engines would work fine, and if they were using DL-style logic then they
+      would probably work quite efficiently and rapidly, producing correct,
+      checkable proofs using semantically correct inference rules. However, the
+      conclusions would all be worthless, because that perfectly valid logic
+      would be able to prove that 2+2=5 and the Pope was both a Roman Catholic
+      and also not a Roman Catholic, and so on. The problem would not be in the
+      code, but in the content of the expressions manipulated by the code. The
+      correctness of the code would not guarantee that the conclusions made any
+      sense (in fact, it would guarantee that they *didnt* make sense.) The
+      conclusions produced by any reasoner are only as good as the information
+      it is given. In the presence of paradoxes it can produce nonsense all by
+      itself, so any information it handles is potentially corrupted.</cite> 
+      <p>
+         ]]
+      </p>
+       -- Pat Hayes <a
+      href="http://lists.w3.org/Archives/Public/www-rdf-logic/2002Apr/0088.html">
+      http://lists.w3.org/Archives/Public/www-rdf-logic/2002Apr/0088.html</a> 
+      <p>
+         Such problems illustrate the subtleties which result from simple
+         assertions as simple &quot;truthes&quot; e.g. 
+      </p>
+      <p>
+         [[
+      </p>
+      <p>
+         <cite>Now what about a document that consists of the following single
+         statement:</cite>
+      </p>
+      <p>
+         <cite>         this a n3:falsehood .</cite>
+      </p>
+      <p>
+         <cite><br />
+         Consider any interpretation for the document. Suppose the statement
+         is<br />
+         true in the interpretation.  But then the statement is false, because
+         the<br />
+         entire document belongs to n3:falsehood, and the statement is the
+         only<br />
+         statement in the document.  Suppose the statement is false in
+         the<br />
+         interpretation.  But then it is true, because the entire document does
+         not<br />
+         belong to n3:falsehood and the statement is the only statement in
+         the<br />
+         document.  Thus it is impossible to assign a truth value to this<br />
+         statement (and document), thinking model theoretically, or it is
+         possible<br />
+         to derive both this formula and its negation, thinking proof<br />
+         theoretically.<br />
+         <br />
+         (The document is, of course, just the liar&#39;s paradox in another
+         guise. If<br />
+         anyone is uncomfortable with the use of an implicit scope for
+         ``this&#39;&#39;, the<br />
+         statement </cite>
+      </p>
+      <p>
+         <cite><br />
+                { this a n3:falsehood } a log:Truth .</cite>
+      </p>
+      <p>
+         <cite><br />
+         under a reading that log:Truth is contingent truth would have done
+         just as<br />
+         well.)</cite>
+      </p>
+      <p>
+         ]]
+      </p>
+      <p>
+         -- Peter 
+         Patel-Schneider <a
+         href="http://lists.w3.org/Archives/Public/www-rdf-logic/2002Apr/0095.html">
+         http://lists.w3.org/Archives/Public/www-rdf-logic/2002Apr/0095.html</a>
+      </p>
+      <p>
+         Followup:
+      </p>
+      <p>
+         <a
+         href="http://lists.w3.org/Archives/Public/www-rdf-logic/2002Apr/0106.html">
+         http://lists.w3.org/Archives/Public/www-rdf-logic/2002Apr/0106.html</a>
+      </p>
+      <p>
+         Tarski&#39;s &quot;Liar&#39;s paradox&quot; led to his stating:<br />
+         <br />
+         [[<br />
+         <cite>8. THE INCONSISTENCY OF SEMANTICALLY CLOSED LANGUAGES.7<br />
+         <br />
+              If we now analyze the assumptions which lead to the antinomy of
+         the<br />
+         liar, we notice the following:<br />
+         <br />
+         <br />
+         We have implicitly assumed that the language in which the antinomy
+         is<br />
+         constructed contains, in addition to its expressions, also the names
+         of<br />
+         these expressions, as well as semantic terms such as the term
+         &quot;true&quot;<br />
+         referring to sentences of this language; we have also assumed that
+         all<br />
+         sentences which determine the adequate usage of this term can be
+         asserted in<br />
+         the language. A language with these properties will be called
+         &quot;semantically<br />
+         closed.&quot;<br />
+         <br />
+         We have assumed that in this language the ordinary laws of logic
+         hold.</cite><br />
+         ]]<br />
+         -- A. Tarski <a
+         href="http://www.ditext.com/tarski/tarski.html">http://www.ditext.com/tarski/tarski.html</a><br />
+
+      </p>
+      <p>
+         And so the problem of such paradoxes may be intrinsic to attempts to
+         &quot;layer&quot; languages on top of languages which are
+         &quot;semantically closed&quot; such as RDF sans unasserted triples.
+      </p>
+      <h2>
+         Solution
+      </h2>
+      <p>
+         The provision for triples that are unasserted allows such triples to
+         be employed by OWL for purely syntactic purposes e.g.
+      </p>
+<pre>
+&lt;intersectionOf&gt;
+      &lt;List&gt;
+         &lt;first&gt;
+            &lt;Class rdf:resource= &quot;#student&quot;/&gt;
+         &lt;/first&gt;          
+         &lt;rest&gt;
+            &lt;List&gt;
+              &lt;first&gt;
+                &lt;Class rdf:resource=&quot;#employee&quot;/&gt;
+              &lt;/first&gt;
+              &lt;rest&gt;&lt;nil/&gt;&lt;/rest&gt;
+            &lt;/List&gt;
+         &lt;/rest&gt;
+     &lt;/List&gt;
+&lt;/intersectionOf&gt;
+</pre>
+      <p>
+         can be defined to entail =&gt;
+      </p>
+<pre>
+&lt;intersectionOf&gt;
+   &lt;List&gt;
+        &lt;first&gt;
+            &lt;Class rdf:resource=&quot;#employee&quot;/&gt;
+        &lt;/first&gt;
+        &lt;rest&gt;
+          &lt;List&gt;&lt;first&gt;
+                  &lt;Class rdf:resource=&quot;#student&quot;/&gt;
+             &lt;/first&gt;
+             &lt;rest&gt;&lt;nil/&gt;&lt;/rest&gt;
+          &lt;/List&gt;
+        &lt;/rest&gt;
+    &lt;/List&gt;
+&lt;/intersectionOf&gt;
+</pre>
+      <p>
+         i.e. owl:List, owl:first, owl:rest are used for syntactic purposes by
+         OWL, whose MT defines the equivalence of the expressions regardless of
+         the &quot;truth&quot; about which is first etc.
+      </p>
+      <p>
+         Similarly expressions such as:
+      </p>
+      <p>
+         this owl:include &lt;<a
+         href="http://example.org/anOntology.owl">http://example.org/anOntology.owl</a>&gt;
+         .
+      </p>
+      <p>
+         are used as syntactic extensions to RDF, and result in committment to
+         the referenced ontology.
+      </p>
+      <p>
+         The real requirement for unasserted triples comes down to the real
+         inability of a language to extend itself:
+      </p>
+      <p>
+         [[
+      </p>
+      <p>
+         This idea of a self-extending language that can, in<br />
+         principle, describe extensions to itself and then in some sense<br />
+         become those extensions, like a railway locomotive laying its
+         own<br />
+         tracks ahead of itself, is a powerful vision, and one that I can
+         see<br />
+         might excite considerable enthusiasm.  However, so is a<br />
+         perpetual-motion machine, and for much the same reasons.
+      </p>
+      <p>
+         ]]
+      </p>
+      <p>
+         -- Pat Hayes <a
+         href="http://lists.w3.org/Archives/Public/www-webont-wg/2002Apr/0253.html">
+         http://lists.w3.org/Archives/Public/www-webont-wg/2002Apr/0253.html</a>
+      </p>
+      <br />
+      <br />
+      <p>
+         &quot;Comprehensive entailments&quot; (CE) had been proposed as a
+         &quot;way out of the dark&quot; i.e. a solution wich does not involve
+         unasserted triples:
+      </p>
+      <p>
+         -- Jeremy Carroll <a
+         href="http://lists.w3.org/Archives/Public/www-webont-wg/2002Apr/0155.html">
+         http://lists.w3.org/Archives/Public/www-webont-wg/2002Apr/0155.html</a>
+      </p>
+      <p>
+         <a
+         href="http://lists.w3.org/Archives/Public/www-webont-wg/2002May/0060.html">
+         http://lists.w3.org/Archives/Public/www-webont-wg/2002May/0060.html</a>
+      </p>
+      <p>
+         This proposal appears to have problems with paradoxes:
+      </p>
+      <p>
+         -- Peter Patel-Schneider <a
+         href="http://lists.w3.org/Archives/Public/www-webont-wg/2002May/0064.html">
+         http://lists.w3.org/Archives/Public/www-webont-wg/2002May/0064.html</a>
+      </p>
+      <p>
+         From a theoretical perspective Godel&#39;s Proof raises concerns as to
+         the viability of such an approach (e.g. substitute &quot;CE&quot; for
+         &quot;PM&quot;). In any case, given the raised paradox, such an
+         approach would appear to require a considerable degree of additional
+         research which is not appropriate to the charter of the WG. As Jeremy Carroll notes <a
+         href="http://lists.w3.org/Archives/Public/www-webont-wg/2002May/0098.html">
+         http://lists.w3.org/Archives/Public/www-webont-wg/2002May/0098.html</a>
+      </p>
+      <p>
+         It is important that the WebOnt WG proceed with accepted solutions to
+         its problems to the extent possible, and avoid the tendency to wander
+         into &#39;research&#39; activities. Jeremy Caroll has noted that the
+         accepted DL formalism of the &quot;A-box/T-box&quot; uses the
+         &quot;unasserted/asserted&quot; distinction:
+      </p>
+      <p>
+         [[
+      </p>
+      <cite>The T-Box is the description of the classes and properties used in
+      an<br />
+      ontology or schema, the A-Box is the description of the objects in
+      the<br />
+      domain of discourse.<br />
+      <br />
+      Thus rephrasing the very short summary, embedding these definitions
+      of<br />
+      the A-Box and T-Box words comes to:<br />
+      <br />
+      All formally specified Description Logics separate the assertional<br />
+      descriptions of objects in the domain of discourse from the<br />
+      terminological descriptions of the classes and properties used
+      within<br />
+      these assertional descriptions. RDFS does not make this separation.
+      Thus<br />
+      the WebOnt WG has considered doing Description Logic without this<br />
+      separation and concluded that it is too difficult. Darkness is a
+      bit<br />
+      that allows distinguishing: some (non-dark) parts of an RDF graph
+      as<br />
+      following RDFS semantics, this will correspond to the assertional<br />
+      descriptions, from some parts of an RDF graph that correspond to
+      the<br />
+      terminological descriptions, these will not follow the RDFS
+      semantics.</cite> 
+      <p>
+         ]]
+      </p>
+      <p>
+         -- Jeremy Carroll <a
+         href="http://lists.w3.org/Archives/Public/www-webont-wg/2002May/0212.html">
+         http://lists.w3.org/Archives/Public/www-webont-wg/2002May/0212.html</a>
+      </p>
+      <p>
+         It should be noted that this is <strong>one</strong> of several ways
+         of developing the OWL model theory and that to the extent that it
+         <em>prima facie</em> does not provide for <em>classes as
+         instances</em> (e.g. see   Guus Schreiber <a
+         href="http://lists.w3.org/Archives/Public/www-webont-wg/2002May/0223.html">
+         http://lists.w3.org/Archives/Public/www-webont-wg/2002May/0223.html</a>
+          ) that the OWL model theory itself can still be develop to assert
+         such classes as instances.
+      </p>
+      <br />
+      <br />
+      <h2>
+         Implementing &quot;unasserted triples&quot; in RDF.
+      </h2>
+      <p>
+         The RDF MT as it stands is entirely compatible with triples that are
+         not asserted. A mechanism is needed to label such triples. There are
+         several options:
+      </p>
+      <p>
+         1) a syntactic device such as contexts e.g. embedded &lt;rdf:RDF&gt;
+         or &lt;rdf:context&gt; or &lt;rdf:dark&gt;
+      </p>
+      <p>
+         By this syntactic device, RDF &#39;contexts&#39; may be implemented,
+         triples originating within which may not nessecarily be asserted. This
+         syntactic mechanism of identifying a collection of triples was
+         proposed by Jonathan Borden <a
+         href="http://lists.w3.org/Archives/Public/www-rdf-comments/2002JanMar/0036.html">
+         http://lists.w3.org/Archives/Public/www-rdf-comments/2002JanMar/0036.html</a>
+      </p>
+      <p>
+         For example:
+      </p>
+      <p>
+         &lt;owl:Class&gt;&lt;owl:intersectionOf
+         &gt;&lt;rdf:RDF&gt;&lt;owl:Thing rdf:resource=
+         &quot;#student&quot;/&gt;&lt;owl:Thing rdf:resource=
+         &quot;#employee&quot;/&gt;&lt;/rdf:RDF&gt;&lt;/owl:intersectionOf&gt;&lt;/owl:Class&gt;
+      </p>
+      <p>
+         2) an RDFS based device such as proposed by Pat Hayes <a
+         href="http://lists.w3.org/Archives/Public/www-webont-wg/2002Apr/0290.html">
+         http://lists.w3.org/Archives/Public/www-webont-wg/2002Apr/0290.html</a>
+      </p>
+      <p>
+         This mechanism would require the least change to RDF, perhaps only
+         provision for the &quot;rdf:Unasserted&quot; class. For example :
+      </p>
+      <p>
+         1) Assume owl:List, owl:first, owl:rest, owl:nil are dark -- that is
+         triples which have these as predicates are unasserted. This can be
+         indicated by the following (NT):
+      </p>
+<pre>
+owl:List rdf:type rdf:Unasserted .
+owl:first rdf:type rdf:Unasserted .
+owl:rest rdf:type rdf:Unasserted .
+owl:nil rdf:type rdf:Unasserted .
+</pre>
+      <p>
+         -- bind &quot;owl&quot; and &quot;rdf&quot; prefixes to namespace URIs
+      </p>
+      <p>
+         Now the _conclusion_ would be made from the _premise_ according the
+         OWL model theory, but of course not by the RDF model theory.<br />
+         <br />
+         ---PREMISE----<br />
+         &lt;owl:Class&gt;<br />
+                 &lt;owl:intersectionOf&gt;<br />
+                             &lt;owl:List&gt;<br />
+                                     &lt;owl:first
+         rdf:resource=&quot;#student&quot;/&gt;<br />
+                                     &lt;owl:rest&gt;<br />
+                                         &lt;owl:List&gt;<br />
+                                             &lt;owl:first
+         rdf:resource=&quot;#employee&quot;/&gt;<br />
+                                             &lt;owl:rest
+         rdf:resource=&quot;...#nil&quot;/&gt;<br />
+                                         &lt;/owl:List&gt;<br />
+                                    &lt;/owl:rest&gt;<br />
+                             &lt;/owl:List&gt;<br />
+                 &lt;/owl:intersectionOf&gt;<br />
+         &lt;/owl:Class&gt;
+      </p>
+      <p>
+         i.e.
+      </p>
+<pre>
+_:C1 rdf:type owl:Class . 
+_:C1 owl:intersectionOf _:L1 . 
+_:L1 owl:first &lt;#student&gt; . 
+_:L1 owl:rest _:L2 . 
+_:L2 owl:first &lt;#employee&gt; .
+_:L2 owl:rest owl:nil .
+</pre>
+      <p>
+         <br />
+         ---PREMISE---<br />
+         <br />
+         ---CONCLUSION---<br />
+         &lt;owl:Class&gt;<br />
+                 &lt;owl:intersectionOf&gt;<br />
+                             &lt;owl:List&gt;<br />
+                                     &lt;owl:first
+         rdf:resource=&quot;#employee&quot;/&gt;<br />
+                                     &lt;owl:rest&gt;<br />
+                                         &lt;owl:List&gt;<br />
+                                             &lt;owl:first
+         rdf:resource=&quot;#student&quot;/&gt;<br />
+                                             &lt;owl:rest
+         rdf:resource=&quot;...#nil&quot;/&gt;<br />
+                                         &lt;/owl:List&gt;<br />
+                                    &lt;/owl:rest&gt;<br />
+                             &lt;/owl:List&gt;<br />
+                 &lt;/owl:intersectionOf&gt;<br />
+         &lt;/owl:Class&gt;
+      </p>
+      <p>
+         i.e.
+      </p>
+<pre>
+_:C2 rdf:type owl:Class . 
+_:C2 owl:intersectionOf _:L3 . 
+_:L3 owl:first &lt;#employee&gt; . 
+_:L3 owl:rest _:L4 . 
+_:L4 owl:first &lt;#student&gt; .
+_:L4 owl:rest owl:nil .
+</pre>
+      <p>
+         ---CONCLUSION---<br />
+         <br />
+         Now of course, such a conclusion licensed by the OWL MT does not
+         itself require unasserted triples, this serves as an example
+         entailment to be made by the OWL MT as an extension of the RDF MT. As
+         such, the set of entailments licensed by the OWL MT would be a proper
+         superset of those made by the underlying RDF MT, and hence a proper
+         &#39;layering&#39; of OWL on RDF is achieved. 
+      </p>
+      <p>
+         The change required to RDF for this mechanism is:
+      </p>
+      <p>
+         1) provision of the rdf:Unasserted class in the RDF syntax
+      </p>
+      <p>
+         2) direction that triples having a predicate of type rdf:Unasserted
+         are not included in the asserted set of triples according to the RDF
+         model theory.<br />
+      </p>
+      <h2>
+         Conclusion
+      </h2>
+      <p>
+         WebOnt needs some unasserted, syntactic triples in order to proceed
+         with layering the OWL model theory on the RDF model theory. Two
+         mechanisms are provided (<i>note: that these are but two mechanisms discussed by
+		 the WebOnt WG which acknowledges the possibility that other appropriate solutions
+		 may exist</i>):
+      </p>
+	  <ol><li>
+      <p>
+         a syntactic mechanism i.e. embedded &lt;rdf:RDF&gt;, the advantage
+         is that this may provide a general &#39;context&#39; mechanism for
+         RDF. The disadvantage, from the WebOnt perspective is that OWL
+         ontologies would be cluttered with &lt;rdf:RDF&gt; elements, which
+         would likely confuse users.
+      </p></li><li>
+      <p>
+         a semantic mechanism which does not provide a general context
+         mechanism for RDF but has the advantage from the WebOnt perspective of
+         obviating any required syntactic changes to DAML+OIL/OWL or any other
+         RDF based language, to indicate the unasserted triples. By this
+         mechanism, the changes needed in the RDF syntax would be minimal i.e.
+         provision of the rdf:Unasserted class.
+      </p></li></ol>
+   </body>
+</html>
+

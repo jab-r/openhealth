@@ -1,0 +1,142 @@
+default namespace hist = "http://www.openhealth.org/ASTM/history"
+his.content = Flow.model | normal | not.questioned
+
+allergy.types =
+	attribute patient-reported {"y"|"n"}?,
+	attribute clinician-reported {"y"|"n"}?,
+	attribute family-reported {"y"|"n"}?
+
+history.model =
+	past.medical.history?,
+	past.surgical.history?,
+	obstetrical.gynecologic.history?,
+	habits?,
+	family.history?,
+	social.history?,
+	dental.history?,
+	perinatal.history?,
+	medication.history?,
+	immunizations?,
+	substance.abuse?,
+	diet?,
+	education?,
+	work.history?,
+	review.of.systems?
+
+past.medical.history.model = his.content
+past.surgical.history.model = his.content
+psychiatric.history.model = his.content
+obstetrical.gynecologic.history.model = his.content
+habits.model = his.content
+family.history.model = his.content
+social.history.model = his.content
+dental.history.model = his.content
+perinatal.history.model = his.content
+medication.history.model = his.content
+immunizations.model = his.content
+substance.abuse.model = his.content
+diet.model = his.content
+education.model = his.content
+work.history.model = his.content
+
+ASTM.Allergies.Mix =
+		drug.allergies|
+		food.allergies|
+		environmental.allergies|
+		other.allergies
+
+known.allergies.model = his.content | ASTM.Allergies.Mix*
+
+ASTM.allergies.model = his.content | allergy*
+drug.allergies.model = ASTM.allergies.model
+food.allergies.model = ASTM.allergies.model
+environmental.allergies.model = ASTM.allergies.model
+other.allergies.model = ASTM.allergies.model
+allergy.model = his.content
+
+medications.model = his.content | medication*
+medication.model = his.content
+
+review.of.systems.model = his.content | (
+	general|skin|head|
+	eyes|ears|nose|
+	mouth.and.throat|neck|breasts|
+	respiratory|cardiac|gastrointestinal|
+	urinary|musculoskeletal|peripheral.vascular|
+	neurologic|endocrine|psychiatric)*
+
+general.model = his.content
+skin.model = his.content
+head.model = his.content
+eyes.model = his.content
+ears.model = his.content
+nose.model = his.content
+mouth.and.throat.model = his.content
+neck.model = his.content
+breasts.model = his.content
+respiratory.model = his.content
+cardiac.model = his.content
+gastrointestinal.model = his.content
+
+urinary.model = his.content
+genital.model = his.content
+musculoskeletal.model = his.content
+peripheral.vascular.model = his.content
+neurologic.model = his.content
+hematologic.model = his.content
+endocrine.model = his.content
+psychiatric.model = his.content
+<!-- element definitions -->
+past.medical.history = element past.medical.history {astm.content.attrib, past.medical.history.model}
+past.surgical.history = element past.surgical.history {astm.content.attrib, past.surgical.history.model}
+psychiatric.history = element psychiatric.history {astm.content.attrib, psychiatric.history.model}
+obstetrical.gynecologic.history = element obstetrical.gynecologic.history {astm.content.attrib, obstetrical.gynecologic.history.model}
+habits = element habits {astm.content.attrib, habits.model}
+family.history = element family.history {astm.content.attrib, family.history.model}
+social.history = element social.history {astm.content.attrib, social.history.model}
+dental.history = element dental.history {astm.content.attrib, dental.history.model}
+perinatal.history = element perinatal.history {astm.content.attrib, perinatal.history.model}
+medication.history = element medication.history {astm.content.attrib, medication.history.model}
+immunizations = element immunizations {astm.content.attrib, immunizations.model}
+substance.abuse = element substance.abuse {astm.content.attrib, substance.abuse.model}
+diet = element diet {astm.content.attrib, diet.model}
+education = element education {astm.content.attrib, education.model}
+work.history = element work.history {astm.content.attrib, work.history.model}
+
+known.allergies = element known.allergies {astm.content.attrib, known.allergies.model}
+drug.allergies = element drug.allergies {astm.content.attrib, drug.allergies.model}
+food.allergies = element food.allergies {astm.content.attrib, food.allergies.model}
+environmental.allergies = element environmental.allergies {astm.content.attrib, environmental.allergies.model}
+other.allergies = element other.allergies {astm.content.attrib, other.allergies.model}
+
+allergy = element allergy {astm.content.attrib, allergy.types, allergy.model}
+
+medications = element medications {astm.content.attrib, medications.model}
+medication = element medication {astm.content.attrib, medication.model}
+
+review.of.systems = element # {astm.content.attrib, review.of.systems.model}
+general = element # {astm.content.attrib, general.model}
+skin = element # {astm.content.attrib, skin.model}
+head = element # {astm.content.attrib, head.model}
+eyes = element # {astm.content.attrib, eyes.model}
+ears = element # {astm.content.attrib, ears.model}
+nose = element # {astm.content.attrib, nose.model}
+mouth.and.throat = element # {astm.content.attrib, mouth.and.throat.model}
+neck = element # {astm.content.attrib, neck.model}
+breasts = element # {astm.content.attrib, breasts.model}
+respiratory = element # {astm.content.attrib, respiratory.model}
+cardiac = element # {astm.content.attrib, cardiac.model}
+gastrointestinal = element # {astm.content.attrib, gastrointestinal.model}
+
+urinary = element # {astm.content.attrib, urinary.model}
+genital = element # {astm.content.attrib, genital.model}
+musculoskeletal = element # {astm.content.attrib, musculoskeletal.model}
+peripheral.vascular = element # {astm.content.attrib, peripheral.vascular.model}
+neurologic = element # {astm.content.attrib, neurologic.model}
+hematologic = element # {astm.content.attrib, hematologic.model}
+endocrine = element # {astm.content.attrib, endocrine.model}
+psychiatric = element # {astm.content.attrib, psychiatric.model}
+
+normal = element normal{empty}
+not.questioned = element not.questioned {empty}
+

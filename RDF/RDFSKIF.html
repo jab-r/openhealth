@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>RDF Regular Expression Language (RREL)</title>
+</head>
+<body>
+<pre>
+--
+<P>&gt; </P><P>&gt; Heres a BNF version of something close to SKIF, which is about the </P><P>&gt; simplest logical BNF I can think of. You tell me how to bundle-ize </P><P>&gt; it. The exact use of parens here is lisp style, but that's not </P><P>&gt; important. We could miss out the &lt;term&gt; clause and say </P><P>&gt; relationalAtomicSentence ::= (word+) if that would be easier, but it </P><P>&gt; would be a pity.</P><P>&gt; </P><P>&gt; word ::= qname |URIreference |Variable</P><P>&gt; &lt;comment&gt; analogous to identifiers in programming language; basic </P><P>&gt; lexical items used to 'name' things &lt;/comment&gt;</P>
+<pre>
+sentence ::= (relAtomicSentence | propSentence |quantSentence)
+word ::= (qname|URIreference|variable)
+term ::= (word | {word term*} | [term term term])
+</pre>
+<P>as list:</P>
+<pre>
+term ::= (word | [word term list]|[word term|nil nil] | [term term term])
+<P>&gt; relAtomicSentence ::= (term+)</P><P>&gt; propSentence ::= (not sentence) | (and|or sentence*) | (=&gt;|iff </P><P>&gt; sentence sentence)</P><P>&gt; quantSentence ::= (forall|exist (variable+) sentence)</P><P>&gt; document ::= sentence*</P><P>&gt;</P>
+<pre>
+relAtomicSentence ::= [term {term*} nil]
+propSentence ::= ([not sentence nil] | [(and|or) {sentence*} nil] | [(iff|implies) sentence sentence])
+quantSentence ::= [(forall|exist) variable|{variable+} sentence]
+</pre>
+<PRE>
+relAtomicSentence ::= [term term list]|[term term|nil nil]
+varList ::= [etc variable varList|nil]
+quantSentence ::= [(forall|exist) variable|varList sentence]
+</PRE>
+<P>Now suppose a 'RDF' schema language (as an extension to RELAXNG<BR><A 
+href="http://relaxng.org">http://relaxng.org</A> and whose formal semantics 
+could be written as an<BR>extension of the formal semantics of RELAXNG). The 
+purpose of this language<BR>is to declare constraints on the values of the 
+elements of triples. This is<BR>in "tree regular expression" form and mirrors 
+the form of the schema for the<BR>RDF Surface Syntax <A 
+href="http://www.openhealth.org/RDF/RDFSurfaceSyntax">http://www.openhealth.org/RDF/RDFSurfaceSyntax</A> 
+or<BR><A 
+href="http://www.openhealth.org/RDF/RDF.rng">http://www.openhealth.org/RDF/RDF.rng</A></P>
+<P>&lt;define name="sentence"&gt;<BR>&nbsp;&nbsp;&nbsp; 
+&lt;choice&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;ref 
+name="relAtomicSentence"/&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;ref name="propSentence"/&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;ref name="quantSentence"/&gt;<BR>&nbsp;&nbsp;&nbsp; 
+&lt;/choice&gt;<BR>&lt;/define&gt;</P>
+<P>&lt;define name="relAtomicSentence"&gt;<BR>&nbsp;&nbsp;&nbsp; 
+&lt;statement&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;predicate&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;term/&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;/predicate&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;subject&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;bundle/&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;/subject&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;object&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;nil/&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;object&gt;<BR>&nbsp;&nbsp;&nbsp; 
+&lt;/statement&gt;<BR>&lt;/define&gt;<BR>&lt;define 
+name="propSentence"&gt;<BR>&nbsp;&nbsp;&nbsp; 
+&lt;choice&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;statement&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;predicate 
+name="not"/&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;subject&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;ref 
+name="sentence"/&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;/subject&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;/statement&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;statement&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;choice&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;predicate 
+name="and"/&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;predicate 
+name="or"/&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;/choice&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;subject&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;bundle/&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;/subject/&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;/statement&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;statement&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;choice&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;predicate 
+name="iff"/&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;predicate 
+name="implies"/&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;/choice&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;subject&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;ref 
+name="sentence"/&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;/subject&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;object&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;ref 
+name="sentence"/&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;/object&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/statement&gt;&lt;/define&gt;&lt;define 
+name="quantSentence"&gt;<BR>&nbsp;&nbsp;&nbsp; 
+&lt;statement&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;choice&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;predicate 
+name="forall"/&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;predicate 
+name="exists"/&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;/choice&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;subject&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;oneOrMore&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;variable/&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;/oneOrMore/&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;/subject&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;object&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;ref name="sentence"/&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;/object&gt;<BR>&nbsp;&nbsp;&nbsp; 
+&lt;/statement&gt;<BR>&lt;/define&gt;<BR></P></pre></pre>
+
+
+</body>
+</html>

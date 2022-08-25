@@ -1,0 +1,21 @@
+<!-- Resource Module -->
+
+<grammar 
+	ns="http://www.rddl.org/"
+	xmlns="http://www.thaiopensource.com/trex">
+
+<define name="resource">
+  <element name="resource">
+    <ref name="resource.attlist"/>
+    <ref name="Flow.model"/>
+  </element>
+</define>
+
+<define name="resource.attlist">
+  <ref name="lang.attrib"/>
+  <ref name="id.attrib"/>
+  <ref name="XMLBASE.attrib"/>
+  <ref name="XLINK.simple.attlist"/>
+</define>
+
+</grammar>

@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//XML-DEV//DTD XHTML RDDL 1.0//EN" "http://www.rddl.org/rddl-xhtml.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:rddl="http://www.rddl.org/"
+	xml:lang="en">
+<head>
+	<title>Java Object Model for RDDL 1.0 </title>
+	<link href="xrd.css" type="text/css" rel="stylesheet"/>
+</head>
+
+<body>
+<h1>The RDDL Java Object Model 0.5</h1>
+<p>The <a href="http://www.rddl.org/">RDDL</a> Java Object Model is based upon the interfaces <code>Namespace</code> and <code>Resource</code>. 
+A Namespace is defined as a collection of resources. Each resource within a namespace is identified by an XPointer, typically either an <a href="http://www.w3.org/TR/xptr#bare-names">ID</a> or <a href="http://www.w3.org/TR/xptr#child-seqs">ChildSeq</a>. 
+A <code>Container</code> is derived from a Namespace and allows containment of arbitrary URIs. Alternatively a Namespace can be considered a restriction of a generic Container whose elements are
+limited to the particular namespace. </p>
+<rddl:resource id="javadoc"
+	xlink:role="http://www.w3.org/TR/html4/"
+	xlink:arcrole="http://www.rddl.org/purposes#documentation"
+	xlink:title="RDDL Javadoc"
+	xlink:href="docs/"
+	>
+	<div class="resource">
+	<p>The javadoc is available <a href="docs/">here</a>.</p>
+	</div>
+</rddl:resource>
+<rddl:resource id="Namespace"
+	xlink:role="http://www.rddl.org/natures#java"
+	xlink:arcrole="http://www.rddl.org/purposes#interface"
+	xlink:href="http://www.rddl.org/org/rddl/Namespace.java"
+	>
+<h2>Namespace</h2>
+<p>A namespace is defined as a collection of resources. The namespace interface provides various
+methods to subdivide this collection of resources given various conditions. The <a href="http://java.sun.com/products/jdk/1.2/docs/api/java/util/SortedMap.html">SortedMap</a> is typically implemented
+as a Red-Black <a href="http://java.sun.com/products/jdk/1.2/docs/api/java/util/TreeMap.html">Tree Map</a>. </p>
+<pre>
+public interface Namespace {	
+	/**
+	 * A <a href="#Resource">resource</a> is qualified by its <a href="http://www.rddl.org/natures">Nature</a>.
+	 */
+	public abstract SortedMap getResourcesFromNature(String role);
+	/**
+	 * A <a href="#Resource">resource</a> is qualified by its <a href="http://www.rddl.org/purposes">Purpose</a>.
+	 * @param purpose - the purpose of the link
+	 * @returns SortedMap
+	 */
+	public abstract SortedMap getResourcesFromPurpose(String purpose);
+	/**
+	 * Given a particular URI href, obtain the set of matching <a href="#Resource">resources</a>
+	 */
+	public abstract SortedMap getResourcesFromHref(String href);
+	/**
+	 * The value of xlink:title can also be used as a key
+	 */
+	public abstract SortedMap getResourcesFromTitle(String title);
+	/**
+	 * The value of xml:lang can be used as a key
+	 */
+	public abstract SortedMap getResourcesFromLang(String lang);
+	/**
+	 * It may be helpful to select a set of resources given a range of ids.
+	 * The id is a either a bare name or child sequence per XPointer
+	 */
+	public abstract SortedMap getResourcesFromIdRange(String id0,String id1);
+	/**
+	 * Get a specific resource given an id.
+	 */
+	public abstract Resource getResourceFromId(String id);
+	/*
+	 * get an iterator for all the resources in the namespace
+	 */
+	public abstract Iterator getResources();
+	/**
+	 * every namespace has a URI
+	 */
+	public abstract String getURI();
+}
+</pre>
+</rddl:resource>
+<rddl:resource id="Resource"
+	xlink:role="http://www.rddl.org/natures#java"
+	xlink:arcrole="http://www.rddl.org/purposes#interface"
+	xlink:href="http://www.rddl.org/org/rddl/Resource.java"
+	>
+<h2>Resource</h2>
+<p>A Resource has various properties and represents an identifier within a namespace or more generally a URI reference.</p>
+<pre>
+public interface Resource {	
+	/**
+	 * The <a href="http://www.rddl.org/#purpose">purpose</a> of a resource is represented by the xlink:arcrole. 
+	 * Purposes for well known types are defined in <a href="http://www.rddl.org/purposes">this</a> RDDL document.
+	 * @returns String purpose - the purpose of the resource
+	 */
+ 	public abstract String getPurpose();
+	/**
+	 * The <a href="http://www.rddl.org/#nature">nature</a> of a resource is represented by the xlink:role.
+	 * This method gets the xlink:role which corresponds to the nature of the related resource. 
+	 * The role must be an absolute URI reference. A fragment identifier may be present. The base URI is the URI of
+	 * the RDDL document containing the resource.
+	 */
+ 	public abstract String getNature();
+	/**
+	 * the value xml:base if present
+	 */
+	public abstract String getBaseURI();
+	/**
+	 * Get the resource xlink:href.
+	 *
+	 * This method gets the resource's URI which corresponds to the xlink:href. 
+	 * The href may be either an absolute or relative URI. The base URI is the URI of
+	 * the RDDL document containing the resource.
+	 *
+	 */
+ 	public abstract String getHref();
+	/**
+	 * the id if defined directly on the rddl:resource element
+	 */
+	public abstract String getId();
+	/**
+	 * this is either the id of the resource or a child seq per xpointer
+	 */
+	public abstract String getFragmentId();
+	/**
+	 * every resource has a URI
+	 */
+	public abstract String getURI();
+	/**
+	 * xml:lang
+	 */
+	public abstract String getLang();
+	/**
+	 * xlink:title
+	 */
+ 	public abstract String getTitle();
+	/**
+	 * This is null unless the resource is a container
+	 */
+	public abstract Container getContainer();
+}
+</pre>
+</rddl:resource>
+<rddl:resource id="Container"
+	xlink:role="http://www.rddl.org/natures#java"
+	xlink:arcrole="http://www.rddl.org/purposes#interface"
+	xlink:href="http://www.rddl.org/org/rddl/Container.java"
+	>
+<h2>Container</h2>
+<p>A container extends a namespace providing the ability to contain arbitrary URIs in addition to URIs from within the namespace.
+	The mechanism by which rddl:resources can be labelled with a URI outside the namespace is through the <code>xml:base</code> attribute.
+</p>
+<pre>
+public interface Container extends Namespace {	
+	public abstract Resource getResourceFromURI(String uri);
+	public abstract SortedMap getResourcesFromURIRange(String uri0,String uri1);
+	public abstract void addResource(Resource r);
+}
+</pre>
+</rddl:resource>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Proposed RDF Abstract Syntax</title>
+	<link rel="stylesheet" href="../RDDL/xrd.css" type="text/css"/>
+</head>
+
+<body>
+<h1>RDF Abstract Syntax</h1>
+<p>Editors: </p>
+<p>Jonathan Borden <a href="mailto:jonathan@openhealth.org">jonathan@openhealth.org</a></p>
+<p>Pat Hayes <a href="pat.hayes@ai.uwf.edu">phayes@ai.uwf.edu</a></p>
+<p>Drew McDermott <a href="drew.mcdermott@yale.edu">drew.mcdermott@yale.edu</a></p>
+<p>This version: <a href="http://www.openhealth.org/RDF/RDFAbstractSyntax-20010610.html">June 10, 2001</a></p>
+<p><a href="http://www.openhealth.org/RDF/RDFAbstractSyntax.html">Latest version</a></p>
+<p>Previous version: <a href="http://www.openhealth.org/RDF/RDFAbstractSyntax-20010603.html">June 3, 2001</a></p>
+<h2>Introduction</h2>
+	<p>This document defines an <em>Abstract Syntax</em> or <em>Infoset</em> for RDF [<a href="#RDF-MS">1</a>].
+	RDF Statements are commonly refered to as triples of {predicate,subject,object}. In practice it is useful to group triples into sets of statements termed: <em>Contexts</em>.</p>
+<h2>Context</h2>
+<p>A Context is represented by an atom. A context is 
+a list (ordered set) of Statement triples &lt;predicate,subject,object&gt;. For each context the statement quadruple:
+&lt;predicate,subject,object,context&gt; is equivalent to the triple &lt;predicate,subject,object&gt;.</p>
+<h2>Statement</h2>
+<p>A Statement is represented by the 4-tuple: <b>&lt;predicate,subject,object,context&gt;</b></p>
+<h3>atom</h3>
+<p>An atom represents either an XML QName, according to XML Namespaces, or a variable matching the EBNF:</p>
+<p>atom := (QName | quantifiedVariable| rowVariable |  Statement)</p>
+<p>quantifiedVariable := ('?' Name)  Name as defined in XML 1.0</p>
+<p>rowVariable := ('@' Name)</p>
+<h3>predicate</h3>
+<p>A predicate is an <code>atom</code>.</p>
+<h3>subject</h3>
+<p>A subject is an atom.</p>
+<h3>object</h3>
+<p>An object is an atom. Note that literal strings may be represented by the <code>data:</code> URI scheme.</p>
+<h3>context</h3>
+<p>A context is represented by a QName</p>
+<h4>Purpose of the Context</h4>
+<p>The context allows separation of statements into lists which can be asserted as a group. Contexts allow 'coloring' of subgraphs.
+The document from which a set of statements arises forms a context (represented by its URI). Contexts can 'contain' other contexts.</p>
+<h2>Abstract Syntax</h2>
+<ol>
+<li>There exists a set called QNames</li>
+<li>There exists a set called QuantifiedVariables</li>
+<li>There exists a set called RowVariables</li>
+<li>There exists a set called AtomicNames where for all a in AtomicNames => (a in QNames) or (a in quantifiedVariables) or (a in rowVariables)</li>
+<li>for all atomicName(x) &lt;=> x in AtomicNames</li>
+<li>There exists a set called Predicates where for all p in Predicates => atomicName(p)</li>
+<li>There exists a set called Subjects where for all s in Subjects => atomicName(s)</li>
+<li>There exists a set called Objects where for all o in Objects => atomicName(o)</li>
+<li>There exists a set called Contexts where for all c in Contexts => atomicName(c)</li>
+<li>There exists a set of Statements := {&lt;predicate,subject,object,context>}</li>
+</ol>
+<h2>Examples:</h2>
+<p>The statement:</p>
+<p><em>(not (says jon (color sky blue))</em></p>
+<p>is represented by the Expression:</p>
+[not [says jon [color sky blue]]]
+<p>The Squish [<a href="#SQUISH">2</a>] query: (dc:creator, foo, ?x)(foaf:mbox, ?x, mailto:jonathan@openhealth.org)</p>
+<p>is represented as:
+<ol>
+	<li>&lt;dc:creator,foo,?x,ctx-query&gt;</li>
+	<li>&lt;foaf:mbox,?x,mailto:jonathan@openhealth.org,ctx-query&gt;</li>
+</ol>
+
+<h2>S Expressions</h2>
+<p>An s-expression may be represented in XML:</p>
+<p>(or a b c d)</p>
+<p>becomes</p>
+<pre>
+&lt;or rdf:parseType="daml:list"&gt;
+&#160;&lt;a/&gt;
+&#160;&lt;b/&gt;
+&#160;&lt;c/&gt;
+&#160;&lt;d/&gt;
+&lt;/or&gt;
+</pre>
+<p>In the case of representing an s-expression in RDF:</p>
+<p>[or a [or b [or c d]]]</p>
+<p class="ednote">is this correct?</p>
+<ol>
+<h2>Expressions</h2>
+<p>Expressions are collections of statements within a common context. An expression is a subgraph. The root or top level expression
+within a particular context are those statements which are not referred as the subject or object of any other statement within the context.</p>
+<p class="ednote">Is there a formal expression of this?</p>
+<li><a id="RDF-MS"></a><a href="http://www.w3.org/TR/REC-rdf-syntax">W3C RDF Model and Syntax 1.0</a></li>
+<li><a id="SQUISH"></a><a href="http://swordfish.rdfweb.org/rdfquery/">ILRT Squish</a></li>
+<li><a href="http://www-db.stanford.edu/~melnik/rdf/db.html">RDF DB</a></li>
+<li><a href="http://lists.w3.org/Archives/Public/www-rdf-interest/2000Feb/0172.html">1</a></li>
+<li><a href="http://www.w3.org/DesignIssues/Notation3.html">N3</a></li>
+<li><a href="http://public.research.mimesweeper.com/RDF/RDFContexts.html">Klyne's Contexts</a></li>
+</ol>
+</body>
+</html>

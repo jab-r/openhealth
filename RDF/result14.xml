@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#subject"/>
+      <rdf:subject rdf:resource="#/1/1"/>
+      <rdf:object rdf:resource="http://www.w3.org/Home/Lassila"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="file:/D:/rdf/test14.xml#resource"/>
+      <rdf:subject rdf:resource="http://www.w3.org/Home/Lassila"/>
+      <rdf:object>http://www.w3.org/Home/Lassila</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate"/>
+      <rdf:subject rdf:resource="#/1/1"/>
+      <rdf:object rdf:resource="http://description.org/schema/Creator"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="file:/D:/rdf/test14.xml#resource"/>
+      <rdf:subject rdf:resource="http://description.org/schema/Creator"/>
+      <rdf:object>http://description.org/schema/Creator</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#object"/>
+      <rdf:subject rdf:resource="#/1/1"/>
+      <rdf:object>Ora Lassila</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <rdf:subject rdf:resource="#/1/1"/>
+      <rdf:object rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="file:/D:/rdf/test14.xml#resource"/>
+      <rdf:subject rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement"/>
+      <rdf:object>http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://description.org/schema/attributedTo"/>
+      <rdf:subject rdf:resource="#/1/1"/>
+      <rdf:object>Ralph Swick</rdf:object>
+   </rdf:Statement>
+</rdf:RDF>

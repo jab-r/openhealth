@@ -1,0 +1,199 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<title>The QName to URI quagmire</title>
+	<link rel="stylesheet" type="text/css" href="xset.css" />
+</head>
+<body>
+<p>
+QNames are used in XML to describe namespace qualified 
+elements and attributes. A QName has the syntax (prefix ':' localname) where the 
+prefix is bound to a namespace URI. QNames are specified in the XML Namespaces recommendation as a method providing 2 part
+namespace qualified names yet are extended by other W3C recommendations such as XML Schema and RDF as a way to name concepts
+such as datatypes.
+</p>
+<p>
+A quagmire is arising regarding these usages of QNames being used to name things in different ways in different specifications.
+Such outwardly appearing subtle, even arcane, differences, threaten to do great damamge to the ability to use W3C specifications together
+in a coherent fashion. This article explores some of these subtle differences in identifying resources based on QNames and URIs.
+</p>
+<h2>XML Schema's use of QNames</h2>
+<p>
+The recent release of the final XML Schema 1.0 
+Recommendation sets in stone a particular use of QNames as values and allows us 
+to examine the XML Schema mapping of QNames to URIs. This is described in <A 
+href="http://www.w3.org/TR/xmlschema-2/#built-in-datatypes">http://www.w3.org/TR/xmlschema-2/#built-in-datatypes</A>
+              
+                  .
+</p>
+<p>A QName describing a type is created from the namespace URI of the schema defining the type and the <em>value</em> of the name attribute on
+the type definition. The XML Schemas defining XML Schema itself provide an additional <em>id</em> attribute 
+value which is used to construct a URI reference. For example: <SPAN 
+class=m></SPAN></p><SPAN class=m>
+<DIV class=c style="MARGIN-LEFT: 1em; TEXT-INDENT: -2em"><A class=b href="#" 
+onclick="return false" onfocus=h()>-</A> <SPAN class=m></SPAN></DIV>
+<DIV class=c style="MARGIN-LEFT: 1em; TEXT-INDENT: -2em"><SPAN 
+class=m>&nbsp;&nbsp; &lt;</SPAN><SPAN class=t>xs:simpleType</SPAN><SPAN class=t> 
+name</SPAN><SPAN class=m>="</SPAN><B>int</B><SPAN class=m>"</SPAN><SPAN class=t> 
+id</SPAN><SPAN class=m>="</SPAN><B>int</B><SPAN class=m>"</SPAN><SPAN 
+class=m>&gt;</SPAN></DIV>
+<DIV>
+<DIV class=e>
+<DIV class=c style="MARGIN-LEFT: 1em; TEXT-INDENT: -2em"><A class=b href="#" 
+onclick="return false" onfocus=h()>-</A>&nbsp;&nbsp;&nbsp; <SPAN 
+class=m>&lt;</SPAN><SPAN class=t>xs:annotation</SPAN><SPAN 
+class=m>&gt;</SPAN></DIV>
+<DIV>
+<DIV class=e>
+<DIV style="MARGIN-LEFT: 1em; TEXT-INDENT: -2em"><SPAN 
+class=b>&nbsp;</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <SPAN 
+class=m>&lt;</SPAN><SPAN class=t>xs:documentation</SPAN> <SPAN 
+class=t>source</SPAN><SPAN 
+class=m>="</SPAN><B>http://www.w3.org/TR/xmlschema-2/#int</B><SPAN 
+class=m>"</SPAN><SPAN class=m> /&gt;</SPAN> </DIV></DIV>
+<DIV><SPAN class=b>&nbsp;</SPAN> <SPAN class=m>&lt;/</SPAN><SPAN 
+class=t>xs:annotation</SPAN><SPAN class=m>&gt;</SPAN></DIV></DIV></DIV>
+<DIV class=e>
+<DIV class=c style="MARGIN-LEFT: 1em; TEXT-INDENT: -2em"><A class=b href="#" 
+onclick="return false" onfocus=h()>-</A>&nbsp;&nbsp;&nbsp; <SPAN 
+class=m>&lt;</SPAN><SPAN class=t>xs:restriction</SPAN><SPAN class=t> 
+base</SPAN><SPAN class=m>="</SPAN><B>xs:long</B><SPAN class=m>"</SPAN><SPAN 
+class=m>&gt;</SPAN></DIV>
+<DIV>
+<DIV class=e>
+<DIV style="MARGIN-LEFT: 1em; TEXT-INDENT: -2em"><SPAN 
+class=b>&nbsp;</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <SPAN 
+class=m>&lt;</SPAN><SPAN class=t>xs:minInclusive</SPAN> <SPAN 
+class=t>value</SPAN><SPAN class=m>="</SPAN><B>-2147483648</B><SPAN 
+class=m>"</SPAN><SPAN class=t> id</SPAN><SPAN 
+class=m>="</SPAN><B>int.minInclusive</B><SPAN class=m>"</SPAN><SPAN class=m> 
+/&gt;</SPAN> </DIV></DIV>
+<DIV class=e>
+<DIV style="MARGIN-LEFT: 1em; TEXT-INDENT: -2em"><SPAN 
+class=b>&nbsp;</SPAN>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <SPAN 
+class=m>&lt;</SPAN><SPAN class=t>xs:maxInclusive</SPAN> <SPAN 
+class=t>value</SPAN><SPAN class=m>="</SPAN><B>2147483647</B><SPAN 
+class=m>"</SPAN><SPAN class=t> id</SPAN><SPAN 
+class=m>="</SPAN><B>int.maxInclusive</B><SPAN class=m>"</SPAN><SPAN class=m> 
+/&gt;</SPAN> </DIV></DIV>
+<DIV><SPAN class=b>&nbsp;</SPAN> <SPAN class=m>&lt;/</SPAN><SPAN 
+class=t>xs:restriction</SPAN><SPAN class=m>&gt;</SPAN><SPAN 
+class=m></SPAN></DIV>
+<DIV><SPAN class=m>&lt;/</SPAN><SPAN class=t>xs:simpleType</SPAN><SPAN 
+class=m>&gt;</SPAN></DIV></DIV></DIV>
+<DIV><SPAN class=m></SPAN>&nbsp;</DIV>
+<DIV>The URI reference:</DIV>
+<DIV>&nbsp;</DIV>
+<DIV><A 
+href="http://www.w3.org/2001/XMLSchema#int">http://www.w3.org/2001/XMLSchema#int</A></DIV>
+<DIV>&nbsp;</DIV>
+<DIV>is specified as the URI for the XML Schema concept "int" which corresponds 
+to the QName "xs:int" (it is implied that the QName prefix "xs" is bound to the 
+URI <A 
+href="http://www.w3.org/2001/XMLSchema">http://www.w3.org/2001/XMLSchema</A>).</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>This mapping of QName to URI is consistent with what we expect from HTML 
+where the value of the ID attribute serves as a fragment identifier for a URI 
+reference.</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>RDF</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>Unfortunately RDF uses a different mapping to create a URI from a QName: 
+simple concatenation of the namespace URI and local name. For example the RDF 
+snippet:</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>&lt;rdf:RDF xmlns:rdf="http://www.w3.org/2000/01/22-rdf-syntax#"</DIV>
+<DIV>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;</DIV>
+<DIV>&nbsp; &lt;rdf:Description rdf:about="http://example.org/foo"&gt;</DIV>
+<DIV>&nbsp;&nbsp;&nbsp;&nbsp; &lt;xsd:int&gt;35&lt;/xsd:int&gt;</DIV>
+<DIV>&nbsp; &lt;/rdf:Description&gt;</DIV>
+<DIV>&lt;/rdf:RDF&gt;</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>should produce the triple:</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>[<A href="http://example.org/foo">http://example.org/foo</A>, <A 
+href="http://www.w3.org/2001/XMLSchema#int">http://www.w3.org/2001/XMLSchema#int</A>, 
+"35"]</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>but instead produces:</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>[<A href="http://example.org/foo">http://example.org/foo</A>, <A 
+href="http://www.w3.org/2001/XMLSchemaint">http://www.w3.org/2001/XMLSchemaint</A>, 
+"35"]</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>The 'problem' is that the RDF Model and Syntax 1.0 
+recommendation specifies that a URI is constructed from a QName by string 
+concatentation of the namespace URI and local name (as opposed to XML Schema 
+which uses the local name as the fragment identifier). </DIV>
+<DIV>&nbsp;</DIV>
+<DIV>This results in problems for applications such as DAML (<A 
+href="http://www.daml.org">http://www.daml.org</A>) which specify use of XML 
+Schema datatypes in RDF documents.</DIV>
+<DIV><SPAN class=m></SPAN></SPAN></DIV></DIV>
+<p>         
+                  
+           
+         Complex types 
+</p>
+<P>The QName -&gt; URI mapping problem gets worse for XML Schema complex types. 
+The general XML Schema datatype mechanism uses the value of the name attribute 
+as the local name part of the datatype QName. The difficulty arrises in that 
+this name value can be overloaded among attribute, element and type definitions. 
+For example the definition:</P>
+<P style="COLOR: blue">&lt;xs:complexType name="simpleType" 
+abstract="true"&gt;<BR>&nbsp;&nbsp;&nbsp; 
+&lt;xs:complexContent&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;xs:extension 
+base="xs:annotated"&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;xs:group 
+ref="xs:simpleDerivation"/&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;xs:attribute name="final" 
+type="xs:simpleDerivationSet"/&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;xs:attribute name="name" 
+type="xs:NCName"&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;xs:annotation&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;xs:documentation&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+Can be restricted to required or 
+forbidden<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;/xs:documentation&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;/xs:annotation&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;/xs:attribute&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;/xs:extension&gt;<BR>&nbsp;&nbsp;&nbsp; &lt;/xs:complexContent&gt;<BR>&nbsp; 
+&lt;/xs:complexType&gt;<BR>&nbsp;</P>
+<P>and later:</P>
+<P style="COLOR: blue">&lt;xs:element name="simpleType" type="xs:topLevelSimpleType" 
+id="simpleType"&gt;<BR>&nbsp;&nbsp;&nbsp; 
+&lt;xs:annotation&gt;<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;xs:documentation<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+source="http://www.w3.org/TR/xmlschema-2/#element-simpleType"/&gt;<BR>&nbsp;&nbsp;&nbsp; 
+&lt;/xs:annotation&gt;<BR>&nbsp; &lt;/xs:element&gt;</P>
+<P>both are referred to by the QName "xs:simpleType"</P>
+<P>Indeed the MSL, now "XML Schema: Formal Description" WD&nbsp;&nbsp;invents a 
+new fragment identifier syntax (see <A 
+href="http://www.w3.org/TR/xmlschema-formal/#section-overview-normalization">http://www.w3.org/TR/xmlschema-formal/#section-overview-normalization</A>) 
+in order to properly identify components of a schema.</P>
+<P>Fragment Identifier Hell</P>
+<P>The problem this creates, in the intertwined specification quagmire, is that 
+the fragment identifier syntax is dependent on the media type of a document. For 
+example according to RFC 3023, the media type application/xml uses specifies 
+XPointer as the fragment identifier syntax. A new fragment identifier syntax for 
+XML Schema would need to use a new media type (e.g. application/w3c-schema+xml) 
+yet the XML Schema specification prefers the media type application/xml). These 
+issues need to be thought through and coordinated.</P>
+<P>What does this all mean.</P>
+<P>At the very least, the RDF XML Syntax, which is currently being revised, at 
+the very least needs to interoperate with and use XML Schema builtin datatypes. 
+This can be accomplished in a relatively straightforward fashion using the 
+following rule for creating a URI from a QName: When the namespace URI ends in 
+an alphanumeric character treat the local name as a fragment identifier, i.e. 
+insert a '#' between the URI and localname. When the namespace URI ends in a 
+character other than an alphanumeric the current system of simple concatentation 
+is used. The effect of this would be negligable for current applications because 
+essentially all RDF applications use namespaces that end in '#' or '/' (for the 
+very reason that otherwise there are problems).</P>
+<P>I have written an XSLT stylesheet that implements a simplified RDF XML 
+syntax, parses arbitrary XML as RDF and is available at: <A 
+href="http://www.openhealth.org/RDF/rdfExtractify.xsl">http://www.openhealth.org/RDF/rdfExtractify.xsl</A></P>
+<P>&nbsp;</P>
+</body>
+</html>

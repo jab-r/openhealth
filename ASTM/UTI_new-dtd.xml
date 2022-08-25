@@ -1,0 +1,1258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--UTI_Text.rtf-->
+<!DOCTYPE guideline.document SYSTEM "GEM_DTD.dtd">
+<guideline.document>
+	<guideline.header>
+		<identity source="nd">
+			<title source="explicit">Practice Parameter: The Diagnosis, Treatment, and Evaluation of the Initial Urinary Tract Infection in Febrile Infants and Young Children</title>
+			<citation source="nd">
+				<guideline.length source="nd"/>
+			</citation>
+			<release.date source="nd"/>
+			<availability source="nd">
+				<electronic source="nd"/>
+				<print source="nd"/>
+				<contact source="nd"/>
+			</availability>
+			<status source="nd"/>
+			<companion.document source="nd">
+            Technical Report available at. http://www.pediatrics.org/ cgi/content/full/103/4/e54.
+            <patient.resource source="nd"/>
+			</companion.document>
+			<adaptation source="nd"/>
+		</identity>
+		<developer source="nd">
+			<developer.name source="explicit">
+            AMERICAN ACADEMY OF PEDIATRICS
+            <developer.type/>
+			</developer.name>
+			<committee.name source="explicit">
+            Subcommittee on Urinary Tract Infection
+            <committee.expertise source="explicit">pediatricians with expertise in the fields of epidemiology and informatics, infectious diseases, nephrology, pediatric practice, radiology, and urology to draft the parameter.</committee.expertise>
+				<committee.member source="explicit">
+               Russell W. Steele, MD
+               <member.expertise source="explicit"/>
+				</committee.member>
+				<committee.member source="explicit">
+               Linda D. Shortliffe, MD
+               <member.expertise source="explicit"/>
+				</committee.member>
+				<committee.member source="explicit">
+               Jacob A. Lohr, MD
+               <member.expertise source="explicit"/>
+				</committee.member>
+				<committee.member source="explicit">
+               Robert L. Lebowitz, MD
+               <member.expertise source="explicit"/>
+				</committee.member>
+				<committee.member source="explicit">
+               Michael J. Holmes, MD, PhD
+               <member.expertise source="explicit"/>
+				</committee.member>
+				<committee.member source="explicit">
+               Stanley Hellerstein, MD
+               <member.expertise source="explicit"/>
+				</committee.member>
+				<committee.member source="explicit">
+               Stephen M. Downs, MD, MS
+               <member.expertise source="explicit"/>
+				</committee.member>
+				<committee.member source="explicit">
+               Kenneth B. Roberts, MD,
+               <member.expertise source="explicit">Chairperson</member.expertise>
+				</committee.member>
+			</committee.name>
+			<committee.name source="explicit">
+            Committee on Quality Improvement
+            <committee.expertise source="nd"/>
+				<committee.member source="explicit">
+               Betty A. Lowe, MD
+               <member.expertise source="explicit">NACHRI Liaison</member.expertise>
+				</committee.member>
+				<committee.member source="explicit">
+               William M. Zurthellen, MD
+               <member.expertise source="explicit"/>
+				</committee.member>
+				<committee.member source="explicit">
+               Joan E. Shook, MD
+               <member.expertise source="explicit"/>
+				</committee.member>
+				<committee.member source="explicit">
+               Paul V. Miles, MD
+               <member.expertise source="explicit"/>
+				</committee.member>
+				<committee.member source="explicit">
+               Charles J. Homer, MD, MPH,
+               <member.expertise source="explicit">Section on Epidemiology</member.expertise>
+				</committee.member>
+				<committee.member source="explicit">
+               Gerald B. Hickson, MD
+               <member.expertise source="explicit"/>
+				</committee.member>
+				<committee.member source="explicit">
+               Michael J. Goldberg, MD
+               <member.expertise source="explicit">Sections Liason</member.expertise>
+				</committee.member>
+				<committee.member source="explicit">
+               James R. Cooley, MD
+               <member.expertise source="nd"/>
+				</committee.member>
+				<committee.member source="explicit">
+               Richard D. Baltz, MD
+               <member.expertise source="nd"/>
+				</committee.member>
+				<committee.member source="explicit">
+               David A. Bergman, MD,
+               <member.expertise source="explicit">Chairperson</member.expertise>
+				</committee.member>
+			</committee.name>
+			<funding source="nd"/>
+			<endorser source="nd"/>
+			<comparable.guideline source="nd"/>
+		</developer>
+	</guideline.header>
+	<guideline.body>
+		<purpose source="nd">
+			<main.focus source="explicit">This practice parameter focuses on the diagnosis, treatment, and evaluation of febrile infants and young children (2 months to 2 years of age)</main.focus>
+			<category>Management</category>
+			<rationale source="explicit">Considerable variation in the methods of diagnosis, treatment, and evaluation of children with UTI was documented more than 2 decades ago.1 Since then, various changes have been proposed to aid in diagnosis, treatment, and evaluation, but no data are available to suggest that such innovations have resulted in reduced variation in practice.</rationale>
+			<objective source="explicit">Urinary tract infections (UTIs) are important be cause they cause acute morbidity and may result in long term medical problems, including hypertension and reduced renal function. Management of children with UTI involves repeated patient visits, use of antimicrobials, exposure to radiation, and cost. Accurate diagnosis is extremely important for two rea sons: to permit identification, treatment, and evaluation of the children who are at risk for kidney damage and to avoid unnecessary treatment and evaluation of children who are not at risk, for whom interventions are costly and potentially harmful but provide no benefit. Infants and young children with UTI are of particular concern because the risk of renal damage is greatest in this age group and be cause the diagnosis is frequently challenging: the clinical presentation tends to be nonspecific and valid urine specimens cannot be obtained without invasive methods (suprapubic aspiration [SPA], transurethral catheterization).</objective>
+			<available.option source="nd"/>
+			<implementation.strategy source="nd"/>
+			<health.outcome source="nd"/>
+			<exception source="nd"/>
+		</purpose>
+		<intended.audience source="nd">
+			<users source="explicit">
+            clinicians who treat infants and young children
+            <clinical.specialty/>
+				<professional.group/>
+			</users>
+			<care.setting source="explicit">office, emergency department, hospital</care.setting>
+		</intended.audience>
+		<development.method source="nd">
+			<description.evidence.collection source="explicit">
+            A comprehensive literature review was conducted to provide data for evidence tables that could be used to generate a decision tree. More than 2000 titles were identified from MEDLINE and bibliographies of current review articles from 1966 to 1996, and the authors' files. Of these, 402 articles contained relevant original data that were abstracted in a formal, standardized manner.
+            <method.evidence.collection/>
+				<number.source.documents source="nd"/>
+			</description.evidence.collection>
+			<evidence.time.period source="nd"/>
+			<method.evidence.grading>
+				<rating.scheme source="explicit">strength of evidence on which recommendations were based was rated by the Subcommittee methodologist as strong, good, fair, or opinion/consensus.</rating.scheme>
+			</method.evidence.grading>
+			<description.evidence.combination source="explicit">
+            Decision analysis was used to perform risk analyses and cost effectiveness analyses of alternative strategies for the diagnosis, management, and evaluation of UTI, using hypertension and end stage renal disease as the undesirable out comes. The calculated probability of undesirable outcome is the product of the probabilities of several steps (diagnosis, treatment, evaluation) and therefore is an estimate, influenced by approximations at each step.
+            <method.evidence.combination>Decision Analysis</method.evidence.combination>
+			</description.evidence.combination>
+			<cost.analysis source="explicit">Cost effectiveness of various strategies was assessed using the methods of Rice and associates 2 in which the break even cost to prevent a chronic condition, such as hypertension or end stage renal disease, is considered to be $700 000, an amount based on the estimated lifetime productivity of a healthy, young adult. Once this cost is assigned to the untoward clinical outcome (ie, hypertension or end stage renal disease), it is possible to use the threshold method of decision making.3</cost.analysis>
+			<specification.harm.benefit source="nd"/>
+			<quantification.harm.benefit source="nd"/>
+			<role.value.judgment source="nd"/>
+			<role.patient.preference source="nd"/>
+			<qualifying.statement source="nd"/>
+		</development.method>
+		<target.population source="nd">
+			<eligibility source="nd">
+				<inclusion.criterion source="explicit">febrile infants and young children (2 months to 2 years of age).</inclusion.criterion>
+				<exclusion.criterion source="explicit">Excluded are those with obvious neurologic or anatomic abnormalities known to be associated with recurrent UTI and renal damage. Neonates and infants younger than 2 months have been excluded from consideration in this practice parameter. Children older than 2 years experiencing their first UTI also are excluded be cause they are more likely than younger children to have symptoms referable to the urinary tract, are less likely to have factors predisposing them to renal damage, and are at lower risk of developing renal damage.</exclusion.criterion>
+			</eligibility>
+			<age/>
+			<sex/>
+		</target.population>
+		<knowledge.components source="nd">
+			<recommendation source="explicit">
+            Recommendation 1
+            <conditional source="explicit">
+               The presence of UTI should be considered in infants and young children 2 months to 2 years of age with unexplained fever
+               <decision.variable source="explicit" decision.variable.id="dv2">
+                  unexplained fever
+                  <value source="explicit"/>
+						<decision.variable.description source="explicit">The likelihood that UTI is the cause of the fever may be increased if there is a history of crying on urination or of foul smelling urine. An altered voiding pattern may be recognized as a symptom of UTI as early as the second year after birth in some children. Dysuria, urgency, frequency, or hesitancy may be present but are difficult to discern in this age group. Nonspecific signs and symptoms, such as irritability, vomiting, diarrhea, and failure to thrive, also may reflect the presence of UTI, but data are not available to assess the sensitivity, specificity, and predictive value of these clinical manifestations.</decision.variable.description>
+						<decision.variable.description source="explicit">The presence of fever has long been considered a finding of special importance in infants and young children with UTI, because it has been accepted as a clinical marker of renal parenchymal involvement (pyelonephritis). The concept that otherwise unexplained fever in a child with UTI indicates that renal parenchymal involvement is based on comparison of children with high fever ($39°C) and the clinical diagnosis of acute pyelonephritis with those with no fever (#38°C) and a clinical diagnosis of cystitis.17 Indirect tests for localization of the site of UTI, such as the presence of a reversible defect in renal concentrating ability and high levels of antibody titer to the infecting strains of Escherichia coli, and nonspecific tests of inflammation, such as elevated white blood cell (WBC) count, Creactive protein, or sedimentation rate, are encountered more frequently in children with clinical pyelonephritis than in those with clinical cystitis. However, the indirect tests for localization of the site of infection and the nonspecific indicators of inflammation do not provide confirmatory evidence that the febrile infant or young child with UTI has pyelonephritis.</decision.variable.description>
+						<test.parameter source="nd">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<decision.variable source="explicit" decision.variable.id="dv1">
+                  age
+                  <value source="explicit">2 months to 2 years</value>
+						<decision.variable.description source="nd"/>
+						<test.parameter source="explicit">
+                     The prevalence of UTI in infants and young children 2 months to 2 years of age who have no fever source evident from history or physical examination is high, ;5%.4-8 The genders are not affected equally, however. The prevalence of UTI in febrile girls age 2 months to 2 years is more than twice that in boys (relative risk, 2.27). The prevalence of UTI in girls younger than 1 year of age is 6.5%; in boys, it is 3.3%. The prevalence of UTI in girls between 1 and 2 years of age is 8.1%; in boys it is 1.9%. The rate in circumcised boys is low, 0.2% to 0.4%.9-13 The literature suggests that the rate in uncircumcised boys is 5 to 20 times higher than in circumcised boys.
+                     <sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<action source="explicit" action.id="a1">
+                  The presence of UTI should be considered
+                  <action.benefit source="nd"/>
+						<action.risk.harm source="nd"/>
+						<action.description source="nd"/>
+						<action.cost source="nd"/>
+					</action>
+					<reason source="explicit">Infants and young children are at higher risk than are older children for incurring acute renal injury with UTI. The incidence of vesicoureteral reflux (VUR) is higher in this age group than in older children (Fig 1), and the severity of VUR is greater, with the most severe form (with intrarenal reflux or pyelotubular backflow) virtually limited to infants.  Infants and young children with UTI warrant special attention because of the opportunity to prevent kidney damage. First, the UTI may bring to attention a child with an obstructive anomaly or severe VUR. Second, because infants and young children with UTI may have a febrile illness and no localizing findings, there may be a delay in diagnosis and treatment of the UTI. Clinical and experimental data support the concept that delay in instituting approriate treatment of acute pyelonephritis increases the risk of kidney damage.14,15 Third, the risk of renal damage increases as the number of recurrences increases 16 (Fig 2).</reason>
+					<evidence.quality source="explicit">strength of evidence: strong</evidence.quality>
+					<recommendation.strength source="nd"/>
+					<flexibility source="nd"/>
+					<logic source="nd"/>
+					<cost source="explicit">For girls and uncircumcised boys, it is cost effective to pursue the diagnosis of UTI by invasive means and to perform imaging studies of the urinary tract. For circumcised boys younger than 1 year, the cost- benefit analysis is equivocal, but the Subcommittee supports the same diagnostic and evaluation measures as for girls and uncircumcised boys. Circumcised boys older than 1 year have a lower prevalence of UTI, and the prevalence of reflux is lower than that in those younger than 1 year. As a result, the cost effectiveness analysis does not support invasive diagnostic procedures for all circumcised boys older than 1 year with unexplained fever.</cost>
+					<linkage source="nd"/>
+					<reference source="nd"/>
+					<certainty source="nd"/>
+				</conditional>
+				<imperative source="nd">
+					<directive source="nd">
+						<directive.benefit source="nd"/>
+						<directive.risk.harm source="nd"/>
+						<directive.description source="nd"/>
+						<directive.cost source="nd"/>
+					</directive>
+					<reason source="nd"/>
+					<evidence.quality source="nd"/>
+					<recommendation.strength source="nd"/>
+					<flexibility source="nd"/>
+					<logic source="nd"/>
+					<cost source="nd"/>
+					<linkage source="nd"/>
+					<reference source="nd"/>
+					<certainty source="nd"/>
+				</imperative>
+			</recommendation>
+			<recommendation source="explicit">
+            Recommendation 2
+            <conditional source="explicit">
+               In infants and young children 2 months to 2 years of age with unexplained fever, the degree of toxicity, dehydration, and ability to retain oral intake must be carefully assessed
+               <decision.variable source="explicit" decision.variable.id="dv3">
+                  age
+                  <value source="explicit">2 months to 2 years</value>
+						<decision.variable.description source="explicit"/>
+						<decision.variable.description source="explicit"/>
+						<test.parameter source="nd">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<decision.variable source="explicit" decision.variable.id="dv4">
+                  unexplained fever
+                  <value source="explicit"/>
+						<decision.variable.description source="nd"/>
+						<test.parameter source="explicit">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<action source="explicit" action.id="a2">
+                  the degree of toxicity, dehydration, and ability to retain oral intake must be carefully assessed
+                  <action.benefit source="nd"/>
+						<action.risk.harm source="nd"/>
+						<action.description source="explicit">If the clinician determines that the degree of illness warrants antimicrobial therapy, a valid urine specimen should be obtained before antimicrobials are administered, because the antimicrobials commonly prescribed in such situations will be effective against the usual urinary pathogens; invasive means are required to obtain such a specimen. If the clinician determines that the degree of illness does not require antimicrobial therapy, a urine culture is not essential immediately. In this situation, some clinicians may choose to obtain a specimen by noninvasive means (eg, in a collection bag attached to the perineum). The false positive rate with such specimens dictates that before diagnosing UTI, all positive results be confirmed with culture of a urine specimen unlikely to be contaminated (see below).</action.description>
+						<action.description source="explicit">Attempts have been made to objectify this assessment, using the prediction of bacteremia or serious bacterial infection as the outcome measure.21</action.description>
+						<action.cost source="nd"/>
+					</action>
+					<reason source="explicit"/>
+					<evidence.quality source="explicit">strength of evidence: strong)</evidence.quality>
+					<recommendation.strength source="nd"/>
+					<flexibility source="nd"/>
+					<logic source="nd"/>
+					<cost source="explicit"/>
+					<linkage source="nd"/>
+					<reference source="nd"/>
+					<certainty source="nd"/>
+				</conditional>
+				<imperative source="nd">
+					<directive source="nd">
+						<directive.benefit source="nd"/>
+						<directive.risk.harm source="nd"/>
+						<directive.description source="nd"/>
+						<directive.cost source="nd"/>
+					</directive>
+					<reason source="nd"/>
+					<evidence.quality source="nd"/>
+					<recommendation.strength source="nd"/>
+					<flexibility source="nd"/>
+					<logic source="nd"/>
+					<cost source="nd"/>
+					<linkage source="nd"/>
+					<reference source="nd"/>
+					<certainty source="nd"/>
+				</imperative>
+			</recommendation>
+			<recommendation source="explicit">
+            Recommendation 3
+            <conditional source="explicit">
+               If an infant or young child 2 months to 2 years of age with unexplained fever is assessed as being sufficiently ill to warrant immediate antimicrobial therapy, a urine specimen should be obtained by SPA or transurethral bladder catheterization; the diagnosis of UTI cannot be established by a culture of urine collected in a bag
+               <decision.variable source="explicit" decision.variable.id="dv5">
+                  age
+                  <value source="explicit">2 months to 2 years</value>
+						<decision.variable.description source="explicit"/>
+						<decision.variable.description source="explicit"/>
+						<test.parameter source="nd">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<decision.variable source="explicit" decision.variable.id="dv7">
+                  assessed as being sufficiently ill to warrant immediate antimicrobial therapy
+                  <value source="explicit"/>
+						<decision.variable.description source="nd"/>
+						<test.parameter source="explicit">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<decision.variable source="explicit" decision.variable.id="dv6">
+                  unexplained fever
+                  <value source="explicit"/>
+						<decision.variable.description source="nd"/>
+						<test.parameter source="explicit">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<action source="explicit" action.id="a3">
+                  a urine specimen should be obtained by SPA or transurethral bladder catheterization
+                  <action.benefit source="explicit">SPA has been considered the "gold standard" for obtaining urine for detecting bacteria in bladder urine accurately.</action.benefit>
+						<action.risk.harm source="explicit">The risk of introducing infection in infants by transurethral catheterization has not been determined precisely, but it is the consensus of the Subcommittee that the risk is sufficiently low to recommend the procedure when UTI is suspected.</action.risk.harm>
+						<action.risk.harm source="explicit">Catheterization requires some skill and experience to obtain uncontaminated specimens, particularly in small infants, girls, and uncircumcised boys. Early studies in adults provided widely varying estimates of risk of introducing infection by a single, in- out catheterization. Turck and colleagues 26 demonstrated that the rate of bacteriuria secondary to transurethral catheterization in healthy young adults was considerably lower than that in hospitalized, older adults.</action.risk.harm>
+						<action.risk.harm source="explicit">The technique has limited risks. However, variable success rates for obtaining urine have been reported (23% to 90%),16,22-24 technical expertise and experience are required, and many parents and physicians perceive the procedure as unacceptably invasive compared with catheterization.</action.risk.harm>
+						<action.description source="explicit">Urine obtained by transurethral catheterization of the urinary bladder for urine culture has a sensitivity 95% and a specificity of 99% compared with that obtained by SPA.23,25 .</action.description>
+						<action.description source="explicit">The techniques required for transurethral bladder catheterization and SPA are well described.27 When SPA or transurethral catheterization is being at-tempted, the clinician should have a sterile container ready to collect a urine specimen voided because of the stimulus of the patient by manipulation in preparation for or during the procedure.</action.description>
+						<action.cost source="nd"/>
+					</action>
+					<reason source="explicit">the diagnosis of UTI cannot be established by a culture of urine collected in a bag Urine obtained by SPA or transurethral catheterization is unlikely to be contaminated and therefore is the preferred specimen for documenting UTI.</reason>
+					<evidence.quality source="explicit">strength of evidence: good</evidence.quality>
+					<recommendation.strength source="nd"/>
+					<flexibility source="nd"/>
+					<logic source="nd"/>
+					<cost source="explicit"/>
+					<linkage source="nd"/>
+					<reference source="nd"/>
+					<certainty source="nd"/>
+				</conditional>
+				<imperative source="nd">
+					<directive source="nd">
+						<directive.benefit source="nd"/>
+						<directive.risk.harm source="nd"/>
+						<directive.description source="nd"/>
+						<directive.cost source="nd"/>
+					</directive>
+					<reason source="nd"/>
+					<evidence.quality source="nd"/>
+					<recommendation.strength source="nd"/>
+					<flexibility source="nd"/>
+					<logic source="nd"/>
+					<cost source="nd"/>
+					<linkage source="nd"/>
+					<reference source="nd"/>
+					<certainty source="nd"/>
+				</imperative>
+			</recommendation>
+			<recommendation source="explicit">
+            Recommendation 4
+            <conditional source="explicit">
+               Any of the following are suggestive (although not diagnostic) of UTI: positive result of a leukocyte esterase or nitrite test, more than 5 white blood cells per high-power field of a properly spun specimen, or bacteria present on an unspun Gram-stained specimen.
+               <decision.variable source="explicit" decision.variable.id="dv11">
+                  leukocyte esterase
+                  <value source="explicit">positive result</value>
+						<decision.variable.description source="explicit"/>
+						<decision.variable.description source="explicit"/>
+						<test.parameter source="nd">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<decision.variable source="explicit" decision.variable.id="dv12">
+                  nitrite test
+                  <value source="explicit">positive</value>
+						<decision.variable.description source="nd"/>
+						<test.parameter source="explicit">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<decision.variable source="explicit" decision.variable.id="dv14">
+                  bacteria on an unspun Gram-stained specimen.
+                  <value source="explicit">present</value>
+						<decision.variable.description source="nd"/>
+						<test.parameter source="explicit">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<decision.variable source="nd" decision.variable.id="dv13">
+                  white blood cells in a properly spun specimen
+                  <value source="explicit">more than 5</value>
+						<decision.variable.description source="nd"/>
+						<test.parameter source="explicit">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<action source="nd" action.id="a6">
+                  Any of the following are suggestive (although not diagnostic) of UTI
+                  <action.benefit source="explicit"/>
+						<action.benefit source="explicit"/>
+						<action.risk.harm source="explicit"/>
+						<action.risk.harm source="explicit"/>
+						<action.description source="explicit"/>
+						<action.description source="explicit"/>
+						<action.cost source="nd"/>
+					</action>
+					<reason source="explicit"/>
+					<evidence.quality source="explicit"/>
+					<recommendation.strength source="nd"/>
+					<flexibility source="explicit"/>
+					<logic source="nd"/>
+					<cost source="explicit"/>
+					<linkage source="nd"/>
+					<reference source="nd"/>
+					<certainty source="nd"/>
+				</conditional>
+				<conditional source="explicit">
+               If an infant or young child 2 months to 2 years of age with unexplained fever is assessed as not being so ill as to require immediate antimicrobial therapy, there are two options (strength of evidence: good).  Option 1: Obtain and culture a urine specimen collected by SPA or transurethral bladder catheterization. Option 2: Obtain a urine specimen by the most convenient means and perform a urinalysis. If the urinalysis suggests a UTI, obtain and culture a urine specimen collected by SPA or transurethral bladder catheterization; if urinalysis does not suggest a UTI, it is reasonable to follow the clinical course without initiating antimicrobial therapy, recognizing that a negative urinalysis does not rule out a UTI.
+               <decision.variable source="explicit" decision.variable.id="dv8">
+                  age
+                  <value source="explicit">2 months to 2 years</value>
+						<decision.variable.description source="explicit"/>
+						<decision.variable.description source="explicit"/>
+						<test.parameter source="nd">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<decision.variable source="explicit" decision.variable.id="dv9">
+                  unexplained fever
+                  <value source="explicit"/>
+						<decision.variable.description source="nd"/>
+						<test.parameter source="explicit">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<decision.variable source="explicit" decision.variable.id="dv10">
+                  assessed as not being so ill as to require immediate antimicrobial therapy,
+                  <value source="explicit"/>
+						<decision.variable.description source="nd"/>
+						<test.parameter source="explicit">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<action source="explicit" action.id="a5">
+                  Option 2: Obtain a urine specimen by the most convenient means and perform a urinalysis. If the urinalysis suggests a UTI, obtain and culture a urine specimen collected by SPA or transurethral bladder catheterization; if urinalysis does not suggest a UTI, it is reasonable to follow the clinical course without initiating antimicrobial therapy, recognizing that a negative urinalysis does not rule out a UTI.
+                  <action.benefit source="explicit">More-over, a negative (sterile) culture of a bag-collected urine specimen effectively eliminates the diagnosis of UTI, provided that the child is not receiving antimicrobials and that the urine is not contaminated with an antibacterial skin cleansing agent.</action.benefit>
+						<action.benefit source="explicit">a urinalysis may help distinguish those with higher and lower likelihood of UTI. The urinalysis can be performed on any specimen, including one collected from a bag applied to the perineum, and has the advantage of convenience.</action.benefit>
+						<action.risk.harm source="explicit">Published results demonstrate that although a negative culture of a bag-collected specimen effectively rules out UTI, a positive culture does not document UTI.</action.risk.harm>
+						<action.risk.harm source="explicit">The major disadvantage of collecting a specimen in a bag is that it is unsuitable for quantitative culture. In addition, there may be a delay of 1 hour or longer for the infant or young child to void; then, if the urinalysis suggests UTI, a second specimen is required.</action.risk.harm>
+						<action.description source="explicit">Of the components of urinalysis, the three most useful in the evaluation of possible UTI are leukocyte esterase test, nitrite test, and microscopy. A positive result on a leukocyte esterase test seems to be as sensitive as the identification of WBCs microscopically, the sensitivity of either test is so low that the risk of missing UTI by either test alone is unacceptably high (Table 1). The nitrite test has a very high specificity and positive predictive value when urine specimens are processed promptly after collection. Using either a positive leukocyte esterase or nitrite test improves sensitivity at the expense of specificity; that is, there are many false-positive results. The wide range of reported test characteristics for microscopy indicates the difficulty in ensuring quality performance; the best results are achieved with skilled technicians processing fresh urine specimens.</action.description>
+						<action.description source="explicit"/>
+						<action.cost source="nd"/>
+					</action>
+					<action source="explicit" action.id="a4">
+                  Option 1: Obtain and culture a urine specimen collected by SPA or transurethral bladder catheterization.
+                  <action.benefit source="explicit">The option with the highest sensitivity is to obtain and culture a urine specimen collected by SPA or transurethral bladder catheterization;</action.benefit>
+						<action.risk.harm source="explicit">however, this approach may be resisted by some families and clinicians.</action.risk.harm>
+						<action.description source="explicit"/>
+						<action.description source="explicit"/>
+						<action.cost source="nd"/>
+					</action>
+					<reason source="explicit"/>
+					<evidence.quality source="explicit">strength of evidence: good</evidence.quality>
+					<recommendation.strength source="nd"/>
+					<flexibility source="explicit">Option 1: Obtain and culture a urine specimen collected by SPA or transurethral bladder catheterization. Option 2: Obtain a urine specimen by the most convenient means and perform a urinalysis. If the urinalysis suggests a UTI, obtain and culture a urine specimen collected by SPA or transurethral bladder catheterization; if urinalysis does not suggest a UTI, it is reasonable to follow the clinical course without initiating antimicrobial therapy, recognizing that a negative urinalysis does not rule out a UTI.</flexibility>
+					<logic source="nd"/>
+					<cost source="explicit"/>
+					<linkage source="nd"/>
+					<reference source="nd"/>
+					<certainty source="nd"/>
+				</conditional>
+				<imperative source="nd">
+					<directive source="nd">
+						<directive.benefit source="nd"/>
+						<directive.risk.harm source="nd"/>
+						<directive.description source="nd"/>
+						<directive.cost source="nd"/>
+					</directive>
+					<reason source="nd"/>
+					<evidence.quality source="nd"/>
+					<recommendation.strength source="nd"/>
+					<flexibility source="nd"/>
+					<logic source="nd"/>
+					<cost source="nd"/>
+					<linkage source="nd"/>
+					<reference source="nd"/>
+					<certainty source="nd"/>
+				</imperative>
+			</recommendation>
+			<recommendation source="explicit">
+            Recommendation 5
+            <conditional source="explicit">
+					<decision.variable source="explicit">
+						<value source="explicit"/>
+						<decision.variable.description source="explicit"/>
+						<decision.variable.description source="explicit"/>
+						<test.parameter source="nd">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<decision.variable source="explicit">
+						<value source="explicit"/>
+						<decision.variable.description source="nd"/>
+						<test.parameter source="explicit">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<decision.variable source="explicit">
+						<value source="explicit"/>
+						<decision.variable.description source="nd"/>
+						<test.parameter source="explicit">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<decision.variable source="nd">
+						<value source="explicit"/>
+						<decision.variable.description source="nd"/>
+						<test.parameter source="explicit">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<action source="nd">
+						<action.benefit source="explicit"/>
+						<action.benefit source="explicit"/>
+						<action.risk.harm source="explicit"/>
+						<action.risk.harm source="explicit"/>
+						<action.description source="explicit"/>
+						<action.description source="explicit"/>
+						<action.cost source="nd"/>
+					</action>
+					<reason source="explicit"/>
+					<evidence.quality source="explicit"/>
+					<recommendation.strength source="nd"/>
+					<flexibility source="explicit"/>
+					<logic source="nd"/>
+					<cost source="explicit"/>
+					<linkage source="nd"/>
+					<reference source="nd"/>
+					<certainty source="nd"/>
+				</conditional>
+				<imperative source="explicit">
+               Diagnosis of UTI requires a culture of the urine
+               <directive source="explicit" directive.id="dir2">
+                  culture of the urine
+                  <directive.benefit source="nd"/>
+						<directive.risk.harm source="nd"/>
+						<directive.description source="explicit">UTI is confirmed or excluded based on the number of colony forming units that grow on the culture media. what constitutes a significant colony count depends on the collection method and the clinical status of the patient; definitions of positive and negative cultures are operational and not absolute. Significance also depends on the identification of the isolated organism as a pathogen.</directive.description>
+						<directive.description source="explicit">All urine specimens should be processed as expediently as possible. If the specimen is not processed promptly, it should be refrigerated to prevent the growth of organisms that can occur in urine at room temperature. For the same reason, specimens requiring transportation to another site for processing should be transported on ice.</directive.description>
+						<directive.cost source="nd"/>
+					</directive>
+					<reason source="explicit">The standard test for the diagnosis of UTI is a quantitative urine culture; no element of the urinalysis or combination of elements is as sensitive and specific. A properly collected urine specimen should be inoculated on culture media that will allow identification of urinary tract pathogens.</reason>
+					<evidence.quality source="explicit">strength of evidence: strong</evidence.quality>
+					<recommendation.strength source="nd"/>
+					<flexibility source="nd"/>
+					<logic source="nd"/>
+					<cost source="nd"/>
+					<linkage source="nd"/>
+					<reference source="nd"/>
+					<certainty source="nd"/>
+				</imperative>
+			</recommendation>
+			<recommendation source="explicit">
+            Recommendation 6
+            <conditional source="explicit">
+               For children who do not appear toxic but who are vomiting, or when noncompliance is a concern, options include beginning therapy in the hospital or administering an antimicrobial parenterally on an outpatient basis.
+               <decision.variable source="explicit" decision.variable.id="dv18">
+                  children who do not appear toxic
+                  <value source="explicit"/>
+						<decision.variable.description source="explicit"/>
+						<decision.variable.description source="explicit"/>
+						<test.parameter source="nd">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<decision.variable source="explicit" decision.variable.id="dv19">
+                  vomiting
+                  <value source="explicit"/>
+						<decision.variable.description source="nd"/>
+						<test.parameter source="explicit">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<decision.variable source="explicit" decision.variable.id="dv20">
+                  when noncompliance is a concern
+                  <value source="explicit"/>
+						<decision.variable.description source="nd"/>
+						<test.parameter source="explicit">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<action source="explicit" action.id="a9">
+                  beginning therapy in the hospital
+                  <action.benefit source="explicit"/>
+						<action.benefit source="explicit"/>
+						<action.risk.harm source="explicit"/>
+						<action.description source="explicit"/>
+						<action.description source="explicit"/>
+						<action.cost source="nd"/>
+					</action>
+					<action source="explicit" action.id="a10">
+                  administering an antimicrobial parenterally on an outpatient basis.
+                  <action.benefit source="explicit"/>
+						<action.risk.harm source="explicit"/>
+						<action.description source="explicit">The route of administration is changed to oral when the child is no longer vomiting, and compliance appears to be ensured.</action.description>
+						<action.cost source="nd"/>
+					</action>
+					<reason source="nd"/>
+					<evidence.quality source="explicit"/>
+					<recommendation.strength source="nd"/>
+					<flexibility source="explicit"/>
+					<logic source="nd"/>
+					<cost source="explicit"/>
+					<linkage source="nd"/>
+					<reference source="nd"/>
+					<certainty source="nd"/>
+				</conditional>
+				<conditional source="explicit">
+               If the infant or young child 2 months to 2 years of age with suspected UTI is assessed as toxic, dehydrated, or unable to retain oral intake, initial anti-microbial therapy should be administered parenterally and hospitalization should be considered
+               <decision.variable source="explicit" decision.variable.id="dv15">
+                  age
+                  <value source="explicit">2 months to 2 years</value>
+						<decision.variable.description source="explicit"/>
+						<decision.variable.description source="explicit"/>
+						<test.parameter source="nd">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<decision.variable source="explicit" decision.variable.id="dv16">
+                  suspected UTI
+                  <value source="explicit"/>
+						<decision.variable.description source="nd"/>
+						<test.parameter source="explicit">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<decision.variable source="explicit" decision.variable.id="dv17">
+                  assessed as toxic, dehydrated, or unable to retain oral intake
+                  <value source="explicit"/>
+						<decision.variable.description source="nd"/>
+						<test.parameter source="explicit">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<action source="explicit" action.id="a8">
+                  hospitalization should be considered
+                  <action.benefit source="explicit"/>
+						<action.benefit source="explicit"/>
+						<action.risk.harm source="explicit">In patients with compromised renal function, the use of potentially nephrotoxic antimicrobials (eg, aminoglycosides) requires caution, and serum creatinine and peak and trough antimicrobial concentrations need to be monitored.</action.risk.harm>
+						<action.description source="explicit">These patients need careful monitoring and repeated clinical examinations.</action.description>
+						<action.description source="explicit"/>
+						<action.cost source="nd"/>
+					</action>
+					<action source="explicit" action.id="a7">
+                  initial anti-microbial therapy should be administered parenterally
+                  <action.benefit source="explicit"/>
+						<action.risk.harm source="explicit"/>
+						<action.description source="explicit">The clinical conditions of most patients improve within 24 to 48 hours; the route of antimicrobial administration then can be changed to oral (Table 4) to complete a 7 to 14day course of therapy.</action.description>
+						<action.description source="explicit"/>
+						<action.cost source="nd"/>
+					</action>
+					<reason source="nd">The goals of treatment of acute UTI are to eliminate the acute infection, to prevent urosepsis, and to reduce the likelihood of renal damage.... The parenteral route is recommended because it ensures optimal antimicrobial levels in these high risk patients. Parenteral administration of an antimicrobial also should be considered when compliance with obtaining and/or administering an antimicrobial orally cannot be ensured.</reason>
+					<evidence.quality source="explicit">strength of evidence: opinion/consensus</evidence.quality>
+					<recommendation.strength source="nd"/>
+					<flexibility source="explicit"/>
+					<logic source="nd"/>
+					<cost source="explicit"/>
+					<linkage source="nd"/>
+					<reference source="nd"/>
+					<certainty source="nd"/>
+				</conditional>
+				<imperative source="explicit">
+					<directive source="explicit">
+						<directive.benefit source="nd"/>
+						<directive.risk.harm source="nd"/>
+						<directive.description source="explicit"/>
+						<directive.description source="explicit"/>
+						<directive.cost source="nd"/>
+					</directive>
+					<reason source="explicit"/>
+					<evidence.quality source="explicit"/>
+					<recommendation.strength source="nd"/>
+					<flexibility source="nd"/>
+					<logic source="nd"/>
+					<cost source="nd"/>
+					<linkage source="nd"/>
+					<reference source="nd"/>
+					<certainty source="nd"/>
+				</imperative>
+			</recommendation>
+			<recommendation source="explicit">
+            Recommendation 7
+            <conditional source="explicit">
+               In the infant or young child 2 months to 2 years of age who may not appear ill but who has a culture confirming the presence of UTI, antimicrobial therapy should be initiated, parenterally or orally
+               <decision.variable source="explicit" decision.variable.id="dv21">
+                  age
+                  <value source="explicit">2 months to 2 years</value>
+						<decision.variable.description source="explicit"/>
+						<decision.variable.description source="explicit"/>
+						<test.parameter source="nd">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<decision.variable source="explicit" decision.variable.id="dv22">
+                  may not appear ill
+                  <value source="explicit"/>
+						<decision.variable.description source="nd"/>
+						<test.parameter source="explicit">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<decision.variable source="explicit" decision.variable.id="dv23">
+                  has a culture
+                  <value source="explicit">confirming the presence of UTI,</value>
+						<decision.variable.description source="nd"/>
+						<test.parameter source="explicit">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<action source="explicit" action.id="a11">
+                  antimicrobial therapy should be initiated, parenterally or orally
+                  <action.benefit source="explicit"/>
+						<action.risk.harm source="explicit"/>
+						<action.description source="explicit">The usual choices for treatment of UTI orally include amoxicillin, a sulfonamide containing antimicrobial (sulfisoxazole or trimethoprim-sulfamethoxazole [TMP-SMX]), or a cephalosporin (Table 4). Emerging resistance of E coli to ampicillin appears to have rendered ampicillin and amoxicillin less effective than alternative agents. Studies comparing amoxicillin with TMP-SMX have demonstrated consistently higher cure rates with TMP-SMX (4% to 42%), regardless of the duration of therapy (1 dose, 3 to 4 days, or 10 days).29-45  Agents that are excreted in the urine but do not achieve therapeutic concentrations in the bloodstream, such as nalidixic acid or nitrofurantoin, should not be used to treat UTI in febrile infants and young children in whom renal involvement is likely.</action.description>
+						<action.cost source="nd"/>
+					</action>
+					<reason source="nd"/>
+					<evidence.quality source="explicit">strength of evidence: good</evidence.quality>
+					<recommendation.strength source="nd"/>
+					<flexibility source="explicit"/>
+					<logic source="nd"/>
+					<cost source="explicit"/>
+					<linkage source="nd"/>
+					<reference source="nd"/>
+					<certainty source="nd"/>
+				</conditional>
+				<imperative source="explicit">
+					<directive source="explicit">
+						<directive.benefit source="nd"/>
+						<directive.risk.harm source="nd"/>
+						<directive.description source="explicit"/>
+						<directive.description source="explicit"/>
+						<directive.cost source="nd"/>
+					</directive>
+					<reason source="explicit"/>
+					<evidence.quality source="explicit"/>
+					<recommendation.strength source="nd"/>
+					<flexibility source="nd"/>
+					<logic source="nd"/>
+					<cost source="nd"/>
+					<linkage source="nd"/>
+					<reference source="nd"/>
+					<certainty source="nd"/>
+				</imperative>
+			</recommendation>
+			<recommendation source="explicit">
+            Recommendation 8
+            <conditional source="explicit">
+               Routine reculturing of the urine after 2 days of antimicrobial therapy is generally not necessary if the infant or young child has had the expected clinical response and the uropathogen is determined to be sensitive to the antimicrobial being administered.
+               <decision.variable source="explicit" decision.variable.id="dv27">
+                  expected clinical response
+                  <value source="inferred">true</value>
+						<decision.variable.description source="explicit"/>
+						<decision.variable.description source="explicit"/>
+						<test.parameter source="nd">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<decision.variable source="explicit" decision.variable.id="dv28">
+                  the uropathogen
+                  <value source="explicit">determined to be sensitive to the antimicrobial being administered.</value>
+						<decision.variable.description source="explicit">Antimicrobial sensitivity testing is determined most commonly by the application of disks containing the usual serum concentration of the antimicrobial to the culture plate. Because many antimicrobial agents are excreted in the urine in extremely high concentrations, an intermediately sensitive organism may be fully eradicated. Studies of minimal inhibitory concentration may be required to clarify the appropriateness of a given antimicrobial. If the sensitivity of the organism to the chosen antimicrobial is determined to be intermediate or resistant, or if sensitivity testing is not performed, a "proof of bacteriologic cure" culture should be performed after 48 hours of treatment. Data are not available to determine that clinical response alone ensures bacteriologic cure.</decision.variable.description>
+						<test.parameter source="explicit">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<action source="explicit">
+						<action.benefit source="explicit"/>
+						<action.risk.harm source="explicit"/>
+						<action.description source="explicit"/>
+						<action.cost source="nd"/>
+					</action>
+					<action source="explicit">
+						<action.benefit source="explicit"/>
+						<action.risk.harm source="explicit"/>
+						<action.description source="explicit"/>
+						<action.cost source="nd"/>
+					</action>
+					<reason source="nd"/>
+					<evidence.quality source="explicit"/>
+					<recommendation.strength source="nd"/>
+					<flexibility source="explicit"/>
+					<logic source="nd"/>
+					<cost source="explicit"/>
+					<linkage source="nd"/>
+					<reference source="nd"/>
+					<certainty source="nd"/>
+				</conditional>
+				<conditional source="explicit">
+               Infants and young children 2 months to 2 years of age with UTI who have not had the expected clinical response with 2 days of antimicrobial therapy  should be reevaluated and another urine specimen should be cultured
+               <decision.variable source="explicit" decision.variable.id="dv24">
+                  age
+                  <value source="explicit">2 months to 2 years</value>
+						<decision.variable.description source="explicit"/>
+						<decision.variable.description source="explicit"/>
+						<test.parameter source="nd">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<decision.variable source="explicit" decision.variable.id="dv25">
+                  UTI
+                  <value source="explicit"/>
+						<decision.variable.description source="nd"/>
+						<test.parameter source="explicit">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<decision.variable source="explicit" decision.variable.id="dv26">
+                  have not had the expected clinical response with 2 days of antimicrobial therapy
+                  <value source="explicit"/>
+						<decision.variable.description source="nd"/>
+						<test.parameter source="explicit">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<action source="explicit" action.id="a13">
+                  another urine specimen should be cultured
+                  <action.benefit source="explicit"/>
+						<action.risk.harm source="explicit"/>
+						<action.description source="explicit"/>
+						<action.cost source="nd"/>
+					</action>
+					<action source="explicit" action.id="a12">
+                  should be reevaluated
+                  <action.benefit source="explicit"/>
+						<action.risk.harm source="explicit"/>
+						<action.description source="explicit"/>
+						<action.cost source="nd"/>
+					</action>
+					<reason source="nd"/>
+					<evidence.quality source="explicit">strength of evidence: good</evidence.quality>
+					<recommendation.strength source="nd"/>
+					<flexibility source="explicit"/>
+					<logic source="nd"/>
+					<cost source="explicit"/>
+					<linkage source="nd"/>
+					<reference source="nd"/>
+					<certainty source="nd"/>
+				</conditional>
+				<imperative source="explicit">
+					<directive source="explicit">
+						<directive.benefit source="nd"/>
+						<directive.risk.harm source="nd"/>
+						<directive.description source="explicit"/>
+						<directive.description source="explicit"/>
+						<directive.cost source="nd"/>
+					</directive>
+					<reason source="explicit"/>
+					<evidence.quality source="explicit"/>
+					<recommendation.strength source="nd"/>
+					<flexibility source="nd"/>
+					<logic source="nd"/>
+					<cost source="nd"/>
+					<linkage source="nd"/>
+					<reference source="nd"/>
+					<certainty source="nd"/>
+				</imperative>
+			</recommendation>
+			<recommendation source="explicit">
+            Recommendation 9
+            <conditional source="explicit">
+					<decision.variable source="explicit" decision.variable.id="dv29">
+                  age
+                  <value source="explicit">2 months to 2 years</value>
+						<decision.variable.description source="explicit"/>
+						<decision.variable.description source="explicit"/>
+						<test.parameter source="nd">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<decision.variable source="explicit">
+						<value source="explicit"/>
+						<decision.variable.description source="explicit"/>
+						<test.parameter source="explicit">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<decision.variable source="explicit">
+						<value source="explicit"/>
+						<decision.variable.description source="nd"/>
+						<test.parameter source="explicit">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<action source="explicit">
+						<action.benefit source="explicit"/>
+						<action.risk.harm source="explicit"/>
+						<action.description source="explicit"/>
+						<action.cost source="nd"/>
+					</action>
+					<action source="explicit" action.id="a14">
+                  should complete a 7 to 14 day antimicrobial course orally
+                  <action.benefit source="explicit"/>
+						<action.risk.harm source="explicit"/>
+						<action.description source="explicit">Most uncomplicated UTIs are eliminated with a 7 to 10day antimicrobial course, but many experts prefer 14 days for ill appearing children with clinical evidence of pyelonephritis. Data comparing 10 days and 14 days are not available.</action.description>
+						<action.cost source="nd"/>
+					</action>
+					<reason source="explicit">n 8 of 10 comparisons of long treatment duration (7 to 10 days) and short duration (1 dose or up to 3 days), results were better with long duration, with an attributable improvement in outcome of 5% to 21%.33,38,41,44 -48</reason>
+					<evidence.quality source="explicit">strength of evidence: strong</evidence.quality>
+					<recommendation.strength source="nd"/>
+					<flexibility source="explicit"/>
+					<logic source="nd"/>
+					<cost source="explicit"/>
+					<linkage source="nd"/>
+					<reference source="nd"/>
+					<certainty source="nd"/>
+				</conditional>
+				<imperative source="explicit">
+					<directive source="explicit">
+						<directive.benefit source="nd"/>
+						<directive.risk.harm source="nd"/>
+						<directive.description source="explicit"/>
+						<directive.description source="explicit"/>
+						<directive.cost source="nd"/>
+					</directive>
+					<reason source="explicit"/>
+					<evidence.quality source="explicit"/>
+					<recommendation.strength source="nd"/>
+					<flexibility source="nd"/>
+					<logic source="nd"/>
+					<cost source="nd"/>
+					<linkage source="nd"/>
+					<reference source="nd"/>
+					<certainty source="nd"/>
+				</imperative>
+			</recommendation>
+			<recommendation source="explicit">
+            Recommendation 10
+            <conditional source="explicit">
+					<decision.variable source="explicit">
+						<value source="explicit"/>
+						<decision.variable.description source="explicit"/>
+						<decision.variable.description source="explicit"/>
+						<test.parameter source="nd">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<decision.variable source="explicit">
+						<value source="explicit"/>
+						<decision.variable.description source="explicit"/>
+						<test.parameter source="explicit">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<decision.variable source="explicit">
+						<value source="explicit"/>
+						<decision.variable.description source="nd"/>
+						<test.parameter source="explicit">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<action source="explicit">
+						<action.benefit source="explicit"/>
+						<action.risk.harm source="explicit"/>
+						<action.description source="explicit"/>
+						<action.cost source="nd"/>
+					</action>
+					<action source="explicit">
+						<action.benefit source="explicit"/>
+						<action.risk.harm source="explicit"/>
+						<action.description source="explicit"/>
+						<action.cost source="nd"/>
+					</action>
+					<reason source="explicit"/>
+					<evidence.quality source="explicit"/>
+					<recommendation.strength source="nd"/>
+					<flexibility source="explicit"/>
+					<logic source="nd"/>
+					<cost source="explicit"/>
+					<linkage source="nd"/>
+					<reference source="nd"/>
+					<certainty source="nd"/>
+				</conditional>
+				<imperative source="explicit">
+               After a 7 to 14 day course of antimicrobial therapy and sterilization of the urine, infants and young children 2 months to 2 years of age with UTI should receive antimicrobials in therapeutic or prophylactic dosages until the imaging studies are completed
+               <directive source="explicit">
+						<directive.benefit source="explicit">Although this practice parameter deals with the acute UTI, it is important to recognize the significance of recurrent infections. The association between recurrent bouts of febrile UTI and renal scarring follows an exponential curve 16 (Fig 2). Because the risk of recurrence is highest during the first months after UTI, children treated for UTI should continue antimicrobial treatment or prophylaxis (Table 5) until the imaging studies are completed and assessed. Additional treatment is based on the imaging findings assuming sterilization of the urine.</directive.benefit>
+						<directive.risk.harm source="nd"/>
+						<directive.description source="explicit"/>
+						<directive.cost source="nd"/>
+					</directive>
+					<reason source="explicit"/>
+					<evidence.quality source="explicit">strength of evidence: good)</evidence.quality>
+					<recommendation.strength source="nd"/>
+					<flexibility source="nd"/>
+					<logic source="nd"/>
+					<cost source="nd"/>
+					<linkage source="nd"/>
+					<reference source="nd"/>
+					<certainty source="nd"/>
+				</imperative>
+			</recommendation>
+			<recommendation source="explicit">
+            Recommendation 11
+            <conditional source="explicit">
+               Infants and young children who have the expected response to antimicrobials should have a sonogram and either VCUG or RNC performed at the earliest convenient time
+               <decision.variable source="explicit" decision.variable.id="dv33">
+                  expected response to antimicrobials
+                  <value source="explicit"/>
+						<decision.variable.description source="explicit"/>
+						<decision.variable.description source="explicit"/>
+						<test.parameter source="nd">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<action source="explicit" action.id="a18">
+                  should have a sonogram
+                  <action.benefit source="explicit">ultrasonography shows them more safely, less invasively, and often less expensively.</action.benefit>
+						<action.risk.harm source="explicit">Ultrasonography may show signs of acute renal inflammation and established renal scars, but it is not as sensitive as other renal imaging techniques.</action.risk.harm>
+						<action.description source="explicit">The most common abnormality detected in imaging studies is VUR (Fig 1). The rate of VUR among children younger than 1 year of age with UTI exceeds 50%. VUR is not an allornone phenomenon; grades of severity are recognized, designated I to V in the TABLE 5. Some Antimicrobials for Prophylaxis of UTI  International Study Classification (International Reflux Study Committee, 1981), based on the extent of the reflux and associated dilatation of the ureter and pelvis. The grading of VUR is important because the natural history differs by grade, as does the risk of renal damage. Patients with highgrade VUR are 4 to 6 times more likely to have scarring than those with lowgrade VUR and 8 to 10 times more likely than those without VUR.16,49</action.description>
+						<action.description source="explicit">Urinary tract ultrasonography consists of examination of the kidneys to identify hydronephrosis and examination of the bladder to identify dilatation of the distal ureters, hypertrophy of the bladder wall, and the presence of ureteroceles. Previously, excretory urography (commonly called intravenous pyelography) was used to reveal these abnormalities,</action.description>
+						<action.cost source="explicit">often less expensively.</action.cost>
+					</action>
+					<action source="explicit" action.id="a20">
+                  RNC
+                  <action.benefit source="explicit">RNC has a lower radiation dose and therefore may be preferred in followup examinations of children with reflux.</action.benefit>
+						<action.risk.harm source="explicit">RNC does not show urethral or bladder abnormalities; for this reason, boys, whose urethra must be examined for posterior urethral valves, or girls, who have symptoms of voiding dysfunction when not infected, should have a standard fluoroscopic contrast VCUG as part of their initial studies.</action.risk.harm>
+						<action.description source="explicit">Renal cortical scintigraphy (with 99 m TcDMSA or 99 m Tcglucoheptonate) and enhanced computed tomography are very sensitive means of identifying acute changes from pyelonephritis or renal scarring. However, the role of these imaging modalities in the clinical management of the child with UTI still is unclear.</action.description>
+						<action.description source="explicit">a voiding phase is important because some reflux occurs only during voiding. If the predicted bladder capacity is not reached, the study may underestimate the presence or degree of reflux.</action.description>
+						<action.cost source="nd"/>
+					</action>
+					<action source="nd" action.id="a19">
+                   VCUG
+                  <action.benefit source="explicit">VCUG with fluoroscopy characterizes reflux better than does RNC.</action.benefit>
+						<action.risk.harm source="explicit"/>
+						<action.description source="explicit">a voiding phase is important because some reflux occurs only during voiding. If the predicted bladder capacity is not reached, the study may underestimate the presence or degree of reflux.</action.description>
+						<action.cost source="nd"/>
+					</action>
+					<reason source="explicit">Imaging of the urinary tract is recommended in every febrile infant or young child with a first UTI to identify those with abnormalities that predispose to renal damage.</reason>
+					<evidence.quality source="explicit">strength of evidence: fair</evidence.quality>
+					<recommendation.strength source="nd"/>
+					<flexibility source="explicit"/>
+					<logic source="nd"/>
+					<cost source="explicit"/>
+					<linkage source="nd"/>
+					<reference source="nd"/>
+					<certainty source="nd"/>
+				</conditional>
+				<conditional source="explicit">
+               Infants and young children 2 months to 2 years of age with UTI who do not demonstrate the expected clinical response within 2 days of antimicrobial therapy should undergo ultrasonography promptly, and either voiding cystourethrography (VCUG) or radionuclide cystography (RNC) should be performed at the earliest convenient time.
+               <decision.variable source="explicit" decision.variable.id="dv30">
+                  age
+                  <value source="explicit">2 months to 2 years</value>
+						<decision.variable.description source="explicit"/>
+						<decision.variable.description source="explicit"/>
+						<test.parameter source="nd">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<decision.variable source="explicit" decision.variable.id="dv31">
+                  UTI
+                  <value source="explicit"/>
+						<decision.variable.description source="explicit"/>
+						<test.parameter source="explicit">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<decision.variable source="explicit" decision.variable.id="dv32">
+                  do not demonstrate the expected clinical response within 2 days of antimicrobial therapy
+                  <value source="explicit"/>
+						<decision.variable.description source="nd"/>
+						<test.parameter source="explicit">
+							<sensitivity source="nd"/>
+							<specificity source="nd"/>
+							<predictive.value source="nd"/>
+						</test.parameter>
+						<decision.variable.cost source="nd"/>
+					</decision.variable>
+					<action source="explicit" action.id="a15">
+                  ultrasonography promptly,
+                  <action.benefit source="explicit"/>
+						<action.risk.harm source="explicit"/>
+						<action.description source="explicit"/>
+						<action.cost source="nd"/>
+					</action>
+					<action source="explicit" action.id="a17">
+                  radionuclide cystography (RNC)
+                  <action.benefit source="explicit"/>
+						<action.risk.harm source="explicit"/>
+						<action.description source="explicit"/>
+						<action.cost source="nd"/>
+					</action>
+					<action source="explicit" action.id="a16">
+                  voiding cystourethrography (VCUG)
+                  <action.benefit source="explicit"/>
+						<action.risk.harm source="explicit"/>
+						<action.description source="explicit"/>
+						<action.cost source="nd"/>
+					</action>
+					<reason source="explicit"/>
+					<evidence.quality source="explicit"/>
+					<recommendation.strength source="nd"/>
+					<flexibility source="explicit"/>
+					<logic source="nd"/>
+					<cost source="explicit"/>
+					<linkage source="nd"/>
+					<reference source="nd"/>
+					<certainty source="nd"/>
+				</conditional>
+				<imperative source="explicit">
+					<directive source="explicit">
+						<directive.benefit source="explicit"/>
+						<directive.risk.harm source="nd"/>
+						<directive.description source="explicit"/>
+						<directive.cost source="nd"/>
+					</directive>
+					<reason source="explicit"/>
+					<evidence.quality source="explicit"/>
+					<recommendation.strength source="nd"/>
+					<flexibility source="nd"/>
+					<logic source="nd"/>
+					<cost source="nd"/>
+					<linkage source="nd"/>
+					<reference source="nd"/>
+					<certainty source="nd"/>
+				</imperative>
+			</recommendation>
+			<definition source="nd">
+				<term source="nd">
+					<term.meaning source="nd"/>
+				</term>
+			</definition>
+			<algorithm source="nd">
+				<action.step source="nd"/>
+				<conditional.step source="nd"/>
+				<branch.step source="nd"/>
+				<synchronization.step source="nd"/>
+			</algorithm>
+		</knowledge.components>
+		<testing source="nd">
+			<external.review source="explicit">
+            The Subcommittee, the AAP Committee on Quality Improvement, a review panel of officebased practitioners, and other groups within and outside the AAP reviewed and revised the parameter.  Methods.
+            <review.method/>
+			</external.review>
+			<pilot.testing source="nd"/>
+		</testing>
+		<revision.plan source="nd">
+			<expiration source="nd"/>
+			<scheduled.review source="nd"/>
+		</revision.plan>
+	</guideline.body>
+</guideline.document>

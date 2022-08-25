@@ -1,0 +1,271 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:rddl="http://www.rddl.org/" xml:lang="en" xml:base="http://www.rddl.org/rddl2">
+    <head>
+        <title>XML Resource Directory Description Language (RDDL) Version 2.0</title>
+        <link href="xrd2.css" type="text/css" rel="stylesheet"/>
+    </head>
+    <body>
+        <h1>Resource Directory Description Language (RDDL) 2.0</h1>
+        <div class="head">
+            <p>This Version:<a
+                    href="http://www.openhealth.org/RDDL/20040118/rddl-20040118.html">January 18, 2004</a>
+            </p>
+            <p>Latest Version: <a href="http://www.rddl.org/rddl2">http://www.rddl.org/rddl2</a>
+            </p>
+            <p>Previous Version: <a
+                    href="http://www.openhealth.org/RDDL/20020218/rddl-20020218.html">February 18, 2002</a>
+            </p>
+            <p>Editors:</p>
+            <ul>
+                <li>
+                    <a href="mailto:jonathan@openhealth.org">Jonathan Borden</a>, <a
+                        href="http://www.openhealth.org">The Open Healthcare Group</a>
+                </li>
+                <li>
+                    <a href="mailto:tbray@textuality.com">Tim Bray</a>, <a
+                        href="http://antarctica.net">Antarctica Systems</a>
+                </li>
+            </ul>
+            <div id="status">
+                <h2>Status of this Document</h2>
+                <p>This document is a working draft that contains substantial input from the W3C <a
+                        href="http://www.w3.org/2001/tag/">Technical Architecture Group</a>,
+                    produced in connection with the work on its issue <a
+                    href="http://www.w3.org/2001/tag/2003/07/21-tag#namespaceDocument-8">namespaceDocument-8</a>.
+                    It is the consensus of the TAG that RDDL is a suitable format for use as a
+                    "Namespace Document", that is to say as a representation yielded by
+                    dereferencing a URI in use as an <a
+                        href="http://www.w3.org/TR/REC-xml-names/">XML Namespace Name</a>. While
+                    this document has no official standing, it is the intention of the TAG to seek
+                    guidance from the W3C membership and the larger community on the question of
+                    whether and how to progress this document and the use of RDDL.</p>
+            </div>
+            <div id="toc">
+                <h2>Table of contents</h2>
+                <ol>
+                    <li>
+                        <a href="#intro">Introduction</a>
+                    </li>
+                    <li>
+                        <a href="#background">Background</a>
+                    </li>
+                    <li>
+                        <a href="#np">Enriching the HTML <code>a</code> Element</a>
+                        <ol>
+                            <li>
+                                <a href="#nature">The Nature of a Related Resource</a>
+                            </li>
+                            <li>
+                                <a href="#purpose">The Purpose of a Related Resource</a>
+                            </li>
+                        </ol>
+                    </li>
+                    <li>
+                        <a href="#related.resources">Related Resources for RDDL</a>
+                    </li>
+                    <li>
+                        <a href="#references">Normative References</a>
+                    </li>
+                    <li>
+                        <a href="#informative.references">Informative References</a>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div id="intro">
+            <h2>1. Introduction</h2>
+            <p> This document describes the Resource Directory Description Language (RDDL). A RDDL
+                document, called a Resource Directory, provides a package of information about some
+                target, including:<ul>
+                    <li>Human-readable descriptive material about the target.</li>
+                    <li>A directory of individual resources related to the target, each directory
+                        entry containing descriptive material and linked to the resource in question.</li>
+                </ul> The targets which RDDL was designed to describe are XML Namespaces. Examples
+                of &quot;individual related resources&quot; include schemas, stylesheets,
+                and executable code designed to process markup from some namespace. A Resource
+                Directory is designed to be suitable for service as the body of an entity returned
+                by dereferencing a URI serving as an XML Namespace name.</p>
+            <p>The Resource Directory Description Language is an extension of <a
+                    href="http://www.w3.org/TR/xhtml-basic">XHTML Basic 1.0</a> with two added
+                attributes of the <code>a</code> element named<code>rddl:nature</code> and <code>rddl:purpose</code>.</p>
+        </div>
+        <div id="background">
+            <h2>2. Background</h2>
+            <p>The Resource Directory Description Language was initially proposed and specified
+                after discussion on the <a href="http://www.xml.org/xml-dev/">xml-dev</a> mailing
+                list. RDDL reflects contributions from <a
+                    href="http://www.rddl.org/contrib.htm">many participants</a> in the xml-dev
+                mailing list</p>
+            <p>This document has no official standing and has not been considered nor approved by
+                any organization.</p>
+        </div>
+        <div id="np">
+            <h2>3. Enriching the HTML <code>a</code> Element</h2>
+            <p>A Resource Directory implements links to related resources using the XHTML
+                <code>a</code> element, enriched by two attributes in the namespace identified by
+                the URI <code>http://www.rddl.org/</code> (identified in this discussion by the
+                prefix <code>rddl</code>). The attributes are named <code>rddl:nature</code> and
+                <code>rddl:purpose</code>, and an XHTML <code>a</code> element is considered to be
+                an entry in the resource directory if either or both of these attributes are present.</p>
+            <p>Note that there is a rich assortment of other attributes defined by HTML for the
+                <code>a</code> element, to provide information about its title, language, traversal
+                and so on; their use is encouraged in Resource Directories.</p>
+            <div id="nature">
+                <h3>3.1 The Nature of a Related Resource</h3>
+                <p>Related resources have a <strong>nature</strong>, a machine-readable label
+                    provided by the value of the <code>rddl:nature</code> attribute. For example,
+                    the nature of an XML Schema designed for use with a namespace would be given as<code>rddl:nature="http://www.w3.org/2001/XMLSchema"</code>.</p>
+                <p>In cases where there is only one resource with a particular nature, the purpose
+                    of the linked resource may be inferred from this nature. For example, if there
+                    is only one related resource for a particular namespace whose nature indicates
+                    that it is a schema, processing software might infer that its purpose is to
+                    validate elements in that namespace.</p>
+                <p>The value of this attribute must be a URI reference, which must be converted to
+                    absolute form before being used. It provides a machine-readable identifier for
+                    the nature of the related resource. Software may dispatch on this value.</p>
+                <p>When the related resource is an XML language for which a namespace name has been
+                    defined, and for which the namespace name adequately distinguishes the nature of
+                    the resource, the namespace name should be used as its nature.</p>
+                <p>When the related resource is not an XML document but is adequately distinguished
+                    by a MIME type, the value of the<code>rddl:nature</code> attribute may reflect
+                    this MIME type with values formed by the concatenation of the
+                    prefix<code>http://www.isi.edu/in-notes/iana/assignments/media-types/</code>
+                    with a MIME type e.g.<code>http://www.isi.edu/in-notes/iana/assignments/media-types/text/css</code>.</p>
+                <p>It is anticipated that many related-resource natures will be well known. A list
+                    of well-known natures may be found in the Resource Directory<a
+                        rddl:nature="http://www.rddl.org/"
+                        rddl:purpose="http://www.rddl.org/purposes#directory" href="http://www.rddl.org/natures">http://www.rddl.org/natures</a>.</p>
+                <p>If a purpose but no nature is provided for a related resource, the default value
+                    is<code>http://www.rddl.org/#resource</code>. </p>
+            </div>
+            <div id="purpose">
+                <h3>3.2 The Purpose of a Related Resource</h3>
+                <p>Related resources may have a <strong>purpose</strong>, a machine-readable label
+                    provided by the value of the <code>rddl:purpose</code> attribute. The purpose is
+                    designed to convey the intended usage of the related resource. For example, two
+                    related resources might have natures that indicate they are both schemas, but
+                    the purposes might indicate that one is designed to validate the "strict"
+                    version of the language, the other the "forgiving" form.</p>
+                <p>The value of this attribute must be a URI reference, which must be converted to
+                    absolute form before being used. It provides a machine-readable identifier for
+                    the purpose of the link to the related resource. Software may dispatch on this value.</p>
+                <p>It is anticipated that the purposes of many related resources will be well known.
+                    A list of well-known purposes may be found in the Resource Directory<a
+                        rddl:nature="http://www.rddl.org/"
+                        rddl:purpose="http://www.rddl.org/purposes#directory" href="http://www.rddl.org/purposes">http://www.rddl.org/purposes</a>.</p>
+            </div>
+        </div>
+        <div id="related.resources">
+            <h2>4. Related Resources for RDDL</h2>
+            <div class="resource">
+                <h3>4.1 Well-Known Related-Resource Natures</h3>
+                <p>A <a rddl:nature="http://www.rddl.org/"
+                        rddl:purpose="http://www.rddl.org/purposes#directory"
+                    href="http://www.rddl.org/natures">list</a> of well-known related-resource
+                    natures, with descriptions.</p>
+            </div>
+            <div class="resource">
+                <h3>4.2 Well-Known Related-Resource Purposes</h3>
+                <p>A<a rddl:nature="http://www.rddl.org/"
+                        rddl:purpose="http://www.rddl.org/purposes#directory"
+                    href="http://www.rddl.org/purposes">list</a> of well-known related-resource
+                    purposes, with descriptions.</p>
+            </div>
+            <div class="resource">
+                <h3>4.3 CSS Stylesheet</h3>
+                <p>A <a
+                        rddl:nature="http://www.isi.edu/in-notes/iana/assignments/media-types/text/css"
+                        href="http://www.rddl.org/xrd.css">CSS stylesheet</a> used to provide the
+                    "look-and-feel" of this document, suitable in general for RDDL documents.</p>
+            </div>
+            <div class="resource">
+                <h3>4.4 Home RDDL Directory</h3>
+                <p>This resource references a <a rddl:nature="http://www.rddl.org/"
+                        rddl:purpose="http://www.rddl.org/purposes#directory"
+                        href="http://www.rddl.org/home">RDDL document</a> containing a collection of
+                    resources referencing other RDDL documents.</p>
+            </div>
+            <div class="resource">
+                <h3>4.5 RDDL DTD</h3>
+                <p>This resource references an XHTML Modularized <a
+                        rddl:nature="http://www.isi.edu/in-notes/iana/assignments/media-types/application/xml-dtd"
+                        rddl:purpose="http://www.rddl.org/purposes#validation"
+                    href="rddl-xhtml-2.dtd">DTD</a> as an extension of XHTML Basic 1.0. The module
+                    specific to RDDL is<ol>
+                        <li>
+                            <a rddl:purpose="http://www.rddl.org/purposes#module"
+                                rddl:nature="http://www.isi.edu/in-notes/iana/assignments/media-types/application/xml-dtd" href="rddl-qname-2.mod">rddl-qname-2.mod</a>
+                        </li>
+                    </ol>
+                </p>
+            </div>
+            <div class="resource">
+                <h3>4.6 RELAXNG Schema</h3>
+                <p>This resource references a <a rddl:nature="http://relaxng.org/ns/structure/1.0"
+                        rddl:purpose="http://www.rddl.org/purposes#validation"
+                        href="rddl-xhtml-2.dtd">RELAXNG Schema</a> as an extension of XHTML Basic
+                    1.0. The modules specific to RDDL are<ol>
+                        <li>
+                            <a rddl:purpose="http://www.rddl.org/purposes#module" rddl:nature="" href="modules/rddl2.rng">modules/rddl2.rng</a>
+                        </li>
+                    </ol>
+                </p>
+            </div>
+            <h3>4.7 RDDL -&gt; RDF XSLT</h3>
+            <p>This resource references aN <a rddl:nature="http://www.w3.org/1999/XSL/Transform"
+                    rddl:purpose="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                    href="http://www.w3.org/2003/12/rdf-in-xhtml-xslts/grokRDDL.xsl">XSLT
+                Transform</a> that converts RDDL to RDF.</p>
+        </div>
+        <div id="references" class="resource">
+            <h2>5. Normative References</h2>
+            <ol>
+                <li>
+                    <a id="xml-names" rddl:nature="http://www.w3.org/TR/html4/"
+                        rddl:purpose="http://www.rddl.org/purposes#normative-reference"
+                        href="http://www.w3.org/TR/REC-xml-names">W3C XML Names</a>
+                </li>
+                <li>
+                    <a id="rfc2396"
+                        rddl:nature="http://www.isi.edu/in-notes/iana/assignments/media-types/text/plain"
+                        rddl:purpose="http://www.rddl.org/purposes#normative-reference"
+                        href="http://www.ietf.org/rfc/rfc2396.txt">IETF RFC 2396</a>
+                </li>
+                <li>
+                    <a id="rec-xhtml-basic" rddl:nature="http://www.w3.org/1999/xhtml"
+                        rddl:purpose="http://www.rddl.org/purposes#normative-reference"
+                        href="http://www.w3.org/TR/xhtml-basic">W3C XHTML Basic 1.0</a>
+                </li>
+                <li>
+                    <a id="rec-xmlbase" rddl:nature="http://www.w3.org/TR/html4/"
+                        rddl:purpose="http://www.rddl.org/purposes#normative-reference"
+                        href="http://www.w3.org/TR/xmlbase/">W3C XML Base</a>
+                </li>
+                <li>
+                    <a id="rec-xptr" rddl:nature="http://www.w3.org/TR/html4/"
+                        rddl:purpose="http://www.rddl.org/purposes#normative-reference"
+                        href="http://www.w3.org/tr/xptr">W3C XPointer</a>
+                </li>
+                <li>
+                    <a id="rec-xmlinfoset" rddl:nature="http://www.w3.org/1999/xhtml"
+                        rddl:purpose="http://www.rddl.org/purposes#normative-reference"
+                        href="http://www.w3.org/TR/xml-infoset/">W3C XML Infoset</a>
+                </li>
+            </ol>
+        </div>
+        <div id="informative.references" class="resource">
+            <h2>6. Informative References</h2>
+            <ol>
+                <li>
+                    <a id="rec-xhtml" rddl:nature="http://www.w3.org/1999/xhtml"
+                        rddl:purpose="http://www.rddl.org/purposes#reference"
+                        href="http://www.w3.org/tr/xhtml1">W3C XHTML 1.0</a>
+                </li>
+                <li>
+                    <a id="rec-modxhtml" rddl:nature="http://www.w3.org/1999/xhtml"
+                        rddl:purpose="http://www.rddl.org/purposes#reference"
+                        href="http://www.w3.org/TR/xhtml-modularization/">W3C Modularization of XHTML</a>
+                </li>
+            </ol>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,106 @@
+<html xmlns:form="http://www.openhealth.org/form" xmlns:opnote="http://www.openhealth.org/opnote" xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta xmlns="" http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <title xmlns="http://www.w3.org/1999/xhtml">Form</title>
+      <link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="openhealth.css">
+   </head>
+   <body xmlns="http://www.w3.org/1999/xhtml">
+      <form action="../opnotes/OpnoteServlet" method="post" id="opnote" enctype="application/x-www-form-urlencoded"><input type="hidden" name="XF" value="ONLHNP"><input type="hidden" name="style" value="ONLHNP.xsl"><table>
+            <tr>
+               <td align="right"><strong>Hospital</strong></td>
+               <td><select name="Hospital" size="1">
+                     <option value="New England Medical Center" selected="true">NEMC</option>
+                     <option value="Beth Israel-Deaconess Medical Center">BIDMC</option>
+                     <option value="St. Elizabeth's Medical Center">STELIZ</option>
+                  </select>
+               </td>
+            </tr>
+            <tr>
+               <td align="right"><strong>Patient Lastname</strong></td>
+               <td><input type="text" size="32" maxLength="64" name="lastname"></td>
+            </tr>
+            <tr>
+               <td align="right"><strong>Patient Firstname</strong></td>
+               <td><input type="text" size="32" maxLength="64" name="firstname"></td>
+            </tr>
+            <tr>
+               <td align="right"><strong>Patient ID</strong></td>
+               <td><input type="text" size="20" maxLength="32" name="patientid"></td>
+            </tr>
+            <tr>
+               <td align="right"><strong>Physician</strong></td>
+               <td><select name="Physician" size="1">
+                     <option value="Jonathan Borden, M.D." selected="true">Borden</option>
+                     <option value="William Shucart, M.D.">Shucart</option>
+                     <option value="Julian Wu, M.D.">Wu</option>
+                     <option value="Carl Heilman, M.D.">Heilman</option>
+                     <option value="John Duff, M.D.">Duff</option>
+                  </select>
+               </td>
+            </tr>
+            <tr>
+               <td align="right"><strong>Resident</strong></td>
+               <td><select name="Resident" size="1">
+                     <option value="Lyndell Wang, M.D." selected="true">Wang</option>
+                     <option value="Tina Lin, M.D.">Lin</option>
+                     <option value="Samuel Kim, M.D.">Kim</option>
+                     <option value="Alberto Cabantog, M.D.">Cabantog</option>
+                     <option value="James Kryzinksi, M.D.">Kryzinksi</option>
+                  </select>
+               </td>
+            </tr>
+            <tr>
+               <td align="right"><strong>Date</strong></td>
+               <td><input type="text" size="32" name="Date"></td>
+            </tr>
+            <tr>
+               <td align="right"><strong>Diagnosis</strong></td>
+               <td><input type="text" size="64" maxLength="255" name="Diagnosis"></td>
+            </tr>
+            <tr>
+               <td align="right"><strong>Anesthesia</strong></td>
+               <td><select name="Anesthesia" size="1">
+                     <option value="GETA">GETA</option>
+                     <option value="Local/IV">Local/IV</option>
+                     <option value="MAC">MAC</option>
+                  </select>
+               </td>
+            </tr>
+            <tr>
+               <td align="right"><strong>laterality</strong></td>
+               <td><input type="radio" name="laterality" value="Right">Right|<input type="radio" name="laterality" value="Left">Left|
+               </td>
+            </tr>
+            <tr>
+               <td align="right"><strong>Interspace</strong></td>
+               <td><input type="radio" name="Interspace" value="L3-4">L3-4|<input type="radio" name="Interspace" value="L4-5">L4-5|<input type="radio" name="Interspace" value="L5-S1" checked="true">L5-S1|
+               </td>
+            </tr>
+            <tr>
+               <td align="right"><strong>Annulus incised?</strong></td>
+               <td><input type="checkbox" name="annulus" value="" checked="true"></td>
+            </tr>
+            <tr>
+               <td align="right"><strong>Localizing X-ray?</strong></td>
+               <td><input type="checkbox" name="xray" value="" checked="true"></td>
+            </tr>
+            <tr>
+               <td align="right"><strong>Disc Appearance</strong></td>
+               <td><textarea name="disc-appearance" rows="3" cols="60"></textarea></td>
+            </tr>
+            <tr>
+               <td align="right"><strong>Discectomy Description</strong></td>
+               <td><textarea name="discectomy" rows="3" cols="60"></textarea></td>
+            </tr>
+            <tr>
+               <td align="right"><strong>Depomedrol?</strong></td>
+               <td><input type="checkbox" name="depomedrol" value="" checked="true"></td>
+            </tr>
+            <tr>
+               <td align="right"><strong>EBL</strong></td>
+               <td><input type="text" size="16" maxLength="64" name="EBL" value="minimal"></td>
+            </tr>
+         </table><input type="submit" name="Submit" value="Submit"></form>
+   </body>
+</html>

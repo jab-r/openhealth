@@ -1,0 +1,254 @@
+<?xml version="1.0"?>
+<!-- call draft-borden-webont-owl-mediatype-00.xml -->
+<!DOCTYPE rfc SYSTEM "rfc2629.dtd">
+<?rfc toc="yes"?>
+<?rfc compact="yes" ?>
+<rfc ipr="full2026" number="00" docName="draft-borden-webont-owl-mediatype"> 
+<!-- category="info" number="unkown"> -->
+<front>
+<title abbrev="application/owl+xml">application/owl+xml Media Type Registration</title>
+<author initials="J." surname="Borden" fullname="Jonathan Borden">
+	<organization>St. Vincent Health System</organization>
+	<address>
+		<postal>
+		<street>Section of Neurosurgery</street>
+		<street>311 W. 24th Street</street>
+		<city>Erie</city>
+		<region>PA</region>
+		<code>16502</code>
+		<country>USA</country>
+		</postal>
+	<phone>+1 814 455 4868</phone>
+	<email>jonathan@openhealth.org</email>
+	<uri>http://www.openhealth.org/</uri>
+	</address>
+</author>
+<date day="11" month="November" year="2002"/>
+<area>Applications</area>
+<keyword>RDF</keyword>
+<keyword>OWL</keyword>
+<keyword>ontology</keyword>
+<keyword>semantic web</keyword>
+<keyword>W3C</keyword>
+<keyword>media type</keyword>
+<keyword>MIME</keyword>
+<abstract>
+	<t>This document describes a media type (application/owl+xml) for use with the 
+		RDF/XML serialization of the Web Ontology Language (OWL). 
+		OWL is intended to provide a language that can be used to describe the 
+		classes and relations between them that are inherent in Web documents and applications. </t>
+</abstract>
+
+</front>
+<middle>
+
+<section title="Discussion of this Document">
+<t>Please send comments to &lt;mailto:public-webont-comments@w3.org&gt;.  
+	To subscribe, send a message with the body 'subscribe' to 
+	&lt;mailto:public-webont-comments-request@w3.org&gt;. 
+	The mailing list is publically archived at 
+	&lt;http://lists.w3.org/Archives/Public/public-webont-comments/&gt;.</t>
+</section>
+
+<section title="Introduction">
+<t>
+	The Web Ontology Language (OWL) is intended to provide a language that can be used to describe the classes and relations between them that are inherent in Web documents and applications. 
+</t>
+<t>
+	The interchange language for OWL is <xref target="W3C.rdf-syntax-grammar">the RDF/XML syntax</xref> as described in <xref target="W3C.owl-reference">the OWL Reference</xref>.
+	An OWL document may be served with the application/rdf+xml media type in which case the document is interpreted according to <xref target="IETF.rdf-xml-media-type">the application/rdf+xml media type</xref> registration.
+	An OWL document may be served with the application/owl+xml media type in which case it is interpreted according to the value of the entailment parameter.
+	The value of the entailment parameter is a URI which references a model theory or other formal definition of which entailments are intended by the 
+	author or server of the document to be licensed by the client of the document.
+	<list><t>simple: the document is interpreted as simple RDF according to the RDF model theory. The URIref for simple RDF entailments is 
+	<eref target="http://www.w3.org/TR/rdf-mt/#entail">http://www.w3.org/TR/rdf-mt/#entail</eref></t>
+	<t>RDFS: the document is interpreted as RDF Schema according to the RDF model theory. The URIref for RDFS entailments is <eref target="http://www.w3.org/TR/rdf-mt/#rdfs_interp">http://www.w3.org/TR/rdf-mt/#rdfs_interp</eref></t>
+	<t>lite: the document is interpreted as OWL according to the OWL direct semantics. It conforms to the OWL Lite syntax. The URIref for OWL Lite entailments is <eref target="">@@OWL Lite MT</eref></t>
+	<t>DL: the document is interpreted as OWL according to the OWL DL semantics. It conforms to OWL DL. The URIref for OWL DL entailments is <eref target="http://www.w3.org/TR/owl-semantics/direct.html">http://www.w3.org/TR/owl-semantics/direct.html</eref></t>
+	<t>full (default): the document is interpreted as OWL according to the OWL/RDF semantics. It conforms to OWL Full. The URIref for OWL Full entailments is <eref target="http://www.w3.org/TR/owl-semantics/rdfs.html#5.4">http://www.w3.org/TR/owl-semantics/rdfs.html#5.4</eref></t>
+	</list>
+	When an OWL document is served with the application/xml media type, no particular interpretation is indicated and must be arranged by private agreement between publisher and consumer of the document. 
+	Application/xml might be used when the document is intended to be an example.
+	The OWL model theory licenses additional entialments from the RDF model theory interpretation of the same RDF/XML document. 
+	Such differences between these interpretations are discussed in the OWL model theory document.
+</t>
+</section>
+<section title="application/owl+xml Registration">
+<t>This is a media type registration as defined in <xref target="RFC2048">Multipurpose Internet Mail Extensions (MIME) Part Four: Registration Procedures</xref>
+<list>
+<t>MIME media type name: application</t>
+<t>MIME subtype name: owl+xml</t>
+<t>Required parameters: none</t>
+<t>Optional parameter: charset
+ <list><t>
+Same as charset parameter of application/xml.
+ </t></list>
+</t>
+<t>
+   Encoding considerations:
+<list><t>
+   Same as charset parameter of application/xml.
+</t></list>
+</t>
+<t>Optional parameter: entailment
+<list>
+<t>http://www.w3.org/TR/rdf-mt/#entail: simple RDF entailments apply.</t>
+<t>http://www.w3.org/TR/rdf-mt/#rdfs_interp: RDFS entailments apply.</t>
+<t>@@OWL Lite: OWL Lite syntax and entailments apply.</t>
+<t>http://www.w3.org/TR/owl-semantics/direct.html: OWL DL syntax and entailments apply.</t>
+<t>http://www.w3.org/TR/owl-semantics/rdfs.html#5.4 (default): OWL Full syntax and entailments apply.</t>
+</list></t>
+<t>
+   Security considerations:
+<list><t>
+      Security considerations include many of those described in section 10 of <xref target="RFC3023">RFC 3023</xref> as well as those described in the <xref target="IETF.rdf-xml-media-type">application/rdf+xml media type registration</xref>.
+</t></list>
+</t>
+<t>Interoperability considerations: 
+</t>
+<t>Published specification: see <xref target="W3C.owl-reference">Web Ontology Language (OWL) 1.0 Reference</xref> and <xref target="W3C.owl-mt">OWL Abstract Syntax and Semantics</xref> (working drafts as of 2002-11)</t>
+<t>Applications which use this media type:
+<list><t>
+OWL is device-, platform-, and vendor-neutral and is supported by a range of Web Ontology user agents, authoring tools and inferencing engines.
+</t></list>
+</t>
+<t>Additional information:
+<list>
+<t>Magic number(s): none
+<list><t>
+Although no byte sequences can be counted on to consistently identify OWL, RDF documents will have the sequence "http://www.w3.org/1999/02/22-rdf-syntax-ns#" to identify the RDF namespace. This will usually be towards the top of the document.
+OWL documents may or may not declare the OWL namespace "http://www.w3.org/2002/07/owl#"
+</t></list>
+</t>
+<t>File extension(s): .owl,.rdf</t>
+<t>Macintosh File Type Code(s): "TEXT"</t>
+</list></t>
+<t>For further information:
+ <list>
+ <t>Jonathan Borden &lt;jonathan@openhealth.org&gt;</t>
+ <t>RDF Logic &lt;www-rdf-logic@w3.org&gt;</t>
+ <t>More information may be found on the WebOnt website: &lt;http://www.w3.org/2001/sw/WebOnt&gt;</t>
+ </list>
+</t>
+ <t>Intended usage: COMMON</t>
+ <t>Author/Change controller:
+  <list>
+   <t>
+The OWL specification is a work product of the World Wide Web Consortium. The W3C and the W3C WebOnt Working Group have change control over the specification.
+   </t>
+  </list>
+ </t>
+ </list>
+</t>
+</section>
+<section title="Social Context">
+<t>@@</t>
+</section>
+<section title="Fragment Identifiers">
+<t>application/owl+rdf uses the same fragment identifer syntax and semantics as application/rdf+xml.</t>
+<t>The rdf:ID and rdf:about attributes can be used to define fragments in an RDF document.</t>
+<t>
+Section 4.1 of the <xref target="RFC2396">URI specification</xref> notes that the semantics of a fragment identifier (part of a URI after a "#") is a property of the data resulting from a retrieval action, and that the format and interpretation of fragment identifiers is dependent on the media type of the retrieval result.
+</t>
+
+</section>
+<section title="Entailment parameter">
+<t>The optional entailment parameter is used to indicate which entailments are licensed by the publisher of the document to be derived from the assertions made in the document.
+<list>
+	<t>http://www.w3.org/TR/rdf-mt/#entail: simple RDF entailments are licensed.</t>
+	<t>Example use of this parameter as part of an HTTP GET operation:
+		<list><t>Accept: application/owl+rdf; entailment="http://www.w3.org/TR/rdf-mt/#entail" , application/rdf+xml</t>
+		</list>
+	</t>
+	<t>http://www.w3.org/TR/rdf-mt/#rdfs_interp: entailments as per RDF Schema are licensed.</t>
+	<t>Example use of this parameter as part of an HTTP GET operation:
+		<list><t>Accept: application/owl+rdf; entailment="http://www.w3.org/TR/rdf-mt/#rdfs_interp"</t>
+		</list>
+	</t>
+	<t>@@OWL Lite: entailments as per OWL DL are licensed. The syntax is intended to conform to OWL Lite.</t>
+	<t>Example use of this parameter as part of an HTTP GET operation:
+		<list><t>Accept: application/owl+rdf; entailment="@@OWL Lite"</t>
+		</list>
+	</t>
+
+	<t>http://www.w3.org/TR/owl-semantics/direct.html: entailments as per OWL DL are licensed.</t>
+	<t>Example use of this parameter as part of an HTTP GET operation:
+		<list><t>Accept: application/owl+rdf; entailment="http://www.w3.org/TR/owl-semantics/direct.html"</t>
+		</list>
+	</t>
+	<t>http://www.w3.org/TR/owl-semantics/rdfs.html#5.4: entailments as per OWL Full are licensed.</t>
+	<t>Example use of this parameter as part of an HTTP GET operation:
+		<list><t>Accept: application/owl+rdf; entailment="http://www.w3.org/TR/owl-semantics/rdfs.html#5.4"</t>
+		</list>
+		This value is the default if none is specified.
+	</t>
+</list>
+</t>
+</section>
+<section title="IANA Considerations">
+<t>This document calls for registration of a new MIME content-type, according to the registration template in section 2.</t>
+</section>
+
+<section title="Acknowledgements">
+<t>@@</t>
+</section>
+</middle>
+<back>
+<references>
+   <reference anchor="W3C.owl-reference" target="http://www.w3.org/TR/owl-ref/">
+		<front>
+		<title>Web Ontology Language (OWL) 1.0 Reference</title>
+		<author initials="M." surname="Dean" fullname="Mike Dean">
+			<organization>BBN Technologies</organization>
+		</author>
+		<date day="29" month="July" year="2002" />
+		</front>
+		<seriesInfo name="W3C" value="owl-reference" />
+	</reference>
+     <reference anchor="W3C.owl-mt" target="http://www.w3.org/TR/owl-semantics/">
+		<front>
+		<title>Web Ontology Language (OWL) 1.0 Abstract Syntax and Semantics</title>
+		<author initials="P.F." surname="Patel-Schneider" fullname="Peter F. Patel-Schneider">
+			<organization>Bell Labs Research</organization>
+		</author>
+		<date day="8" month="November" year="2002" />
+		</front>
+		<seriesInfo name="W3C" value="owl-reference" />
+	</reference>
+	<reference anchor="IETF.rdf-xml-media-type" target="http://www.ietf.org/internet-drafts/draft-swartz-rdfcore-rdfxml-mediatype-01">
+		<front>
+		<title>application/rdf+xml media type Registration</title>
+		<author initials="A." surname="Swartz" fullname="Aaron Swartz">
+			<organization>aaronsw.com</organization>
+		</author>
+		<date day="23" month="August" year="2002" />
+		</front>
+		<seriesInfo name="IETF" value="rdf-xml-media-type" />
+	</reference>
+	<reference anchor="W3C.rdf-syntax-grammar" target="http://www.w3.org/TR/rdf-syntax-grammar/">
+        <front>
+            <title>RDF/XML Syntax Specification (Revised)</title>
+            <author initials="D." surname="Beckett" fullname="Dave Beckett">
+                <organization>University of Bristol</organization>
+            </author>
+    		<date day="25" month="March" year="2002" />
+        </front>
+        <seriesInfo name="W3C" value="rdf-syntax-grammar" />
+    </reference>
+	<reference anchor="W3C.rdf-mt" target="http://www.w3.org/TR/rdf-mt/">
+		<front>
+		<title>RDF Model Theory</title>
+		<author initials="P." surname="Hayes" fullname="Patrick Hayes">
+			<organization>University of West Florida</organization>
+		</author>
+		<date day="29" month="April" year="2002" />
+		</front>
+		<seriesInfo name="W3C" value="rdf-mt" />
+	</reference> 
+	<?rfc include="reference.RFC.3023" ?>
+	<?rfc include="reference.RFC.2396" ?>
+	<?rfc include="reference.RFC.2048" ?>
+	<?rfc include="reference.RFC.2119" ?>
+</references>
+</back>
+</rfc>

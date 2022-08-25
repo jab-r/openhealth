@@ -1,0 +1,119 @@
+<?xml version="1.0" ?>
+<!DOCTYPE dummyRoot [
+<!ELEMENT dummyRoot (anElt|courseload)*>
+<!ELEMENT courseload ((tooltip|person|course|gpa|go)*)>
+<!ATTLIST courseload
+  xmlns:xlink     CDATA           #FIXED "http://www.w3.org/1999/xlink"
+  xlink:type      (extended)      #FIXED "extended"
+  xlink:role      CDATA           #IMPLIED
+  xlink:title     CDATA           #IMPLIED>
+
+<!ELEMENT tooltip ANY>
+<!ATTLIST tooltip
+  xlink:type      (title)         #FIXED "title"
+  xml:lang        CDATA           #IMPLIED>
+
+<!ELEMENT person EMPTY>
+<!ATTLIST person
+  xlink:type      (locator)       #FIXED "locator"
+  xlink:href      CDATA           #REQUIRED
+  xlink:role      CDATA           #IMPLIED
+  xlink:title     CDATA           #IMPLIED
+  xlink:label     NMTOKEN         #IMPLIED>
+
+<!ELEMENT course EMPTY>
+<!ATTLIST course
+  xlink:type      (locator)       #FIXED "locator"
+  xlink:href      CDATA           #REQUIRED
+  xlink:role      CDATA           #FIXED "http://www.example.com/linkprops/course"
+  xlink:title     CDATA           #IMPLIED
+  xlink:label     NMTOKEN         #IMPLIED>
+
+<!ELEMENT gpa ANY>
+<!ATTLIST gpa
+  xlink:type      (resource)      #FIXED "resource"
+  xlink:role      CDATA           #FIXED "http://www.example.com/linkprops/gpa"
+  xlink:title     CDATA           #IMPLIED
+  xlink:label     NMTOKEN         #IMPLIED>
+
+<!ELEMENT go EMPTY>
+<!ATTLIST go
+  xlink:type      (arc)           #FIXED "arc"
+  xlink:arcrole   CDATA           #IMPLIED
+  xlink:title     CDATA           #IMPLIED
+  xlink:show      (new
+                  |replace
+                  |embed
+                  |other
+                  |none)          #IMPLIED
+  xlink:actuate   (onLoad
+                  |onRequest
+                  |other
+                  |none)          #IMPLIED
+  xlink:from      NMTOKEN         #IMPLIED
+  xlink:to        NMTOKEN         #IMPLIED>
+
+]>
+<?xml-stylesheet type="text/xsl" href="rdfExtract.xsl" ?>
+<!-- $Id: examples.xml,v 1.1 2000/06/28 03:43:31 connolly Exp $
+ taken from http://www.w3.org/XML/2000/06/xlink2rdf.htm
+by Ron Daniel 22 June 2000
+-->
+
+<dummyRoot xmlns:x="mid:234234@example.org"
+	xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<anElt>
+... In a <x:extRef xlink:type="simple"
+      xlink:href="http://www.foo.com/papers/crops.txt"
+      xlink:arcrole="http://links.org/namespace/cite"
+      xlink:role="http://links.org/namespace/screed"
+   >recent paper</x:extRef>, Dr. Taylor assumes that ...
+</anElt>
+<courseload xlink:title="Course Load for Pat Jones">
+
+  <person
+    xlink:href="students/patjones62.xml"
+    xlink:label="student62"
+    xlink:role="http://www.example.com/linkprops/student"
+    xlink:title="Pat Jones" />
+
+  <person
+    xlink:href="profs/jaysmith7.xml"
+    xlink:label="prof7"
+    xlink:role="http://www.example.com/linkprops/professor"
+    xlink:title="Dr. Jay Smith" />
+  <!-- more remote resources for professors, TAs, etc. -->
+
+  <course
+    xlink:href="courses/cs101.xml"
+    xlink:label="CS-101"
+    xlink:title="Computer Science 101" />
+  <!-- more remote resources for courses, seminars, etc. -->
+
+  <gpa xlink:label="PatJonesGPA">3.5</gpa>
+
+  <go
+    xlink:from="student62"
+    xlink:to="PatJonesGPA"
+    xlink:show="new"
+    xlink:actuate="onRequest"
+    xlink:title="Pat Jones's GPA" />
+  <go
+    xlink:from="CS-101"
+    xlink:arcrole="http://www.example.com/linkprops/auditor"
+    xlink:to="student62"
+    xlink:show="replace"
+    xlink:actuate="onRequest"
+    xlink:title="Pat Jones, auditing the course" />
+  <go
+    xlink:from="student62"
+    xlink:arcrole="http://www.example.com/linkprops/advisor"
+    xlink:to="prof7"
+    xlink:show="replace"
+    xlink:actuate="onRequest"
+    xlink:title="Dr. Jay Smith, advisor" />
+
+</courseload>
+
+</dummyRoot>

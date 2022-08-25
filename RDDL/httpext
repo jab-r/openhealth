@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//XML-DEV//DTD XHTML RDDL 1.0//EN" "http://www.rddl.org/rddl-xhtml.dtd">
+<html   xmlns="http://www.w3.org/1999/xhtml" 
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:rddl="http://www.rddl.org/"
+		xml:lang="en"
+>
+<head>
+        <title>RDDL HTTP Extension Framework</title>
+        <link href="xrd.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1>Resource Directory Description Language (RDDL) HTTP Extension Framework</h1>
+
+<div id="intro">
+<h2>Introduction</h2>
+<p>This document describes the Resource Directory Description Language (RDDL) HTTP Extension Framework. [see RFC 2774]
+A Resource Directory Description is designed to be suitable for service as the body of a 
+resource returned by dereferencing a URI serving as an XML Namespace name. 
+In some cases it may be desirable to return the representation of a related resource as the HTTP rendering of the URI itself.
+By specifying a desired RDDL nature and/or purpose in an HTTP request header this can be accomplished.
+</p>
+<h2>HTTP Extension Namespace</h2>
+<p>The HTTP Extension Namespace for RDDL is: <code>http://www.rddl.org/httpext</code>.</p>
+<h2>Nature Extension Header</h2>
+<p>This header has the value of the requested resource nature <code>xlink:role</code>.</p>
+<h2>Purpose Extension Header</h2>
+<p>This header has the value of the requested resource purpose <code>xlink:arcrole</code>.</p>
+<h2>Lang Extension Header</h2>
+<p>This header has the value of the requested resource language <code>xml:lang</code>.</p>
+<h2>Id Extension Header</h2>
+<p>This header has the value of the requested resource <code>id</code>.</p>
+<h2>URI Resolution</h2>
+<p>A RDDL HTTP Extension processor will dereference the document located at the URI which MUST be a conformant RDDL document.
+The processor will subset the set of resources defined in the document by the nature, purpose, id and/or lang as provided by optional headers.
+The result of such processing SHOULD contain a set consisting of a single resource. 
+The processor SHOULD return the document obtained be dereferencing the <code>href</code> of the first resource in the defined subset.</p>
+<h2>Man and Opt Headers</h2>
+<p>The client application may choose the appropriate header. When <code>Opt</code> (optional) a processor which does not understand the extension will 
+return the RDDL document itself to the client. 
+When <code>Man</code> (mandatory), a client is stating that the processor MUST return the entity represented by the specified sub resource else return an error.</p>
+<h2>An example HTTP request:</h2>
+<pre>
+GET / HTTP/1.1
+Host: www.rddl.org
+Opt: "http://www.rddl.org/httpext"; ns=11
+11-Nature: http://www.w3.org/2001/XMLSchema
+11-Purpose: http://www.rddl.org/purposes#schema-validation
+</pre>
+<p>The XML Schema or the RDDL document itself may be returned in a success response message body by a conformant processor.</p>
+<pre>
+M-GET / HTTP/1.1
+Host: www.rddl.org
+Man: "http://www.rddl.org/httpext"; ns=11
+11-Nature: http://www.w3.org/2001/XMLSchema
+11-Purpose: http://www.rddl.org/purposes#schema-validation
+</pre>
+<p>The XML Schema used for schema validation MUST be returned in a success response message body by a conformant processor.</p>
+<pre>
+M-GET / HTTP/1.1
+Host: www.rddl.org
+Man: "http://www.rddl.org/httpext"; ns=11
+11-Nature: http://www.w3.org/2001/XMLSchema
+</pre>
+<p>The body of a success response message MUST contain a XML Schema referenced in the RDDL document. In the case where there are
+more than one XML Schema modules referenced in the RDDL document, the response may contain any of the modules (typically the first encountered or first in alphanumeric order).</p>
+
+<div id="normative">
+<h2>Normative References</h2>
+<ul>
+<rddl:resource id="RFC2774"
+	xlink:arcrole="http://www.rddl.org/purposes#normative-reference"
+	xlink:href="ftp://ftp.isi.edu/in-notes/rfc2774.txt"
+	><li><a href="ftp://ftp.isi.edu/in-notes/rfc2774.txt">[RFC 2774]</a> HTTP Extension Framework</li>
+</ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!-- XHTML Basic -->
+
+<grammar ns="http://www.w3.org/1999/xhtml"
+         xmlns="http://www.thaiopensource.com/trex">
+
+<include href="modules/datatypes.trex"/>
+<include href="modules/attribs.trex"/>
+<include href="modules/struct.trex"/>
+<include href="modules/text.trex"/>
+<include href="modules/hypertext.trex"/>
+<include href="modules/list.trex"/>
+<include href="modules/basic-form.trex"/>
+<include href="modules/basic-table.trex"/>
+<include href="modules/image.trex"/>
+<include href="modules/param.trex"/>
+<include href="modules/object.trex"/>
+<include href="modules/meta.trex"/>
+<include href="modules/link.trex"/>
+<include href="modules/base.trex"/>
+<include href="modules/xlink.trex"/>
+<include href="modules/resource.trex"/>
+</grammar>

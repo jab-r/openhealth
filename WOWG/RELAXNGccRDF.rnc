@@ -1,0 +1,391 @@
+<!--
+  RELAX NG CC for RDF/XML Syntax
+
+  Modified from RDF Syntax WD appendix http://www.w3.org/TR/rdf-syntax-grammar/#section-Schemas
+  It is based on one originally written by James Clark in
+  http://lists.w3.org/Archives/Public/www-rdf-comments/2001JulSep/0248.html
+  and updated with later changes.
+-->
+ 
+	
+	datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
+	xmlns="http://relaxng.org/ns/structure/1.0"
+  	
+grammar {
+	default namespace = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	namespace cc = "http://www.xml.gr.jp/xmlns/relaxngcc"
+	namespace rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	namespace local = ""
+	start [cc:runtime-type="org.openhealth.rdf.parser.Runtime"] = doc;
+<!--
+ I cannot seem to do this in RNGC so they are expanded in-line 
+	coreSyntaxTerms = rdf:RDF | rdf:ID | rdf:about | rdf:bagID | rdf:parseType | rdf:resource | rdf:nodeID | rdf:datatype
+    syntaxTerms = coreSyntaxTerms | rdf:Description | rdf:li
+    oldTerms    = rdf:aboutEach | rdf:aboutEachPrefix
+    nodeElementURIs       = * - ( coreSyntaxTerms | rdf:li | oldTerms )
+    propertyElementURIs   = * - ( coreSyntaxTerms | rdf:Description | oldTerms )
+    propertyAttributeURIs = * - ( coreSyntaxTerms | rdf:Description | rdf:li | oldTerms )
+  
+-->
+<!-- jab: these need a choice around them per the RELAXNG syntax (nameClass) -->
+nodeElementURIs = 
+  element * - (local:*|rdf:RDF|rdf:ID|rdf:about|rdf:bagID|rdf:parseType|
+  		rdf:resource|rdf:nodeID|rdf:datatype|rdf:li|
+		rdf:aboutEach|rdf:aboutEachPrefix)
+propertyElementURIs = 
+  element * - (local:*|rdf:RDF|rdf:ID|rdf:about|rdf:bagID|rdf:parseType|
+  		rdf:resource|rdf:nodeID|rdf:datatype|rdf:Description|
+		rdf:aboutEach|rdf:aboutEachPrefix)
+propertyAttributeURIs = 
+  attribute * - (local:*|rdf:RDF|rdf:ID|rdf:about|rdf:bagID|rdf:parseType|
+  		rdf:resource|rdf:nodeID|rdf:datatype|rdf:li|rdf:Description|
+		rdf:aboutEach|rdf:aboutEachPrefix)
+<!--
+
+    Also needed to allow rdf:li on all property element productions
+    since we can't capture the rdf:li rewriting to rdf_<n> in relaxng
+  
+-->
+<!-- These have side effects -->
+xmllang = [$runtime.xmllang = ] attribute xml:lang
+xmlbase =
+  $runtime.xmlbase = ] attribute  xml:base
+
+<!--
+ and to forbid every other xml:* attribute, element ***NOT DONE***
+-->
+doc = RDF
+<!-- rdf:RDF -->
+RDF = element rdf:RDF { xmllang?,xmlbase?,
+	nodeElementList* }
+<!-- nodeElement* -->
+nodeElementList = nodeElement*
+<!--
+
+    Should be something like:
+     ws* , (  nodeElement , ws* )*
+    but RELAXNG does this by default, ignoring whitespace separating tags.
+  
+-->
+nodeElement = nodeElementURIs {
+   [<!-- if this is the target of a striped description -->
+ 	if ($runtime.parseMode == STATEMENT_OBJECT) {
+		$runtime.statement(	$runtime.subject, 
+							$runtime.predicate, 
+							uri + localName, 
+							$runtime.xmlbase);
+	} else if ($runtime.parseMode == STATEMENT_COLLECTION) {
+		$runtime.statement( $runtime.subject,
+							RDF_FIRST,
+							uri + localName,
+							$runtime.xmlbase);
+	};
+ 	$runtime.pushStack();
+	if (uri.equals(RDF_NS) & localName.equals("Description")) {
+	} else
+		$runtime.type = uri + localName;
+	]
+	 (idAttr|nodeIdAttr|aboutAttr)?
+	 [if ($runtime.subject == null)
+	 	$runtime.subject = $runtime.makeBlankId();
+	 ],
+	 bagIdAttr?
+	 xmllang?,xmlbase?,
+	 [
+	 if ($runtime.type) 
+	 	$runtime.statement(	$runtime.subject,
+							RDF_TYPE,
+							$runtime.type,
+							$runtime.xmlbase);
+	]
+	 propertyAttr*,
+	 propertyElt*
+	 [ $runtime.popStack(); ]
+	 }
+<!--
+
+    It is not possible to say "and not things
+    beginning with _ in the rdf: namespace" in RELAX NG.
+  
+-->
+
+propertyElt =
+	(resourcePropertyElt|
+	literalPropertyElt|
+	parseTypeLiteralPropertyElt|
+	parseTypeResourcePropertyElt|
+	parseTypeCollectionPropertyElt|
+	parseTypeOtherPropertyElt|
+	emptyPropertyElt)
+resourcePropertyElt =
+	propertyElementURIs {
+		[$runtime.predicate = uri + localName;]
+		idAttr?,
+		xmllang?,xmlbase?,
+		[ $runtime.parseMode = STATEMENT_OBJECT;]
+		nodeElement
+		}
+<!-- text property, may be datatyped-->
+<define name="literalPropertyElt">
+	<element>
+		<ref name="propertyElementURIs" />
+	<optional>
+		<ref name="idAttr"/>
+	</optional>
+	<optional>
+		<ref name="datatypeAttr"/>
+	</optional>
+	<optional>
+		<ref name="xmllang"/>
+	</optional>
+	<optional>
+		<ref name="xmlbase"/>
+	</optional>
+ 	String lit =<text/>
+ 	$runtime.literalStatement(	$runtime.subject,
+								uri+localName,
+								lit,
+								$runtime.datatype,
+								$runtime.xmllang,
+								$runtime.xmlbase);
+	</element>
+</define>
+<define name="parseTypeLiteralPropertyElt">
+	<element>
+	  <ref name="propertyElementURIs" />
+	<optional>
+		<ref name="idAttr"/>
+	</optional>
+	<ref name="parseLiteral"/>
+	<optional>
+		<ref name="xmllang"/>
+	</optional>
+	<optional>
+		<ref name="xmlbase"/>
+	</optional>
+	$runtime.redirectSubtree(literalHandler,uri,localName,qname);
+	<!-- commented out and replaced with <empty /> purely to allow RELAXNGCC to
+		redirect subtree, the actual schema should have <literal /> -->
+	<!--<ref name="literal"/>-->
+	<empty />
+ </element>
+</define>
+<define name="parseTypeResourcePropertyElt">
+	<element>
+		<ref name="propertyElementURIs" />
+	<optional>
+		<ref name="idAttr"/>
+	</optional>
+	<ref name="parseResource"/>
+	<optional>
+		<ref name="xmllang"/>
+	</optional>
+	<optional>
+		<ref name="xmlbase"/>
+	</optional>
+	String blankId = $runtime.createBlankId();
+	$runtime.predicate = uri + localName;
+	$runtime.object = blankId;
+	$runtime.statement(
+					$runtime.subject,
+					$runtime.predicate,
+					$runtime.object,
+					$runtime.xmlbase);
+	$runtime.pushStack();
+	$runtime.subject = blankId;
+	<ref name="propertyEltList"/>
+	$runtime.popStack();
+ </element>
+</define>
+<define name="parseTypeCollectionPropertyElt">
+	<element>
+		<ref name="propertyElementURIs" />
+		<optional>
+			<ref name="idAttr"/>
+		</optional>
+		<optional>
+			<ref name="xmllang"/>
+		</optional>
+		<optional>
+			<ref name="xmlbase"/>
+		</optional>
+		<ref name="parseCollection"/>
+		String blankId = $runtime.createBlankId();
+		$runtime.object = blankId;
+		$runtime.statement( $runtime.subject,
+							uri + localName,
+							blankId,
+							$runtime.xmlbase);
+		$runtime.pushStack();
+		$runtime.subject = blankId;
+		<ref name="nodeElementListCollection"/>
+		$runtime.popStack();
+	</element>
+</define>
+<!-- handle list triples -->
+<define name="nodeElementListCollection">
+	$runtime.parseMode = STATEMENT_COLLECTION;
+  <zeroOrMore>
+   <ref name="nodeElement"/>
+   	String blankId = $runtime.createBlankId();
+	$runtime.statement( $runtime.subject,
+						RDF_REST,
+						blankId,
+						$runtime.xmlbase);
+	$runtime.subject = blankId();
+  </zeroOrMore>
+</define>
+-
+	<define name="parseTypeOtherPropertyElt">
+-
+	<element>
+-
+	<ref name="propertyElementURIs" />
+-
+	<optional>
+<ref name="idAttr"/>
+</optional>
+-
+	<optional>
+<ref name="xmllang"/>
+</optional>
+-
+	<optional>
+<ref name="xmlbase"/>
+</optional>
+<ref name="parseOther"/>
+<ref name="any"/>
+</element>
+</define>
+-
+<define name="emptyPropertyElt">
+	<element>
+		<ref name="propertyElementURIs" />
+		$runtime.predicate = uri + localName;
+		<optional>
+			<ref name="xmllang"/>
+		</optional>
+		<optional>
+			<ref name="xmlbase"/>
+		</optional>		
+		<optional>
+			<ref name="idAttr"/>
+		</optional>
+		<optional>
+			<choice>
+				<ref name="resourceAttr"/>
+				<ref name="nodeIdAttr"/>
+			</choice>
+		</optional>
+		<optional>
+			<ref name="bagIdAttr"/>
+		</optional>
+		<zeroOrMore>
+			<ref name="propertyAttr"/>
+		</zeroOrMore>
+
+	</element>
+</define>
+<define name="idAttr">
+	<attribute name="rdf:ID">
+		String id = <ref name="IDsymbol"/>
+		$runtime.subject = $runtime.makeURI(id);
+	</attribute>
+</define>
+<define name="nodeIdAttr">
+	<attribute name="rdf:nodeID">
+	$runtime.object = <ref name="IDsymbol"/>
+	$runtime.statement(	$runtime.subject,
+						$runtime.predicate,
+						$runtime.object,
+						$runtime.xmlbase);
+</attribute>
+</define>
+<define name="aboutAttr">
+	<attribute name="rdf:about">
+	$runtime.subject = <ref name="URI-reference"/>
+</attribute>
+</define>
+<define name="bagIdAttr">
+	<attribute name="rdf:bagID">
+	<ref name="IDsymbol"/>
+</attribute>
+</define>
+-
+<define name="propertyAttr">
+	<attribute>
+	 <ref name="propertyAttributeURIs" />
+	 String lit = <text />
+	 $runtime.literalStatement(	$runtime.subject,
+								$runtime.predicate,
+								lit,
+								null,
+								$runtime.xmllang,
+								$runtime.xmlbase);
+	</attribute>
+</define>
+<define name="resourceAttr">
+	<attribute name="rdf:resource">
+	$runtime.object = <ref name="URI-reference"/>
+	$runtime.statement(	$runtime.subject,
+						$runtime.predicate,
+						$runtime.object,
+						$runtime.xmlbase);
+</attribute>
+</define>
+<define name="datatypeAttr">
+	<attribute name="rdf:datatype">
+	$runtime.datatype=<ref name="URI-reference"/>
+</attribute>
+</define>
+<define name="parseLiteral">
+	<attribute name="rdf:parseType">
+	<value>Literal</value>
+</attribute>
+</define>
+<define name="parseResource">
+	<attribute name="rdf:parseType">
+	<value>Resource</value>
+</attribute>
+</define>
+<define name="parseCollection">
+	<attribute name="rdf:parseType">
+	<value>Collection</value>
+</attribute>
+</define>
+<define name="parseOther">
+	<attribute name="rdf:parseType"/>
+</define>
+-
+	<define name="URI-reference">
+<data type="string" datatypeLibrary=""/>
+</define>
+<define name="literal">
+	<ref name="any"/>
+</define>
+-
+	<define name="IDsymbol">
+<data type="NMTOKEN"/>
+</define>
+-
+	<define name="any">
+-
+	<mixed>
+-
+	<zeroOrMore>
+-
+	<element>
+<anyName/>
+-
+	<zeroOrMore>
+-
+	<attribute>
+<anyName/>
+</attribute>
+</zeroOrMore>
+<ref name="any"/>
+</element>
+</zeroOrMore>
+</mixed>
+</define>
+</grammar>

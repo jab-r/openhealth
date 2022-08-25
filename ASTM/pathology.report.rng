@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" ns="http://www.openhealth.org/ASTM/pathology.report" xmlns:path="http://www.openhealth.org/ASTM/pathology.report">
+  <include href="ASTM.E2182.rng"/>
+  <start>
+    <element name="pathology.report">
+      <ref name="astm.document.attrib"/>
+      <ref name="clinical.header"/>
+      <ref name="clinical.body"/>
+    </element>
+  </start>
+  <define name="clinical.body">
+    <element name="clinical.body">
+      <ref name="astm.content.attrib"/>
+      <ref name="clinical.history"/>
+      <ref name="preoperative.diagnosis"/>
+      <ref name="postoperative.diagnosis"/>
+      <optional>
+        <ref name="operative.procedure"/>
+      </optional>
+      <optional>
+        <ref name="operative.findings"/>
+      </optional>
+      <ref name="parts"/>
+    </element>
+  </define>
+  <define name="clinical.history">
+    <element name="clinical.history">
+      <ref name="astm.content.attrib"/>
+      <ref name="astm.content"/>
+    </element>
+  </define>
+  <define name="preoperative.diagnosis">
+    <element name="preoperative.diagnosis">
+      <ref name="astm.content.attrib"/>
+      <text/>
+    </element>
+  </define>
+  <define name="postoperative.diagnosis">
+    <element name="postoperative.diagnosis">
+      <ref name="astm.content.attrib"/>
+      <text/>
+    </element>
+  </define>
+  <define name="operative.procedure">
+    <element name="operative.procedure">
+      <ref name="astm.content.attrib"/>
+      <text/>
+    </element>
+  </define>
+  <define name="operative.findings">
+    <element name="operative.findings">
+      <ref name="astm.content.attrib"/>
+      <ref name="astm.content"/>
+    </element>
+  </define>
+  <define name="parts">
+    <element name="parts">
+      <ref name="astm.content.attrib"/>
+      <oneOrMore>
+        <ref name="part"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="part">
+    <element name="part">
+      <ref name="astm.content.attrib"/>
+      <ref name="part.attrib"/>
+      <optional>
+        <ref name="pathology.staff"/>
+      </optional>
+      <ref name="gross.description"/>
+      <ref name="tissue.source"/>
+      <ref name="diagnosis"/>
+      <optional>
+        <ref name="comment"/>
+      </optional>
+      <zeroOrMore>
+        <ref name="block"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="procedure"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="part.attrib">
+    <attribute name="name">
+      <data type="NMTOKEN"/>
+    </attribute>
+    <optional>
+      <attribute name="frozen">
+        <choice>
+          <value>y</value>
+          <value>n</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="all-pieces-used">
+        <choice>
+          <value>y</value>
+          <value>n</value>
+        </choice>
+      </attribute>
+    </optional>
+  </define>
+  <define name="block">
+    <element name="block">
+      <ref name="astm.content.attrib"/>
+      <ref name="ordering.date.time"/>
+      <ref name="ordering.physician"/>
+      <optional>
+        <ref name="comment"/>
+      </optional>
+      <zeroOrMore>
+        <ref name="stain"/>
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="piece"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="ordering.physician">
+    <element name="ordering.physician">
+      <ref name="astm.content.attrib"/>
+      <ref name="ch.actor.type"/>
+    </element>
+  </define>
+  <define name="pathology.staff">
+    <element name="pathology.staff">
+      <ref name="astm.content.attrib"/>
+      <optional>
+        <ref name="pathologist"/>
+      </optional>
+      <optional>
+        <ref name="gross.pathologist"/>
+      </optional>
+      <optional>
+        <ref name="frozen.pathologist"/>
+      </optional>
+    </element>
+  </define>
+  <define name="pathologist">
+    <element name="pathologist">
+      <ref name="astm.content.attrib"/>
+      <ref name="ch.actor.type"/>
+    </element>
+  </define>
+  <define name="gross.pathologist">
+    <element name="gross.pathologist">
+      <ref name="astm.content.attrib"/>
+      <ref name="ch.actor.type"/>
+    </element>
+  </define>
+  <define name="frozen.pathologist">
+    <element name="frozen.pathologist">
+      <ref name="astm.content.attrib"/>
+      <ref name="ch.actor.type"/>
+    </element>
+  </define>
+  <define name="tissue.source">
+    <element name="tissue.source">
+      <ref name="astm.content.attrib"/>
+      <text/>
+    </element>
+  </define>
+  <define name="stain">
+    <element name="stain">
+      <ref name="astm.content.attrib"/>
+      <text/>
+    </element>
+  </define>
+  <define name="piece">
+    <element name="piece">
+      <ref name="astm.content.attrib"/>
+      <ref name="astm.content"/>
+    </element>
+  </define>
+  <define name="ordering.date.time">
+    <element name="ordering.date.time">
+      <ref name="astm.content.attrib"/>
+      <ref name="ch.datetime.model"/>
+    </element>
+  </define>
+  <define name="submitted.date.time">
+    <element name="submitted.date.time">
+      <ref name="astm.content.attrib"/>
+      <ref name="ch.datetime.model"/>
+    </element>
+  </define>
+  <define name="procedure">
+    <element name="procedure">
+      <ref name="astm.content.attrib"/>
+      <optional>
+        <ref name="ordering.date.time"/>
+      </optional>
+      <optional>
+        <ref name="submitted.date.time"/>
+      </optional>
+      <ref name="pathologist"/>
+      <ref name="procedure.name"/>
+      <ref name="interpretation"/>
+    </element>
+  </define>
+  <define name="diagnosis">
+    <element name="diagnosis">
+      <ref name="astm.content.attrib"/>
+      <ref name="astm.content"/>
+    </element>
+  </define>
+  <define name="comment">
+    <element name="comment">
+      <ref name="astm.content.attrib"/>
+      <ref name="astm.content"/>
+    </element>
+  </define>
+  <define name="interpretation">
+    <element name="interpretation">
+      <ref name="astm.content.attrib"/>
+      <ref name="astm.content"/>
+    </element>
+  </define>
+  <define name="gross.description">
+    <element name="gross.description">
+      <ref name="astm.content.attrib"/>
+      <ref name="astm.content"/>
+    </element>
+  </define>
+  <define name="procedure.name">
+    <element name="procedure.name">
+      <ref name="astm.content.attrib"/>
+      <text/>
+    </element>
+  </define>
+</grammar>

@@ -1,0 +1,30 @@
+.patients  {
+	background-color : #C0C0C0;
+	cursor : hand;
+	border-style : outset;
+}
+
+body  {
+	background-color : Gray;
+	font-family : sans-serif;
+}
+
+td  {
+	background-color : Silver;
+}
+
+.textInset  {
+	border-style : ridge;
+	border-width : thick;
+	background-color : Silver;
+	border-color : Black;
+	visibility : hidden;
+}
+
+.textOutset  {
+	border-style : ridge;
+	border-width : medium;
+	border-color : Black;
+}
+
+.tdhead {  font-weight: bold; text-align: right}

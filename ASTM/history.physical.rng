@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0">
+  <include href="ASTM.E2182.rng"/>
+  <include href="admission.discharge.module.rng"/>
+  <define name="root">
+    <ref name="history.and.physical.examination"/>
+  </define>
+  <define name="clinical.body.model">
+    <ref name="history.and.physical"/>
+    <ref name="assessment.and.plan"/>
+  </define>
+  <define name="history.and.physical.examination">
+    <element name="history.and.physical.examination">
+      <ref name="astm.document.attrib"/>
+      <ref name="clinical.header"/>
+      <ref name="clinical.body"/>
+    </element>
+  </define>
+  <define name="clinical.body">
+    <element name="clinical.body">
+      <ref name="clinical.body.model"/>
+    </element>
+  </define>
+</grammar>

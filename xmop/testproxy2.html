@@ -1,0 +1,24 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Untitled</title>
+	
+	<script type="text/javascript" src="SOAPproxygen.asp?class=XTRIME.MBXMLFactory.1" ></script>
+	<script>
+	function display(){
+		alert("starting call");
+		var proxy = new XTRIME_MBXMLFactory_1("soapcall.asp");
+		alert("proxy created");
+		document.open();
+		var res = proxy.CreateInstance("XTRIME.MBXMLFactory.1");
+		alert("call made");
+		document.write(res);
+		document.close();
+	};
+	</script>
+</head>
+<body>
+<input type="Button" name="test" value="test" onclick="display()">
+</body>
+</html>

@@ -1,0 +1,136 @@
+<rdfx:OWL
+	xmlns:rdf="rdf"
+	xmlns:rdfx="rdfx"
+	xmlns:ont="ont"
+	xmlns:log="log"
+	xmlns:gc="gc"
+	xmlns:rdfs="rdfs">
+
+<!-- note that OWL handles qnames in the "ont" namespace specially, perhaps as predicates -->
+
+<!-- gc:grandparent ont:inverseOf gc:grandchild . -->
+<ont:inverseOf>
+	<gc:grandparent/>
+	<gc:grandchild/>
+</ont:inverseOf>
+<!-- gc:parent ont:inverseOf gc:child . -->
+<ont:inverseOf>
+	<gc:parent/>
+	<gc:child/>
+</ont:inverseOf>
+<!-- gc:sibling ont:inverseOf gc:sibling . 
+gc:spouse ont:inverseOf gc:spouse . 
+gc:ancestor ont:inverseOf gc:descendent . 
+gc:ancestor a ont:TransitiveProperty . 
+-->
+<ont:inverseOf>
+	<gc:sibling/>
+	<gc:sibling/>
+</ont:inverseOf>
+<ont:inverseOf>
+	<gc:ancestor/>
+	<gc:descendent/>
+</ont:inverseOf>
+
+<!-- since gc:ancestor isn't in the "ont" namespace, declare it using RDF -->
+<ont:TransitiveProperty rdfx:aboutQ="gc:ancestor">
+</ont:TransitiveProperty>
+
+<!-- gc:parent rdfs:subPropertyOf gc:ancestor . -->
+<!-- first the old way -->
+<rdf:Description rdfx:aboutQ="gc:parent">
+   <rdfs:subPropertyOf rdfx:resourceQ="gc:ancestor"/>
+</rdf:Description>
+<!-- and the new way -->
+<ont:subPropertyOf>
+	<gc:parent/>
+	<gc:ancestor/>
+</ont:subPropertyOf>
+
+<!-- 
+this log:forAll :child, :family, :parent, :gparent, :child2, :sibling, :spouse, :spouse2 . 
+this log:forAll :husband, :wife, :uncle, :aunt, :sibling2, :ancestor, :descendent, :descendent2 . 
+{:child gc:childIn :family. :parent gc:spouseIn :family} log:implies {:child gc:parent :parent} . = > 
+-->
+<log:forall>
+ <vars><child/><family/><parent/></vars>
+<log:if>
+   <log:and>
+    <gc:childIn>
+      <child/>
+      <family/>
+    </gc:childIn>
+    <gc:spouseIn>
+      <parent/>
+      <family/>
+    </gc:spouseIn>
+   </log:and>
+   <gc:parent>
+     <child/>
+     <parent/>
+   </gc:parent>
+</log:if>
+<log:if>
+   <log:and>
+    <gc:parent>
+      <child/>
+      <parent/>
+    </gc:parent>
+    <gc:sex>
+      <parent/>
+      "M"
+    </gc:sex>
+   </log:and>
+   <gc:father>
+     <child/>
+     <parent/>
+   </gc:father>
+</log:if>
+<log:if>
+   <log:and>
+    <gc:parent>
+      <child/>
+      <parent/>
+    </gc:parent>
+    <gc:sex>
+      <parent/>
+      "F"
+    </gc:sex>
+   </log:and>
+   <gc:mother>
+     <child/>
+     <parent/>
+   </gc:mother>
+</log:if>
+</log:forall>
+<!--
+{:child gc:parent :parent. :parent gc:sex :M} log:implies {:child gc:father :parent} .
+{:child gc:parent :parent. :parent gc:sex :F} log:implies {:child gc:mother :parent} .
+{:child gc:parent :parent. :child gc:sex :M} log:implies {:parent gc:son :child} .
+{:child gc:parent :parent. :child gc:sex :F} log:implies {:parent gc:daughter :child} .
+
+{:child gc:parent :parent. :parent gc:parent :gparent} log:implies {:child gc:grandparent :gparent} .
+{:child gc:grandparent :gparent. :gparent gc:sex :M} log:implies {:child gc:grandfather :gparent} .
+{:child gc:grandparent :gparent. :gparent gc:sex :F} log:implies {:child gc:grandmother :gparent} .
+{:child gc:grandparent :gparent. :child gc:sex :M} log:implies {:gparent gc:grandson :child} .
+{:child gc:grandparent :gparent. :child gc:sex :F} log:implies {:gparent gc:granddaughter :child} .
+
+{:child gc:childIn :family. :child2 gc:childIn :family. :child ont:differentIndividualFrom :child2} log:implies {:child gc:sibling :child2} .
+{:child gc:sibling :sibling. :sibling gc:sex :M} log:implies {:child gc:brother :sibling} .
+{:child gc:sibling :sibling. :sibling gc:sex :F} log:implies {:child gc:sister :sibling} .
+
+{:spouse gc:spouseIn :family. :spouse2 gc:spouseIn :family. :spouse ont:differentIndividualFrom :spouse2} log:implies {:spouse gc:spouse :spouse2} .
+{:spouse gc:spouse :husband. :husband gc:sex :M} log:implies {:spouse gc:husband :husband} .
+{:spouse gc:spouse :wife. :wife gc:sex :F} log:implies {:spouse gc:wife :wife} .
+
+{:child gc:parent :parent. :parent gc:brother :uncle} log:implies {:child gc:uncle :uncle} .
+{:child gc:parent :parent. :parent gc:sister :aunt. :aunt gc:spouse :uncle} log:implies {:child gc:uncle :uncle} .
+{:child gc:parent :parent. :parent gc:sister :aunt} log:implies {:child gc:aunt :aunt} .
+{:child gc:parent :parent. :parent gc:brother :uncle. :uncle gc:spouse :aunt} log:implies {:child gc:aunt :aunt} .
+
+{:parent gc:daughter :child. :parent gc:sibling :sibling} log:implies {:sibling gc:niece :child} .
+{:parent gc:son :child. :parent gc:sibling :sibling} log:implies {:sibling gc:nephew :child} .
+{:child gc:parent :sibling. :child2 gc:parent :sibling2. :sibling gc:sibling :sibling2} log:implies {:child gc:firstcousin :child2} .
+{:sibling gc:sibling :sibling2. :sibling gc:descendent :descendent. :sibling2 gc:descendent :descendent2} log:implies {:descendent gc:cousin :descendent2} .
+-->
+</rdfx:OWL>

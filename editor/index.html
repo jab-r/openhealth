@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>The Open Healthcare Group: XEditor</title>
+	<LINK rel="stylesheet" href="../OHCG_Style.css" />
+</head>
+
+<body>
+<h1><A HREF="http://www.openhealth.org">The Open Healthcare Group</A></h1>
+<h2><A HREF="http://www.openhealth.org/editor">XEditor</A></h2>
+<A TARGET="2000-08"></A>
+<p>XEditor is an XML vocabulary which specifies an editing list for an XML document. An XEditor document 
+can be compiled using an <A href="editorgen.xsl" title="The XEditor XSLT compiler">XSLT transformation</A> into an XSLT which carries out the specified editing list.</p>
+<p><A href="addPerson.edit.xml" title="An example edit list">An example using edit:append</A></p>
+<p><A href="addPerson.xsl">The resultant XSLT</A>
+<p><A href="insertbeforePerson.edit.xml" title="An example edit list">An example using edit:insert-before</A></p>
+<p><A href="insertbeforePerson.xsl">The resultant XSLT</A> 
+<p><A href="test-data.xml">A sample data file</A></p>
+<p>The XEditor namespace: "<A 
+href="http://www.openhealth.org/editor/">http://www.openhealth.org/editor</A>   "</p>
+<P>The vocabulary:</P>
+<a href="#editlist">editlist</a>
+<a href="#append">append</a>
+<a href="#insert-before">insert-before</a>
+<a href="#replace">replace</a>
+<a href="#replace-or-append">replace-or-append</a>
+<a href="#delete">delete</a>
+<a href="#param">param</a>
+<a href="#variable">variable</a>
+<a href="#value">value</a>
+<a href="#element">element</a>
+<a href="#element-if">element-if</a>
+<a href="#attribute">attribute</a>
+<P><a id="editlist">&lt;<STRONG>edit:editlist </STRONG>[path-prefix="..."] <P>
+&gt; <EM>commands </EM>   
+&lt;/edit:editlist&gt;</P></a>
+<p><a id="append">&lt;<STRONG>edit:append </STRONG>match=" <EM>... xpath 
+expr ... </EM>" [ select="...<EM>value</EM>..."]> value 
+&lt;/edit:append&gt;</a></p>
+<p><a id="insert-before">&lt;<STRONG>edit:insert-before </STRONG>match=" <EM>... xpath 
+expr ... </EM>"> [ select="...<EM>value</EM>..."] value  
+&lt;/edit:insert-before&gt;</a></p>
+<p><a id="replace">&lt;<STRONG>edit:replace </STRONG> match=" ... xpath expr ..." [ select="...value..." ]&gt; value 
+&lt;/edit:replace&gt;</a></p>
+<p><a id="replace-or-append">&lt;<STRONG>edit:replace-or-append </STRONG> test=" ... xpath expr ..." [ select="...value..." ]&gt; value 
+&lt;/edit:replace-or-append&gt;</a></p>
+<p><a id="delete">&lt;<STRONG>edit:delete </STRONG> match=" ... xpath expr ..." /&gt;</a></p>
+<p><a id="param">&lt;<STRONG>edit:param </STRONG> name=" ... " select=" ... " /&gt; ... transforms to 
+xsl:param</a></p>
+<p><a id="variable">&lt;<STRONG>edit:variable </STRONG> name=" ..." select=" ... " /&gt; ... transforms to 
+xsl:variable</a></p>
+<p><a id="value">&lt;<STRONG>edit:value </STRONG> select="..." /&gt; ... transforms to xsl:value-of</a></p>
+<p><a id="element">&lt;<STRONG>edit:element </STRONG> name="...AVT..." [ select= "...value..."] /&gt;</a></p>
+<p><a id="element-if">&lt;<STRONG>edit:element-if </STRONG> name="...AVT..." select="...expr..." /&gt; ... creates an 
+element <STRONG>if </STRONG>expr is not null</a></p>
+<p><a id="attribute">&lt;<STRONG>edit:attribute </STRONG> name="...AVT..." [ select= "...value..."] /&gt;</a></p>
+
+<P><A href="mailto:comments@openhealth.org">Comments?</A></P>
+
+<p>This is an early draft</p>
+
+
+</body>
+</html>

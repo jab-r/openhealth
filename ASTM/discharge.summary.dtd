@@ -1,0 +1,28 @@
+<!--
+	Copyright (c) 2000 Jonathan Borden, M.D., The Open Healthcare Group
+	Licensed upder http://www.openhealth.org/license
+
+	PUBLIC "-//ASTM//DTD Discharge Summary 1.0//EN"
+	SYSTEM "http://www.openhealth.org/ASTM/discharge.summary.dtd"
+-->
+
+<!ENTITY % admission.discharge.module PUBLIC "-//ASTM//DTD Admission-Discharge Module 1.0//EN" "admission.discharge.module.dtd">
+%admission.discharge.module;
+
+<!ENTITY % clinical.body.model "(
+	%admission.qname;,
+	%hospital.course.qname;,
+	%discharge.qname;
+)">
+
+<!ELEMENT %discharge.summary.qname; (%clinical.header.qname;,%clinical.body.qname;)>
+<!ATTLIST %discharge.summary.qname;
+	%astm.document.attrib;
+	%ADS.xmlns.attrib;
+>
+<!ELEMENT %clinical.body.qname; %clinical.body.model;>
+<!ATTLIST %clinical.body.qname; %ch.attrib;>
+
+
+
+

@@ -1,0 +1,314 @@
+<!DOCTYPE html PUBLIC "-//XML-DEV//DTD XHTML RDDL 1.0//EN" "rddl-xhtml.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>
+      Proposed RDF Abstract Syntax
+    </title>
+    <link rel="stylesheet" href="../RDDL/xrd.css" type="text/css" />
+  </head>
+  <body>
+    <h1>
+      RDF Abstract Syntax
+    </h1>
+    <p>
+      Editors:
+    </p>
+    <p>
+      Jonathan Borden <a
+      href="mailto:jonathan@openhealth.org">jonathan@openhealth.org</a>
+    </p>
+    <p>
+      Pat Hayes <a href="pat.hayes@ai.uwf.edu">phayes@ai.uwf.edu</a>
+    </p>
+    <p>
+      Drew McDermott <a
+      href="drew.mcdermott@yale.edu">drew.mcdermott@yale.edu</a>
+    </p>
+    <p>
+      This version: <a
+      href="http://www.openhealth.org/RDF/RDFAbstractSyntax-20010619.html">June
+      19, 2001</a>
+    </p>
+    <p>
+      <a href="http://www.openhealth.org/RDF/RDFAbstractSyntax.html">Latest
+      version</a>
+    </p>
+    <p>
+      Previous version: <a
+      href="http://www.openhealth.org/RDF/RDFAbstractSyntax-20010614.html">June
+      14, 2001</a>
+    </p>
+    <h2>
+      Introduction
+    </h2>
+    <p>
+      This document defines an <em>Abstract Syntax</em> or <em>Infoset</em> for
+      RDF [<a href="#RDF-MS">1</a>]. RDF Statements are commonly refered to as
+      triples of {predicate,subject,object}. In practice it is useful to group
+      triples into sets of statements termed: <em>Bundles</em>.
+    </p>
+    <p>
+      This document has no official status. 
+    </p>
+    <h2>
+      Bundle
+    </h2>
+    <p>
+      A bundle is a collection of statements.
+    </p>
+    <p>
+      world ::= (bundle*)
+    </p>
+    <p>
+      bundle ::= (term*)
+    </p>
+    <h2>
+      Statement
+    </h2>
+    <p>
+      A statement is a triple composed of a predicate, a subject and an object.
+    </p>
+    <p>
+      statement ::= (predicate,subject,object)
+    </p>
+    <h3>
+      word
+    </h3>
+    <p>
+      A <em>word</em> is either a statement, a bundle, a qname, a URI
+      reference, a quantified variable or a literal. A literal is a string or
+      quoted piece of XML.
+    </p>
+    <p>
+      word ::= (qname | URIreference | variable | literal)
+    </p>
+    <h3>
+      term
+    </h3>
+    <p>
+      term ::= (word | statement | bundle)
+    </p>
+    <h3>
+      variable
+    </h3>
+    <p>
+      variable := (&#39;?&#39; Name) Name as defined in XML 1.0
+    </p>
+    <h3>
+      predicate
+    </h3>
+    <p>
+      A predicate is a QName.
+    </p>
+    <h3>
+      subject
+    </h3>
+    <p>
+      A subject is a term.
+    </p>
+    <h3>
+      object
+    </h3>
+    <p>
+      An object is a term.
+    </p>
+    <h4>
+      Purpose of the Bundle
+    </h4>
+    <p>
+      The bundle allows separation of statements into lists which can be
+      asserted as a group. Bundles allow &#39;coloring&#39; of subgraphs. The
+      document from which a set of statements arises forms a bundle
+      (represented by its URI). Bundles can &#39;contain&#39; other bundles.
+    </p>
+    <h2>
+      Conversion of QNames to and from URI references:
+    </h2>
+    <p>
+      For each URIreference U, Q = QName(U) and  U = URIreference(Q)
+    </p>
+    <p>
+      Converting a URI reference to a QName
+    </p>
+    <p>
+      A URI reference may be separated into a namespace URI part which is the
+      substring of the URI reference up until the last non alphanumeric
+      character. The localname part is the part subsequent to this last
+      alphanumeric character. If the localname part is null, the special name
+      &quot;_&quot; is used as the localname part of the QName.
+    </p>
+    <h3>
+      Converting a QName to a URIreference
+    </h3>
+    <p>
+      If the namespace name ends in a non alphanumeric character, the namespace
+      URI and localname are concatenated to form a URI reference. If the
+      namespace name ends in an alphanumeric the namespace URI, &#39;#&#39; and
+      localname are concatenated.
+    </p>
+    <h2>
+      Application of predicates to bundles.
+    </h2>
+    <p>
+      The functions first(bundle) , rest(bundle) and nth(i,bundle) are defined
+      where:
+    </p>
+    <ul>
+      <li>
+        term = first(bundle) -- the first value of a bundle is a term
+      </li>
+      <li>
+        bundle = rest(bundle) -- the rest of a bundle is a bundle (or nil).
+      </li>
+      <li>
+        term = nth(i,bundle) -- the nth value of a bundle (or nil).
+      </li>
+      <li>
+        nil := {} -- empty bundle
+      </li>
+    </ul>
+    <h3>
+      unary predicate
+    </h3>
+    <p>
+      the subject is the argument, the object must be nil
+    </p>
+    <p>
+      foo(bar) -&gt; (foo bar nil)
+    </p>
+    <h3>
+      binary predicate
+    </h3>
+    <p>
+      the subject is the first argument, the object is the second argument
+    </p>
+    <p>
+      foo(bar,baz) -&gt; (foo bar baz)
+    </p>
+    <h3>
+      n-ary predicate
+    </h3>
+    <p>
+      or(a b c d e) -&gt; (or {a b c d e} nil)
+    </p>
+    <p>
+      predicate<sup>n</sup>.bundle :=
+      predicate<sup>n</sup>(nth(1,bundle),nth(2,bundle) ... nth(n,bundle))
+    </p>
+    <p>
+      the subject is of type bundle and holds the argument list, the object is
+      nil
+    </p>
+    <h2>
+      Examples:
+    </h2>
+    <h3>
+      Compound expression
+    </h3>
+    <p>
+      An expression is a statement that contains a statement or bundle as its
+      predicate or object.
+    </p>
+    <p>
+      The statement:
+    </p>
+    <p>
+      <em>(not(if (color sky blue)(color leaf green)))</em>
+    </p>
+<pre>
+predicate: not - type qname
+subject:  [if [color sky blue][color leaf green]] - type statement
+    predicate: if - type qname
+    subject: [color sky blue] - type statement
+    object:  [color leaf green] - type statement
+object: nil
+ 
+</pre>
+    <p>
+      [or a b c d e f g]
+    </p>
+<pre>
+predicate: or - type qname
+subject: {a b c d e f g} type bundle
+object: nil
+ 
+</pre>
+    <p>
+      [if [and [color sky blue][color leaf green]] [season summer]]
+    </p>
+<pre>
+&lt;rdf:If&gt;
+  &lt;rdf:And&gt;
+    &lt;ex:color rdf:aboutQ=&quot;ex:sky&quot; rdf:resourceQ=&quot;ex:blue&quot;/&gt;
+    &lt;ex:color rdf:aboutQ=&quot;ex:leaf&quot; rdf:resourceQ=&quot;ex:green&quot;/&gt;
+  &lt;/rdf:And&gt;
+  &lt;ex:season rdf:aboutQ=&quot;ex:summer&quot;/&gt;
+&lt;/rdf:If&gt;
+</pre>
+    <h3>
+      Queries as FOPL quantified variables
+    </h3>
+    <p>
+      The Squish [<a href="#SQUISH">2</a>] query: (dc:creator, foo,
+      ?x)(foaf:mbox, ?x, mailto:jonathan@openhealth.org)
+    </p>
+    <p>
+      is represented as the bundle:
+    </p>
+    <ol>
+      <li>
+        [dc:creator,foo,?x]
+      </li>
+      <li>
+        [foaf:mbox,?x,mailto:jonathan@openhealth.org] 
+      </li>
+    </ol>
+    <p>
+      In the context of a query, variables are existentially quantified over
+      the conjunction of the bundle
+    </p>
+    <p>
+      (exists ?x and{(dc:creator,
+      foo,?x),(foaf:mbox,?x,mailto:jonathan@openhealth.org)})
+    </p>
+    <h2>
+      Expressions
+    </h2>
+    <p>
+      Expressions are collections of statements within a common context. An
+      expression is a subgraph. The root or top level expression within a
+      particular context are those statements which are not referred as the
+      subject or object of any other statement within the context.
+    </p>
+    <p class="ednote">
+      Is there a formal expression of this?
+    </p>
+    <ol>
+      <li>
+        <a id="RDF-MS"></a><a href="http://www.w3.org/TR/REC-rdf-syntax">W3C
+        RDF Model and Syntax 1.0</a>
+      </li>
+      <li>
+        <a id="SQUISH"></a><a href="http://swordfish.rdfweb.org/rdfquery/">ILRT
+        Squish</a>
+      </li>
+      <li>
+        <a href="http://www-db.stanford.edu/~melnik/rdf/db.html">RDF DB</a>
+      </li>
+      <li>
+        <a
+        href="http://lists.w3.org/Archives/Public/www-rdf-interest/2000Feb/0172.html">
+        1</a>
+      </li>
+      <li>
+        <a href="http://www.w3.org/DesignIssues/Notation3.html">N3</a>
+      </li>
+      <li>
+        <a
+        href="http://public.research.mimesweeper.com/RDF/RDFContexts.html">Klyne&#39;s
+        Contexts</a>
+      </li>
+    </ol>
+  </body>
+</html>
+

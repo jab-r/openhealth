@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <rdf:subject rdf:resource="#JSPapersByDate"/>
+      <rdf:object rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Seq"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#_1"/>
+      <rdf:subject rdf:resource="#JSPapersByDate"/>
+      <rdf:object rdf:resource="http://www.dogworld.com/Aug96.doc"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#_2"/>
+      <rdf:subject rdf:resource="#JSPapersByDate"/>
+      <rdf:object rdf:resource="http://www.webnuts.net/Jan97.html"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#_3"/>
+      <rdf:subject rdf:resource="#JSPapersByDate"/>
+      <rdf:object rdf:resource="http://www.carchat.com/Sept97.html"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <rdf:subject rdf:resource="#JSPapersBySubj"/>
+      <rdf:object rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Seq"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#_1"/>
+      <rdf:subject rdf:resource="#JSPapersBySubj"/>
+      <rdf:object rdf:resource="http://www.carchat.com/Sept97.html"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#_2"/>
+      <rdf:subject rdf:resource="#JSPapersBySubj"/>
+      <rdf:object rdf:resource="http://www.dogworld.com/Aug96.doc"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#_3"/>
+      <rdf:subject rdf:resource="#JSPapersBySubj"/>
+      <rdf:object rdf:resource="http://www.webnuts.net/Jan97.html"/>
+   </rdf:Statement>
+</rdf:RDF>

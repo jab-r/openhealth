@@ -1,0 +1,72 @@
+default namespace path = "http://www.openhealth.org/ASTM/pathology.report"
+datatypes xsd = "http://www.w3.org/2001/XMLSchema-datatypes"
+include "ASTM.E2182.rng"
+
+start = element pathology.report {astm.document.attrib,
+		clinical.header,
+		clinical.body
+		}
+
+
+#<!-- much of path report is in header i.e. accession number, account number can both be document ids
+#-->
+clinical.body = element clinical.body { astm.content.attrib, 
+	 clinical.history,
+	 preoperative.diagnosis,
+	 postoperative.diagnosis,
+	 operative.procedure?,
+	 operative.findings?,
+	 parts
+}
+clinical.history = element clinical.history { astm.content.attrib, astm.content }
+preoperative.diagnosis = element preoperative.diagnosis { astm.content.attrib, text }
+postoperative.diagnosis = element postoperative.diagnosis { astm.content.attrib, text }
+operative.procedure = element operative.procedure { astm.content.attrib, text }
+operative.findings = element operative.findings { astm.content.attrib, astm.content }
+parts = element parts { astm.content.attrib, part+ }
+part = element part { astm.content.attrib, part.attrib,
+	pathology.staff?,
+	gross.description,
+	tissue.source,
+	diagnosis,
+	comment?,
+	block*,
+	procedure*
+}
+#<!-- frozen = related frozen section to this permanent section -->
+part.attrib =
+	attribute name {xsd:NMTOKEN},
+	attribute frozen {"y"|"n"}?,
+	attribute all-pieces-used {"y"|"n"}?
+
+block = element block { astm.content.attrib, 
+	ordering.date.time,
+	ordering.physician,
+	comment?,
+	stain*,
+	piece*
+}
+ordering.physician = element ordering.physician { astm.content.attrib, ch.actor.type }
+pathology.staff = element pathology.staff { astm.content.attrib, pathologist?,gross.pathologist?,frozen.pathologist?}
+pathologist = element pathologist { astm.content.attrib, ch.actor.type}
+gross.pathologist = element gross.pathologist { astm.content.attrib, ch.actor.type}
+frozen.pathologist = element frozen.pathologist { astm.content.attrib, ch.actor.type}
+tissue.source = element tissue.source { astm.content.attrib, text }
+stain = element stain { astm.content.attrib, text }
+piece = element piece { astm.content.attrib, astm.content }
+ordering.date.time = element ordering.date.time{astm.content.attrib,ch.datetime.model}
+submitted.date.time = element submitted.date.time{astm.content.attrib,ch.datetime.model}
+
+procedure = element procedure{
+	astm.content.attrib,
+	ordering.date.time?,
+	submitted.date.time?,
+	pathologist,
+	procedure.name,
+	interpretation
+}
+diagnosis = element diagnosis { astm.content.attrib, astm.content }
+comment = element comment { astm.content.attrib, astm.content }
+interpretation = element interpretation { astm.content.attrib, astm.content }
+gross.description = element gross.description { astm.content.attrib, astm.content }
+procedure.name = element procedure.name { astm.content.attrib, text }

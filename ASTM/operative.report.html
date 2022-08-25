@@ -1,0 +1,96 @@
+<html
+		xmlns="http://www.w3.org/1999/xhtml" 
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:rddl="http://www.rddl.org/"
+		xml:lang="en"
+		xml:base="http://www.openhealth.org/ASTM/operative.report"
+		>
+<head>
+	<title>ASTM E2182 Operative Report Namespace Description (RDDL)</title>
+</head>
+
+<body>
+<h1>ASTM E2182 Operative Report Description</h1>
+<h3>References</h3>
+<p>ASTM E2182 Clinical Header <a href="http://www.openhealth.org/ASTM/clinical.header">http://www.openhealth.org/ASTM/clinical.header</a></p>
+
+<div id="clinical.body">
+<h2>Clinical Body</h2>
+<p>ASTM E2183 conformant documents have a clinical header and a clinical body. The clinical header
+is constant across the E2182 documents. The clinical body is document type dependent. For an operative report
+the body has XML elements corresponding to common information items in an operative report. Names of 'service actors'
+such as the <em>Attending Surgeon</em> are incorporated into the clinical header.</p>
+<pre>clinical.body.model = (
+	 preoperative.diagnosis,
+	 postoperative.diagnosis,
+	 procedure,
+	 anesthesia,
+	 indications,
+	 prep?,
+	 medications?,
+	 description,
+	 findings?,
+	 specimens?,
+	 closure?,
+	 complications?,
+	 pathology.intraoperative?,
+	 pathology.permanent?,
+	 drains?,
+	 counts?,
+	 estimated.blood.loss?,
+	 fluids?,
+	 patient.condition?,
+	 disposition?,
+	 followup?
+)
+start = element operative.report {astm.document.attrib,clinical.header,clinical.body}
+clinical.body = element clinical.body{
+	ch.attrib,
+	clinical.body.model
+}
+</pre></div>
+<p>Elements having content "text" consist of text alone. Elements having content "astm.content"
+may be a combination of text and XHTML content.</p>
+<ol>
+<li>preoperative.diagnosis = element preoperative.diagnosis {astm.content.attrib, text}</li>
+<li>postoperative.diagnosis = element postoperative.diagnosis {astm.content.attrib, text}</li>
+<li>procedure = element procedure {astm.content.attrib, text}</li>
+<li>anesthesia = element anesthesia {astm.content.attrib, text}</li>
+<li>indications = element indications {astm.content.attrib, astm.content}</li>
+<li>prep = element prep {astm.content.attrib, astm.content}</li>
+<li>medications = element medications {astm.content.attrib,(astm.content | medication)*}</li>
+<li>medication = element medication{astm.content.attrib, text}</li>
+<li>description = element description {astm.content.attrib, astm.content}</li>
+<li>findings = element findings {astm.content.attrib, astm.content}</li>
+<li>specimens = element specimens {astm.content.attrib, astm.content}</li>
+<li>closure = element closure {astm.content.attrib, astm.content}</li>
+<li>complications = element complications {astm.content.attrib, astm.content}</li>
+<li>drains = element drains {astm.content.attrib, astm.content}</li>
+<li>counts = element counts {astm.content.attrib, astm.content}</li>
+<li>pathology.intraoperative = element pathology.intraoperative{astm.content.attrib, astm.content}</li>
+<li>pathology.permanent = element pathology.permanent {astm.content.attrib, astm.content}</li>
+<li>estimated.blood.loss = element estimated.blood.loss {astm.content.attrib, text}</li>
+<li>fluids = element fluids{(astm.content.attrib,fluid)*}</li>
+<li><pre>fluid = element fluid {
+	astm.content.attrib,
+	attribute status{"given"|"loss"},
+	attribute volume{text}?,
+	text}</pre></li>
+<li>patient.condition = element patient.condition {astm.content.attrib, astm.content}</li>
+<li>disposition = element disposition {astm.content.attrib, astm.content}</li>
+<li>followup = element followup {astm.content.attrib, astm.content}</li></ol>
+<h3>preoperative.diagnosis</h3><p>Text, may be an XLink. the preoperative diagnosis. Codes corresponding to the
+diagnosis may also be included as coded.value s within the clinical.header.</p>
+<h3>postoperative.diagnosis</h3><p>Text, may be an XLink. the postoperative diagnosis. Coded values may also be
+incorporated in the clinical header.</p>
+<h3>procedure</h3><p>Text, may be an XLink. the procedure performed. Coded values e.g. CPT, may also be
+incorporated in the clinical header.</p>
+
+
+
+
+
+
+
+</body>
+</html>

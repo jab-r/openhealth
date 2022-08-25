@@ -1,0 +1,17 @@
+<?xml:test-pi type="text/xslt" name="frodo" ?>
+<!-- this is a comment -->
+<root xmlns="http://example.org/ns">
+	<a/>
+	<b/>
+	<!-- and another comment -->
+	<c xmlns:ex="http://example.org/ns2"
+		ex:att="123245 678910">
+		<a>foo</a>
+		<b>bar</b>
+	</c>
+	<c>
+		<a>baz</a>
+		<b>bop</b>
+	</c>
+	<d/>
+</root>

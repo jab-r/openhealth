@@ -1,0 +1,297 @@
+.ednote {
+	FONT-SIZE: 80%; COLOR: red; FONT-STYLE: italic
+}
+DIV.toc UL {
+	LIST-STYLE-TYPE: none
+}
+.new {
+	COLOR: blue
+}
+PRE.example {
+	FONT-WEIGHT: bold; MARGIN-LEFT: 0px; COLOR: green; MARGIN-RIGHT: 0px; FONT-FAMILY: monospace; WHITE-SPACE: pre
+}
+PRE.dtd {
+	FONT-WEIGHT: normal; MARGIN-LEFT: 0px; MARGIN-RIGHT: 0px; FONT-FAMILY: monospace; WHITE-SPACE: pre
+}
+DIV.toc {
+	BORDER-RIGHT: medium none; BORDER-TOP: medium none; BORDER-LEFT: medium none; MARGIN-RIGHT: 5%; BORDER-BOTTOM: medium none; BACKGROUND-COLOR: #ccccff
+}
+DIV.subtoc {
+	BORDER-RIGHT: medium none; BORDER-TOP: medium none; BORDER-LEFT: medium none; MARGIN-RIGHT: 5%; BORDER-BOTTOM: medium none; BACKGROUND-COLOR: #ccccff
+}
+CODE {
+	FONT-WEIGHT: bold; COLOR: #660099; FONT-FAMILY: monospace
+}
+.ref {
+	FONT-WEIGHT: bold
+}
+.normref {
+	FONT-WEIGHT: bold
+}
+DIV.navbar {
+	TEXT-ALIGN: center
+}
+.center {
+	TEXT-ALIGN: center
+}
+.alphalist {
+	LIST-STYLE-TYPE: upper-alpha
+}
+.codelist {
+	
+}
+DL.codelist DT {
+	FONT-WEIGHT: normal; COLOR: #660099; FONT-STYLE: normal; FONT-FAMILY: mono
+}
+.termlist {
+	
+}
+DL.termlist DT {
+	FONT-WEIGHT: bold; COLOR: #330000
+}
+A.entity {
+	COLOR: red
+}
+A.element {
+	COLOR: green
+}
+A.attribute {
+	COLOR: red
+}
+.elements {
+	FONT-WEIGHT: bold; COLOR: green; FONT-FAMILY: mono
+}
+.attributes {
+	FONT-WEIGHT: bold; COLOR: red; FONT-FAMILY: mono
+}
+.content {
+	FONT-WEIGHT: bold; COLOR: blue; FONT-FAMILY: mono
+}
+.dfn {
+	FONT-WEIGHT: bold; COLOR: #400040; FONT-STYLE: italic
+}
+TT {
+	COLOR: #4000af
+}
+DL.desc {
+	MARGIN-LEFT: 5%; MARGIN-RIGHT: 5%
+}
+.sect2 {
+	MARGIN-LEFT: 5%; MARGIN-RIGHT: 5%
+}
+.element {
+	FONT-WEIGHT: bold; COLOR: #f00000
+}
+.attlist {
+	FONT-WEIGHT: bold; COLOR: #f06000
+}
+.pentity {
+	COLOR: #000080
+}
+SPAN.attlistid {
+	FONT-SIZE: smaller; VERTICAL-ALIGN: super; COLOR: gray
+}
+SPAN.elementid {
+	FONT-SIZE: 80%; VERTICAL-ALIGN: super; COLOR: gray
+}
+SPAN.fixme {
+	COLOR: red
+}
+TABLE.moduledef {
+	BORDER-RIGHT: red solid; BORDER-TOP: red solid; BORDER-LEFT: red solid; WIDTH: 100%; BORDER-BOTTOM: red solid
+}
+.tm {
+	FONT-SIZE: smaller; VERTICAL-ALIGN: super
+}
+.reg {
+	FONT-SIZE: smaller; VERTICAL-ALIGN: super
+}
+.xlink {
+	BACKGROUND: #ffcccc
+}
+.rdf {
+	BACKGROUND: #ccffcc
+}
+DIV.head {
+	BORDER-RIGHT: 0px groove; BORDER-TOP: 0px groove; DISPLAY: block; PADDING-BOTTOM: 2em; BORDER-LEFT: 0px groove; BORDER-BOTTOM: thin groove
+}
+DIV.note {
+	FONT-SIZE: 80%; MARGIN-LEFT: 5%
+}
+BODY {
+	BACKGROUND: white fixed no-repeat left top; MARGIN: 2em 1em 2em 70px; COLOR: black; FONT-FAMILY: sans-serif
+}
+TH {
+	FONT-FAMILY: sans-serif
+}
+TD {
+	FONT-FAMILY: sans-serif
+}
+H1 {
+	TEXT-ALIGN: left
+}
+H2 {
+	TEXT-ALIGN: left
+}
+H3 {
+	TEXT-ALIGN: left
+}
+H4 {
+	TEXT-ALIGN: left
+}
+H5 {
+	TEXT-ALIGN: left
+}
+H6 {
+	TEXT-ALIGN: left
+}
+H1 {
+	COLOR: #005a9c
+}
+H2 {
+	COLOR: #005a9c
+}
+H3 {
+	COLOR: #005a9c
+}
+H1 {
+	FONT: 170% sans-serif
+}
+H2 {
+	FONT: 140% sans-serif
+}
+H3 {
+	FONT: 120% sans-serif
+}
+H4 {
+	FONT: bold 100% sans-serif
+}
+H5 {
+	FONT: italic 100% sans-serif
+}
+H6 {
+	FONT: small-caps 100% sans-serif
+}
+.hide {
+	DISPLAY: none
+}
+DIV.head {
+	MARGIN-BOTTOM: 1em
+}
+DIV.head H1 {
+	CLEAR: both; MARGIN-TOP: 2em
+}
+DIV.head TABLE {
+	MARGIN-TOP: 2em; MARGIN-LEFT: 2em
+}
+DIV.head IMG {
+	BORDER-RIGHT: medium none; BORDER-TOP: medium none; BORDER-LEFT: medium none; COLOR: white; BORDER-BOTTOM: medium none
+}
+P.copyright {
+	FONT-SIZE: small
+}
+P.copyright SMALL {
+	FONT-SIZE: small
+}
+
+@media Screen    
+{
+A:hover {
+	BACKGROUND: #ffa
+}
+    }
+PRE {
+	MARGIN-LEFT: 2em
+}
+DT {
+	MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px
+}
+DD {
+	MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px
+}
+DT {
+	FONT-WEIGHT: bold
+}
+PRE {
+	FONT-FAMILY: monospace
+}
+CODE {
+	FONT-FAMILY: monospace
+}
+UL.toc {
+	LIST-STYLE-TYPE: none
+}
+
+@media Aural    
+{
+H1 {
+	stress: 20; richness: 90
+}
+H2 {
+	stress: 20; richness: 90
+}
+H3 {
+	stress: 20; richness: 90
+}
+.hide {
+	speak: none
+}
+P.copyright {
+	volume: x-soft; speech-rate: x-fast
+}
+DT {
+	pause-before: 20%
+}
+PRE {
+	speak-punctuation: code
+}
+    }
+.projection {
+	DISPLAY: none
+}
+
+@media Projection    
+{
+.projection {
+	DISPLAY: inline
+}
+    }
+BODY {
+	
+}
+CODE {
+	FONT-FAMILY: monospace
+}
+DIV.constraint {
+	MARGIN-LEFT: 2em
+}
+DIV.issue {
+	MARGIN-LEFT: 2em
+}
+DIV.note {
+	MARGIN-LEFT: 2em
+}
+DIV.notice {
+	MARGIN-LEFT: 2em
+}
+DT.label {
+	
+}
+LI P {
+	MARGIN-TOP: 0.3em; MARGIN-BOTTOM: 0.3em
+}
+.pentity {
+	COLOR: #0000ff
+}
+DIV.issue {
+	COLOR: red
+}
+DIV.resource {
+	BORDER-TOP: #000 1px solid; DISPLAY: block; MARGIN-BOTTOM: 1em; BORDER-BOTTOM: #000 1px solid; BACKGROUND-COLOR: #ffffdd
+}
+DIV.resource CODE {
+	COLOR: #005a9c
+}
+TABLE.eg {
+	BORDER-RIGHT: 2px ridge; BORDER-TOP: 2px ridge; BORDER-LEFT: 2px ridge; WIDTH: 100%; BORDER-BOTTOM: 2px ridge; BACKGROUND-COLOR: #99ffff
+}

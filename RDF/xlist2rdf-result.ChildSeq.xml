@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<webdata>
+   <arc>
+      <subject>#/1</subject>
+      <predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</predicate>
+      <webobject>dummyRoot</webobject>
+   </arc>
+   <arc>
+      <subject>#/1</subject>
+      <predicate>anElt</predicate>
+      <webobject>#/1/1</webobject>
+   </arc>
+   <arc>
+      <subject>#/1/1</subject>
+      <predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</predicate>
+      <webobject>anElt</webobject>
+   </arc>
+   <arc>
+      <subject>#/1/1</subject>
+      <predicate>mid:234234@example.orgextRef</predicate>
+      <object>recent paper</object>
+   </arc>
+   <arc>
+      <subject>#/1/1</subject>
+      <predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</predicate>
+      <object>
+... In a </object>
+   </arc>
+   <arc>
+      <subject>#/1/1</subject>
+      <predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#value</predicate>
+      <object>, Dr. Taylor assumes that ...
+</object>
+   </arc>
+   <arc>
+      <subject>#/1/1/1</subject>
+      <predicate>http://links.org/namespace/cite</predicate>
+      <webobject>http://www.foo.com/papers/crops.txt</webobject>
+   </arc>
+   <arc>
+      <subject>http://links.org/namespace/screed</subject>
+      <predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</predicate>
+      <webobject>http://www.foo.com/papers/crops.txt</webobject>
+   </arc>
+   <arc>
+      <subject>http://www.w3.org/2000/01/rdf-schema#Class</subject>
+      <predicate>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</predicate>
+      <webobject>http://links.org/namespace/screed</webobject>
+   </arc>
+</webdata>

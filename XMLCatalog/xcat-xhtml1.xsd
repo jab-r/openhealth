@@ -1,0 +1,1515 @@
+<?xml version="1.0" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2000/10/XMLSchema">
+	<xsd:annotation>
+		<xsd:appinfo>
+   XML Catalog XHTML version 1.0 Schema
+
+   This is modified from XHTML 1.0 strict
+
+   Namespace = http://www.openhealth.org/XMLCatalog/
+
+   PUBLIC "-//XML Catalog//XSD XHTML 1.0 Strict//EN"
+   SYSTEM "http://www.openhealth.org/XMLCatalog/xcat-xhtml1.xsd"
+
+		</xsd:appinfo>
+		<xsd:appinfo>
+
+   Copyright (c) 1998-2000 W3C (MIT, INRIA, Keio),
+   All Rights Reserved. 
+
+   This DTD module is identified by the PUBLIC and SYSTEM identifiers:
+
+		</xsd:appinfo>
+		<xsd:appinfo>================ Character mnemonic entities =========================</xsd:appinfo>
+	</xsd:annotation>
+	<xsd:attributeGroup name = "i18n">
+		<xsd:attribute name = "lang" type = "xsd:%LanguageCode;"/>
+		<xsd:attribute name = "xml:lang" type = "xsd:%LanguageCode;"/>
+		<xsd:attribute name = "dir">
+			<xsd:simpleType>
+				<xsd:restriction base = "xsd:NMTOKEN">
+					<xsd:enumeration value = "ltr"/>
+					<xsd:enumeration value = "rtl"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name = "attrs">
+		<xsd:attributeGroup ref = "coreattrs"/>
+		<xsd:attributeGroup ref = "i18n"/>
+		<xsd:attributeGroup ref = "events"/>
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name = "coreattrs">
+		<xsd:attribute name = "id" type = "xsd:ID"/>
+		<xsd:attribute name = "class" type = "xsd:string"/>
+		<xsd:attribute name = "style" type = "xsd:%StyleSheet;"/>
+		<xsd:attribute name = "title" type = "xsd:%Text;"/>
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name = "events">
+		<xsd:attribute name = "onclick" type = "xsd:%Script;"/>
+		<xsd:attribute name = "ondblclick" type = "xsd:%Script;"/>
+		<xsd:attribute name = "onmousedown" type = "xsd:%Script;"/>
+		<xsd:attribute name = "onmouseup" type = "xsd:%Script;"/>
+		<xsd:attribute name = "onmouseover" type = "xsd:%Script;"/>
+		<xsd:attribute name = "onmousemove" type = "xsd:%Script;"/>
+		<xsd:attribute name = "onmouseout" type = "xsd:%Script;"/>
+		<xsd:attribute name = "onkeypress" type = "xsd:%Script;"/>
+		<xsd:attribute name = "onkeydown" type = "xsd:%Script;"/>
+		<xsd:attribute name = "onkeyup" type = "xsd:%Script;"/>
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name = "xlink.simple.attrib">
+		<xsd:attribute name = "xlink:type" use = "fixed" value = "simple">
+			<xsd:simpleType>
+				<xsd:restriction base = "xsd:NMTOKEN">
+					<xsd:enumeration value = "simple"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name = "xlink:arcrole" type = "xsd:string"/>
+		<xsd:attribute name = "xlink:href" use = "required" type = "xsd:string"/>
+		<xsd:attribute name = "xlink:role" type = "xsd:string"/>
+		<xsd:attribute name = "xlink:title" type = "xsd:string"/>
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name = "xcat.attrib">
+		<xsd:attribute name = "public" type = "xsd:string"/>
+		<xsd:attribute name = "version" type = "xsd:string"/>
+	</xsd:attributeGroup>
+	<xsd:group name = "Block">
+		<xsd:choice minOccurs = "0" maxOccurs = "unbounded">
+			<xsd:group ref = "block"/>
+			<xsd:element ref = "form"/>
+			<xsd:group ref = "misc"/>
+		</xsd:choice>
+	</xsd:group>
+	<xsd:group name = "block">
+		<xsd:choice>
+			<xsd:element ref = "p"/>
+			<xsd:group ref = "heading"/>
+			<xsd:element ref = "div"/>
+			<xsd:group ref = "lists"/>
+			<xsd:group ref = "blocktext"/>
+			<xsd:element ref = "fieldset"/>
+			<xsd:element ref = "table"/>
+		</xsd:choice>
+	</xsd:group>
+	<xsd:group name = "heading">
+		<xsd:choice>
+			<xsd:element ref = "h1"/>
+			<xsd:element ref = "h2"/>
+			<xsd:element ref = "h3"/>
+			<xsd:element ref = "h4"/>
+			<xsd:element ref = "h5"/>
+			<xsd:element ref = "h6"/>
+		</xsd:choice>
+	</xsd:group>
+	<xsd:group name = "lists">
+		<xsd:choice>
+			<xsd:element ref = "ul"/>
+			<xsd:element ref = "ol"/>
+			<xsd:element ref = "dl"/>
+		</xsd:choice>
+	</xsd:group>
+	<xsd:group name = "blocktext">
+		<xsd:choice>
+			<xsd:element ref = "pre"/>
+			<xsd:element ref = "hr"/>
+			<xsd:element ref = "blockquote"/>
+			<xsd:element ref = "address"/>
+		</xsd:choice>
+	</xsd:group>
+	<xsd:group name = "misc">
+		<xsd:choice>
+			<xsd:element ref = "ins"/>
+			<xsd:element ref = "del"/>
+			<xsd:element ref = "script"/>
+			<xsd:element ref = "noscript"/>
+		</xsd:choice>
+	</xsd:group>
+	<xsd:group name = "Flow">
+		<xsd:choice minOccurs = "0" maxOccurs = "unbounded">
+			<xsd:group ref = "block"/>
+			<xsd:element ref = "form"/>
+			<xsd:group ref = "inline"/>
+			<xsd:group ref = "misc"/>
+		</xsd:choice>
+	</xsd:group>
+	<xsd:group name = "inline">
+		<xsd:choice>
+			<xsd:element ref = "a"/>
+			<xsd:group ref = "special"/>
+			<xsd:group ref = "fontstyle"/>
+			<xsd:group ref = "phrase"/>
+			<xsd:group ref = "inline.forms"/>
+		</xsd:choice>
+	</xsd:group>
+	<xsd:group name = "special">
+		<xsd:choice>
+			<xsd:element ref = "br"/>
+			<xsd:element ref = "span"/>
+			<xsd:element ref = "bdo"/>
+			<xsd:element ref = "object"/>
+			<xsd:element ref = "img"/>
+			<xsd:element ref = "map"/>
+		</xsd:choice>
+	</xsd:group>
+	<xsd:group name = "fontstyle">
+		<xsd:choice>
+			<xsd:element ref = "tt"/>
+			<xsd:element ref = "i"/>
+			<xsd:element ref = "b"/>
+			<xsd:element ref = "big"/>
+			<xsd:element ref = "small"/>
+		</xsd:choice>
+	</xsd:group>
+	<xsd:group name = "phrase">
+		<xsd:choice>
+			<xsd:element ref = "em"/>
+			<xsd:element ref = "strong"/>
+			<xsd:element ref = "dfn"/>
+			<xsd:element ref = "code"/>
+			<xsd:element ref = "q"/>
+			<xsd:element ref = "sub"/>
+			<xsd:element ref = "sup"/>
+			<xsd:element ref = "samp"/>
+			<xsd:element ref = "kbd"/>
+			<xsd:element ref = "var"/>
+			<xsd:element ref = "cite"/>
+			<xsd:element ref = "abbr"/>
+			<xsd:element ref = "acronym"/>
+		</xsd:choice>
+	</xsd:group>
+	<xsd:group name = "inline.forms">
+		<xsd:choice>
+			<xsd:element ref = "input"/>
+			<xsd:element ref = "select"/>
+			<xsd:element ref = "textarea"/>
+			<xsd:element ref = "label"/>
+			<xsd:element ref = "button"/>
+		</xsd:choice>
+	</xsd:group>
+	<xsd:group name = "Inline">
+		<xsd:choice minOccurs = "0" maxOccurs = "unbounded">
+			<xsd:group ref = "inline"/>
+			<xsd:group ref = "misc"/>
+		</xsd:choice>
+	</xsd:group>
+	<xsd:group name = "pre.content">
+		<xsd:choice minOccurs = "0" maxOccurs = "unbounded">
+			<xsd:element ref = "a"/>
+			<xsd:element ref = "br"/>
+			<xsd:element ref = "span"/>
+			<xsd:element ref = "bdo"/>
+			<xsd:element ref = "map"/>
+			<xsd:element ref = "tt"/>
+			<xsd:element ref = "i"/>
+			<xsd:element ref = "b"/>
+			<xsd:group ref = "phrase"/>
+			<xsd:group ref = "inline.forms"/>
+		</xsd:choice>
+	</xsd:group>
+	<xsd:group name = "a.content">
+		<xsd:choice minOccurs = "0" maxOccurs = "unbounded">
+			<xsd:group ref = "special"/>
+			<xsd:group ref = "fontstyle"/>
+			<xsd:group ref = "phrase"/>
+			<xsd:group ref = "inline.forms"/>
+			<xsd:group ref = "misc"/>
+		</xsd:choice>
+	</xsd:group>
+	<xsd:group name = "form.content">
+		<xsd:choice minOccurs = "0" maxOccurs = "unbounded">
+			<xsd:group ref = "block"/>
+			<xsd:group ref = "misc"/>
+		</xsd:choice>
+	</xsd:group>
+	<xsd:group name = "button.content">
+		<xsd:choice minOccurs = "0" maxOccurs = "unbounded">
+			<xsd:element ref = "p"/>
+			<xsd:group ref = "heading"/>
+			<xsd:element ref = "div"/>
+			<xsd:group ref = "lists"/>
+			<xsd:group ref = "blocktext"/>
+			<xsd:element ref = "table"/>
+			<xsd:group ref = "special"/>
+			<xsd:group ref = "fontstyle"/>
+			<xsd:group ref = "phrase"/>
+			<xsd:group ref = "misc"/>
+		</xsd:choice>
+	</xsd:group>
+	<xsd:element name = "html">
+		<xsd:annotation>
+			<xsd:appinfo>================ Document Structure ==================================</xsd:appinfo>
+			<xsd:appinfo> the namespace URI designates the document profile </xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref = "head"/>
+				<xsd:element ref = "body"/>
+			</xsd:sequence>
+			<xsd:attributeGroup ref = "i18n"/>
+			<xsd:attribute name = "xmlns" use = "fixed" value = "http://www.openhealth.org/XMLCatalog/" type = "xsd:%URI;"/>
+			<xsd:attribute name = "xmlns:xlink" use = "fixed" value = "http://www.w3.org/1999/xlink" type = "xsd:%URI;"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:group name = "head.misc">
+		<xsd:choice minOccurs = "0" maxOccurs = "unbounded">
+			<xsd:element ref = "script"/>
+			<xsd:element ref = "style"/>
+			<xsd:element ref = "meta"/>
+			<xsd:element ref = "link"/>
+			<xsd:element ref = "object"/>
+		</xsd:choice>
+	</xsd:group>
+	<xsd:element name = "head">
+		<xsd:annotation>
+			<xsd:appinfo> content model is %head.misc; combined with a single
+     title and an optional base element in any order 
+			</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:group ref = "head.misc"/>
+				<xsd:choice>
+					<xsd:sequence>
+						<xsd:element ref = "title"/>
+						<xsd:group ref = "head.misc"/>
+						<xsd:sequence minOccurs = "0">
+							<xsd:element ref = "base"/>
+							<xsd:group ref = "head.misc"/>
+						</xsd:sequence>
+					</xsd:sequence>
+					<xsd:sequence>
+						<xsd:element ref = "base"/>
+						<xsd:group ref = "head.misc"/>
+						<xsd:sequence>
+							<xsd:element ref = "title"/>
+							<xsd:group ref = "head.misc"/>
+						</xsd:sequence>
+					</xsd:sequence>
+				</xsd:choice>
+			</xsd:sequence>
+			<xsd:attributeGroup ref = "i18n"/>
+			<xsd:attribute name = "profile" type = "xsd:%URI;"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "title">
+		<xsd:annotation>
+			<xsd:appinfo> The title element is not considered part of the flow of text.
+       It should be displayed, for example as the page header or
+       window title. Exactly one title is required per document.
+    
+			</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:extension base = "xsd:string">
+					<xsd:attributeGroup ref = "i18n"/>
+				</xsd:extension>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "base">
+		<xsd:annotation>
+			<xsd:appinfo> document base URI </xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:attribute name = "href" type = "xsd:%URI;"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "meta">
+		<xsd:annotation>
+			<xsd:appinfo> generic metainformation </xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:attributeGroup ref = "i18n"/>
+			<xsd:attribute name = "http-equiv" type = "xsd:string"/>
+			<xsd:attribute name = "name" type = "xsd:string"/>
+			<xsd:attribute name = "content" use = "required" type = "xsd:string"/>
+			<xsd:attribute name = "scheme" type = "xsd:string"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "link">
+		<xsd:annotation>
+			<xsd:appinfo>
+  Relationship values can be used in principle:
+
+   a) for document specific toolbars/menus when used
+      with the link element in document head e.g.
+        start, contents, previous, next, index, end, help
+   b) to link to a separate style sheet (rel="stylesheet")
+   c) to make a link to a script (rel="script")
+   d) by stylesheets to control how collections of
+      html nodes are rendered into printed documents
+   e) to make a link to a printable version of this document
+      e.g. a PostScript or PDF version (rel="alternate" media="print")
+
+			</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:attributeGroup ref = "attrs"/>
+			<xsd:attribute name = "charset" type = "xsd:%Charset;"/>
+			<xsd:attribute name = "href" type = "xsd:%URI;"/>
+			<xsd:attribute name = "hreflang" type = "xsd:%LanguageCode;"/>
+			<xsd:attribute name = "type" type = "xsd:%ContentType;"/>
+			<xsd:attribute name = "rel" type = "xsd:%LinkTypes;"/>
+			<xsd:attribute name = "rev" type = "xsd:%LinkTypes;"/>
+			<xsd:attribute name = "media" type = "xsd:%MediaDesc;"/>
+			<xsd:attributeGroup ref = "xlink.simple.attrib"/>
+			<xsd:attributeGroup ref = "xcat.attrib"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "style">
+		<xsd:annotation>
+			<xsd:appinfo> style info, which may include CDATA sections </xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:extension base = "xsd:string">
+					<xsd:attributeGroup ref = "i18n"/>
+					<xsd:attribute name = "type" use = "required" type = "xsd:%ContentType;"/>
+					<xsd:attribute name = "media" type = "xsd:%MediaDesc;"/>
+					<xsd:attribute name = "title" type = "xsd:%Text;"/>
+					<xsd:attribute name = "xml:space" use = "fixed" value = "preserve">
+						<xsd:simpleType>
+							<xsd:restriction base = "xsd:NMTOKEN">
+								<xsd:enumeration value = "preserve"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:attribute>
+				</xsd:extension>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "script">
+		<xsd:annotation>
+			<xsd:appinfo> script statements, which may include CDATA sections </xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:extension base = "xsd:string">
+					<xsd:attribute name = "charset" type = "xsd:%Charset;"/>
+					<xsd:attribute name = "type" use = "required" type = "xsd:%ContentType;"/>
+					<xsd:attribute name = "src" type = "xsd:%URI;"/>
+					<xsd:attribute name = "defer">
+						<xsd:simpleType>
+							<xsd:restriction base = "xsd:NMTOKEN">
+								<xsd:enumeration value = "defer"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:attribute>
+					<xsd:attribute name = "xml:space" use = "fixed" value = "preserve">
+						<xsd:simpleType>
+							<xsd:restriction base = "xsd:NMTOKEN">
+								<xsd:enumeration value = "preserve"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:attribute>
+				</xsd:extension>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "noscript">
+		<xsd:annotation>
+			<xsd:appinfo> alternate content container for non script-based rendering </xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:group ref = "Block"/>
+			<xsd:attributeGroup ref = "attrs"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "body">
+		<xsd:annotation>
+			<xsd:appinfo>=================== Document Body ====================================</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:group ref = "Block"/>
+			<xsd:attributeGroup ref = "attrs"/>
+			<xsd:attribute name = "onload" type = "xsd:%Script;"/>
+			<xsd:attribute name = "onunload" type = "xsd:%Script;"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "div">
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "Flow"/>
+			<xsd:attributeGroup ref = "attrs"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "p">
+		<xsd:annotation>
+			<xsd:appinfo> generic language/style container </xsd:appinfo>
+			<xsd:appinfo>=================== Paragraphs =======================================</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "Inline"/>
+			<xsd:attributeGroup ref = "attrs"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "h1">
+		<xsd:annotation>
+			<xsd:appinfo>=================== Headings =========================================</xsd:appinfo>
+			<xsd:appinfo>
+  There are six levels of headings from h1 (the most important)
+  to h6 (the least important).
+
+			</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "Inline"/>
+			<xsd:attributeGroup ref = "attrs"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "h2">
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "Inline"/>
+			<xsd:attributeGroup ref = "attrs"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "h3">
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "Inline"/>
+			<xsd:attributeGroup ref = "attrs"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "h4">
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "Inline"/>
+			<xsd:attributeGroup ref = "attrs"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "h5">
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "Inline"/>
+			<xsd:attributeGroup ref = "attrs"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "h6">
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "Inline"/>
+			<xsd:attributeGroup ref = "attrs"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "ul">
+		<xsd:annotation>
+			<xsd:appinfo>=================== Lists ============================================</xsd:appinfo>
+			<xsd:appinfo> Unordered list </xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence maxOccurs = "unbounded">
+				<xsd:element ref = "li"/>
+			</xsd:sequence>
+			<xsd:attributeGroup ref = "attrs"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "ol">
+		<xsd:annotation>
+			<xsd:appinfo> Ordered (numbered) list </xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence maxOccurs = "unbounded">
+				<xsd:element ref = "li"/>
+			</xsd:sequence>
+			<xsd:attributeGroup ref = "attrs"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "li">
+		<xsd:annotation>
+			<xsd:appinfo> list item </xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "Flow"/>
+			<xsd:attributeGroup ref = "attrs"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "dl">
+		<xsd:annotation>
+			<xsd:appinfo> definition lists - dt for term, dd for its definition </xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:choice maxOccurs = "unbounded">
+				<xsd:element ref = "dt"/>
+				<xsd:element ref = "dd"/>
+			</xsd:choice>
+			<xsd:attributeGroup ref = "attrs"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "dt">
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "Inline"/>
+			<xsd:attributeGroup ref = "attrs"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "dd">
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "Flow"/>
+			<xsd:attributeGroup ref = "attrs"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "address">
+		<xsd:annotation>
+			<xsd:appinfo>=================== Address ==========================================</xsd:appinfo>
+			<xsd:appinfo> information on author </xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "Inline"/>
+			<xsd:attributeGroup ref = "attrs"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "hr">
+		<xsd:annotation>
+			<xsd:appinfo>=================== Horizontal Rule ==================================</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:attributeGroup ref = "attrs"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "pre">
+		<xsd:annotation>
+			<xsd:appinfo>=================== Preformatted Text ================================</xsd:appinfo>
+			<xsd:appinfo> content is %Inline; excluding "img|object|big|small|sub|sup" </xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "pre.content"/>
+			<xsd:attributeGroup ref = "attrs"/>
+			<xsd:attribute name = "xml:space" use = "fixed" value = "preserve">
+				<xsd:simpleType>
+					<xsd:restriction base = "xsd:NMTOKEN">
+						<xsd:enumeration value = "preserve"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:attribute>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "blockquote">
+		<xsd:annotation>
+			<xsd:appinfo>=================== Block-like Quotes ================================</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:group ref = "Block"/>
+			<xsd:attributeGroup ref = "attrs"/>
+			<xsd:attribute name = "cite" type = "xsd:%URI;"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "ins">
+		<xsd:annotation>
+			<xsd:appinfo>=================== Inserted/Deleted Text ============================</xsd:appinfo>
+			<xsd:appinfo>
+  ins/del are allowed in block and inline content, but its
+  inappropriate to include block content within an ins element
+  occurring in inline content.
+
+			</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "Flow"/>
+			<xsd:attributeGroup ref = "attrs"/>
+			<xsd:attribute name = "cite" type = "xsd:%URI;"/>
+			<xsd:attribute name = "datetime" type = "xsd:%Datetime;"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "del">
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "Flow"/>
+			<xsd:attributeGroup ref = "attrs"/>
+			<xsd:attribute name = "cite" type = "xsd:%URI;"/>
+			<xsd:attribute name = "datetime" type = "xsd:%Datetime;"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "a">
+		<xsd:annotation>
+			<xsd:appinfo>================== The Anchor Element ================================</xsd:appinfo>
+			<xsd:appinfo> content is %Inline; except that anchors shouldn't be nested </xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "a.content"/>
+			<xsd:attributeGroup ref = "attrs"/>
+			<xsd:attribute name = "charset" type = "xsd:%Charset;"/>
+			<xsd:attribute name = "type" type = "xsd:%ContentType;"/>
+			<xsd:attribute name = "name" type = "xsd:NMTOKEN"/>
+			<xsd:attribute name = "href" type = "xsd:%URI;"/>
+			<xsd:attribute name = "hreflang" type = "xsd:%LanguageCode;"/>
+			<xsd:attribute name = "rel" type = "xsd:%LinkTypes;"/>
+			<xsd:attribute name = "rev" type = "xsd:%LinkTypes;"/>
+			<xsd:attribute name = "accesskey" type = "xsd:%Character;"/>
+			<xsd:attribute name = "shape" use = "default" value = "rect">
+				<xsd:simpleType>
+					<xsd:restriction base = "xsd:NMTOKEN">
+						<xsd:enumeration value = "rect"/>
+						<xsd:enumeration value = "circle"/>
+						<xsd:enumeration value = "poly"/>
+						<xsd:enumeration value = "default"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:attribute>
+			<xsd:attribute name = "coords" type = "xsd:%Coords;"/>
+			<xsd:attribute name = "tabindex" type = "xsd:%Number;"/>
+			<xsd:attribute name = "onfocus" type = "xsd:%Script;"/>
+			<xsd:attribute name = "onblur" type = "xsd:%Script;"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "span">
+		<xsd:annotation>
+			<xsd:appinfo>===================== Inline Elements ================================</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "Inline"/>
+			<xsd:attributeGroup ref = "attrs"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "bdo">
+		<xsd:annotation>
+			<xsd:appinfo> generic language/style container </xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "Inline"/>
+			<xsd:attributeGroup ref = "coreattrs"/>
+			<xsd:attributeGroup ref = "events"/>
+			<xsd:attribute name = "lang" type = "xsd:%LanguageCode;">
+				<xsd:annotation>
+					<xsd:appinfo> I18N BiDi over-ride </xsd:appinfo>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name = "xml:lang" type = "xsd:%LanguageCode;"/>
+			<xsd:attribute name = "dir" use = "required">
+				<xsd:simpleType>
+					<xsd:restriction base = "xsd:NMTOKEN">
+						<xsd:enumeration value = "ltr"/>
+						<xsd:enumeration value = "rtl"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:attribute>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "br">
+		<xsd:complexType>
+			<xsd:attributeGroup ref = "coreattrs"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "em">
+		<xsd:annotation>
+			<xsd:appinfo> forced line break </xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "Inline"/>
+			<xsd:attributeGroup ref = "attrs"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "strong">
+		<xsd:annotation>
+			<xsd:appinfo> emphasis </xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "Inline"/>
+			<xsd:attributeGroup ref = "attrs"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "dfn">
+		<xsd:annotation>
+			<xsd:appinfo> strong emphasis </xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "Inline"/>
+			<xsd:attributeGroup ref = "attrs"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "code">
+		<xsd:annotation>
+			<xsd:appinfo> definitional </xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "Inline"/>
+			<xsd:attributeGroup ref = "attrs"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "samp">
+		<xsd:annotation>
+			<xsd:appinfo> program code </xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "Inline"/>
+			<xsd:attributeGroup ref = "attrs"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "kbd">
+		<xsd:annotation>
+			<xsd:appinfo> sample </xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "Inline"/>
+			<xsd:attributeGroup ref = "attrs"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "var">
+		<xsd:annotation>
+			<xsd:appinfo> something user would type </xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "Inline"/>
+			<xsd:attributeGroup ref = "attrs"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "cite">
+		<xsd:annotation>
+			<xsd:appinfo> variable </xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "Inline"/>
+			<xsd:attributeGroup ref = "attrs"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "abbr">
+		<xsd:annotation>
+			<xsd:appinfo> citation </xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "Inline"/>
+			<xsd:attributeGroup ref = "attrs"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "acronym">
+		<xsd:annotation>
+			<xsd:appinfo> abbreviation </xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "Inline"/>
+			<xsd:attributeGroup ref = "attrs"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "q">
+		<xsd:annotation>
+			<xsd:appinfo> acronym </xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "Inline"/>
+			<xsd:attributeGroup ref = "attrs"/>
+			<xsd:attribute name = "cite" type = "xsd:%URI;">
+				<xsd:annotation>
+					<xsd:appinfo> inlined quote </xsd:appinfo>
+				</xsd:annotation>
+			</xsd:attribute>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "sub">
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "Inline"/>
+			<xsd:attributeGroup ref = "attrs"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "sup">
+		<xsd:annotation>
+			<xsd:appinfo> subscript </xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "Inline"/>
+			<xsd:attributeGroup ref = "attrs"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "tt">
+		<xsd:annotation>
+			<xsd:appinfo> superscript </xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "Inline"/>
+			<xsd:attributeGroup ref = "attrs"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "i">
+		<xsd:annotation>
+			<xsd:appinfo> fixed pitch font </xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "Inline"/>
+			<xsd:attributeGroup ref = "attrs"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "b">
+		<xsd:annotation>
+			<xsd:appinfo> italic font </xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "Inline"/>
+			<xsd:attributeGroup ref = "attrs"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "big">
+		<xsd:annotation>
+			<xsd:appinfo> bold font </xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "Inline"/>
+			<xsd:attributeGroup ref = "attrs"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "small">
+		<xsd:annotation>
+			<xsd:appinfo> bigger font </xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "Inline"/>
+			<xsd:attributeGroup ref = "attrs"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "object">
+		<xsd:annotation>
+			<xsd:appinfo> smaller font </xsd:appinfo>
+			<xsd:appinfo>==================== Object ======================================</xsd:appinfo>
+			<xsd:appinfo>
+  object is used to embed objects as part of HTML pages.
+  param elements should precede other content. Parameters
+  can also be expressed as attribute/value pairs on the
+  object element itself when brevity is desired.
+
+			</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType mixed = "true">
+			<xsd:choice minOccurs = "0" maxOccurs = "unbounded">
+				<xsd:element ref = "param"/>
+				<xsd:group ref = "block"/>
+				<xsd:element ref = "form"/>
+				<xsd:group ref = "inline"/>
+				<xsd:group ref = "misc"/>
+			</xsd:choice>
+			<xsd:attributeGroup ref = "attrs"/>
+			<xsd:attribute name = "declare">
+				<xsd:simpleType>
+					<xsd:restriction base = "xsd:NMTOKEN">
+						<xsd:enumeration value = "declare"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:attribute>
+			<xsd:attribute name = "classid" type = "xsd:%URI;"/>
+			<xsd:attribute name = "codebase" type = "xsd:%URI;"/>
+			<xsd:attribute name = "data" type = "xsd:%URI;"/>
+			<xsd:attribute name = "type" type = "xsd:%ContentType;"/>
+			<xsd:attribute name = "codetype" type = "xsd:%ContentType;"/>
+			<xsd:attribute name = "archive" type = "xsd:%UriList;"/>
+			<xsd:attribute name = "standby" type = "xsd:%Text;"/>
+			<xsd:attribute name = "height" type = "xsd:%Length;"/>
+			<xsd:attribute name = "width" type = "xsd:%Length;"/>
+			<xsd:attribute name = "usemap" type = "xsd:%URI;"/>
+			<xsd:attribute name = "name" type = "xsd:NMTOKEN"/>
+			<xsd:attribute name = "tabindex" type = "xsd:%Number;"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "param">
+		<xsd:annotation>
+			<xsd:appinfo>
+  param is used to supply a named property value.
+  In XML it would seem natural to follow RDF and support an
+  abbreviated syntax where the param elements are replaced
+  by attribute value pairs on the object start tag.
+
+			</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:attribute name = "id" type = "xsd:ID"/>
+			<xsd:attribute name = "name" type = "xsd:string"/>
+			<xsd:attribute name = "value" type = "xsd:string"/>
+			<xsd:attribute name = "valuetype" use = "default" value = "data">
+				<xsd:simpleType>
+					<xsd:restriction base = "xsd:NMTOKEN">
+						<xsd:enumeration value = "data"/>
+						<xsd:enumeration value = "ref"/>
+						<xsd:enumeration value = "object"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:attribute>
+			<xsd:attribute name = "type" type = "xsd:%ContentType;"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "img">
+		<xsd:annotation>
+			<xsd:appinfo>=================== Images ===========================================</xsd:appinfo>
+			<xsd:appinfo>
+   To avoid accessibility problems for people who aren't
+   able to see the image, you should provide a text
+   description using the alt and longdesc attributes.
+   In addition, avoid the use of server-side image maps.
+   Note that in this DTD there is no name attribute. That
+   is only available in the transitional and frameset DTD.
+
+			</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:attributeGroup ref = "attrs"/>
+			<xsd:attribute name = "src" use = "required" type = "xsd:%URI;"/>
+			<xsd:attribute name = "alt" use = "required" type = "xsd:%Text;"/>
+			<xsd:attribute name = "longdesc" type = "xsd:%URI;"/>
+			<xsd:attribute name = "height" type = "xsd:%Length;"/>
+			<xsd:attribute name = "width" type = "xsd:%Length;"/>
+			<xsd:attribute name = "usemap" type = "xsd:%URI;"/>
+			<xsd:attribute name = "ismap">
+				<xsd:simpleType>
+					<xsd:restriction base = "xsd:NMTOKEN">
+						<xsd:enumeration value = "ismap"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:attribute>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "map">
+		<xsd:annotation>
+			<xsd:appinfo> usemap points to a map element which may be in this document
+  or an external document, although the latter is not widely supported 
+			</xsd:appinfo>
+			<xsd:appinfo>================== Client-side image maps ============================</xsd:appinfo>
+			<xsd:appinfo> These can be placed in the same document or grouped in a
+     separate document although this isn't yet widely supported 
+			</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:choice>
+				<xsd:choice maxOccurs = "unbounded">
+					<xsd:group ref = "block"/>
+					<xsd:element ref = "form"/>
+					<xsd:group ref = "misc"/>
+				</xsd:choice>
+				<xsd:element ref = "area" maxOccurs = "unbounded"/>
+			</xsd:choice>
+			<xsd:attributeGroup ref = "i18n"/>
+			<xsd:attributeGroup ref = "events"/>
+			<xsd:attribute name = "id" use = "required" type = "xsd:ID"/>
+			<xsd:attribute name = "class" type = "xsd:string"/>
+			<xsd:attribute name = "style" type = "xsd:%StyleSheet;"/>
+			<xsd:attribute name = "title" type = "xsd:%Text;"/>
+			<xsd:attribute name = "name" type = "xsd:NMTOKEN"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "area">
+		<xsd:complexType>
+			<xsd:attributeGroup ref = "attrs"/>
+			<xsd:attribute name = "shape" use = "default" value = "rect">
+				<xsd:simpleType>
+					<xsd:restriction base = "xsd:NMTOKEN">
+						<xsd:enumeration value = "rect"/>
+						<xsd:enumeration value = "circle"/>
+						<xsd:enumeration value = "poly"/>
+						<xsd:enumeration value = "default"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:attribute>
+			<xsd:attribute name = "coords" type = "xsd:%Coords;"/>
+			<xsd:attribute name = "href" type = "xsd:%URI;"/>
+			<xsd:attribute name = "nohref">
+				<xsd:simpleType>
+					<xsd:restriction base = "xsd:NMTOKEN">
+						<xsd:enumeration value = "nohref"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:attribute>
+			<xsd:attribute name = "alt" use = "required" type = "xsd:%Text;"/>
+			<xsd:attribute name = "tabindex" type = "xsd:%Number;"/>
+			<xsd:attribute name = "accesskey" type = "xsd:%Character;"/>
+			<xsd:attribute name = "onfocus" type = "xsd:%Script;"/>
+			<xsd:attribute name = "onblur" type = "xsd:%Script;"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "form">
+		<xsd:annotation>
+			<xsd:appinfo>================ Forms ===============================================</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:group ref = "form.content"/>
+			<xsd:attributeGroup ref = "attrs"/>
+			<xsd:attribute name = "action" use = "required" type = "xsd:%URI;">
+				<xsd:annotation>
+					<xsd:appinfo> forms shouldn't be nested </xsd:appinfo>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name = "method" use = "default" value = "get">
+				<xsd:simpleType>
+					<xsd:restriction base = "xsd:NMTOKEN">
+						<xsd:enumeration value = "get"/>
+						<xsd:enumeration value = "post"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:attribute>
+			<xsd:attribute name = "enctype" use = "default" value = "application/x-www-form-urlencoded" type = "xsd:%ContentType;"/>
+			<xsd:attribute name = "onsubmit" type = "xsd:%Script;"/>
+			<xsd:attribute name = "onreset" type = "xsd:%Script;"/>
+			<xsd:attribute name = "accept" type = "xsd:%ContentTypes;"/>
+			<xsd:attribute name = "accept-charset" type = "xsd:%Charsets;"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "label">
+		<xsd:annotation>
+			<xsd:appinfo>
+  Each label must not contain more than ONE field
+  Label elements shouldn't be nested.
+
+			</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "Inline"/>
+			<xsd:attributeGroup ref = "attrs"/>
+			<xsd:attribute name = "for" type = "xsd:IDREF"/>
+			<xsd:attribute name = "accesskey" type = "xsd:%Character;"/>
+			<xsd:attribute name = "onfocus" type = "xsd:%Script;"/>
+			<xsd:attribute name = "onblur" type = "xsd:%Script;"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "input">
+		<xsd:annotation>
+			<xsd:appinfo> the name attribute is required for all but submit & reset </xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:attributeGroup ref = "attrs"/>
+			<xsd:attribute name = "type" use = "default" value = "text">
+				<xsd:annotation>
+					<xsd:appinfo> form control </xsd:appinfo>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base = "xsd:NMTOKEN">
+						<xsd:enumeration value = "text"/>
+						<xsd:enumeration value = "password"/>
+						<xsd:enumeration value = "checkbox"/>
+						<xsd:enumeration value = "radio"/>
+						<xsd:enumeration value = "submit"/>
+						<xsd:enumeration value = "reset"/>
+						<xsd:enumeration value = "file"/>
+						<xsd:enumeration value = "hidden"/>
+						<xsd:enumeration value = "image"/>
+						<xsd:enumeration value = "button"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:attribute>
+			<xsd:attribute name = "name" type = "xsd:string"/>
+			<xsd:attribute name = "value" type = "xsd:string"/>
+			<xsd:attribute name = "checked">
+				<xsd:simpleType>
+					<xsd:restriction base = "xsd:NMTOKEN">
+						<xsd:enumeration value = "checked"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:attribute>
+			<xsd:attribute name = "disabled">
+				<xsd:simpleType>
+					<xsd:restriction base = "xsd:NMTOKEN">
+						<xsd:enumeration value = "disabled"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:attribute>
+			<xsd:attribute name = "readonly">
+				<xsd:simpleType>
+					<xsd:restriction base = "xsd:NMTOKEN">
+						<xsd:enumeration value = "readonly"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:attribute>
+			<xsd:attribute name = "size" type = "xsd:string"/>
+			<xsd:attribute name = "maxlength" type = "xsd:%Number;"/>
+			<xsd:attribute name = "src" type = "xsd:%URI;"/>
+			<xsd:attribute name = "alt" type = "xsd:string"/>
+			<xsd:attribute name = "usemap" type = "xsd:%URI;"/>
+			<xsd:attribute name = "tabindex" type = "xsd:%Number;"/>
+			<xsd:attribute name = "accesskey" type = "xsd:%Character;"/>
+			<xsd:attribute name = "onfocus" type = "xsd:%Script;"/>
+			<xsd:attribute name = "onblur" type = "xsd:%Script;"/>
+			<xsd:attribute name = "onselect" type = "xsd:%Script;"/>
+			<xsd:attribute name = "onchange" type = "xsd:%Script;"/>
+			<xsd:attribute name = "accept" type = "xsd:%ContentTypes;"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "select">
+		<xsd:complexType>
+			<xsd:choice maxOccurs = "unbounded">
+				<xsd:element ref = "optgroup"/>
+				<xsd:element ref = "option"/>
+			</xsd:choice>
+			<xsd:attributeGroup ref = "attrs"/>
+			<xsd:attribute name = "name" type = "xsd:string">
+				<xsd:annotation>
+					<xsd:appinfo> option selector </xsd:appinfo>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name = "size" type = "xsd:%Number;"/>
+			<xsd:attribute name = "multiple">
+				<xsd:simpleType>
+					<xsd:restriction base = "xsd:NMTOKEN">
+						<xsd:enumeration value = "multiple"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:attribute>
+			<xsd:attribute name = "disabled">
+				<xsd:simpleType>
+					<xsd:restriction base = "xsd:NMTOKEN">
+						<xsd:enumeration value = "disabled"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:attribute>
+			<xsd:attribute name = "tabindex" type = "xsd:%Number;"/>
+			<xsd:attribute name = "onfocus" type = "xsd:%Script;"/>
+			<xsd:attribute name = "onblur" type = "xsd:%Script;"/>
+			<xsd:attribute name = "onchange" type = "xsd:%Script;"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "optgroup">
+		<xsd:complexType>
+			<xsd:sequence maxOccurs = "unbounded">
+				<xsd:element ref = "option"/>
+			</xsd:sequence>
+			<xsd:attributeGroup ref = "attrs"/>
+			<xsd:attribute name = "disabled">
+				<xsd:annotation>
+					<xsd:appinfo> option group </xsd:appinfo>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base = "xsd:NMTOKEN">
+						<xsd:enumeration value = "disabled"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:attribute>
+			<xsd:attribute name = "label" use = "required" type = "xsd:%Text;"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "option">
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:extension base = "xsd:string">
+					<xsd:attributeGroup ref = "attrs"/>
+					<xsd:attribute name = "selected">
+						<xsd:annotation>
+							<xsd:appinfo> selectable choice </xsd:appinfo>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base = "xsd:NMTOKEN">
+								<xsd:enumeration value = "selected"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:attribute>
+					<xsd:attribute name = "disabled">
+						<xsd:simpleType>
+							<xsd:restriction base = "xsd:NMTOKEN">
+								<xsd:enumeration value = "disabled"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:attribute>
+					<xsd:attribute name = "label" type = "xsd:%Text;"/>
+					<xsd:attribute name = "value" type = "xsd:string"/>
+				</xsd:extension>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "textarea">
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:extension base = "xsd:string">
+					<xsd:attributeGroup ref = "attrs"/>
+					<xsd:attribute name = "name" type = "xsd:string">
+						<xsd:annotation>
+							<xsd:appinfo> multi-line text field </xsd:appinfo>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name = "rows" use = "required" type = "xsd:%Number;"/>
+					<xsd:attribute name = "cols" use = "required" type = "xsd:%Number;"/>
+					<xsd:attribute name = "disabled">
+						<xsd:simpleType>
+							<xsd:restriction base = "xsd:NMTOKEN">
+								<xsd:enumeration value = "disabled"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:attribute>
+					<xsd:attribute name = "readonly">
+						<xsd:simpleType>
+							<xsd:restriction base = "xsd:NMTOKEN">
+								<xsd:enumeration value = "readonly"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:attribute>
+					<xsd:attribute name = "tabindex" type = "xsd:%Number;"/>
+					<xsd:attribute name = "accesskey" type = "xsd:%Character;"/>
+					<xsd:attribute name = "onfocus" type = "xsd:%Script;"/>
+					<xsd:attribute name = "onblur" type = "xsd:%Script;"/>
+					<xsd:attribute name = "onselect" type = "xsd:%Script;"/>
+					<xsd:attribute name = "onchange" type = "xsd:%Script;"/>
+				</xsd:extension>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "fieldset">
+		<xsd:annotation>
+			<xsd:appinfo>
+  The fieldset element is used to group form fields.
+  Only one legend element should occur in the content
+  and if present should only be preceded by whitespace.
+
+			</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType mixed = "true">
+			<xsd:choice minOccurs = "0" maxOccurs = "unbounded">
+				<xsd:element ref = "legend"/>
+				<xsd:group ref = "block"/>
+				<xsd:element ref = "form"/>
+				<xsd:group ref = "inline"/>
+				<xsd:group ref = "misc"/>
+			</xsd:choice>
+			<xsd:attributeGroup ref = "attrs"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "legend">
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "Inline"/>
+			<xsd:attributeGroup ref = "attrs"/>
+			<xsd:attribute name = "accesskey" type = "xsd:%Character;">
+				<xsd:annotation>
+					<xsd:appinfo> fieldset label </xsd:appinfo>
+				</xsd:annotation>
+			</xsd:attribute>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "button">
+		<xsd:annotation>
+			<xsd:appinfo>
+ Content is %Flow; excluding a, form and form controls
+
+			</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "button.content"/>
+			<xsd:attributeGroup ref = "attrs"/>
+			<xsd:attribute name = "name" type = "xsd:string">
+				<xsd:annotation>
+					<xsd:appinfo> push button </xsd:appinfo>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name = "value" type = "xsd:string"/>
+			<xsd:attribute name = "type" use = "default" value = "submit">
+				<xsd:simpleType>
+					<xsd:restriction base = "xsd:NMTOKEN">
+						<xsd:enumeration value = "button"/>
+						<xsd:enumeration value = "submit"/>
+						<xsd:enumeration value = "reset"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:attribute>
+			<xsd:attribute name = "disabled">
+				<xsd:simpleType>
+					<xsd:restriction base = "xsd:NMTOKEN">
+						<xsd:enumeration value = "disabled"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:attribute>
+			<xsd:attribute name = "tabindex" type = "xsd:%Number;"/>
+			<xsd:attribute name = "accesskey" type = "xsd:%Character;"/>
+			<xsd:attribute name = "onfocus" type = "xsd:%Script;"/>
+			<xsd:attribute name = "onblur" type = "xsd:%Script;"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:attributeGroup name = "cellhalign">
+		<xsd:attribute name = "align">
+			<xsd:simpleType>
+				<xsd:restriction base = "xsd:NMTOKEN">
+					<xsd:enumeration value = "left"/>
+					<xsd:enumeration value = "center"/>
+					<xsd:enumeration value = "right"/>
+					<xsd:enumeration value = "justify"/>
+					<xsd:enumeration value = "char"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name = "char" type = "xsd:%Character;"/>
+		<xsd:attribute name = "charoff" type = "xsd:%Length;"/>
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name = "cellvalign">
+		<xsd:attribute name = "valign">
+			<xsd:simpleType>
+				<xsd:restriction base = "xsd:NMTOKEN">
+					<xsd:enumeration value = "top"/>
+					<xsd:enumeration value = "middle"/>
+					<xsd:enumeration value = "bottom"/>
+					<xsd:enumeration value = "baseline"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+	</xsd:attributeGroup>
+	<xsd:element name = "table">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref = "caption" minOccurs = "0"/>
+				<xsd:choice>
+					<xsd:element ref = "col" minOccurs = "0" maxOccurs = "unbounded"/>
+					<xsd:element ref = "colgroup" minOccurs = "0" maxOccurs = "unbounded"/>
+				</xsd:choice>
+				<xsd:element ref = "thead" minOccurs = "0"/>
+				<xsd:element ref = "tfoot" minOccurs = "0"/>
+				<xsd:choice>
+					<xsd:element ref = "tbody" maxOccurs = "unbounded"/>
+					<xsd:element ref = "tr" maxOccurs = "unbounded"/>
+				</xsd:choice>
+			</xsd:sequence>
+			<xsd:attributeGroup ref = "attrs"/>
+			<xsd:attribute name = "summary" type = "xsd:%Text;"/>
+			<xsd:attribute name = "width" type = "xsd:%Length;"/>
+			<xsd:attribute name = "border" type = "xsd:%Pixels;"/>
+			<xsd:attribute name = "frame">
+				<xsd:simpleType>
+					<xsd:restriction base = "xsd:NMTOKEN">
+						<xsd:enumeration value = "void"/>
+						<xsd:enumeration value = "above"/>
+						<xsd:enumeration value = "below"/>
+						<xsd:enumeration value = "hsides"/>
+						<xsd:enumeration value = "lhs"/>
+						<xsd:enumeration value = "rhs"/>
+						<xsd:enumeration value = "vsides"/>
+						<xsd:enumeration value = "box"/>
+						<xsd:enumeration value = "border"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:attribute>
+			<xsd:attribute name = "rules">
+				<xsd:simpleType>
+					<xsd:restriction base = "xsd:NMTOKEN">
+						<xsd:enumeration value = "none"/>
+						<xsd:enumeration value = "groups"/>
+						<xsd:enumeration value = "rows"/>
+						<xsd:enumeration value = "cols"/>
+						<xsd:enumeration value = "all"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:attribute>
+			<xsd:attribute name = "cellspacing" type = "xsd:%Length;"/>
+			<xsd:attribute name = "cellpadding" type = "xsd:%Length;"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "caption">
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "Inline"/>
+			<xsd:attributeGroup ref = "attrs"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "thead">
+		<xsd:complexType>
+			<xsd:sequence maxOccurs = "unbounded">
+				<xsd:element ref = "tr"/>
+			</xsd:sequence>
+			<xsd:attributeGroup ref = "attrs"/>
+			<xsd:attributeGroup ref = "cellhalign"/>
+			<xsd:attributeGroup ref = "cellvalign"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "tfoot">
+		<xsd:complexType>
+			<xsd:sequence maxOccurs = "unbounded">
+				<xsd:element ref = "tr"/>
+			</xsd:sequence>
+			<xsd:attributeGroup ref = "attrs"/>
+			<xsd:attributeGroup ref = "cellhalign"/>
+			<xsd:attributeGroup ref = "cellvalign"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "tbody">
+		<xsd:complexType>
+			<xsd:sequence maxOccurs = "unbounded">
+				<xsd:element ref = "tr"/>
+			</xsd:sequence>
+			<xsd:attributeGroup ref = "attrs"/>
+			<xsd:attributeGroup ref = "cellhalign"/>
+			<xsd:attributeGroup ref = "cellvalign"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "colgroup">
+		<xsd:complexType>
+			<xsd:sequence minOccurs = "0" maxOccurs = "unbounded">
+				<xsd:element ref = "col"/>
+			</xsd:sequence>
+			<xsd:attributeGroup ref = "attrs"/>
+			<xsd:attribute name = "span" use = "default" value = "1" type = "xsd:%Number;">
+				<xsd:annotation>
+					<xsd:appinfo>
+colgroup groups a set of col elements. It allows you to group
+several semantically related columns together.
+
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name = "width" type = "xsd:%MultiLength;"/>
+			<xsd:attributeGroup ref = "cellhalign"/>
+			<xsd:attributeGroup ref = "cellvalign"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "col">
+		<xsd:complexType>
+			<xsd:attributeGroup ref = "attrs"/>
+			<xsd:attribute name = "span" use = "default" value = "1" type = "xsd:%Number;">
+				<xsd:annotation>
+					<xsd:appinfo>
+ col elements define the alignment properties for cells in
+ one or more columns.
+
+ The width attribute specifies the width of the columns, e.g.
+
+     width=64        width in screen pixels
+     width=0.5*      relative width of 0.5
+
+ The span attribute causes the attributes of one
+ col element to apply to more than one column.
+
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name = "width" type = "xsd:%MultiLength;"/>
+			<xsd:attributeGroup ref = "cellhalign"/>
+			<xsd:attributeGroup ref = "cellvalign"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "tr">
+		<xsd:complexType>
+			<xsd:choice maxOccurs = "unbounded">
+				<xsd:element ref = "th"/>
+				<xsd:element ref = "td"/>
+			</xsd:choice>
+			<xsd:attributeGroup ref = "attrs"/>
+			<xsd:attributeGroup ref = "cellhalign"/>
+			<xsd:attributeGroup ref = "cellvalign"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "th">
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "Flow"/>
+			<xsd:attributeGroup ref = "attrs"/>
+			<xsd:attribute name = "abbr" type = "xsd:%Text;">
+				<xsd:annotation>
+					<xsd:appinfo> th is for headers, td for data and for cells acting as both </xsd:appinfo>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name = "axis" type = "xsd:string"/>
+			<xsd:attribute name = "headers" type = "xsd:IDREFS"/>
+			<xsd:attribute name = "scope">
+				<xsd:simpleType>
+					<xsd:restriction base = "xsd:NMTOKEN">
+						<xsd:enumeration value = "row"/>
+						<xsd:enumeration value = "col"/>
+						<xsd:enumeration value = "rowgroup"/>
+						<xsd:enumeration value = "colgroup"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:attribute>
+			<xsd:attribute name = "rowspan" use = "default" value = "1" type = "xsd:%Number;"/>
+			<xsd:attribute name = "colspan" use = "default" value = "1" type = "xsd:%Number;"/>
+			<xsd:attributeGroup ref = "cellhalign"/>
+			<xsd:attributeGroup ref = "cellvalign"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name = "td">
+		<xsd:complexType mixed = "true">
+			<xsd:group ref = "Flow"/>
+			<xsd:attributeGroup ref = "attrs"/>
+			<xsd:attribute name = "abbr" type = "xsd:%Text;"/>
+			<xsd:attribute name = "axis" type = "xsd:string"/>
+			<xsd:attribute name = "headers" type = "xsd:IDREFS"/>
+			<xsd:attribute name = "scope">
+				<xsd:simpleType>
+					<xsd:restriction base = "xsd:NMTOKEN">
+						<xsd:enumeration value = "row"/>
+						<xsd:enumeration value = "col"/>
+						<xsd:enumeration value = "rowgroup"/>
+						<xsd:enumeration value = "colgroup"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:attribute>
+			<xsd:attribute name = "rowspan" use = "default" value = "1" type = "xsd:%Number;"/>
+			<xsd:attribute name = "colspan" use = "default" value = "1" type = "xsd:%Number;"/>
+			<xsd:attributeGroup ref = "cellhalign"/>
+			<xsd:attributeGroup ref = "cellvalign"/>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

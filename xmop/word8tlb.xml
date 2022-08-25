@@ -1,0 +1,83 @@
+<?xml version="1.0" ?>
+<!DOCTYPE objectDef SYSTEM "http://jabr.ne.mediaone.net/documents/xmop.dtd">
+<objectDef name="Word.Document.8" uuid="{00020906-0000-0000-C000-000000000046}">
+<interfaceDef name="_Document" uuid="{0002096B-0000-0000-C000-000000000046}">
+<property name="Name" id="0" type="string"></property>
+<property name="Application" id="1" type="udt" interface="Application" uuid="{000209FF-0000-0000-C000-000000000046}"></property><property name="Creator" id="1001" type="i4"></property><property name="Parent" id="1002" type="disp"></property><property name="BuiltInDocumentProperties" id="1000" type="disp"></property><property name="CustomDocumentProperties" id="2" type="disp"></property><property name="Path" id="3" type="string"></property><property name="Bookmarks" id="4" type="disp" interface="Bookmarks" uuid="{00020967-0000-0000-C000-000000000046}"></property><property name="Tables" id="6" type="disp" interface="Tables" uuid="{0002094D-0000-0000-C000-000000000046}"></property><property name="Footnotes" id="7" type="disp" interface="Footnotes" uuid="{00020942-0000-0000-C000-000000000046}"></property>
+<property name="Endnotes" id="8" type="disp" interface="Endnotes" uuid="{00020941-0000-0000-C000-000000000046}"></property><property name="Comments" id="9" type="disp" interface="Comments" uuid="{00020940-0000-0000-C000-000000000046}"></property>
+<property name="Type" id="10" type="udt"><enum name="WdDocumentType" uuid="{00000000-0000-0000-0000-000000000000}"><const name="wdTypeDocument" type="int" id="1073741824"><i4>0</i4></const><const name="wdTypeTemplate" type="int" id="1073741825"><i4>1</i4></const></enum></property><property name="AutoHyphenation" id="11" type="bool"></property><property name="HyphenateCaps" id="12" type="bool"></property><property name="HyphenationZone" id="13" type="i4"></property><property name="ConsecutiveHyphensLimit" id="14" type="i4"></property><property name="Sections" id="15" type="disp" interface="Sections" uuid="{0002095A-0000-0000-C000-000000000046}"></property><property name="Paragraphs" id="16" type="disp" interface="Paragraphs" uuid="{00020958-0000-0000-C000-000000000046}"></property>
+<property name="Words" id="17" type="disp" interface="Words" uuid="{0002095C-0000-0000-C000-000000000046}"></property><property name="Sentences" id="18" type="disp" interface="Sentences" uuid="{0002095B-0000-0000-C000-000000000046}"></property>
+<property name="Characters" id="19" type="disp" interface="Characters" uuid="{0002095D-0000-0000-C000-000000000046}"></property><property name="Fields" id="20" type="disp" interface="Fields" uuid="{00020930-0000-0000-C000-000000000046}"></property><property name="FormFields" id="21" type="disp" interface="FormFields" uuid="{00020929-0000-0000-C000-000000000046}"></property><property name="Styles" id="22" type="disp" interface="Styles" uuid="{0002092D-0000-0000-C000-000000000046}"></property><property name="Frames" id="23" type="disp" interface="Frames" uuid="{0002092B-0000-0000-C000-000000000046}"></property><property name="TablesOfFigures" id="25" type="disp" interface="TablesOfFigures" uuid="{00020922-0000-0000-C000-000000000046}"></property><property name="Variables" id="26" type="disp" interface="Variables" uuid="{00020965-0000-0000-C000-000000000046}"></property>
+<property name="MailMerge" id="27" type="disp" interface="MailMerge" uuid="{00020920-0000-0000-C000-000000000046}"></property><property name="Envelope" id="28" type="disp" interface="Envelope" uuid="{00020918-0000-0000-C000-000000000046}"></property><property name="FullName" id="29" type="string"></property><property name="Revisions" id="30" type="disp" interface="Revisions" uuid="{00020980-0000-0000-C000-000000000046}"></property><property name="TablesOfContents" id="31" type="disp" interface="TablesOfContents" uuid="{00020914-0000-0000-C000-000000000046}"></property><property name="TablesOfAuthorities" id="32" type="disp" interface="TablesOfAuthorities" uuid="{00020912-0000-0000-C000-000000000046}"></property><property name="PageSetup" id="1101" type="disp" interface="PageSetup" uuid="{00020971-0000-0000-C000-000000000046}"></property><property name="Windows" id="34" type="disp" interface="Windows" uuid="{00020961-0000-0000-C000-000000000046}"></property>
+<property name="HasRoutingSlip" id="35" type="bool"></property><property name="RoutingSlip" id="36" type="disp" interface="RoutingSlip" uuid="{00020969-0000-0000-C000-000000000046}"></property><property name="Routed" id="37" type="bool"></property><property name="TablesOfAuthoritiesCategories" id="38" type="disp" interface="TablesOfAuthoritiesCategories" uuid="{00020976-0000-0000-C000-000000000046}"></property><property name="Indexes" id="39" type="disp" interface="Indexes" uuid="{0002097C-0000-0000-C000-000000000046}"></property><property name="Saved" id="40" type="bool"></property><property name="Content" id="41" type="disp" interface="Range" uuid="{0002095E-0000-0000-C000-000000000046}"></property><property name="ActiveWindow" id="42" type="disp" interface="Window" uuid="{00020962-0000-0000-C000-000000000046}"></property><property name="Kind" id="43" type="udt"><enum name="WdDocumentKind" uuid="{00000000-0000-0000-0000-000000000000}">
+<const name="wdDocumentNotSpecified" type="int" id="1073741824"><i4>0</i4></const><const name="wdDocumentLetter" type="int" id="1073741825"><i4>1</i4></const>
+<const name="wdDocumentEmail" type="int" id="1073741826"><i4>2</i4></const></enum></property>
+<property name="ReadOnly" id="44" type="bool"></property><property name="Subdocuments" id="45" type="disp" interface="Subdocuments" uuid="{00020988-0000-0000-C000-000000000046}"></property>
+<property name="IsMasterDocument" id="46" type="bool"></property><property name="DefaultTabStop" id="48" type="r4"></property><property name="EmbedTrueTypeFonts" id="50" type="bool"></property>
+<property name="SaveFormsData" id="51" type="bool"></property><property name="ReadOnlyRecommended" id="52" type="bool"></property><property name="SaveSubsetFonts" id="53" type="bool"></property>
+<property name="Compatibility" id="55" type="bool"><param name="Type" type="udt"><enum name="WdCompatibility" uuid="{00000000-0000-0000-0000-000000000000}"><const name="wdNoTabHangIndent" type="int" id="1073741824"><i4>1</i4></const>
+<const name="wdNoSpaceRaiseLower" type="int" id="1073741825"><i4>2</i4></const><const name="wdPrintColBlack" type="int" id="1073741826"><i4>3</i4></const>
+<const name="wdWrapTrailSpaces" type="int" id="1073741827"><i4>4</i4></const><const name="wdNoColumnBalance" type="int" id="1073741828"><i4>5</i4></const>
+<const name="wdConvMailMergeEsc" type="int" id="1073741829"><i4>6</i4></const><const name="wdSuppressSpBfAfterPgBrk" type="int" id="1073741830"><i4>7</i4></const>
+<const name="wdSuppressTopSpacing" type="int" id="1073741831"><i4>8</i4></const>
+<const name="wdOrigWordTableRules" type="int" id="1073741832"><i4>9</i4></const>
+<const name="wdTransparentMetafiles" type="int" id="1073741833"><i4>10</i4></const>
+<const name="wdShowBreaksInFrames" type="int" id="1073741834"><i4>11</i4></const>
+<const name="wdSwapBordersFacingPages" type="int" id="1073741835"><i4>12</i4></const>
+<const name="wdLeaveBackslashAlone" type="int" id="1073741836"><i4>13</i4></const>
+<const name="wdExpandShiftReturn" type="int" id="1073741837"><i4>14</i4></const>
+<const name="wdDontULTrailSpace" type="int" id="1073741838"><i4>15</i4></const>
+<const name="wdDontBalanceSingleByteDoubleByteWidth" type="int" id="1073741839"><i4>16</i4></const>
+<const name="wdSuppressTopSpacingMac5" type="int" id="1073741840"><i4>17</i4></const>
+<const name="wdSpacingInWholePoints" type="int" id="1073741841"><i4>18</i4></const>
+<const name="wdPrintBodyTextBeforeHeader" type="int" id="1073741842"><i4>19</i4></const><const name="wdNoLeading" type="int" id="1073741843"><i4>20</i4></const>
+<const name="wdNoSpaceForUL" type="int" id="1073741844"><i4>21</i4></const>
+<const name="wdMWSmallCaps" type="int" id="1073741845"><i4>22</i4></const>
+<const name="wdNoExtraLineSpacing" type="int" id="1073741846"><i4>23</i4></const><const name="wdTruncateFontHeight" type="int" id="1073741847"><i4>24</i4></const>
+<const name="wdSubFontBySize" type="int" id="1073741848"><i4>25</i4></const>
+<const name="wdUsePrinterMetrics" type="int" id="1073741849"><i4>26</i4></const>
+<const name="wdWW6BorderRules" type="int" id="1073741850"><i4>27</i4></const><const name="wdExactOnTop" type="int" id="1073741851"><i4>28</i4></const>
+<const name="wdSuppressBottomSpacing" type="int" id="1073741852"><i4>29</i4></const><const name="wdWPSpaceWidth" type="int" id="1073741853"><i4>30</i4></const>
+<const name="wdWPJustification" type="int" id="1073741854"><i4>31</i4></const><const name="wdLineWrapLikeWord6" type="int" id="1073741855"><i4>32</i4></const></enum></param></property>
+<property name="StoryRanges" id="56" type="disp" interface="StoryRanges" uuid="{0002098C-0000-0000-C000-000000000046}"></property><property name="CommandBars" id="57" type="disp" interface="CommandBars" uuid="{000C0302-0000-0000-C000-000000000046}"></property>
+<property name="IsSubdocument" id="58" type="bool"></property>
+<property name="SaveFormat" id="59" type="i4"></property>
+<property name="ProtectionType" id="60" type="udt">
+<enum name="WdProtectionType" uuid="{00000000-0000-0000-0000-000000000000}">
+<const name="wdNoProtection" type="int" id="1073741824"><i4>-1</i4></const>
+<const name="wdAllowOnlyRevisions" type="int" id="1073741825"><i4>0</i4></const>
+<const name="wdAllowOnlyComments" type="int" id="1073741826"><i4>1</i4></const>
+<const name="wdAllowOnlyFormFields" type="int" id="1073741827"><i4>2</i4></const></enum></property>
+<property name="Hyperlinks" id="61" type="disp" interface="Hyperlinks" uuid="{0002099C-0000-0000-C000-000000000046}"></property>
+<property name="Shapes" id="62" type="disp" interface="Shapes" uuid="{0002099F-0000-0000-C000-000000000046}"></property><property name="ListTemplates" id="63" type="disp" interface="ListTemplates" uuid="{00020990-0000-0000-C000-000000000046}"></property>
+<property name="Lists" id="64" type="disp" interface="Lists" uuid="{00020993-0000-0000-C000-000000000046}"></property><property name="UpdateStylesOnOpen" id="66" type="bool"></property>
+<property name="AttachedTemplate" id="67" type="anytype"></property><property name="InlineShapes" id="68" type="disp" interface="InlineShapes" uuid="{000209A9-0000-0000-C000-000000000046}"></property><property name="Background" id="69" type="disp" interface="Shape" uuid="{000209A0-0000-0000-C000-000000000046}"></property><property name="GrammarChecked" id="70" type="bool"></property>
+<property name="SpellingChecked" id="71" type="bool"></property>
+<property name="ShowGrammaticalErrors" id="72" type="bool"></property><property name="ShowSpellingErrors" id="73" type="bool"></property>
+<property name="Versions" id="75" type="disp" interface="Versions" uuid="{000209B3-0000-0000-C000-000000000046}"></property><property name="ShowSummary" id="76" type="bool"></property><property name="SummaryViewMode" id="77" type="udt">
+<enum name="WdSummaryMode" uuid="{00000000-0000-0000-0000-000000000000}">
+<const name="wdSummaryModeHighlight" type="int" id="1073741824"><i4>0</i4></const>
+<const name="wdSummaryModeHideAllButSummary" type="int" id="1073741825"><i4>1</i4></const>
+<const name="wdSummaryModeInsert" type="int" id="1073741826"><i4>2</i4></const>
+<const name="wdSummaryModeCreateNew" type="int" id="1073741827"><i4>3</i4></const></enum></property><property name="SummaryLength" id="78" type="i4"></property><property name="PrintFractionalWidths" id="79" type="bool"></property><property name="PrintPostScriptOverText" id="80" type="bool"></property><property name="Container" id="82" type="disp"></property><property name="PrintFormsData" id="83" type="bool"></property><property name="ListParagraphs" id="84" type="disp" interface="ListParagraphs" uuid="{00020991-0000-0000-C000-000000000046}"></property><property name="HasPassword" id="87" type="bool"></property><property name="WriteReserved" id="88" type="bool"></property>
+<property name="ActiveWritingStyle" id="90" type="string"><param name="LanguageID" type="anytype"></param></property><property name="UserControl" id="92" type="bool"></property><property name="HasMailer" id="93" type="bool"></property>
+<property name="Mailer" id="94" type="disp" interface="Mailer" uuid="{000209BD-0000-0000-C000-000000000046}"></property>
+<property name="ReadabilityStatistics" id="96" type="disp" interface="ReadabilityStatistics" uuid="{000209AE-0000-0000-C000-000000000046}"></property><property name="GrammaticalErrors" id="97" type="disp" interface="ProofreadingErrors" uuid="{000209BB-0000-0000-C000-000000000046}"></property><property name="SpellingErrors" id="98" type="disp" interface="ProofreadingErrors" uuid="{000209BB-0000-0000-C000-000000000046}"></property><property name="VBProject" id="99" type="udt" interface="VBProject" uuid="{0002E169-0000-0000-C000-000000000046}"></property><property name="FormsDesign" id="100" type="bool"></property><property name="_CodeName" id="-2147418112" type="string"></property><property name="CodeName" id="262" type="string"></property><property name="SnapToGrid" id="300" type="bool"></property><property name="SnapToShapes" id="301" type="bool"></property>
+<property name="GridDistanceHorizontal" id="302" type="r4"></property>
+<property name="GridDistanceVertical" id="303" type="r4"></property>
+<property name="GridOriginHorizontal" id="304" type="r4"></property>
+<property name="GridOriginVertical" id="305" type="r4"></property>
+<property name="GridSpaceBetweenHorizontalLines" id="306" type="i4"></property>
+<property name="GridSpaceBetweenVerticalLines" id="307" type="i4"></property>
+<property name="GridOriginFromMargin" id="308" type="bool"></property>
+<property name="KerningByAlgorithm" id="309" type="bool"></property>
+<property name="JustificationMode" id="310" type="udt">
+<enum name="WdJustificationMode" uuid="{00000000-0000-0000-0000-000000000000}">
+<const name="wdJustificationModeExpand" type="int" id="1073741824"><i4>0</i4></const>
+<const name="wdJustificationModeCompress" type="int" id="1073741825"><i4>1</i4></const>
+<const name="wdJustificationModeCompressKana" type="int" id="1073741826"><i4>2</i4></const></enum></property>
+<property name="FarEastLineBreakLevel" id="311" type="udt">
+<enum name="WdFarEastLineBreakLevel" uuid="{00000000-0000-0000-0000-000000000000}">
+<const name="wdFarEastLineBreakLevelNormal" type="int" id="1073741824"><i4>0</i4></const>
+<const name="wdFarEastLineBreakLevelStrict" type="int" id="1073741825"><i4>1</i4></const>
+<const name="wdFarEastLineBreakLevelCustom" type="int" id="1073741826"><i4>2</i4></const></enum></property><property name="NoLineBreakBefore" id="312" type="string"></property><property name="NoLineBreakAfter" id="313" type="string"></property><property name="TrackRevisions" id="314" type="bool"></property><property name="PrintRevisions" id="315" type="bool"></property><property name="ShowRevisions" id="316" type="bool"></property></interfaceDef><interfaceDef name="DocumentEvents" uuid="{000209F6-0000-0000-C000-000000000046}"></interfaceDef></objectDef>

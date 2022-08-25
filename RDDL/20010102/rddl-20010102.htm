@@ -1,0 +1,215 @@
+
+<!DOCTYPE html PUBLIC "-//XML-DEV//DTD Resource Directory Description Language 1.0//EN" "rddl-xhtml.dtd">
+<html 	xmlns="http://www.w3.org/1999/xhtml" 
+		xmlns:xlink="http://www.w3.org/1999/xlink"
+		xmlns:xrd="http://www.openhealth.org/RDD/">
+<head>
+<title>XML Resource Directory Description Language</title>
+	<link href="xrd.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<h1>Resource Directory Description Language</h1>
+<div class="head">
+<p><a href="rddl-20010103.htm">This version</a>: January 2,&nbsp;2001</p>
+<p><a href="">Latest Version</a>: January 2, 2001</p>
+<p><a href="20010102/rddl-20010102.htm">Previous Version</a>: January 2, 2001</p>
+<p>Editors:</p>
+<ul> 
+<li><a href="mailto:jonathan@openhealth.org">Jonathan Borden</a>&nbsp;<a href="http://www.openhealth.org">The Open Healthcare Group</a>
+<li><a href="mailto:tbray@textuality.com">Tim Bray</a>&nbsp; <a href="http://map.net">Antarti.ca Systems</a> </li>
+</ul>
+</div>
+
+<p> Note: you are looking at the 
+actual&nbsp;XML&nbsp;Resource Directory for the <a 
+href="http://www.openhealth.org/RDDL/"><code>http://www.openhealth.org/RDDL/</code></a> namespace.
+</p>
+<a name="intro"></a>
+<h2>Introduction</h2>
+<p>This document defines a Resource Directory Description Language. A Resource Directory serves as a text description of a resource identifier such as an XML Namespace [<A href="#xml-names">1</A>] and 
+includes links to resources associated with the namespace such as schemata, 
+stylesheets and/or other resources associated with the namespace URI. 
+A Resource Directory Description is designed to be suitable for service as the body of a 
+resource returned by deferencing a URI serving as an XML Namespace name.</p>
+<p>The Resource Directory Description Language is an extension of XHTML Basic 1.0 with a new element named "resource". The resource element serves as an
+XLink to the referenced resource.</p>
+<p>This document defines the syntax and semantics of the Resource Directory Description Language, and also serves as a Resource Directory Description for the namespace <code>http://www.openhealth.org/RDDL/</code>.
+<p>The Resource Directory Description 1.0 DTD has been produced as an extension of XHTML Basic 1.0 [<a href="#rec-xhtml-basic">5</a>].</p>
+<h2 name="background">Background</h2>
+<p>The Resource Directory Description Language was initially proposed and specified after discussion on the XML-DEV mailing list.</p>
+<a name="resource" id="resource"><h2>resource</h2></a>
+<p>The resource element is qualified with the namespace URI <code>http://www.openhealth.org/RDDL/</code></p>
+<p>The resource element represents a simple xlink with an additional attribute <a class="attribute" href="#content-type">content-type</a> which
+provides for an optional content type specifiers. The <code>content-type</code> attribute is not namespace qualified.</p>
+
+<p>The <code>rddl:resource</code> element may be placed within the html <code>body</code>. The <span class="pentity">%Flow.mix</span> entity has been
+redefined to contain <code>rddl:resource</code> so it rougly may be placed anywhere a <code>p</code> tag may be placed.</p>
+<p>The <code>rddl:resource</code> element itself uses the <code>%Flow.mix</code> content model, and SHOULD have content 
+which describes the associated resource.</p>
+<table class="eg" cellpadding="5" border="1" bgcolor="#99ffff" width="100%" summary="Example"><tr><td>
+<pre class="dtd">
+&lt;!ELEMENT rddl:resource (#PCDATA | %Flow.mix;)*&gt;
+&lt;!ATTLIST rddl:resource
+  %Common.attrib;
+  xmlns:rddl	CDATA	#FIXED 'http://www.openhealth.org/RDDL/'
+  xlink:type	(simple|arc|locator|resource) "simple"
+  xlink:role	CDATA		'http://www.openhealth.org/RDDL/'
+  xlink:arcrole CDATA		#IMPLIED
+  xlink:title	CDATA		#IMPLIED
+  xlink:href	CDATA		#IMPLIED
+  xlink:label	CDATA		#IMPLIED
+  xlink:from	CDATA		#IMPLIED
+  xlink:to	CDATA		#IMPLIED
+  xlink:show	(none) #FIXED "none"
+  xlink:actuate (none) #FIXED "none"
+  content-type	CDATA		#IMPLIED
+  &gt;
+</pre></td></tr></table>
+<p>The definition above has been edited for clarity. RDDL has been defined using <a href="http://www.w3.org/TR/xhtml-modularization/">Modularization for XHTML</a>. 
+Following this recommendation, element prefixing can be overridden using internal subset parsed entities. </p>
+<h2 name="attributes">Attributes</h2>
+<a id="xlink:arcrole"><h2>xlink:arcrole</h2></a>
+<p>A URI.</p>
+<p>The <code><a href="http://www.w3.org/TR/2000/PR-xlink-20001220/#link-semantics">xlink:arcrole</a></code> defines the type of the link. Software perfoming resource resolution may dispatch
+on the <code>xlink:arcrole</code> value.</p>
+<p>When the <code>resource</code> is intended to refer to a schema, the arcrole may be used to determine the type of the schema.
+e.g. A DTD, XSD, or RDF Schema. In this case such schemata
+are named by a URI. The URI should be well known. For example:
+<ul>
+	<li><code>XHTML</code> may be referenced by <code>http://www.openhealth.org/RDDL/arcrole.htm#XHTML</code>
+	<li><code>XSD</code> may be referenced by <code><a href="arcrole.htm#XSD">http://www.openhealth.org/RDDL/arcrole.htm#XSD</a></code>
+	<li><code>RDF Schema</code> may be referenced by <code><a href="arcrole.htm#RDFS">http://www.openhealth.org/RDDL/arcrole.htm#RDFS</a></code></li>
+</ul>
+<p>The document <a href="arcrole.htm">http://www.openhealth.org/RDDL/arcrole.htm</a> is itself a RDDL directory.</p>
+<h2 id="xlink:role" class="attribute">xlink:role</h2>
+<p>A URI.</p>
+<p>The <code><a href="http://www.w3.org/TR/2000/PR-xlink-20001220/#link-semantics">xlink:role</a></code> defaults to the RDDL namespace URI: <code>http://www.openhealth.org/RDDL/</code>.
+<p>In general it will not be otherwise specified but may be used to distinguish among related 
+schemata such as for HTML strict, transitional and frameset. The <code>xlink:role</code> of a link should be thought of as the
+type of the resource referenced by the link.</p>
+<div class="issue"><p class=".ednote">Ed. need to further discuss uses of and compare xmlink:arcrole and xlink:role</p></div>
+<a id="xlink:href"><h2>xlink:href</h2></a>
+<p>The <code><a href="http://www.w3.org/TR/2000/PR-xlink-20001220/#link-locators">xlink:href</a></code> known as the Locator attribute contains a mandatory URI referencing the target resource</p>
+<a id="xlink:title"><h2>xlink:title</h2></a>
+<p>A human readable short descriptive title. This should be specified but not in lieu of descriptive content.</p>
+<a id="xlink:show"><h2>xlink:show</h2></a>
+<p>Not used. The only legal value is "none".</p>
+<a id="xlink:actuate"><h2>xlink:actuate</h2></a>
+<p>Not used. The only legal value is "none".</p>
+<h2 id="content-type">content-type</h2>
+<p>An optional attribute defining the media content type</p>
+<p>The <code>content-type</code> attribute is not namespace qualified regardless of whether the containing <code>resource</code> element is namespace prefixed or not.</p>
+
+<!--
+&lt;html 
+		xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:xlink="http://www.w3.org/1999/xlink"
+		xmlns:xcat="http://www.openhealth.org/XMLCatalog/"&gt;
+   &lt;head&gt;
+  	&lt;xcat:resource 
+	   xlink:type="simple"
+	   xlink:arcrole="http://www.w3.org/TR/REC-xml#dt-doctype"
+	   xlink:role="http://www.w3.org/TR/xhtml-basic/"
+	   xlink:href="http://www.openhealth.org/XMLCatalog/xcat-xhtml.dtd" 
+	   public="-//XML Catalog//DTD XML Namespace Catalog 1.0//EN"
+	   content-type="text/xml-dtd"
+	   /&gt;
+	&lt;xcat:resource
+		xlink:type="simple"
+		xlink:title="XHTML1 Strict DTD"
+		xlink:role="http://www.w3.org/tr/xhtml1/DTD/xhtml1-strict.dtd"
+		xlink:arcrole="http://www.w3.org/TR/REC-xml#dt-doctype"
+		xlink:href="xcat-xhtml1-strict.dtd" 
+		public="-//XML Catalog//DTD XHTML Strict 1.0//EN"
+		content-type="text/xml-dtd"
+		/&gt;
+ 	&lt;xcat:resource 
+	   	xlink:type="simple"
+		xlink:title="XHTML1 Transitional DTD"
+		xlink:role="http://www.w3.org/tr/xhtml1/DTD/xhtml1-transitional.dtd"
+		xlink:arcrole="http://www.w3.org/TR/REC-xml#dt-doctype"
+		xlink:href="xcat-xhtml1-transitional.dtd" 
+		public="-//XML Catalog//DTD XHTML Transitional 1.0//EN"
+		content-type="text/xml-dtd"
+	  	/&gt;
+	&lt;xcat:resource 
+		xlink:type="simple"
+		xlink:title="XHTML1 Frameset DTD"
+		xlink:role="http://www.w3.org/tr/xhtml1/DTD/xhtml1-frameset.dtd"
+		xlink:arcrole="http://www.w3.org/TR/REC-xml#dt-doctype"
+		xlink:href="xcat-xhtml1-frameset.dtd" 
+		public="-//XML Catalog//DTD XHTML Frameset 1.0//EN"
+		content-type="text/xml-dtd"
+	   	/&gt;
+	 &lt;xcat:resource 
+	   xlink:type="simple"
+	   xlink:title="XML Schema"
+	   xlink:arcrole="http://www.w3.org/2000/10/XMLSchema"
+	   xlink:href="http://www.openhealth.org/XMLCatalog/xcat-xhtml1.xsd" 
+	   public="-//XML Catalog//XSD XHTML 1.0//EN"
+	   content-type="application/xml"
+	   /&gt;
+	 &lt;xcat:resource 
+	   xlink:type="simple"
+	   xlink:title="OASIS Catalog"
+	   xlink:arcrole="http://www.oasis-open.org/html/a401.htm"
+	   xlink:href="xcat-xhtml.soc" 
+	   public="-//XML Catalog//SOC XCAT XHTML 1.0//EN"
+	   content-type="application/SGML-Open-Catalog"
+	   /&gt;
+ &lt;/head&gt;
+ &lt;body&gt;...description goes here ...&lt;/body&gt;
+&lt;/html&gt;
+</pre>-->
+<h2>Resources within the body</h2>
+<p>In another example resources can be placed within the body, allowing intermingling of text descriptions and resource links.</p>
+<pre class="example">
+&lt;html&gt;
+	&lt;head&gt;&lt;/head&gt;
+	&lt;body&gt;
+	 &lt;rddl:resource 
+	   xlink:type="simple"
+	   xlink:title="XML Schema"
+	   xlink:arcrole="http://www.openhealth.org/RDDL/arcroles.htm#XSD"
+	   xlink:href="http://www.openhealth.org/XMLCatalog/xcat-xhtml1.xsd" 
+	   &gt; &lt;p&gt;Here is the description of the XSD Schema being described 
+	   within a &lt;a class="element" href="#resource"&gt;resource&lt;/a&gt; tag.&lt;/p&gt;
+	 &lt;/rddl:resource&gt;
+	&lt;/body&gt;
+ &lt;/html&gt;
+</pre>
+	 <rddl:resource 
+	   	xlink:arcrole="http://www.openhealth.org/RDDL/arcroles.htm#XSD"
+	   	xlink:href="http://www.openhealth.org/XMLCatalog/xcat-xhtml1.xsd"
+		xlink:title="XML Schema"
+		xlink:type="simple"><p>Here is the description of the XSD Schema being described within a <A class=element href="#resource">resource</a> tag.</p>
+	</rddl:resource>
+<h2 name="res_defs">Resources defined within this document</h2>
+<p>Below are the resources defined within this document</p>
+	<rddl:resource 
+	   xlink:arcrole="http://www.openhealth.org/RDDL/arcroles.htm#CSS"
+	   xlink:href="xrd.css" 
+	   content-type="text/css"
+	><div class="resource"><h2>CSS Stylesheet</h2><p>A <a href="xrd.css">CSS stylesheet</a> used to provide the "look-and-feel" of this document.</p>
+	 </div>
+	</rddl:resource>
+
+	<rddl:resource
+	   xlink:arcrole="http://www.openhealth.org/RDDL/arcroles.htm#DTD"
+	   xlink:href="rddl-xhtml.dtd"
+	><div class="resource"><h2>DTD</h2><p>The <a href="rddl-xhtml.dtd">RDDL DTD</a> is defined using Modularization for XHTML</p></div>
+	</rddl:resource>
+
+
+<a id="References">
+<h2>References</h2></a>
+<ol>
+<li type="1"><a id="xml-names"><a href="http://www.w3.org/TR/REC-xml-names">W3C XML Names</a></a>
+<li type="1"><a id="rfc2396"><a href="http://www.ietf.org/rfc/rfc2396.txt">IETF RFC 2396</a></a>
+<li type="1"><a id="rec-xhtml1"><a href="http://www.w3.org/tr/xhtml1">W3C XHTML 1.0</a></a>
+<li type="1"><a id="rec-xlink"><a href="http://www.w3.org/tr/xlink">W3C XLink</a></a>
+<li type="1"><a id="rec-xhtml-basic"><a href="http://www.w3.org/TR/xhtml-basic">W3C XHTML Basic 1.0</a></a>
+<li type="1"><a id="note-xlink2rdf"><a href="http://www.w3.org/TR/xlink2rdf/">W3C Note Harvesting RDF Statements from XLinks</a></a></li>
+</ol>
+</body>
+</html>

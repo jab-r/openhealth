@@ -1,0 +1,27 @@
+<module
+  xmlns="http://www.xml.gr.jp/xmlns/relaxCore"
+  targetNamespace="http://www.w3.org/1999/xhtml"
+  relaxCoreVersion="1.0"
+  moduleVersion="1.10">
+
+<elementRule role="div">
+  <mixed>
+    <hedgeRef label="Flow.mix" occurs="*"/>
+  </mixed>
+</elementRule>
+
+<tag name="div">
+  <ref role="Common.attrib"/>
+</tag>
+
+<elementRule role="p">
+  <mixed>
+    <hedgeRef label="Inline.mix" occurs="*"/>
+  </mixed>
+</elementRule>
+
+<tag name="p">
+  <ref role="Common.attrib"/>
+</tag>
+
+</module>

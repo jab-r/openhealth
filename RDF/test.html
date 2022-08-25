@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Untitled</title>
+	<style> 
+
+.newStyle { 
+	position:absolute; 
+	visibility:visible; 
+	top:-50px; 
+	font-size:12px; 
+	font-family:Verdana; 
+    font-weight:bold; 
+	color:yellow; 
+} 
+
+</style> 
+<script> 
+
+var x,y 
+var speed=20 
+var wait=0 
+var msg="test ingiyi" 
+msg=msg.split("") 
+
+var xpos=new Array() 
+for (i=0;i<=msg.length-1;i++) { 
+	xpos[i]=-50 
+} 
+
+var ypos=new Array() 
+for (i=0;i<=msg.length-1;i++) { 
+	ypos[i]=-50 
+} 
+
+function scrollObj(e){ 
+	x = (document.layers) ? e.pageX : document.body.scrollLeft+event.clientX 
+	y = (document.layers) ? e.pageY : document.body.scrollTop+event.clientY 
+	wait=1 
+
+} 
+
+function doTrail() { 
+	if (wait==1 && document.all) { 
+    	for (i=msg.length-1; i>=1; i--) { 
+   			xpos[i]=xpos[i-1]+speed 
+			ypos[i]=ypos[i-1] 
+    	} 
+
+		xpos[0]=x+speed 
+		ypos[0]=y 
+		for (i=0; i<msg.length-1; i++) { 
+    		var spanPos = eval("span"+(i)+".style") 
+    		spanPos.posLeft=xpos[i] 
+			spanPos.posTop=ypos[i] 
+    	} 
+
+	} 
+
+	else if (wait==1 && document.layers) { 
+    	for (i=msg.length-1; i>=1; i--) { 
+   			xpos[i]=xpos[i-1]+speed 
+			ypos[i]=ypos[i-1] 
+    	} 
+
+		xpos[0]=x+speed 
+		ypos[0]=y 
+		for (i=0; i<msg.length-1; i++) { 
+    		var spanPos = eval("document.span"+i) 
+    		spanPos.left=xpos[i] 
+			spanPos.top=ypos[i] 
+    	} 
+
+	} 
+
+		var timer=setTimeout("doTrail()",30) 
+
+} 
+
+</script> 
+</head>
+
+<BODY STYLE="background-color: rgb(115,115,115); background-image: none;" onLoad="doTrail()" TOPMARGIN=0 LEFTMARGIN=0 MARGINWIDTH=0 MARGINHEIGHT=0>
+<h1>test</h1>
+
+                            <script> 
+
+function stopErrors() { 
+
+return true;} 
+
+window.onerror = stopErrors; 
+
+for (i=0;i<=msg.length-1;i++) { 
+
+    document.write("<span id='span"+i+"' class='newStyle'>") 
+
+	document.write(msg[i]) 
+
+    document.write("</span>") 
+
+} 
+
+if (document.layers){ 
+
+	document.captureEvents(Event.MOUSEMOVE); 
+
+} 
+
+document.onmousemove = scrollObj; 
+
+</script> 
+</body>
+</html>

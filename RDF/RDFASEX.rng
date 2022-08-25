@@ -1,0 +1,118 @@
+<?xml version="1.0" ?>
+<!-- 
+	Copyright (c) 2001 Jonathan Borden &lt;jonathan@openhealth.org&gt;
+	
+	A tree regular expression for the RDF AbstractSyntax
+	
+	This schema may be freely used as long as this copyright notice is included in this or 
+	derivative works and you agree that the author accepts no liability nor responsibility 
+	for any use of this document.
+-->
+<grammar 
+		xmlns="http://relaxng.org/ns/structure/0.9"
+		ns="http://www.openhealth.org/RDF/RDFAbstractSyntax#"
+		xmlns:rdfas="http://www.openhealth.org/RDF/RDFAbstractSyntax#"
+		xmlns:rdf="http://www.openhealth.org/RDF/RDFSurfaceSyntax#"
+		datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+<include href="http://www.oasis-open.org/committees/relax-ng/relaxng.rng"/>
+<define name="pattern" combine="choice">
+	<choice>
+		<element name="statement">
+			<interleave>
+				<optional><ref name="predicate"/></optional>
+				<optional><ref name="subject"/></optional>
+				<optional><ref name="object"/></optional>
+			</interleave>
+		</element>
+		<element name="bundle">
+			<optional>
+				<element>
+					<choice>
+						<name>zeroOrMore</name>
+						<name>oneOrMore</name>
+					</choice>
+					<choice>
+						<ref name="term"/>
+						<empty/>
+					</choice>
+				</element>
+			</optional>
+		</element>
+		<element name="QName">
+			<attribute name="name">
+				<data type="QName"/>
+			</attribute>
+		</element>
+		<element name="URIreference">
+			<attribute name="value">
+				<data type="anyURI"/>
+			</attribute>
+		</element>
+		<element name="variable">
+			<attribute name="name">
+				<data type="NMTOKEN"/>
+			</attribute>
+		</element>
+	</choice>
+</define>
+
+<define name="predicate">
+	<element name="predicate">
+		<ref name="word"/>
+	</element>
+</define>
+<define name="subject">
+ <element name="subject">
+	<ref name="term"/>
+ </element>
+</define>
+<define name="object">
+ <element name="object">
+	<ref name="term"/>
+ </element>
+</define>
+<define name="variable">
+	<element name="variable">
+		<attribute name="rdfas:name">
+			<data type="NMTOKEN"/>
+		</attribute>
+		<empty/>
+	</element>
+</define>
+<define name="bundle">
+	<element name="rdf:Seq">
+	  <zeroOrMore>
+		<element name="rdf:li">
+			<ref name="term"/>
+		</element>
+	  </zeroOrMore>
+	</element>
+</define>
+<define name="word">
+	<choice>
+		<element name="URIRef">
+			<ref name="resourceAttr"/>
+			<empty/>
+		</element>
+		<element name="QName">			
+			<ref name="resourceQAttr"/>
+			<empty/>
+		</element>
+		<element name="Literal">
+			<mixed>
+				<zeroOrMore>
+					<ref name="any"/>
+				</zeroOrMore>
+			</mixed>
+		</element>
+		<ref name="variable"/>
+	</choice>
+</define>
+<define name="term">
+	<choice>
+		<ref name="word"/>
+		<ref name="statement"/>
+		<ref name="bundle"/>
+	</choice>
+</define>
+</grammar>

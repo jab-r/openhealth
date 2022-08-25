@@ -1,0 +1,97 @@
+<!DOCTYPE operative.report PUBLIC "-//ASTM//DTD Operative Report 1.0//EN" "http://www.openhealth.org/ASTM/operative.report.dtd">
+<?xml-stylesheet type="text/xsl" href="opnote.xsl" ?>
+<!-- -->
+<operative.report xmlns="http://www.openhealth.org/ASTM/operative.report"
+				xmlns:op="http://www.openhealth.org/ASTM/operative.report"
+				  xmlns:xlink="http://www.w3.org/1999/xlink">
+  <clinical.header xmlns="http://www.openhealth.org/ASTM/clinical.header">
+	<id>5556666</id>
+	<patient.encounter>
+		<id>ENC-11111</id>
+		<practice.setting>Operation</practice.setting>
+		<date.time>2000-10-15</date.time>
+		<location>New England Medical Center</location>
+	</patient.encounter>
+	<provider>
+		<person.name>
+			<prefix type="title">Dr.</prefix>
+			<given>Jonathan</given>
+			<given>Alan</given>
+			<family>Borden</family>
+			<suffix type="degree">M.D.</suffix>
+		</person.name>
+		<id type="license" authority="MA">12345</id>
+		<addr type="office">
+			<house.number>750</house.number>
+			<street>Washington Street</street>
+			<city>Boston</city>
+			<state>MA</state>
+			<zip>02111</zip>
+			<uri type="email">mailto:jonathan@openhealth.org</uri>
+			<telephone>617-636-7587</telephone>
+		</addr>
+		<type.code>Attending</type.code>
+		<function>Surgeon</function>
+	</provider>
+	<patient>
+		<person.name>
+			<given>John</given>
+			<given type="MI">Q</given>
+			<family>Doe</family>
+			<suffix>Jr.</suffix>
+		</person.name>
+		<id type="patient.identifier" authority="NEMC">111223344</id>
+		<id type="SSN" authority="SocialSecurity">111-22-3344</id>
+		<birth.date>1955-10-21</birth.date>
+	</patient>
+
+	<codes>
+		<coded.value code.system.name="CPT">63051</coded.value>
+		<coded.value code.system.name="CPT">69990</coded.value>
+		<coded.value code.system.name="ICD9">XXX.21</coded.value>
+	</codes>
+  </clinical.header>
+  <clinical.body>
+  <preoperative.diagnosis>Right Frontal Brain Tumor</preoperative.diagnosis>
+  <postoperative.diagnosis>same, probable Astrocytoma</postoperative.diagnosis>
+  <procedure>Right Frontal Craniotomy for Excision of Brain Tumor</procedure>
+  <anesthesia>GETA</anesthesia>
+  <indications><p>The patient presents with severe headaches and blurred vision. An MRI demonstrates a large cystic irregularly shaped mass within the right frontal lobe.</p></indications>
+  <op:description xmlns="http://www.w3.org/1999/xhtml">
+         <p>The patient had application of the external fiducial markers and was brought down to the MRI suite where a head MRI was obtained
+            using the frameless stereotactic (3D) protocol. The image set was transferred using the DICOM protocol over the hospital Ethernet
+            to the intraoperative workstation and a three dimensional reconstruction of the head and target was created.
+         </p>
+         <p>The patient was transported to the operating room and after adequete general endotracheal anestesia was achieved was carefully
+            positioned  in pins in the Mayfield headholder with padding of the extremities in the usual fashion.
+         </p>
+         <p>The external fiducial markers were identified with the OTS for the initial stereotactic localization and using surface matching
+            technique the median error was reduced to 1.0 mm. A craniotomy incision was marked using 3D planning and the operative site
+            was prepped and draped in the standard sterile fashion. 
+         </p>
+         <p>The incision was created with a #10 blade and taken down the to pericranium. Bipolar electrocautery was employed. A cerebellar
+            self retaining retractor was placed. The pericranium was elevated using a periosteal elevator. A single burr hole was created
+            with the Codman performator and the bone edges were waxed. The #3 Penfield was used to strip the dura under the bone flap
+            and a craniotomy was performed with the Midas Rex craniotome. The dura was tacked to the skull edges using several 4-0 Neurolon
+            sutures in the usual fashion. The dura was opened in a cruxiate fashion. The Budde Halo self retaining retractor system was
+            attached. 
+         </p>
+         <p>The tumor was highly vascular and cystic.</p>
+         <p>The tumor was removed with the cavitron, bipolar electrocautery and suction.The frozen section pathology revealed:Malignant
+            astrocytoma
+         </p>
+         <p>After meticulous hemostasis with bipolar electrocautery the systolic blood pressure was elevated to 160mm Hg and the operative
+            bed was examined with continued excellent hemostasis. The systolic blood pressure was then lowered and maintained at less
+            than 140 mm Hg for 24 hours. The operative bed was lined with surgicel and again copiously irrigated with lactated Ringer's
+            solution. The dura mater was reapproximated with interrupted and running 4-0 Neurolon sutures and the closure was lined with
+            surgicel. The bone flap was reattached using stainless steel wires in the usual fashion. The incision was irrigated with antibiotic
+            solution and the galea was reapproximated with inverted 3-0 Vicryl sutures in an interrupted fashion. Stainless steel surgical
+            staples were used to reapproximate the scalp edges and a dry sterile dressing was applied.  The patient was returned to the
+            supine position, extubated and transferred to the SICU in excellent condition. 
+         </p>
+  </op:description>
+  <estimated.blood.loss>100cc</estimated.blood.loss>
+  <patient.condition>Stable, extubated</patient.condition>
+  <disposition>SICU</disposition>
+  </clinical.body>
+</operative.report>

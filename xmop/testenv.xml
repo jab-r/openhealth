@@ -1,0 +1,6 @@
+<SOAP:Envelope xmlns:SOAP="urn:schemas-xmlsoap-org:soap.v1"><SOAP:Body>
+<m:CreateInstance xmlns:m="http://www.grovelogic.com/SOAP/XTRIME.MBXMLFactory.1">
+	<ProgID>test.test</ProgID>
+	<ProgID2>aaaa</ProgID2>
+	<ProgID>xxxx.yyyy</ProgID>
+</m:CreateInstance></SOAP:Body></SOAP:Envelope>

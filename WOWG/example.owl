@@ -1,0 +1,205 @@
+<?xml version="1.0" ?>
+<!-- note this namespace is my own creation until the real one is assigned -->
+<!-- Jonathan Borden, 3/13/2002 -->
+<Ontology 
+		xmlns="http://www.w3.org/2002/03/webont#"
+		xmlns:owl="http://www.w3.org/2002/03/webont#"
+		xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+		xmlns:rdfs="rdfs"
+>
+	<Version>Jonathan Borden, 20020313</Version>
+	<Class rdf:ID="Documents"/>
+	<!-- this ontology defines an equivalence between the XML Schemas:
+		http://www.openhealth.org/WOWG/this-example.xsd
+		http://www.openhealth.org/WOWG/that-example.xsd	
+		
+		a smart piece of software can write an information sparing transform from
+		one schema to the other and back
+		
+		an inferencing engine should be able to figure out that this is indeed possible
+		for all documents schema valid with respect to either schema
+	-->
+	<!-- this property is defined to be one of (a | b | c | d) -->
+	<Property rdf:ID="this-oneOf">
+		<samePropertyAs>
+			<DatatypeProperty>
+				<rdfs:range rdf:resource="http://www.openhealth.org/WOWG/this-example.xsd#this-oneOf"/>
+			</DatatypeProperty>
+		</samePropertyAs>
+		<rdfs:range>
+			<subClassOf>
+				<Restriction>
+					<onProperty rdf:resource="#my-oneOf"/>
+					<toClass rdf:resource="#MyOneOf"/>
+				</Restriction>
+			</subClassOf>
+		</rdfs:range>
+	</Property>
+	<!-- this property is defined to be the sequence (a , b , c , d) -->
+	<Property rdf:ID="this-seq">
+		<samePropertyAs>
+			<DatatypeProperty>
+				<rdfs:range rdf:resource="http://www.openhealth.org/WOWG/this-example.xsd#this-seq"/>
+			</DatatypeProperty>
+		</samePropertyAs>
+		<rdfs:range>
+			<subClassOf>
+				<Restriction>
+					<onProperty rdf:resource="#my-seq"/>
+					<toClass rdf:resource="#MySeq"/>
+				</Restriction>
+			</subClassOf>
+		</rdfs:range>
+	</Property>
+	<!-- this property is defined to be the set (a & b & c & d) -->
+	<Property rdf:ID="this-set">
+		<samePropertyAs>
+			<DatatypeProperty>
+				<rdfs:range rdf:resource="http://www.openhealth.org/WOWG/this-example.xsd#this-set"/>
+			</DatatypeProperty>
+		</samePropertyAs>
+		<rdfs:range>
+			<subClassOf>
+				<Restriction>
+					<onProperty rdf:resource="#my-set"/>
+					<toClass rdf:resource="#MySet"/>
+				</Restriction>
+			</subClassOf>
+		</rdfs:range>
+	</Property>
+	<Class rdf:ID="MyOneOf" >
+		<!-- represents the type (a | b | c | d) -->
+		<oneOf rdf:parseType="owl:collection">
+			<Thing rdf:resource="#a"/>
+			<Thing rdf:resource="#b"/>
+			<Thing rdf:resource="#c"/>
+			<Thing rdf:resource="#d"/>
+		</oneOf>
+	</Class>
+	<Class rdf:ID="MySeq" >
+		<!-- represents the type (a, b, c, d) -->
+		<seq rdf:parseType="owl:collection">
+			<Thing rdf:resource="#a"/>
+			<Thing rdf:resource="#b"/>
+			<Thing rdf:resource="#c"/>
+			<Thing rdf:resource="#d"/>
+		</seq>
+	</Class>
+	<Class rdf:ID="MySet" >
+		<!-- represents the type (a & b & c & d) -->
+		<set rdf:parseType="owl:collection">
+			<Thing rdf:resource="#a"/>
+			<Thing rdf:resource="#b"/>
+			<Thing rdf:resource="#c"/>
+			<Thing rdf:resource="#d"/>
+		</set>
+	</Class>
+	<Property rdf:ID="a">
+		<rdfs:range rdf:resource="http://www.openhealth.org/WOWG/this-example.xsd#a"/>
+		<samePropertyAs rdf:resource="#e"/>
+	</Property>
+	<Property rdf:ID="b">
+		<rdfs:range rdf:resource="http://www.openhealth.org/WOWG/this-example.xsd#b"/>
+		<samePropertyAs rdf:resource="#f"/>
+	</Property>
+	<Property rdf:ID="c">
+		<rdfs:range rdf:resource="http://www.openhealth.org/WOWG/this-example.xsd#c"/>
+		<samePropertyAs rdf:resource="#g"/>
+	</Property>
+	<Property rdf:ID="d">
+		<rdfs:range rdf:resource="http://www.openhealth.org/WOWG/this-example.xsd#d"/>
+		<samePropertyAs rdf:resource="#h"/>
+	</Property>
+	<!-- and now the following schema 'that' -->
+	<Property rdf:ID="that-oneOf">
+		<samePropertyAs>
+			<DatatypeProperty>
+				<rdfs:range rdf:resource="http://www.openhealth.org/WOWG/this-example.xsd#that-oneOf"/>
+			</DatatypeProperty>
+		</samePropertyAs>
+		<rdfs:range>
+			<subClassOf>
+				<Restriction>
+					<onProperty rdf:resource="#my-oneOf"/>
+					<toClass rdf:resource="#ThatOneOf"/>
+				</Restriction>
+			</subClassOf>
+		</rdfs:range>
+	</Property>
+	<!-- this property is defined to be the sequence (a , b , c , d) -->
+	<Property rdf:ID="that-seq">
+		<samePropertyAs>
+			<DatatypeProperty>
+				<rdfs:range rdf:resource="http://www.openhealth.org/WOWG/this-example.xsd#this-seq"/>
+			</DatatypeProperty>
+		</samePropertyAs>
+		<rdfs:range>
+			<subClassOf>
+				<Restriction>
+					<onProperty rdf:resource="#my-seq"/>
+					<toClass rdf:resource="#ThatSeq"/>
+				</Restriction>
+			</subClassOf>
+		</rdfs:range>
+	</Property>
+	<!-- this property is defined to be the set (a & b & c & d) -->
+	<Property rdf:ID="that-set">
+		<samePropertyAs>
+			<DatatypeProperty>
+				<rdfs:range rdf:resource="http://www.openhealth.org/WOWG/this-example.xsd#that-set"/>
+			</DatatypeProperty>
+		</samePropertyAs>
+		<rdfs:range>
+			<subClassOf>
+				<Restriction>
+					<onProperty rdf:resource="#my-set"/>
+					<toClass rdf:resource="#ThatSet"/>
+				</Restriction>
+			</subClassOf>
+		</rdfs:range>
+	</Property>
+	<Class rdf:ID="ThatOneOf" >
+		<!-- represents the type (a | b | c | d) -->
+		<oneOf rdf:parseType="owl:collection">
+			<Thing rdf:resource="#e"/>
+			<Thing rdf:resource="#f"/>
+			<Thing rdf:resource="#g"/>
+			<Thing rdf:resource="#h"/>
+		</oneOf>
+	</Class>
+	<Class rdf:ID="ThatSeq" >
+		<!-- represents the type (a, b, c, d) -->
+		<seq rdf:parseType="owl:collection">
+			<Thing rdf:resource="#e"/>
+			<Thing rdf:resource="#f"/>
+			<Thing rdf:resource="#g"/>
+			<Thing rdf:resource="#h"/>
+		</seq>
+	</Class>
+	<Class rdf:ID="ThatSet" >
+		<!-- represents the type (a & b & c & d) -->
+		<set rdf:parseType="owl:collection">
+			<Thing rdf:resource="#e"/>
+			<Thing rdf:resource="#f"/>
+			<Thing rdf:resource="#g"/>
+			<Thing rdf:resource="#h"/>
+		</set>
+	</Class>
+	<Property rdf:ID="e">
+		<rdfs:range rdf:resource="http://www.openhealth.org/WOWG/this-example.xsd#e"/>
+		<samePropertyAs rdf:resource="#a"/>
+	</Property>
+	<Property rdf:ID="f">
+		<rdfs:range rdf:resource="http://www.openhealth.org/WOWG/this-example.xsd#f"/>
+		<samePropertyAs rdf:resource="#b"/>
+	</Property>
+	<Property rdf:ID="g">
+		<rdfs:range rdf:resource="http://www.openhealth.org/WOWG/this-example.xsd#g"/>
+		<samePropertyAs rdf:resource="#c"/>
+	</Property>
+	<Property rdf:ID="h">
+		<rdfs:range rdf:resource="http://www.openhealth.org/WOWG/this-example.xsd#h"/>
+		<samePropertyAs rdf:resource="#d"/>
+	</Property>
+</Ontology>
+

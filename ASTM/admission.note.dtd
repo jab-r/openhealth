@@ -1,0 +1,23 @@
+<!--
+	Copyright (c) 2000 Jonathan Borden, M.D., The Open Healthcare Group
+	Licensed upder http://www.openhealth.org/license
+	
+	Admission Note is a modularized DTD from the Admission/Discharge Module
+	
+	PUBLIC "-//ASTM//DTD Admission Note 1.0//EN"
+	SYSTEM "http://www.openhealth.org/ASTM/admission.note.dtd"
+-->
+<!ENTITY % admission.discharge.module PUBLIC "-//ASTM//DTD Admission/Discharge Module 1.0//EN" "admission.discharge.module.dtd">
+%admission.discharge.module;
+<!ENTITY % clinical.body.model "(
+	%admission.qname;,
+	%assessment.and.plan.qname;
+)">
+
+<!ELEMENT %admission.note.qname; (%clinical.header.qname;,%clinical.body.qname;)>
+<!ATTLIST %admission.note.qname;
+	%astm.document.attrib;
+	%ADS.xmlns.attrib;
+>
+<!ELEMENT %clinical.body.qname; %clinical.body.model;>
+<!ATTLIST %clinical.body.qname; %ch.attrib;>

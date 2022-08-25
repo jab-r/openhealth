@@ -1,0 +1,1336 @@
+<!-- 
+	Copyright (c) 2000-2003 Jonathan Borden All Rights Reserved
+	This file is distributed under the Open Healthcare License
+	http://www.openhealth.org/license/
+	Author: Jonathan Borden
+	
+	Contains:
+		XML 1.0
+		XML Names
+		URI
+	
+	Contributers:
+	    sam@uchicago.edu (2 productions, 16,17), use of "expand"
+		barton.stanley@innovision.com (errors)
+	20030811 - - this actually is RDF now (almost :-)
+	Comments welcome to:
+		jonathan@openhealth.org
+-->
+<rdf:RDF
+	xml:base="http://www.openhealth.org/XSet/xml"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	xmlns="http://www.openhealth.org/XSet#"
+	xmlns:x="http://www.openhealth.org/XSet#"
+	xmlns:owl="http://www.w3.org/2002/07/owl#"
+	>
+<!-- 
+	a propertySet is a container of productions - to be interpreted as an RDF typedNode
+	an x:Seq is a collection - each child element is a member
+	an x:Alt is a collection - each child element is a member
+-->
+<propertySet 
+	rdf:about="http://www.w3.org/TR/REC-xml"
+	x:targetNamespace="http://www.openhealth.org/XSet"
+/>
+<production x:id="document" x:p="1">
+ <Seq rdf:parseType="Collection">
+  <prolog />
+  <element />
+  <Misc x:occurs="*"/>
+ </Seq>
+</production>
+<production x:id="characters" x:p="2">
+ <Choice rdf:parseType="Collection">
+   <c x:hex="9" /><c x:hex="A" /><c x:hex="D" />
+   <c x:pattern="[#x20-#xD7FF]"/>
+   <c x:pattern="[#xE000-#xFFFD]" />
+   <c x:pattern="[#x10000-#x10FFFF]" />
+ </Choice>
+</production>
+<production x:id="S" x:p="3">
+ <Choice rdf:parseType="Collection" x:occurs="+">
+ <c x:hex="20" /><c x:hex="9" />
+ <c x:hex="D" /><c x:hex="A" />
+ </Choice>
+</production>
+<!-- Names and tokens -->
+<production x:id="NameChar" x:p="4">
+	<Choice rdf:parseType="Collection">
+		<Letter /><Digit />
+		<c x:char="." /><c x:char="-"/><c x:char="_"/><c x:char=":" />
+		<CombiningChar/><Extender/>
+	</Choice>
+</production>
+<production x:id="Name" x:p="5">
+ <Seq rdf:parseType="Collection">
+ 	<Choice rdf:parseType="Collection"><Letter/><c x:char="_"/><c x:char=":"/></Choice>
+	<NameChar x:occurs="*"/>
+ </Seq>
+</production>
+<!-- Change productions [6] Names and [8] Nmtokens to use #x20 (a single space character) instead of S:
+"[6] Names ::= Name (#x20 Name)*"
+"[8] Nmtokens ::= Nmtoken (#x20 Nmtoken)*" 
+-->
+<production x:id="Names" x:p="6">
+ <Seq rdf:parseType="Collection"><Name/>
+ <Choice rdf:parseType="Collection" x:occurs="*"><c x:char="#x20"/><Name/></Choice>
+ </Seq>
+</production>
+<production x:id="Nmtoken" x:p="7">
+	<NameChar x:occurs="+"/>
+</production>
+<production x:id="Nmtokens" x:p="8">
+ <Seq rdf:parseType="Collection"><Nmtoken/><Choice rdf:parseType="Collection" x:occurs="*"><c x:char="#x20"/><Nmtoken/></Choice></Seq>
+</production>
+<!-- Entities and Literals-->
+<production x:id="EntityValue" x:p="9">
+	<Choice rdf:parseType="Collection">
+		<Seq rdf:parseType="Collection">
+			<c x:char='"'/>
+			<Choice rdf:parseType="Collection" x:occurs="*">
+			 <c x:pattern='[^%&amp;"]' />
+			 <PEReference/>
+			 <Reference/>
+			</Choice>
+			<c x:char='"'/>
+		</Seq>
+		<Seq rdf:parseType="Collection">	
+			<c x:char="'"/>
+			<Choice rdf:parseType="Collection" x:occurs="*">
+			 <c x:pattern="[^%&amp;']" />
+			 <PEReference/>
+			 <Reference/>
+			</Choice>
+			<c x:char="'"/>
+		</Seq>
+	</Choice>
+</production>
+<production x:id="AttValue" x:p="10">
+	<Choice rdf:parseType="Collection">
+		<Seq rdf:parseType="Collection">
+			<c x:char='"'/>
+			<Choice rdf:parseType="Collection" x:occurs="*">
+			 <c x:pattern='[^&lt;&amp;"]' />
+			 <Reference/>
+			</Choice>
+			<c x:char='"'/>
+		</Seq>
+		<Seq rdf:parseType="Collection">	
+			<c x:char="'"/>
+			<Choice rdf:parseType="Collection" x:occurs="*">
+			 <c x:pattern="[^&lt;&amp;']" />
+			 <Reference/>
+			</Choice>
+			<c x:char="'"/>
+		</Seq>
+	</Choice>
+</production>
+<production x:id="SystemLiteral" x:p="11">
+	<Choice rdf:parseType="Collection">
+		<Seq rdf:parseType="Collection">
+			<c x:char='"'/>
+			<c x:occurs="*" x:pattern='[^"]' />
+			<c x:char='"'/>
+		</Seq>
+		<Seq rdf:parseType="Collection">	
+			<c x:char="'"/>
+			 <c x:occurs="*" x:pattern="[^']" />
+			<c x:char="'"/>
+		</Seq>
+	</Choice>
+</production>
+<production x:id="PubidLiteral" x:p="12">
+<Choice rdf:parseType="Collection"><Seq rdf:parseType="Collection"><c x:char='"'/><Choice rdf:parseType="Collection" x:occurs="*"><PubidChar/><c x:char="'"/></Choice> <c x:char='"'/></Seq>
+<Seq rdf:parseType="Collection"> <c x:char="'"/><Choice rdf:parseType="Collection" x:occurs="*"><PubidChar/> <c x:char='"'/></Choice><c x:char="'"/>
+</Seq>
+</Choice>
+</production>
+<!-- note this is different than in XML 1.0  because "'" is not included - see above-->
+<production x:id="PubidChar" x:p="13">
+<Choice rdf:parseType="Collection">
+	<c x:hex="20"/>
+	<c x:hex="D"/>
+	<c x:hex="A"/>
+	<c x:pattern="[a-zA-Z0-9]"/>
+	<c x:pattern="[-()+,./:=?;!*#@$_%]"/>
+</Choice>
+</production>
+<production x:id="CharData" x:p="14">
+<c x:occurs="*" x:pattern="[^&lt;&amp;]" >
+	<exclude>
+		<Seq rdf:parseType="Collection">
+		 <c x:occurs="*" x:pattern="[^&lt;&amp;]" />
+		 <string x:value="]]>" />
+		 <c x:occurs="*" x:pattern="[^&lt;&amp;]" />
+		</Seq>
+	</exclude>
+</c>
+</production>
+<production x:id="Comment" x:p="15">
+<Seq rdf:parseType="Collection">
+ <string x:value="&lt;!--"/> 
+  <Choice rdf:parseType="Collection" x:occurs="*">
+  	<Char>
+		<exclude>
+			<c x:char="-"/>
+		</exclude>
+	</Char>
+ 	<Seq rdf:parseType="Collection">
+		<c x:char="-"/>
+		<Char>
+		 <exclude><c x:char="-"/></exclude>
+		</Char>
+	</Seq> 
+  </Choice>
+ <string x:value="-->"/> 
+</Seq>
+</production>
+
+<production x:id="PI" x:p="16">
+  <Seq rdf:parseType="Collection">
+    <c x:char="&lt;"/><c x:char="?"/>
+    <PITarget/>  
+    <Seq x:occurs="?">
+      <S />
+	  <Seq rdf:parseType="Collection">
+	   <!--<Char repeat="*" rexexp="[^?>]" />-->
+	   <Char x:occurs="*">
+         <exclude>          
+          <Seq rdf:parseType="Collection">
+	  	   <Char x:occurs="*"/>
+	  	   <c x:char="?"/><c x:char="&gt;"/>
+	  	   <Char x:occurs="*"/>	    
+	     </Seq>
+        </exclude>
+	   </Char>
+     </Seq>
+     <c x:char="?"/><c x:char=">"/>
+   </Seq>
+ </Seq>
+</production>
+<production x:id="PITarget" x:p="17">
+  <Name>
+   <exclude>
+	<Seq rdf:parseType="Collection"><Choice rdf:parseType="Collection">
+    <c x:char="X"/>
+    <c x:char="x"/></Choice>
+    <Choice rdf:parseType="Collection"><c x:char="M"/>
+    <c x:char="m"/></Choice>
+    <Choice rdf:parseType="Collection"><c x:char="L"/>
+    <c x:char="l"/></Choice>
+	</Seq>
+   </exclude>
+  </Name>
+</production>
+<production x:id="CDSect" x:p="18">
+	<Seq rdf:parseType="Collection"><CDStart /><CData /><CDEnd /></Seq>
+</production>
+<production x:id="CDStart" x:p="19">
+  <string x:value="&lt;![CDATA[" />
+</production>
+<production x:id="CData" x:p="20">
+ <Char x:occurs="*">
+ 	<exclude>
+		<Seq rdf:parseType="Collection">
+		 <Char x:occurs="*"/>
+		 <string x:value="]]>"/>
+		 <Char x:occurs="*"/>
+		</Seq>
+	</exclude>
+ </Char>
+</production>
+<production x:id="CDEnd" x:p="21">
+  <string x:value="]]>" />
+</production>
+
+<production x:id="prolog" x:p="22">
+ <Seq rdf:parseType="Collection">
+ <XMLDecl x:occurs="?"/>
+ <Misc x:occurs="*"/>
+ <Seq rdf:parseType="Collection">
+   <doctypedecl /><Misc x:occurs="*"/>
+ </Seq>
+ </Seq>
+</production>
+<production x:id="XMLDecl" x:p="23">
+ <Seq rdf:parseType="Collection">
+ <string x:value="&lt;?xml"/>
+ <VersionInfo/>
+ <EncodingDecl x:occurs="?"/>
+ <SDDecl x:occurs="?"/>
+ <S x:occurs="?"/>
+ <string x:value="?>"/>
+ </Seq>
+</production>
+<production x:id="VersionInfo" x:p="24">
+ <Seq rdf:parseType="Collection">
+	<S/>
+	<string x:value="version"/>
+	<Eq/>
+	<Choice rdf:parseType="Collection"><Seq rdf:parseType="Collection"><c x:char="'"/><VersionNum/><c x:char="'"/></Seq>
+		<Seq rdf:parseType="Collection"><c x:char='"'/><VersionNum/><c x:char='"'/></Seq>
+	</Choice>
+ </Seq>
+</production>
+<production x:id="Eq" x:p="25">
+<Seq rdf:parseType="Collection"><S x:occurs="?"/><c x:char="="/><S x:occurs="?"/></Seq>
+</production>
+
+<production x:id="VersionNum" x:p="26">
+<Choice rdf:parseType="Collection" x:occurs="+">
+	<c x:pattern="[a-zA-Z0-9_.:]"/><c x:char="-"/>
+</Choice>
+</production>
+<production x:id="Misc" x:p="27">
+ <Choice rdf:parseType="Collection"><Comment /><PI /><S /></Choice>
+</production>
+<!--
+[28]  doctypedecl ::=  '<!DOCTYPE' S Name (S ExternalID)? S? ('[' (markupdecl | PEReference | S)* ']' S?)? '>' [  VC: Root Element Type ] 
+-->
+<production x:id="doctypedecl" x:p="28" VC="Root_Element_Type">
+ <Seq rdf:parseType="Collection">
+  <string x:value="&lt;!DOCTYPE" />
+  <S />
+  <Name />
+  <Seq x:occurs="?">
+  	<S /><ExternalID />
+  </Seq>
+  <S x:occurs="?"/>
+  <Seq x:occurs="?">
+   <c x:char="["/>
+   <Choice rdf:parseType="Collection" x:occurs="*">
+   	<markupdecl />
+	<PEReference />
+	<S />
+   </Choice>
+   <c x:char="]"/>
+  </Seq>
+ </Seq>
+</production>
+<!--
+[29]  markupdecl ::=  elementdecl | AttlistDecl | EntityDecl | NotationDecl | PI | Comment  [  VC: Proper Declaration/PE Nesting ] 
+    [  WFC: PEs in Internal Subset ] 
+-->
+<production x:id="markupdecl" x:p="29" VC="Proper_Declaration_PE_Nesting" WFC="PEs_in_Internal_Subset">
+	<Choice rdf:parseType="Collection">
+		<elementdecl />
+		<AttlistDecl />
+		<EntityDecl />
+		<NotationDecl />
+		<P1 />
+		<Comment />
+	</Choice>
+</production>
+<!--
+External Subset 
+[30]  extSubset ::=  TextDecl? extSubsetDecl 
+[31]  extSubsetDecl ::=  ( markupdecl | conditionalSect | PEReference | S )* 
+-->
+<production x:id="extSubset" x:p="30">
+<Seq rdf:parseType="Collection"><TextDecl x:occurs="?"/><extSubsetDecl /></Seq>
+</production>
+<production x:id="extSubsetDecl" x:p="31">
+<Choice rdf:parseType="Collection" x:occurs="*">
+	<markupdecl/>
+	<conditionSect/>
+	<PEReference />
+	<S />
+</Choice>
+</production>
+<!--
+Standalone Document Declaration 
+[32]  SDDecl ::=  S 'standalone' Eq (("'" ('yes' | 'no') "'") | ('"' ('yes' | 'no') '"'))  [  VC: Standalone Document Declaration ] 
+-->
+<production x:id="SDDecl" x:p="32">
+<Seq rdf:parseType="Collection">
+	<S />
+	<string x:value="standalone"/>
+	<Eq />
+	<Choice rdf:parseType="Collection">
+		<Seq rdf:parseType="Collection">
+			<c x:char="'"/>
+				<Choice rdf:parseType="Collection">
+					<string x:value="yes"/>
+					<string x:value="no"/>
+				</Choice>
+			<c x:char="'"/>
+		</Seq>
+		<Seq rdf:parseType="Collection">
+			<c x:char='"'/>
+				<Choice rdf:parseType="Collection">
+					<string x:value="yes"/>
+					<string x:value="no"/>
+				</Choice>
+			<c x:char='"'/>
+		</Seq>
+	</Choice>
+</Seq>
+</production>
+<!--
+Language Identification 
+[33]  LanguageID ::=  Langcode ('-' Subcode)* 
+[34]  Langcode ::=  ISO639Code |  IanaCode |  UserCode 
+[35]  ISO639Code ::=  ([a-z] | [A-Z]) ([a-z] | [A-Z]) 
+[36]  IanaCode ::=  ('i' | 'I') '-' ([a-z] | [A-Z])+ 
+[37]  UserCode ::=  ('x' | 'X') '-' ([a-z] | [A-Z])+ 
+[38]  Subcode ::=  ([a-z] | [A-Z])+ 
+-->
+<production x:id="LanguageID" x:p="33">
+<Seq rdf:parseType="Collection">
+	<Langcode/>
+	<Seq x:occurs="*"><c x:char="-"/><Subcode/></Seq>
+</Seq>
+</production>
+<production x:id="Langcode" x:p="34">
+ <Choice rdf:parseType="Collection"><ISO639Code/><IanaCode/><UserCode/></Choice>
+</production>
+<production x:id="ISO639Code" x:p="35">
+ <Seq rdf:parseType="Collection">
+ 	<Choice rdf:parseType="Collection">
+		<c x:pattern="[a-z]"/>
+		<c x:pattern="[A-Z]"/>
+	</Choice>
+ 	<Choice rdf:parseType="Collection">
+		<c x:pattern="[a-z]"/>
+		<c x:pattern="[A-Z]"/>
+	</Choice>
+ </Seq>
+</production>
+<production x:id="IanaCode" x:p="36">
+ <Seq rdf:parseType="Collection">
+ 	<Choice rdf:parseType="Collection">
+		<c x:char="i"/>
+		<c x:char="I"/>
+	</Choice>
+	<c x:char="-"/>
+ 	<Choice rdf:parseType="Collection" x:occurs="+">
+		<c x:pattern="[a-z]"/>
+		<c x:pattern="[A-Z]"/>
+	</Choice>
+ </Seq>
+</production>
+<production x:id="UserCode" x:p="37">
+ <Seq rdf:parseType="Collection">
+ 	<Choice rdf:parseType="Collection">
+		<c x:char="x"/>
+		<c x:char="X"/>
+	</Choice>
+	<c x:char="-"/>
+ 	<Choice rdf:parseType="Collection" x:occurs="+">
+		<c x:pattern="[a-z]"/>
+		<c x:pattern="[A-Z]"/>
+	</Choice>
+ </Seq>
+</production>
+<production x:id="SubCode" x:p="38">
+ 	<Choice rdf:parseType="Collection" x:occurs="+">
+		<c x:pattern="[a-z]"/>
+		<c x:pattern="[A-Z]"/>
+	</Choice>
+</production>
+
+<!--
+Element 
+[39]  element ::=  EmptyElemTag 
+   | STag content ETag [  WFC: Element Type Match ] 
+    [  VC: Element Valid ] 
+-->
+<production x:id="element" x:p="39">
+ <Choice rdf:parseType="Collection">
+  <EmptyElemTag />
+  <Seq WFC="Element_Type_Match" VC="Element_Valid">
+   <STag /><content /><ETag />
+  </Seq>
+ </Choice>
+</production>
+<!--
+Start-tag 
+[40]  STag ::=  '<' Name (S Attribute)* S? '>' [  WFC: Unique Att Spec ] 
+[41]  Attribute ::=  Name Eq AttValue [  VC: Attribute Value Type ] 
+    [  WFC: No External Entity References ] 
+    [  WFC: No < in Attribute Values ] 
+-->
+<production x:id="STag" x:p="40" WFC="Unique_Att_Spec">
+<Seq rdf:parseType="Collection">
+	<c x:char="&lt;"/>
+	<Name />
+	<Seq x:occurs="*">
+		<S/>
+		<Attribute/>
+	</Seq>
+	<S x:occurs="?"/>
+	<c x:char=">"/>
+</Seq>
+</production>
+<!-- 
+	Add a validity constraint to production [41] as follows: "Validity Constraint: Valid xml:lang: if the Name in an attribute specification is xml:lang, then the value, after normalization as an NMTOKEN, must match production [33]". 
+-->
+<production x:id="Attribute" x:p="41" VC="Attribute_Value_Type Valid_xml_lang" WFC="No_External_Entity_References">
+<Seq rdf:parseType="Collection">
+	<Name/>
+	<Eq/>
+	<AttValue>
+		<exclude>
+			<c x:char="&lt;"/>
+		</exclude>
+	</AttValue>
+</Seq>
+</production>
+<!--
+End-tag 
+[42]  ETag ::=  '</' Name S? '>'
+-->
+<production x:id="ETag" x:p="42">
+<Seq rdf:parseType="Collection">
+	<c x:char="&lt;"/>
+	<c x:char="/"/>
+	<Name />
+	<S x:occurs="?" />
+	<c x:char=">"/>
+</Seq>
+</production>
+<!--
+Content of Elements 
+[43]  content ::=  (element | CharData | Reference | CDSect | PI | Comment)* 
+Tags for Empty Elements 
+[44]  EmptyElemTag ::=  '<' Name (S Attribute)* S? '/>' [  WFC: Unique Att Spec ] 
+
+errata:
+[43] content ::= CharData? ((element | Reference | CDSect | PI | Comment) CharData?)*
+-->
+<production x:id="content" x:p="43">
+<Seq rdf:parseType="Collection">
+	<CharData x:occurs="?"/>
+	<Seq x:occurs="*">
+	 <Choice rdf:parseType="Collection">
+	  <element/>
+	  <Reference />
+	  <CDSect />
+	  <PI />
+	  <Comment />
+	 </Choice>
+	 <CharData />
+	</Seq>
+</Seq>
+</production>
+<production x:id="EmptyElemTag" x:p="44"
+	WFC="Unique_Att_Spec">
+	<Seq rdf:parseType="Collection">
+		<c x:char="&lt;"/>
+		<Name/>
+		<Seq x:occurs="*">
+			<S/>
+			<Attribute/>
+		</Seq>
+		<S x:occurs="?"/>
+		<c x:char="/"/>
+		<c x:char=">"/>
+	</Seq>
+</production>
+
+<!--
+Element Type Declaration 
+[45]  elementdecl ::=  '<!ELEMENT' S Name S contentspec S? '>' [  VC: Unique Element Type Declaration ] 
+[46]  contentspec ::=  'EMPTY' | 'ANY' | Mixed | children  
+-->
+<production x:id="elementdecl" x:p="45"
+	VC="Unique_Element_Type_Declaration">
+<Seq rdf:parseType="Collection">
+	<string x:value="&lt;!ELEMENT"/>
+	<S/>
+	<Name/>
+	<S/>
+	<contentSpec/>
+	<S x:occurs="?"/>
+	<c x:char=">"/>
+</Seq>
+</production>
+<production x:id="contentspec" x:p="46"
+	VC="Unique_Element_Type_Declaration">
+<Choice rdf:parseType="Collection">
+	<string x:value="EMPTY"/>
+	<string x:value="ANY"/>
+	<Mixed/>
+	<children/>
+</Choice>
+</production>
+<!--
+Element-content Models 
+[47]  children ::=  (choice | seq) ('?' | '*' | '+')? 
+[48]  cp ::=  (Name | choice | seq) ('?' | '*' | '+')? 
+-->
+<production x:id="children" x:p="47"
+	>
+<Seq rdf:parseType="Collection">
+ <Choice rdf:parseType="Collection">
+ 	<choice/>
+	<seq/>
+ </Choice>
+ <Choice rdf:parseType="Collection" x:occurs="?">
+ 	<c x:char="*"/>
+	<c x:char="+"/>
+	<c x:char="?"/>
+ </Choice>
+</Seq>
+</production>
+<production x:id="cp" x:p="48">
+<Seq rdf:parseType="Collection">
+ <Choice rdf:parseType="Collection">
+ 	<Name />
+ 	<choice/>
+	<seq/>
+ </Choice>
+ <Choice rdf:parseType="Collection" x:occurs="?">
+ 	<c x:char="*"/>
+	<c x:char="+"/>
+	<c x:char="?"/>
+ </Choice>
+</Seq>
+</production>
+<!-- 
+[49]  choice ::=  '(' S? cp ( S? '|' S? cp )* S? ')' [  VC: Proper Group/PE Nesting ] 
+[50]  seq ::=  '(' S? cp ( S? ',' S? cp )* S? ')' [  VC: Proper Group/PE Nesting ] 
+errata:
+Change the grammar for 'choice' in production [49] from:
+"choice ::= '(' S? cp ( S? '|' S? cp )* S? ')'"
+to:
+"choice ::= '(' S? cp ( S? '|' S? cp )+ S? ')'"
+(which amounts to changing the * into a +). 
+-->
+<production x:id="choice" x:p="49" VC="Proper_Group_PE_Nesting">
+<Seq rdf:parseType="Collection">
+ <c x:char="("/>
+ <S x:occurs="?"/>
+ <cp/>
+ <Seq x:occurs="+">
+ 	<S x:occurs="?"/>
+	<c x:char="|"/>
+	<S x:occurs="?"/>
+	<cp/>
+ </Seq>
+ <S x:occurs="?"/>
+ <c x:char=")"/>
+</Seq>
+</production>
+<production x:id="seq" x:p="50" VC="Proper_Group_PE_Nesting">
+<Seq rdf:parseType="Collection">
+ <c x:char="("/>
+ <S x:occurs="?"/>
+ <cp/>
+ <Seq x:occurs="*">
+ 	<S x:occurs="?"/>
+	<c x:char=","/>
+	<S x:occurs="?"/>
+	<cp/>
+ </Seq>
+ <S x:occurs="?"/>
+ <c x:char=")"/>
+</Seq>
+</production>
+<!--
+Mixed-content Declaration 
+[51]  Mixed ::=  '(' S? '#PCDATA' (S? '|' S? Name)* S? ')*'  
+   | '(' S? '#PCDATA' S? ')'  [  VC: Proper Group/PE Nesting ] 
+    [  VC: No Duplicate Types ] 
+Attribute-list Declaration 
+[52]  AttlistDecl ::=  '<!ATTLIST' S Name AttDef* S? '>' 
+[53]  AttDef ::=  S Name S AttType S DefaultDecl 
+-->
+<production x:id="Mixed" x:p="51" VC="Proper_Group_PE_Nesting No_Duplicate_Types">
+<Seq rdf:parseType="Collection">
+ <c x:char="("/>
+ <S x:occurs="?"/>
+ <string x:value="#PCDATA"/>
+ <Seq x:occurs="*">
+ 	<S x:occurs="?"/>
+	<c x:char="|"/>
+	<S x:occurs="?"/>
+	<Name/>
+ </Seq>
+ <S x:occurs="?"/>
+ <c x:char=")"/>
+ <c x:char="*"/>
+</Seq>
+</production>
+<production x:id="AttlistDecl" x:p="52">
+<Seq rdf:parseType="Collection">
+  <string x:value="&lt;ATTLIST"/>
+  <S/>
+  <Name />
+  <AttDef x:occurs="*"/>
+  <S x:occurs="?"/>
+  <c x:char=">"/>
+</Seq>
+</production>
+<production x:id="AttDef" x:p="53">
+<Seq rdf:parseType="Collection">
+  <S/>
+  <Name />
+  <S/>
+  <AttType/>
+  <S/>
+  <DefaultDecl/>
+</Seq>
+</production>
+<!--
+Attribute Types 
+[54]  AttType ::=  StringType | TokenizedType | EnumeratedType  
+[55]  StringType ::=  'CDATA' 
+[56]  TokenizedType ::=  'ID' [  VC: ID ] 
+    [  VC: One ID per Element Type ] 
+    [  VC: ID Attribute Default ] 
+   | 'IDREF' [  VC: IDREF ] 
+   | 'IDREFS' [  VC: IDREF ] 
+   | 'ENTITY' [  VC: Entity Name ] 
+   | 'ENTITIES' [  VC: Entity Name ] 
+   | 'NMTOKEN' [  VC: Name Token ] 
+   | 'NMTOKENS' [  VC: Name Token ] 
+-->
+<production x:id="AttType" x:p="54">
+<Choice rdf:parseType="Collection">
+	<StringType/>
+	<TokenizedType/>
+	<EnumeratedType/>
+</Choice>
+</production>
+<production x:id="StringType" x:p="55">
+	<string x:value="CDATA"/>
+</production>
+<production x:id="TokenizedType" x:p="56">
+<Choice rdf:parseType="Collection">
+	<string x:value="ID" VC="ID One_ID_per_Element_Type ID_Attribute_Default"/>
+	<string x:value="IDREF" VC="IDREF"/>
+	<string x:value="IDREFS" VC="IDREF"/>
+	<string x:value="ENTITY" VC="Entity_Name"/>
+	<string x:value="ENTITIES" VC="Entity_Name"/>
+	<string x:value="NMTOKEN" VC="Name_Token"/>
+	<string x:value="NMTOKENS" VC="Name_Token"/>
+</Choice>
+</production>
+<!--
+Enumerated Attribute Types 
+[57]  EnumeratedType ::=  NotationType | Enumeration  
+[58]  NotationType ::=  'NOTATION' S '(' S? Name (S? '|' S? Name)* S? ')'  [  VC: Notation Attributes ] 
+[59]  Enumeration ::=  '(' S? Nmtoken (S? '|' S? Nmtoken)* S? ')' [  VC: Enumeration ] 
+-->
+<production x:id="EnumeratedType" x:p="57">
+<Choice rdf:parseType="Collection">
+	<NotationType/>
+	<Enumeration/>
+</Choice>
+</production>
+<production x:id="NotationType" x:p="58" VC="Notation Non_empty_element One_Notation_per_Element_Type">
+<Seq rdf:parseType="Collection">
+	<string x:value="NOTATION"/>
+	<S/>
+	<c x:char="("/>
+	<S x:occurs="?"/>
+	<Name/>
+	<Seq x:occurs="*">
+		<S x:occurs="?"/>
+		<c x:char="|"/>
+		<S x:occurs="?"/>
+		<Name/>
+	</Seq>
+	<S x:occurs="?"/>
+	<c x:char=")"/>
+</Seq>
+</production>
+<!-- 
+[58] as follows: "Validity Constraint: One Notation per Element Type: No element type may have more than one NOTATION attribute specified." 
+Validity constraint: Non-empty element
+For compatibility, an attribute of type NOTATION may not be declared on an element declared EMPTY.
+-->
+<production x:id="Enumeration" x:p="59" VC="Enumeration">
+<Seq rdf:parseType="Collection">
+	<c x:char="("/>
+	<S x:occurs="?"/>
+	<Nmtoken/>
+	<Seq x:occurs="*">
+		<S x:occurs="?"/>
+		<c x:char="|"/>
+		<S x:occurs="?"/>
+		<Nmtoken/>
+	</Seq>
+	<S x:occurs="?"/>
+	<c x:char=")"/>
+</Seq>
+</production>
+<!--
+Attribute Defaults 
+[60]  DefaultDecl ::=  '#REQUIRED' | '#IMPLIED'  
+   | (('#FIXED' S)? AttValue) [  VC: Required Attribute ] 
+    [  VC: Attribute Default Legal ] 
+    [  WFC: No < in Attribute Values ] 
+    [  VC: Fixed Attribute Default ] 
+-->
+<production x:id="DefaultDecl" x:p="60"
+	VC="Required_Attribute Attribute_Default_Legal Fixed_Attribute_Default"
+	WFC="No_lt_in_Attribute_Values">
+	<Choice rdf:parseType="Collection">
+		<string x:value="#REQUIRED"/>
+		<string x:value="#IMPLIED"/>
+		<Seq rdf:parseType="Collection">
+			<Seq x:occurs="?">
+				<string x:value="#FIXED"/>
+				<S/>
+			</Seq>
+			<AttValue/>
+		</Seq>
+	</Choice>
+</production>
+<!--
+Conditional Section 
+[61]  conditionalSect ::=  includeSect | ignoreSect  
+[62]  includeSect ::=  '<![' S? 'INCLUDE' S? '[' extSubsetDecl ']]>'  
+[63]  ignoreSect ::=  '<![' S? 'IGNORE' S? '[' ignoreSectContents* ']]>' 
+[64]  ignoreSectContents ::=  Ignore ('<![' ignoreSectContents ']]>' Ignore)* 
+[65]  Ignore ::=  Char* - (Char* ('<![' | ']]>') Char*)  
+-->
+<production x:id="conditionalSect" x:p="61">
+<Choice rdf:parseType="Collection">
+	<includeSect/>
+	<ignoreSect/>
+</Choice>
+</production>
+<production x:id="includeSect" x:p="62"
+	VC="Proper_Conditional_Section_PE_Nesting">
+<Seq rdf:parseType="Collection">
+	<string x:value="&lt;!["/>
+	<S x:occurs="?"/>
+	<string x:value="INCLUDE"/>
+	<S x:occurs="?"/>
+	<c x:char="["/>
+	<extSubsetDecl/>
+	<string x:value="]]>"/>
+</Seq>
+</production>
+<production x:id="ignoreSect" x:p="63"
+	VC="Proper_Conditional_Section_PE_Nesting">
+<Seq rdf:parseType="Collection">
+	<string x:value="&lt;!["/>
+	<S x:occurs="?"/>
+	<string x:value="IGNORE"/>
+	<S x:occurs="?"/>
+	<c x:char="["/>
+	<ignoreSectContents x:occurs="*"/>
+	<string x:value="]]>"/>
+</Seq>
+</production>
+<!-- 
+Validity Constraint: Proper Conditional Section/PE Nesting.
+If any of the <![, [, or ]]> of a conditional section is contained in the replacement text for a parameter-entity reference, all of them must be contained in the same replacement text.
+-->
+<production x:id="ignoreSectContents" x:p="64">
+<Seq rdf:parseType="Collection">
+	<Ignore/>
+	<Seq x:occurs="*">
+	 <string x:value="&lt;!["/>
+	 <ignoreSectContents/>
+	 <string x:value="]]>"/>
+	 <Ignore/>
+	</Seq>
+</Seq>
+</production>
+<production x:id="Ignore" x:p="65">
+	<Char x:occurs="*">
+		<exclude>
+			<Seq rdf:parseType="Collection">
+				<Char x:occurs="*"/>
+					<Choice rdf:parseType="Collection">
+						<string x:value="&lt;!["/>
+						<string x:value="]]>"/>
+					</Choice>
+				<Char x:occurs="*"/>
+			</Seq>
+		</exclude>
+	</Char>
+</production>
+<!--
+Character Reference 
+[66]  CharRef ::=  '&#' [0-9]+ ';'  
+   | '&#x' [0-9a-fA-F]+ ';' [  WFC: Legal Character ] 
+Entity Reference
+[67]  Reference ::=  EntityRef | CharRef 
+[68]  EntityRef ::=  '&' Name ';' [  WFC: Entity Declared ] 
+    [  VC: Entity Declared ] 
+    [  WFC: Parsed Entity ] 
+    [  WFC: No Recursion ] 
+[69]  PEReference ::=  '%' Name ';' [  VC: Entity Declared ] 
+    [  WFC: No Recursion ] 
+    [  WFC: In DTD ] 
+-->
+<production x:id="CharRef" x:p="66" WFC="Legal_Character">
+ <Choice rdf:parseType="Collection">
+	<Seq rdf:parseType="Collection">
+		<string x:value="&amp;#"/>
+		<c x:occurs="+" x:pattern="[0-9]"/>
+		<c x:char=";"/>
+	</Seq>
+	<Seq rdf:parseType="Collection">
+		<string x:value="&amp;#x"/>
+		<c x:occurs="+" x:pattern="[0-9a-fA-F]"/>
+		<c x:char=";"/>
+	</Seq>
+ </Choice>
+</production>
+<production x:id="Reference" x:p="67">
+	<Choice rdf:parseType="Collection"><EntityRef/><CharRef/></Choice>
+</production>
+<production x:id="EntityRef" x:p="68"
+	WFC="Entity_Declared Parsed_Entity No_Recursion"
+	VC="Entity_Declared">
+	<Seq rdf:parseType="Collection"><c x:char="&amp;"/><Name/><c x:char=";"/></Seq>
+</production>
+<production x:id="PEReference" x:p="69"
+	WFC="In_DTD No_Recursion"
+	VC="Entity_Declared">
+	<Seq rdf:parseType="Collection"><c x:char="%"/><Name/><c x:char=";"/></Seq>
+</production>
+<!--
+Entity Declaration 
+[70]  EntityDecl ::=  GEDecl | PEDecl 
+[71]  GEDecl ::=  '<!ENTITY' S Name S EntityDef S? '>' 
+[72]  PEDecl ::=  '<!ENTITY' S '%' S Name S PEDef S? '>' 
+[73]  EntityDef ::=  EntityValue | (ExternalID NDataDecl?) 
+[74]  PEDef ::=  EntityValue | ExternalID 
+-->
+<production x:id="EntityDecl" x:p="70">
+	<Choice rdf:parseType="Collection"><GEDecl/><PEDecl/></Choice>
+</production>
+<production x:id="GEDecl" x:p="71">
+	<Seq rdf:parseType="Collection">
+		<string x:value="&lt;!ENTITY"/>
+		<S/>
+		<Name/>
+		<EntityDef/>
+		<S x:occurs="?"/>
+		<c x:char=">"/>
+	</Seq>
+</production>
+<production x:id="PEDecl" x:p="72">
+	<Seq rdf:parseType="Collection">
+		<string x:value="&lt;!ENTITY"/>
+		<S/>
+		<c x:char="%"/>
+		<S/>
+		<Name/>
+		<S/>
+		<PEDef/>
+		<S x:occurs="?"/>
+		<c x:char=">"/>
+	</Seq>
+</production>
+<production x:id="EntityDef" x:p="73">
+ <Choice rdf:parseType="Collection">
+ 	<EntityValue/>
+	<Seq rdf:parseType="Collection">
+		<ExternalID/>
+		<NDataDecl x:occurs="?"/>
+	</Seq>
+ </Choice>
+</production>
+<production x:id="PEDef" x:p="74">
+ <Choice rdf:parseType="Collection">
+ 	<EntityValue/>
+	<ExternalID/>
+ </Choice>
+</production>
+<!--
+External Entity Declaration 
+[75]  ExternalID ::=  'SYSTEM' S SystemLiteral 
+   | 'PUBLIC' S PubidLiteral S SystemLiteral  
+[76]  NDataDecl ::=  S 'NDATA' S Name [  VC: Notation Declared ] 
+-->
+<production x:id="ExternalID" x:p="75">
+ <Choice rdf:parseType="Collection">
+ 	<Seq rdf:parseType="Collection">
+		<string x:value="SYSTEM"/>
+		<S/>
+		<SystemLiteral/>
+	</Seq>
+	<Seq rdf:parseType="Collection">
+		<string x:value="PUBLIC"/>
+		<S/>
+		<PubidLiteral/>
+		<S/>
+		<SystemLiteral/>
+		<ExternalID/>
+	</Seq>
+ </Choice>
+</production>
+<production x:id="NDataDecl" x:p="76" VC="Notation_Declared">
+ <Seq rdf:parseType="Collection">
+ 	<S/>
+	<string x:value="NDATA"/>
+	<S/>
+	<Name/>
+ </Seq>
+</production>
+<!--
+Text Declaration 
+[77]  TextDecl ::=  '<?xml' VersionInfo? EncodingDecl S? '?>'
+Well-Formed External Parsed Entity 
+[78]  extParsedEnt ::=  TextDecl? content 
+[79]  extPE ::=  TextDecl? extSubsetDecl 
+Encoding Declaration 
+[80]  EncodingDecl ::=  S 'encoding' Eq ('"' EncName '"' |  "'" EncName "'" )  
+[81]  EncName ::=  [A-Za-z] ([A-Za-z0-9._] | '-')* /*  Encoding name contains only Latin characters */ 
+-->
+<production x:id="TextDecl" x:p="77">
+ <Seq rdf:parseType="Collection">
+	<string x:value="&lt;?xml"/>
+	<VersionInfo x:occurs="?"/>
+	<EncodingDecl/>
+	<S x:occurs="?"/>
+	<string x:value="?>"/>
+ </Seq>
+</production>
+<production x:id="extParsedEnt" x:p="78">
+ <Seq rdf:parseType="Collection">
+	<TextDecl x:occurs="?"/>
+	<content/>
+ </Seq>
+</production>
+<production x:id="extPE" x:p="79">
+ <Seq rdf:parseType="Collection">
+	<TextDecl x:occurs="?"/>
+	<extSubsetDecl/>
+ </Seq>
+</production>
+<production x:id="EncodingDecl" x:p="80">
+ <Seq rdf:parseType="Collection">
+ 	<S/>
+	<string x:value="encoding"/>
+	<Eq/>
+	<Choice rdf:parseType="Collection">
+		<Seq rdf:parseType="Collection">
+			<c x:char='"'/>
+			<EncName/>
+			<c x:char='"'/>
+		</Seq>
+		<Seq rdf:parseType="Collection">
+			<c x:char="'"/>
+			<EncName/>
+			<c x:char="'"/>
+		</Seq>
+	</Choice>
+ </Seq>
+</production>
+<production x:id="EncName" x:p="81">
+ <Seq rdf:parseType="Collection">
+	<c x:pattern="[A-Za-z]"/>
+	<Choice rdf:parseType="Collection" x:occurs="*">
+		<c x:pattern="[A-Za-z0-9._]"/>
+		<c x:char="-"/>
+	</Choice>
+ </Seq>
+</production>
+<!--
+Notation Declarations 
+[82]  NotationDecl ::=  '<!NOTATION' S Name S (ExternalID |  PublicID) S? '>' 
+[83]  PublicID ::=  'PUBLIC' S PubidLiteral  
+
+Validity Constraint: Unique Notation Name: only one notation declaration can declare a given Name
+-->
+<production x:id="NotationDecl" x:p="82"
+		VC="Unique_Notation_Name">
+	<Seq rdf:parseType="Collection">
+		<string x:value="&lt;!NOTATION"/>
+		<S/>
+		<Name/>
+		<S/>
+		<Choice rdf:parseType="Collection">
+			<ExternalID/>
+			<PublicID/>
+		</Choice>
+		<S x:occurs="?"/>
+		<c x:char=">"/>
+	</Seq>
+</production>
+<production x:id="PublicID" x:p="83">
+	<Seq rdf:parseType="Collection">
+		<string x:value="PUBLIC"/>
+		<S/>
+		<PubidLiteral/>
+	</Seq>
+</production>
+
+<!--
+Characters 
+[84]  Letter ::=  BaseChar | Ideographic 
+[85]  BaseChar ::=  [#x0041-#x005A] | [#x0061-#x007A] | [#x00C0-#x00D6] | [#x00D8-#x00F6] | [#x00F8-#x00FF] | [#x0100-#x0131] | [#x0134-#x013E] | [#x0141-#x0148] | [#x014A-#x017E] | [#x0180-#x01C3] | [#x01CD-#x01F0] | [#x01F4-#x01F5] | [#x01FA-#x0217] | [#x0250-#x02A8] | [#x02BB-#x02C1] | #x0386 | [#x0388-#x038A] | #x038C | [#x038E-#x03A1] | [#x03A3-#x03CE] | [#x03D0-#x03D6] | #x03DA | #x03DC | #x03DE | #x03E0 | [#x03E2-#x03F3] | [#x0401-#x040C] | [#x040E-#x044F] | [#x0451-#x045C] | [#x045E-#x0481] | [#x0490-#x04C4] | [#x04C7-#x04C8] | [#x04CB-#x04CC] | [#x04D0-#x04EB] | [#x04EE-#x04F5] | [#x04F8-#x04F9] | [#x0531-#x0556] | #x0559 | [#x0561-#x0586] | [#x05D0-#x05EA] | [#x05F0-#x05F2] | [#x0621-#x063A] | [#x0641-#x064A] | [#x0671-#x06B7] | [#x06BA-#x06BE] | [#x06C0-#x06CE] | [#x06D0-#x06D3] | #x06D5 | [#x06E5-#x06E6] | [#x0905-#x0939] | #x093D | [#x0958-#x0961] | [#x0985-#x098C] | [#x098F-#x0990] | [#x0993-#x09A8] | [#x09AA-#x09B0] | #x09B2 | [#x09B6-#x09B9] | [#x09DC-#x09DD] | [#x09DF-#x09E1] | [#x09F0-#x09F1] | [#x0A05-#x0A0A] | [#x0A0F-#x0A10] | [#x0A13-#x0A28] | [#x0A2A-#x0A30] | [#x0A32-#x0A33] | [#x0A35-#x0A36] | [#x0A38-#x0A39] | [#x0A59-#x0A5C] | #x0A5E | [#x0A72-#x0A74] | [#x0A85-#x0A8B] | #x0A8D | [#x0A8F-#x0A91] | [#x0A93-#x0AA8] | [#x0AAA-#x0AB0] | [#x0AB2-#x0AB3] | [#x0AB5-#x0AB9] | #x0ABD | #x0AE0 | [#x0B05-#x0B0C] | [#x0B0F-#x0B10] | [#x0B13-#x0B28] | [#x0B2A-#x0B30] | [#x0B32-#x0B33] | [#x0B36-#x0B39] | #x0B3D | [#x0B5C-#x0B5D] | [#x0B5F-#x0B61] | [#x0B85-#x0B8A] | [#x0B8E-#x0B90] | [#x0B92-#x0B95] | [#x0B99-#x0B9A] | #x0B9C | [#x0B9E-#x0B9F] | [#x0BA3-#x0BA4] | [#x0BA8-#x0BAA] | [#x0BAE-#x0BB5] | [#x0BB7-#x0BB9] | [#x0C05-#x0C0C] | [#x0C0E-#x0C10] | [#x0C12-#x0C28] | [#x0C2A-#x0C33] | [#x0C35-#x0C39] | [#x0C60-#x0C61] | [#x0C85-#x0C8C] | [#x0C8E-#x0C90] | [#x0C92-#x0CA8] | [#x0CAA-#x0CB3] | [#x0CB5-#x0CB9] | #x0CDE | [#x0CE0-#x0CE1] | [#x0D05-#x0D0C] | [#x0D0E-#x0D10] | [#x0D12-#x0D28] | [#x0D2A-#x0D39] | [#x0D60-#x0D61] | [#x0E01-#x0E2E] | #x0E30 | [#x0E32-#x0E33] | [#x0E40-#x0E45] | [#x0E81-#x0E82] | #x0E84 | [#x0E87-#x0E88] | #x0E8A | #x0E8D | [#x0E94-#x0E97] | [#x0E99-#x0E9F] | [#x0EA1-#x0EA3] | #x0EA5 | #x0EA7 | [#x0EAA-#x0EAB] | [#x0EAD-#x0EAE] | #x0EB0 | [#x0EB2-#x0EB3] | #x0EBD | [#x0EC0-#x0EC4] | [#x0F40-#x0F47] | [#x0F49-#x0F69] | [#x10A0-#x10C5] | [#x10D0-#x10F6] | #x1100 | [#x1102-#x1103] | [#x1105-#x1107] | #x1109 | [#x110B-#x110C] | [#x110E-#x1112] | #x113C | #x113E | #x1140 | #x114C | #x114E | #x1150 | [#x1154-#x1155] | #x1159 | [#x115F-#x1161] | #x1163 | #x1165 | #x1167 | #x1169 | [#x116D-#x116E] | [#x1172-#x1173] | #x1175 | #x119E | #x11A8 | #x11AB | [#x11AE-#x11AF] | [#x11B7-#x11B8] | #x11BA | [#x11BC-#x11C2] | #x11EB | #x11F0 | #x11F9 | [#x1E00-#x1E9B] | [#x1EA0-#x1EF9] | [#x1F00-#x1F15] | [#x1F18-#x1F1D] | [#x1F20-#x1F45] | [#x1F48-#x1F4D] | [#x1F50-#x1F57] | #x1F59 | #x1F5B | #x1F5D | [#x1F5F-#x1F7D] | [#x1F80-#x1FB4] | [#x1FB6-#x1FBC] | #x1FBE | [#x1FC2-#x1FC4] | [#x1FC6-#x1FCC] | [#x1FD0-#x1FD3] | [#x1FD6-#x1FDB] | [#x1FE0-#x1FEC] | [#x1FF2-#x1FF4] | [#x1FF6-#x1FFC] | #x2126 | [#x212A-#x212B] | #x212E | [#x2180-#x2182] | [#x3041-#x3094] | [#x30A1-#x30FA] | [#x3105-#x312C] | [#xAC00-#xD7A3]  
+[86]  Ideographic ::=  [#x4E00-#x9FA5] | #x3007 | [#x3021-#x3029]  
+[87]  CombiningChar ::=  [#x0300-#x0345] | [#x0360-#x0361] | [#x0483-#x0486] | [#x0591-#x05A1] | [#x05A3-#x05B9] | [#x05BB-#x05BD] | #x05BF | [#x05C1-#x05C2] | #x05C4 | [#x064B-#x0652] | #x0670 | [#x06D6-#x06DC] | [#x06DD-#x06DF] | [#x06E0-#x06E4] | [#x06E7-#x06E8] | [#x06EA-#x06ED] | [#x0901-#x0903] | #x093C | [#x093E-#x094C] | #x094D | [#x0951-#x0954] | [#x0962-#x0963] | [#x0981-#x0983] | #x09BC | #x09BE | #x09BF | [#x09C0-#x09C4] | [#x09C7-#x09C8] | [#x09CB-#x09CD] | #x09D7 | [#x09E2-#x09E3] | #x0A02 | #x0A3C | #x0A3E | #x0A3F | [#x0A40-#x0A42] | [#x0A47-#x0A48] | [#x0A4B-#x0A4D] | [#x0A70-#x0A71] | [#x0A81-#x0A83] | #x0ABC | [#x0ABE-#x0AC5] | [#x0AC7-#x0AC9] | [#x0ACB-#x0ACD] | [#x0B01-#x0B03] | #x0B3C | [#x0B3E-#x0B43] | [#x0B47-#x0B48] | [#x0B4B-#x0B4D] | [#x0B56-#x0B57] | [#x0B82-#x0B83] | [#x0BBE-#x0BC2] | [#x0BC6-#x0BC8] | [#x0BCA-#x0BCD] | #x0BD7 | [#x0C01-#x0C03] | [#x0C3E-#x0C44] | [#x0C46-#x0C48] | [#x0C4A-#x0C4D] | [#x0C55-#x0C56] | [#x0C82-#x0C83] | [#x0CBE-#x0CC4] | [#x0CC6-#x0CC8] | [#x0CCA-#x0CCD] | [#x0CD5-#x0CD6] | [#x0D02-#x0D03] | [#x0D3E-#x0D43] | [#x0D46-#x0D48] | [#x0D4A-#x0D4D] | #x0D57 | #x0E31 | [#x0E34-#x0E3A] | [#x0E47-#x0E4E] | #x0EB1 | [#x0EB4-#x0EB9] | [#x0EBB-#x0EBC] | [#x0EC8-#x0ECD] | [#x0F18-#x0F19] | #x0F35 | #x0F37 | #x0F39 | #x0F3E | #x0F3F | [#x0F71-#x0F84] | [#x0F86-#x0F8B] | [#x0F90-#x0F95] | #x0F97 | [#x0F99-#x0FAD] | [#x0FB1-#x0FB7] | #x0FB9 | [#x20D0-#x20DC] | #x20E1 | [#x302A-#x302F] | #x3099 | #x309A  
+[88]  Digit ::=  [#x0030-#x0039] | [#x0660-#x0669] | [#x06F0-#x06F9] | [#x0966-#x096F] | [#x09E6-#x09EF] | [#x0A66-#x0A6F] | [#x0AE6-#x0AEF] | [#x0B66-#x0B6F] | [#x0BE7-#x0BEF] | [#x0C66-#x0C6F] | [#x0CE6-#x0CEF] | [#x0D66-#x0D6F] | [#x0E50-#x0E59] | [#x0ED0-#x0ED9] | [#x0F20-#x0F29]  
+[89]  Extender ::=  #x00B7 | #x02D0 | #x02D1 | #x0387 | #x0640 | #x0E46 | #x0EC6 | #x3005 | [#x3031-#x3035] | [#x309D-#x309E] | [#x30FC-#x30FE]  
+-->
+<production x:id="Letter" x:p="84">
+	<Choice rdf:parseType="Collection">
+		<BaseChar/>
+		<Ideographic/>
+	</Choice>
+</production>
+<production x:id="BaseChar" x:p="85">
+<Choice rdf:parseType="Collection">
+	<c x:pattern="[#x0041-#x005A]"/>
+	<c x:pattern="[#x0061-#x007A]"/>
+	<c x:pattern="[#x00C0-#x00D6]"/>
+	<c x:pattern="[#x00D8-#x00F6]"/>
+	<c x:pattern="[#x00F8-#x00FF]"/> <c x:pattern="[#x0100-#x0131]"/> <c x:pattern="[#x0134-#x013E]"/> <c x:pattern="[#x0141-#x0148]"/> <c x:pattern="[#x014A-#x017E]"/> <c x:pattern="[#x0180-#x01C3]"/> <c x:pattern="[#x01CD-#x01F0]"/> <c x:pattern="[#x01F4-#x01F5]"/> <c x:pattern="[#x01FA-#x0217]"/> <c x:pattern="[#x0250-#x02A8]"/> <c x:pattern="[#x02BB-#x02C1]"/> <c x:hex="#x0386"/> <c x:pattern="[#x0388-#x038A]"/> <c x:hex="#x038C"/> <c x:pattern="[#x038E-#x03A1]"/> <c x:pattern="[#x03A3-#x03CE]"/> <c x:pattern="[#x03D0-#x03D6]"/> <c x:hex="#x03DA"/> <c x:hex="#x03DC"/> <c x:hex="#x03DE"/> <c x:hex="#x03E0"/> <c x:pattern="[#x03E2-#x03F3]"/> <c x:pattern="[#x0401-#x040C]"/> <c x:pattern="[#x040E-#x044F]"/> <c x:pattern="[#x0451-#x045C]"/> <c x:pattern="[#x045E-#x0481]"/> <c x:pattern="[#x0490-#x04C4]"/> <c x:pattern="[#x04C7-#x04C8]"/> <c x:pattern="[#x04CB-#x04CC]"/> <c x:pattern="[#x04D0-#x04EB]"/> <c x:pattern="[#x04EE-#x04F5]"/> <c x:pattern="[#x04F8-#x04F9]"/> <c x:pattern="[#x0531-#x0556]"/> <c x:hex="#x0559"/> <c x:pattern="[#x0561-#x0586]"/> <c x:pattern="[#x05D0-#x05EA]"/> <c x:pattern="[#x05F0-#x05F2]"/> <c x:pattern="[#x0621-#x063A]"/> <c x:pattern="[#x0641-#x064A]"/> <c x:pattern="[#x0671-#x06B7]"/> <c x:pattern="[#x06BA-#x06BE]"/> <c x:pattern="[#x06C0-#x06CE]"/> <c x:pattern="[#x06D0-#x06D3]"/> <c x:hex="#x06D5"/> <c x:pattern="[#x06E5-#x06E6]"/> <c x:pattern="[#x0905-#x0939]"/> <c x:hex="#x093D"/> <c x:pattern="[#x0958-#x0961]"/> <c x:pattern="[#x0985-#x098C]"/> <c x:pattern="[#x098F-#x0990]"/> <c x:pattern="[#x0993-#x09A8]"/> <c x:pattern="[#x09AA-#x09B0]"/> <c x:hex="#x09B2"/> <c x:pattern="[#x09B6-#x09B9]"/> <c x:pattern="[#x09DC-#x09DD]"/> <c x:pattern="[#x09DF-#x09E1]"/> <c x:pattern="[#x09F0-#x09F1]"/> <c x:pattern="[#x0A05-#x0A0A]"/> <c x:pattern="[#x0A0F-#x0A10]"/> <c x:pattern="[#x0A13-#x0A28]"/> <c x:pattern="[#x0A2A-#x0A30]"/> <c x:pattern="[#x0A32-#x0A33]"/> <c x:pattern="[#x0A35-#x0A36]"/> <c x:pattern="[#x0A38-#x0A39]"/> 
+<c x:pattern="[#x0A59-#x0A5C]"/> <c x:hex="#x0A5E"/> <c x:pattern="[#x0A72-#x0A74]"/> <c x:pattern="[#x0A85-#x0A8B]"/> 
+<c x:hex="#x0A8D"/> <c x:pattern="[#x0A8F-#x0A91]"/> <c x:pattern="[#x0A93-#x0AA8]"/> <c x:pattern="[#x0AAA-#x0AB0]"/> <c x:pattern="[#x0AB2-#x0AB3]"/> <c x:pattern="[#x0AB5-#x0AB9]"/> <c x:hex="#x0ABD"/> <c x:hex="#x0AE0"/> <c x:pattern="[#x0B05-#x0B0C]"/> <c x:pattern="[#x0B0F-#x0B10]"/> <c x:pattern="[#x0B13-#x0B28]"/> <c x:pattern="[#x0B2A-#x0B30]"/> <c x:pattern="[#x0B32-#x0B33]"/> <c x:pattern="[#x0B36-#x0B39]"/> <c x:hex="#x0B3D"/> <c x:pattern="[#x0B5C-#x0B5D]"/> <c x:pattern="[#x0B5F-#x0B61]"/> <c x:pattern="[#x0B85-#x0B8A]"/> <c x:pattern="[#x0B8E-#x0B90]"/> <c x:pattern="[#x0B92-#x0B95]"/> <c x:pattern="[#x0B99-#x0B9A]"/> <c x:hex="#x0B9C"/> <c x:pattern="[#x0B9E-#x0B9F]"/> <c x:pattern="[#x0BA3-#x0BA4]"/> <c x:pattern="[#x0BA8-#x0BAA]"/> <c x:pattern="[#x0BAE-#x0BB5]"/> <c x:pattern="[#x0BB7-#x0BB9]"/> <c x:pattern="[#x0C05-#x0C0C]"/> <c x:pattern="[#x0C0E-#x0C10]"/> <c x:pattern="[#x0C12-#x0C28]"/> <c x:pattern="[#x0C2A-#x0C33]"/> <c x:pattern="[#x0C35-#x0C39]"/> <c x:pattern="[#x0C60-#x0C61]"/> <c x:pattern="[#x0C85-#x0C8C]"/> <c x:pattern="[#x0C8E-#x0C90]"/> <c x:pattern="[#x0C92-#x0CA8]"/> <c x:pattern="[#x0CAA-#x0CB3]"/> <c x:pattern="[#x0CB5-#x0CB9]"/> <c x:hex="#x0CDE"/> <c x:pattern="[#x0CE0-#x0CE1]"/> <c x:pattern="[#x0D05-#x0D0C]"/> <c x:pattern="[#x0D0E-#x0D10]"/> <c x:pattern="[#x0D12-#x0D28]"/> <c x:pattern="[#x0D2A-#x0D39]"/> <c x:pattern="[#x0D60-#x0D61]"/> <c x:pattern="[#x0E01-#x0E2E]"/> <c x:hex="#x0E30"/> <c x:pattern="[#x0E32-#x0E33]"/> <c x:pattern="[#x0E40-#x0E45]"/> <c x:pattern="[#x0E81-#x0E82]"/> <c x:hex="#x0E84"/> <c x:pattern="[#x0E87-#x0E88]"/> <c x:hex="#x0E8A"/> <c x:hex="#x0E8D"/> <c x:pattern="[#x0E94-#x0E97]"/> <c x:pattern="[#x0E99-#x0E9F]"/> <c x:pattern="[#x0EA1-#x0EA3]"/> <c x:hex="#x0EA5"/> <c x:hex="#x0EA7"/> <c x:pattern="[#x0EAA-#x0EAB]"/> <c x:pattern="[#x0EAD-#x0EAE]"/> <c x:hex="#x0EB0"/> <c x:pattern="[#x0EB2-#x0EB3]"/> <c x:hex="#x0EBD"/> <c x:pattern="[#x0EC0-#x0EC4]"/> <c x:pattern="[#x0F40-#x0F47]"/> <c x:pattern="[#x0F49-#x0F69]"/> <c x:pattern="[#x10A0-#x10C5]"/> <c x:pattern="[#x10D0-#x10F6]"/> <c x:hex="#x1100"/> 
+<c x:pattern="[#x1102-#x1103]"/> <c x:pattern="[#x1105-#x1107]"/> <c x:hex="#x1109"/> 
+<c x:pattern="[#x110B-#x110C]"/> <c x:pattern="[#x110E-#x1112]"/> <c x:hex="#x113C"/> <c x:hex="#x113E"/> <c x:hex="#x1140"/> <c x:hex="#x114C"/> <c x:hex="#x114E"/> <c x:hex="#x1150"/> <c x:pattern="[#x1154-#x1155]"/> <c x:hex="#x1159"/> <c x:pattern="[#x115F-#x1161]"/> <c x:hex="#x1163"/> <c x:hex="#x1165"/> <c x:hex="#x1167"/> <c x:hex="#x1169"/> <c x:pattern="[#x116D-#x116E]"/> <c x:pattern="[#x1172-#x1173]"/> <c x:hex="#x1175"/> <c x:hex="#x119E"/> <c x:hex="#x11A8"/> <c x:hex="#x11AB"/> <c x:pattern="[#x11AE-#x11AF]"/> <c x:pattern="[#x11B7-#x11B8]"/> <c x:hex="#x11BA"/> <c x:pattern="[#x11BC-#x11C2]"/> <c x:hex="#x11EB"/> <c x:hex="#x11F0"/> <c x:hex="#x11F9"/> <c x:pattern="[#x1E00-#x1E9B]"/> <c x:pattern="[#x1EA0-#x1EF9]"/> <c x:pattern="[#x1F00-#x1F15]"/> <c x:pattern="[#x1F18-#x1F1D]"/> <c x:pattern="[#x1F20-#x1F45]"/> <c x:pattern="[#x1F48-#x1F4D]"/> <c x:pattern="[#x1F50-#x1F57]"/> <c x:hex="#x1F59"/> <c x:hex="#x1F5B"/> <c x:hex="#x1F5D"/> <c x:pattern="[#x1F5F-#x1F7D]"/> <c x:pattern="[#x1F80-#x1FB4]"/> <c x:pattern="[#x1FB6-#x1FBC]"/> <c x:hex="#x1FBE"/> <c x:pattern="[#x1FC2-#x1FC4]"/> <c x:pattern="[#x1FC6-#x1FCC]"/> <c x:pattern="[#x1FD0-#x1FD3]"/> <c x:pattern="[#x1FD6-#x1FDB]"/> <c x:pattern="[#x1FE0-#x1FEC]"/> <c x:pattern="[#x1FF2-#x1FF4]"/> <c x:pattern="[#x1FF6-#x1FFC]"/> <c x:hex="#x2126"/> <c x:pattern="[#x212A-#x212B]"/> <c x:hex="#x212E"/> <c x:pattern="[#x2180-#x2182]"/> <c x:pattern="[#x3041-#x3094]"/> <c x:pattern="[#x30A1-#x30FA]"/> <c x:pattern="[#x3105-#x312C]"/> <c x:pattern="[#xAC00-#xD7A3]"/>
+</Choice>
+</production>
+<production x:id="Ideographic" x:p="86">
+<Choice rdf:parseType="Collection">[#x4E00-#x9FA5]"/><c x:hex="#x3007"/><c x:pattern="[#x3021-#x3029]"/></Choice>
+</production>
+<production x:id="CombiningChar" x:p="87">
+<Choice rdf:parseType="Collection">
+	<c x:pattern="[#x0300-#x0345]"/><c x:pattern="[#x0360-#x0361]"/><c x:pattern="[#x0483-#x0486]"/><c x:pattern="[#x0591-#x05A1]"/><c x:pattern="[#x05A3-#x05B9]"/><c x:pattern="[#x05BB-#x05BD]"/><c x:hex="#x05BF"/><c x:pattern="[#x05C1-#x05C2]"/><c x:hex="#x05C4"/><c x:pattern="[#x064B-#x0652]"/><c x:hex="#x0670"/><c x:pattern="[#x06D6-#x06DC]"/><c x:pattern="[#x06DD-#x06DF]"/><c x:pattern="[#x06E0-#x06E4]"/><c x:pattern="[#x06E7-#x06E8]"/><c x:pattern="[#x06EA-#x06ED]"/>
+	<c x:pattern="[#x0901-#x0903]"/><c x:hex="#x093C"/><c x:pattern="[#x093E-#x094C]"/><c x:hex="#x094D"/><c x:pattern="[#x0951-#x0954]"/><c x:pattern="[#x0962-#x0963]"/><c x:pattern="[#x0981-#x0983]"/><c x:hex="#x09BC"/><c x:hex="#x09BE"/><c x:hex="#x09BF"/><c x:pattern="[#x09C0-#x09C4]"/><c x:pattern="[#x09C7-#x09C8]"/><c x:pattern="[#x09CB-#x09CD]"/><c x:hex="#x09D7"/><c x:pattern="[#x09E2-#x09E3]"/><c x:hex="#x0A02"/><c x:hex="#x0A3C"/><c x:hex="#x0A3E"/><c x:hex="#x0A3F"/><c x:pattern="[#x0A40-#x0A42]"/><c x:pattern="[#x0A47-#x0A48]"/><c x:pattern="[#x0A4B-#x0A4D]"/><c x:pattern="[#x0A70-#x0A71]"/><c x:pattern="[#x0A81-#x0A83]"/><c x:hex="#x0ABC"/><c x:pattern="[#x0ABE-#x0AC5]"/><c x:pattern="[#x0AC7-#x0AC9]"/><c x:pattern="[#x0ACB-#x0ACD]"/><c x:pattern="[#x0B01-#x0B03]"/><c x:hex="#x0B3C"/><c x:pattern="[#x0B3E-#x0B43]"/><c x:pattern="[#x0B47-#x0B48]"/><c x:pattern="[#x0B4B-#x0B4D]"/><c x:pattern="[#x0B56-#x0B57]"/><c x:pattern="[#x0B82-#x0B83]"/><c x:pattern="[#x0BBE-#x0BC2]"/><c x:pattern="[#x0BC6-#x0BC8]"/><c x:pattern="[#x0BCA-#x0BCD]"/><c x:hex="#x0BD7"/><c x:pattern="[#x0C01-#x0C03]"/><c x:pattern="[#x0C3E-#x0C44]"/><c x:pattern="[#x0C46-#x0C48]"/><c x:pattern="[#x0C4A-#x0C4D]"/><c x:pattern="[#x0C55-#x0C56]"/><c x:pattern="[#x0C82-#x0C83]"/><c x:pattern="[#x0CBE-#x0CC4]"/><c x:pattern="[#x0CC6-#x0CC8]"/><c x:pattern="[#x0CCA-#x0CCD]"/><c x:pattern="[#x0CD5-#x0CD6]"/><c x:pattern="[#x0D02-#x0D03]"/><c x:pattern="[#x0D3E-#x0D43]"/><c x:pattern="[#x0D46-#x0D48]"/><c x:pattern="[#x0D4A-#x0D4D]"/><c x:hex="#x0D57"/>
+	<c x:hex="#x0E31"/><c x:pattern="[#x0E34-#x0E3A]"/>
+<c x:pattern="[#x0E47-#x0E4E]"/><c x:hex="#x0EB1"/><c x:pattern="[#x0EB4-#x0EB9]"/><c x:pattern="[#x0EBB-#x0EBC]"/><c x:pattern="[#x0EC8-#x0ECD]"/><c x:pattern="[#x0F18-#x0F19]"/><c x:hex="#x0F35"/><c x:hex="#x0F37"/><c x:hex="#x0F39"/><c x:hex="#x0F3E"/><c x:hex="#x0F3F"/><c x:pattern="[#x0F71-#x0F84]"/><c x:pattern="[#x0F86-#x0F8B]"/><c x:pattern="[#x0F90-#x0F95]"/><c x:hex="#x0F97"/><c x:pattern="[#x0F99-#x0FAD]"/><c x:pattern="[#x0FB1-#x0FB7]"/><c x:hex="#x0FB9"/><c x:pattern="[#x20D0-#x20DC]"/><c x:hex="#x20E1"/><c x:pattern="[#x302A-#x302F]"/><c x:hex="#x3099"/><c x:hex="#x309A"/>
+</Choice>
+</production>
+<production x:id="Digit" x:p="88">
+<Choice rdf:parseType="Collection"><c x:pattern="[#x0030-#x0039]"/><c x:pattern="[#x0660-#x0669]"/><c x:pattern="[#x06F0-#x06F9]"/><c x:pattern="[#x0966-#x096F]"/><c x:pattern="[#x09E6-#x09EF]"/><c x:pattern="[#x0A66-#x0A6F]"/><c x:pattern="[#x0AE6-#x0AEF]"/><c x:pattern="[#x0B66-#x0B6F]"/><c x:pattern="[#x0BE7-#x0BEF]"/><c x:pattern="[#x0C66-#x0C6F]"/><c x:pattern="[#x0CE6-#x0CEF]"/><c x:pattern="[#x0D66-#x0D6F]"/><c x:pattern="[#x0E50-#x0E59]"/><c x:pattern="[#x0ED0-#x0ED9]"/><c x:pattern="[#x0F20-#x0F29]"/> 
+</Choice>
+</production>
+<production x:id="Extender" x:p="89">
+<Choice rdf:parseType="Collection"><c x:hex="#x00B7"/><c x:hex="#x02D0"/><c x:hex="#x02D1"/><c x:hex="#x0387"/><c x:hex="#x0640"/><c x:hex="#x0E46"/><c x:hex="#x0EC6"/><c x:hex="#x3005"/><c x:pattern="[#x3031-#x3035]"/><c x:pattern="[#x309D-#x309E]"/><c x:pattern="[#x30FC-#x30FE]"/> 
+</Choice>
+</production>
+<constraints>
+ <WFC
+     x:id="Element_Type_Match"
+     test="element[STag/Name = ETag/Name]"/>
+ <WFC x:id="PEs_in_Internal_Subset"
+ 	test="doctypedecl//PEReference[localName(../..)='doctypedecl']"/>
+	<!-- needs work!!! -->
+ <WFC x:id="Unique_Att_Spec"
+ 	test="not(STTag/Attribute/Name[1]) or EmptyElemTag/Attribute/Name[1]"/>
+<WFC x:id="No_External_Entity_References"
+ 	test="not(Attribute//ExtEntRef)"/>
+</constraints>
+<!-- </propertySet> -->
+<propertySet 
+	rdf:about="http://www.w3.org/TR/REC-xml-names/"
+	x:targetNamespace="http://www.openhealth.org/XSet"
+/>
+<!--
+Attribute Names for Namespace Declaration 
+[1]  NSAttName ::=  PrefixedAttName 
+   | DefaultAttName 
+[2]  PrefixedAttName ::=  'xmlns:' NCName [  NSC: Leading "XML" ] 
+[3]  DefaultAttName ::=  'xmlns' 
+[4]  NCName ::=  (Letter | '_') (NCNameChar)* /*  An XML Name, minus the ":" */ 
+[5]  NCNameChar ::=  Letter | Digit | '.' | '-' | '_' | CombiningChar | Extender 
+-->
+<production x:id="NSAttName" x:p="1">
+	<Choice rdf:parseType="Collection"><PrefixedAttName/><DefaultAttName/>
+	</Choice>
+</production>
+<production x:id="PrefixedAttName" x:p="2" NSC="Leading_XML">
+	<Seq rdf:parseType="Collection">
+		<string x:value="xmlns:"/>
+		<NCName/>
+	</Seq>
+</production>
+<production x:id="DefaultAttName" x:p="3">
+ <string x:value="xmlns"/>
+</production>
+<production x:id="NCName" x:p="4">
+	<Seq rdf:parseType="Collection">
+		<Choice rdf:parseType="Collection">
+			<Letter/>
+			<c x:char="_"/>
+		</Choice>
+		<NCNameChar x:occurs="*"/>
+	</Seq>
+</production>
+<production x:id="NCNameChar" x:p="5">
+	<Choice rdf:parseType="Collection">
+		<Letter/>
+		<Digit/>
+		<c x:char="."/>
+		<c x:char="-"/>
+		<c x:char="_"/>
+		<CombiningChar/>
+		<Extender/>
+	</Choice>
+	<!-- <Name><exclude><c x:char=":"/></exclude></Name> -->
+</production>
+<!-- Qualified Name 
+[6]  QName ::=  (Prefix ':')? LocalPart 
+[7]  Prefix ::=  NCName 
+[8]  LocalPart ::=  NCName 
+-->
+<production x:id="QName" x:p="6">
+	<Seq rdf:parseType="Collection">
+		<Seq x:occurs="?">
+			<Prefix/>
+			<c x:char=":"/>
+		</Seq>
+		<LocalPart/>
+	</Seq>
+</production>
+<production x:id="Prefix" x:p="7">
+	<NCName/>
+</production>
+<production x:id="LocalPart" x:p="8">
+	<NCName/>
+</production>
+<!-- Element Types 
+[9]  STag ::=  '<' QName (S Attribute)* S? '>'  [  NSC: Prefix Declared ] 
+[10]  ETag ::=  '</' QName S? '>' [  NSC: Prefix Declared ] 
+[11]  EmptyElemTag ::=  '<' QName (S Attribute)* S? '/>' [  NSC: Prefix Declared ] 
+-->
+<production x:id="STag" x:p="9" NSC="Prefix_Declared">
+<Seq rdf:parseType="Collection">
+	<c x:char="&lt;"/>
+	<QName />
+	<Seq x:occurs="*">
+		<S/>
+		<Attribute/>
+	</Seq>
+	<S x:occurs="?"/>
+	<c x:char=">"/>
+</Seq>
+</production>
+<production x:id="ETag" x:p="10" NSC="Prefix_Declared">
+<Seq rdf:parseType="Collection">
+	<c x:char="&lt;"/>
+	<c x:char="/"/>
+	<QName />
+	<S x:occurs="?" />
+	<c x:char=">"/>
+</Seq>
+</production>
+<production x:id="EmptyElemTag" x:p="11"
+	NSC="Prefix_Declared">
+	<Seq rdf:parseType="Collection">
+		<c x:char="&lt;"/>
+		<QName/>
+		<Seq x:occurs="*">
+			<S/>
+			<Attribute/>
+		</Seq>
+		<S x:occurs="?"/>
+		<c x:char="/"/>
+		<c x:char=">"/>
+	</Seq>
+</production>
+<!-- Attribute 
+[12]  Attribute ::=  NSAttName Eq AttValue 
+   | QName Eq AttValue [  NSC: Prefix Declared ] 
+ -->
+<production x:id="Attribute" x:p="12" NSC="Prefix_Declared">
+<Choice rdf:parseType="Collection">
+<Seq rdf:parseType="Collection">
+	<NSAttName/>
+	<Eq/>
+	<AttValue/>
+</Seq>
+<Seq rdf:parseType="Collection">
+	<QName/>
+	<Eq/>
+	<AttValue/>
+</Seq>
+</Choice>
+</production>
+<!-- Qualified Names in Declarations 
+[13]  doctypedecl ::=  '<!DOCTYPE' S QName (S ExternalID)? S? ('[' (markupdecl | PEReference | S)* ']' S?)? '>' 
+[14]  elementdecl ::=  '<!ELEMENT' S QName S contentspec S? '>' 
+[15]  cp ::=  (QName | choice | seq) ('?' | '*' | '+')? 
+[16]  Mixed ::=  '(' S? '#PCDATA' (S? '|' S? QName)* S? ')*'  
+   | '(' S? '#PCDATA' S? ')'  
+[17]  AttlistDecl ::=  '<!ATTLIST' S QName AttDef* S? '>' 
+[18]  AttDef ::=  S (QName | NSAttName) S AttType S DefaultDecl 
+-->
+<production x:id="doctypedecl" x:p="13">
+ <Seq rdf:parseType="Collection">
+  <string x:value="&lt;!DOCTYPE" />
+  <S />
+  <QName />
+  <Seq x:occurs="?">
+  	<S /><ExternalID />
+  </Seq>
+  <S x:occurs="?"/>
+  <Seq rdf:parseType="Collection">
+   <c x:char="["/>
+   <Choice rdf:parseType="Collection" x:occurs="*">
+   	<markupdecl />
+	<PEReference />
+	<S />
+   </Choice>
+   <c x:char="]"/>
+  </Seq>
+ </Seq>
+</production>
+<production x:id="elementdecl" x:p="14">
+<Seq rdf:parseType="Collection">
+	<string x:value="&lt;!ELEMENT"/>
+	<S/>
+	<QName/>
+	<S/>
+	<contentspec/>
+	<S x:occurs="?"/>
+	<c x:char=">"/>
+</Seq>
+</production>
+<production x:id="cp" x:p="15">
+ <Seq rdf:parseType="Collection">
+  <Choice rdf:parseType="Collection">
+ 	<QName />
+ 	<choice/>
+	<seq/>
+  </Choice>
+  <Choice rdf:parseType="Collection" x:occurs="?">
+ 	<c x:char="*"/>
+	<c x:char="+"/>
+	<c x:char="?"/>
+  </Choice>
+ </Seq>
+</production>
+<production x:id="Mixed" x:p="16">
+<Seq rdf:parseType="Collection">
+ <c x:char="("/>
+ <S x:occurs="?"/>
+ <string x:value="#PCDATA"/>
+ <Seq x:occurs="*">
+ 	<S x:occurs="?"/>
+	<c x:char="|"/>
+	<S x:occurs="?"/>
+	<QName/>
+ </Seq>
+ <S x:occurs="?"/>
+ <c x:char=")"/>
+ <c x:char="*"/>
+</Seq>
+</production>
+<production x:id="AttlistDecl" x:p="17">
+<Seq rdf:parseType="Collection">
+  <string x:value="&lt;!ATTLIST"/>
+  <S/>
+  <QName />
+  <AttDef x:occurs="*"/>
+  <S x:occurs="?"/>
+  <c x:char=">"/>
+</Seq>
+</production>
+<production x:id="AttDef" x:p="18">
+<Seq rdf:parseType="Collection">
+  <S/>
+  <QName />
+  <S/>
+  <AttType/>
+  <S/>
+  <DefaultDecl/>
+</Seq>
+</production>
+</rdf:RDF>
+

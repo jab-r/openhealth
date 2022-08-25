@@ -1,0 +1,41 @@
+# RELAXNG non-XML grammar for RDFs - simplified RDF grammar
+# Jonathan Borden 3/7/2002
+namespace local = ""
+namespace rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+datatypes xsd = "http://www.w3.org/2001/XMLSchema-datatypes"
+default namespace rdfs = "http://www.openhealth.org/RDF/RDFsSyntax"
+
+start = RDF
+
+# rdf:RDF ? allow rdf:ID
+RDF = element rdf:RDF{attribute rdf:ID{xsd:NMTOKEN}?,desc*}
+# perhaps unqualified names refer to bNodes
+# var = 		element local:*{empty} | attribute local:*{""}
+# an rdf:Description or typedNode
+# desc = 		subject{predobj*}
+desc = 	element (rdf:Description |rdf:Alt| rdf:Seq| rdf:Bag | (* - (rdf:*|local:*))) {
+				(attribute rdf:about{anyURI}|
+				 attribute rdf:ID{xsd:NMTOKEN})?,
+				 attribute rdf:bagID{xsd:NMTOKEN}?,
+				 attribute rdf:type{anyURI}?,
+				predobj*
+			}
+
+# predicate = element * - (rdf:*|local:*) | element (rdf:li | rdf:value)
+predobj = 	element (rdf:li | rdf:value | (* - (rdf:*|local:*)))
+			{
+				attribute rdf:ID{xsd:NMTOKEN}?,
+				attribute rdf:bagID{xsd:NMTOKEN}?,
+				(obj | 
+				attribute rdf:resource{anyURI} |
+				(attribute rdf:parseType{"Resource"},obj+) |
+				(attribute rdf:parseType{xsd:NMTOKEN - "Resource"}, any))
+			} |
+			predAttr
+predAttr = 	attribute * - (rdf:*|local:*){text} | attribute rdf:value {text}
+# this is extended to allow rdf:RDF (i.e. context/bundle) as the object of a statement
+obj = 		desc | 
+			text |
+			RDF 
+any =		mixed { element * { attribute * { text }*, any }* }
+

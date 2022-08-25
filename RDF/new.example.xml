@@ -1,0 +1,25 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                  xmlns:ex="http://example.org/ex#"
+				  xmlns:logic="http://example.org/logic#">
+     <rdf:Description rdf:about="http://example.org/ex#Jon">
+	 	<ex:says rdf:parseType="Resource">
+			<logic:Or>
+			<rdf:Description rdf:about="http://example.org/ex#sky">
+			   		<ex:color rdf:resource="http://example.org/ex#blue"/>
+			</rdf:Description>
+			<rdf:Description rdf:about="http://example.org/ex#sky">
+			   		<ex:color rdf:resource="http://example.org/ex#green"/>
+			</rdf:Description>
+			</logic:Or>
+	<logic:Or>
+      <rdf:Description about="#USPres2000">
+	 	<ex:winner resource="#AG"/>
+      </rdf:Description>
+      <rdf:Description about="#USPres2000">
+	 	<ex:winner resource="#GWB"/>
+      </rdf:Description>
+   </logic:Or>
+		</ex:says>
+	</rdf:Description>
+	
+</rdf:RDF>

@@ -1,0 +1,109 @@
+<!DOCTYPE paper SYSTEM "extremepaper.xml.dtd" >
+<?xml-stylesheet type="text/xsl" href="extreme.html.xsl" ?>
+<paper>
+<front>
+<title>The Resource Directory Description Language (RDDL): What goes at the end of a namespace URI?</title>
+<author contact="1">
+  	<fname>Jonathan</fname>
+	<surname>Borden</surname>
+  	<jobtitle>Assistant Professor</jobtitle>
+  	<address>
+		<affil>Tufts University School of Medicine</affil>
+  		<subaffil>Department of Neurosurgery</subaffil>
+		<aline>New England Medical Center #178</aline>
+		<aline>750 Washington Street</aline>
+		<city>Boston</city><state>MA</state>
+		<postcode>02111</postcode>
+		<phone>617-636-5859</phone>
+		<fax>617-636-7587</fax>
+		<email>jonathan@openhealth.org</email>
+		<web>http://www.openhealth.org</web>
+	</address>
+  <bio><para>Dr. Jonathan Borden is an editor of the RDDL specification. 
+  	He is the Director of the Open Healthcare Group, and a co-chair of the ASTM E31.25 XML Healthcare DTD subcommittee.</para></bio>
+</author>
+<keywords>
+	<keyword>namespace</keyword>
+	<keyword>RDDL</keyword>
+	<keyword>XLink</keyword>
+	<keyword>XHTML</keyword>
+	<keyword>ontology</keyword>
+</keywords>
+<abstract>
+	<para>
+		A namespace is properly considered a collection of names. Namespaces while 
+partitioned by a unique identifier, are properly the collection of names, 
+not the partition. The <cit>XML Namespace recommendation</cit> defines a partition 
+mechanism without defining the mechanism by which names are 
+collected.
+	</para>
+	<para>
+The Resource Directory Description Language (RDDL) was created to answer the 
+question of what ought a namespace URI reference? RDDL uses an XHTML format in 
+which resource elements are embedded. Each resource element contains a simple 
+XLink referencing the related resource.
+	</para>
+	<para>
+	The use of URIs as a mechanism of namespace partitioning has been controversial 
+	and confusing for several reasons:
+	<seqlist>
+	<li><para>For the computer science community: XML namespaces differ from traditional namespaces as traditional namespaces conventionally refer to a <highlight style="ital">set</highlight> whereas XML namespaces more properly refer to an <highlight style="ital">unbounded partition</highlight></para></li>
+	<li><para>For the web community: Use of URIs which can be resolved (i.e URLs) suggests that XML namespace identifiers 'point to something' yet no guidance is provided on what they ought reference.</para></li>
+	</seqlist>
+	</para>
+<para>    RDDL is simple, solves both of these problems, and works with 
+the current Web infrastructure.</para>
+<para>The Resource Directory Description Language is an extension of <highlight style="ital">W3C XHTML Basic 1.0</highlight> with an added 
+element named <highlight style="ital">resource</highlight>. This element serves 
+as an XLink to the referenced resource, and contains a human-readable 
+description of the resource and machine readable links which describe the 
+purpose of the link and the nature of the resource being linked to. The nature 
+of the resource being linked to is indicated by the <highlight style="ital">xlink:role</highlight> 
+attribute and the purpose of the link is indicated by the 
+<highlight style="ital">xlink:arcrole</highlight> attribute. </para>
+<para>The rddl:resource element is defined as:</para>
+<verbatim>&lt;!ELEMENT rddl:resource (#PCDATA | %Flow.mix;)*&gt;
+&lt;!ATTLIST rddl:resource
+  id            ID       #IMPLIED
+  xml:lang      NMTOKEN  #IMPLIED
+  xml:base      CDATA    #IMPLIED
+  xmlns:rddl    CDATA    #FIXED   "http://www.rddl.org/"
+  xlink:type    (simple) #FIXED   "simple"
+  xlink:arcrole CDATA    #IMPLIED
+  xlink:role    CDATA             "http://www.rddl.org/#resource"
+  xlink:href    CDATA    #IMPLIED
+  xlink:title   CDATA    #IMPLIED
+  xlink:embed   CDATA    #FIXED   "none"
+  xlink:actuate CDATA    #FIXED   "none"
+  &gt;
+</verbatim>
+<p>For the computer science community,&nbsp;a proper 
+namespace is created from an XML namespace as the <highlight style="bold">set</highlight> of 
+fragment identifier qualified URI references contained in the RDDL document 
+describing the XML namespace.</p>
+<para>For the web community, a namespace name references a document which is 
+readable by humans in popular browsers as well as providing machine readable 
+links to resources related to the namespace. For example an "XML browser" would 
+be able to locate code or plugins needed for the display of namespace qualified 
+elements such as embedded SVG, MathML or other formats.</para>
+<para>The RDDL specification itself serves as a RDDL description of the RDDL 
+namespace URI <cit>http://www.rddl.org/</cit> . RDDL is 
+described a DTD, and various schemata including RELAX, TREX, Schematron and XML 
+Schema. In this context RDDL serves as a case study for the development and 
+comparision of these various schema languages.</para>
+<para>RDDL is now found at the end of the namespace URI for schema languages such 
+as Schematron, XML Schema, and Examplotron, and for namespaces such as RSS 1.0, 
+and the Comminity XSLT Extension effort.</para>
+<para>Natures and purposes of namespace related resources are defined to be URI 
+references according to XLink. RDDL defines common natures and purposes. A 
+discussion of the RDDL ontology, use of RDDL to develop ontologies and 
+integration of RDDL with RDF/DAML+OIL ontologies is discussed.</para>
+</abstract>
+</front>
+<body>
+  <section><title></title>
+    <para></para>
+  </section>
+</body>
+</paper>
+

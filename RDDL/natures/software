@@ -1,0 +1,50 @@
+<!--<!DOCTYPE html PUBLIC "-//XML-DEV//DTD XHTML RDDL 1.0//EN" "rddl-xhtml.dtd">-->
+<html 	xmlns="http://www.w3.org/1999/xhtml" 
+		xmlns:xlink="http://www.w3.org/1999/xlink"
+		xmlns:rddl="http://www.rddl.org/"
+		xml:base="http://www.rddl.org/natures/software">
+<head>
+	<title>Well Known Resource Directory Description Natures for Software</title>
+	<link rel="stylesheet" type="text/css" href="../xrd.css" />
+</head>
+
+<body>
+<h1>URIs For Common Natures of Software Resources</h1>
+<rddl:resource id="language"
+	xlink:role="http://www.rddl.org/natures#term"
+	xlink:arcrole="http://www.rddl.org/purposes#definition"
+	xlink:title="Software Language"
+	xlink:href="#language"
+	>
+	<div class="resource">
+	<h2>Software Language</h2>
+	<p>Software is written using various programming languages.</p>
+	<p>The URI is <code>http://www.rddl.org/natures/software#language</code>.</p>
+	</div>
+</rddl:resource>
+<rddl:resource id="python"
+	xlink:role="#language"
+	xlink:arcrole="http://www.rddl.org/purposes#definition"
+	xlink:title="Python"
+	xlink:href="#python"
+	>
+	<div class="resource">	
+	<h3>Python</h3>
+	<p>Python is a programming language</p>
+	<p>The URI is <code>http://www.rddl.org/natures/software#python</code>.</p>
+	</div>
+</rddl:resource>
+<rddl:resource id="java"
+	xlink:role="#language"
+	xlink:arcrole="http://www.rddl.org/purposes#definition"
+	xlink:title="Java"
+	xlink:href="#java"
+	>
+	<div class="resource">	
+	<h3>Java</h3>
+	<p>Java is a programming language</p>
+	<p>The URI is <code>http://www.rddl.org/natures/software#java</code>.</p>
+	</div>
+</rddl:resource>
+</body>
+</html>

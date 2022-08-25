@@ -1,0 +1,17 @@
+<module
+  xmlns="http://www.xml.gr.jp/xmlns/relaxCore"
+  targetNamespace="http://www.w3.org/1999/xhtml"
+  relaxCoreVersion="1.0"
+  moduleVersion="1.11">
+
+<elementRule role="meta" type="emptyString"/>
+
+<tag name="meta">
+  <ref role="I18n.attrib"/>
+  <attribute name="http-equiv"   type="NMTOKEN"/>
+  <attribute name="name"         type="NMTOKEN"/>
+  <attribute name="content"      type="string" required="true"/>
+  <attribute name="scheme"       type="string"/>
+</tag>
+
+</module>

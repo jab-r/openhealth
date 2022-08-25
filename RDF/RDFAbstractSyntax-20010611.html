@@ -1,0 +1,254 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>
+      Proposed RDF Abstract Syntax
+    </title>
+    <link rel="stylesheet" href="../RDDL/xrd.css" type="text/css" />
+  </head>
+  <body>
+    <h1>
+      RDF Abstract Syntax
+    </h1>
+    <p>
+      Editors:
+    </p>
+    <p>
+      Jonathan Borden <A
+      href="mailto:jonathan@openhealth.org">jonathan@openhealth.org</a>
+    </p>
+    <p>
+      Pat Hayes <A href="pat.hayes@ai.uwf.edu">phayes@ai.uwf.edu</a>
+    </p>
+    <p>
+      Drew McDermott <A
+      href="drew.mcdermott@yale.edu">drew.mcdermott@yale.edu</a>
+    </p>
+    <p>
+      This version: <a
+      href="http://www.openhealth.org/RDF/RDFAbstractSyntax-20010611.html">June
+      11, 2001</a>
+    </p>
+    <p>
+      <a href="http://www.openhealth.org/RDF/RDFAbstractSyntax.html">Latest
+      version</a>
+    </p>
+    <p>
+      Previous version: <a
+      href="http://www.openhealth.org/RDF/RDFAbstractSyntax-20010610.html">June
+      10, 2001</a>
+    </p>
+    <h2>
+      Introduction
+    </h2>
+    <p>
+      This document defines an <em>Abstract Syntax</em> or <em>Infoset</em> for
+      RDF [<A href="#RDF-MS">1</a>]. RDF Statements are commonly refered to as
+      triples of {predicate,subject,object}. In practice it is useful to group
+      triples into sets of statements termed: <em>Bundles</em>.
+    </p>
+    <p>
+      This document has no official status.&nbsp;
+    </p>
+    <h2>
+      Bundle
+    </h2>
+    <p>
+      A Bundle is represented by an QName. A bundle is a list (ordered bag) of
+      Statement triples &lt;predicate,subject,object&gt;. For each bundle the
+      statement quadruple: &lt;predicate,subject,object,context&gt; is
+      equivalent to the triple &lt;predicate,subject,object&gt;.
+    </p>
+    <h2>
+      Statement
+    </h2>
+    <p>
+      A Statement is represented by the 4-tuple:
+      <strong>&lt;predicate,subject,object,bundle&gt;</strong> or consider a
+      <strong>Bundle</strong> a list of Statements represented as triples&nbsp;
+      <strong>&lt;predicate,subject,object&gt;</strong>
+    </p>
+    <h3>
+      atom
+    </h3>
+    <p>
+      An atom represents either an XML QName, according to XML Namespaces, or a
+      variable matching the EBNF:
+    </p>
+    <p>
+      atom := (QName | quantifiedVariable| rowVariable | Statement)
+    </p>
+    <p>
+      quantifiedVariable := ('?' Name) Name as defined in XML 1.0
+    </p>
+    <p>
+      rowVariable := ('@' Name)
+    </p>
+    <h3>
+      predicate
+    </h3>
+    <p>
+      A predicate is a QName.
+    </p>
+    <h3>
+      subject
+    </h3>
+    <p>
+      A subject is an atom.
+    </p>
+    <h3>
+      object
+    </h3>
+    <p>
+      An object is an atom. Note that literal strings may be represented by the
+      <code>data:</code> URI scheme.
+    </p>
+    <h3>
+      bundle
+    </h3>
+    <p>
+      A bundle is represented by a QName
+    </p>
+    <h4>
+      Purpose of the Bundle
+    </h4>
+    <p>
+      The bundle allows separation of statements into lists which can be
+      asserted as a group. Bundles allow 'coloring' of subgraphs. The
+      document from which a set of statements arises forms a bundle
+      (represented by its URI). Bundles can 'contain' other bundles.
+    </p>
+    <h2>
+      Abstract Syntax
+    </h2>
+    <ol>
+      <li>
+        There exists a set called QNames 
+      <li>
+        There exists a set called QuantifiedVariables 
+      <li>
+        There exists a set called RowVariables 
+      <li>
+        There exists a set called AtomicNames where for all a 
+  in AtomicNames =&gt; (a in QNames) or (a in quantifiedVariables) or (a in 
+  rowVariables) 
+      <li>
+        for all atomicName(x) &lt;=&gt; x in AtomicNames 
+      <li>
+        There exists a set called Predicates where for all p 
+  in Predicates =&gt; atomicName(p) 
+      <li>
+        There exists a set called Subjects where for all s in 
+  Subjects =&gt; atomicName(s) 
+      <li>
+        There exists a set called Objects where for all o in 
+  Objects =&gt; atomicName(o) 
+      <li>
+        There exists a set called Bundles where for 
+  all&nbsp;b in Bundles =&gt; atomicName(c) 
+      <li>
+        There exists a set of Statements :=
+              
+        {&lt;predicate,subject,object,bundle&gt;}
+      </li>
+    </ol>
+    <h2>
+      Examples:
+    </h2>
+    <p>
+      The statement:
+    </p>
+    <p>
+      <em>(not (says jon (color sky blue))</em>
+    </p>
+    <p>
+      is represented by the Expression:
+    </p>
+    <p>
+      [not [says jon [color sky blue]]]
+    </p>
+    <p>
+      The Squish [<A href="#SQUISH">2</a>] query: (dc:creator, foo,
+      ?x)(foaf:mbox, ?x, mailto:jonathan@openhealth.org)
+    </p>
+    <p>
+      is represented as:
+    </p>
+    <ol>
+      <li>&lt;dc:creator,foo,?x,ctx-query&gt; 
+      <li>
+        &lt;foaf:mbox,?x,mailto:jonathan@openhealth.org,ctx-query&gt;
+      </li>
+    </ol>
+    <h2>
+      S Expressions
+    </h2>
+    <p>
+          An s-expression :
+    </p>
+    <p>
+      (or a b c d)
+    </p>
+    <p>
+      may be represented in XML
+    </p>
+<pre>
+&lt;or rdf:parseType="daml:list"&gt;
+ &lt;a/&gt;
+ &lt;b/&gt;
+ &lt;c/&gt;
+ &lt;d/&gt;
+&lt;/or&gt;
+</pre>
+    <p>
+            In triple form:
+    </p>
+    <p>
+      [or a [etc b [etc c [etc d nil]]]]
+    </p>
+    <p class="ednote">
+      abbreviated as:
+    </p>
+    <p class="ednote">
+      [or a b c d]
+    </p>
+    <h2>
+      Expressions
+    </h2>
+    <p>
+      Expressions are collections of statements within a common context. An
+      expression is a subgraph. The root or top level expression within a
+      particular context are those statements which are not referred as the
+      subject or object of any other statement within the context.
+    </p>
+    <p class="ednote">
+      Is there a formal expression of this?
+    </p>
+    <ol>
+      <li>
+        <a id="RDF-MS"></a><a href="http://www.w3.org/TR/REC-rdf-syntax">W3C
+        RDF Model and Syntax 1.0</a>
+      <li>
+        <a id="SQUISH"></a><a href="http://swordfish.rdfweb.org/rdfquery/">ILRT
+        Squish</a>
+      <li>
+        <a href="http://www-db.stanford.edu/~melnik/rdf/db.html">RDF DB</a>
+      <li>
+        <a
+        
+  href="http://lists.w3.org/Archives/Public/www-rdf-interest/2000Feb/0172.html" 
+ >
+        1</a>
+      <li>
+        <a href="http://www.w3.org/DesignIssues/Notation3.html">N3</a>
+      <li>
+        <a
+        
+  href="http://public.research.mimesweeper.com/RDF/RDFContexts.html" 
+ >Klyne's
+        Contexts</a>
+      </li>
+    </ol>
+  </body>
+</html>
+

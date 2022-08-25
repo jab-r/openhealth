@@ -1,0 +1,101 @@
+<?xml version="1.0" ?>
+<!-- 
+	Copyright (c) 2001 Jonathan Borden &lt;jonathan@openhealth.org&gt;
+	
+	An RDF Regular Expression for KIF
+	
+	This schema may be freely used as long as this copyright notice is included in this or 
+	derivative works and you agree that the author accepts no liability nor responsibility 
+	for any use of this document.
+-->
+<grammar xmlns="http://www.openhealth.org/RDF/RDFEX/0.9"
+		ns="http://www.openhealth.org/RDF/KIF#"
+		xmlns:kif="http://www.openhealth.org/RDF/KIF#"
+		xmlns:rdfas="http://www.openhealth.org/RDF/RDFAbstractSyntax#"
+		xmlns:rdf="http://www.openhealth.org/RDF/RDFSurfaceSyntax#"
+		datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+<!--
+sentence ::= (relAtomicSentence | propSentence |quantSentence) 
+relAtomicSentence ::= [term {term*} nil] 
+propSentence ::= ([not sentence nil] | [(and|or) {sentence*} nil] | [(iff|implies) sentence sentence]) 
+quantSentence ::= [(forall|exist) variable|{variable+} sentence] 
+
+formally in RDF extended XDuce
+
+namespace kif = "http://www.openhealth.org/RDF/KIF#"
+type sentence = relAtomicSentence | propSentence | quantSentence
+type relAtomicSentence = 
+		statement(term,bundle,nil)
+type propSentence =
+		statement(
+			predicate[kif:not]
+			subject[sentence]
+			object[nil]
+			) |
+		statement(
+			predicate[(kif:and|kif:or)],
+			subject[bundle[term[sentence]*]],
+			object[nil]
+			) |
+		statement(
+			predicate[(kif:iff|kif:implies)],
+			subject[sentence],
+			object[sentence])
+type quantSentence =
+		statement(
+			predicate[(kif:forall|kif:exists)],
+			subject[(variable|bundle[variable+])],
+			object[sentence]
+			)	
+-->
+<define name="sentence">
+		<choice>
+			<ref name="relAtomicSentence"/>
+			<ref name="propSentence"/>
+			<ref name="quantSentence"/>
+		</choice>
+</define>
+<define name="relAtomicSentence">
+	<statement>
+		<subject><bundle/></subject>
+		<object/>
+	</statement>
+</define>
+<define name="propSentence">
+  <choice>
+	<statement>
+		<predicate><QName name="kif:not"/></predicate>
+		<subject><ref name="sentence"/></subject>
+		<object/>
+	</statement>
+	<statement>
+		<predicate>
+			<choice>
+				<QName name="kif:and"/>
+				<QName name="kif:or"/>
+			</choice>
+		</predicate>
+		<subject>
+			<bundle>
+				<zeroOrMore>
+				 <term>
+					<ref name="sentence"/>
+				 </term>
+				</zeroOrMore>
+			</bundle>
+		</subject>
+		<object/>
+	</statement>
+	<statement>
+		<predicate>
+			<choice>
+				<QName name="kif:iff"/>
+				<QName name="kif:implies"/>
+			</choice>
+		</predicate>
+		<subject><ref name="sentence"/></subject>
+		<object><ref name="sentence"/></object>
+	</statement>
+ </choice>
+</define>
+</grammar>

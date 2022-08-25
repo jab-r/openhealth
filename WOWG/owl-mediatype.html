@@ -1,0 +1,446 @@
+Content-Type: text/html
+
+<html><head><title>application/owl+xml Media Type Registration</title>
+<STYLE type='text/css'>
+    .title { color: #990000; font-size: 22px; line-height: 22px; font-weight: bold; text-align: right;
+             font-family: helvetica, arial, sans-serif }
+    .filename { color: #666666; font-size: 18px; line-height: 28px; font-weight: bold; text-align: right;
+                  font-family: helvetica, arial, sans-serif }
+    p.copyright { color: #000000; font-size: 10px;
+                  font-family: verdana, charcoal, helvetica, arial, sans-serif }
+    p { margin-left: 2em; margin-right: 2em; }
+    li { margin-left: 3em;  }
+    ol { margin-left: 2em; margin-right: 2em; }
+    ul.text { margin-left: 2em; margin-right: 2em; }
+    pre { margin-left: 3em; color: #333333 }
+    ul.toc { color: #000000; line-height: 16px;
+             font-family: verdana, charcoal, helvetica, arial, sans-serif }
+    H3 { color: #333333; font-size: 16px; line-height: 16px; font-family: helvetica, arial, sans-serif }
+    H4 { color: #000000; font-size: 14px; font-family: helvetica, arial, sans-serif }
+    TD.header { color: #ffffff; font-size: 10px; font-family: arial, helvetica, san-serif; valign: top }
+    TD.author-text { color: #000000; font-size: 10px;
+                     font-family: verdana, charcoal, helvetica, arial, sans-serif }
+    TD.author { color: #000000; font-weight: bold; margin-left: 4em; font-size: 10px; font-family: verdana, charcoal, helvetica, arial, sans-serif }
+     A:link { color: #990000; font-weight: bold;
+              font-family: MS Sans Serif, verdana, charcoal, helvetica, arial, sans-serif }
+     A:visited { color: #333333; font-weight: bold;
+                 font-family: MS Sans Serif, verdana, charcoal, helvetica, arial, sans-serif }
+     A:name { color: #333333; font-weight: bold;
+              font-family: MS Sans Serif, verdana, charcoal, helvetica, arial, sans-serif }
+    .link2 { color:#ffffff; font-weight: bold; text-decoration: none;
+             font-family: monaco, charcoal, geneva, MS Sans Serif, helvetica, monotype, verdana, sans-serif;
+             font-size: 9px }
+    .RFC { color:#666666; font-weight: bold; text-decoration: none;
+           font-family: monaco, charcoal, geneva, MS Sans Serif, helvetica, monotype, verdana, sans-serif;
+           font-size: 9px }
+    .hotText { color:#ffffff; font-weight: normal; text-decoration: none;
+               font-family: charcoal, monaco, geneva, MS Sans Serif, helvetica, monotype, verdana, sans-serif;
+               font-size: 9px }
+</style>
+</head>
+<body bgcolor="#ffffff" text="#000000" alink="#000000" vlink="#666666" link="#990000">
+
+<table border="0" cellpadding="0" cellspacing="2" width="30" height="30" align="right">
+    <tr>
+        <td bgcolor="#000000" align="center" valign="center" width="30" height="30">
+            <font face="monaco, MS Sans Serif" color="#666666" size="1">
+                <b><span class="RFC">&nbsp;RFC&nbsp;</span></b>
+            </font>
+            <font face="charcoal, MS Sans Serif, helvetica, arial, sans-serif" size="1" color="#ffffff">
+                <span class="hotText">00</span>
+            </font>
+        </td>
+    </tr>
+    <tr><td bgcolor="#990000" align="center" width="30" height="15"><a href="#toc" CLASS="link2"><font face="monaco, MS Sans Serif" color="#ffffff" size="1"><b>&nbsp;TOC&nbsp;</b></font></a><br></td></tr>
+</table>
+<table width="66%" border="0" cellpadding="0" cellspacing="0"><tr><td><table width="100%" border="0" cellpadding="2" cellspacing="1">
+<tr valign="top"><td width="33%" bgcolor="#666666" class="header">Network Working Group</td><td width="33%" bgcolor="#666666" class="header">J. Borden</td></tr>
+<tr valign="top"><td width="33%" bgcolor="#666666" class="header">Request for Comments: 00</td><td width="33%" bgcolor="#666666" class="header">St. Vincent Health System</td></tr>
+<tr valign="top"><td width="33%" bgcolor="#666666" class="header">Category: Informational</td><td width="33%" bgcolor="#666666" class="header">November 2002</td></tr>
+</table></td></tr></table>
+<div align="right"><font face="monaco, MS Sans Serif" color="#990000" size="+3"><b><br><span class="title">application/owl+xml Media Type Registration</span></b></font></div>
+<font face="verdana, helvetica, arial, sans-serif" size="2">
+
+<h3>Status of this Memo</h3>
+<p>
+This memo provides information for the Internet community.
+It does not specify an Internet standard of any kind.
+Distribution of this memo is unlimited.</p>
+
+<h3>Copyright Notice</h3>
+<p>
+Copyright (C) The Internet Society (2002). All Rights Reserved.</p>
+
+<h3>Abstract</h3>
+
+<p>This document describes a media type (application/owl+xml) for use with the 
+		RDF/XML serialization of the Web Ontology Language (OWL). 
+		OWL is intended to provide a language that can be used to describe the 
+		classes and relations between them that are inherent in Web documents and applications. 
+</p><a name="toc"><hr size="1" shade="0"></a>
+
+<table border="0" cellpadding="0" cellspacing="2" width="30" height="30" align="right">
+    <tr>
+        <td bgcolor="#000000" align="center" valign="center" width="30" height="30">
+            <font face="monaco, MS Sans Serif" color="#666666" size="1">
+                <b><span class="RFC">&nbsp;RFC&nbsp;</span></b>
+            </font>
+            <font face="charcoal, MS Sans Serif, helvetica, arial, sans-serif" size="1" color="#ffffff">
+                <span class="hotText">00</span>
+            </font>
+        </td>
+    </tr>
+    <tr><td bgcolor="#990000" align="center" width="30" height="15"><a href="#toc" CLASS="link2"><font face="monaco, MS Sans Serif" color="#ffffff" size="1"><b>&nbsp;TOC&nbsp;</b></font></a><br></td></tr>
+</table>
+<h3>Table of Contents</h3>
+<ul compact class="toc">
+<b><a href="#anchor1">1.</a>&nbsp;
+Discussion of this Document<br></b>
+<b><a href="#anchor2">2.</a>&nbsp;
+Introduction<br></b>
+<b><a href="#anchor3">3.</a>&nbsp;
+application/owl+xml Registration<br></b>
+<b><a href="#anchor4">4.</a>&nbsp;
+Social Context<br></b>
+<b><a href="#anchor5">5.</a>&nbsp;
+Fragment Identifiers<br></b>
+<b><a href="#anchor6">6.</a>&nbsp;
+Entailment parameter<br></b>
+<b><a href="#anchor7">7.</a>&nbsp;
+IANA Considerations<br></b>
+<b><a href="#anchor8">8.</a>&nbsp;
+Acknowledgements<br></b>
+<b><a href="#rfc.references1">&#167;</a>&nbsp;
+References<br></b>
+<b><a href="#rfc.authors">&#167;</a>&nbsp;
+Author's Address<br></b>
+<b><a href="#rfc.copyright">&#167;</a>&nbsp;
+Full Copyright Statement<br></b>
+</ul>
+<br clear="all">
+
+<a name="anchor1"><br><hr size="1" shade="0"></a>
+<table border="0" cellpadding="0" cellspacing="2" width="30" height="15" align="right"><tr><td bgcolor="#990000" align="center" width="30" height="15"><a href="#toc" CLASS="link2"><font face="monaco, MS Sans Serif" color="#ffffff" size="1"><b>&nbsp;TOC&nbsp;</b></font></a><br></td></tr></table>
+<a name="rfc.section.1"></a><h3>1.&nbsp;Discussion of this Document</h3>
+
+<p>Please send comments to &lt;mailto:public-webont-comments@w3.org&gt;.  
+	To subscribe, send a message with the body 'subscribe' to 
+	&lt;mailto:public-webont-comments-request@w3.org&gt;. 
+	The mailing list is publically archived at 
+	&lt;http://lists.w3.org/Archives/Public/public-webont-comments/&gt;.
+</p>
+<a name="anchor2"><br><hr size="1" shade="0"></a>
+<table border="0" cellpadding="0" cellspacing="2" width="30" height="15" align="right"><tr><td bgcolor="#990000" align="center" width="30" height="15"><a href="#toc" CLASS="link2"><font face="monaco, MS Sans Serif" color="#ffffff" size="1"><b>&nbsp;TOC&nbsp;</b></font></a><br></td></tr></table>
+<a name="rfc.section.2"></a><h3>2.&nbsp;Introduction</h3>
+
+<p>
+	The Web Ontology Language (OWL) is intended to provide a language that can be used to describe the classes and relations between them that are inherent in Web documents and applications. 
+
+</p>
+<p>
+	The interchange language for OWL is <a href="#W3C.rdf-syntax-grammar" title="Beckett, D., RDF/XML Syntax Specification (Revised), March 2002.">the RDF/XML syntax</a>[4] as described in <a href="#W3C.owl-reference" title="Dean, M., Web Ontology Language (OWL) 1.0 Reference, July 2002.">the OWL Reference</a>[1].
+	An OWL document may be served with the application/rdf+xml media type in which case the document is interpreted according to <a href="#IETF.rdf-xml-media-type" title="Swartz, A., application/rdf+xml media type Registration, August 2002.">the application/rdf+xml media type</a>[3] registration.
+	An OWL document may be served with the application/owl+xml media type in which case it is interpreted according to the value of the entailment parameter.
+	The value of the entailment parameter is a URI which references a model theory or other formal definition of which entailments are intended by the 
+	author or server of the document to be licensed by the client of the document.
+	
+<blockquote class="text">
+<p>simple: the document is interpreted as simple RDF according to the RDF model theory. The URIref for simple RDF entailments is 
+	<a href="http://www.w3.org/TR/rdf-mt/#entail">http://www.w3.org/TR/rdf-mt/#entail</a>
+</p>
+<p>RDFS: the document is interpreted as RDF Schema according to the RDF model theory. The URIref for RDFS entailments is <a href="http://www.w3.org/TR/rdf-mt/#rdfs_interp">http://www.w3.org/TR/rdf-mt/#rdfs_interp</a>
+</p>
+<p>lite: the document is interpreted as OWL according to the OWL direct semantics. It conforms to the OWL Lite syntax. The URIref for OWL Lite entailments is <a href="">@@OWL Lite MT</a>
+</p>
+<p>DL: the document is interpreted as OWL according to the OWL DL semantics. It conforms to OWL DL. The URIref for OWL DL entailments is <a href="http://www.w3.org/TR/owl-semantics/direct.html">http://www.w3.org/TR/owl-semantics/direct.html</a>
+</p>
+<p>full (default): the document is interpreted as OWL according to the OWL/RDF semantics. It conforms to OWL Full. The URIref for OWL Full entailments is <a href="http://www.w3.org/TR/owl-semantics/rdfs.html#5.4">http://www.w3.org/TR/owl-semantics/rdfs.html#5.4</a>
+</p>
+</blockquote><p>
+	When an OWL document is served with the application/xml media type, no particular interpretation is indicated and must be arranged by private agreement between publisher and consumer of the document. 
+	Application/xml might be used when the document is intended to be an example.
+	The OWL model theory licenses additional entialments from the RDF model theory interpretation of the same RDF/XML document. 
+	Such differences between these interpretations are discussed in the OWL model theory document.
+
+</p>
+<a name="anchor3"><br><hr size="1" shade="0"></a>
+<table border="0" cellpadding="0" cellspacing="2" width="30" height="15" align="right"><tr><td bgcolor="#990000" align="center" width="30" height="15"><a href="#toc" CLASS="link2"><font face="monaco, MS Sans Serif" color="#ffffff" size="1"><b>&nbsp;TOC&nbsp;</b></font></a><br></td></tr></table>
+<a name="rfc.section.3"></a><h3>3.&nbsp;application/owl+xml Registration</h3>
+
+<p>This is a media type registration as defined in <a href="#RFC2048" title="Freed, N., Klensin, J. and J. Postel, Multipurpose Internet Mail Extensions (MIME) Part Four: Registration Procedures, November 1996.">Multipurpose Internet Mail Extensions (MIME) Part Four: Registration Procedures</a>[8]
+<blockquote class="text">
+<p>MIME media type name: application
+</p>
+<p>MIME subtype name: owl+xml
+</p>
+<p>Required parameters: none
+</p>
+<p>Optional parameter: charset
+ 
+<blockquote class="text">
+<p>
+Same as charset parameter of application/xml.
+ 
+</p>
+</blockquote><p>
+</p>
+<p>
+   Encoding considerations:
+
+<blockquote class="text">
+<p>
+   Same as charset parameter of application/xml.
+
+</p>
+</blockquote><p>
+</p>
+<p>Optional parameter: entailment
+
+<blockquote class="text">
+<p>http://www.w3.org/TR/rdf-mt/#entail: simple RDF entailments apply.
+</p>
+<p>http://www.w3.org/TR/rdf-mt/#rdfs_interp: RDFS entailments apply.
+</p>
+<p>@@OWL Lite: OWL Lite syntax and entailments apply.
+</p>
+<p>http://www.w3.org/TR/owl-semantics/direct.html: OWL DL syntax and entailments apply.
+</p>
+<p>http://www.w3.org/TR/owl-semantics/rdfs.html#5.4 (default): OWL Full syntax and entailments apply.
+</p>
+</blockquote><p>
+</p>
+<p>
+   Security considerations:
+
+<blockquote class="text">
+<p>
+      Security considerations include many of those described in section 10 of <a href="#RFC3023" title="Murata, M., St. Laurent, S. and D. Kohn, XML Media Types, January 2001.">RFC 3023</a>[6] as well as those described in the <a href="#IETF.rdf-xml-media-type" title="Swartz, A., application/rdf+xml media type Registration, August 2002.">application/rdf+xml media type registration</a>[3].
+
+</p>
+</blockquote><p>
+</p>
+<p>Interoperability considerations: 
+
+</p>
+<p>Published specification: see <a href="#W3C.owl-reference" title="Dean, M., Web Ontology Language (OWL) 1.0 Reference, July 2002.">Web Ontology Language (OWL) 1.0 Reference</a>[1] and <a href="#W3C.owl-mt" title="Patel-Schneider, P., Web Ontology Language (OWL) 1.0 Abstract Syntax and Semantics, November 2002.">OWL Abstract Syntax and Semantics</a>[2] (working drafts as of 2002-11)
+</p>
+<p>Applications which use this media type:
+
+<blockquote class="text">
+<p>
+OWL is device-, platform-, and vendor-neutral and is supported by a range of Web Ontology user agents, authoring tools and inferencing engines.
+
+</p>
+</blockquote><p>
+</p>
+<p>Additional information:
+
+<blockquote class="text">
+<p>Magic number(s): none
+
+<blockquote class="text">
+<p>
+Although no byte sequences can be counted on to consistently identify OWL, RDF documents will have the sequence "http://www.w3.org/1999/02/22-rdf-syntax-ns#" to identify the RDF namespace. This will usually be towards the top of the document.
+OWL documents may or may not declare the OWL namespace "http://www.w3.org/2002/07/owl#"
+
+</p>
+</blockquote><p>
+</p>
+<p>File extension(s): .owl,.rdf
+</p>
+<p>Macintosh File Type Code(s): "TEXT"
+</p>
+</blockquote><p>
+</p>
+<p>For further information:
+ 
+<blockquote class="text">
+<p>Jonathan Borden &lt;jonathan@openhealth.org&gt;
+</p>
+<p>RDF Logic &lt;www-rdf-logic@w3.org&gt;
+</p>
+<p>More information may be found on the WebOnt website: &lt;http://www.w3.org/2001/sw/WebOnt&gt;
+</p>
+</blockquote><p>
+</p>
+<p>Intended usage: COMMON
+</p>
+<p>Author/Change controller:
+  
+<blockquote class="text">
+<p>
+The OWL specification is a work product of the World Wide Web Consortium. The W3C and the W3C WebOnt Working Group have change control over the specification.
+   
+</p>
+</blockquote><p>
+</p>
+</blockquote><p>
+</p>
+<a name="anchor4"><br><hr size="1" shade="0"></a>
+<table border="0" cellpadding="0" cellspacing="2" width="30" height="15" align="right"><tr><td bgcolor="#990000" align="center" width="30" height="15"><a href="#toc" CLASS="link2"><font face="monaco, MS Sans Serif" color="#ffffff" size="1"><b>&nbsp;TOC&nbsp;</b></font></a><br></td></tr></table>
+<a name="rfc.section.4"></a><h3>4.&nbsp;Social Context</h3>
+
+<p>@@
+</p>
+<a name="anchor5"><br><hr size="1" shade="0"></a>
+<table border="0" cellpadding="0" cellspacing="2" width="30" height="15" align="right"><tr><td bgcolor="#990000" align="center" width="30" height="15"><a href="#toc" CLASS="link2"><font face="monaco, MS Sans Serif" color="#ffffff" size="1"><b>&nbsp;TOC&nbsp;</b></font></a><br></td></tr></table>
+<a name="rfc.section.5"></a><h3>5.&nbsp;Fragment Identifiers</h3>
+
+<p>application/owl+rdf uses the same fragment identifer syntax and semantics as application/rdf+xml.
+</p>
+<p>The rdf:ID and rdf:about attributes can be used to define fragments in an RDF document.
+</p>
+<p>
+Section 4.1 of the <a href="#RFC2396" title="Berners-Lee, T., Fielding, R. and L. Masinter, Uniform Resource Identifiers (URI): Generic Syntax, August 1998.">URI specification</a>[7] notes that the semantics of a fragment identifier (part of a URI after a "#") is a property of the data resulting from a retrieval action, and that the format and interpretation of fragment identifiers is dependent on the media type of the retrieval result.
+
+</p>
+<a name="anchor6"><br><hr size="1" shade="0"></a>
+<table border="0" cellpadding="0" cellspacing="2" width="30" height="15" align="right"><tr><td bgcolor="#990000" align="center" width="30" height="15"><a href="#toc" CLASS="link2"><font face="monaco, MS Sans Serif" color="#ffffff" size="1"><b>&nbsp;TOC&nbsp;</b></font></a><br></td></tr></table>
+<a name="rfc.section.6"></a><h3>6.&nbsp;Entailment parameter</h3>
+
+<p>The optional entailment parameter is used to indicate which entailments are licensed by the publisher of the document to be derived from the assertions made in the document.
+
+<blockquote class="text">
+<p>http://www.w3.org/TR/rdf-mt/#entail: simple RDF entailments are licensed.
+</p>
+<p>Example use of this parameter as part of an HTTP GET operation:
+		
+<blockquote class="text">
+<p>Accept: application/owl+rdf; entailment="http://www.w3.org/TR/rdf-mt/#entail" , application/rdf+xml
+</p>
+</blockquote><p>
+</p>
+<p>http://www.w3.org/TR/rdf-mt/#rdfs_interp: entailments as per RDF Schema are licensed.
+</p>
+<p>Example use of this parameter as part of an HTTP GET operation:
+		
+<blockquote class="text">
+<p>Accept: application/owl+rdf; entailment="http://www.w3.org/TR/rdf-mt/#rdfs_interp"
+</p>
+</blockquote><p>
+</p>
+<p>@@OWL Lite: entailments as per OWL DL are licensed. The syntax is intended to conform to OWL Lite.
+</p>
+<p>Example use of this parameter as part of an HTTP GET operation:
+		
+<blockquote class="text">
+<p>Accept: application/owl+rdf; entailment="@@OWL Lite"
+</p>
+</blockquote><p>
+</p>
+<p>http://www.w3.org/TR/owl-semantics/direct.html: entailments as per OWL DL are licensed.
+</p>
+<p>Example use of this parameter as part of an HTTP GET operation:
+		
+<blockquote class="text">
+<p>Accept: application/owl+rdf; entailment="http://www.w3.org/TR/owl-semantics/direct.html"
+</p>
+</blockquote><p>
+</p>
+<p>http://www.w3.org/TR/owl-semantics/rdfs.html#5.4: entailments as per OWL Full are licensed.
+</p>
+<p>Example use of this parameter as part of an HTTP GET operation:
+		
+<blockquote class="text">
+<p>Accept: application/owl+rdf; entailment="http://www.w3.org/TR/owl-semantics/rdfs.html#5.4"
+</p>
+</blockquote><p>
+		This value is the default if none is specified.
+	
+</p>
+</blockquote><p>
+</p>
+<a name="anchor7"><br><hr size="1" shade="0"></a>
+<table border="0" cellpadding="0" cellspacing="2" width="30" height="15" align="right"><tr><td bgcolor="#990000" align="center" width="30" height="15"><a href="#toc" CLASS="link2"><font face="monaco, MS Sans Serif" color="#ffffff" size="1"><b>&nbsp;TOC&nbsp;</b></font></a><br></td></tr></table>
+<a name="rfc.section.7"></a><h3>7.&nbsp;IANA Considerations</h3>
+
+<p>This document calls for registration of a new MIME content-type, according to the registration template in section 2.
+</p>
+<a name="anchor8"><br><hr size="1" shade="0"></a>
+<table border="0" cellpadding="0" cellspacing="2" width="30" height="15" align="right"><tr><td bgcolor="#990000" align="center" width="30" height="15"><a href="#toc" CLASS="link2"><font face="monaco, MS Sans Serif" color="#ffffff" size="1"><b>&nbsp;TOC&nbsp;</b></font></a><br></td></tr></table>
+<a name="rfc.section.8"></a><h3>8.&nbsp;Acknowledgements</h3>
+
+<p>@@
+</p>
+<a name="rfc.references1"><br><hr size="1" shade="0"></a>
+<table border="0" cellpadding="0" cellspacing="2" width="30" height="15" align="right"><tr><td bgcolor="#990000" align="center" width="30" height="15"><a href="#toc" CLASS="link2"><font face="monaco, MS Sans Serif" color="#ffffff" size="1"><b>&nbsp;TOC&nbsp;</b></font></a><br></td></tr></table>
+<h3>References</h3>
+<table width="99%" border="0">
+<tr><td class="author-text" valign="top"><b><a name="W3C.owl-reference">[1]</a></b></td>
+<td class="author-text">Dean, M., "<a href="http://www.w3.org/TR/owl-ref/">Web Ontology Language (OWL) 1.0 Reference</a>", W3C owl-reference, July 2002.</td></tr>
+<tr><td class="author-text" valign="top"><b><a name="W3C.owl-mt">[2]</a></b></td>
+<td class="author-text">Patel-Schneider, P., "<a href="http://www.w3.org/TR/owl-semantics/">Web Ontology Language (OWL) 1.0 Abstract Syntax and Semantics</a>", W3C owl-reference, November 2002.</td></tr>
+<tr><td class="author-text" valign="top"><b><a name="IETF.rdf-xml-media-type">[3]</a></b></td>
+<td class="author-text">Swartz, A., "<a href="http://www.ietf.org/internet-drafts/draft-swartz-rdfcore-rdfxml-mediatype-01">application/rdf+xml media type Registration</a>", IETF rdf-xml-media-type, August 2002.</td></tr>
+<tr><td class="author-text" valign="top"><b><a name="W3C.rdf-syntax-grammar">[4]</a></b></td>
+<td class="author-text">Beckett, D., "<a href="http://www.w3.org/TR/rdf-syntax-grammar/">RDF/XML Syntax Specification (Revised)</a>", W3C rdf-syntax-grammar, March 2002.</td></tr>
+<tr><td class="author-text" valign="top"><b><a name="W3C.rdf-mt">[5]</a></b></td>
+<td class="author-text">Hayes, P., "<a href="http://www.w3.org/TR/rdf-mt/">RDF Model Theory</a>", W3C rdf-mt, April 2002.</td></tr>
+<tr><td class="author-text" valign="top"><b><a name="RFC3023">[6]</a></b></td>
+<td class="author-text">Murata, M., St. Laurent, S. and D. Kohn, "<a href="ftp://ftp.isi.edu/in-notes/rfc3023.txt">XML Media Types</a>", RFC 3023, January 2001.</td></tr>
+<tr><td class="author-text" valign="top"><b><a name="RFC2396">[7]</a></b></td>
+<td class="author-text"><a href="mailto:timbl@w3.org">Berners-Lee, T.</a>, <a href="mailto:fielding@ics.uci.edu">Fielding, R.</a> and <a href="mailto:masinter@parc.xerox.com">L. Masinter</a>, "<a href="ftp://ftp.isi.edu/in-notes/rfc2396.txt">Uniform Resource Identifiers (URI): Generic Syntax</a>", RFC 2396, August 1998 (<a href="ftp://ftp.isi.edu/in-notes/rfc2396.txt">TXT</a>, <a href="http://xml.resource.org/public/rfc/html/rfc2396.html">HTML</a>, <a href="http://xml.resource.org/public/rfc/xml/rfc2396.xml">XML</a>).</td></tr>
+<tr><td class="author-text" valign="top"><b><a name="RFC2048">[8]</a></b></td>
+<td class="author-text"><a href="mailto:ned@innosoft.com">Freed, N.</a>, <a href="mailto:klensin@mci.net">Klensin, J.</a> and <a href="mailto:Postel@ISI.EDU">J. Postel</a>, "<a href="ftp://ftp.isi.edu/in-notes/rfc2048.txt">Multipurpose Internet Mail Extensions (MIME) Part Four: Registration Procedures</a>", BCP 13, RFC 2048, November 1996 (<a href="ftp://ftp.isi.edu/in-notes/rfc2048.txt">TXT</a>, <a href="http://xml.resource.org/public/rfc/html/rfc2048.html">HTML</a>, <a href="http://xml.resource.org/public/rfc/xml/rfc2048.xml">XML</a>).</td></tr>
+<tr><td class="author-text" valign="top"><b><a name="RFC2119">[9]</a></b></td>
+<td class="author-text"><a href="mailto:-">Bradner, S.</a>, "<a href="ftp://ftp.isi.edu/in-notes/rfc2119.txt">Key words for use in RFCs to Indicate Requirement Levels</a>", BCP 14, RFC 2119, March 1997 (<a href="ftp://ftp.isi.edu/in-notes/rfc2119.txt">TXT</a>, <a href="http://xml.resource.org/public/rfc/html/rfc2119.html">HTML</a>, <a href="http://xml.resource.org/public/rfc/xml/rfc2119.xml">XML</a>).</td></tr>
+</table>
+
+<a name="rfc.authors"><br><hr size="1" shade="0"></a>
+<table border="0" cellpadding="0" cellspacing="2" width="30" height="15" align="right"><tr><td bgcolor="#990000" align="center" width="30" height="15"><a href="#toc" CLASS="link2"><font face="monaco, MS Sans Serif" color="#ffffff" size="1"><b>&nbsp;TOC&nbsp;</b></font></a><br></td></tr></table>
+<h3>Author's Address</h3>
+<table width="99%" border="0" cellpadding="0" cellspacing="0">
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Jonathan Borden</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">St. Vincent Health System</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Section of Neurosurgery</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">311 W. 24th Street</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Erie, PA  16502</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">USA</td></tr>
+<tr><td class="author" align="right">Phone:&nbsp;</td>
+<td class="author-text">+1 814 455 4868</td></tr>
+<tr><td class="author" align="right">EMail:&nbsp;</td>
+<td class="author-text"><a href="mailto:jonathan@openhealth.org">jonathan@openhealth.org</a></td></tr>
+<tr><td class="author" align="right">URI:&nbsp;</td>
+<td class="author-text"><a href="http://www.openhealth.org/">http://www.openhealth.org/</a></td></tr>
+</table>
+<a name="rfc.copyright"><br><hr size="1" shade="0"></a>
+<table border="0" cellpadding="0" cellspacing="2" width="30" height="15" align="right"><tr><td bgcolor="#990000" align="center" width="30" height="15"><a href="#toc" CLASS="link2"><font face="monaco, MS Sans Serif" color="#ffffff" size="1"><b>&nbsp;TOC&nbsp;</b></font></a><br></td></tr></table>
+<h3>Full Copyright Statement</h3>
+<p class='copyright'>
+Copyright (C) The Internet Society (2002). All Rights Reserved.</p>
+<p class='copyright'>
+This document and translations of it may be copied and furnished to
+others, and derivative works that comment on or otherwise explain it
+or assist in its implementation may be prepared, copied, published and
+distributed, in whole or in part, without restriction of any kind,
+provided that the above copyright notice and this paragraph are
+included on all such copies and derivative works. However, this
+document itself may not be modified in any way, such as by removing
+the copyright notice or references to the Internet Society or other
+Internet organizations, except as needed for the purpose of
+developing Internet standards in which case the procedures for
+copyrights defined in the Internet Standards process must be
+followed, or as required to translate it into languages other than
+English.</p>
+<p class='copyright'>
+The limited permissions granted above are perpetual and will not be
+revoked by the Internet Society or its successors or assigns.</p>
+<p class='copyright'>
+This document and the information contained herein is provided on an
+&quot;AS IS&quot; basis and THE INTERNET SOCIETY AND THE INTERNET ENGINEERING
+TASK FORCE DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING
+BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION
+HEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED WARRANTIES OF
+MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.</p>
+<h3>Acknowledgement</h3>
+<p class='copyright'>
+Funding for the RFC Editor function is currently provided by the
+Internet Society.</p>
+</font></body></html>
+

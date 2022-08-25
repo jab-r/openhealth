@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//XML-DEV//DTD XHTML RDDL 1.0//EN" "rddl-xhtml.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>
+      RDF XML Surface Syntax
+    </title>
+  </head>
+  <body>
+    <h1>
+      Simplified Surface Syntax for RDF XML
+    </h1>
+    <p>
+      A simplified surface syntax for RDF is proposed. Its major
+      characteristics are:
+    </p>
+    <ol>
+      <li>
+        namespace = http://www.openhealth.org/RDF/syntax 
+      <li>
+        attribute aboutQ="ex:name" accepts QName as value 
+  indicating subject 
+      <li>
+        attribute resourceQ="ex:value" accepts QName as value 
+  indicating object 
+      <li>
+        rdf:parseType="Resource" is default 
+      <li>
+        The subject or object of a statement may be either a 
+  qualified name, a quantified variable or another statement. 
+      <li>
+        ?x defines a quantified variable, ...x&nbsp;a row variable
+      </li>
+    </ol>
+    <p>
+      An example:
+    </p>
+<pre>
+         &lt;web:RDF xmlns:web="http://www.openhealth.org/RDF/SurfaceSyntax"
+                  xmlns:ex="http://example.org/ex"&gt;
+           &lt;web:Description web:aboutQ="ex:Jon"&gt;
+            &lt;ex:says&gt;
+             &lt;ex:color web:aboutQ="ex:sky" web:resourceQ= "ex:blue"/&gt;
+            &lt;/ex:says&gt;
+           &lt;/web:Description&gt;
+         &lt;/web:RDF&gt;
+   
+</pre>
+    <p>
+      =&gt;
+    </p>
+    <ul>
+      <li>
+        [ex:says, ex:Jon,[ex:color ex:sky ex:blue]]
+      </li>
+    </ul>
+    <p>
+      The s-expression:
+    </p>
+    <p>
+      (or a b c) can be expressed in XML as:
+    </p>
+<pre>
+&lt;web:Expression&gt;
+ &lt;web:predicate web:resourceQ="logic:Or"/&gt;
+ &lt;web:first web:resourceQ="ex:a"/&gt;
+ &lt;web:rest&gt;
+   &lt;web:Expression&gt;
+    &lt;web:predicate web:resourceQ="web:etc"/&gt;
+    &lt;web:first web:resourceQ="ex:b"/&gt;
+    &lt;web:rest&gt;
+     &lt;web:Expression&gt;
+       &lt;web:predicate web:resourceQ="web:etc"/&gt;
+       &lt;web:first web:resourceQ="ex:c"/&gt;
+       &lt;web:rest web:resourceQ="web:nil"/&gt;
+     &lt;/web:Expression&gt;
+    &lt;/web:rest&gt;	
+   &lt;/web:Expression&gt;
+&lt;/web:Expression&gt;
+</pre>
+    <p>
+      =&gt;
+    </p>
+    <ul>
+      <li>
+        [log:or, ex:a,
+        [etc ex:b [etc ex:c web:nil]]]
+      </li>
+    </ul>
+    <p>
+      (not a)
+    </p>
+<pre>
+ &lt;web:Expression&gt;
+   &lt;web:predicate web:resourceQ="logic:not"&gt;
+   &lt;web:first web:resource="ex:a"/&gt;
+   &lt;web:rest web:resourceQ="web:nil"/&gt;
+ &lt;/web:Expression&gt;
+</pre>
+    <p>
+      =&gt;
+    </p>
+    <ul>
+      <li>
+        [log:not ex:a web:nil]
+      </li>
+    </ul>
+    <p>
+      web:parseType="Expression"
+    </p>
+<pre>
+&lt;web:Or&gt;
+ &lt;ex:a/&gt;
+ &lt;ex:b/&gt;
+ &lt;ex:c/&gt;
+&lt;/web:Or&gt;
+</pre>
+    <p>
+      is expanded as
+    </p>
+<pre>
+&lt;web:Expression&gt;
+ &lt;web:predicate web:resourceQ="logic:Or"/&gt;
+ &lt;web:first web:resourceQ="ex:a"/&gt;
+ &lt;web:rest&gt;
+   &lt;web:Expression&gt;
+    &lt;web:predicate web:resourceQ="web:etc"/&gt;
+    &lt;web:first web:resourceQ="ex:b"/&gt;
+    &lt;web:rest&gt;
+     &lt;web:Expression&gt;
+       &lt;web:predicate web:resourceQ="web:etc"/&gt;
+       &lt;web:first web:resourceQ="ex:c"/&gt;
+       &lt;web:rest web:resourceQ="web:nil"/&gt;
+     &lt;/web:Expression&gt;
+    &lt;/web:rest&gt;	
+   &lt;/web:Expression&gt;
+&lt;/web:Expression&gt;
+</pre>
+  </body>
+</html>
+

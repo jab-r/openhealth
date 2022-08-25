@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" ns="http://www.openhealth.org/ASTM/radiation.therapy.summary" xmlns:rt="http://www.openhealth.org/ASTM/radiation.therapy.summary">
+  <include href="ASTM.E2182.rng"/>
+  <define name="radiation.therapy.summary">
+    <element name="radiation.therapy.summary">
+      <ref name="astm.document.attrib"/>
+      <ref name="clinical.header"/>
+      <ref name="clinical.body"/>
+    </element>
+  </define>
+  <define name="clinical.body">
+    <element name="clinical.body">
+      <ref name="ch.attrib"/>
+      <ref name="clinical.history"/>
+      <ref name="treatments"/>
+      <ref name="completion.report"/>
+      <optional>
+        <ref name="patient.followup"/>
+      </optional>
+      <optional>
+        <ref name="dicom.rt.treatment.summary.record.module"/>
+      </optional>
+    </element>
+  </define>
+  <define name="clinical.history">
+    <element name="clinical.history">
+      <ref name="astm.content.attrib"/>
+      <ref name="astm.content"/>
+    </element>
+  </define>
+  <define name="completion.report">
+    <element name="completion.report">
+      <ref name="astm.content.attrib"/>
+      <ref name="astm.content"/>
+    </element>
+  </define>
+  <define name="patient.followup">
+    <element name="patient.followup">
+      <ref name="astm.content.attrib"/>
+      <text/>
+    </element>
+  </define>
+  <define name="treatments">
+    <element name="treatments">
+      <ref name="astm.content.attrib"/>
+      <zeroOrMore>
+        <ref name="treatment"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="treatment">
+    <element name="treatment">
+      <ref name="astm.content.attrib"/>
+      <ref name="region.treated"/>
+      <ref name="energy.MeV"/>
+      <ref name="tumor.dose.cGy"/>
+      <ref name="start.date"/>
+      <ref name="end.date"/>
+      <ref name="number.of.fractions"/>
+      <ref name="fraction.dose.cGy"/>
+    </element>
+  </define>
+  <define name="region.treated">
+    <element name="region.treated">
+      <ref name="astm.content.attrib"/>
+      <text/>
+    </element>
+  </define>
+  <define name="energy.MeV">
+    <element name="energy.MeV">
+      <ref name="astm.content.attrib"/>
+      <text/>
+    </element>
+  </define>
+  <define name="tumor.dose.cGy">
+    <element name="tumor.dose.cGy">
+      <ref name="astm.content.attrib"/>
+      <text/>
+    </element>
+  </define>
+  <define name="start.date">
+    <element name="start.date">
+      <ref name="astm.content.attrib"/>
+      <text/>
+    </element>
+  </define>
+  <define name="end.date">
+    <element name="end.date">
+      <ref name="astm.content.attrib"/>
+      <text/>
+    </element>
+  </define>
+  <define name="number.of.fractions">
+    <element name="number.of.fractions">
+      <ref name="astm.content.attrib"/>
+      <text/>
+    </element>
+  </define>
+  <define name="fraction.dose.cGy">
+    <element name="fraction.dose.cGy">
+      <ref name="astm.content.attrib"/>
+      <text/>
+    </element>
+  </define>
+</grammar>

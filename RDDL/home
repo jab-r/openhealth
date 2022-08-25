@@ -1,0 +1,219 @@
+<html 	xmlns="http://www.w3.org/1999/xhtml" 
+		xmlns:xlink="http://www.w3.org/1999/xlink"
+		xmlns:rddl="http://www.rddl.org/"
+		xml:base="http://www.rddl.org/home">
+<head>
+	<title>Home RDDL Directory</title>
+	<link rel="stylesheet" type="text/css" href="xrd.css" />
+</head>
+
+<body>
+<h1>A List of RDDL resources on the web</h1>
+<h2>Schemata</h2>
+<rddl:resource
+	id="Schematron"
+	xlink:title="Schematron Namespace"
+	xlink:arcrole="http://www.rddl.org/purposes#directory"
+	xlink:role="http://www.rddl.org/"
+	xlink:href="http://www.ascc.net/xml/schematron"
+>
+	<div class="resource">
+		<p>The <a href="http://www.ascc.net/xml/schematron">Schematron</a> namespace URI references a RDDL directory related to the Schematron.</p>
+	</div>
+</rddl:resource>
+<rddl:resource
+	id="XMLSchema"
+	xlink:title="XML Schema Namespace"
+	xlink:arcrole="http://www.rddl.org/purposes#directory"
+	xlink:role="http://www.rddl.org/"
+	xlink:href="http://www.w3.org/2001/XMLSchema"
+>
+	<div class="resource">
+		<p>The <a href="http://www.w3.org/2001/XMLSchema">XML Schema</a> namespace URI references a RDDL directory related to the XML Schema.</p>
+	</div>
+</rddl:resource>
+<rddl:resource
+	id="examplotron"
+	xlink:title="Examplotron Namespace"
+	xlink:arcrole="http://www.rddl.org/purposes#directory"
+	xlink:role="http://www.rddl.org/"
+	xlink:href="http://www.examplotron.org"
+>
+	<div class="resource">
+		<p>The <a href="http://www.examplotron.org">Examplotron</a> namespace URI references a RDDL directory related to the Examplotron Schema specification.</p>
+	</div>
+</rddl:resource>
+<rddl:resource
+	id="hook"
+	xlink:title="Hook Namespace"
+	xlink:arcrole="http://www.rddl.org/purposes#directory"
+	xlink:role="http://www.rddl.org/"
+	xlink:href="http://www.ascc.net/xml/hook/"
+>
+	<div class="resource">
+		<p>The <a href="http://www.ascc.net/xml/hook/">Hook</a> namespace URI references a RDDL directory related to the Hook Schema specification.</p>
+	</div>
+</rddl:resource>
+<h2>XSLT related stuff</h2>
+<div id="xslt-extensions">
+<h3>Community XSLT Extensions</h3>
+<ul>
+<rddl:resource
+	xlink:title="common"
+	xlink:arcrole="http://www.rddl.org/purposes#specification"
+	xlink:role="http://www.rddl.org/"
+	xlink:href="http://xmlns.opentechnology.org/xslt-extensions/common/"
+>
+	<div class="resource">
+		<li><a href="http://xmlns.opentechnology.org/xslt-extensions/common/">Common</a></li>
+	</div>
+</rddl:resource>
+<rddl:resource
+	xlink:title="sets"
+	xlink:arcrole="http://www.rddl.org/purposes#specification"
+	xlink:role="http://www.rddl.org/"
+	xlink:href="http://xmlns.opentechnology.org/xslt-extensions/sets/"
+>
+	<div class="resource">
+		<li><a href="http://xmlns.opentechnology.org/xslt-extensions/sets/">Sets</a></li>
+	</div>
+</rddl:resource>
+<rddl:resource
+	xlink:title="math"
+	xlink:arcrole="http://www.rddl.org/purposes#specification"
+	xlink:role="http://www.rddl.org/"
+	xlink:href="http://xmlns.opentechnology.org/xslt-extensions/math/"
+>
+	<div class="resource">
+		<li><a href="http://xmlns.opentechnology.org/xslt-extensions/math/">Math</a></li>
+	</div>
+</rddl:resource>
+<rddl:resource
+	xlink:title="functions"
+	xlink:arcrole="http://www.rddl.org/purposes#specification"
+	xlink:role="http://www.rddl.org/"
+	xlink:href="http://xmlns.opentechnology.org/xslt-extensions/functions/"
+>
+	<div class="resource">
+		<li><a href="http://xmlns.opentechnology.org/xslt-extensions/functions/">Functions</a></li>
+	</div>
+</rddl:resource>
+</ul>
+</div>
+<rddl:resource
+	id="Connect"
+	xlink:title="Connect Namespace"
+	xlink:arcrole="http://www.rddl.org/purposes#directory"
+	xlink:role="http://www.rddl.org/"
+	xlink:href="http://www.ascc.net/xml/connect/"
+>
+	<div class="resource">
+		<p>The <a href="http://www.ascc.net/xml/connect/">Connect 0.1</a> <cite>is a utility language and toolkit for wiring together programs that are made up of XSLT transformations. The use of a higher level language allows, in the simple implementation here, you to hide the invocation details of different implementations of XSLT.</cite></p>
+	</div>
+</rddl:resource>
+<h2>RSS 1.0</h2>
+<rddl:resource
+	id="RSS1.0"
+	xlink:title="RSS 1.0"
+	xlink:arcrole="http://www.rddl.org/purposes#directory"
+	xlink:role="http://www.rddl.org/"
+	xlink:href="http://purl.org/rss/1.0/"
+>
+	<div class="resource">
+		<p><a href="http://purl.org/rss/1.0/">The RSS 1.0 namespace URI</a></p>
+	</div>
+</rddl:resource>
+<rddl:resource
+	id="RSS_Taxo"
+	xlink:title="RSS Taxonomy module"
+	xlink:arcrole="http://www.rddl.org/purposes#directory"
+	xlink:role="http://www.rddl.org/"
+	xlink:href="http://groups.yahoo.com/group/rss-dev/files/Modules/Proposed/mod_taxonomy-1-2.html"
+>
+	<div class="resource">
+		<p><a href="http://groups.yahoo.com/group/rss-dev/files/Modules/Proposed/mod_taxonomy-1-2.html">Taxonomy Module</a></p>
+	</div>
+</rddl:resource>
+<h2>SWAG dictionaries</h2>
+<p>The dictonaries in <a href="http://webns.net/">http://webns.net</a> use RDDL as the XHTML format. Some of these are:</p>
+<ol>
+<rddl:resource
+	id="SWAG_RDFS"
+	xlink:title="SWAG RDF Schema"
+	xlink:arcrole="http://www.rddl.org/purposes#directory"
+	xlink:role="http://www.rddl.org/"
+	xlink:href="http://webns.net/rdfs/"
+>
+	<div class="resource">
+		<li><a href="http://webns.net/rdfs/">RDF Schema</a></li>
+	</div>
+</rddl:resource>
+<rddl:resource
+	id="SWAG_FOAF"
+	xlink:title="SWAG Friend Of A Friend"
+	xlink:arcrole="http://www.rddl.org/purposes#directory"
+	xlink:role="http://www.rddl.org/"
+	xlink:href="http://webns.net/foaf/"
+>
+	<div class="resource">
+		<li><a href="http://webns.net/foaf/">Friend Of A Friend</a></li>
+	</div>
+</rddl:resource>
+<rddl:resource
+	id="SWAG_DC"
+	xlink:title="SWAG Dublin Core"
+	xlink:arcrole="http://www.rddl.org/purposes#directory"
+	xlink:role="http://www.rddl.org/"
+	xlink:href="http://webns.net/dc/"
+>
+	<div class="resource">
+		<li><a href="http://webns.net/dc/">Dublin Core</a></li>
+	</div>
+</rddl:resource>
+</ol>
+<rddl:resource
+	id="XSet"
+	xlink:title="XSet"
+	xlink:arcrole="http://www.rddl.org/purposes#specification"
+	xlink:role="http://www.rddl.org/"
+	xlink:href="http://openhealth.org/XSet"
+>
+	<div class="resource">
+		<p><a href="http://www.openhealth.org/XSet">XSet</a> an XML property set production language.</p>
+	</div>
+</rddl:resource>
+<rddl:resource
+	id="XMTP"
+	xlink:title="XMTP"
+	xlink:arcrole="http://www.rddl.org/purposes#specification"
+	xlink:role="http://www.rddl.org/"
+	xlink:href="http://www.openhealth.org/xmtp#"
+>
+	<div class="resource">
+		<p><a href="http://www.openhealth.org/xmtp">XMTP</a> an RDF/XML mapping of MIME/RFC822.</p>
+	</div>
+</rddl:resource>
+<rddl:resource
+	id="XSLTunit"
+	xlink:title="XSLTunit"
+	xlink:arcrole="http://www.rddl.org/purposes#specification"
+	xlink:role="http://www.rddl.org/"
+	xlink:href="http://xsltunit.org/0/1/"
+>
+	<div class="resource">
+		<p><a href="http://xsltunit.org/0/1/">XSLTunit</a> XSLT unit testing.</p>
+	</div>
+</rddl:resource>
+<rddl:resource
+	id="VeniceBridge"
+	xlink:title="Venetica VeniceBridge"
+	xlink:arcrole="http://www.rddl.org/purposes#specification"
+	xlink:role="http://www.rddl.org/"
+	xlink:href="http://venetica.com/venicebridgecontent/"
+>
+	<div class="resource">
+		<p><a href="http://venetica.com/venicebridgecontent/">Venetica VeniceBridge</a>.</p>
+	</div>
+</rddl:resource>
+</body>
+</html>

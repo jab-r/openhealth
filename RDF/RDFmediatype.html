@@ -1,0 +1,97 @@
+
+<html>
+<head>
+<title>RDF Pointer: The RDF fragment identifier syntax</title><link rel="stylesheet" type="text/css" href="../RDDL/xrd.css"/>
+</head>
+<body>
+<h1>A fragment identifier syntax for RDF.</h1>
+<h3><A href="mailto:jonathan@openhealth.org">Jonathan Borden</A> <a href="http://www.openhealth.org">The Open Healthcare Group</a>, May 3, 2001</h3>
+<p>This paper proposes a fragment identifier syntax for the MIME media types: 
+<em>text/rdf+xml</em> and <em>application/rdf+xml. </em>This syntax is intended 
+to be compatible with and an extension of the fragment identifier syntax for 
+<em>text/xml</em> and <em>application/xml</em> namely XPointer.</p>
+<p>Three forms are proposed:</p>
+<ol>
+	<li><strong>Raw names</strong>. The set of raw names in a 
+  document is formed by the set of values of the rdf:ID attribute.
+	<li><strong>Triple syntax</strong>. A triple is defined by the extension 
+  <em>triple</em> 
+  containing the parameters: predicate, subject and object. This syntax is 
+  similar to Prolog syntax though predicate, subject and object are all URIs.
+	<li><strong>RDF Path</strong> A path 
+  syntax, analagous to XPath, for RDF.</li>
+</ol><h2>Raw names</h2>
+<p>Raw names are an uncontroversial feature of the RDF 
+fragment identifier syntax. The rdf:ID attribute serves like an ID attribute for 
+RDF but without use of a validating XML parser nor DTD. The value of the rdf:ID 
+attribute must be unique to the document as with an ID type attribute.</p><h2>Triple syntax</h2>
+<p>The triple syntax serves as a quoting mechanism for RDF 
+triples, and leverages the syntax of a triple in Prolog. The proposed triple 
+syntax is&nbsp;a purely syntactic mechanism for 'quoting' an RDF triple which itself can be used as a 
+URI reference, is an extension of XPointer and hence compatible with the general 
+XML family of specifications. The 'triple' XPointer extension is defined to have 3 
+parameters, a predicate URI reference, a subject URI reference and an object URI reference. 
+Similarly to the N3 notation, the predicate, subject and object may be represented as a QName or 
+alternatively as an expanded URI reference delimited between "&lt;" and "&gt;".</p><h2>RDF Path</h2>
+<p>XPointer provides for an extension mechanism to be used with XML media types 
+other than text/xml or application/xml, in this case: 
+application/rdf+xml.</p>
+<p>The basic triple syntax defines a set of triples throught the use of wildcards and variables</p>
+<ul>
+	<li><strong>Wildcard</strong> (*,rdf:type,*) identifies all triples of predicate
+<code>rdf:type</code>
+	<li><strong>Variable</strong> (*, rdf:type, ?x) identifies all triples of predicate
+<code>rdf:type</code>and binds the object to the variable
+<code>x</code>
+	<li><strong>Subseting</strong> (*, rdf:type, ?x)(?x, rdf:Property foo:bar) selects all statements with predicate
+<code>rdf:type</code>whose object has an
+<code>rdf:Property</code>
+<code>foo:bar</code>.
+	This is abbrviated as
+<code>rdf:type[rdf:Property="foo:bar"]</code></li>
+</ul><h2>Triple syntax examples</h2>
+<p>&lt;rdf:Description rdf:ID="foo"&gt;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;example:bar 
+rdf:resource="#baz"/&gt;</p>
+<p>&lt;/rdf:Description&gt;</p>
+<p>is quoted as:</p>
+<p>#xmlns(example=http://example.org) triple(<a href="http://example.org#bar,#foo,#baz">example:bar,:foo,:baz</a>)</p>
+<p>another example:</p>
+<p>&lt;rdf:Description rdf:about="#Jon"&gt;</p>
+<p>&nbsp;&nbsp;&nbsp; &lt;example:says&gt;This is a good 
+thing&lt;/example:says&gt;</p>
+<p>&lt;/rdf:Description&gt;</p>
+<p>is quoted as:</p>
+<p>#triple(<a href="http://example.org.org#says">example:says</a>, &lt;#Jon&gt;, 
+&lt;data:text/plain,This is a good thing&gt;)</p>
+<p>and another</p>
+<p>&lt;rdf:Description rdf:about="#Jon"&gt;</p>
+<p>&nbsp;&nbsp;&nbsp; &lt;example:states&gt;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;rdf:Description 
+rdf:about="#foo"&gt;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;example:bar rdf:resource="#baz/&gt;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/rdf:Description&gt;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; &lt;/example:states&gt;</p>
+<p>&lt;/rdf:Description&gt;</p>
+<p>#triple(<a href="http://example.org#states">example:states</a>, 
+:Jon, &lt;#triple(<a href="http://example.org#bar">example:bar</a>, :foo, 
+:baz&gt;)</p>
+<h2>Collections:</h2>
+<p>When any of the predicate, subject or object parameters are blank, the triple 
+fragment identifier may match a collection of statements. A particular statement 
+is selected using the standard XPointer/XPath index syntax, and as in 
+XPath/XPointer the statements are considered ordered in document order.</p>
+<p>For example:</p>
+<p>&lt;rdf:Seq rdf:ID="coll"&gt;</p>
+<p>&nbsp;&nbsp;&nbsp; &lt;rdf:li rdf:resource="#foo"/&gt;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&lt;rdf:li rdf:resource="#bar"/&gt;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; &lt;rdf:li rdf:resource="#baz/&gt;</p>
+<p>&lt;/rdf:Seq&gt;</p>
+<p>#triple(rdf:li,:coll,)[1]</p>
+<h2>Quoting statements in N3</h2>
+<p>&lt;#Pat&gt; &lt;#states&gt; 
+&lt;#triple(foo:example,:bar,:baz)&gt;</p>
+
+</body>
+</html>

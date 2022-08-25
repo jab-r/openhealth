@@ -1,0 +1,88 @@
+<!-- Hypertext Module -->
+
+<!-- Depends on text module. -->
+
+<grammar xmlns="http://www.thaiopensource.com/trex">
+
+<define name="a">
+  <element name="a">
+    <ref name="a.attlist"/>
+    <concur>
+      <ref name="Inline.model"/>
+      <ref name="a.concur"/>
+    </concur>
+  </element>
+</define>
+
+<define name="a.concur">
+  <grammar>
+    <start name="not.excluded">
+      <zeroOrMore>
+        <choice>
+          <element>
+	    <not>
+	      <name>a</name>
+	    </not>
+            <zeroOrMore>
+              <attribute>
+	        <anyName/>
+	      </attribute>
+            </zeroOrMore>
+	    <ref name="not.excluded"/>
+          </element>
+          <anyString/>
+	</choice>
+      </zeroOrMore>
+    </start>
+  </grammar>
+</define>
+
+<define name="a.attlist">
+  <ref name="Common.attrib"/>
+  <optional>
+    <attribute name="href">
+      <ref name="URI.datatype"/>
+    </attribute>
+  </optional>
+  <optional>
+    <attribute name="charset">
+      <ref name="Charset.datatype"/>
+    </attribute>
+  </optional>
+  <optional>
+    <attribute name="type">
+      <ref name="ContentType.datatype"/>
+    </attribute>
+  </optional>
+  <optional>
+    <attribute name="hreflang">
+      <ref name="LanguageCode.datatype"/>
+    </attribute>
+  </optional>
+  <optional>
+    <attribute name="rel">
+      <ref name="LinkTypes.datatype"/>
+    </attribute>
+  </optional>
+  <optional>
+    <attribute name="rev">
+      <ref name="LinkTypes.datatype"/>
+    </attribute>
+  </optional>
+  <optional>
+    <attribute name="accesskey">
+      <ref name="Character.datatype"/>
+    </attribute>
+  </optional>
+  <optional>
+    <attribute name="tabindex">
+      <ref name="Number.datatype"/>
+    </attribute>
+  </optional>
+</define>
+
+<define name="Inline.class" combine="choice">
+  <ref name="a"/>
+</define>
+
+</grammar>

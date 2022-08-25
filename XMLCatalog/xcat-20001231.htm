@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//XML Catalog//DTD XHTML Strict 1.0//EN" "xcat-xhtml1-strict.dtd">
+<html xmlns="http://www.openhealth.org/XMLCatalog/"
+	  xmlns:xlink="http://www.w3.org/1999/xlink">
+<head>
+<title>XML Catalog Format</title>
+     <link 
+	 	type="text/xml-dtd"
+		rel="alternate"
+		xlink:type="simple"
+		xlink:title="XHTML1 Strict DTD"
+		xlink:role="http://www.w3.org/tr/xhtml1/DTD/xhtml1-strict.dtd"
+		xlink:arcrole="http://www.w3.org/tr/xhtml1"
+		xlink:href="xcat-xhtml1-strict.dtd" 
+		public="-//XML Catalog//DTD XHTML Strict 1.0//EN"
+		version="1.0" />
+	   
+ 	<link type="text/xml-dtd"
+	   rel="alternate"
+	   xlink:type="simple"
+	   xlink:title="XHTML1 Transitional DTD"
+	   xlink:role="http://www.w3.org/tr/xhtml1/DTD/xhtml1-transitional.dtd"
+	   xlink:arcrole="http://www.w3.org/tr/xhtml1"
+	   xlink:href="xcat-xhtml1-transitional.dtd" 
+	   public="-//XML Catalog//DTD XHTML Transitional 1.0//EN"
+	   version="1.0" />
+
+	<link type="text/xml-dtd"
+	   rel="alternate"
+	   xlink:type="simple"
+	   xlink:title="XHTML1 Frameset DTD"
+	   xlink:role="http://www.w3.org/tr/xhtml1/DTD/xhtml1-frameset.dtd"
+	   xlink:arcrole="http://www.w3.org/tr/xhtml1"
+	   xlink:href="xcat-xhtml1-frameset.dtd" 
+	   public="-//XML Catalog//DTD XHTML Frameset 1.0//EN"
+	   version="1.0" />
+	   
+     <link type="text/xml-dtd"
+	   rel="alternate"
+	   xlink:type="simple"
+	   xlink:arcrole="http://www.w3.org/tr/xhtml11"
+	   xlink:href="http://www.openhealth.org/XMLCatalog/xcat-xhtml11.dtd" 
+	   public="-//XML Catalog//DTD XHTML Strict 1.1//EN"
+	   version="1.1" />
+	 <link type="application/xml"
+	   rel="alternate"
+	   xlink:type="simple"
+	   xlink:title="XML Schema"
+	   xlink:arcrole="http://www.w3.org/2000/10/XMLSchema"
+	   xlink:href="http://www.openhealth.org/XMLCatalog/xcat-xhtml1.xsd" 
+	   public="-//XML Catalog//XSD XHTML 1.0//EN"
+	   version="1.0" />
+	 <link type="application/SGML-Open-Catalog"
+	   rel="alternate"
+	   xlink:type="simple"
+	   xlink:title="OASIS Catalog"
+	   xlink:arcrole="http://www.oasis-open.org/html/a401.htm"
+	   xlink:href="xcat-xhtml.soc" 
+	   public="-//XML Catalog//SOC XCAT XHTML 1.0//EN"
+	   version="1.0" />
+
+
+</head>
+<body>
+<h1>XML Catalog Format</h1>
+<p>This is an early version of the specification. - Jonathan Borden, December 31,2000</p>
+<p>Note: you are looking at the actual XML Catalog for the "http://www.openhealth.org/XMLCatalog/" namespace.
+</p>
+<h2>Introduction</h2>
+<p>This proposal defines a format for an XML Catalog. An 
+XML Catalog serves as a text description of an XML Namespace [<a href="#xml-names">1</a>] and includes links 
+to resources associated with the namespace such as schemata. An XML Catalog may 
+also map Formal Public Identifiers into System Identifiers defined as URI 
+references [<a href="#RFC2396">2</a>]. It is expected that an XML Catalog will be returned on resolving a 
+namespace URI.</p>
+<p>The format of an XML Catalog is XHTML [<a href="#rec-xhtml1">3</a>]. Links are defined as XLinks [<a href="#rec-xlink">4</a>]
+originating from LINK elements within the XHTML header.</p>
+<a id="link"><h2>link</h2></a>
+An XHTML link. XML Catalog extends XHTML. The XHTML 1.0 DTD has been directly modified to add attributes to the link element. 
+The XHTML 1.1 DTD has been extended using XHTML Modulatization.
+<pre>
+&lt;!ELEMENT link                      -- a media-independent link -->
+&lt;!ATTLIST link
+  %attrs;                              -- %coreattrs, %i18n, %events --
+  charset     %Charset;      #IMPLIED  -- char encoding of linked resource --
+  href        %URI;          #IMPLIED  -- URI for linked resource --
+  hreflang    %LanguageCode; #IMPLIED  -- language code --
+  type        %ContentType;  #IMPLIED  -- advisory content type --
+  rel         %LinkTypes;    #IMPLIED  -- forward link types --
+  rev         %LinkTypes;    #IMPLIED  -- reverse link types --
+  media       %MediaDesc;    #IMPLIED  -- for rendering on these media --
+  xlink:type  (simple)		 #FIXED "simple"
+  xlink:role  CDATA			 #IMPLIED
+  xlink:arcrole CDATA		 #IMPLIED
+  xlink:title CDATA			 #IMPLIED
+  xlink:href	CDATA		 #REQUIRED
+  public	  CDATA			 #IMPLIED	-- public identifier
+  version	  CDATA			 #IMPLIED
+  &gt;
+</pre>
+
+<p>An example:</p>
+<p></p>
+<pre>&lt;html xmlns="http://www.openhealth.org/XMLCatalog/"
+	xmlns:xcat="http://www.openhealth.org/XMLCatalog/"&gt;
+   &lt;head&gt;
+     &lt;link type="text/xml-dtd"
+	   rel="alternate"
+	   xlink:type="simple"
+	   xlink:role="http://www.w3.org/tr/xhtml1/DTD/xhtml1-strict.dtd"
+	   xlink:title="XHTML1 Strict DTD"
+	   xlink:arcrole="<a href="http://www.w3.org/tr/xhtml1">http://www.w3.org/tr/xhtml1</a>"
+	   xlink:href="<a href="xcat-xhtml1-strict.dtd" title="XML Catalog XHTML 1.0 Strict DTD">xcat-xhtml1-strict.dtd</a>" 
+	   public="-//XML Catalog//DTD XHTML Strict 1.0//EN"
+	   version="1.0" /&gt;
+	   
+ 	&lt;link type="text/xml-dtd"
+	   rel="alternate"
+	   xlink:type="simple"
+	   xlink:role="http://www.w3.org/tr/xhtml1/DTD/xhtml1-transitional.dtd"
+	   xlink:title="XHTML1 Transitional DTD"
+	   xlink:arcrole="<a href="http://www.w3.org/tr/xhtml1">http://www.w3.org/tr/xhtml1</a>"
+	   xlink:href="<a href="xcat-xhtml1-transitional.dtd">xcat-xhtml1-transitional.dtd</a>" 
+	   public="-//XML Catalog//DTD XHTML Transitional 1.0//EN"
+	   version="1.0" /&gt;
+
+	&lt;link type="text/xml-dtd"
+	   rel="alternate"
+	   xlink:type="simple"
+	   xlink:role="http://www.w3.org/tr/xhtml1/DTD/xhtml1-frameset.dtd"
+	   xlink:title="XHTML1 Frameset DTD"
+	   xlink:arcrole="<a href="http://www.w3.org/tr/xhtml1">http://www.w3.org/tr/xhtml1</a>"
+	   xlink:href="<a href="xcat-xhtml1-frameset.dtd">xcat-xhtml1-frameset.dtd</a>" 
+	   public="-//XML Catalog//DTD XHTML Frameset 1.0//EN"
+	   version="1.0" /&gt;
+	   
+    &lt;link type="text/xml-dtd"
+	   rel="alternate"
+	   xlink:type="simple"
+	   xlink:arcrole="<a href="http://www.w3.org/tr/xhtml11">http://www.w3.org/tr/xhtml11</a>"
+	   xlink:href="<a href="xcat-xhtml11.dtd">xcat-xhtml11.dtd</a>" 
+	   public="-//XML Catalog//DTD XHTML 1.1//EN"
+	   version="1.1" /&gt;
+	   
+ 	&lt;link 
+	   type="application/xml"
+	   rel="alternate"
+	   xlink:type="simple"
+	   xlink:title="XML Schema"
+	   xlink:arcrole="<a href="http://www.w3.org/2000/10/XMLSchema">http://www.w3.org/2000/10/XMLSchema</a>"
+	   xlink:href="<a href="xcat-xhtml1.xsd">xcat-xhtml1.xsd</a>" 
+	   public="-//XML Catalog//XSD XHTML 1.0//EN"
+	   /&gt;
+
+	&lt;link 
+	   type="application/rdf+xml"
+	   rel="alternate"
+	   xlink:type="simple"
+	   xlink:title="RDF Schema"
+	   xlink:arcrole="<a href="http://www.w3.org/2000/01/rdf-schema" title="RDF Schema 1.0">http://www.w3.org/2000/01/rdf-schema</a>"
+	   xlink:href="http://www.openhealth.org/XMLCatalog/xcat-schema.rdfs" 
+	   public="-//XML Catalog//RDFS XML Catalog 1.0//EN"
+	   /&gt;
+	&lt;link 
+	   type="application/SGML-Open-Catalog"
+	   rel="alternate"
+	   xlink:type="simple"
+	   xlink:title="OASIS-Catalog"
+	   xlink:arcrole="<a href="http://www.oasis-open.org/html/a401.htm">http://www.oasis-open.org/html/a401.htm</a>"
+	   xlink:href="<a href="xcat-xhtml.soc">xcat-xhtml.soc</a>" 
+	   public="-//XML Catalog//SOC XCAT XHTML 1.0//EN"
+	   /&GT;
+ &lt;/head&gt;
+ &lt;body&gt;...description goes here ...&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<a id="type"><h2>type [optional]</h2></a>
+<p>The value of the "type" attribute contains a content type.</p>
+<a id="public"><h2>public [optional]</h2></a>
+<p>The value of the "public" attribute contains an optional formal public identifier.</p>
+<a id="version"><h2>version [optional]</h2></a>
+<p>The value of the "version" attribute.</p>
+<a id="xlink:role"><h2>xlink:role</h2></a>
+<p>The xlink:role of the link can be used to distinguish among related schemata such as for strict, transitional and frameset</p>
+<a id="xlink:arcrole"><h2>xlink:arcrole</h2></a>
+<p>The xlink:arcrole references a schema defining the referenced document, e.g. xhtml, XSD, RDF Schema</p>
+<a id="xlink:href"><h2>xlink:href</h2></a>
+<p>The xlink:href contains a mandatory URI referencing the target document</p>
+<a id="References"><h2>References</h2></a>
+<ol>
+<li type="1"><a id="xml-names"><a href="http://www.w3.org/TR/REC-xml-names">XML Names</a></a></li>
+<li type="1"><a id="rfc2396"><a href="http://www.ietf.org/rfc/rfc2396.txt">RFC 2396</a></a></li>
+<li type="1"><a id="rec-xhtml1"><a href="http://www.w3.org/tr/xhtml1">XHTML 1.0</a></a></li>
+<li type="1"><a id="rec-xlink"><a href="http://www.w3.org/tr/xlink">XLink</a></a></li>
+</ol>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!--
+	Copyright (c) 1998 Jonathan A. Borden, ALL RIGHTS RESERVED
+	-->
+<!--
+	<select>
+		<from><item name="study"/></from>
+		<what><item name="StudyID"/>
+			<item name="Name"/>
+			<item name="DOB"/>
+			</what>
+		<where>
+			<and>
+				<eq item="StudyID" dt="int">1234</eq>
+				<eq item="DOB" dt="date">10/10/1923</eq>
+				<like item="Name">Fredrick _. Smi%</like>
+			</and>
+		</where>
+		<order direction="ascending">
+			<item name="StudyID"/>
+		</order>
+	</select>
+
+	->
+
+	SELECT StudyID,Name,DOB 
+		FROM study
+		WHERE
+			StudyID = 1234 AND
+			DOB = '%10/10/1923%' AND
+			Name LIKE 'Fredrick _. Smi%'
+		ORDER BY StudyID ASC
+-->
+<!ENTITY % ops "eq|like|lt|le|gt|ge|not|neq|exists|and|or|in|between">
+<!ENTITY % value "int|string|float|date|binary">
+<!ENTITY % op_attr
+	"item NMTOKEN #REQUIRED">
+<!--	 dt (int|float|string|date|binary) &quot;string&quot;">
+-->
+<!ELEMENT select (from*|what?|where?|order?)>
+<!ATTLIST select
+		xmlns:xsql "urn:com:xpository:xsql" #FIXED>
+<!ELEMENT from (item)+>>
+<!ELEMENT what (item)+>
+<!ELEMENT where (%ops;)>
+<!ELEMENT eq (%value;)>
+<!ATTLIST eq % op_attr;>
+<!ELEMENT neq (%value;)>
+<!ATTLIST neq 
+		% op_attr;>
+<!ELEMENT lt (%value;)>
+<!ATTLIST lt 
+		% op_attr;>
+<!ELEMENT gt (%value;)>
+<!ATTLIST gt 
+		% op_attr;>
+<!ELEMENT ge (%value;)>
+<!ATTLIST ge 
+		% op_attr;>
+<!ELEMENT le (%value;)>
+<!ATTLIST le 
+		% op_attr;>
+<!ELEMENT like #PCDATA>
+<!ATTLIST like 
+		item NMTOKEN #REQUIRED>
+<!ELEMENT exists (select)>
+<!ELEMENT order (item)+>
+<!ELEMENT item EMPTY>
+<!ATTLIST item
+		name NMTOKEN #REQUIRED>
+<!ELEMENT and (%ops;)+>
+<!ELEMENT or (%ops;)+>
+<!ELEMENT not (%ops;)>
+<!ELEMENT in (%value;)+>
+<!ATTLIST in 
+		% op_attr;>
+<!ELEMENT between (%value;)+>
+<!ATTLIST between 
+		% op_attr;>
+
+
+		 

@@ -1,0 +1,1493 @@
+options {
+  STATIC = false;
+  UNICODE_INPUT = true;
+}
+
+PARSER_BEGIN(ONX)
+
+package org.openhealth.wowg.onx;
+
+import java.util.Hashtable;
+import java.util.Enumeration;
+import java.util.Vector;
+
+public class ONX {
+
+  private static class AnnotationsImpl implements Annotations {
+    private Vector attributes = new Vector();
+    private Vector childElements = new Vector();
+    private Vector followingElements = new Vector();
+    public boolean empty() {
+      return (attributes.size() == 0
+              && childElements.size() == 0
+              && followingElements.size() == 0);
+    }
+    public int getAttributeCount() {
+      return attributes.size()/3;
+    }
+    public String getAttributeNamespace(int i) {
+      return (String)attributes.elementAt(i*3);
+    }
+    public String getAttributeName(int i) {
+      return (String)attributes.elementAt(i*3 + 1);
+    }
+    public String getAttributeValue(int i) {
+      return (String)attributes.elementAt(i*3 + 2);
+    }
+    private void addAttribute(String ns, String name, String value) {
+      attributes.addElement(ns);
+      attributes.addElement(name);
+      attributes.addElement(value);
+    }
+    public int getFollowingElementCount() {
+      return followingElements.size();
+    }
+    public String getFollowingElement(int i) {
+      return (String)followingElements.elementAt(i);
+    }
+    private void addFollowingElement(String s) {
+     followingElements.addElement(s);
+    }
+    public int getChildElementCount() {
+      return childElements.size();
+    }
+    public String getChildElement(int i) {
+      return (String)childElements.elementAt(i);
+    }
+    private void addChildElement(String s) {
+     childElements.addElement(s);
+    }
+  }
+
+  private static final String xmlUri = "http://www.w3.org/XML/1998/namespace";
+  private static final String INHERIT = "#inherit";
+  private String defaultNamespace = INHERIT;
+  private SchemaBuilder sb;
+  private Hashtable namespaceTable = new Hashtable();
+  private Hashtable datatypesTable = new Hashtable();
+  private static String unquote(String s) {
+    char quoteChar = s.charAt(0);
+    s = s.substring(1, s.length() - 1);
+    for (int i = 0; (i = s.indexOf(quoteChar, i)) >= 0; i++)
+      s = s.substring(0, i) + s.substring(i + 1);
+    return s;
+  }
+  private static String normalizeNewlines(String str) {
+    int i = str.indexOf('\r');
+    if (i < 0)
+      return str;
+    StringBuffer buf = new StringBuffer();
+    for (i = 0; i < str.length(); i++) {
+      char c = str.charAt(i);
+      if (c == '\r') {
+	buf.append('\n');
+	if (i + 1 < str.length() && str.charAt(i + 1) == '\n')
+	  i++;
+      }
+      else
+	buf.append(c);
+    }
+    return buf.toString();
+  }
+  public String getPreferredNamespace() {
+    if (defaultNamespace == INHERIT)
+      return null;
+    return defaultNamespace;
+  }
+  private void emitNamespaceDecls(boolean end) {
+    for (Enumeration prefixes = namespaceTable.keys(); prefixes.hasMoreElements();) {
+      String prefix = (String)prefixes.nextElement();
+      String ns = (String)namespaceTable.get(prefix);
+      if (ns != INHERIT && ns.length() != 0 && !prefix.equals("xml")) {
+	if (end)
+	  sb.endPrefixBinding();
+        else
+          sb.startPrefixBinding(prefix, ns);
+      }
+    }
+  }
+}
+
+PARSER_END(ONX)
+
+void Input(SchemaBuilder sb) throws SyntaxException :
+{}
+{
+  { this.sb = sb; }
+  (<BYTE_ORDER_MARK>)?
+  // If it starts with a non-reserved word it must be a grammar,
+  // because there would be no way to define an identifier
+  Preamble()
+  { emitNamespaceDecls(false); }
+  (LOOKAHEAD(1) Ontology() | Expr())
+  { emitNamespaceDecls(true); }
+  <EOF>
+}
+
+void Ontology() throws SyntaxException :
+{
+  Annotations a;
+}
+{
+  a = Annotations()
+  { sb.ontology(a); }
+  (OntComponent())+
+  { sb.finishOntology(); }
+}
+
+void Preamble() :
+{}
+{
+  (NamespaceDecl() | DatatypesDecl())*
+  { namespaceTable.put("xml", xmlUri); }
+}
+
+void NamespaceDecl() :
+{
+  String prefix = null;
+  boolean isDefault = false;
+  String namespaceName;
+}
+{
+  (("namespace" prefix = UnprefixedName())
+    | ("default" { isDefault = true; }
+      "namespace" (prefix = UnprefixedName())?))
+  "="
+  namespaceName = NamespaceName()
+  {
+    if (isDefault)
+      defaultNamespace = namespaceName;
+    if (prefix != null)
+      namespaceTable.put(prefix, namespaceName);
+  }
+}
+
+String NamespaceName() :
+{
+  String r;
+}
+{
+  (r = Literal() | "inherit" { r = INHERIT; })
+  { return r; }
+}
+
+void ImportDecl() :
+{
+  String prefix;
+  String uri;
+}
+{
+  "import" uri = Literal()
+  {
+    importsTable.put(uri);
+  }
+}
+
+void DatatypesDecl() :
+{
+  String prefix;
+  String uri;
+}
+{
+  "datatypes" prefix = UnprefixedName() "=" uri = Literal()
+  {
+    datatypesTable.put(prefix, uri);
+  }
+}
+/* ********** */
+void StartExpr() throws SyntaxException :
+{}
+{
+	"("
+}
+void EndExpr() throws SyntaxException :
+{}
+{
+	")"
+}
+void OntComponent() throws SyntaxException :
+{
+}
+{
+	Class() |
+	Individual() |
+	Property() |
+	DatatypeProperty()
+}
+String URIref() throws SyntaxException :
+{
+	String uriref;
+}
+{ 
+	"<" uriref = Literal() ">"
+	{ return uriref; }
+}
+String QName() throws SyntaxException :
+{
+  Token t;
+  String value;
+}
+{
+  ( t = <PREFIXED_NAME> )
+  {
+    String qn = t.image;
+    int colon = qn.indexOf(':');	
+    String prefix = qn.substring(0, colon);
+	String local = qn.substring(colon+1);
+    String ns = (String)namespaceTable.get(prefix);
+    if (ns == null)
+      throw new UndeclaredPrefixException(prefix, t);
+	
+	 value = ns + local;
+	}
+	| ( t = <LITERAL> )
+	{
+		value = "#" + t.image;
+	}
+	{ return value; }
+}
+/** 
+2.1 Class Definitions 
+The following definition defines a class as precisely the conjunction of a collection of superclasses and a collection of slot definitions. 
+**/
+
+// DefinedClassDescF ::= (super|slot)*
+
+/**
+The next definition is the same, except that the defined class is an unspecified subclass of the conjunction. 
+**/
+// PrimitiveClassDescF ::= (super|slot)*
+
+/**
+It is also possible to define a class as a set of individuals, as follows. 
+**/
+// EnumeratedClassDescF ::= Individual*
+
+/**
+Finally, it is possible to require that a collection of classes have the same members, or to be pairwise disjoint. 
+**/
+/*
+SameClassAsDescF ::= Class*
+DisjointDescF ::= Class*
+
+ClassF ::= "frame" classID? (
+		SimpleClassDescF|
+		DefinedClassDescF|
+		EnumeratedClassDescF
+		)
+*/
+/**
+2.2 Property Definitions 
+The following definitions make two properties be the same, or make one property be a sub-property of another. 
+**/
+void SamePropertyAs() throws SyntaxException :
+{}
+{
+	"samePropertyAs" { ob.samePropertyAs(); }
+	StartExpr() 
+		( Property() )+
+	EndExpr()
+	{ob.endSamePropertyAs();}
+} 
+void SubPropertyOf() throws SyntaxException : 
+{}
+{
+	"subPropertyOf" { ob.subPropertyOf(); } 
+	StartExpr() 
+		( Property() )+ 
+	EndExpr()
+	{ ob.endSubPropertyOf(); }
+}
+
+/**
+Properties can be given domains and ranges. The domain of a property is just a class. The range of a property is either a class or datatype range (a datatype or a set of data values). 
+**/
+void Domain() throws SyntaxException :
+{}
+{
+	"domain" { ob.domain(); } 
+	StartExpr() 
+		( Class() )+ 
+	EndExpr()
+	{ob.endDomain(); }
+}
+/**
+A datatypeRange is either a datatype or a set of data values, which consist of a datatype and the lexical representation of a data value in that datatype. All the data values in a set must have the same datatype. 
+**/
+void DatatypeRange() throws SyntaxException :
+{
+	String id = null;
+}
+{	("datatype" id = datatypeID()) 
+			{ ob.datatypeRange(id); }
+	          | { ob.datatypeRange();} oneOfDataValue()
+	{ ob. endDatatypeRange(); }
+}
+/**
+2.3 Supporting Productions 
+Superclasses are specified as one or more class ID's. 
+**/
+
+void superClass() throws SyntaxException :
+{}
+{
+	"subClassOf" { ob.subClassOf(); } StartExpr() Class() EndExpr()
+	{ob.endSubClassOf(); }
+}
+
+void DataValue() throws SyntaxException :
+{
+	String id;
+	String value;
+}
+{ 
+	id = datatypeID() "(" value = Literal() ")"
+	{ ob.dataValue(id,value); }
+}
+void oneOfDataValue() throws SyntaxException :
+{}
+{
+	 DataValue() ("|" DataValue() )*
+}
+/**
+Datatypes, classes, properties, and individuals have IDs that are QNames. Datatype IDs are restricted to a known set of QNames. Class IDs are any other QName. Both property and individual IDs have no restrictions, and can be the same as datatype, class, and property names. 
+**/
+String owlName() throws SyntaxExtension :
+{
+	String uriref;
+}
+{ 
+	uriref = URIref() | uriref = QName()
+	{ return uriref; }
+}
+String datatypeID() throws SyntaxException :
+{
+	String id;
+}
+{   id = owlName()
+	{ return id; }
+}
+String classID() throws SyntaxException :
+{
+	String id;
+}
+{   id = owlName()
+	{ return id; }
+}
+String propertyID() throws SyntaxException :
+{
+	String id;
+}
+{   id = owlName()
+	{ return id; }
+}
+String individualID() throws SyntaxException :
+{
+	String id;
+}
+{   id = owlName()
+	{ return id; }
+}
+
+/**
+Slot definitions place restrictions on properties in classes. The range part means that all values must belong to class or datatype range. The modality part is either required, meaning that there must be at least one value for the property, or optional, producing no restriction. If the modality part is not present, there is no restriction. The multiplicity part is either singlevalued, meaning that there must be at most one value for the property, or multivalued, producing no restriction. If the multiplicity part is not present, there is no restriction. Each required part means that there must be at least one value for the property that belongs to the class or datatype range. Each value part means that the individual or data value must be a value for the property. 
+**/
+
+void Slot() throws SyntaxException :
+{}
+{	
+	Property() | DatatypeProperty()
+}
+
+/**
+There are also definitions that make properties single-valued (i.e., partial functions), make their inverse be single-valued, or make the properties be transitive. The latter two definitions also have the effect of making the properties have a range restricted to individuals. 
+**/
+/*
+<definition> ::= SingleValuedProperty( <propertyID> )
+<definition> ::= UniquelyIdentifyingProperty( <propertyID> )
+<definition> ::= TransitiveProperty( <propertyID> )
+*/
+void Property() throws SyntaxException :
+{
+	String id = null;
+	int minc = -1;
+	int maxc = -1;
+	int mult = 1;
+	int c = -1;
+}
+{
+     "property" (id = propertyID())? { ob.property(id); } |
+	 "uniquely" "identifying" "property" (id = propertyID())? {ob.uniquelyIdentifyingProperty(id); } |
+	 "transitive" "property" (id = propertyID())? {ob.transitiveProperty(id); } |
+	  "single" "valued" "property" (id = propertyID())? {ob.singleValuedProperty(id); }
+	 StartExpr() 
+	 		(
+			Range() |
+			modality() |
+			mult = multiplicity() |
+			c = cardinality() |
+			minc = minCardinality () |
+			maxc = maxCardinality () |
+			Required() |
+			Value () )*
+	EndExpr()
+	{ if (mult == 0) c = 1;
+	  if (c == -1)
+		{
+			ob.minCardinality(minc);
+			ob.maxCardinality(maxc);
+		}
+	   else
+	   		ob.cardinality(c);
+	ob.endProperty(); }
+}
+void DatatypeProperty() throws SyntaxException :
+{
+	String id = null;
+	int minc = -1;
+	int maxc = -1;
+	int mult = 1;
+	int c = -1;
+}
+{
+     "datatype" "property" (id = propertyID())? { ob.datatypeProperty(id); } |
+
+	 StartExpr() 
+	 		(
+			Range() |
+			modality() |
+			mult = multiplicity() |
+			c = cardinality() |
+			minc = minCardinality () |
+			maxc = maxCardinality () |
+			RequiredDatatype() |
+			DataValue () )*
+	EndExpr()
+	{ if (mult == 0) c = 1;
+	  if (c == -1)
+		{
+			ob.minCardinality(minc);
+			ob.maxCardinality(maxc);
+		}
+	   else
+	   		ob.cardinality(c);
+	ob.endDatatypeProperty(); }
+}
+
+void Required() throws SyntaxException :
+{}
+{ 
+	"required" { ob.required(null,true); } 
+	(StartExpr() 
+		Class() 
+	EndExpr())? {ob.endRequired(); }
+}
+void RequiredDatatype() throws SyntaxException :
+{}
+{ 
+	"required" { ob.requiredDatatype(null,true); } 
+	StartExpr() 
+		DataValue() 
+	EndExpr() {ob.endRequiredDatatype(); }
+}
+void Value() throws SyntaxException :
+{}
+{ 
+	"value" { ob.value(); } 
+	StartExpr() 
+		Individual() 
+	EndExpr() {ob.endValue(); }
+}
+
+void modality() throws SyntaxException :
+{
+}
+{
+   "optional" { ob.required(null,false); }
+  { ob.endRequired(); }
+}
+boolean multiplicity() throws SyntaxException :
+{ 
+	boolean val;
+}
+{
+	("singlevalued" { val = false; }) | 
+	("multivalued" { val = true; })
+	{return val;}
+}
+int cardinality() throws SyntaxException :
+{
+	token t;
+}
+{ 
+	"cardinality" t = <INTEGER_LITERAL>
+	{ return Integer.parseInt(t.image); }
+}
+int minCardinality() throws SyntaxException :
+{
+	token t;
+}
+{ 
+	"minCardinality" t = <INTEGER_LITERAL>
+	{ return Integer.parseInt(t.image); }
+}
+int maxCardinality() throws SyntaxException :
+{
+	token t;
+}
+{ 
+	"maxCardinality" t = <INTEGER_LITERAL>
+	{ return Integer.parseInt(t.image); }
+}
+
+/**
+3. Fact Portion 
+Facts state information about particular individuals in the form of a class that the individual belongs to plus properties and values. Individuals can either be named with an individualID or anonymous. The syntax here is set up to mirror the normal RDF/XML syntax. 
+**/
+
+void Individual() throws SyntaxException :
+{
+	String id = null;
+}
+{
+	"individual" (id = individualID())? { ob.individual(id); }
+	StartExpr() 
+		{ ob.type(); } Class() { ob.endType(); }
+			( PropertyValue() )* 
+	EndExpr()
+	{ ob.endIndividual(); }
+}
+
+void PropertyValue() throws SyntaxException :
+{
+	String id = null;
+}
+{ 
+	"propertyValue" ( id = propertyID() )? { ob.propertyValue(id); }
+	Individual() | DataValue()
+	{ ob.endPropertyValue(); }
+}
+/**
+Individual names can also be required to mean the same individual, or to mean different individuals. 
+**/
+
+void SameIndividual() throws SyntaxException :
+{}
+{ "sameIndividual"	{ ob.sameIndividual(); }
+	StartExpr()
+		( Individual() )+
+	EndExpr()
+	{ ob.endSameIndividual(); }
+}
+void DifferentIndividuals() throws SyntaxException :
+{}
+{ "differentIndividuals" {ob.differentIndiiduals(); } 
+	StartExpr() 
+		( Individual() )+ 
+	EndExpr()
+	{ob.endDifferentIndividuals();}
+}
+
+/**
+4. Non-Frame Portion of Definitions 
+In non-frame definitions, there are many more constructs for providing characteristics of classes. These constructs create descriptions. As well there are relationships between descriptions, and more characteristics of properties. 
+
+4.1 Class Definitions 
+The following two kinds of definition generalize the frame definitions of the same name. 
+**/
+/*
+DefinedClass ::= "class" ClassID? ( Description* )
+PrimitiveClass ::= "partial" "class" ClassID? ( (superClass()|Slot())* )
+*/
+/**
+The next two kinds of definition require descriptions to be the same as, subclasses of, or pairwise disjoint with other descriptions. 
+<definition> ::= SameClassAs( <description> {,<description>} )
+<definition> ::= SubClassOf( <description1> , <description2> )
+<definition> ::= Disjoint( <description> {,<description>} )
+**/
+/*
+JB: does it work to make them all Class?
+*/
+void SameClassAs() throws SyntaxException :
+{}
+{ "sameClassAs" { ob.sameClassAs(); }
+	StartExpr() 
+		( Class() )+ 
+	EndExpr()
+	{ ob.endSameClassAs(); }
+}
+void Disjoint() throws SyntaxException :
+{}
+{ 
+	"disjoint" { ob.disjoint(); }
+	StartExpr() 
+		( Class() )+ 
+	EndExpr()
+	{ ob.endDisjoint(); }
+}
+/**
+4.2 Property Definitions 
+Domains and ranges of properties are similarly generalized. 
+**/
+
+void Range() throws SyntaxException :
+{
+	String propId;
+	String dtId;
+}
+{ 
+	"range"
+	{ ob.range(); } 
+	StartExpr() Class() | DatatypeRange() EndExpr()
+	{ ob.endRange(); }
+}
+
+/**
+4.3 Descriptions 
+Descriptions include class IDs and the slot constructor. Descriptions can also be boolean combinations of other descriptions, and sets of individuals. Descriptions can also be the range, required, and value pieces of the slot constructor. Finally, descriptions can required at least, at most, and exactly a particular number of values for a property. 
+**/
+
+void Description() throws SyntaxException :
+{}
+{ 	superClass()
+   | Slot()
+   | DefinedClassDesc()
+}
+
+void DefinedClassDesc() throws SyntaxException :
+{}
+{
+   unionOf()
+   | intersectionOf()
+   | complementOf()
+   | oneOf()
+}
+/**
+
+**/	
+void unionOf() throws SyntaxException :
+{}
+{ "unionOf" 
+	{ ob.unionOf(); }
+	StartExpr() 
+		( Class() )+ 
+	EndExpr()
+	{ ob.endUnionOf(); }
+}
+void intersectionOf() throws SyntaxException :
+{}
+{ "intersectionOf" 
+	{ ob.intersectionOf(); }
+	StartExpr() 
+		( Class() )+ 
+	EndExpr()
+	{ ob.endIntersectionOf(); }
+}
+void complementOf() throws SyntaxException :
+{}
+{ "complementOf" 
+	{ ob.complementOf(); }
+	StartExpr() Class() EndExpr()
+	{ ob.endComplementOf(); }
+}
+void oneOf() throws SyntaxException :
+{}
+{ "oneOf" 
+	{ ob.oneOf(); }
+	StartExpr() 
+		( Individual() )+ 
+	EndExpr()
+	{ ob.endOneOf(); }
+}
+/**
+
+**/
+void localRange() throws SyntaxException :
+{
+	String propId;
+	String dtId;
+}
+{ 
+	"range" propId = propertyID()
+	{ ob.localRange(propId); } 
+	StartExpr() 
+		Class() |
+		DatatypeRange()
+	 EndExpr()
+	{ ob.endLocalRange(); }
+}
+void required() throws SyntaxException :
+{
+	String propId;
+	String dtId = null;
+}
+{ 
+	"required" propId = propertyID()
+	{ ob.required(propId); } 
+	StartExpr() 
+			Class() | 
+			DatatypeRange()
+	 EndExpr()
+	{ ob.endRequired(); }
+}
+
+/**
+In some places either a description or a datatype ID or a set of data values, all from the same datatype, is allowed. 
+**/
+
+/**
+and finally
+**/
+
+void Class() throws SyntaxException :
+{
+	String id = null;
+}
+{ "class" (id = classID())? { ob._class(id); }
+	StartExpr()
+		( Description() )*
+	EndExpr()
+	{ ob.endClass(); }
+}
+
+
+/* ******************* */
+
+void PrimaryExpr() throws SyntaxException :
+{}
+{
+  Class()
+  | Property()
+  | DatatypeProperty()
+  | Individual()
+}
+
+
+void Expr() throws SyntaxException :
+{}
+{
+  UnaryExpr()
+  (
+   ("|" UnaryExpr() { sb.choice(); } )+
+    | ("&" UnaryExpr() { sb.interleave(); } )+
+    | ("," UnaryExpr() { sb.group(); } )+
+  )?
+}
+
+void UnaryExpr() throws SyntaxException :
+{}
+{
+  PrimaryExpr()
+  (
+   "+" { sb.oneOrMore(); }
+   | "?" { sb.optional(); }
+   | "*" { sb.zeroOrMore(); }
+  )?
+}
+
+
+void ParenExpr() throws SyntaxException :
+{
+  Annotations a;
+}
+{
+  "(" a = Annotations() Expr() ")"
+  { sb.annotate(a); }
+}
+
+
+String Inherit() throws SyntaxException :
+{
+  String ns = null;
+}
+{
+  ("inherit" "=" ns = Prefix())?
+  {
+    if (ns == null)
+      ns = defaultNamespace;
+    if (ns == INHERIT)
+      ns = null;
+    return ns;
+  }
+}
+
+
+void IdentifierExpr() throws SyntaxException :
+{
+  String name;
+  Annotations a;
+}
+{
+  name = Identifier() a = Annotations()
+  { sb.ref(name, a); }
+}
+
+void ValueExpr() throws SyntaxException :
+{
+  String s;
+  Annotations a;
+}
+{
+  s = Literal() a = NoChildAnnotations()
+  { sb.value("", "token", s, null, a); }
+}
+
+
+
+Token DatatypeName() :
+{
+  Token t;
+}
+{
+  (t = "string" | t = "token" | t = <PREFIXED_NAME>)
+  { return t; }
+}
+
+String Identifier() :
+{
+  String s;
+  Token t;
+}
+{
+  (t = <IDENTIFIER> { s = t.image; }
+  | t = <ESCAPED_IDENTIFIER> { s = t.image.substring(1); })
+  { return s; }
+}
+
+String Prefix() throws SyntaxException :
+{
+  Token t;
+  String prefix;
+}
+{
+  (t = <IDENTIFIER> { prefix = t.image; }
+  | t = <ESCAPED_IDENTIFIER> { prefix = t.image.substring(1); }
+  | t = Keyword() { prefix = t.image; })
+  {
+    String ns = (String)namespaceTable.get(prefix);
+    if (ns == null)
+      throw new UndeclaredPrefixException(prefix, t);
+    return ns;
+  }
+}
+
+String UnprefixedName() :
+{
+  String s;
+  Token t;
+}
+{
+  (s = Identifier()
+   | t = Keyword() { s = t.image; })
+  { return s; }
+}
+
+void Params() throws SyntaxException :
+{}
+{
+  "{" (Param())* "}"
+}
+
+void Param() throws SyntaxException :
+{
+  String name;
+  Annotations a;
+  String value;
+}
+{
+  name = UnprefixedName() a = NoChildAnnotations() "=" value = Literal()
+  { sb.param(name, a, value); }
+}
+Annotations Annotations() throws SyntaxException :
+{
+  AnnotationsImpl a = new AnnotationsImpl();
+}
+{
+  ("["( AnnotationAttribute(a) )+ "]")?
+  (ExtensionElement(a, false))*
+  (">>" (ExtensionElement(a, true))*)?
+  { return a; }
+}
+
+Annotations NoChildAnnotations() throws SyntaxException :
+{
+  AnnotationsImpl a = new AnnotationsImpl();
+}
+{
+  ("["( AnnotationAttribute(a) )+ "]")?
+  (">>")? (ExtensionElement(a, true))*
+  { return a; }
+}
+
+void AnnotationAttribute(AnnotationsImpl a) throws SyntaxException :
+{
+  Token t;
+  String value;
+}
+{
+  t = <PREFIXED_NAME> "=" value = Literal()
+  {
+    String qn = t.image;
+    int colon = qn.indexOf(':');
+    String prefix = qn.substring(0, colon);
+    String ns = (String)namespaceTable.get(prefix);
+    if (ns == null)
+      throw new UndeclaredPrefixException(prefix, t);
+    if (ns == INHERIT || ns.length() == 0)
+      throw new BadAnnotationPrefixException(prefix, t);
+    a.addAttribute(ns, qn, value);
+  }
+}
+
+void ExtensionElement(AnnotationsImpl a, boolean isFollowing) throws SyntaxException :
+{
+  StringBuffer buf = new StringBuffer();
+}
+{
+  Element(buf)
+  {
+    String e = buf.toString();
+    e = normalizeNewlines(e);
+    if (isFollowing)
+      a.addFollowingElement(e);
+    else
+      a.addChildElement(e);
+  }
+}
+
+void Element(StringBuffer buf) throws SyntaxException :
+{
+  Token t;
+}
+{
+  t = <EMPTY_ELEMENT>
+  { buf.append(t.image); }
+  | (t = <START_TAG> { buf.append(t.image); }
+     (Element(buf))*
+     t = <END_TAG> { buf.append(t.image); })
+}
+
+String Literal() :
+{
+  Token t;
+}
+{
+  t = <LITERAL>
+  {
+    return normalizeNewlines(unquote(t.image));
+  }
+}
+
+Token Keyword() :
+{
+  Token t;
+}
+{
+  (t = "class"
+  | t = "property"
+  | t = "individual"
+  | t = "subClassOf"
+  | t = "cardinality"
+  | t = "required"
+  | t = "minCardinality"
+  | t = "maxCardinality"
+  | t = "uniquely"
+  | t = "identifying"
+  | t = "transitive"
+  | t = "start"
+  | t = "include"
+  | t = "default"
+  | t = "inherit"
+  | t = "string"
+  | t = "token"
+  | t = "datatypes")
+  { return t; }
+}
+
+
+SKIP: { " " | "\r" | "\n" | "\t" }
+
+SPECIAL_TOKEN:
+{
+  < SINGLE_LINE_COMMENT: "#" (~["\n","\r"])* >
+}
+
+TOKEN :
+{
+  < #BASE_CHAR : [
+    "\u0041" - "\u005a",
+    "\u0061" - "\u007a",
+    "\u00c0" - "\u00d6",
+    "\u00d8" - "\u00f6",
+    "\u00f8" - "\u00ff",
+    "\u0100" - "\u0131",
+    "\u0134" - "\u013e",
+    "\u0141" - "\u0148",
+    "\u014a" - "\u017e",
+    "\u0180" - "\u01c3",
+    "\u01cd" - "\u01f0",
+    "\u01f4" - "\u01f5",
+    "\u01fa" - "\u0217",
+    "\u0250" - "\u02a8",
+    "\u02bb" - "\u02c1",
+    "\u0386",
+    "\u0388" - "\u038a",
+    "\u038c",
+    "\u038e" - "\u03a1",
+    "\u03a3" - "\u03ce",
+    "\u03d0" - "\u03d6",
+    "\u03da",
+    "\u03dc",
+    "\u03de",
+    "\u03e0",
+    "\u03e2" - "\u03f3",
+    "\u0401" - "\u040c",
+    "\u040e" - "\u044f",
+    "\u0451" - "\u045c",
+    "\u045e" - "\u0481",
+    "\u0490" - "\u04c4",
+    "\u04c7" - "\u04c8",
+    "\u04cb" - "\u04cc",
+    "\u04d0" - "\u04eb",
+    "\u04ee" - "\u04f5",
+    "\u04f8" - "\u04f9",
+    "\u0531" - "\u0556",
+    "\u0559",
+    "\u0561" - "\u0586",
+    "\u05d0" - "\u05ea",
+    "\u05f0" - "\u05f2",
+    "\u0621" - "\u063a",
+    "\u0641" - "\u064a",
+    "\u0671" - "\u06b7",
+    "\u06ba" - "\u06be",
+    "\u06c0" - "\u06ce",
+    "\u06d0" - "\u06d3",
+    "\u06d5",
+    "\u06e5" - "\u06e6",
+    "\u0905" - "\u0939",
+    "\u093d",
+    "\u0958" - "\u0961",
+    "\u0985" - "\u098c",
+    "\u098f" - "\u0990",
+    "\u0993" - "\u09a8",
+    "\u09aa" - "\u09b0",
+    "\u09b2",
+    "\u09b6" - "\u09b9",
+    "\u09dc" - "\u09dd",
+    "\u09df" - "\u09e1",
+    "\u09f0" - "\u09f1",
+    "\u0a05" - "\u0a0a",
+    "\u0a0f" - "\u0a10",
+    "\u0a13" - "\u0a28",
+    "\u0a2a" - "\u0a30",
+    "\u0a32" - "\u0a33",
+    "\u0a35" - "\u0a36",
+    "\u0a38" - "\u0a39",
+    "\u0a59" - "\u0a5c",
+    "\u0a5e",
+    "\u0a72" - "\u0a74",
+    "\u0a85" - "\u0a8b",
+    "\u0a8d",
+    "\u0a8f" - "\u0a91",
+    "\u0a93" - "\u0aa8",
+    "\u0aaa" - "\u0ab0",
+    "\u0ab2" - "\u0ab3",
+    "\u0ab5" - "\u0ab9",
+    "\u0abd",
+    "\u0ae0",
+    "\u0b05" - "\u0b0c",
+    "\u0b0f" - "\u0b10",
+    "\u0b13" - "\u0b28",
+    "\u0b2a" - "\u0b30",
+    "\u0b32" - "\u0b33",
+    "\u0b36" - "\u0b39",
+    "\u0b3d",
+    "\u0b5c" - "\u0b5d",
+    "\u0b5f" - "\u0b61",
+    "\u0b85" - "\u0b8a",
+    "\u0b8e" - "\u0b90",
+    "\u0b92" - "\u0b95",
+    "\u0b99" - "\u0b9a",
+    "\u0b9c",
+    "\u0b9e" - "\u0b9f",
+    "\u0ba3" - "\u0ba4",
+    "\u0ba8" - "\u0baa",
+    "\u0bae" - "\u0bb5",
+    "\u0bb7" - "\u0bb9",
+    "\u0c05" - "\u0c0c",
+    "\u0c0e" - "\u0c10",
+    "\u0c12" - "\u0c28",
+    "\u0c2a" - "\u0c33",
+    "\u0c35" - "\u0c39",
+    "\u0c60" - "\u0c61",
+    "\u0c85" - "\u0c8c",
+    "\u0c8e" - "\u0c90",
+    "\u0c92" - "\u0ca8",
+    "\u0caa" - "\u0cb3",
+    "\u0cb5" - "\u0cb9",
+    "\u0cde",
+    "\u0ce0" - "\u0ce1",
+    "\u0d05" - "\u0d0c",
+    "\u0d0e" - "\u0d10",
+    "\u0d12" - "\u0d28",
+    "\u0d2a" - "\u0d39",
+    "\u0d60" - "\u0d61",
+    "\u0e01" - "\u0e2e",
+    "\u0e30",
+    "\u0e32" - "\u0e33",
+    "\u0e40" - "\u0e45",
+    "\u0e81" - "\u0e82",
+    "\u0e84",
+    "\u0e87" - "\u0e88",
+    "\u0e8a",
+    "\u0e8d",
+    "\u0e94" - "\u0e97",
+    "\u0e99" - "\u0e9f",
+    "\u0ea1" - "\u0ea3",
+    "\u0ea5",
+    "\u0ea7",
+    "\u0eaa" - "\u0eab",
+    "\u0ead" - "\u0eae",
+    "\u0eb0",
+    "\u0eb2" - "\u0eb3",
+    "\u0ebd",
+    "\u0ec0" - "\u0ec4",
+    "\u0f40" - "\u0f47",
+    "\u0f49" - "\u0f69",
+    "\u10a0" - "\u10c5",
+    "\u10d0" - "\u10f6",
+    "\u1100",
+    "\u1102" - "\u1103",
+    "\u1105" - "\u1107",
+    "\u1109",
+    "\u110b" - "\u110c",
+    "\u110e" - "\u1112",
+    "\u113c",
+    "\u113e",
+    "\u1140",
+    "\u114c",
+    "\u114e",
+    "\u1150",
+    "\u1154" - "\u1155",
+    "\u1159",
+    "\u115f" - "\u1161",
+    "\u1163",
+    "\u1165",
+    "\u1167",
+    "\u1169",
+    "\u116d" - "\u116e",
+    "\u1172" - "\u1173",
+    "\u1175",
+    "\u119e",
+    "\u11a8",
+    "\u11ab",
+    "\u11ae" - "\u11af",
+    "\u11b7" - "\u11b8",
+    "\u11ba",
+    "\u11bc" - "\u11c2",
+    "\u11eb",
+    "\u11f0",
+    "\u11f9",
+    "\u1e00" - "\u1e9b",
+    "\u1ea0" - "\u1ef9",
+    "\u1f00" - "\u1f15",
+    "\u1f18" - "\u1f1d",
+    "\u1f20" - "\u1f45",
+    "\u1f48" - "\u1f4d",
+    "\u1f50" - "\u1f57",
+    "\u1f59",
+    "\u1f5b",
+    "\u1f5d",
+    "\u1f5f" - "\u1f7d",
+    "\u1f80" - "\u1fb4",
+    "\u1fb6" - "\u1fbc",
+    "\u1fbe",
+    "\u1fc2" - "\u1fc4",
+    "\u1fc6" - "\u1fcc",
+    "\u1fd0" - "\u1fd3",
+    "\u1fd6" - "\u1fdb",
+    "\u1fe0" - "\u1fec",
+    "\u1ff2" - "\u1ff4",
+    "\u1ff6" - "\u1ffc",
+    "\u2126",
+    "\u212a" - "\u212b",
+    "\u212e",
+    "\u2180" - "\u2182",
+    "\u3041" - "\u3094",
+    "\u30a1" - "\u30fa",
+    "\u3105" - "\u312c",
+    "\uac00" - "\ud7a3"
+    ] >
+  | < #IDEOGRAPHIC : [
+    "\u4e00" - "\u9fa5",
+    "\u3007",
+    "\u3021" - "\u3029"
+    ] >
+  | < #LETTER : (<BASE_CHAR> | <IDEOGRAPHIC>) >
+  | < #COMBINING_CHAR : [
+    "\u0300" - "\u0345",
+    "\u0360" - "\u0361",
+    "\u0483" - "\u0486",
+    "\u0591" - "\u05a1",
+    "\u05a3" - "\u05b9",
+    "\u05bb" - "\u05bd",
+    "\u05bf",
+    "\u05c1" - "\u05c2",
+    "\u05c4",
+    "\u064b" - "\u0652",
+    "\u0670",
+    "\u06d6" - "\u06dc",
+    "\u06dd" - "\u06df",
+    "\u06e0" - "\u06e4",
+    "\u06e7" - "\u06e8",
+    "\u06ea" - "\u06ed",
+    "\u0901" - "\u0903",
+    "\u093c",
+    "\u093e" - "\u094c",
+    "\u094d",
+    "\u0951" - "\u0954",
+    "\u0962" - "\u0963",
+    "\u0981" - "\u0983",
+    "\u09bc",
+    "\u09be",
+    "\u09bf",
+    "\u09c0" - "\u09c4",
+    "\u09c7" - "\u09c8",
+    "\u09cb" - "\u09cd",
+    "\u09d7",
+    "\u09e2" - "\u09e3",
+    "\u0a02",
+    "\u0a3c",
+    "\u0a3e",
+    "\u0a3f",
+    "\u0a40" - "\u0a42",
+    "\u0a47" - "\u0a48",
+    "\u0a4b" - "\u0a4d",
+    "\u0a70" - "\u0a71",
+    "\u0a81" - "\u0a83",
+    "\u0abc",
+    "\u0abe" - "\u0ac5",
+    "\u0ac7" - "\u0ac9",
+    "\u0acb" - "\u0acd",
+    "\u0b01" - "\u0b03",
+    "\u0b3c",
+    "\u0b3e" - "\u0b43",
+    "\u0b47" - "\u0b48",
+    "\u0b4b" - "\u0b4d",
+    "\u0b56" - "\u0b57",
+    "\u0b82" - "\u0b83",
+    "\u0bbe" - "\u0bc2",
+    "\u0bc6" - "\u0bc8",
+    "\u0bca" - "\u0bcd",
+    "\u0bd7",
+    "\u0c01" - "\u0c03",
+    "\u0c3e" - "\u0c44",
+    "\u0c46" - "\u0c48",
+    "\u0c4a" - "\u0c4d",
+    "\u0c55" - "\u0c56",
+    "\u0c82" - "\u0c83",
+    "\u0cbe" - "\u0cc4",
+    "\u0cc6" - "\u0cc8",
+    "\u0cca" - "\u0ccd",
+    "\u0cd5" - "\u0cd6",
+    "\u0d02" - "\u0d03",
+    "\u0d3e" - "\u0d43",
+    "\u0d46" - "\u0d48",
+    "\u0d4a" - "\u0d4d",
+    "\u0d57",
+    "\u0e31",
+    "\u0e34" - "\u0e3a",
+    "\u0e47" - "\u0e4e",
+    "\u0eb1",
+    "\u0eb4" - "\u0eb9",
+    "\u0ebb" - "\u0ebc",
+    "\u0ec8" - "\u0ecd",
+    "\u0f18" - "\u0f19",
+    "\u0f35",
+    "\u0f37",
+    "\u0f39",
+    "\u0f3e",
+    "\u0f3f",
+    "\u0f71" - "\u0f84",
+    "\u0f86" - "\u0f8b",
+    "\u0f90" - "\u0f95",
+    "\u0f97",
+    "\u0f99" - "\u0fad",
+    "\u0fb1" - "\u0fb7",
+    "\u0fb9",
+    "\u20d0" - "\u20dc",
+    "\u20e1",
+    "\u302a" - "\u302f",
+    "\u3099",
+    "\u309a"
+    ] >
+  | < #DIGIT : [
+    "\u0030" - "\u0039",
+    "\u0660" - "\u0669",
+    "\u06f0" - "\u06f9",
+    "\u0966" - "\u096f",
+    "\u09e6" - "\u09ef",
+    "\u0a66" - "\u0a6f",
+    "\u0ae6" - "\u0aef",
+    "\u0b66" - "\u0b6f",
+    "\u0be7" - "\u0bef",
+    "\u0c66" - "\u0c6f",
+    "\u0ce6" - "\u0cef",
+    "\u0d66" - "\u0d6f",
+    "\u0e50" - "\u0e59",
+    "\u0ed0" - "\u0ed9",
+    "\u0f20" - "\u0f29"
+    ] >
+  | < #EXTENDER : [
+    "\u00b7",
+    "\u02d0",
+    "\u02d1",
+    "\u0387",
+    "\u0640",
+    "\u0e46",
+    "\u0ec6",
+    "\u3005",
+    "\u3031" - "\u3035",
+    "\u309d" - "\u309e",
+    "\u30fc" - "\u30fe"
+    ] >
+  | < #NMSTART : (<LETTER> | "_") >
+  | < #NMCHAR : (<LETTER> | <COMBINING_CHAR> | <EXTENDER> | <DIGIT> | "." | "-" | "_") >
+  | < #NCNAME: <NMSTART> (<NMCHAR>)* >
+  | < #HIGH_SURROGATE: [ "\ud800" - "\udbff" ]>
+  | < #LOW_SURROGATE: [ "\udc00" - "\udfff" ]>
+  | < #SURROGATE_PAIR: <HIGH_SURROGATE> <LOW_SURROGATE> >
+  | < #CHAR:  ["\t", "\n", "\r", "\u0020" - "\ud7ff", "\ue000" - "\ufffd"]
+              | <SURROGATE_PAIR> >
+  | < #CHAR_NOT_QUOT:  ["\t", "\n", "\r", "\u0020" - "\u0021",
+                        "\u0023" - "\ud7ff", "\ue000" - "\ufffd"]
+                       | <SURROGATE_PAIR> >
+  | < #CHAR_NOT_APOS:  ["\t", "\n", "\r", "\u0020" - "\u0026",
+                        "\u0028" - "\ud7ff", "\ue000" - "\ufffd"]
+                       | <SURROGATE_PAIR> >
+}
+TOKEN :
+{
+  < INTEGER_LITERAL: (<DIGIT>)+ >
+}
+TOKEN :
+{
+  < IDENTIFIER: <NCNAME> >
+  | < ESCAPED_IDENTIFIER: "\\" <NCNAME> >
+  | < PREFIX_STAR: <NCNAME> ":*" >
+  | < PREFIXED_NAME: <NCNAME> ":" <NCNAME> >
+  | < LITERAL : ( "\"" (<CHAR_NOT_QUOT> | "\"\"")* "\"")
+                | ("'" (<CHAR_NOT_APOS> | "''")* "'") >
+  | < BYTE_ORDER_MARK : "\ufeff" >
+}
+
+TOKEN :
+{
+  < #QNAME: <NCNAME> (":" <NCNAME>)? >
+  | < #S : (["\t", "\n", "\r", " "])+>
+}
+
+TOKEN_MGR_DECLS :
+{
+  int tagLevel;
+}
+
+<DEFAULT,CONTENT>
+MORE :
+{
+  < "<" <QNAME> > : STAG
+}
+
+<STAG>
+MORE :
+{
+  < #ATT_START: <S> <QNAME> (<S>)? "=" (<S>)? >
+  | < <ATT_START> "\"" > : LIT
+  | < <ATT_START> "'" > : LITA
+}
+
+<LIT>
+MORE :
+{
+  "\"" : STAG
+}
+
+<LITA>
+MORE :
+{
+  "'" : STAG
+}
+
+<LIT, LITA, CONTENT>
+TOKEN :
+{
+  <ILLEGAL_MARKUP_CHAR : ("&" | "<")>
+}
+
+<LIT, LITA, CONTENT>
+MORE :
+{
+  < <CHAR> >
+  | < "&#" ([ "0" - "9"])+ ";" >
+  | < "&#x" ([ "0" - "9", "a" - "f", "A" - "F" ])+ ";" >
+  | < "&" ("amp" | "lt" | "gt" | "quot" | "apos") ";" >
+}
+
+<CONTENT>
+MORE :
+{
+  "<!--" : COMMENT
+}
+
+<CONTENT>
+MORE :
+{
+  < "<?" <NCNAME> (<S> (<CHAR>)*)? "?>" >
+  | < "<![CDATA[" (<CHAR>)* "]]>" >
+}
+
+<CONTENT>
+TOKEN :
+{
+  < ILLEGAL_CONTENT_SEQUENCE : "]]>" >
+}
+
+<COMMENT>
+MORE :
+{
+  "-->" : CONTENT
+}
+
+<COMMENT>
+TOKEN :
+{
+  < ILLEGAL_COMMENT_SEQUENCE : "--" >
+}
+
+<COMMENT>
+MORE :
+{
+  < <CHAR> >
+}
+
+<STAG>
+TOKEN :
+{
+  < EMPTY_ELEMENT : (<S>)? "/>" >
+  { SwitchTo(tagLevel == 0 ? DEFAULT : CONTENT); }
+  | < START_TAG : (<S>)? ">" > { tagLevel++; } : CONTENT
+}
+
+<CONTENT>
+TOKEN :
+{
+  < END_TAG : "</" <QNAME> (<S>)? ">" >
+    { SwitchTo(--tagLevel == 0 ? DEFAULT : CONTENT); }
+}
+
+/* This avoids lexical errors from JavaCC. */
+<*>
+TOKEN :
+{
+  < ILLEGAL_CHAR : [ "\u0000" - "\u0008", "\u000b", "\u000c", "\u000e" - "\uffff" ] >
+}

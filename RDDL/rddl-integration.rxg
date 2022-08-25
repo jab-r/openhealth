@@ -1,0 +1,25 @@
+<grammar
+	grammarVersion="1.0"
+	relaxNamespaceVersion="1.0"
+	xmlns="http://www.xml.gr.jp/xmlns/relaxNamespace">
+
+  <module
+	  namespace="http://www.rddl.org/"
+	  location="modules/rddl-1.rxm"/>
+  <module
+	  namespace="http://www.w3.org/1999/xhtml"
+	  location="modules/xhtml-for-rddl.rxm"/>
+
+  <topLevel>
+    <ref label="html" namespace="http://www.w3.org/1999/xhtml"/>
+  </topLevel>
+
+  <hedgeRule label="resource" namespace="http://www.w3.org/1999/xhtml">
+    <ref label="resource" namespace="http://www.rddl.org/"/>
+  </hedgeRule>
+
+  <hedgeRule label="Flow.mix" namespace="http://www.rddl.org/">
+    <hedgeRef label="Flow.mix" namespace="http://www.w3.org/1999/xhtml" occurs="*"/>
+  </hedgeRule>
+
+</grammar>

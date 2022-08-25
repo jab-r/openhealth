@@ -1,0 +1,16 @@
+java.lang.NullPointerException
+	at org.openhealth.saxon.RepositoryFileHandler.reset(RepositoryFileHandler.java:63)
+	at org.openhealth.saxon.OpnoteServlet.apply(OpnoteServlet.java:233)
+	at org.openhealth.saxon.AbstractSaxonServlet.service(AbstractSaxonServlet.java:80)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:588)
+	at org.apache.jserv.JServConnection.processRequest(JServConnection.java:314)
+	at org.apache.jserv.JServConnection.run(JServConnection.java:188)
+	at java.lang.Thread.run(Thread.java)
+java.lang.NullPointerException
+	at org.openhealth.saxon.RepositoryFileHandler.reset(RepositoryFileHandler.java:63)
+	at org.openhealth.saxon.OpnoteServlet.apply(OpnoteServlet.java:238)
+	at org.openhealth.saxon.AbstractSaxonServlet.service(AbstractSaxonServlet.java:80)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:588)
+	at org.apache.jserv.JServConnection.processRequest(JServConnection.java:314)
+	at org.apache.jserv.JServConnection.run(JServConnection.java:188)
+	at java.lang.Thread.run(Thread.java)

@@ -1,0 +1,44 @@
+<!DOCTYPE html public "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<TITLE>XML Access Control Specification</TITLE>
+	<LINK rel="stylesheet" href="../OHCG_Style.css" />
+</HEAD>
+<BODY>
+<H3>XML Access Control</H3>
+<P>Access control can be specified on XML document elements via an embedded 
+child element:</P>
+<P>&lt;foo a="1" b="2"&gt;</P>
+<P>&nbsp;&nbsp;&nbsp;&nbsp; &lt;AC:access-control realm="bar" match="@*"&gt;</P>
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;AC:Allow 
+entity="Joe" read="1" write="1" edit="1" delete="0"</P>
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+container-inherit="1" inherit-only="0" no-propagate="1"/&gt;</P>
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;AC:Deny 
+entity="Users" write="1" delete="1" /&gt;</P>
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;AC:Audit 
+entity="World" access="Success Failure" access="-1" /&gt;</P>
+<P>&nbsp;&nbsp;&nbsp; &lt;/AC:access-control&gt;</P>
+<P>&lt;/foo&gt;</P>
+<P>xmlns:AC = <A href="http://www.openhealth.org/AccessControl">http://www.openhealth.org/AccessControl</A></P>
+<P>AC:access-control defines an access control list</P>
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; attribute "realm" defines the realm of 
+the access control</P>
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; attribute "match" defines an XPath 
+pattern on which the ACL applies (default = ".")</P>
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;element "Allow" creates an access 
+control allowed entry</P>
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; element "Deny" creates an access control 
+denied entry</P>
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; element "Audit" creates an access 
+control audit entry</P>
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+attribute "entity" defines the user or group to which the ACL applies</P>
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+attribute token defines the access control</P>
+<P>Jonathan Borden</P>
+<P><A href="http://www.openhealth.org">http://www.openhealth.org</A></P>
+<P>September 26, 2000</P>
+<P>&nbsp;</P>
+</BODY>
+</HTML>

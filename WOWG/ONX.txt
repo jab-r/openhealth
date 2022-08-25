@@ -1,0 +1,186 @@
+
+/** 
+2.1 Class Definitions 
+The following definition defines a class as precisely the conjunction of a collection of superclasses and a collection of slot definitions. 
+**/
+
+DefinedClassDescF ::= (super|slot)*
+
+/**
+The next definition is the same, except that the defined class is an unspecified subclass of the conjunction. 
+**/
+PrimitiveClassDescF ::= (super|slot)*
+
+/**
+It is also possible to define a class as a set of individuals, as follows. 
+**/
+EnumeratedClassDescF ::= Individial*
+
+/**
+Finally, it is possible to require that a collection of classes have the same members, or to be pairwise disjoint. 
+**/
+SameClassAsDescF ::= Class*
+DisjointDescF ::= Class*
+
+ClassF ::= "class" classID? (
+		SimpleClassDescF|
+		DefinedClassDescF|
+		EnumeratedClassDescF
+		)
+/**
+2.2 Property Definitions 
+The following definitions make two properties be the same, or make one property be a sub-property of another. 
+**/
+SamePropertyAs ::= "samePropertyAs" ( Property )
+SubPropertyOf ::= "subPropertyOf" ( Property )
+
+/**
+Properties can be given domains and ranges. The domain of a property is just a class. The range of a property is either a class or datatype range (a datatype or a set of data values). 
+**/
+Domain ::= "domain" ( Class )
+Range ::= "range" ( Class )
+DatatypeRange ::= "datatype" ( datatypeRange )
+
+/**
+There are also definitions that make properties single-valued (i.e., partial functions), make their inverse be single-valued, or make the properties be transitive. The latter two definitions also have the effect of making the properties have a range restricted to individuals. 
+**/
+
+<definition> ::= SingleValuedProperty( <propertyID> )
+<definition> ::= UniquelyIdentifyingProperty( <propertyID> )
+<definition> ::= TransitiveProperty( <propertyID> )
+
+
+2.3 Supporting Productions 
+Superclasses are specified as one or more class ID's. 
+
+super ::= "subClassOf" (Class)
+
+/**
+A datatypeRange is either a datatype or a set of data values, which consist of a datatype and the lexical representation of a data value in that datatype. All the data values in a set must have the same datatype. 
+**/
+DatatypeRange ::= "datatype" datatypeID
+	          | oneOfDataValue
+DataValue ::= datatypeID(<lexical-form>)
+oneOfDataValue ::= DataValue ("|" DataValue)*
+
+/**
+Datatypes, classes, properties, and individuals have IDs that are QNames. Datatype IDs are restricted to a known set of QNames. Class IDs are any other QName. Both property and individual IDs have no restrictions, and can be the same as datatype, class, and property names. 
+**/
+owlName ::= QName | URIref
+datatypeID   ::= owlName
+classID      ::= owlName
+propertyID   ::= owlName
+individualID ::= owlName
+
+
+Slot definitions place restrictions on properties in classes. The range part means that all values must belong to class or datatype range. The modality part is either required, meaning that there must be at least one value for the property, or optional, producing no restriction. If the modality part is not present, there is no restriction. The multiplicity part is either singlevalued, meaning that there must be at most one value for the property, or multivalued, producing no restriction. If the multiplicity part is not present, there is no restriction. Each required part means that there must be at least one value for the property that belongs to the class or datatype range. Each value part means that the individual or data value must be a value for the property. 
+
+Slot ::=
+	Property | DatatypeProperty
+
+Property ::=
+     "property" propertyID? ( 
+	 		range?, modality?, multiplicity?,
+			Required?,
+			Value?
+			)
+Required ::= "required" (Class)
+Value ::= "value"(Individual)
+
+DatatypeProperty ::=
+   	"datatypeProperty" propertyID? 
+			(
+			DatatypeRange?,
+			modality?, multiplicity?,
+			RequiredDatatype?,
+			DataValue?) 
+modality     ::=     required | optional
+multiplicity ::= singlevalued | multivalued
+
+/**
+3. Fact Portion 
+Facts state information about particular individuals in the form of a class that the individual belongs to plus properties and values. Individuals can either be named with an individualID or anonymous. The syntax here is set up to mirror the normal RDF/XML syntax. 
+**/
+
+Individual ::= "individual" individualID? ( Class PropertyValue* )
+PropertyValue ::= "propertyValue" propertyID? ( 
+			Individial | DataValue )
+
+/**
+Individual names can also be required to mean the same individual, or to mean different individuals. 
+**/
+
+SameIndividual ::= "sameIndividial"( Individual+)
+DifferentIndividuals ::= "differentIndividuals" ( Individual+ )
+
+/**
+4. Non-Frame Portion of Definitions 
+In non-frame definitions, there are many more constructs for providing characteristics of classes. These constructs create descriptions. As well there are relationships between descriptions, and more characteristics of properties. 
+
+4.1 Class Definitions 
+The following two kinds of definition generalize the frame definitions of the same name. 
+**/
+<definition> ::= DefinedClass( <classID> {,<description>} )
+<definition> ::= PrimitiveClass( <classID> {,<description>} )
+
+The next two kinds of definition require descriptions to be the same as, subclasses of, or pairwise disjoint with other descriptions. 
+<definition> ::= SameClassAs( <description> {,<description>} )
+<definition> ::= SubClassOf( <description1> , <description2> )
+<definition> ::= Disjoint( <description> {,<description>} )
+
+
+4.2 Property Definitions 
+Domains and ranges of properties are similarly generalized. 
+
+<definition> ::= Domain( <propertyID> , <description> )
+<definition> ::= Range( <propertyID> , <description-or-datatype> )
+
+/**
+4.3 Descriptions 
+Descriptions include class IDs and the slot constructor. Descriptions can also be boolean combinations of other descriptions, and sets of individuals. Descriptions can also be the range, required, and value pieces of the slot constructor. Finally, descriptions can required at least, at most, and exactly a particular number of values for a property. 
+**/
+
+Description ::= Class
+   | Slot
+   | DefinedClassDesc
+   | PropertyRestriction
+   
+DefinedClassDesc ::=
+   | unionOf
+   | intersectionOf
+   | complementOf
+   | oneOf
+   
+   
+PropertyRestriction ::=
+   localRange
+   | required
+   | value( <propertyID> , <individualID> )
+   | value( <propertyID> , <dataValue> )
+   | minCardinality( <propertyID> , <integer> )
+		Require at least integer values for propertyID.
+   | maxCardinality( <propertyID> , <integer> )
+		Require at most integer values for propertyID.
+   | cardinality( <propertyID> , <integer> )
+		Require exactly integer values for propertyID.
+/**
+
+**/	
+unionOf ::= "unionOf"( Description+ )
+intersectionOf ::= "intersectionOf" (Description+)
+complementOf ::= "complementOf" (Description)
+oneOf ::= "oneOf" (Individual+)
+/**
+
+**/
+localRange ::= "range" propertyID ( DescriptionOrDatatype )
+required ::= "required" propertyID (DescriptionOrDatatype )
+
+/**
+In some places either a description or a datatype ID or a set of data values, all from the same datatype, is allowed. 
+**/
+DescriptionOrDatatype ::= Description
+   | datatypeID
+   | oneOfDataValue 
+
+

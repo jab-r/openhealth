@@ -1,0 +1,59 @@
+<!--
+	Copyright (C) 2000 Jonathan Borden, The Open Healthcare Group
+	Licensed under http://www.openhealth.org/license
+	
+	PUBLIC "-//ASTM//DTD DICOM Entities 1.0//EN"
+-->
+<!-- 9-1 -->
+<!ENTITY % template_identification_macro "%dicom.template.identifier.qname;,%dicom.mapping.resource.qname;,(%dicom.template.version.qname;)?,(%dicom.template.local.version.qname;)?,(%dicom.template.extension.flag.qname;)?,(%dicom.template.extension.organization.uid.qname;)?,(%dicom.template.extension.creator.uid.qname;)?">
+<!-- C.17.3 -->
+<!ENTITY % sop_instance_reference_macro "%dicom.study.instance.uid.qname;,%dicom.referenced.series.sequence.qname;">
+<!-- C.17.3-4 -->
+<!ENTITY % document_relationship_macro "%dicom.observation.datetime.qname;,%dicom.content.template.sequence.qname;">
+<!-- C.18.1-1 -->
+<!ENTITY % numeric_measurement_macro "%dicom.measured.value.sequence.qname;">
+<!-- C.18.2-1 -->
+<!ENTITY % code_macro "%dicom.concept.code.sequence.qname;">
+
+
+<!-- C.18.3-1 -->
+<!ENTITY % composite_object_reference_macro "%dicom.referenced.sop.sequence.qname;">
+<!-- BUGBUG this definition also includes stuff from image_reference_macro - see Table C.18.4-1 --> 
+<!ENTITY % sop_sequence_macro "%dicom.sop.class.uid.qname;,%dicom.sop.instance.uid.qname;">
+<!ENTITY % referenced_sop_sequence_macro "%dicom.referenced.sop.class.uid.qname;,%dicom.referenced.sop.instance.uid.qname;">
+<!-- C.18.4-1 -->
+<!ENTITY % image_reference_macro "%composite_object_reference_macro;">
+<!-- C.18.5-1 -->
+<!ENTITY % waveform_reference_macro "%composite_object_reference_macro;">
+<!-- C.18.6-1 -->
+<!ENTITY % spatial_coordinates_macro "%dicom.graphic.data.qname;,%dicom.graphic.type.qname;">
+<!-- C.18.6-2 -->
+<!ENTITY % temporal_coordinates_macro "%dicom.temporal.range.type.qname;,(%dicom.referenced.sample.positions.qname;)?,(%dicom.referenced.time.offsets.qname;)?,(%dicom.referenced.datetime.qname;)?">
+<!ENTITY % code_seq_macro "(%dicom.code.value.qname;)?,(%dicom.coding.scheme.designator.qname;)?,(%dicom.coding.scheme.version.qname;)?,(%dicom.code.meaning.qname;)?,(%dicom.context.identifier.qname;)?,(%dicom.mapping.resource.qname;)?,
+	(%dicom.context.group.version.qname;)?,(%dicom.code.set.extension.flag.qname;)?,(%dicom.context.group.local.version.qname;)?,(%dicom.private.coding.scheme.creator.uid.qname;)?,(%dicom.code.set.extension.creator.uid.qname;)?">
+
+
+<!-- C.17.3-5 -->
+<!ENTITY % document_content_macro "%dicom.value.type.qname;,
+		(%dicom.concept.name.code.sequence.qname;)?,(%dicom.continuity.of.content.qname;)?,
+		(%dicom.text.value.qname;)?,(%dicom.datetime.qname;)?,(%dicom.date.qname;)?,(%dicom.time.qname;)?,(%dicom.person.name.qname;)?,(%dicom.uid.qname;)?,
+		(%numeric_measurement_macro;)?,(%code_macro;)?,
+		(%composite_object_reference_macro;)?,
+		(%spatial_coordinates_macro;)?,
+		(%temporal_coordinates_macro;)?">
+
+<!-- sequence elements -->
+<!ELEMENT %dicom.referenced.series.sequence.qname; (%dicom.series.instance.uid.qname;,(%dicom.retrieve.ae.title.qname;)?,(%dicom.storage.media.fileset.id.qname;)?,(%dicom.storage.media.fileset.uid.qname;)?,%dicom.referenced.sop.sequence.qname;)>
+<!ELEMENT %dicom.measured.value.sequence.qname; (%dicom.numeric.value.qname;,(%dicom.measurement.units.code.sequence.qname;)?)>
+<!ELEMENT %dicom.measurement.units.code.sequence.qname; (%code_seq_macro;)>
+<!ELEMENT %dicom.concept.code.sequence.qname; (%code_seq_macro;)>
+<!ELEMENT %dicom.content.template.sequence.qname; (%template_identification_macro;,(%dicom.content.sequence.qname;)?)>
+<!ELEMENT %dicom.content.sequence.qname; (((%document_relationship_macro;)?|(%document_content_macro;)?),
+				(%dicom.referenced.content.item.identifier.qname;)?)>
+<!ELEMENT %dicom.concept.name.code.sequence.qname; (%code_seq_macro;)>
+<!ELEMENT %dicom.referenced.sop.sequence.qname; (
+	%referenced_sop_sequence_macro;,
+	((%dicom.referenced.frame.number.qname;,%dicom.referenced.sop.sequence.qname;)|
+	 %dicom.referenced.waveform.channels.qname;)
+)>
+

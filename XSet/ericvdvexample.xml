@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE preparation [
+<!ENTITY include_tools SYSTEM "tools.xml">
+<!ENTITY include_products SYSTEM "products.xml">
+<!ENTITY include_parts SYSTEM "parts.xml">
+]>
+<!-- Simple example of file using external parsed entities -->
+<preparation>
+&include_tools;
+&include_products;
+&include_parts;
+</preparation>
+

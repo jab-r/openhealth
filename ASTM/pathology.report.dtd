@@ -1,0 +1,158 @@
+<!-- 
+	Copyright (c) Jonathan Borden, The Open Healthcare Group all rights reserved
+	Licensed under http://www.openhealth.org/license
+	
+	PUBLIC "-//ASTM//DTD Pathology Report 1.0//EN"
+	SYSTEM "http://www.openhealth.org/ASTM/pathology.report.dtd"
+	
+	This DTD defines an ASTM E31.25 standard Pathology Report
+-->
+<!-- 
+	include the base ASTM E31.25 module
+	by default namespaces are not enabled.
+	Namespaces are controlled by the ENTITY % use.namespace which is defined as
+		<!ENTITY % use.namespace "IGNORE">
+	To enable namespaces define <!ENTITY % use.namespace "INCLUDE"> prior to including this DTD 
+	(e.g. in the internal subset)
+-->
+<!ENTITY % ASTM.base.module PUBLIC "-//ASTM//DTD E31.25 Base 1.0//EN" "ASTM.E31.25.dtd">
+<!ENTITY % PATH.xmlns "http://www.openhealth.org/ASTM/pathology.report">
+
+%ASTM.base.module;
+
+<!ENTITY % NS.prefixed "IGNORE">
+<!ENTITY % PATH.prefixed "%NS.prefixed;">
+
+<![ %PATH.prefixed; [
+<!ENTITY % path "pr">
+<!ENTITY % path.prefix "%path;:">
+<!ENTITY % PATH.xmlns.attrib "xmlns:pr CDATA #FIXED 'http://www.openhealth.org/ASTM/pathology.report'">
+
+]]>
+<!ENTITY % path "">
+<!ENTITY % path.prefix "">
+<!ENTITY % PATH.xmlns.attrib "xmlns CDATA #FIXED 'http://www.openhealth.org/ASTM/pathology.report'">
+
+<!ENTITY % pathology.report.qname "%path.prefix;pathology.report">
+<!ENTITY % clinical.body.qname "%path.prefix;clinical.body">
+
+<!ENTITY % clinical.history.qname "%path.prefix;clinical.history">
+<!ENTITY % preoperative.diagnosis.qname "%path.prefix;preoperative.diagnosis">
+<!ENTITY % postoperative.diagnosis.qname "%path.prefix;postoperative.diagnosis">
+<!ENTITY % operative.procedure.qname "%path.prefix;operative.procedure">
+<!ENTITY % operative.findings.qname "%path.prefix;operative.findings">
+<!ENTITY % parts.qname "%path.prefix;parts">
+<!ENTITY % pathology.staff.qname "%path.prefix;pathology.staff">
+<!ENTITY % part.qname "%path.prefix;part">
+<!ENTITY % gross.description.qname "%path.prefix;gross.description">
+<!ENTITY % tissue.source.qname "%path.prefix;tissue.source">
+<!ENTITY % diagnosis.qname "%path.prefix;diagnosis">
+<!ENTITY % comment.qname "%path.prefix;comment">
+<!ENTITY % block.qname "%path.prefix;block">
+<!ENTITY % procedure.qname "%path.prefix;procedure">
+<!ENTITY % ordering.physician.qname "%path.prefix;ordering.physician">
+<!ENTITY % pathologist.qname "%path.prefix;pathologist">
+<!ENTITY % gross.pathologist.qname "%path.prefix;gross.pathologist">
+<!ENTITY % frozen.pathologist.qname "%path.prefix;frozen.pathologist">
+<!ENTITY % piece.qname "%path.prefix;piece">
+<!ENTITY % stain.qname "%path.prefix;stain">
+<!ENTITY % ordering.date.time.qname "%path.prefix;ordering.date.time">
+<!ENTITY % submitted.date.time.qname "%path.prefix;submitted.date.time">
+<!ENTITY % interpretation.qname "%path.prefix;interpretation">
+<!ENTITY % procedure.name.qname "%path.prefix;procedure.name">
+
+<!ELEMENT %pathology.report.qname; (
+	 %clinical.header.qname;, 
+	 %clinical.body.qname;
+)>
+<!ATTLIST %pathology.report.qname; 	
+	%astm.document.attrib;
+	%PATH.xmlns.attrib;
+>
+<!-- much of path report is in header i.e. accession number, account number can both be document ids
+-->
+<!ELEMENT %clinical.body.qname; (
+	 %clinical.history.qname;,
+	 %preoperative.diagnosis.qname;,
+	 %postoperative.diagnosis.qname;,
+	 (%operative.procedure.qname;)?,
+	 (%operative.findings.qname;)?,
+	 %parts.qname;
+)>
+<!ELEMENT %clinical.history.qname; %astm.content;>
+<!ATTLIST %clinical.history.qname; %astm.content.attrib;>
+<!ELEMENT %preoperative.diagnosis.qname; (#PCDATA)>
+<!ATTLIST %preoperative.diagnosis.qname; %astm.content.attrib;>
+<!ELEMENT %postoperative.diagnosis.qname; (#PCDATA)>
+<!ATTLIST %postoperative.diagnosis.qname; %astm.content.attrib;>
+<!ELEMENT %operative.procedure.qname; (#PCDATA)>
+<!ATTLIST %operative.procedure.qname; %astm.content.attrib;>
+<!ELEMENT %operative.findings.qname; %astm.content;>
+<!ATTLIST %operative.findings.qname; %astm.content.attrib;>
+<!ELEMENT %parts.qname; (%part.qname;)+>
+<!ATTLIST %parts.qname; %astm.content.attrib;>
+<!ELEMENT %part.qname; (
+	(%pathology.staff.qname;)?,
+	%gross.description.qname;,
+	%tissue.source.qname;,
+	%diagnosis.qname;,
+	(%comment.qname;)?,
+	(%block.qname;)*,
+	(%procedure.qname;)*
+)>
+<!-- frozen = related frozen section to this permanent section -->
+<!ATTLIST %part.qname;
+	name NMTOKEN #REQUIRED
+	frozen (y|n) #IMPLIED
+	all-pieces-used (y|n) #IMPLIED
+	%astm.content.attrib;
+	>
+
+<!ELEMENT %block.qname; (
+	%ordering.date.time.qname;,
+	%ordering.physician.qname;,
+	(%comment.qname;)?,
+	(%stain.qname;)*,
+	(%piece.qname;)*
+)>
+<!ATTLIST %block.qname; %astm.content.attrib;>
+<!ELEMENT %ordering.physician.qname; (%ch.actor.type;)>
+<!ATTLIST %ordering.physician.qname; %astm.content.attrib;>
+<!ELEMENT %pathology.staff.qname; ((%pathologist.qname;)?,(%gross.pathologist.qname;)?,(%frozen.pathologist.qname;)?)>
+<!ATTLIST %pathology.staff.qname; %astm.content.attrib;>
+<!ELEMENT %pathologist.qname; (%ch.actor.type;)>
+<!ATTLIST %pathologist.qname; %astm.content.attrib;>
+<!ELEMENT %gross.pathologist.qname; (%ch.actor.type;)>
+<!ATTLIST %gross.pathologist.qname; %astm.content.attrib;>
+<!ELEMENT %frozen.pathologist.qname; (%ch.actor.type;)>
+<!ATTLIST %frozen.pathologist.qname; %astm.content.attrib;>
+<!ELEMENT %tissue.source.qname; (#PCDATA)>
+<!ATTLIST %tissue.source.qname; %astm.content.attrib;>
+<!ELEMENT %stain.qname; (#PCDATA)>
+<!ATTLIST %stain.qname; %astm.content.attrib;>
+<!ELEMENT %piece.qname; %astm.content;>
+<!ATTLIST %piece.qname; %astm.content.attrib;>
+<!ELEMENT %ordering.date.time.qname; %ch.datetime.model;>
+<!ATTLIST %ordering.date.time.qname; %astm.content.attrib;>
+<!ELEMENT %submitted.date.time.qname; %ch.datetime.model;>
+<!ATTLIST %submitted.date.time.qname; %astm.content.attrib;>
+
+<!ELEMENT %procedure.qname; (
+	(%ordering.date.time.qname;)?,
+	(%submitted.date.time.qname;)?,
+	%pathologist.qname;,
+	%procedure.name.qname;,
+	%interpretation.qname;
+)>
+<!ATTLIST %procedure.qname; %astm.content.attrib;>
+<!ELEMENT %diagnosis.qname; %astm.content;>
+<!ATTLIST %diagnosis.qname; %astm.content.attrib;>
+<!ELEMENT %comment.qname; %astm.content;>
+<!ATTLIST %comment.qname; %astm.content.attrib;>
+<!ELEMENT %interpretation.qname; %astm.content;>
+<!ATTLIST %interpretation.qname; %astm.content.attrib;>
+<!ELEMENT %gross.description.qname; %astm.content;>
+<!ATTLIST %gross.description.qname; %astm.content.attrib;>
+
+<!ELEMENT %procedure.name.qname; (#PCDATA)>
+<!ATTLIST %procedure.name.qname; %astm.content.attrib;>

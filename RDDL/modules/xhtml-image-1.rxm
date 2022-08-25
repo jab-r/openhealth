@@ -1,0 +1,22 @@
+<!DOCTYPE module [
+<!ENTITY Length.datatype "integer">
+<!ENTITY Text.datatype "string">
+]>
+<module
+  xmlns="http://www.xml.gr.jp/xmlns/relaxCore"
+  targetNamespace="http://www.w3.org/1999/xhtml"
+  relaxCoreVersion="1.0"
+  moduleVersion="1.11">
+
+<elementRule role="img" type="emptyString"/>
+  
+<tag name="img">
+  <ref role="Common.attrib"/>
+  <attribute name="src" type="uriReference" required="true"/>
+  <attribute name="alt" type="&Text.datatype;" required="true"/>
+  <attribute name="longdesc" type="uriReference"/>
+  <attribute name="height"   type="&Length.datatype;"/>
+  <attribute name="width"    type="&Length.datatype;"/>
+</tag>
+
+</module>

@@ -1,0 +1,83 @@
+<?xml version="1.0" ?>
+<!-- 
+	Copyright (c) 2000 Healthcare Transaction Systems, LLC 
+	All rights reserved
+	
+	Author: Jonathan Borden
+	license: http://www.openhealth.org/license
+-->
+<edit:list 
+		xmlns:edit="http://www.openhealth.org/editor"
+		xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+		>
+	<edit:param name="FirstName" />
+	<edit:param name="LastName" />
+	<edit:param name="MiddleName" />
+	<edit:param name="Title" />
+	<edit:param name="Suffix" />
+	<edit:param name="SSN" />
+	<edit:param name="DOB" />
+	<edit:param name="Gender" />
+	
+	<edit:param name="HAddress" />
+	<edit:param name="HAddress2" />
+	<edit:param name="HCity" />
+	<edit:param name="HState" />
+	<edit:param name="HZip" />
+	<edit:param name="HPhone" />
+	<edit:param name="HFax" />
+	<edit:param name="HPager" />
+	<edit:param name="HEmail" />
+	<edit:param name="HCountry" />
+	
+	<edit:param name="WAddress" />
+	<edit:param name="WAddress2" />	
+	<edit:param name="WCity" />
+	<edit:param name="WState" />
+	<edit:param name="WZip" />
+	<edit:param name="WPhone" />
+	<edit:param name="WFax" />
+	<edit:param name="WPager" />
+	<edit:param name="WEmail" />
+	<edit:param name="WCountry" />
+	<edit:param name="UID" />
+
+	<edit:param name="Type" />
+	<edit:param name="Format" />
+<edit:insert-before match="/rdf:RDF/rdf:Description">
+ <person role="patient" UID="{$UID}">
+	<name>
+		<last><edit:value select="$LastName"/></last>
+		<first><edit:value select="$FirstName"/></first>
+		<middle><edit:value select="$MiddleName"/></middle>
+		<title><edit:value select="$Title"/></title>
+		<suffix><edit:value select="$Suffix"/></suffix>
+	</name>
+	<gender><edit:value select="$Gender"/></gender>
+	<id>
+		<DOB><edit:value select="$DOB"/></DOB>
+		<SSN><edit:value select="$SSN"/></SSN>
+	</id>
+	<address type="home">
+		<street><edit:value select="$HAddress" /></street>
+		<edit:element-if name="street2" select="$HAddress2" />
+		<edit:element name="city" select="$HCity" />
+		<edit:element name="state" select="$HState" />
+		<edit:element name="zip" select="$HZip" />
+		<edit:element-if name="phone" select="$HPhone" />
+		<edit:element-if name="fax" select="$HFax" />
+		<edit:element-if name="page" select="$HPager" />
+	</address>
+	<address type="work">
+		<edit:element name="street" select="$WAddress"/>
+		<edit:element-if name="street2" select="$WAddress2" />
+		<edit:element name="city" select="$WCity" />
+		<edit:element name="state" select="$WState" />
+		<edit:element name="zip" select="$WZip" />
+		<edit:element-if name="phone" select="$WPhone" />
+		<edit:element-if name="fax" select="$WFax" />
+		<edit:element-if name="page" select="$WPager" />
+	</address>
+ </person>
+ </edit:insert-before>
+</edit:list>

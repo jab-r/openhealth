@@ -1,0 +1,1080 @@
+<!--<!DOCTYPE paper SYSTEM "extremepaper.xml.dtd" >
+<?xml-stylesheet type="text/xsl" href="extreme.html.xsl" ?>-->
+<paper>
+<front>
+<title>The Resource Directory Description Language (RDDL): What goes at the end of a namespace URI?</title>
+<author contact="1">
+  	<fname>Jonathan</fname>
+	<surname>Borden</surname>
+  	<jobtitle>Assistant Professor</jobtitle>
+  	<address>
+		<affil>Tufts University School of Medicine</affil>
+  		<subaffil>Department of Neurosurgery</subaffil>
+		<aline>New England Medical Center #178</aline>
+		<aline>750 Washington Street</aline>
+		<city>Boston</city><state>MA</state>
+		<postcode>02111</postcode>
+		<phone>617-636-5859</phone>
+		<fax>617-636-7587</fax>
+		<email>jborden@mediaone.net</email>
+		<web>http://www.openhealth.org</web>
+	</address>
+  <bio><para>Dr. Jonathan Borden is an editor of the RDDL specification. 
+  	An Assistant Professor of Neurosurgery at Tufts Universitym he is the Director of the Boston Gamma Knife Center. 
+	He is the Director of the Open Healthcare Group, and a co-chair of the ASTM E31.25 XML Healthcare DTD subcommittee.</para></bio>
+</author>
+<keywords>
+	<keyword>namespace</keyword>
+	<keyword>RDDL</keyword>
+	<keyword>XLink</keyword>
+	<keyword>XHTML</keyword>
+	<keyword>ontology</keyword>
+</keywords>
+<abstract>
+	<para>
+		The <cit>W3C XML Namespace Recommendation</cit> was designed to partition XML elements and attributes into 
+		partitions given a unique namespace name or identifier. The recommendation, which defines a namespace name
+		as a URI, provides no guidance as to what a resolvable URI ought resolve to. 
+	</para>
+	<para>
+The Resource Directory Description Language (RDDL) was created to answer the 
+question of: what ought an XML Namespace URI reference? RDDL uses an XHTML format in 
+which resource elements are embedded. Each resource element contains a simple 
+XLink referencing the related resource. By integrating namespaces and schemas, a view of XML Namespaces as both
+names and spaces is presented.
+	</para>
+
+
+</abstract>
+</front>
+<body>
+  <section><title>Introduction</title>
+        <para>
+         The W3C <cit>XML Namespaces Recommendation</cit> defines a mechanism to
+         distinguish XML element names by a URI. The W3C XML Namespaces
+         Recommendation is fairly succinct, precise and contains Extended
+         Backus Nauer form (ENBF) productions which describe the syntax behind XML
+         Namespaces as it relates to XML 1.0. With such a precise description,
+         one wonders why such controvery ensues?
+      </para>
+      <para>
+         Much of the controversy results from the usage of Uniform Resource
+         Identifiers (URIs) as namespace names and the XML Namespaces
+         Recommendation thus inherits the controversies and confusion regarding
+         URIs.
+	The use of URIs as a mechanism of namespace partitioning has been controversial 
+	and confusing for several reasons:
+	<seqlist>
+	<li><para>For the computer science community: XML namespaces differ from traditional namespaces as traditional namespaces conventionally refer to a <highlight style="ital">set</highlight> whereas XML namespaces more properly refer to an <highlight style="ital">unbounded partition</highlight></para></li>
+	<li><para>For the web community: Use of URIs which can be resolved (i.e URLs) suggests that XML namespace identifiers 'point to something' yet no guidance is provided on what they ought reference.</para></li>
+	</seqlist>
+	</para>
+<para>    RDDL is simple, solves both of these problems, and works with 
+the current Web infrastructure.</para>
+<para>The Resource Directory Description Language is an extension of <highlight style="ital">W3C XHTML Basic 1.0</highlight> with an added 
+element named <highlight style="ital">resource</highlight>. This element serves 
+as an XLink to the referenced resource, and contains a human-readable 
+description of the resource and machine readable links which describe the 
+purpose of the link and the nature of the resource being linked to. The nature 
+of the resource being linked to is indicated by the <highlight style="ital">xlink:role</highlight> 
+attribute and the purpose of the link is indicated by the 
+<highlight style="ital">xlink:arcrole</highlight> attribute. </para>
+<para>The rddl:resource element is defined as:</para>
+<verbatim>&lt;!ELEMENT rddl:resource (#PCDATA | %Flow.mix;)*&gt;
+&lt;!ATTLIST rddl:resource
+  id            ID       #IMPLIED
+  xml:lang      NMTOKEN  #IMPLIED
+  xml:base      CDATA    #IMPLIED
+  xmlns:rddl    CDATA    #FIXED   "http://www.rddl.org/"
+  xlink:type    (simple) #FIXED   "simple"
+  xlink:arcrole CDATA    #IMPLIED
+  xlink:role    CDATA             "http://www.rddl.org/#resource"
+  xlink:href    CDATA    #IMPLIED
+  xlink:title   CDATA    #IMPLIED
+  xlink:embed   CDATA    #FIXED   "none"
+  xlink:actuate CDATA    #FIXED   "none"
+  &gt;
+</verbatim>
+	<para>For the computer science community, a proper 
+namespace is created from an XML namespace as the <highlight style="bold">set</highlight> of 
+fragment identifier qualified URI references contained in the RDDL document 
+describing the XML namespace.</para>
+<para>For the web community, a namespace name references a document which is 
+readable by humans in popular browsers as well as providing machine readable 
+links to resources related to the namespace. For example an "XML browser" would 
+be able to locate code or plugins needed for the display of namespace qualified 
+elements such as embedded SVG, MathML or other formats.</para>
+<para>The RDDL specification itself serves as a RDDL description of the RDDL 
+namespace URI <cit>http://www.rddl.org/</cit> . RDDL is 
+described a DTD, and various schemata including RELAX, TREX, Schematron and XML 
+Schema. In this context RDDL serves as a case study for the development and 
+comparision of these various schema languages.</para>
+<para>RDDL is now found at the end of the namespace URI for schema languages such 
+as Schematron, XML Schema, and Examplotron, and for namespaces such as RSS 1.0, 
+and the Comminity XSLT Extension effort.</para>
+<para>Natures and purposes of namespace related resources are defined to be URI 
+references according to XLink. RDDL defines common natures and purposes. The implications of RDDL 
+for the understanding of XML Namespaces are presented.</para>
+  </section>
+  <section><title>Namespaces as names</title>
+        <para>
+         A traditional namespace is simply a set of names. Because XML elements
+         and attributes share the namespace, a DTD or schema may define
+         distinct but identically named elements and attributes. One might say
+         that an XML Namespace is not a traditional namespace for this reason.
+         This issue is not controversial, XML having inherited this
+         &quot;feature&quot; from SGML.
+      </para>
+      <para>
+         The controversial feature of <i>XML Namespaces</i> is the use of URIs
+         as namespace names. URIs are widely used to name things on the World
+         Wide Web (WWW) yet what is named on the WWW has traditionally been a
+         document. Using a URI as a namespace name has created some
+         controversy, yet really URIs are a rather conventional hierarchical
+         naming convention Use as namespace names is not known to create
+         problems for software programs which need to distinguish XML element
+         and attribute names. What has created controversy is the desire by
+         many to understand in a more tangible fashion what a namespace is.
+         This paper suggests that understanding a namespace as a <i>space</i>
+         may provide some insight in this regard.
+      </para>
+	  </section>
+	  <section><title>Namespaces as spaces</title>
+      <p>
+         A space such as <i>Cartesian</i> space may have a set number of
+         dimensions and other defining characteristics. The behavior of objects
+         within the space is defined by a set of rules e.g. <i>Newtonian
+         Mechanics</i>.
+      </p>
+      <p>
+         Other spaces may have a different number of dimensions and operate
+         under a different set of rules such as <i>quatum mechanics</i> and
+         <i>String Theory</i>.
+      </p>
+      <p>
+         A <i>Data Space</i> is defined by an architecture. Such an
+         architecture can be visualized by a graph of nodes connected by arcs.
+         Such graphical representations can be generated from schemata.
+      </p></section>
+	  <section><title>The shape of information</title>
+      <p>
+         XML documents have often been described to have a <i>treelike</i>
+         structure. More generally data structures can be described by graphs.
+         Such data structures are easy to visualize. We can understand XML
+         documents having a shallow arborization or a deep arborization. A
+         document consisting of a root element whose content is a long string
+         is the most shallow type of arborization. One might imagine a shape
+         transformation which matches the string against a regular expression
+         pattern which results in the string being transformed into a hierarchy
+         of nodes and values. Figure 1 demonstrates a regular exression
+         representing a DNA sequence which is transformed into a hierarchy
+         using terms such as &quot;gene&quot; and &quot;snp&quot;. This
+         vocabulary is in the domain of molecular biology. Such a pattern or
+         transform represents genetic information at two levels of abstraction.
+      </p>
+	  </section>
+	  <section>
+      <title>Tree space and path identifiers</title>
+      <p>
+         Just as Cartesian space defines a point as having an <i>x</i>,
+         <i>y</i> and <i>z</i> coordinate, a tree is described by nodes having
+         parents and children. A path is used to locate a node on a tree by
+         starting with the root and traversing child nodes until the desired
+         node is identified.
+      </p>
+      <p>
+         In XML the XPath Recommendation describes such a hierarchical
+         identification mechanism which has become quite popular perhaps due to
+         its natural fit with XML.
+      </p>
+	  </section>
+	  <section><title>URI Space</title>
+      <p>
+         A popular misconception is that a URL directly references an HTML
+         document. Rather an URI (a URL being a type of URI) <i>identifies</i>
+         a <i>resource</i> and that <i>resource</i> may be rendered at some
+         point in time as an HTML document. This concept of the abstract
+         resource is understood as a point in URI space.
+      </p>
+      <p>
+         URI Space is organized in a hierarchical fashion. At the root level,
+         URIs are partitioned by <i>scheme</i> such as &quot;http&quot;,
+         &quot;ftp&quot;, &quot;mid&quot; or &quot;urn&quot;. Individual
+         schemes may be hierarchical or non hierarchical and the general syntax
+         is defined in the famous RFC 2396. Many URI schemes use path syntaxes
+         to identify resources.
+      </p>
+      <p>
+         <img alt="error-file:TidyOut.log" src="Image1.gif" width="386"
+         height="302" />
+      </p>
+	  </section>
+	  <section>
+	  <title>RDDL Space</title>
+      <p>
+         The <i>Resource Directory Description Language</i> (RDDL) is an
+         attempt to define the format of a document suitable to be resolved (or
+         rendered) as a result of dereferencing a namespace name URI. The RDDL
+         format defines resources as simple Xlinks having a <i>nature</i> and
+         <i>purpose</i>
+      </p>
+      <p>
+         The <i>nature</i> of a RDDL resource is a URI which is the
+         <i>xlink:role</i> of the simple XLink which describes the resource
+         with respect to the namespace. The <i>nature</i> of a resource is a
+         statement made about the resource itself.
+      </p>
+      <p>
+         The <i>purpose</i> of a RDDL resource is a URI which is the
+         <i>xlink:arcrole</i> of the simple XLink which describes the resource
+         with respect to the namespace. The <i>purpose</i> of a resource is a
+         statement made about the purpose of the resource with respect to the
+         namespace.
+      </p>
+      <p>
+         RDDL space thus identifies resources by both a <i>nature</i> and
+         <i>purpose</i> much as Cartesian space identifies points by both an
+         <i>x</i> and <i>y</i> coordinate.
+      </p>
+      </section>
+	  <section><title>XML Namespaces</title>
+      <p>
+         If the sole reason to have namespaces is to prevent name clashes then
+         the XML Namespace mechanism is not the simplest way of creating a
+         namespace. This is where the controversy is created. It is widely
+         acknowledged that the authors of the XML Namespaces Recommendation had
+         other things in mind when <i>XML Namespaces</i> were created. Yet the
+         W3C specification does not address this (perhaps because each member
+         of the committee had a <i>different</i> idea of what an XML Namespace
+         might be able to accomplish <font face="Wingdings">J</font> )
+      </p>
+      <p>
+         If we look at what an XML Namespace <i>ought to be</i> rather than
+         what the W3C specification actually states, then the <i>W3C XML
+         Namespace</i> mechanism starts to make a lot more sense.
+      </p>
+      </section>
+	  <section><title>Namespaces from a syntactic viewpoint</title>
+      <p>
+         Looking at XML Namespaces from a syntactic viewpoint: they accomplish
+         the objective of partitioning XML element and attribute namespace in
+         what is actually a logical and well designed fashion.
+      </p>
+      <p>
+         This viewpoint is controversial but can be supported. The <i>XML
+         Namespaces Recommendation</i> uses URIs as namespace names. Many have
+         argued that a simpler hierarchical naming mechanism such as that
+         selected by Sun&apos;s <i>Java</i> programming language for package
+         names, would have been a simpler naming mechanism for namespace names.
+         Perhaps this is true and arguably the Java package naming mechanism
+         <i>could have</i> been made to work. URIs turn out to be a terrific
+         and well supported way to create unique names and have some important
+         advantages over Java package names when we extend the XML Namespace
+         mechanism.
+      </p>
+	  </section>
+	  <section><title>How to define namespaces as <i>spaces</i></title>
+      <p>
+         As a space a namespace is associated with a set of rules which define
+         the space. Such rules are the &quot;Laws of Physics&quot; for the
+         particular namespace.
+      </p>
+      <p>
+         Such rules may be encoded as a set of schemas, stylesheets and
+         executable code that define the properties of the namespace. The
+         designer of the namespace should be free to describe the namespace
+         using appropriate tools, yet we wish to have a common format with
+         which to document namespaces for both human and machine use.
+      </p>
+	  </section>
+	  <section><title>RDDL</title>
+      <p>
+         On December 30, 2000 in response to yet another debate on the xml-dev
+         mailing list regarding whether a namespace URI ought resolve to
+         anything, Tim Bray proposed that XHTML plus a bunch of XLinks would
+         make a suitable format. By January 2, 2001 the RDDL acronym and basics
+         of the RDDL format were formed (<a
+         href="http://www.rddl.org/">http://www.rddl.org</a>) and by January 7,
+         2001 the first parser was available.
+      </p>
+      <p>
+         RDDL allows the description of many types of schemas related to a
+         namespace including DTDs, XML Schema, CSS, RELAX, TREX, RDF Schema and
+         Schematron.
+      </p>
+	  </section>
+	  <section><title>RDDL DTD</title>
+      <p>
+         In a long tradition, the RDDL specification is itself a RDDL document
+         and points to resources describing the RDDL format including a DTD:
+      </p>
+      <p>
+         <a
+         href="http://www.rddl.org/rddl-xhtml.dtd">http://www.rddl.org/rddl-xhtml.dtd</a>
+      </p>
+      <p>
+         This snippet describes the <font
+         face="Courier New">rddl:resource</font> element:
+      </p>
+      <p>
+         <font face="Courier New">&lt;!ELEMENT rddl:resource
+         (#PCDATA,%Flow.mix;)* &gt;</font>
+      </p>
+      <p>
+         <font face="Courier New">&lt;!ATTLIST rddl:resource</font>
+      </p>
+      <p>
+         <font face="Courier New">id ID #IMPLIED</font>
+      </p>
+      <p>
+         <font face="Courier New">	xml:lang NMTOKEN #IMPLIED</font>
+      </p>
+      <p>
+         <font face="Courier New">	xmlns:rddl CDATA
+         &quot;http://www.rddl.org/&quot; #FIXED</font>
+      </p>
+      <p>
+         <font face="Courier New">	%xlink.simple.attrib;</font>
+      </p>
+      <p>
+         <font face="Courier New">	%xlink.namespace.attrib;</font>
+      </p>
+      <p>
+         <font face="Courier New">&gt;</font>
+      </p>
+      <p>
+         The content of the <font face="Courier New">rddl:resource</font>
+         element is defined similarly to the (X)HTML <font
+         face="Courier New">div</font> element, and may be placed anywhere a
+         <font face="Courier New">div</font> element may be in an XHTML
+         document. The content is typically a human readable description of the
+         resource. Providing an <font face="Courier New">id</font> attribute,
+         allows a fragment identifier to index the <font
+         face="Courier New">rddl:resource.</font> The xml:lang attribute is
+         used to specify the language <font face="Courier New"></font>of the
+         content.
+      </p>
+       
+      <p>
+         The <font face="Courier New">rddl:resource</font> element is defined
+         as a simple Xlink:
+      </p>
+      <p>
+         <font face="Courier New">	xl:type (simple) #FIXED
+         &quot;simple&quot;</font>
+      </p>
+      <p>
+         <font face="Courier New">	xl:arcrole CDATA #IMPLIED</font>
+      </p>
+      <p>
+         <font face="Courier New">	xl:role CDATA
+         &quot;http://www.rddl.org/#resource&quot;</font>
+      </p>
+      <p>
+         <font face="Courier New">	xl:href CDATA #IMPLIED</font>
+      </p>
+      <p>
+         <font face="Courier New">xl:title CDATA #IMPLIED</font>
+      </p>
+      <p>
+         <font face="Courier New">	xl:show (none) #FIXED
+         &quot;none&quot;</font>
+      </p>
+      <p>
+         <font face="Courier New">	xl:embed (none) #FIXED
+         &quot;none&quot;</font>
+      </p>
+      <p>
+         <font face="Courier New">	xl:label CDATA #IMPLIED</font>
+      </p>
+      <p>
+         <font face="Courier New"> </font>
+      </p>
+	  </section>
+	  <section><title>RDDL Nature</title>
+      <p>
+         <font face="Courier New">The RDDL <i>nature</i> or Xlink <i>role</i>
+         of a resource describes the nature of the resource. This is a property
+         of the resource not the namespace.</font>
+      </p>
+      <p>
+         The <i>nature</i> is often the namespace URI of the root element of
+         the related resource when the related resource is XML. When the
+         related resource is not XML, the <i>nature</i> may be the well known
+         URI describing its MIME <i>media type</i>.
+      </p>
+      <p>
+         A description of some useful natures is found at <a
+         href="http://www.rddl.org/natures">http://www.rddl.org/natures</a>.
+         For example, the <i>nature</i> of an XML Schema document is: <a
+         href="http://www.w3.org/2001/XMLSchema">http://www.w3.org/2001/XMLSchema</a>,
+         the <i>nature</i> of a Schematron schema is: <a
+         href="http://www.ascc.net/xml/schematron">http://www.ascc.net/xml/schematron</a>
+         and the <i>nature</i> of XSLT is <a
+         href="http://www.w3.org/1999/XSL/Transform">http://www.w3.org/1999/XSL/Transform</a>.
+      </p>
+	  </section>
+	  <section><title>RDDL Purpose</title>
+      <p>
+         The <i>purpose</i> of a RDDL resource is defined by the namespace and
+         describes the <i>purpose</i> of the resource with respect to the
+         namespace. It is a property of the namespace not the resource. A list
+         of some useful purposes is found at <a
+         href="http://www.rddl.org/purposes/">http://www.rddl.org/purposes/</a>.
+      </p>
+      <p>
+         The <i>purpose</i> of an XML Schema, when the schema is intended to be
+         used for schema validation might be: <a
+         href="http://www.rddl.org/purposes">http://www.rddl.org/purposes#schema-validation</a>.
+         A namespace may use several schemas for schema validation in which
+         case it can assign a more descriptive <i>purpose</i> to each schema.
+      </p>
+      <p>
+         For example:
+      </p>
+      <p>
+         <font face="Courier New">&lt;rddl:resource</font>
+      </p>
+      <p>
+         <font face="Courier New">xlink:title=&quot;TREX Schema&quot;</font>
+      </p>
+      <p>
+         <font
+         face="Courier New">xlink:arcrole=&quot;http://www.rddl.org/purposes#schema-validation&quot;</font>
+      </p>
+      <p>
+         <font
+         face="Courier New">xlink:role=&quot;http://www.thaiopensource.com/trex&quot;</font>
+      </p>
+      <p>
+         <font face="Courier New">xlink:href=&quot;xhtml-rddl.trex&quot;</font>
+      </p>
+      <p>
+         <font face="Courier New">&gt;</font>
+      </p>
+      <p>
+         <font face="Courier New">&lt;h3&gt;7.10 TREX&lt;/h3&gt;</font>
+      </p>
+      <p>
+         <font face="Courier New">&lt;p&gt;A TREX Schema &lt;a
+         href=&quot;xhtml-rddl.trex&quot;&gt;xhtml-rddl.trex</font>
+      </p>
+      <p>
+         <font face="Courier New">	&lt;/a&gt; for RDDL&lt;/p&gt;</font>
+      </p>
+      <p>
+         <font face="Courier New">&lt;/rddl:resource&gt;</font>
+      </p>
+      </section>
+	  <section>
+	  <title>XML Namespaces viewed as RDDL
+         Spaces</title>
+
+      <p>
+         <b>Resources and URIs</b>
+      </p>
+      <p>
+         The <i>resource</i> is defined in RFC 2396 yet much confusion remains.
+         It is commonly thought that a <i>resource</i> is a document on the web
+         but this is untrue, a resource is merely a point in URI space, no more
+         and no less. In common usage, however, a <i>resource</i> is
+         represented by a document having a MIME media type. Via the mechanism
+         known as HTTP content negotiation, for example, different documents
+         may be retrieved as the representations of a single resource i.e by
+         dereferencing a single URI.
+      </p>
+      <p>
+         In practice, content negotiation is not always a useful mechanism for
+         discovering properties of a particular resource. A namespace name,
+         being a URI, suggests that a namespace may be considered a resource
+         (or at least may be represented by a resource). By the RDDL mechanism,
+         the RDDL document represents a namespace as a set of resources each
+         having a <i>nature</i> and <i>purpose</i>. Thus each <i>resource</i>
+         while being a point in URI Space, can be described by its own unique
+         RDDL Space. At its simplest, each unique resource has a <i>set</i> of
+         <i>natures.</i>
+      </p>
+      <p>
+         <img alt="error-file:TidyOut.log" src="Image2.gif" width="301"
+         height="199" />
+      </p>
+      <p>
+         A <i>namespace</i> is defined by a set of tuples each containing an
+         <i>id</i> a <i>purpose</i> and a <i>resource</i>.
+      </p>
+      <p>
+         <img alt="error-file:TidyOut.log" src="Image3.gif" width="398"
+         height="235" />
+      </p>
+	  </section>
+	  <section>
+	  <title>RDDL and RDF</title>
+      <p>
+         By this formalism, each RDDL resource describes two RDF triples: the
+         first whose subject is the namespace URI, whose predicate is the
+         <i>purpose</i> and whose object is the <i>href</i>, and the second
+         whose subject is the <i>href</i> whose predicate is <i>rdf:type</i>
+         and whose object is the <i>nature</i>.
+      </p>
+      <p>
+         <img alt="error-file:TidyOut.log" src="Image4.gif" width="462"
+         height="216" />
+      </p>
+	  </section>
+	  <section><title>XSLT and RDDL</title>
+      <p>
+         <img alt="error-file:TidyOut.log" src="Image5.gif"
+         width="574" height="268" />
+      </p>
+      <p>
+         It is often implicit that the <i>purpose</i> of an XSLT document is to
+         define a transform from one format to another. In RDDL, the namespace
+         being defined may serve as the <i>nature</i> of the originating format
+         and the <i>purpose</i> of the XSLT resource may be implicitly
+         understood to be the <i>nature</i> of the format being transformed
+         into.
+      </p>
+      <p>
+         For example the following resource:
+      </p>
+      <p>
+         <font face="Courier New">&lt;rddl:resource</font>
+      </p>
+      <p>
+         <font
+         face="Courier New">xl:role=&quot;http://www.w3.org/1999/XSL/Transform&quot;</font>
+      </p>
+      <p>
+         <font
+         face="Courier New">xl:arcrole=&quot;http://purl.org/rss/1.0&quot;</font>
+      </p>
+      <p>
+         <font face="Courier New">xl:href=&quot;toRSS.xsl&quot;</font>
+      </p>
+      <p>
+         <font face="Courier New">&gt;</font>
+      </p>
+      <p>
+         In this case the <i>purpose</i> of the XSLT resource is to transform
+         into <i>RSS</i>. The resulting document has a <i>nature</i> of <a
+         href="http://purl.org/rss/1.0">http://purl.org/rss/1.0</a>. Such a
+         convention allows a software agent to piece together a series of
+         transforms. For example suppose it is desired to transform from format
+         <i>A</i> to format <i>C</i>. The RDDL description of the namespace for
+         <i>A</i> may contain an XSLT providing a transform to <i>B</i>, and
+         the RDDL description for the namespace of <i>B</i> may contain an XSLT
+         transform into <i>C</i>. One could then serially transform A -&gt; B
+         -&gt; C.
+      </p>
+      </section>
+	  <section><title>Software</title>
+
+      <p>
+         Software is often classified according to its nature, perhaps the
+         language it is written in, and its purpose. Such a classification may
+         allow a system to assemble components of a similar nature for a
+         particular purpose.
+      </p>
+      <p>
+          
+      </p>
+      <p>
+         <font face="Arial">Java Resource</font>
+      </p>
+      <p>
+         This example demonstrates the incorporation of a Java resource into a
+         namespace. In this case the <i>purpose</i> of the resource is to serve
+         as the implementation of an XSLT extension library associated with the
+         namespace.
+      </p>
+      <p>
+         <font face="Courier New">&lt;rddl:resource</font>
+      </p>
+      <p>
+         <font
+         face="Courier New">xl:role=&quot;...application/java-archive&quot;</font>
+      </p>
+      <p>
+         <font
+         face="Courier New">xl:arcrole=&quot;...purposes/software#xslt-extension&quot;</font>
+      </p>
+      <p>
+         <font
+         face="Courier New">xl:href=&quot;thisNS-xslt-extension.jar&quot;</font>
+      </p>
+      <p>
+         <font face="Courier New">&gt;</font>
+      </p>
+      <div style="margin-left: 4em">
+         <p>
+            <font face="Courier New">&lt;p&gt;The xslt extensions bound to this
+            namespace are packaged in a JAR&lt;/p&gt;</font>
+         </p>
+      </div>
+      <p>
+         <font face="Courier New">&lt;/rddl:resource&gt;</font>
+      </p>
+      <p>
+          
+      </p>
+      <p>
+         <font face="Arial">RDDLURL</font>
+      </p>
+      <p>
+         The idea of a distributed package defined by a namespace is
+         implemented using a simple API. The RDDL URL implements the
+         indirection through the RDDL document to obtain namespace related
+         resources by nature and purpose.
+      </p>
+      <p>
+         <font face="Courier New">package org.rddl;</font>
+      </p>
+      <p>
+         <font face="Courier New">class RDDLURL {</font>
+      </p>
+      <p>
+         <font face="Courier New">public RDDLURL(String nsURI,</font>
+      </p>
+      <p>
+         <font face="Courier New">			String nature,</font>
+      </p>
+      <p>
+         <font face="Courier New">			String purpose);</font>
+      </p>
+      <p>
+         <font face="Courier New">public InputStream getInputStream();</font>
+      </p>
+      <p>
+         <font face="Courier New">static Namespace getNamespace(String
+         nsURI);</font>
+      </p>
+      <p>
+         <font face="Courier New">}</font>
+      </p>
+      <p>
+         <font face="Courier New"> </font>
+      </p>
+       <font face="Arial"></font>
+      <p>
+         <font face="Arial">Interface Namespace</font>
+      </p>
+      <p>
+         In this API a <i>namespace</i> is defined by the interface:
+      </p>
+      <p>
+         <font face="Courier New">public interface Namespace {</font>
+      </p>
+      <p>
+         <font face="Courier New">	SortedMap getResourcesFromNature(String
+         nature);</font>
+      </p>
+      <p>
+         <font face="Courier New">	SortedMap getResourcesFromPurpose(String
+         purpose);</font>
+      </p>
+      <p>
+         <font face="Courier New">	SortedMap getResourcesFromHref(String
+         href);</font>
+      </p>
+      <p>
+         <font face="Courier New">	SortedMap getResourcesFromTitle(String
+         title);</font>
+      </p>
+      <p>
+         <font face="Courier New">	SortedMap getResourcesFromLang(String
+         lang);</font>
+      </p>
+      <p>
+         <font face="Courier New">	SortedMap getResourcesFromIdRange(String
+         id0,id1);</font>
+      </p>
+      <p>
+         <font face="Courier New">	Resource getResourceFromId(String
+         id);</font>
+      </p>
+      <p>
+         <font face="Courier New">... }</font>
+      </p>
+      <p>
+         This interface serves as a definition of an XML Namespace which is of
+         practical use to software. A given <i>nature</i> or <i>purpose</i>
+         defines a set of namespace related resources. Similarly the URI of a
+         particular sub-resource is indicated by its <i>href</i>, yet a given
+         sub-resource may be referenced by several RDDL resources (e.g.
+         associated with different natures, purposes, ids etc.). As a simple
+         XLink, each RDDL resource has a <i>title</i>, which serves as a short
+         human readable description, and may be associated with an
+         <i>xml:lang</i> attribute, which serves to distinguish the intended
+         language of the documentation, or perhaps to distinguish specific
+         sub-resources according to sub-resource language. Each resource may be
+         given an <i>id</i> which serves as the target of a fragment
+         identifier. Such <i>ids</i> allow URI references (e.g. URI +
+         &quot;#&quot; + id) to target particular RDDL resources within a RDDL
+         document. This is particularly useful when the id is the name of the
+         resource being identified.
+      </p>
+      <p>
+          
+      </p>
+      <p>
+         <font face="Arial">Interface Resource</font>
+      </p>
+      <p>
+         <font face="Courier New">public interface Resource {</font>
+      </p>
+      <p>
+         <font face="Courier New">	String getPurpose();</font>
+      </p>
+      <p>
+         <font face="Courier New">	String getNature();</font>
+      </p>
+      <p>
+         <font face="Courier New">	String getHref();</font>
+      </p>
+      <p>
+         <font face="Courier New">	String getTitle();</font>
+      </p>
+      <p>
+         <font face="Courier New">	String getLang();</font>
+      </p>
+      <p>
+         <font face="Courier New">	String getId();</font>
+      </p>
+      <p>
+         <font face="Courier New">	String getBaseURI();</font>
+      </p>
+      <p>
+         <font face="Courier New">	Container getContainer();</font>
+      </p>
+      <p>
+         <font face="Courier New">}</font>
+      </p>
+      <p>
+         The RDDL API definition of a <i>Resource</i> contains the expected
+         RDDL attributes. Note that every <i>Resource</i> may have a specific
+         <i>base URI</i>, and that every <i>Resource</i> may be associated with
+         a <i>Container</i>.
+      </p>
+      <p>
+          
+      </p>
+      <p>
+         <font face="Arial">Interface Container</font>
+      </p>
+      <p>
+         <font face="Courier New">public interface Container extends Namespace
+         {	</font>
+      </p>
+      <p>
+         <font face="Courier New">	Resource getResourceFromURI(String
+         uri);</font>
+      </p>
+      <p>
+         <font face="Courier New">	SortedMap getResourcesFromURIRange(String
+         uri0,String uri1);</font>
+      </p>
+      <p>
+         <font face="Courier New">	void addResource(Resource r);</font>
+      </p>
+      <p>
+         <font face="Courier New">}</font>
+      </p>
+      <p>
+         A <i>Container</i> is a relatively simple extension of a
+         <i>Namespace</i> with the ability to associate a <i>Resource</i> with
+         an arbitrary URI, whereas all <i>Resources</i> in a particular
+         <i>Namespace</i> are assumed to be based on the namespace name
+         <i>URI</i>. Such resources are named by the composition of the
+         namespace URI and the resource id as the fragment identifier of the
+         resulting URI reference (e.g. nsURI#foo).
+      </p>
+      <p>
+         <b><i><font face="Arial">Namespaces from a semantic
+         viewpoint</font></i></b>
+      </p>
+      <p>
+         RDDL allows XML Namespaces to be used for &quot;Semantic Web&quot;
+         applications by binding URIs to particular human readable text and
+         machine readable code. A simple &quot;Semantic Web&quot; code snippet
+         is found in the <i>RDDLClassLoader</i> java class. This class loads
+         Java classes which are bound to particular XML Namespace URIs and is
+         fully described below.
+      </p>
+      <p>
+          
+      </p>
+      <p>
+         <font face="Arial">RDDLClassLoader</font>
+      </p>
+      <p>
+         <font face="Courier New">public class RDDLClassLoader extends
+         java.net.URLClassLoader</font>
+      </p>
+      <p>
+         <font face="Courier New">{</font>
+      </p>
+      <p>
+         <font face="Courier New">static final String STR_NATURE_JAVA =
+         &quot;http://www.rddl.org/natures#java&quot;;</font>
+      </p>
+      <p>
+         <font face="Courier New">static final String STR_NATURE_JAR =
+         &quot;http://www.rddl.org/natures#JAR&quot;;</font>
+      </p>
+      <p>
+         <font face="Courier New">public RDDLClassLoader(String nsUrl,String
+         purposeURI)</font>
+      </p>
+      <div style="margin-left: 4em">
+         <p>
+            <font face="Courier New">throws 	java.io.IOException,</font>
+         </p>
+         <div style="margin-left: 8em">
+            <p>
+               <font face="Courier New">org.xml.sax.SAXException{</font>
+            </p>
+         </div>
+      </div>
+      <p>
+         <font face="Courier New">super(buildUriList(nsUrl,purposeURI));</font>
+      </p>
+      <p>
+         <font face="Courier New">}</font>
+      </p>
+      <p>
+         It is easy to see that this class is simply the
+         <i>java.net.URLClassLoader</i> class which builds its URL list via the
+         set of URLs in a RDDL directory having a particular <i>purpose</i>.
+         (The relevent <i>natures</i> of these resources are either
+         &quot;java&quot; or &quot;JAR&quot;.)
+      </p>
+      <p>
+         The buildURIList static member implements the functionality of the
+         class:
+      </p>
+      <p>
+         <font face="Courier New">protected static URL[] buildUriList(</font>
+      </p>
+      <div style="margin-left: 8em">
+         <p>
+            <font face="Courier New">java.lang.String URI,</font>
+         </p>
+         <p>
+            <font face="Courier New">java.lang.String purposeURI)</font>
+         </p>
+      </div>
+      <p>
+         <font face="Courier New">{</font>
+      </p>
+      <p>
+         <font face="Courier New">		// first get the RDDL Namespace for the
+         URI</font>
+      </p>
+      <p>
+         <font face="Courier New">	Namespace ns =
+         RDDLURL.getNamespace(URI);</font>
+      </p>
+      <p>
+         <font face="Courier New">		SortedMap ress0 =
+         ns.getResourcesFromNature( STR_NATURE_JAVA );</font>
+      </p>
+      <p>
+         <font face="Courier New">	TreeMap ress = new TreeMap(ress0);</font>
+      </p>
+      <div style="margin-left: 4em">
+         <div style="margin-left: 4em">
+            <p>
+               <font face="Courier New">// merge STR_NATURE_JAVA and
+               STR_NATURE_JAR
+               ress.putAll(ns.getResourcesFromNature(STR_NATURE_JAR));</font>
+            </p>
+            <p>
+               <font face="Courier New">// create a Vector of values having the
+               desired</font>
+            </p>
+            <p>
+               <font face="Courier New">// purpose</font>
+            </p>
+            <p>
+               <font face="Courier New">Vector strArr = new Vector();</font>
+            </p>
+         </div>
+         <p>
+            <font face="Courier New">Iterator iter =
+            ress.values().iterator();</font>
+         </p>
+         <p>
+            <font face="Courier New">while(iter.hasNext())</font>
+         </p>
+         <p>
+            <font face="Courier New">{</font>
+         </p>
+      </div>
+      <p>
+         <font face="Courier New">Resource res = (Resource)iter.next();</font>
+      </p>
+      <p>
+         <font face="Courier New">if
+         (purposeURI.equals(res.getPurpose()))</font>
+      </p>
+      <p>
+         <font face="Courier New">strArr.addElement(res.getHref());</font>
+      </p>
+      <div style="margin-left: 4em">
+         <p>
+            <font face="Courier New">}</font>
+         </p>
+         <p>
+            <font face="Courier New">// convert to URL[]</font>
+         </p>
+         <p>
+            <font face="Courier New">int len = strArr.size();</font>
+         </p>
+         <p>
+            <font face="Courier New">URL[] uris = new URL[len];</font>
+         </p>
+         <p>
+            <font face="Courier New">URL baseURL = new URL(URI);</font>
+         </p>
+         <p>
+            <font face="Courier New">for(int i=0;i&lt;len;i++){</font>
+         </p>
+      </div>
+      <p>
+         <font face="Courier New">uris[i] = new URL(</font>
+      </p>
+      <div style="margin-left: 8em">
+         <p>
+            <font face="Courier New">baseURL,</font>
+         </p>
+         <p>
+            <font face="Courier New">(String)strArr.elementAt(i));</font>
+         </p>
+      </div>
+      <p>
+         <font face="Courier New">		};</font>
+      </p>
+      <div style="margin-left: 4em">
+         <p>
+            <font face="Courier New">return uris;</font>
+         </p>
+      </div>
+      <p>
+         <font face="Courier New">}</font>
+      </p>
+      <br />
+      <br />
+      <p>
+         <font face="Courier New">}</font>
+      </p>
+      <p>
+         <font face="Courier New"> </font>
+      </p>
+       <font face="Arial"></font>
+      <p>
+         <font face="Arial">Efficiency Concerns</font>
+      </p>
+      <p>
+         Concerns raised with RDDL/Namespace applications generally fall into
+         two issues:
+      </p>
+      <ol>
+         <li>
+            Resolution of well known namespace URIs will create a bottleneck.
+         </li>
+         <li>
+            RDDL places an extra level of URI resolution indirection that
+            imposes inefficiency.
+         </li>
+      </ol>
+      <p>
+         Frequent resolving of namespace URIs such as XML Schema would create a
+         bottleneck just as would frequent downloading of HTML DTDs. Thankfully
+         the Web has evolved mechanisms to deal with such issues including
+         caches and local catalog indirection. Many applications will hardwire
+         schemas such as for HTML and work around such bottlenecks.
+      </p>
+      <p>
+         Regarding the RDDL indirection, how and when an application binds to a
+         resource is an implementation issue and need not impose significant
+         actual overhead. Approaches toward dealing with these issues include
+         <i>namespace precompilation</i>.
+      </p>
+      <p>
+          
+      </p>
+      <p>
+         <b><font face="Arial">RDDL HTTP Extension Framework</font></b>
+      </p>
+      <p>
+         There is no particular need for a RDDL document to be downloaded to
+         the client. RDDL defines a set of HTTP Extension Framework headers
+         which allow server side indirection:
+      </p>
+      <p>
+         For example the following HTTP Request can be used to request the
+         appropriate XML Schema used to validate the namespace:
+      </p>
+      <p>
+         <font face="Courier New">GET / HTTP/1.1 Host: www.rddl.org Opt:
+         &quot;http://www.rddl.org/httpext&quot;; ns=11</font>
+      </p>
+      <p>
+         <font face="Courier New">11-Nature:
+         http://www.w3.org/2001/XMLSchema</font>
+      </p>
+      <p>
+         <font face="Courier New">11-Purpose:</font> <a
+         href="http://www.rddl.org/purposes"><font
+         face="Courier New">http://www.rddl.org/purposes#schema-validation</font></a>
+      </p>
+      </section>
+      <p>
+         <b><i><font face="Arial">Putting it all together</font></i></b>
+      </p>
+      <p>
+         Mixing together terms from different namespaces in a single document
+         or collection of documents raises particular challenges which we are
+         just starting to understand.
+      </p>
+      <p>
+         Biomedical information serves as an example of the intermingling of
+         namespace specific vocabularies. Many groups and organizations have
+         developed specialized lexicons which might be documented at individual
+         namespaces. For example &quot;BioML&quot; for genetics/bioinformatics,
+         &quot;CPT&quot; codes for surgery/procedures, &quot;SNOMED&quot; for
+         pathology, &quot;ICD&quot; for medicine and &quot;DICOM&quot; for
+         radiology.
+      </p>
+      <p>
+         An &quot;electronic medical record&quot; might be expected to contain
+         documents coded in each of these lexicons.
+      </p>
+      <p>
+          
+      </p>
+      <p>
+         <img alt="error-file:TidyOut.log" src="Image6.gif" width="384"
+         height="233" />
+      </p>
+      <p>
+         In order to make sense of such apparently disparate information a set
+         of term equivalencies might be created via a set of hyperlinks.
+      </p>
+      <p>
+         <img alt="error-file:TidyOut.log" src="Image7.gif" width="493"
+         height="269" />
+      </p>
+      <p>
+         Much as we might view a namespace as defining the <i>shape of
+         information</i>, the activity of analyzing documents which contain
+         linkages between terms in multiple namespaces may be helped by
+         considering the <i>shape of ontologies</i>
+      </p>
+      <p>
+         <img alt="error-file:TidyOut.log" src="Image8.gif" width="484"
+         height="203" />
+      </p>
+</body>
+</paper>
+

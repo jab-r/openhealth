@@ -1,0 +1,148 @@
+<!--
+	Mapping DICOM V3 to XML
+
+	Element names are produced from DICOM names by 
+		lowercase words separated by "."
+
+	Examples:
+		"RT Treatment Summary Module"
+		-!> rt.treatment.summary.module
+		"Distance to Source"
+		-!> distance.to.source
+		"Number of Leaf/Fan Pairs"
+		-!> number.of.leaf.fan.pairs
+
+	There are two types of mappings
+	1) Module based
+		xmlns:mod="http://www.openhealth.org/2000/09/DICOM/module"
+		Each module specified in DICOM V3 Part 3 is an element
+		Part 3 tables are converted into elementspecs using the sequence defined in the Part3 table
+			in this mapping, this sequence is as specified and need not always be in numerical order
+		Type 1 DICOM elements are mandatory
+		Type 1C DICOM elements may be mandatory
+		Type 2 and 3 DICOM elements are optional (either ? or *)
+		When the VM=1 optional elements are indicated by ?
+		When the VM=1-n optional elements are indicated by * and mandatory by +
+		When a sequence may have VM > 1, the sequence element is * or +
+		Elements are represented as below
+	2) Element based
+		Elements are in order by group and element number
+		group and element attributes are fixed
+			e.g. <!ATTLIST dcm:group.length
+						group CDATA #FIXED "x0000"
+						element CDATA #FIXED "x0000">
+		element content specifies DICOM datatype (VR) and number of child elements specifies VM
+			e.g. 
+				<dcm:example><dcm:UI>1.2.3.4.5</dcm:UI></dcm:Example>
+				<dcm:example.array>
+					<dcm:FL>1.23456</dcm:FL>
+					<dcm:FL>2.34567</dcm:FL>
+				</dcm:example.array>
+		binary data may be represented either as an array of (byte,short,long) or
+		as a base64 encoded string e.g.
+			<dcm:Binary1>
+				<dcm:UB>12</dcm:UB><dcm:UB>231</dcm:UB>
+			</dcm:Binary1>
+
+			<dcm:Binary2>
+				<dcm:OB encoding="base64">...</dcm:OB>
+			</dcm:Binary2>
+			
+	PUBID "-//ASTM//DTD E31.25 DICOM datatypes 1.0//EN"
+-->
+<!ENTITY % dcm.ns "http://www.openhealth.org/ASTM/1/DICOM">
+<!ENTITY % mod.ns "http://www.openhealth.org/ASTM/1/DICOM/module">
+
+<!ENTITY % DICOM.prefixed "INCLUDE">
+<![ %DICOM.prefixed; [
+
+<!ENTITY % dcm "dcm">
+<!ENTITY % mod "mod">
+<!ENTITY % dicom.pfx "%dcm;:">
+<!ENTITY % DICOM.module.pfx "%mod;:">
+]]>
+<!ENTITY % dcm "">
+<!ENTITY % mod "">
+<!ENTITY % dicom.pfx ''>
+<!ENTITY % DICOM.module.pfx ''>
+
+<!-- datatypes -->
+<!ENTITY % dicom.AE.qname "%dicom.pfx;AE">
+<!ENTITY % dicom.AS.qname "%dicom.pfx;AS">
+<!ENTITY % dicom.AT.qname "%dicom.pfx;AT">
+<!ENTITY % dicom.CS.qname "%dicom.pfx;CS">
+<!ENTITY % dicom.DA.qname "%dicom.pfx;DA">
+<!ENTITY % dicom.DS.qname "%dicom.pfx;DS">
+<!ENTITY % dicom.DT.qname "%dicom.pfx;DT">
+<!ENTITY % dicom.FL.qname "%dicom.pfx;FL">
+<!ENTITY % dicom.FD.qname "%dicom.pfx;FD">
+<!ENTITY % dicom.IS.qname "%dicom.pfx;IS">
+<!ENTITY % dicom.LO.qname "%dicom.pfx;LO">
+<!ENTITY % dicom.LT.qname "%dicom.pfx;LT">
+<!ENTITY % dicom.OB.qname "%dicom.pfx;OB">
+<!ENTITY % dicom.OW.qname "%dicom.pfx;OW">
+<!ENTITY % dicom.PN.qname "%dicom.pfx;PN">
+<!ENTITY % dicom.SH.qname "%dicom.pfx;SH">
+<!ENTITY % dicom.SL.qname "%dicom.pfx;SL">
+<!ENTITY % dicom.SQ.qname "%dicom.pfx;SQ">
+<!ENTITY % dicom.SS.qname "%dicom.pfx;SS">
+<!ENTITY % dicom.ST.qname "%dicom.pfx;ST">
+<!ENTITY % dicom.TM.qname "%dicom.pfx;TM">
+<!ENTITY % dicom.UI.qname "%dicom.pfx;UI">
+<!ENTITY % dicom.US.qname "%dicom.pfx;US">
+<!ENTITY % dicom.UL.qname "%dicom.pfx;UL">
+<!ENTITY % dicom.UN.qname "%dicom.pfx;UN">
+<!ENTITY % dicom.UT.qname "%dicom.pfx;UT">
+<!ENTITY % dicom.family.qname "%dicom.pfx;family">
+<!ENTITY % dicom.given.qname "%dicom.pfx;given">
+<!ENTITY % dicom.middle.qname "%dicom.pfx;middle">
+<!ENTITY % dicom.prefix.qname "%dicom.pfx;prefix">
+<!ENTITY % dicom.suffix.qname "%dicom.pfx;suffix">
+<!ENTITY % dicom.delimiter.qname "%dicom.pfx;delimiter">
+<!ENTITY % dicom.b.qname "%dicom.pfx;b">
+<!ENTITY % dicom.w.qname "%dicom.pfx;w">
+<!ENTITY % dicom.NONE.qname "%dicom.pfx;NONE">
+
+<!ELEMENT %dicom.AE.qname; (#PCDATA)>
+<!ELEMENT %dicom.AS.qname; (#PCDATA)>
+<!ELEMENT %dicom.AT.qname; (#PCDATA)>
+<!ELEMENT %dicom.CS.qname; (#PCDATA)>
+<!ELEMENT %dicom.DA.qname; (#PCDATA)>
+<!ELEMENT %dicom.DS.qname; (#PCDATA)>
+<!ELEMENT %dicom.DT.qname; (#PCDATA)>
+<!ELEMENT %dicom.FL.qname; (#PCDATA)>
+<!ELEMENT %dicom.FD.qname; (#PCDATA)>
+<!ELEMENT %dicom.IS.qname; (#PCDATA)>
+<!ELEMENT %dicom.LO.qname; (#PCDATA)>
+<!ELEMENT %dicom.LT.qname; (#PCDATA)>
+<!ELEMENT %dicom.OB.qname; (#PCDATA)>
+<!ATTLIST %dicom.OB.qname;
+	encoding NMTOKEN #FIXED "base64">
+<!ELEMENT %dicom.b.qname; (#PCDATA)>
+<!ELEMENT %dicom.OW.qname; (#PCDATA)>
+<!ATTLIST %dicom.OW.qname;
+	encoding (base64) #FIXED "base64">
+<!ELEMENT %dicom.w.qname; (#PCDATA)>
+<!ELEMENT %dicom.PN.qname; (%dicom.family.qname;|%dicom.given.qname;|%dicom.middle.qname;|%dicom.prefix.qname;|%dicom.suffix.qname;|%dicom.delimiter.qname;)*>
+<!ELEMENT %dicom.family.qname; (#PCDATA)>
+<!ELEMENT %dicom.given.qname; (#PCDATA)>
+<!ELEMENT %dicom.prefix.qname; (#PCDATA)>
+<!ELEMENT %dicom.suffix.qname; (#PCDATA)>
+<!ELEMENT %dicom.middle.qname; (#PCDATA)>
+<!ELEMENT %dicom.delimiter.qname; (#PCDATA)>
+
+<!ELEMENT %dicom.SH.qname; (#PCDATA)>
+<!ELEMENT %dicom.SL.qname; (#PCDATA)>
+<!ELEMENT %dicom.SQ.qname; ANY>
+<!ELEMENT %dicom.SS.qname; (#PCDATA)>
+<!ELEMENT %dicom.ST.qname; (#PCDATA)>
+<!ELEMENT %dicom.TM.qname; (#PCDATA)>
+<!ELEMENT %dicom.UI.qname; (#PCDATA)>
+<!ELEMENT %dicom.UL.qname; (#PCDATA)>
+<!ELEMENT %dicom.UN.qname; (#PCDATA)>
+<!ATTLIST %dicom.UN.qname;
+	encoding NMTOKEN #FIXED "base64">
+<!ELEMENT %dicom.US.qname; (#PCDATA)>
+<!ELEMENT %dicom.UT.qname; (#PCDATA)>
+
+

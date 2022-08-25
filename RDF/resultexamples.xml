@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <rdf:subject rdf:resource="#/1"/>
+      <rdf:object rdf:resource="file:/D:/rdf/xlinkexamples.xml#dummyRoot"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="file:/D:/rdf/xlinkexamples.xml#anElt"/>
+      <rdf:subject rdf:resource="#/1"/>
+      <rdf:object rdf:resource="#/1/1"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <rdf:subject rdf:resource="#/1/1"/>
+      <rdf:object rdf:resource="file:/D:/rdf/xlinkexamples.xml#anElt"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://links.org/namespace/cite"/>
+      <rdf:subject rdf:resource="#/1/1/1"/>
+      <rdf:object rdf:resource="http://www.foo.com/papers/crops.txt"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <rdf:subject rdf:resource="http://www.foo.com/papers/crops.txt"/>
+      <rdf:object rdf:resource="http://links.org/namespace/screed"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <rdf:subject rdf:resource="http://links.org/namespace/screed"/>
+      <rdf:object rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#value"/>
+      <rdf:subject rdf:resource="http://www.foo.com/papers/crops.txt"/>
+      <rdf:object>recent paper</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#value"/>
+      <rdf:subject rdf:resource="#/1/1"/>
+      <rdf:object>
+... In a </rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#value"/>
+      <rdf:subject rdf:resource="#/1/1"/>
+      <rdf:object>, Dr. Taylor assumes that ...
+</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <rdf:subject rdf:resource="students/patjones62.xml"/>
+      <rdf:object rdf:resource="http://www.example.com/linkprops/student"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <rdf:subject rdf:resource="http://www.example.com/linkprops/student"/>
+      <rdf:object rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/xlink#label"/>
+      <rdf:subject rdf:resource="students/patjones62.xml"/>
+      <rdf:object xmlns:xlink="http://www.w3.org/1999/xlink" xlink:label="student62"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/xlink#title"/>
+      <rdf:subject rdf:resource="students/patjones62.xml"/>
+      <rdf:object xmlns:xlink="http://www.w3.org/1999/xlink" xlink:title="Pat Jones"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <rdf:subject rdf:resource="profs/jaysmith7.xml"/>
+      <rdf:object rdf:resource="http://www.example.com/linkprops/professor"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <rdf:subject rdf:resource="http://www.example.com/linkprops/professor"/>
+      <rdf:object rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/xlink#label"/>
+      <rdf:subject rdf:resource="profs/jaysmith7.xml"/>
+      <rdf:object xmlns:xlink="http://www.w3.org/1999/xlink" xlink:label="prof7"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/xlink#title"/>
+      <rdf:subject rdf:resource="profs/jaysmith7.xml"/>
+      <rdf:object xmlns:xlink="http://www.w3.org/1999/xlink" xlink:title="Dr. Jay Smith"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <rdf:subject rdf:resource="courses/cs101.xml"/>
+      <rdf:object rdf:resource="http://www.example.com/linkprops/course"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <rdf:subject rdf:resource="http://www.example.com/linkprops/course"/>
+      <rdf:object rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/xlink#label"/>
+      <rdf:subject rdf:resource="courses/cs101.xml"/>
+      <rdf:object xmlns:xlink="http://www.w3.org/1999/xlink" xlink:label="CS-101"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/xlink#title"/>
+      <rdf:subject rdf:resource="courses/cs101.xml"/>
+      <rdf:object xmlns:xlink="http://www.w3.org/1999/xlink" xlink:title="Computer Science 101"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <rdf:subject rdf:resource="file:/D:/rdf/xlinkexamples.xml#gpa"/>
+      <rdf:object rdf:resource="http://www.example.com/linkprops/gpa"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/>
+      <rdf:subject rdf:resource="http://www.example.com/linkprops/gpa"/>
+      <rdf:object rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/xlink#label"/>
+      <rdf:subject rdf:resource="file:/D:/rdf/xlinkexamples.xml#gpa"/>
+      <rdf:object xmlns:xlink="http://www.w3.org/1999/xlink" xlink:label="PatJonesGPA"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#value"/>
+      <rdf:subject rdf:resource="http://www.example.com/linkprops/gpa"/>
+      <rdf:object>3.5</rdf:object>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="file:/D:/rdf/xlinkexamples.xml#go"/>
+      <rdf:subject rdf:resource="students/patjones62.xml"/>
+      <rdf:object rdf:resource="file:/D:/rdf/xlinkexamples.xml#gpa"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.example.com/linkprops/auditor"/>
+      <rdf:subject rdf:resource="courses/cs101.xml"/>
+      <rdf:object rdf:resource="students/patjones62.xml"/>
+   </rdf:Statement>
+   <rdf:Statement>
+      <rdf:predicate rdf:resource="http://www.example.com/linkprops/advisor"/>
+      <rdf:subject rdf:resource="students/patjones62.xml"/>
+      <rdf:object rdf:resource="profs/jaysmith7.xml"/>
+   </rdf:Statement>
+</rdf:RDF>

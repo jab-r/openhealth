@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>OWL Non-XML Syntax</title>
+</head>
+<body>
+<h2>The OWL Non-XML syntax by example</h2>
+<P>The DAML+OIL</P>
+<P>&lt;:daml:Class rdf:ID="foo" /&gt;</P>
+<P>is expressed as</P>
+<P>class foo ()</P>
+<P>similarly the DAML+OIL:</P>
+<pre>&lt;daml:Property rdf:about="http://example.org/ont#prop" /&gt;</pre>
+<P>is expressed as:</P>
+<pre>
+namespace ex = ""http://example.org/ont#"
+property ex:prop ()</pre>
+<P>The DAML+OIL:</P>
+<pre>
+&lt;daml:Class rdf:ID="bar"&gt;
+  &lt;daml:subClassOf rdf:resource="#foo"/&gt;
+&lt;/daml:Class&gt;</pre>
+<P>as</P>
+<pre>
+class bar( 
+     subClassOf foo 
+	 )</pre>
+<h3>A more complex example</h3>
+<pre>
+&lt;daml:Class&gt;
+   &lt;daml:subClassOf rdf:resource="#bar"/&gt;
+   &lt;daml:subClassOf&gt;
+      &lt;daml:Class&gt;
+         &lt;daml:Restriction&gt;
+            &lt;daml:onProperty rdf:resource="#prop"/&gt;
+            &lt;daml:toClass rdf:resource="#foo"/&gt;
+         &lt;/daml:Restriction&gt;
+      &lt;/daml:Class&gt;
+    &lt;/daml:subClassOf&gt;
+&lt;/daml:Class&gt;
+</pre>
+<P>becomes</P>
+<pre>
+class ( 
+    subClassOf bar, 
+    subClassOf 
+        class (
+            property prop(
+                      range(class foo)
+                      )
+        )
+    )
+</pre>
+<P>&nbsp;</P>
+</body>
+</html>

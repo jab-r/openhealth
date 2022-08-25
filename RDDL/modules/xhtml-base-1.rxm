@@ -1,0 +1,37 @@
+<module
+  xmlns="http://www.xml.gr.jp/xmlns/relaxCore"
+  targetNamespace="http://www.w3.org/1999/xhtml"
+  relaxCoreVersion="1.0"
+  moduleVersion="1.11">
+
+<elementRule role="base" type="emptyString"/>
+
+<tag name="base">
+  <attribute name="href" type="uriReference" required="true"/>
+</tag>
+
+<!--
+
+The elementRule in xhtml-struct-1.rxm is not overshadowed by the
+following elementRule.  They are used in conjunction.  -->
+
+<elementRule role="head">
+  <sequence>
+    <hedgeRef label="HeadOpts.mix"/>
+    <choice>
+      <sequence>
+        <ref label="title"/>
+        <hedgeRef label="HeadOpts.mix"/>
+        <ref label="base"/>
+      </sequence>
+      <sequence>
+        <ref label="base"/>
+        <hedgeRef label="HeadOpts.mix"/>
+        <ref label="title"/>
+      </sequence>
+    </choice>
+    <hedgeRef label="HeadOpts.mix"/>
+  </sequence>
+</elementRule>
+
+</module>

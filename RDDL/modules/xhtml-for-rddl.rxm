@@ -1,0 +1,90 @@
+<!DOCTYPE module [
+<!ENTITY % XHTML.version  "-//XML-DEV//DTD XHTML RDDL 1.0//EN" >
+<!ENTITY FPI.datatype "string">
+]>
+<module
+  xmlns="http://www.xml.gr.jp/xmlns/relaxCore"
+  targetNamespace="http://www.w3.org/1999/xhtml"
+  relaxCoreVersion="1.0"
+  moduleVersion="2.13">
+
+<interface>
+  <export label="html"/>
+  <hedgeImport label="resource"/>
+</interface>
+
+<attPool role="XHTML.version.attrib">
+  <attribute name="version" type="&FPI.datatype;">
+    <enumeration value="-//XML-DEV//DTD XHTML RDDL 1.0//EN"/>
+  </attribute>
+</attPool>
+
+<!-- <!ENTITY % XHTML.profile  "" >  -->
+
+<!-- <!ENTITY % XHTML.bidi  "IGNORE" > -->
+<!-- This is used in xhtml-attribs-1.mod --> 
+
+<?doc type="doctype" role="title" { XHTML RDDL 1.0 } ?>
+
+<!-- ENTITY % xhtml-events.module   "IGNORE" -->
+<!--  This is used in xhtml-framework-1.mod, but is redefined there.  
+      So, this is useless. -->
+
+<!-- ENTITY % xhtml-bdo.module      "%XHTML.bidi;" -->
+
+<attPool role="dir.attrib"/>
+
+<!--
+<attPool role="dir.attrib">
+  <attribute name="dir" type="NMTOKEN">
+    <enumeration value="ltr"/>
+    <enumeration value="rtl"/>
+  </attribute>
+</attPool>
+-->
+
+<!-- explicitly included here  -->
+<include moduleLocation= "xhtml-basic10-model-1.rxm" />
+
+<!--  UDDL resource is added -->
+
+<hedgeRule label="BlkStruct.class">
+  <hedgeRef importedLabel="resource"/>
+</hedgeRule>
+
+<include moduleLocation= "xhtml-framework-1.rxm" />
+
+<hedgeRule label="pre.content">  <!-- used in xhtml-blkphras-1.mod only -->
+  <choice occurs="*">
+    <hedgeRef label="InlStruct.class"/>
+    <hedgeRef label="InlPhras.class"/>
+    <hedgeRef label="Anchor.class"/>
+    <hedgeRef label="Inline.extra"/>
+  </choice>
+</hedgeRule>
+
+<include moduleLocation= "xhtml-text-1.rxm" />
+
+<include moduleLocation= "xhtml-hypertext-1.rxm" />
+
+<include moduleLocation= "xhtml-list-1.rxm" />
+
+<include moduleLocation= "xhtml-image-1.rxm" />
+
+<include moduleLocation= "xhtml-basic-table-1.rxm" />
+
+<include moduleLocation= "xhtml-basic-form-1.rxm" />
+
+<include moduleLocation= "xhtml-link-1.rxm"/>
+
+<include moduleLocation= "xhtml-meta-1.rxm"/>
+
+<include moduleLocation= "xhtml-base-1.rxm"/>
+
+<include moduleLocation= "xhtml-param-1.rxm"/>
+
+<include moduleLocation= "xhtml-object-1.rxm"/>
+
+<include moduleLocation= "xhtml-struct-1.rxm"/>
+
+</module>

@@ -1,0 +1,60 @@
+<!ENTITY % dicom.general.study.module.qname "%dicom.module.pfx;general.study.module">
+<!ENTITY % dicom.patient.study.module.qname "%dicom.module.pfx;patient.study.module">
+<!ENTITY % dicom.general.series.module.qname "%dicom.module.pfx;general.series.module">
+
+<!ELEMENT %dicom.general.study.module.qname; (
+	%dicom.study.instanceUID.qname;,
+	(%dicom.study.date.qname;)?,
+	(%dicom.study.time.qname;)?,
+	(%dicom.referring.physician.name.qname;)?,
+	(%dicom.study.id.qname;)?,
+	(%dicom.accession.number.qname;)?,
+	(%dicom.study.description.qname;)?,
+	(%dicom.physician.of.record.qname;)?,
+	(%dicom.name.of.physician.reading.study.qname;)?,
+	(%dicom.referenced.study.sequence.qname;)?,
+	(%dicom.procedure.code.sequence.qname;)?
+)>
+<!ELEMENT %dicom.procedure.code.sequence.qname; (%code_sequence_macro;)>
+
+<!ELEMENT %dicom.patient.study.module.qname; (
+	(%dicom.admittingDiagnosesDescription.qname;)?,
+	(%dicom.patient.age.qname;)?,
+	(%dicom.patient.size.qname;)?,
+	(%dicom.patient.weight.qname;)?,
+	(%dicom.occupation.qname;)?,
+	(%dicom.additional.patient.history.qname;)?
+)>
+
+<!ELEMENT %dicom.general.series.module.qname; (
+	(%dicom.modality.qname;,
+	(%dicom.series.instance.uid.qname;,
+	(%dicom.series.number.qname;),
+	(%dicom.laterality.qname;),
+	(%dicom.series.date.qname;),
+	(%dicom.series.time.qname;),
+	(%dicom.performing.physician.name.qname;),
+	(%dicom.protocol.name.qname;),
+	(%dicom.series.description.qname;),
+	(%dicom.operators.name.qname;),
+	(%dicom.referenced.study.component.sequence.qname;),
+	(%dicom.body.part.examined.qname;),
+	(%dicom.patient.position.qname;),
+	(%dicom.smallest.pixel.value.in.series.qname;),
+	(%dicom.largest.pixel.value.in.series.qname;),
+	(%dicom.request.attributes.sequence.qname;),
+	(%dicom.performed.procedure.step.id.qname;),
+	(%dicom.performed.procedure.step.start.date.qname;),
+	(%dicom.performed.procedure.step.start.time.qname;),
+	(%dicom.performed.procedure.step.description.qname;),
+	(%dicom.performed.action.item.sequence.qname;)
+)>
+<!ELEMENT %dicom.request.attributes.sequence.qname; (
+	%dicom.requested.procedure.id.qname;,
+	%dicom.requested.procedure.step.id.qname;,
+	(%dicom.scheduled.procedure.step.description.qname;)?,
+	(%dicom.scheduled.action.item.code.sequence.qname;)?
+)>
+
+<!ELEMENT %dicom.scheduled.action.item.code.sequence.qname; (%code_sequence_macro;)>
+<!ELEMENT %dicom.serformed.action.item.code.sequence.qname; (%code_sequence_macro;)>

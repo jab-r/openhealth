@@ -1,0 +1,21 @@
+<module
+  xmlns="http://www.xml.gr.jp/xmlns/relaxCore"
+  targetNamespace="http://www.w3.org/1999/xhtml"
+  relaxCoreVersion="1.0"
+  moduleVersion="1.11">
+
+<elementRule role="br" type="emptyString"/>
+
+<tag name="br"/>
+
+<elementRule role="span">
+  <mixed>
+    <hedgeRef label="Inline.mix" occurs="*"/>
+  </mixed>
+</elementRule>
+
+<tag name="span">
+  <ref role="Common.attrib"/>
+</tag>
+
+</module>

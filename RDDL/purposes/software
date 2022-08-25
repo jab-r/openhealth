@@ -1,0 +1,35 @@
+<!--<!DOCTYPE html PUBLIC "-//XML-DEV//DTD XHTML RDDL 1.0//EN" "rddl-xhtml.dtd">-->
+<html 	xmlns="http://www.w3.org/1999/xhtml" 
+		xmlns:xlink="http://www.w3.org/1999/xlink"
+		xmlns:rddl="http://www.rddl.org/"
+		xml:base="http://www.rddl.org/purposes/software"
+		xml:lang="en">
+<head>
+	<title>RDDL Purposes For Software</title>
+	<link rel="stylesheet" type="text/css" href="../xrd.css" />
+</head>
+
+<body>
+<h1>URIs For Common Software Purposes</h1>
+<h2>XSLT related</h2>
+<h3>The purpose of a transform</h3>
+<p>Generally an XSLT transform transforms a document from one <code>nature</code> into another. 
+We may use a convention that the <code>purpose</code> of an XSLT transform is the <code>nature</code> of what results. 
+The <code>nature</code> of what is to be transformed can be described by the URI reference from which the RDDL document is obtained (i.e. the namespace URI of what is being transformed).</p>
+<p>By employing this convention we can identify a transform of "A" -> "B" by looking in the RDDL document of the namespace "A" for a <code>resource</code> having a <code>purpose</code> of the namespace "B". 
+(The nature of this resource will be <code>http://www.w3.org/1999/XSL/Transform</code> indicating that it is an XSLT transform.)</p>
+<rddl:resource 
+	id="xslt-extension"
+	xlink:role="http://www.rddl.org/purposes#software-module"
+	xlink:arcrole="http://www.rddl.org/purposes#definition"
+	xlink:href="#xslt-extension"
+	xlink:title="XSLT Extension"
+	>
+	<div class="resource">
+	<h3>XSLT Extensions</h3>
+	<p>An XSLT extension is known by the purpose URI <code>http://www.rddl.org/purposes/software#xslt-extension</code>.</p>
+	</div>
+	</rddl:resource>
+</body>
+</html>
+

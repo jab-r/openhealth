@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:rdfs="http://www.w3.org/2000/03/rdf-schema#" xmlns:ont="http://www.openhealth.org/WOWG/webont#" xmlns="http://www.openhealth.org/WOWG/Schema.owl#" xmlns:schema="http://www.openhealth.org/WOWG/Schema.owl#">
+   <PI schema:name="xml:test-pi">type="text/xslt" name="frodo" </PI>
+   <Comment> this is a comment </Comment>
+   <Element schema:name="root" schema:ns="http://example.org/ns">
+      <attributes rdf:parseType="ont:collection"/>
+      <content rdf:parseType="ont:collection">
+         <Element schema:name="a" schema:ns="http://example.org/ns">
+            <attributes rdf:parseType="ont:collection"/>
+            <content rdf:parseType="ont:collection"/>
+         </Element>
+         <Element schema:name="b" schema:ns="http://example.org/ns">
+            <attributes rdf:parseType="ont:collection"/>
+            <content rdf:parseType="ont:collection"/>
+         </Element>
+         <Element schema:name="c" schema:ns="http://example.org/ns">
+            <attributes rdf:parseType="ont:collection">
+               <Attribute schema:name="att" schema:ns="http://example.org/ns2">
+                  <rdf:value>123245 678910</rdf:value>
+               </Attribute>
+            </attributes>
+            <content rdf:parseType="ont:collection">
+               <Element schema:name="a" schema:ns="http://example.org/ns">
+                  <attributes rdf:parseType="ont:collection"/>
+                  <content rdf:parseType="ont:collection">
+                     <Text>
+                        <rdf:value>foo</rdf:value>
+                     </Text>
+                  </content>
+               </Element>
+               <Element schema:name="b" schema:ns="http://example.org/ns">
+                  <attributes rdf:parseType="ont:collection"/>
+                  <content rdf:parseType="ont:collection">
+                     <Text>
+                        <rdf:value>bar</rdf:value>
+                     </Text>
+                  </content>
+               </Element>
+            </content>
+         </Element>
+         <Element schema:name="c" schema:ns="http://example.org/ns">
+            <attributes rdf:parseType="ont:collection"/>
+            <content rdf:parseType="ont:collection">
+               <Element schema:name="a" schema:ns="http://example.org/ns">
+                  <attributes rdf:parseType="ont:collection"/>
+                  <content rdf:parseType="ont:collection">
+                     <Text>
+                        <rdf:value>baz</rdf:value>
+                     </Text>
+                  </content>
+               </Element>
+               <Element schema:name="b" schema:ns="http://example.org/ns">
+                  <attributes rdf:parseType="ont:collection"/>
+                  <content rdf:parseType="ont:collection">
+                     <Text>
+                        <rdf:value>bop</rdf:value>
+                     </Text>
+                  </content>
+               </Element>
+            </content>
+         </Element>
+         <Element schema:name="d" schema:ns="http://example.org/ns">
+            <attributes rdf:parseType="ont:collection"/>
+            <content rdf:parseType="ont:collection"/>
+         </Element>
+      </content>
+   </Element>
+</rdf:RDF>

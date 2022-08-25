@@ -1,0 +1,506 @@
+
+
+
+Network Working Group                                          J. Borden
+Request for Comments: 00                       St. Vincent Health System
+Category: Informational                                    November 2002
+
+
+              application/owl+xml Media Type Registration
+
+Status of this Memo
+
+   This memo provides information for the Internet community.  It does
+   not specify an Internet standard of any kind.  Distribution of this
+   memo is unlimited.
+
+Copyright Notice
+
+   Copyright (C) The Internet Society (2002).  All Rights Reserved.
+
+Abstract
+
+   This document describes a media type (application/owl+xml) for use
+   with the RDF/XML serialization of the Web Ontology Language (OWL).
+   OWL is intended to provide a language that can be used to describe
+   the classes and relations between them that are inherent in Web
+   documents and applications.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Borden                       Informational                      [Page 1]
+
+RFC 00                    application/owl+xml              November 2002
+
+
+Table of Contents
+
+   1. Discussion of this Document  . . . . . . . . . . . . . . . . . . 3
+   2. Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . 3
+   3. application/owl+xml Registration . . . . . . . . . . . . . . . . 4
+   4. Social Context . . . . . . . . . . . . . . . . . . . . . . . . . 6
+   5. Fragment Identifiers . . . . . . . . . . . . . . . . . . . . . . 6
+   6. Entailment parameter . . . . . . . . . . . . . . . . . . . . . . 6
+   7. IANA Considerations  . . . . . . . . . . . . . . . . . . . . . . 7
+   8. Acknowledgements . . . . . . . . . . . . . . . . . . . . . . . . 7
+      References . . . . . . . . . . . . . . . . . . . . . . . . . . . 7
+      Author's Address . . . . . . . . . . . . . . . . . . . . . . . . 8
+      Full Copyright Statement . . . . . . . . . . . . . . . . . . . . 9
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Borden                       Informational                      [Page 2]
+
+RFC 00                    application/owl+xml              November 2002
+
+
+1. Discussion of this Document
+
+   Please send comments to <mailto:public-webont-comments@w3.org>.  To
+   subscribe, send a message with the body 'subscribe' to
+   <mailto:public-webont-comments-request@w3.org>.  The mailing list is
+   publically archived at <http://lists.w3.org/Archives/Public/public-
+   webont-comments/>.
+
+2. Introduction
+
+   The Web Ontology Language (OWL) is intended to provide a language
+   that can be used to describe the classes and relations between them
+   that are inherent in Web documents and applications.
+
+   The interchange language for OWL is the RDF/XML syntax [4] as
+   described in the OWL Reference [1].  An OWL document may be served
+   with the application/rdf+xml media type in which case the document is
+   interpreted according to the application/rdf+xml media type [3]
+   registration.  An OWL document may be served with the application/
+   owl+xml media type in which case it is interpreted according to the
+   value of the entailment parameter.  The value of the entailment
+   parameter is a URI which references a model theory or other formal
+   definition of which entailments are intended by the author or server
+   of the document to be licensed by the client of the document.
+
+      simple: the document is interpreted as simple RDF according to the
+      RDF model theory.  The URIref for simple RDF entailments is http:/
+      /www.w3.org/TR/rdf-mt/#entail
+
+      RDFS: the document is interpreted as RDF Schema according to the
+      RDF model theory.  The URIref for RDFS entailments is http://
+      www.w3.org/TR/rdf-mt/#rdfs_interp
+
+      lite: the document is interpreted as OWL according to the OWL
+      direct semantics.  It conforms to the OWL Lite syntax.  The URIref
+      for OWL Lite entailments is @@OWL Lite MT [10]
+
+      DL: the document is interpreted as OWL according to the OWL DL
+      semantics.  It conforms to OWL DL.  The URIref for OWL DL
+      entailments is http://www.w3.org/TR/owl-semantics/direct.html
+
+      full (default): the document is interpreted as OWL according to
+      the OWL/RDF semantics.  It conforms to OWL Full.  The URIref for
+      OWL Full entailments is http://www.w3.org/TR/owl-semantics/
+      rdfs.html#5.4
+
+   When an OWL document is served with the application/xml media type,
+   no particular interpretation is indicated and must be arranged by
+
+
+
+Borden                       Informational                      [Page 3]
+
+RFC 00                    application/owl+xml              November 2002
+
+
+   private agreement between publisher and consumer of the document.
+   Application/xml might be used when the document is intended to be an
+   example.  The OWL model theory licenses additional entialments from
+   the RDF model theory interpretation of the same RDF/XML document.
+   Such differences between these interpretations are discussed in the
+   OWL model theory document.
+
+3. application/owl+xml Registration
+
+   This is a media type registration as defined in Multipurpose Internet
+   Mail Extensions (MIME) Part Four: Registration Procedures [8]
+
+      MIME media type name: application
+
+      MIME subtype name: owl+xml
+
+      Required parameters: none
+
+      Optional parameter: charset
+
+         Same as charset parameter of application/xml.
+
+      Encoding considerations:
+
+         Same as charset parameter of application/xml.
+
+      Optional parameter: entailment
+
+         http://www.w3.org/TR/rdf-mt/#entail: simple RDF entailments
+         apply.
+
+         http://www.w3.org/TR/rdf-mt/#rdfs_interp: RDFS entailments
+         apply.
+
+         @@OWL Lite: OWL Lite syntax and entailments apply.
+
+         http://www.w3.org/TR/owl-semantics/direct.html: OWL DL syntax
+         and entailments apply.
+
+         http://www.w3.org/TR/owl-semantics/rdfs.html#5.4 (default): OWL
+         Full syntax and entailments apply.
+
+      Security considerations:
+
+         Security considerations include many of those described in
+         section 10 of RFC 3023 [6] as well as those described in the
+         application/rdf+xml media type registration [3].
+
+
+
+
+Borden                       Informational                      [Page 4]
+
+RFC 00                    application/owl+xml              November 2002
+
+
+      Interoperability considerations:
+
+      Published specification: see Web Ontology Language (OWL) 1.0
+      Reference [1] and OWL Abstract Syntax and Semantics [2] (working
+      drafts as of 2002-11)
+
+      Applications which use this media type:
+
+         OWL is device-, platform-, and vendor-neutral and is supported
+         by a range of Web Ontology user agents, authoring tools and
+         inferencing engines.
+
+      Additional information:
+
+         Magic number(s): none
+
+            Although no byte sequences can be counted on to consistently
+            identify OWL, RDF documents will have the sequence "http://
+            www.w3.org/1999/02/22-rdf-syntax-ns#" to identify the RDF
+            namespace.  This will usually be towards the top of the
+            document.  OWL documents may or may not declare the OWL
+            namespace "http://www.w3.org/2002/07/owl#"
+
+         File extension(s): .owl,.rdf
+
+         Macintosh File Type Code(s): "TEXT"
+
+      For further information:
+
+         Jonathan Borden <jonathan@openhealth.org>
+
+         RDF Logic <www-rdf-logic@w3.org>
+
+         More information may be found on the WebOnt website: <http://
+         www.w3.org/2001/sw/WebOnt>
+
+      Intended usage: COMMON
+
+      Author/Change controller:
+
+         The OWL specification is a work product of the World Wide Web
+         Consortium.  The W3C and the W3C WebOnt Working Group have
+         change control over the specification.
+
+
+
+
+
+
+
+
+Borden                       Informational                      [Page 5]
+
+RFC 00                    application/owl+xml              November 2002
+
+
+4. Social Context
+
+   @@
+
+5. Fragment Identifiers
+
+   application/owl+rdf uses the same fragment identifer syntax and
+   semantics as application/rdf+xml.
+
+   The rdf:ID and rdf:about attributes can be used to define fragments
+   in an RDF document.
+
+   Section 4.1 of the URI specification [7] notes that the semantics of
+   a fragment identifier (part of a URI after a "#") is a property of
+   the data resulting from a retrieval action, and that the format and
+   interpretation of fragment identifiers is dependent on the media type
+   of the retrieval result.
+
+6. Entailment parameter
+
+   The optional entailment parameter is used to indicate which
+   entailments are licensed by the publisher of the document to be
+   derived from the assertions made in the document.
+
+      http://www.w3.org/TR/rdf-mt/#entail: simple RDF entailments are
+      licensed.
+
+      Example use of this parameter as part of an HTTP GET operation:
+
+         Accept: application/owl+rdf; entailment="http://www.w3.org/TR/
+         rdf-mt/#entail" , application/rdf+xml
+
+      http://www.w3.org/TR/rdf-mt/#rdfs_interp: entailments as per RDF
+      Schema are licensed.
+
+      Example use of this parameter as part of an HTTP GET operation:
+
+         Accept: application/owl+rdf; entailment="http://www.w3.org/TR/
+         rdf-mt/#rdfs_interp"
+
+      @@OWL Lite: entailments as per OWL DL are licensed.  The syntax is
+      intended to conform to OWL Lite.
+
+      Example use of this parameter as part of an HTTP GET operation:
+
+         Accept: application/owl+rdf; entailment="@@OWL Lite"
+
+      http://www.w3.org/TR/owl-semantics/direct.html: entailments as per
+
+
+
+Borden                       Informational                      [Page 6]
+
+RFC 00                    application/owl+xml              November 2002
+
+
+      OWL DL are licensed.
+
+      Example use of this parameter as part of an HTTP GET operation:
+
+         Accept: application/owl+rdf; entailment="http://www.w3.org/TR/
+         owl-semantics/direct.html"
+
+      http://www.w3.org/TR/owl-semantics/rdfs.html#5.4: entailments as
+      per OWL Full are licensed.
+
+      Example use of this parameter as part of an HTTP GET operation:
+
+         Accept: application/owl+rdf; entailment="http://www.w3.org/TR/
+         owl-semantics/rdfs.html#5.4"
+
+      This value is the default if none is specified.
+
+
+7. IANA Considerations
+
+   This document calls for registration of a new MIME content-type,
+   according to the registration template in section 2.
+
+8. Acknowledgements
+
+   @@
+
+References
+
+   [1]  Dean, M., "Web Ontology Language (OWL) 1.0 Reference", W3C owl-
+        reference, July 2002, <http://www.w3.org/TR/owl-ref/>.
+
+   [2]  Patel-Schneider, P., "Web Ontology Language (OWL) 1.0 Abstract
+        Syntax and Semantics", W3C owl-reference, November 2002, <http:/
+        /www.w3.org/TR/owl-semantics/>.
+
+   [3]  Swartz, A., "application/rdf+xml media type Registration", IETF
+        rdf-xml-media-type, August 2002, <http://www.ietf.org/internet-
+        drafts/draft-swartz-rdfcore-rdfxml-mediatype-01>.
+
+   [4]  Beckett, D., "RDF/XML Syntax Specification (Revised)", W3C rdf-
+        syntax-grammar, March 2002, <http://www.w3.org/TR/rdf-syntax-
+        grammar/>.
+
+   [5]  Hayes, P., "RDF Model Theory", W3C rdf-mt, April 2002, <http://
+        www.w3.org/TR/rdf-mt/>.
+
+   [6]  Murata, M., St. Laurent, S. and D. Kohn, "XML Media Types", RFC
+
+
+
+Borden                       Informational                      [Page 7]
+
+RFC 00                    application/owl+xml              November 2002
+
+
+        3023, January 2001.
+
+   [7]  Berners-Lee, T., Fielding, R. and L. Masinter, "Uniform Resource
+        Identifiers (URI): Generic Syntax", RFC 2396, August 1998.
+
+   [8]  Freed, N., Klensin, J. and J. Postel, "Multipurpose Internet
+        Mail Extensions (MIME) Part Four: Registration Procedures", BCP
+        13, RFC 2048, November 1996.
+
+   [9]  Bradner, S., "Key words for use in RFCs to Indicate Requirement
+        Levels", BCP 14, RFC 2119, March 1997.
+
+   [10]  <>
+
+
+Author's Address
+
+   Jonathan Borden
+   St. Vincent Health System
+   Section of Neurosurgery
+   311 W. 24th Street
+   Erie, PA  16502
+   USA
+
+   Phone: +1 814 455 4868
+   EMail: jonathan@openhealth.org
+   URI:   http://www.openhealth.org/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Borden                       Informational                      [Page 8]
+
+RFC 00                    application/owl+xml              November 2002
+
+
+Full Copyright Statement
+
+   Copyright (C) The Internet Society (2002).  All Rights Reserved.
+
+   This document and translations of it may be copied and furnished to
+   others, and derivative works that comment on or otherwise explain it
+   or assist in its implementation may be prepared, copied, published
+   and distributed, in whole or in part, without restriction of any
+   kind, provided that the above copyright notice and this paragraph are
+   included on all such copies and derivative works.  However, this
+   document itself may not be modified in any way, such as by removing
+   the copyright notice or references to the Internet Society or other
+   Internet organizations, except as needed for the purpose of
+   developing Internet standards in which case the procedures for
+   copyrights defined in the Internet Standards process must be
+   followed, or as required to translate it into languages other than
+   English.
+
+   The limited permissions granted above are perpetual and will not be
+   revoked by the Internet Society or its successors or assigns.
+
+   This document and the information contained herein is provided on an
+   "AS IS" basis and THE INTERNET SOCIETY AND THE INTERNET ENGINEERING
+   TASK FORCE DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING
+   BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION
+   HEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED WARRANTIES OF
+   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+
+Acknowledgement
+
+   Funding for the RFC Editor function is currently provided by the
+   Internet Society.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Borden                       Informational                      [Page 9]
+
+

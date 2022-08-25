@@ -1,0 +1,11 @@
+<objectDef name="XTRIME.MBXMLFactory.1" uuid="{F88F555A-5D84-11D2-9EFA-00105CAB062D}">
+<interfaceDef name="IMBXMLFactory" uuid="{F88F5559-5D84-11D2-9EFA-00105CAB062D}">
+<base name="IDispatch" uuid="{00020400-0000-0000-C000-000000000046}" />
+<method name="CreateInstance" id="1" type="disp">
+<param name="ProgID" type="string" access="in"></param>
+</method>
+<property name="TypeDescription" id="2" type="string">
+<param name="ProgID" type="string" access="in"></param></property>
+<method name="Attach" id="3" type="object">
+<param name="pObject" type="object" access="in"></param></method>
+</interfaceDef></objectDef>

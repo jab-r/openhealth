@@ -1,0 +1,24 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>What URIs identify and what URI references identify</title>
+</head>
+
+<body>
+<h1>What URIs identify and what URI references identify</h1>
+<p>RFC 2396 defines the terms <em>universal resource identifier</em> (URI) and <em>Resource</em>.
+A <em>URI reference</em> may contain a URI and a <em>fragment identifier</em> but what is identified by a URI reference remains unclear. </p>
+<p>When dereferenced a URI returns an <em>entity</em> and the particular entity may vary over time, or conditions of the network request. A URI is mapped to a single Resource and a set of Entities.</p>
+<p>An entity resolved over a network is returned as a character stream. It may be associated with a MIME media type which defines a format.
+Formats are often formally described using EBNF production rules.</p>
+<p>Entities that conform to a particular format or schema are termed to be <em>instances</em> of the format or schema.
+The EBNF production rules define an abstract syntax and set of <em>nodes</em> in which the entity parse tree is represented.
+In the default case, a character stream is represented by a single root node and a series of child nodes representing each character in the stream.</p>
+<p>Nodes may be addressed by appropriate identifiers. 
+A fragment identifier is mapped to a node within a parsed entity. 
+Generally a URI reference is bound to an <em>abstract node</em> which corresponds to a set of nodes each a member of one of the set of entities bound to the URI.</p>
+
+
+</body>
+</html>

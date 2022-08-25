@@ -1,0 +1,58 @@
+<?xml version="1.0" ?>
+<rdf:RDF xml:lang="en"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+<rdfs:Class rdf:ID="Person">
+	<rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+</rdfs:Class>
+<rdfs:Class rdf:ID="Organization">
+	<rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+</rdfs:Class>
+<rdfs:Class rdf:ID="Name">
+	<rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+</rdfs:Class>
+<rdfs:Class rdf:ID="Address">
+	<rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+</rdfs:Class>
+<rdfs:Class rdf:ID="Identifier">
+	<rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+</rdfs:Class>
+<rdfs:Class rdf:ID="Patient">
+	<rdfs:subClassOf rdf:resource="#Person"/>
+</rdfs:Class>
+<rdfs:Class rdf:ID="Provider">
+	<rdfs:subClassOf rdf:resource="#Person"/>
+</rdfs:Class>
+<rdfs:Class rdf:ID="Physician">
+	<rdfs:subClassOf rdf:resource="#Provider"/>
+</rdfs:Class>
+<rdfs:Class rdf:ID="Nurse">
+	<rdfs:subClassOf rdf:resource="#Provider"/>
+</rdfs:Class>
+
+<rdfs:Class rdf:ID="Payor">
+	<rdfs:subClassOf rdf:resource="#Organization"/>
+</rdfs:Class>
+
+<rdf:Property ID="person.name">
+	<rdfs:domain rdf:resource="#Person"/>
+	<rdfs:range rdf:resource="#Name"/>
+</rdf:Property>
+<rdf:Property ID="address">
+	<rdfs:range rdf:resource="#Address"/>
+	<rdfs:domain rdf:resource="#Person"/>
+	<rdfs:domain rdf:resource="#Organization"/>
+</rdf:Property>
+<rdf:Property ID="id">
+	<rdfs:range rdf:resource="#Identifier"/>
+	<rdfs:domain rdf:resource="#Person"/>
+	<rdfs:domain rdf:resource="#Organization"/>
+</rdf:Property>
+<rdf:Property ID="insurance.plan">
+	<rdfs:range rdf:resource="#Payor"/>
+	<rdfs:domain rdf:resource="#Patient"/>
+</rdf:Property>
+
+
+
+</rdf:RDF>

@@ -1,0 +1,13 @@
+namespace default = "http://www.openhealth.org/ASTM/E2182"
+datatypes xsd = "http://www.w3.org/2001/XMLSchema-datatypes"
+
+include "astm.xlink.rng"
+include "astm.xhtml.rng"
+include "clinical.header.rng"
+
+astm.content = Flow.model
+
+astm.content.attrib = (ch.attrib, xlink.attrib?)
+astm.document.attrib =
+	attribute xml:base{xsd:anyURI}?,
+	attribute xml:lang {xsd:NMTOKEN}?

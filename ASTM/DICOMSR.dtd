@@ -1,0 +1,73 @@
+<!ENTITY % dicom.sr.document.series.module.qname "%dicom.module.pfx;sr.document.series.module">
+<!ENTITY % dicom.sr.document.content.module.qname "%dicom.module.pfx;sr.document.content.module">
+<!ENTITY % dicom.sr.document.general.module.qname "%dicom.module.pfx;sr.document.general.module">
+<!-- SR Document Series Module -->
+<!ELEMENT %dicom.sr.document.series.module.qname; (
+	%dicom.modality.qname;,
+	%dicom.series.instance.uid.qname;,
+	%dicom.series.number.qname;,
+	(%dicom.referenced.study.component.sequence.qname;)?
+)>
+
+<!ELEMENT %dicom.referenced.study.component.sequence.qname; (
+	%dicom.referenced.sop.class.uid.qname;,
+	%dicom.referenced.sop.instance.uid.qname;
+)+>
+
+<!ELEMENT %dicom.sr.document.general.module.qname; (
+	%dicom.instance.number.qname;,
+	%dicom.completion.flag.qname;,
+	(%dicom.completion.flag.description.qname;)?,
+	%dicom.verification.flag.qname;,
+		%dicom.content.date.qname;,
+		%dicom.content.time.qname;,
+		(%dicom.verifying.observer.sequence.qname;)?,
+		(%dicom.predecessor.documents.sequence.qname;)?,
+		(%dicom.identical.documents.sequence.qname;)?,
+		(%dicom.referenced.request.sequence.qname;)?,
+		(%dicom.performed.procedure.code.sequence.qname;)?,
+		(%dicom.current.requested.procedure.evidence.sequence.qname;)?,
+		(%dicom.pertinent.other.evidence.sequence.qname;)?
+)>
+
+<!ELEMENT %dicom.verifiying.observer.sequence.qname; (
+	%dicom.verifying.observer.name.qname;,
+	(%dicom.verifying.observer.identification.code.sequence.qname;)?,
+	%dicom.verifying.organization.qname;,
+	%dicom.verification.date.time.qname;
+)>
+
+<!ELEMENT (%dicom.verifying.observer.identification.code.sequence.qname; (%code_sequence_macro;)>
+<!ELEMENT (%dicom.predecessor.documents.sequence.qname; (%sop_instance_reference_macro;)>
+<!ELEMENT (%dicom.identical.documents.sequence.qname; (%sop_instance_reference_macro;)>
+<!ELEMENT (%dicom.referenced.request.sequence.qname; (
+	%dicom.study.instance.uid.qname;,
+	(%dicom.referenced.study.sequence.qname;)?,
+	(%dicom.accession.number.qname;)?,
+	(%dicom.placer.order.number.qname;)?,
+	(%dicom.filler.order.number.qname;)?,(%dicom.requested.procedure.id.qname;)?,
+	(%dicom.requested.procedure.description.qname;)?,
+	(%dicom.requested.procedure.code.sequence.qname;)?
+)>
+<!ELEMENT %dicom.requested.procedure.code.sequence.qname; (%code_sequence_macro;)>
+<!ELEMENT %dicom.performed.procedure.code.sequence.qname; (%code_sequence_macro;)>
+<!ELEMENT %dicom.current.requested.procedure.evidence.sequence.qname; (%sop_instance_reference_macro;)>
+<!ELEMENT %dicom.pertinent.other.evidence.sequence.qname; (%sop_instance_reference_macro;)>
+<!ELEMENT %dicom.referenced.study.sequence.qname; (%referenced_sop_sequence;)>
+<!-- SR Document Content Module -->
+<!ELEMENT %dicom.sr.document.content.module.qname; (
+		(%document_relationship_macro;),
+		(%document_content_macro;),
+		(%dicom.observation.date.time.qname;)?,
+		(%dicom.content.template.sequence.qname;)?,
+		(%dicom.content.sequence.qname;)?,
+		%dicom.value.type.qname;,
+		(%dicom.concept.name.code.sequence.qname;)?,(%dicom.continuity.of.content.qname;)?,
+		(%dicom.text.value.qname;)?,(%dicom.date.time.qname;)?,(%dicom.date.qname;)?,
+		(%dicom.time.qname;)?,(%dicom.person.name.qname;)?,(%dicom.uid.qname;)?,
+		%numeric_measurement_macro;?,%code_macro;?,
+		%composite_object_macro;?,%image_reference_macro?,
+		%waveform_reference_macro;?,%spatial_coordinates_macro?,
+		%temporal_coordinates_macro?
+	)>
+

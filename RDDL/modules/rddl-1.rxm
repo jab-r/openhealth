@@ -1,0 +1,58 @@
+<!DOCTYPE module [
+<!ENTITY LanguageCode.datatype "string">
+<!ENTITY Text.datatype "string">
+]>
+<module
+  xmlns="http://www.xml.gr.jp/xmlns/relaxCore"
+  targetNamespace="http://www.rddl.org/"
+  relaxCoreVersion="1.0"
+  moduleVersion="1.0">
+
+<interface>
+  <hedgeImport label="Flow.mix"/>
+</interface>
+
+<elementRule role="resource">
+  <mixed>
+    <hedgeRef importedLabel="Flow.mix" occurs="*"/>
+  </mixed>
+</elementRule>
+
+<tag name="resource">
+  <attribute name="id" type="ID"/>
+  <attribute
+	name="lang"
+	namespace="http://www.w3.org/XML/1998/namespace"
+	type="&LanguageCode.datatype;"/>
+
+  <attribute
+	name="base"
+	namespace="http://www.w3.org/XML/1998/namespace"
+	type="uriReference"/>
+
+  <attribute name="type" 
+  			namespace="http://www.w3.org/1999/xlink"
+			default="simple"
+			>
+		<enumeration value="simple"/>
+		<enumeration value="extended"/>
+		<enumeration value="arc"/>
+		<enumeration value="locator"/>
+		<enumeration value="resource"/>
+  </attribute>
+  <attribute name="role" 
+  			namespace="http://www.w3.org/1999/xlink" 
+  			type="uriReference"
+			default="http://www.rddl.org/#resource"/>
+  <attribute name="arcrole" 
+  			namespace="http://www.w3.org/1999/xlink" 
+  			type="uriReference"/>
+  <attribute name="href" 
+  			namespace="http://www.w3.org/1999/xlink" 
+  			type="uriReference"/>
+  <attribute name="title" 
+  			namespace="http://www.w3.org/1999/xlink" 
+  			type="&Text.datatype;"/>
+</tag>
+
+</module>

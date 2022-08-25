@@ -1,0 +1,47 @@
+default namespace rt = "http://www.openhealth.org/ASTM/radiation.therapy.summary"
+include "ASTM.E2182.rng"
+
+radiation.therapy.summary = element radiation.therapy.summary {astm.document.attrib, 
+	 clinical.header, 
+	 clinical.body
+}
+clinical.body = element clinical.body {ch.attrib, 
+	clinical.history,
+	treatments,
+	completion.report,
+	patient.followup?,
+	dicom.rt.treatment.summary.record.module?
+}
+clinical.history = element clinical.history {astm.content.attrib, astm.content }
+completion.report = element completion.report {astm.content.attrib, astm.content }
+patient.followup = element patient.followup {astm.content.attrib, text}
+treatments = element treatments {astm.content.attrib, treatment*}
+treatment = element treatment {astm.content.attrib, 
+	region.treated,
+	energy.MeV,
+	tumor.dose.cGy,
+	start.date,
+	end.date,
+	number.of.fractions,
+	fraction.dose.cGy
+}	
+
+region.treated = element region.treated {astm.content.attrib, text}
+energy.MeV = element energy.MeV {astm.content.attrib, text}
+tumor.dose.cGy = element tumor.dose.cGy {astm.content.attrib, text}
+start.date = element start.date {astm.content.attrib, text}
+end.date = element end.date {astm.content.attrib, text}
+number.of.fractions = element number.of.fractions {astm.content.attrib, text}
+fraction.dose.cGy = element fraction.dose.cGy {astm.content.attrib, text}
+
+
+
+
+
+
+
+
+
+
+	 
+

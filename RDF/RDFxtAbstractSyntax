@@ -1,0 +1,504 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--<!DOCTYPE html PUBLIC "-//XML-DEV//DTD XHTML RDDL 1.0//EN" "rddl-xhtml.dtd">-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>
+         Abstract Syntax for an Extension to RDF (RDFxt)
+      </title>
+      <link rel="stylesheet" href="../RDDL/xrd.css" type="text/css" />
+   </head>
+   <body>
+      <h1>
+         RDFxt Abstract Syntax
+      </h1>
+      <p>
+         Author:
+      </p>
+      <p>
+         Jonathan Borden <a
+         href="mailto:jonathan@openhealth.org">jonathan@openhealth.org</a>
+      </p>
+      <p>
+         This version:  <a
+         href="http://www.openhealth.org/RDF/RDFxtAbstractSyntax-20020305.html">
+         March 5, 2002</a> 
+      </p>
+      <p>
+         <a
+         href="http://www.openhealth.org/RDF/RDFxtAbstractSyntax.html">Latest
+         version</a>
+      </p>
+      <h2>
+         Introduction
+      </h2>
+      <p>
+         This document defines the <em>Abstract Syntax</em> for an extension of
+         RDF [<a href="#RDF-MS">1</a>] called for the moment RDFxt. This work
+         is derived from an earlier proposal [8]. RDF Statements are commonly
+         refered to as triples of [subject,predicate,object]. In practice it is
+         useful to group triples into sets of statements termed:
+         <em>Bundles</em>. This extension provides the ability to represent
+         such Bundles or Contexts as collections of unasserted triples.
+      </p>
+      <p>
+         In RDF a statement is composed of a triple whose elements are URI
+         references (URIrefs). In RDF a URIref forms a term in the domain of
+         discourse. This extension defines <em>term</em> to be either a
+         <em>URIref</em>, a <em>Statement</em>, a <em>quantified variable</em>,
+         a <em>literal</em> or a <em>Bundle</em>.
+      </p>
+      <p>
+         In order to further discuss these <em>terms</em> it is useful to
+         describe types, in particular note that constraints are placed on the
+         type which a <em>predicate</em> may assume, this type is called a
+         <em>word</em>.
+      </p>
+      <p>
+         Principle characteristics:
+      </p>
+      <ol>
+         <li>
+            Compact XML representation of s-expressions
+         </li>
+         <li>
+            Compact XML representation of N3
+         </li>
+      </ol>
+      <p>
+         Major changes to RDF:
+      </p>
+      <ol>
+         <li>
+            Statements are not automatically asserted
+         </li>
+         <li>
+            Statements may nest other statements as the subject or object
+         </li>
+         <li>
+            Bundles are ordered collections of terms
+         </li>
+      </ol>
+      <h5>
+         Shorthand RDF syntax:
+      </h5>
+      <p>
+         the rdfx:aboutQ attribute is like rdf:about but has a QName as its
+         value rather than URIref, likewise the rdfx:resourceQ attribute. This
+         is used in examples here for clarity of reading.
+      </p>
+      <h3>
+         word
+      </h3>
+      <p>
+         A <em>word</em> is either a URI reference, a quantified variable or a
+         literal. A literal is a string or quoted piece of XML.
+      </p>
+      <p>
+         word ::= (URIreference | variable | literal)
+      </p>
+      <p>
+         <i>Note that an XML QName is used as shorthand for a URI reference and
+         used interchangably with URI reference in this paper and its
+         examples.</i>
+      </p>
+      <h3>
+         term
+      </h3>
+      <p>
+         A term is either a word a statement or a bundle. 
+      </p>
+      <p>
+         term ::= (word | statement | bundle)
+      </p>
+      <h2>
+         Statement
+      </h2>
+      <p>
+         A statement is a triple composed of a predicate, a subject and an
+         object.
+      </p>
+      <p>
+         statement ::= [subject,predicate,object]
+      </p>
+      <h2>
+         Bundle
+      </h2>
+      <p>
+         A bundle is a collection of terms. A <em>bundle</em> might be
+         represented as an RDF <em>collection</em>.
+      </p>
+      <p>
+         the world ::= (bundle*)
+      </p>
+      <p>
+         bundle ::=   {term*}
+      </p>
+      <h3>
+         variable
+      </h3>
+      <p>
+         variable := (&#39;?&#39; Name) Name as defined in XML 1.0
+      </p>
+      <h3>
+         predicate
+      </h3>
+      <p>
+         A predicate is a word.
+      </p>
+      <h3>
+         subject
+      </h3>
+      <p>
+         A subject is a term.
+      </p>
+      <h3>
+         object
+      </h3>
+      <p>
+         An object is a term.
+      </p>
+      <h4>
+         Purpose of the Bundle
+      </h4>
+      <p>
+         The bundle allows separation of statements into lists which can be
+         asserted as a group. Bundles allow &#39;coloring&#39; of subgraphs.
+         The document from which a set of statements arises forms a bundle
+         (represented by its URI). Bundles can &#39;contain&#39; other bundles.
+      </p>
+      <h2>
+         Sentences
+      </h2>
+      <p>
+         A sentence is generally a statement that contains a statement or
+         bundle as its predicate or object i.e. it contains nested statements
+      </p>
+      <p>
+         Sentences are collected into bundles. A sentence is a subgraph which
+         has as its root a statement that incorporates or nests other terms and
+         sentences. The root or top level statements within a particular bundle
+         are those statements which are not referred as the subject or object
+         of any other statement within the context, that is they are direct
+         elements of the bundle.
+      </p>
+      <p>
+         A language which is defined as an extension of RDF defines the
+         syntactic structure and semantics of its sentences. The syntax may be
+         defined in an extension of EBNF where &quot;{&quot; and &quot;}&quot;
+         are used to delimit a bundle and &quot;[&quot; and &quot;]&quot; are
+         used to delimit a statement:
+      </p>
+      <ul>
+         <li>
+            bundle ::= &#39;{&#39; term* &#39;}&#39;
+         </li>
+         <li>
+            statement ::= &#39;[&#39; subject predicate object &#39;]&#39;
+         </li>
+         <li>
+            term ::= (word | {word term*} | [term term term])
+         </li>
+      </ul>
+      <h3>
+         S-Expression notation
+      </h3>
+      <p>
+         A sentence is represented as an s-expression as:
+      </p>
+      <p>
+         s-expr ::= &#39;(&#39; term* &#39;)&#39;
+      </p>
+      <p>
+         An n-ary predicate is represented in s-expression notation as:
+      </p>
+      <p>
+         n-ary predicate ::= &#39;(&#39; predicate term* &#39;)&#39;
+      </p>
+      <p>
+         Note that in Statement form &#39;[&#39; subject predicate object
+         &#39;]&#39; the first term is the subject but when in s-expression
+         form: &#39;(&#39; predicate term* &#39;)&#39;, the first term is the
+         predicate.
+      </p>
+      <h3>
+         XML representation
+      </h3>
+      <p>
+         An n-ary predicate in s-expression form can be represented in XML form
+         as:
+      </p>
+      <p>
+         &lt;predicate&gt; term* &lt;/predicate&gt;
+      </p>
+      <p>
+         <em>(not (if [color sky blue][color leaf green]))</em>
+      </p>
+<pre>
+&lt;not&gt;
+   &lt;if&gt; 
+  [sky color blue]
+  [leaf color green]
+   &lt;/if&gt;
+&lt;/not&gt;
+</pre>
+      <p>
+         and then representing the statements as shorthand (QName) RDF/XML:
+      </p>
+<pre>
+&lt;not&gt;
+   &lt;if&gt; 
+    &lt;ex:color rdfx:aboutQ=&quot;ex:sky&quot; rdfx:resourceQ=&quot;ex:blue&quot;/&gt;
+    &lt;ex:color rdfx:aboutQ=&quot;ex:leaf&quot; rdfx:resourceQ=&quot;ex:green&quot;/&gt; 
+   &lt;/if&gt;
+&lt;/not&gt;
+</pre>
+<pre>
+    
+predicate: not - type URIref 
+subject: (if [sky color blue][leaf color green]) - type  sentence 
+  predicate: if - type URIref
+  subject: {
+    [sky color blue] - type statement
+   [leaf color green] - type statement
+  } type bundle
+object: nil
+</pre>
+      <p>
+         n-ary predicate ::= &#39;(&#39; predicate term* &#39;)&#39;
+      </p>
+      <p>
+         the n-ary predicate is considered to have subject which is a bundle
+         and object = nil
+      </p>
+      <p>
+         (or a b c d e f g)
+      </p>
+<pre>
+&lt;or&gt;
+   &lt;a/&gt;
+   &lt;b/&gt;
+   &lt;c/&gt;
+   &lt;d/&gt;
+   &lt;e/&gt;
+   &lt;f/&gt;
+   &lt;g/&gt;
+&lt;/or&gt;
+</pre>
+<pre>
+predicate: or - type URIref
+subject: {a b c d e f g} type bundle
+object: nil
+ 
+</pre>
+      <p>
+         (If (And [sky color blue][leaf color green]] )(season summer))
+      </p>
+<pre>
+&lt;log:If&gt;
+  &lt;log:And&gt;
+    &lt;ex:color rdfx:aboutQ=&quot;ex:sky&quot; rdfx:resourceQ=&quot;ex:blue&quot;/&gt;
+    &lt;ex:color rdfx:aboutQ=&quot;ex:leaf&quot; rdfx:resourceQ=&quot;ex:green&quot;/&gt;
+  &lt;/log:And&gt;
+  &lt;ex:season rdf:aboutQ=&quot;ex:summer&quot;/&gt;
+&lt;/log:If&gt; 
+</pre>
+      <p>
+          
+      </p>
+      <p>
+         It is important to note that the XPath expression:
+      </p>
+      <p>
+         /log:If/log:And/*
+      </p>
+      <p>
+         returns a <em>NodeList</em> of the children of the &lt;And&gt;
+         element. This <em>NodeList</em> directly corresponds to the
+         <em>Bundle</em> which is the subject of the predicate.
+      </p>
+      <h3>
+         Queries as FOPL quantified variables
+      </h3>
+      <p>
+         The Squish [<a href="#SQUISH">2</a>] query: (dc:creator, foo,
+         ?x)(foaf:mbox, ?x, mailto:jonathan@openhealth.org)(foaf:surname, ?x,
+         &quot;Borden&quot;)
+      </p>
+      <p>
+         is represented as the bundle:
+      </p>
+      <p>
+         {
+      </p>
+      <ul>
+         <li>
+            [foo,dc:creator,?x]
+         </li>
+         <li>
+            [?x,foaf:mbox,mailto:jonathan@openhealth.org]
+         </li>
+         <li>
+            [?x,foaf:surname,&quot;Borden&quot;]
+         </li>
+         <li>
+            [?x,foaf:givenName,&quot;Jonathan&quot;]
+         </li>
+      </ul>
+      <p>
+         }
+      </p>
+      <p>
+         In the context of a query, variables are existentially quantified over
+         the conjunction of the bundle
+      </p>
+      <br />
+      <br />
+<pre>
+(exists ?x 
+ (and {
+  [foo, dc:creator,  ?x]
+  [?x, foaf:mbox, mailto:jonathan@openhealth.org]
+  [?x, foaf:surname, &quot;Borden&quot;]
+  [?x, foaf:givenName, &quot;Jonathan&quot;]
+   }
+  )
+)
+   
+</pre>
+      <h2>
+         Appendix: Representation of the N3 surface syntax as RDFxt
+      </h2>
+      <p>
+         RDFx is intended to be suitable for service as an abstract syntax for
+         N3. In particular, <em>N3 contexts</em> are represented as
+         <em>bundles</em>.
+      </p>
+      <p>
+         From the <a href="http://www.w3.org/2000/10/swap/Primer.html">N3
+         primer</a>:
+      </p>
+      <p>
+         The formula: &lt;x.rdf&gt; :says {  :pat a :Person . } .
+      </p>
+      <p>
+         is representing as the RDFxt XML:
+      </p>
+<pre>
+&lt;rdf:Description rdf:about=&quot;x.rdf&quot;&gt;
+      &lt;ex:says&gt;
+      &lt;rdf:type rdfx:aboutQ=&quot;ex:pat&quot; rdfx:resourceQ=&quot;ex:Person&quot; /&gt;
+      &lt;/ex:says&gt;
+&lt;/rdf:Description&gt;
+</pre>
+      <p>
+         similarly the N3 Rule:
+      </p>
+<pre>
+this log:forAll :x, :y. {:x :parent :y} log:implies {:y :child :x} .
+</pre>
+      <p>
+         is represented as the RDFxt sentence form:
+      </p>
+      <p>
+         (log:forall (log:vars ?x,?y) (log:implies [?x :parent ?y] [?y :child
+         ?x]))
+      </p>
+      <p>
+         and in XML:
+      </p>
+<pre>
+&lt;log:ForAll&gt;
+    &lt;log:vars&gt;&lt;x/&gt;&lt;y/&gt;&lt;/log:vars&gt;
+    &lt;log:implies&gt;
+       &lt;ex:parent rdfx:aboutQ=&quot;x&quot; rdfx:resourceQ=&quot;y&quot;/&gt;
+       &lt;ex:child rdfx:aboutQ=&quot;y&quot; rdfx:resourceQ=&quot;x&quot; /&gt;
+    &lt;/log:implies&gt;
+&lt;/log:forall&gt;
+</pre>
+      <h2>
+         Appendix: Implementation of bundles via RDF triples
+      </h2>
+      <p>
+         Although this abstract syntax does not require a particular
+         implementation, one might express a bundle as either a collection or
+         list of triples.
+      </p>
+      <h3>
+         bundles as collections
+      </h3>
+      <p>
+         Expressed as a collection, each statement in a bundle is a member of
+         the collection which represents the bundle. For example:
+      </p>
+      <ul>
+         <li>
+            [#foo rdf:type rdf:Collection]
+         </li>
+         <li>
+            [#foo rdf:_1 [color sky blue]]
+         </li>
+         <li>
+            [#foo rdf:_2 [color leaf green]]
+         </li>
+      </ul>
+      <h3>
+         bundles as lists
+      </h3>
+      <p>
+         The special predicate &quot;rdfxt:etc&quot; is used to indicate a list
+         cell where the first element of the list is the subject and the rest
+         of the list is the object. The special URI &quot;rdfxt:nil&quot;
+         signals the end of a list.
+      </p>
+      <p>
+         (or a b c d e) -&gt; [a or [b etc [c etc [d etc [e etc nil]]]]]
+      </p>
+      <p>
+         predicates are applied to a list as: predicate(first(list),rest(list))
+      </p>
+      <ol>
+         <li>
+            <a id="RDF-MS"></a><a
+            href="http://www.w3.org/TR/REC-rdf-syntax">W3C RDF Model and Syntax
+            1.0</a>
+         </li>
+         <li>
+            <a id="SQUISH"></a><a
+            href="http://swordfish.rdfweb.org/rdfquery/">ILRT Squish</a>
+         </li>
+         <li>
+            <a href="http://www-db.stanford.edu/~melnik/rdf/db.html">RDF DB</a>
+         </li>
+         <li>
+            <a
+            href="http://lists.w3.org/Archives/Public/www-rdf-interest/2000Feb/0172.html">
+            1</a>
+         </li>
+         <li>
+            <a href="http://www.w3.org/DesignIssues/Notation3.html">N3</a>
+         </li>
+         <li>
+            <a
+            href="http://public.research.mimesweeper.com/RDF/RDFContexts.html">Klyne&#39;s
+            Contexts</a>
+         </li>
+         <li>
+            <a href="http://www.openhealth.org/RDF/RDFSurfaceSyntax">RDF in
+            RELAXNG</a>
+         </li>
+         <li>
+            <a href="http://www.openhealth.org/RDF/RDFAbstractSyntax">Proposed
+            RDF Abstract Syntax</a>
+         </li>
+      </ol>
+	  <p class="clear">
+  	<a class="clear" href="http://www.jonathanborden-md.com"></a>
+	<a class="clear" href="http://www.jonathanborden-md.com/jonathan-borden-cv.htm"></a>
+	<a class="clear" href="http://www.erieneurosurgery.com"></a>
+	<a class="clear" href="http://www.erieneuroscience.org"></a>
+	<a class="clear" href="http://www.erieneuroscience.com"></a>
+  </p>
+   </body>
+</html>
+

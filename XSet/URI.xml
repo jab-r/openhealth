@@ -1,0 +1,364 @@
+<!-- 
+	Copyright (c) 2001 Jonathan Borden All Rights Reserved
+	This file is distributed under the Open Healthcare License
+	http://www.openhealth.org/license/
+	Author: Jonathan Borden <jonathan@openhealth.org>
+	
+	Contains:
+		URI
+-->
+<rdf:RDF 
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	xmlns="http://www.openhealth.org/XSet"
+	xmlns:x="http://www.openhealth.org/XSet"
+	rdf:parseType="Resource">
+<!-- 
+	a propertySet is a container of productions - to be interpreted as an RDF typedNode
+	an x:Seq is a collection - each child element is a member
+	an x:Alt is a collection - each child element is a member
+-->
+<propertySet rdf:about="http://www.ietf.org/rfc/rfc2396.txt">
+<!-- 
+      URI-reference = [ absoluteURI | relativeURI ] [ "#" fragment ]
+      absoluteURI   = scheme ":" ( hier_part | opaque_part )
+      relativeURI   = ( net_path | abs_path | rel_path ) [ "?" query ]
+      hier_part     = ( net_path | abs_path ) [ "?" query ]
+      opaque_part   = uric_no_slash *uric
+      uric_no_slash = unreserved | escaped | ";" | "?" | ":" | "@" |
+                      "&" | "=" | "+" | "$" | ","
+      net_path      = "//" authority [ abs_path ]
+      abs_path      = "/"  path_segments
+      rel_path      = rel_segment [ abs_path ]
+      rel_segment   = 1*( unreserved | escaped |
+                          ";" | "@" | "&" | "=" | "+" | "$" | "," )
+-->
+<production id="URIReference" p="1">
+	<Seq>
+		<Alt>
+			<absoluteURI/>
+			<relativeURI/>
+		</Alt>
+		<Seq occurs="?">
+			<c char="#"/>
+			<fragment/>
+		</Seq>
+	</Seq>
+</production>
+<production id="absoluteURI" p="2">
+	<Seq>
+		<scheme/>
+		<c char=":"/>
+		<Alt>
+			<heirPart/>
+			<opaquePart/>
+		</Alt>
+	</Seq>
+</production>
+<production id="heir_part" p="3">
+	<Seq>
+		<Alt>
+			<net_path/>
+			<abs_path/>
+		</Alt>
+		<Seq occurs="?">
+			<c char="?"/>
+			<query/>
+		</Seq>
+	</Seq>
+</production>
+<production id="opaque_part" p="4">
+	<Seq>
+		<uric_no_slash occurs="*"/>
+		<uric/>
+	</Seq>
+</production>
+<production id="uric_no_slash" p="5">
+	<Alt>
+		<unreserved/><escaped/>
+		<c char=";"/><c char="?"/><c char=":"/>
+		<c char="@"/><c char="&amp;"/><c char="="/>
+		<c char="+"/><c char="$"/><c char=","/>
+	</Alt>
+</production>
+<production id="net_path" p="6">
+	<Seq>
+		<c char="/"/>
+		<c char="/"/>
+		<authority/>
+		<abs_path occurs="?"/>
+	</Seq>
+</production>
+<production id="abs_path" p="7">
+	<Seq>
+		<c char="/"/>
+		<path_seqments/>
+	</Seq>
+</production>
+<production id="rel_path" p="8">
+	<Seq>
+		<rel_segment/>
+		<abs_path occurs="?"/>
+	</Seq>
+</production>
+<production id="rel_segment" p="9">
+<!--     rel_segment   = 1*( unreserved | escaped |
+                          ";" | "@" | "&" | "=" | "+" | "$" | "," )
+-->
+	<Alt occurs="+">
+		<unreserved/><escaped/>
+		<c char=";"/><c char="@"/>
+		<c char="&amp;"/><c char="="/><c char="+"/><c char="$"/><c char=","/>
+	</Alt>
+</production>
+<!--  
+	  scheme        = alpha *( alpha | digit | "+" | "-" | "." )
+      authority     = server | reg_name
+      reg_name      = 1*( unreserved | escaped | "$" | "," |
+                          ";" | ":" | "@" | "&" | "=" | "+" )
+      server        = [ [ userinfo "@" ] hostport ]
+-->
+<production id="scheme" p="10">
+	<Seq>
+		<alpha/>
+		<Alt occurs="*">
+			<alpha/>
+			<digit />
+			<c char="+"/>
+			<c char="-"/>
+			<c char="."/>
+		</Alt>
+	</Seq>
+</production>
+<production id="authority" p="11">
+	<Alt>
+		<server />
+		<reg_name />
+	</Alt>
+</production>
+<production id="reg_name" p="12">
+	<Alt occurs="+">
+		<unreserved/><escaped/>
+		<c char="$"/><c char=","/>
+		<c char=";"/><c char=":"/>
+		<c char="@"/><c char="&amp;"/>
+		<c char="="/><c char="+"/>
+	</Alt>
+</production>
+<production id="server" p="13">
+	<Seq occurs="?">
+		<Seq occurs="?">
+			<userinfo />
+			<c char="@"/>
+		</Seq>
+		<hostport/>
+	</Seq>
+</production>
+<!--
+      userinfo      = *( unreserved | escaped |
+                         ";" | ":" | "&" | "=" | "+" | "$" | "," )
+
+      hostport      = host [ ":" port ]
+      host          = hostname | IPv4address
+      hostname      = *( domainlabel "." ) toplabel [ "." ]
+-->
+<production id="userinfo" p="14">
+	<Alt occurs="*">
+		<unreserved/><escaped/>
+		<c char=";"/><c char=":"/>
+		<c char="&amp;"/><c char="="/>
+		<c char="+"/><c char="$"/><c char=","/>
+	</Alt>
+</production>
+<production id="hostport" p="15">
+	<Seq>
+		<host/>
+		<Seq occurs="?">
+			<c char=":"/>
+			<port/>
+		</Seq>
+	</Seq>
+</production>
+<production id="userinfo" p="16">
+	<Alt>
+		<hostname/>
+		<IPv4address/>
+	</Alt>
+</production>
+<production id="hostname" p="17">
+	<Seq>
+		<Seq occurs="*">
+			<domainlabel/>
+			<c char="."/>
+		</Seq>
+		<toplabel/>
+		<c char="." occurs="?"/>
+	</Seq>
+</production>
+<!--
+      domainlabel   = alphanum | alphanum *( alphanum | "-" ) alphanum
+      toplabel      = alpha | alpha *( alphanum | "-" ) alphanum
+      IPv4address   = 1*digit "." 1*digit "." 1*digit "." 1*digit
+      port          = *digit
+-->
+<production id="domainlabel" p="18">
+	<Alt>
+		<alphanum/>
+		<Seq>
+			<alphanum/>
+			<Alt occurs="*">
+				<alphanum/>
+				<c char="-"/>
+			</Alt>
+			<alphanum/>
+		</Seq>
+	</Alt>
+</production>
+<production id="toplabel" p="19">
+	<Alt>
+		<alpha/>
+		<Seq>
+			<alpha/>
+			<Alt occurs="*">
+				<alphanum/>
+				<c char="-"/>
+			</Alt>
+			<alphanum/>
+		</Seq>
+	</Alt>
+</production>
+<production id="IPv4address" p="20">
+	<Seq>
+		<digit/>
+		<c char="."/>
+		<digit/>
+		<c char="."/>
+		<digit/>
+		<c char="."/>
+		<digit/>
+	</Seq>
+</production>
+<production id="port" p="21">
+	<digit occurs="*"/>
+</production>
+<!--
+      path          = [ abs_path | opaque_part ]
+      path_segments = segment *( "/" segment )
+      segment       = *pchar *( ";" param )
+      param         = *pchar
+      pchar         = unreserved | escaped |
+                      ":" | "@" | "&" | "=" | "+" | "$" | ","
+      query         = *uric
+      fragment      = *uric
+      uric          = reserved | unreserved | escaped
+      reserved      = ";" | "/" | "?" | ":" | "@" | "&" | "=" | "+" |
+                      "$" | ","
+      unreserved    = alphanum | mark
+      mark          = "-" | "_" | "." | "!" | "~" | "*" | "'" |
+                      "(" | ")"
+      escaped       = "%" hex hex
+      hex           = digit | "A" | "B" | "C" | "D" | "E" | "F" |
+                              "a" | "b" | "c" | "d" | "e" | "f"
+      alphanum      = alpha | digit
+      alpha         = lowalpha | upalpha
+      lowalpha = "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" |
+                 "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" |
+                 "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z"
+      upalpha  = "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" |
+                 "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" |
+                 "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z"
+      digit    = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" |
+                 "8" | "9"
+-->
+<production id="path" p="22">
+	<Alt occurs="?"><abs_path/><opaque_part/></Alt>
+</production>
+<production id="path_segments" p="23">
+	<Seq>
+		<segment/>
+		<Seq occurs="*">
+			<c char="/"/>
+			<segment/>
+		</Seq>
+	</Seq>
+</production>
+<production id="segment" p="24">
+	<Seq><pchar occurs="*"/>
+		<Seq occurs="*">
+			<c char=";"/>
+			<param/>
+		</Seq>
+	</Seq>
+</production>
+<production id="param" p="25">
+	<pchar occurs="*"/>
+</production>
+<production id="pchar" p="26">
+	<Alt>
+		<unreserved/><escaped/>
+        <c char=":"/> <c char="@"/> <c char="&amp;"/> 
+		<c char="="/> <c char="+"/> <c char="$"/> <c char=","/>
+	</Alt>
+</production>
+<production id="query" p="27">   <uric occurs="*"/>
+</production>
+<production id="fragment" p="28">   <uric occurs="*"/>
+</production>
+<production id="uric" p="29">
+	<Alt><reserved/><unreserved/><escaped/></Alt>
+	</production>
+<production id="reserved" p="30">
+	<Alt>
+			<c char=";"/><c char="/"/><c char="?"/>
+			<c char=":"/><c char="@"/><c char="&amp;"/>
+			<c char="="/> <c char="+"/>
+            <c char="$"/> <c char=","/>
+	</Alt>
+</production>
+<production id="unreserved" p="31">
+	<Alt><alphanum/><mark/></Alt>
+</production>
+<production id="mark" p="32">
+	<Alt>
+		<c char="-"/> <c char="_"/>
+		<c char="."/> <c char="!"/>
+		<c char="~"/> <c char="*"/> <c char="'"/>
+                      <c char="("/><c char=")"/>
+	</Alt>
+</production>
+<production id="escaped" p="33">
+	<Seq><c char="%"/><hex/><hex/></Seq>
+</production>
+<production id="hex" p="">   
+	<Alt>
+		<digit/> <c char="A"/> <c char="B"/> <c char="C"/> <c char="D"/> <c char="E"/> <c char="F"/>
+        <c char="a"/> <c char="b"/> <c char="c"/> <c char="d"/> <c char="e"/> <c char="f"/>
+	</Alt>
+</production>
+<production id="alphanum" p="34">
+	<Alt><alpha/><digit/></Alt>
+</production>
+<production id="alpha" p="35">
+	<Alt><lowalpha/> <upalpha/></Alt>
+</production>
+<production id="lowalpha" p="36">
+	<Alt>
+		<c char="a"/> <c char="b"/> <c char="c"/> <c char="d"/> <c char="e"/> <c char="f"/> <c char="g"/> <c char="h"/> <c char="i"/>
+                 <c char="j"/> <c char="k"/> <c char="l"/> <c char="m"/> <c char="n"/> <c char="o"/> <c char="p"/> <c char="q"/> <c char="r"/>
+                 <c char="s"/> <c char="t"/> <c char="u"/> <c char="v"/> <c char="w"/> <c char="x"/> <c char="y"/> <c char="z"/>
+	</Alt>
+</production>
+<production id="upalpha" p="37">
+	<Alt>   
+		<c char="A"/> <c char="B"/> <c char="C"/> <c char="D"/> <c char="E"/> <c char="F"/> <c char="G"/> <c char="H"/> <c char="I"/>
+        <c char="J"/> <c char="K"/> <c char="L"/> <c char="M"/> <c char="N"/> <c char="O"/> <c char="P"/> <c char="Q"/> <c char="R"/>
+       <c char="S"/> <c char="T"/> <c char="U"/> <c char="V"/> <c char="W"/> <c char="X"/> <c char="Y"/> <c char="Z"/>
+	</Alt>
+</production>
+<production id="digit" p="38">
+	<Alt>   
+		<c char="0"/> <c char="1"/> <c char="2"/> <c char="3"/> <c char="4"/> <c char="5"/> <c char="6"/> <c char="7"/>
+        <c char="8"/> <c char="9"/>
+	</Alt>
+</production>
+</propertySet>
