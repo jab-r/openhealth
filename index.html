@@ -1,503 +1,80 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-   <head>
-      <meta http-equiv="Content-Type" content=
-      "text/html; charset=iso-8859-1" />
-      <meta name="Keywords" content=
-      "open healthcare group, open health, health record, health, openhealth, healthcare, open source, neurosurgery, semantic web, telemedicine, XSLT, XML, XMOP, XMTP, Borden, Jonathan, Medicine, DICOM, oncology"
-       />
-      <meta name="Description" content=
-      "The Open Healthcare Group is committed to the development of open source XML-based healthcare record standards and terminologies. " />
-      <title>
-         The Open Healthcare Group: Open Source Healthcare Software
-      </title>
-      <meta name="distribution" content="Global" />
-      <meta name="revisit-after" content="7 days" />
-      <meta name="ROBOTS" content="ALL" />
-      <link type="text/css" rel="stylesheet" href="OHCG_Style.css" />
-   </head>
-   <body bgcolor="#ffffff">
-	<p><b>Announcement:<br /> OpenHealth is moving into a Wiki/Blog 
-effort. <br />
-Details are being posted on <a 
-href="https://blog.openhealth.org">New Openhealth Blog!</a>. <br />Watch 
-<a 
-href="http://www.openhealth.org/wiki">this space</a>.</b></p>
-      <table width="90%" border="0" cellspacing="0" cellpadding="0">
-         <tr>
-            <td width="100" valign="top">
-               <table width="100" border="0" cellspacing="0" cellpadding="0">
-                  <!--<tr>
-                                       <td>
-                                          <img alt="OpenHealth" height="100"
-                                          src="Images/Logo.gif" width="100" /> 
-                                       </td>
-                                    </tr>
-                                    <tr bgcolor="#008080">
-                                       <td>
-                                           
-                                       </td>
-                                    </tr>-->
-                  <tr>
-                     <td>
-                        <a href="/">Home</a> 
-                        <!-- onclick="MM_nbGroup(&#39;down&#39;,&#39;group1&#39;,&#39;Home&#39;,&#39;Images/Nav_Home_Down.gif&#39;,1)"
-                                                 onmouseout="MM_nbGroup(&#39;out&#39;)"
-                                                onmouseover="MM_nbGroup(&#39;over&#39;,&#39;Home&#39;,&#39;Images/Nav_Home_Lite.gif&#39;,&#39;&#39;,1)">
-                                                <img alt="Home" border="0"
-                                                height="50" name="Home" onload=""
-                                                src="Images/Nav_Home.gif" width="100" /></a> -->
-                         
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <a href="emr.htm">EMR</a> 
-                        <!-- onclick="MM_nbGroup(&#39;down&#39;,&#39;group1&#39;,&#39;EMR&#39;,&#39;Images/Nav_EMR_Down.gif&#39;,1)"
-                                                 onmouseout="MM_nbGroup(&#39;out&#39;)"
-                                                onmouseover="MM_nbGroup(&#39;over&#39;,&#39;EMR&#39;,&#39;Images/Nav_EMR_Lite.gif&#39;,&#39;&#39;,1)">
-                                                <img alt="EMR" border="0" name="EMR"
-                                                onload="" src="Images/Nav_EMR.gif" /></a> -->
-                         
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <a href="specs.htm">Specifications</a> 
-                        <!-- onclick="MM_nbGroup(&#39;down&#39;,&#39;group1&#39;,&#39;Specifications&#39;,&#39;Images/Nav_Specs_Down.gif&#39;,1)"
-                                                 onmouseout="MM_nbGroup(&#39;out&#39;)"
-                                                onmouseover="MM_nbGroup(&#39;over&#39;,&#39;Specifications&#39;,&#39;Images/Nav_Specs_Lite.gif&#39;,&#39;&#39;,1)">
-                                                <img alt="Specs" border="0"
-                                                name="Specifications" onload=""
-                                                src="Images/Nav_Specs.gif" /></a> -->
-                         
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <a href="opnote">Opnote generator demo</a> 
-                        <!-- onclick="MM_nbGroup(&#39;down&#39;,&#39;group1&#39;,&#39;Demo&#39;,&#39;Images/Nav_Demo_Down.gif&#39;,1)"
-                                                 onmouseout="MM_nbGroup(&#39;out&#39;)"
-                                                onmouseover="MM_nbGroup(&#39;over&#39;,&#39;Demo&#39;,&#39;Images/Nav_Demo_Lite.gif&#39;,&#39;Images/Nav_Demo_Down.gif&#39;,1)">
-                                                <img alt="opnote" border="0"
-                                                name="Demo" onload="" src="Images/Nav_Demo.gif" /></a>-->
-                        
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <a href="/download/">Download</a> 
-                        <!-- onclick="MM_nbGroup(&#39;down&#39;,&#39;group1&#39;,&#39;Download&#39;,&#39;Images/Nav_Download_Down.gif&#39;,1)"
-                                                 onmouseout="MM_nbGroup(&#39;out&#39;)"
-                                                onmouseover="MM_nbGroup(&#39;over&#39;,&#39;Download&#39;,&#39;Images/Nav_Download_Lite.gif&#39;,&#39;&#39;,1)">
-                                                <img alt="download" border="0"
-                                                name="Download" onload=""
-                                                src="Images/Nav_Download.gif" /></a> -->
-                         
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <a href="/links/">Links</a> 
-                        <!-- onclick="MM_nbGroup(&#39;down&#39;,&#39;group1&#39;,&#39;Links&#39;,&#39;Images/Nav_Links_Down.gif&#39;,1)"
-                                                 onmouseout="MM_nbGroup(&#39;out&#39;)"
-                                                onmouseover="MM_nbGroup(&#39;over&#39;,&#39;Links&#39;,&#39;Images/Nav_Links_Lite.gif&#39;,&#39;&#39;,1)">
-                                                <img alt="links" border="0"
-                                                name="Links" onload="" src="Images/Nav_Links.gif" />-->
-                        
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <a href="contact.htm">Contact</a> 
-                        <!-- onclick="MM_nbGroup(&#39;down&#39;,&#39;group1&#39;,&#39;Contact&#39;,&#39;Images/Nav_Contact_Down.gif&#39;,1)"
-                                                 onmouseout="MM_nbGroup(&#39;out&#39;)"
-                                                onmouseover="MM_nbGroup(&#39;over&#39;,&#39;Contact&#39;,&#39;Images/Nav_Contact_Lite.gif&#39;,&#39;&#39;,1)">
-                                                <img alt="contact" border="0"
-                                                name="Contact" onload=""
-                                                src="Images/Nav_Contact.gif" /></a> -->
-                         
-                     </td>
-                  </tr>
-                  <!-- <tr bgcolor="#008080">
-                                       <td>
-                                           
-                                       </td>
-                                    </tr>
-                                    <tr>
-                                       <td>
-                                          <img alt="bottom" height="50"
-                                          src="Images/Nav_Bottom.gif" width="100" /> 
-                                       </td>
-                                    </tr>-->
-               </table>
-            </td>
-            <td valign="top">
-               <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                  <tr>
-                     <td width="10">
-                         
-                     </td>
-                     <td class="Header">
-                        <div align="center" class="Header">
-                           <font size="+3" color="#008080" face=
-                           "Verdana, Arial, Helvetica, sans-serif"><b class=
-                           "Header">The Open Healthcare Group</b></font>
-                        </div>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td width="10">
-                         
-                     </td>
-                     <td>
-                         
-                     </td>
-                  </tr>
-                  <tr>
-                     <td width="10">
-                         
-                     </td>
-                     <td>
-                        <div align="center">
-                           <table width="450" border="0" cellspacing="0"
-                           cellpadding="0">
-                              <tr>
-                                 <td class="Slogan" align="middle" bgcolor=
-                                 "#008080">
-                                    A Smarter Way for Better Healthcare
-                                 </td>
-                              </tr>
-                           </table>
-                        </div>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td width="10">
-                         
-                     </td>
-                     <td>
-                         
-                     </td>
-                  </tr>
-                  <tr>
-                     <td width="10">
-                         
-                     </td>
-                     <td>
-                        <font face="Arial, Helvetica, sans-serif">The Open
-                        Healthcare Group is an organization devoted to the
-                        promotion and distribution of an open source health
-                        record, <b>XChart</b>. Using the latest XML Internet
-                        technology, we have developed the source code for a
-                        health record that will help you automate and
-                        streamline the practice of medicine. Furthermore, since
-                        <b>XChart</b> uses an open source code, you will be
-                        able to develop and customize your own templates. If
-                        you think <b>XChart</b> is missing a feature that could
-                        help your practice, you are free to make the
-                        improvements. In addition, as a member of an open
-                        source community, you will be able to share your new
-                        feature and, in turn, benefit from the experience and
-                        work of others.</font> 
-                     </td>
-                  </tr>
-                  <tr>
-                     <td width="10">
-                         
-                     </td>
-                     <td>
-                         
-                     </td>
-                  </tr>
-                  <tr>
-                     <td width="10">
-                         
-                     </td>
-                     <td>
-                        <table width="100%" border="4" cellspacing="0"
-                        cellpadding="0" bgcolor="#ffff99" bordercolor=
-                        "#008080">
-                           <tr>
-                              <td>
-                                 <div align="center">
-                                    <table width="95%" border="0" cellspacing=
-                                    "0" cellpadding="0">
-                                       <tr>
-                                          <td class="News_Title" height="50">
-                                             <div align="center">
-                                                <b><font size="+1" face=
-                                                "Verdana, Arial, Helvetica, sans-serif"
-                                                 color="#008080"><i>Open
-                                                Healthcare Group
-                                                News</i></font></b>
-                                             </div>
-                                          </td>
-                                       </tr>
-                                       <tr>
-                                          <td height="20">
-                                              
-                                          </td>
-                                       </tr>
-                                       <tr>
-                                          <td height="20">
-                                             <div align="center">
-                                                <font face=
-                                                "Arial, Helvetica, sans-serif"><b>
-                                                Read about <a href=
-                                                "XChart">XChart</a></b></font>
-                                             </div>
-                                          </td>
-                                       </tr>
-                                       <tr>
-                                          <td height="20">
-                                              
-                                          </td>
-                                       </tr>
-                                       <tr>
-                                          <td class="News_Body">
-                                             <div align="center">
-                                                <b><font face=
-                                                "Arial, Helvetica, sans-serif"><a
-                                                 href=
-                                                "specs.htm">Specifications</a></font></b>
-                                             </div>
-                                          </td>
-                                       </tr>
-                                       <tr>
-                                          <td class="News_Body">
-                                             <p>
-                                                 
-                                             </p>
-                                          </td>
-                                       </tr>
-                                       <tr>
-                                          <td class="News_Body">
-                                             <div align="center">
-                                                <a href=
-                                                "xmtp/">
-                                                XML MIME Transformation
-                                                Protocol (XMTP)</a>
-                                             </div>
-                                          </td>
-                                       </tr>
-                                       <tr>
-                                          <td class="News_Body">
-                                             <div align="center">
-                                                <a href=
-                                                "ASTM/">
-                                                Draft ASTM XML Healthcare
-                                                DTDs</a>
-                                             </div>
-                                          </td>
-                                       </tr>
-                                       <tr>
-                                          <td class="News_Body">
-                                             <div align="center">
-                                                <a href=
-                                                "http://www.rddl.org/">Resource
-                                                Directory Description Language
-                                                (RDDL)</a>
-                                             </div>
-                                          </td>
-                                       </tr>
-                                       <tr>
-                                          <td class="News_Body">
-                                             <div align="center">
-                                                <a href=
-                                                "http://www.jonathanborden-md.com/HealthcareSemWeb.ppt">Healthcare,
-                                                XML and the Semantic Web</a> at
-                                                TEHRE 2002 by Jonathan Borden,
-                                                M.D.
-                                             </div>
-                                          </td>
-                                       </tr>
-                                       <tr>
-                                          <td class="News_Body">
-                                              
-                                          </td>
-                                       </tr>
-                                       <tr>
-                                          <td class="News_Body">
-                                             <div align="center">
-                                                <b>The Open Healthcare Group,
-                                                SMB-TEC GmbH and The DBXML
-                                                Group form an XML database
-                                                initiative: <a href=
-                                                "http://www.xmldb.org">www.xmldb.org</a>.</b>
-                                             </div>
-                                          </td>
-                                       </tr>
-                                       <tr>
-                                          <td class="News_Body">
-                                              <a href=
-                                             "http://www.jonathanborden-md.com/OpticTumors.html">
-                                             Treatment of Optic Tumors</a> 
-                                          </td>
-                                       </tr>
-                                       <tr>
-                                          <td class="News_Body">
-                                              <a href=
-                                             "http://www.jonathanborden-md.com/DAVF/">
-                                             Dural Arteriovenous Fistulas</a> 
-                                          </td>
-                                       </tr>
-                                       <tr>
-                                          <td class="News_Body">
-                                              <a href=
-                                             "http://www.jonathanborden-md.com/gamma%20knife%20mass%20dental.html">
-                                             Gamma Knife for Trigeminal
-                                             Neuralgia</a> 
-                                          </td>
-                                       </tr>
-                                       <tr>
-                                          <td class="News_Body">
-                                              <a href=
-                                             "http://www.jonathanborden-md.com/GK%20dosimetry.html">
-                                             A Quality Factor for Gamma Knife
-                                             Dosimetry</a> 
-                                          </td>
-                                       </tr>
-                                    </table>
-                                 </div>
-                              </td>
-                           </tr>
-                        </table>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td width="10">
-                         
-                     </td>
-                     <td>
-                         
-                     </td>
-                  </tr>
-                  <tr>
-                     <td width="10">
-                         
-                     </td>
-                     <td>
-                         
-                     </td>
-                  </tr>
-                  <tr>
-                     <td width="10">
-                         
-                     </td>
-                     <td>
-                        <font face="Arial, Helvetica, sans-serif">Click on
-                        <b><a href="emr.htm">Open Source Health Record</a></b>
-                        to learn about all of the tremendous benefits of using
-                        our open source health record, <b>XChart</b>.</font> 
-                     </td>
-                  </tr>
-                  <tr>
-                     <td width="10">
-                         
-                     </td>
-                     <td>
-                         
-                     </td>
-                  </tr>
-                  <tr>
-                     <td width="10">
-                         
-                     </td>
-                     <td height="0">
-                        <font face="Arial, Helvetica, sans-serif">Interested in
-                        the details? Click on <b><a href=
-                        "specs.htm">Specifications</a></b> for the technical
-                        details of our innovative standards.</font> 
-                     </td>
-                  </tr>
-                  <tr>
-                     <td width="10">
-                         
-                     </td>
-                     <td>
-                         
-                     </td>
-                  </tr>
-                  <tr>
-                     <td width="10">
-                         
-                     </td>
-                     <td>
-                        Want to see <b>XChart</b> in action? Take a look at our
-                        <a href="opnote"><b>Demos</b></a>.
-                     </td>
-                  </tr>
-                  <tr>
-                     <td width="10">
-                         
-                     </td>
-                     <td>
-                         
-                     </td>
-                  </tr>
-                  <tr>
-                     <td width="10">
-                         
-                     </td>
-                     <td>
-                        <font face="Arial, Helvetica, sans-serif">Click on <a
-                        href="download.htm"><b>Download</b></a> to receive your
-                        free copies of Open Healthcare Group offerings.</font> 
-                     </td>
-                  </tr>
-                  <tr>
-                     <td width="10">
-                         
-                     </td>
-                     <td>
-                         
-                     </td>
-                  </tr>
-                  <tr>
-                     <td width="10">
-                         
-                     </td>
-                     <td>
-                        <font face="Arial, Helvetica, sans-serif"><b><a href=
-                        "links.htm">Links</a></b> will take you to a series of
-                        websites where you can learn more about XML and
-                        Healthcare.</font> 
-                     </td>
-                  </tr>
-                  <tr>
-                     <td width="10">
-                         
-                     </td>
-                     <td>
-                         
-                     </td>
-                  </tr>
-                  <tr>
-                     <td width="10">
-                         
-                     </td>
-                     <td>
-                        <font face="Arial, Helvetica, sans-serif">Any questions
-                        or suggestions? Want to share your own customized
-                        health record? Click on <a href=
-                        "contact.htm"><b>Contact Us</b></a>.</font> 
-                     </td>
-                  </tr>
-               </table>
-            </td>
-         </tr>
-      </table>
-      <p>
-         <a href=
-         "http://www.jonathanborden-md.com/jonathan-borden-cv.html">Jonathan A.
-         Borden, M.D.</a>
-      </p>
-      <div class="clear">
-         <a style="COLOR: white" href="http://www.jonathanborden-md.com"></a>
-		 <a style="COLOR: white" href="http://www.cincinnatineurosurgery.com"></a>
-      </div>
-   </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="open healthcare group, open health, health record, health, openhealth, healthcare, open source, neurosurgery, semantic web, telemedicine, XSLT, XML, XMOP, XMTP, Borden, Jonathan, Medicine, DICOM, oncology">
+    <meta name="description" content="The Open Healthcare Group is committed to the development of open source XML-based healthcare record standards and terminologies.">
+    <meta name="distribution" content="Global">
+    <meta name="revisit-after" content="7 days">
+    <meta name="robots" content="all">
+    <title>The Open Healthcare Group: Open Source Healthcare Software</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="OHCG_Style.css">
+</head>
+<body class="bg-white">
+    <div class="container mt-4">
+        <div class="alert alert-info">
+            <strong>Announcement:</strong><br>
+            OpenHealth is moving into a Wiki/Blog effort.<br>
+            Details are being posted on <a href="https://blog.openhealth.org" class="alert-link">New Openhealth Blog!</a>.<br>
+            Watch <a href="http://www.openhealth.org/wiki" class="alert-link">this space</a>.
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <nav class="nav flex-column">
+                    <a class="nav-link" href="/">Home</a>
+                    <a class="nav-link" href="emr.htm">EMR</a>
+                    <a class="nav-link" href="specs.htm">Specifications</a>
+                    <a class="nav-link" href="opnote">Opnote generator demo</a>
+                    <a class="nav-link" href="/download/">Download</a>
+                    <a class="nav-link" href="/links/">Links</a>
+                    <a class="nav-link" href="contact.htm">Contact</a>
+                </nav>
+            </div>
+            <div class="col-md-9">
+                <div class="text-center mb-4">
+                    <h1 class="display-4 text-teal">The Open Healthcare Group</h1>
+                    <p class="lead">A Smarter Way for Better Healthcare</p>
+                </div>
+                <p>The Open Healthcare Group is an organization devoted to the promotion and distribution of an open source health record, <strong>XChart</strong>. Using the latest XML Internet technology, we have developed the source code for a health record that will help you automate and streamline the practice of medicine. Furthermore, since <strong>XChart</strong> uses an open source code, you will be able to develop and customize your own templates. If you think <strong>XChart</strong> is missing a feature that could help your practice, you are free to make the improvements. In addition, as a member of an open source community, you will be able to share your new feature and, in turn, benefit from the experience and work of others.</p>
+                <div class="card bg-warning text-dark mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title text-center text-teal"><i>Open Healthcare Group News</i></h5>
+                        <ul class="list-unstyled">
+                            <li class="text-center"><strong><a href="XChart">Read about XChart</a></strong></li>
+                            <li class="text-center"><strong><a href="specs.htm">Specifications</a></strong></li>
+                            <li class="text-center"><a href="xmtp/">XML MIME Transformation Protocol (XMTP)</a></li>
+                            <li class="text-center"><a href="ASTM/">Draft ASTM XML Healthcare DTDs</a></li>
+                            <li class="text-center"><a href="http://www.rddl.org/">Resource Directory Description Language (RDDL)</a></li>
+                            <li class="text-center"><a href="http://www.jonathanborden-md.com/HealthcareSemWeb.ppt">Healthcare, XML and the Semantic Web</a> at TEHRE 2002 by Jonathan Borden, M.D.</li>
+                            <li class="text-center"><strong>The Open Healthcare Group, SMB-TEC GmbH and The DBXML Group form an XML database initiative: <a href="http://www.xmldb.org">www.xmldb.org</a>.</strong></li>
+                            <li><a href="http://www.jonathanborden-md.com/OpticTumors.html">Treatment of Optic Tumors</a></li>
+                            <li><a href="http://www.jonathanborden-md.com/DAVF/">Dural Arteriovenous Fistulas</a></li>
+                            <li><a href="http://www.jonathanborden-md.com/gamma%20knife%20mass%20dental.html">Gamma Knife for Trigeminal Neuralgia</a></li>
+                            <li><a href="http://www.jonathanborden-md.com/GK%20dosimetry.html">A Quality Factor for Gamma Knife Dosimetry</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <p>Click on <strong><a href="emr.htm">Open Source Health Record</a></strong> to learn about all of the tremendous benefits of using our open source health record, <strong>XChart</strong>.</p>
+                <p>Interested in the details? Click on <strong><a href="specs.htm">Specifications</a></strong> for the technical details of our innovative standards.</p>
+                <p>Want to see <strong>XChart</strong> in action? Take a look at our <a href="opnote"><strong>Demos</strong></a>.</p>
+                <p>Click on <a href="download.htm"><strong>Download</strong></a> to receive your free copies of Open Healthcare Group offerings.</p>
+                <p><strong><a href="links.htm">Links</a></strong> will take you to a series of websites where you can learn more about XML and Healthcare.</p>
+                <p>Any questions or suggestions? Want to share your own customized health record? Click on <a href="contact.htm"><strong>Contact Us</strong></a>.</p>
+            </div>
+        </div>
+        <footer class="mt-4">
+            <p><a href="http://www.jonathanborden-md.com/jonathan-borden-cv.html">Jonathan A. Borden, M.D.</a></p>
+            <div class="d-flex justify-content-center">
+                <a class="text-white" href="http://www.jonathanborden-md.com">Jonathan Borden</a>
+                <a class="text-white ml-3" href="http://www.cincinnatineurosurgery.com">Cincinnati Neurosurgery</a>
+            </div>
+        </footer>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
 </html>
 
