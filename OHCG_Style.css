@@ -1,154 +1,195 @@
 /* Global Styles */
+:root {
+  --primary-color: #45618F;
+  --secondary-color: #3498db;
+  --accent-color: #f1c40f;
+  --background-color: #f9f9f9;
+  --text-color: #333;
+}
 
 body {
-	font-family: 'Open Sans', sans-serif;
-	font-size: 1rem;
-	line-height: 1.6;
-	color: #333;
-	background-color: #f9f9f9;
-	scrollbar-color: #45618F #f9f9f9;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+
+a {
+  font-weight: 600;
+  color: var(--secondary-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--accent-color);
+}
+
+/* Header Styles */
+.header {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-align: center;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+}
+
+/* Slogan Styles */
+.slogan {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  background-color: var(--primary-color);
+  color: #FFFFFF;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Title Styles */
+.title {
+  font-family: 'Merriweather', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  font-variant: small-caps;
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+/* News Styles */
+.news-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.news-body {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Subtitle Styles */
+.sub-title {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+/* XChart Styles */
+.xchart {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #007FFF;
+  text-align: center;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+}
+
+.xchart2 {
+  font-family: 'Lato', sans-serif;
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--secondary-color);
+  text-align: center;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+}
+
+/* Button Styles */
+.button {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  background-color: var(--background-color);
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.button:hover {
+  background-color: var(--secondary-color);
+  color: var(--background-color);
+}
+
+/* Other Styles */
+.slogan2 {
+  font-family: 'Pacifico', cursive;
+  font-style: italic;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.legal {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+/* Navbar Styles */
+.navbar {
+  background-color: var(--primary-color) !important;
+}
+
+.navbar-light .navbar-brand,
+.navbar-light .navbar-nav .nav-link {
+  color: white !important;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+  color: var(--accent-color) !important;
+}
+
+/* Card Styles */
+.card {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+}
+
+/* Footer Styles */
+footer {
+  background-color: var(--primary-color) !important;
+  color: white;
+}
+
+footer a {
+  color: var(--accent-color) !important;
+}
+
+footer a:hover {
+  color: white !important;
+  text-decoration: underline;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
   }
-  
-  a {
-	font-weight: 600;
-	color: #3498db;
-	text-decoration: none;
-	transition: color 0.2s ease;
-  }
-  
-  a:hover {
-	color: #f1c40f;
-  }
-  
-  a:visited {
-	color: #2ecc71;
-  }
-  
-  /* Header Styles */
-  
-  .header {
-	font-family: 'Montserrat', sans-serif;
-	font-size: 2.5rem;
-	font-weight: 700;
-	color: #45618F;
-	text-align: center;
-	text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	margin-bottom: 1rem;
-  }
-  
-  /* Slogan Styles */
-  
-  .slogan {
-	font-family: 'Lato', sans-serif;
-	font-size: 1.5rem;
-	font-weight: 400;
-	background-color: #45618F;
-	color: #FFFFFF;
-	text-align: center;
-	vertical-align: middle;
-	padding: 1rem;
-	border-radius: 10px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Title Styles */
-  
-  .title {
-	font-family: 'Merriweather', serif;
-	font-size: 2rem;
-	font-weight: 700;
-	font-variant: small-caps;
-	text-align: center;
-	color: #45618F;
-	margin-bottom: 1rem;
-  }
-  
-  /* News Styles */
-  
-  .news-title {
-	font-family: 'Playfair Display', serif;
-	font-size: 1.8rem;
-	font-style: italic;
-	text-align: center;
-	vertical-align: middle;
-	height: 50px;
-	margin-bottom: 1rem;
-  }
-  
-  .news-body {
-	font-family: 'Lato', sans-serif;
-	font-size: 1.2rem;
-	font-weight: 400;
-	text-align: center;
-	margin-bottom: 2rem;
-  }
-  
-  /* Subtitle Styles */
-  
-  .sub-title {
-	font-family: 'Open Sans', sans-serif;
-	font-size: 1.5rem;
-	font-weight: 600;
-	margin-bottom: 1rem;
-  }
-  
-  /* XChart Styles */
-  
-  .xchart {
-	font-family: 'Montserrat', sans-serif;
-	font-size: 2.5rem;
-	font-weight: 700;
-	color: #007FFF;
-	text-align: center;
-	vertical-align: bottom;
-	text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	margin-bottom: 1rem;
-  }
-  
-  .xchart2 {
-	font-family: 'Lato', sans-serif;
-	font-size: 2rem;
-	font-weight: 400;
-	color: #3498db;
-	text-align: center;
-	vertical-align: top;
-	text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	margin-bottom: 1rem;
-  }
-  
-  /* Button Styles */
-  
-  .button {
-	font-family: 'Open Sans', sans-serif;
-	font-size: 1.2rem;
-	font-weight: 600;
-	color: #45618F;
-	background-color: #f9f9f9;
-	border: none;
-	padding: 1rem 2rem;
-	border-radius: 10px;
-	cursor: pointer;
-	transition: background-color 0.2s ease;
-  }
-  
-  .button:hover {
-	background-color: #3498db;
-	color: #f9f9f9;
-  }
-  
-  /* Other Styles */
-  
-  .slogan2 {
-	font-family: 'Pacifico', cursive;
-	font-style: italic;
-	vertical-align: sub;
-	font-size: 1.5rem;
-	margin-bottom: 1rem;
-  }
-  
-  .legal {
-	font-family: 'Lato', sans-serif;
-	font-size: 0.9rem;
-	color: #666;
-	margin-bottom: 2rem;
-  }
+}
