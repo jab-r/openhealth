@@ -103,10 +103,8 @@ xmlns:t="http://www.openhealth.org/types"&gt;
       <p>
          And transformed via rdfExtractify:
       </p>
-      Here is the reformatted HTML snippet:
-
-      ```html
-      <p>
+      <H3>Here is the reformatted HTML snippet:</H3>
+      <pre><code class="language-xml">
           &lt;rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"&gt;<br />
           &nbsp;&nbsp;&lt;rdf:Statement&gt;<br />
           &nbsp;&nbsp;&nbsp;&nbsp;&lt;rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/&gt;<br />
@@ -211,11 +209,11 @@ xmlns:t="http://www.openhealth.org/types"&gt;
           &nbsp;&nbsp;&nbsp;&nbsp;&lt;rdf:object&gt;MA&lt;/rdf:object&gt;<br />
           &nbsp;&nbsp;&lt;/rdf:Statement&gt;<br />
           &lt;/rdf:RDF&gt;
-      </p>
+      </code></pre>
       <p>
           And the reified result:
       </p>
-      <p>
+      <pre><code class="language-xml">
           &lt;rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"&gt;<br />
           &nbsp;&nbsp;&lt;rdf:Statement&gt;<br />
           &nbsp;&nbsp;&nbsp;&nbsp;&lt;rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"/&gt;<br />
@@ -280,8 +278,8 @@ xmlns:t="http://www.openhealth.org/types"&gt;
           &nbsp;&nbsp;&nbsp;&nbsp;&lt;rdf:object rdf:resource="PersonName"/&gt;<br />
           &nbsp;&nbsp;&lt;/rdf:Statement&gt;<br />
           &nbsp;&nbsp;&hellip;
-      </p>
-      <p>
+      </code></pre>
+      <pre><code class="language-xml">
           &nbsp;&nbsp;&lt;rdf:Statement&gt;<br />
           &nbsp;&nbsp;&nbsp;&nbsp;&lt;rdf:predicate rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#object"/&gt;<br />
           &nbsp;&nbsp;&nbsp;&nbsp;&lt;rdf:subject rdf:resource="#/1/13"/&gt;<br />
@@ -432,7 +430,7 @@ xmlns:t="http://www.openhealth.org/types"&gt;
           &nbsp;&nbsp;&nbsp;&nbsp;&lt;rdf:object&gt;MA&lt;/rdf:object&gt;<br />
           &nbsp;&nbsp;&lt;/rdf:Statement&gt;<br />
           &lt;/rdf:RDF&gt;
-      </p>
+      </code></pre>
       <p>
          <img alt="error-file:TidyOut.log" src="person graph.GIF" />
       </p>
