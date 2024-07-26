@@ -1,120 +1,154 @@
-.Header  {
-	font-family : Verdana, Arial, Helvetica, sans-serif;
-	font-size : 24pt;
-	font-weight : bold;
-	color : #45618F;
-	text-align : center;
-	filter : Shadow(Color=silver, Direction=down)?, Direction=?);
-}
+/* Global Styles */
 
-.Slogan  {
-	font-family : Arial, Helvetica, sans-serif;
-	font-size : 14pt;
-	font-weight : bold;
-	background-color : #45618F;
-	color : #FFFFFF;
-	text-align : center;
-	vertical-align : middle;
-}
-
-
-body  {
-	font-family : Arial, Helvetica, sans-serif;
-	font-size : 12pt;
-scrollbar-face-color: #45618F;
-scrollbar-shadow-color: #003333;
-scrollbar-highlight-color: #003333;
-scrollbar-3dlight-color: #003333; 
-scrollbar-darkshadow-color: #003333;
-scrollbar-track-color: #003333; 
-scrollbar-arrow-color: #45618F;
-
-}
-
-a:link  {
-	font-weight : bold;
-	color : #45618F;
-}
-
-a:active  {
-	text-decoration : none;
-	font-weight : bold;
-}
-
-a:visited  {
-	font-weight : bold;
-	color : #008080;
-}
-a:clear {
-	color : #FFFFFF;
-	font-weight: bold;
-	}
-a:hover  {
-	color : #FF3333;
-	font-weight : bold;
-	text-decoration : underline;
-}
-
-.Legal  {
-	font-family : "Times New Roman", Times, serif;
-	font-size : 10pt;
-}
-
-.Title  {
-	font-family : Verdana, Arial, Helvetica, sans-serif;
-	font-size : 24pt;
-	font-weight : bold;
-	font-variant : small-caps;
-	text-align : center;
-	color : #45618F;
-}
-
-.News_Title  {
-	font-family : Verdana, Arial, Helvetica, sans-serif;
-	font-size : 18pt;
-	font-style : italic;
-	text-align : center;
-	vertical-align : middle;
-	height : 50px;
-}
-
-.News_Body  {
-	font-family : Arial, Helvetica, sans-serif;
-	font-size : 13pt;
-	font-weight : bold;
-	text-align : center;
-}
-
-.Sub_Title  {
-	font-family : Arial, Helvetica, sans-serif;
-	font-size : 14pt;
-	font-weight : bold;
-}
-
-.XChart  {
-	font-family : Book Antiqua;
-	font-size : 28pt;
-	font-weight : bold;
-	color : 007FFF;
-	text-align : center;
+body {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1rem;
+	line-height: 1.6;
+	color: #333;
+	background-color: #f9f9f9;
+	scrollbar-color: #45618F #f9f9f9;
+  }
+  
+  a {
+	font-weight: 600;
+	color: #3498db;
+	text-decoration: none;
+	transition: color 0.2s ease;
+  }
+  
+  a:hover {
+	color: #f1c40f;
+  }
+  
+  a:visited {
+	color: #2ecc71;
+  }
+  
+  /* Header Styles */
+  
+  .header {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 2.5rem;
+	font-weight: 700;
+	color: #45618F;
+	text-align: center;
+	text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	margin-bottom: 1rem;
+  }
+  
+  /* Slogan Styles */
+  
+  .slogan {
+	font-family: 'Lato', sans-serif;
+	font-size: 1.5rem;
+	font-weight: 400;
+	background-color: #45618F;
+	color: #FFFFFF;
+	text-align: center;
+	vertical-align: middle;
+	padding: 1rem;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Title Styles */
+  
+  .title {
+	font-family: 'Merriweather', serif;
+	font-size: 2rem;
+	font-weight: 700;
+	font-variant: small-caps;
+	text-align: center;
+	color: #45618F;
+	margin-bottom: 1rem;
+  }
+  
+  /* News Styles */
+  
+  .news-title {
+	font-family: 'Playfair Display', serif;
+	font-size: 1.8rem;
+	font-style: italic;
+	text-align: center;
+	vertical-align: middle;
+	height: 50px;
+	margin-bottom: 1rem;
+  }
+  
+  .news-body {
+	font-family: 'Lato', sans-serif;
+	font-size: 1.2rem;
+	font-weight: 400;
+	text-align: center;
+	margin-bottom: 2rem;
+  }
+  
+  /* Subtitle Styles */
+  
+  .sub-title {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1.5rem;
+	font-weight: 600;
+	margin-bottom: 1rem;
+  }
+  
+  /* XChart Styles */
+  
+  .xchart {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 2.5rem;
+	font-weight: 700;
+	color: #007FFF;
+	text-align: center;
 	vertical-align: bottom;
-	filter : Shadow(Color=silver, Direction=down)?, Direction=?);
-}
-
-.XChart2  {
-	font-family : Book Antiqua;
-	font-size : 24pt;
-	font-weight : bold;
-	color : Blue;
-	text-align : center;
-	vertical-align : top;
-	filter : Shadow(Color=silver, Direction=down)?, Direction=?);
-}
-.slogan2  {
-	font-family : Century Gothic;
-	font-style : italic;
-	vertical-align : sub;
-}
-.button  {
-	color : #45618F;
-}
+	text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	margin-bottom: 1rem;
+  }
+  
+  .xchart2 {
+	font-family: 'Lato', sans-serif;
+	font-size: 2rem;
+	font-weight: 400;
+	color: #3498db;
+	text-align: center;
+	vertical-align: top;
+	text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	margin-bottom: 1rem;
+  }
+  
+  /* Button Styles */
+  
+  .button {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1.2rem;
+	font-weight: 600;
+	color: #45618F;
+	background-color: #f9f9f9;
+	border: none;
+	padding: 1rem 2rem;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: background-color 0.2s ease;
+  }
+  
+  .button:hover {
+	background-color: #3498db;
+	color: #f9f9f9;
+  }
+  
+  /* Other Styles */
+  
+  .slogan2 {
+	font-family: 'Pacifico', cursive;
+	font-style: italic;
+	vertical-align: sub;
+	font-size: 1.5rem;
+	margin-bottom: 1rem;
+  }
+  
+  .legal {
+	font-family: 'Lato', sans-serif;
+	font-size: 0.9rem;
+	color: #666;
+	margin-bottom: 2rem;
+  }
