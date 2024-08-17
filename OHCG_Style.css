@@ -14,7 +14,13 @@ body {
   color: var(--text-color);
   background-color: var(--background-color);
 }
-
+.jabr {
+          font-family: "Vollkorn", serif;
+          font-optical-sizing: auto;
+          font-weight: 600;
+          font-size: 48px;
+          font-style: normal;
+    }
 a {
   font-weight: 600;
   color: var(--secondary-color);
