@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Standards archive | The Open Healthcare Group</title>
+  <meta name="description" content="The Open Healthcare Group's specifications, reference documents, software and talks from the XML era: RDDL, XMTP, XMOP, XSet, RDF syntax work, W3C Web Ontology contributions, ASTM XML healthcare DTDs and XChart.">
+  <link rel="canonical" href="https://openhealth.org/standards/">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/OHCG_Style.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="/">Open Healthcare Group</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#siteNav" aria-controls="siteNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="siteNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/policy/">Policy</a></li>
+          <li class="nav-item"><a class="nav-link" href="/projects/">Projects</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="/standards/">Standards</a></li>
+          <li class="nav-item"><a class="nav-link" href="/about/">About</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container my-4 my-lg-5">
+    <header class="mb-4">
+      <p class="kicker">Standards archive</p>
+      <h1 class="page-title">Specifications, 1998 to 2003</h1>
+      <p class="page-lead">The Open Healthcare Group's specifications, reference documents, software and talks from the XML era, kept here as published. Links go to the original documents, and some of them show their age. Parts of this work were later incorporated into FHIR and the XML representation of DICOM; the current work is on the <a href="/projects/">projects</a> page.</p>
+    </header>
+
+    <div class="row gx-lg-5">
+      <div class="col-lg-7">
+        <h2 class="section-heading">Specifications</h2>
+        <dl class="archive-list">
+          <dt><a href="/RDDL/">RDDL: Resource Directory Description Language</a> <span class="era">2001</span></dt>
+          <dd>An XHTML-based format for describing what a namespace URI points to: schemas, stylesheets and documentation. Also published at <a href="http://www.rddl.org/">rddl.org</a>.</dd>
+          <dt><a href="/xmtp/">XMTP: XML MIME Transformation Protocol</a> <span class="era">1998, 2001</span></dt>
+          <dd>A mapping of RFC 822 and MIME messages to XML and RDF. The <a href="/documents/xmtp.htm">1998 version</a> is also kept.</dd>
+          <dt><a href="/xmop/XMOP.htm">XMOP: XML Metadata Object Persistence</a> <span class="era">1998 to 1999</span></dt>
+          <dd>Serializing component objects to XML, with the <a href="/xmop/sodl.htm">SODL</a> object description language and early SOAP and XML-RPC proxy generators. <a href="/xmop/">Browse the files</a>.</dd>
+          <dt><a href="/XSet/">XSet</a> <span class="era">2000</span></dt>
+          <dd>An XML property set description of XML itself.</dd>
+          <dt><a href="/XMLCatalog/">XML Namespace Catalog Format</a> <span class="era">2000 to 2001</span></dt>
+          <dd>A catalog format for resolving namespace names to resources.</dd>
+          <dt><a href="/xsql/">XSQL</a></dt>
+          <dd>A simple XML representation of SQL statements, for XML to SQL and SQL to XML translation.</dd>
+          <dt><a href="/editor/">XEditor</a> <span class="era">2000</span></dt>
+          <dd>An XML vocabulary for edit lists, compiled by XSLT into transformations that carry out the edits.</dd>
+          <dt><a href="/RDF/">RDF syntax work</a> <span class="era">2001</span></dt>
+          <dd>Abstract and surface syntax drafts, <a href="/RDF/rdf_Syntax_and_Names.html">extracting and reifying RDF from XML</a>, RDF regular expressions, and the QName quagmire.</dd>
+          <dt><a href="/WOWG/">W3C Web Ontology Working Group contributions</a> <span class="era">2002</span></dt>
+          <dd>An OWL non-XML syntax primer, the datatypes task force documents, and an OWL media type proposal.</dd>
+          <dt><a href="/ASTM/">ASTM E31.25 XML healthcare DTDs</a> <span class="era">2000</span></dt>
+          <dd>Draft DTDs and RELAX NG schemas for XML healthcare documents, including a clinical header, an operative report, and DICOM structured report DTDs.</dd>
+        </dl>
+
+        <h2 class="section-heading">Background essays</h2>
+        <dl class="archive-list">
+          <dt><a href="/xmlhealth.html">What is XML?</a></dt>
+          <dd>Tags that describe what information is, rather than how it looks.</dd>
+          <dt><a href="/xml.html">Why XML in healthcare?</a></dt>
+          <dd>A transmittable health record, and the end of retyping.</dd>
+          <dt><a href="/emr.html">Why an open-source health record?</a></dt>
+          <dd>The case for XChart as free, shared, modifiable software.</dd>
+        </dl>
+      </div>
+
+      <div class="col-lg-5">
+        <h2 class="section-heading">Software and downloads</h2>
+        <dl class="archive-list">
+          <dt><a href="/XChart/">XChart</a> <span class="era">2001</span></dt>
+          <dd>The original open-source XML health record. <a href="/download.html">Release archive</a>.</dd>
+          <dt><a href="/opnote/">Opnote generator demo</a></dt>
+          <dd>Operative notes generated from XML forms with XSLT. <a href="/opnote/technical.htm">Technical notes</a>.</dd>
+          <dt><a href="/xmtp/xmtp.zip">XMTP reference implementation</a></dt>
+          <dd>Java source and <a href="/xmtp/xmtp.jar">jar</a>.</dd>
+          <dt><a href="/xmop/XMOP.jar">XMOP toolkit</a></dt>
+          <dd>Java jar, with the <a href="/xmop/xmop_release.txt">release notes</a>.</dd>
+        </dl>
+
+        <h2 class="section-heading">Talks and papers</h2>
+        <ul class="list-unstyled archive-list">
+          <li class="mb-2"><a href="/talks/XML+Healthcare.ppt">XML and Healthcare</a> (ppt; <a href="/talks/XML+Healthcare-3.ppt">later version</a>)</li>
+          <li class="mb-2"><a href="https://www.jonathanborden-md.com/HealthcareSemWeb.ppt">Healthcare, XML and the Semantic Web</a>, TEHRE 2002 (ppt; <a href="/talks/HealthcareSemWeb.doc">paper</a>)</li>
+          <li class="mb-2"><a href="/talks/ANSI+HISB+June+2001.ppt">ANSI HISB, June 2001</a> (ppt)</li>
+          <li class="mb-2"><a href="/talks/XMLBioInformatics.ppt">XML and Bioinformatics</a> (ppt)</li>
+          <li class="mb-2"><a href="/talks/XML+and+Med+Research.pdf">XML and Medical Research</a> (pdf)</li>
+          <li class="mb-2"><a href="/talks/RDFIntro.ppt">Introduction to RDF</a> (ppt; <a href="/talks/RDFIntro-20001121.ppt">November 2000 version</a>)</li>
+          <li class="mb-2"><a href="/talks/Extreme+RDDL.ppt">RDDL at Extreme Markup Languages</a> (ppt)</li>
+          <li class="mb-2"><a href="/talks/What+is+a+namespace.doc">What is a namespace?</a> (doc)</li>
+          <li class="mb-2"><a href="/talks/GK+dosimetry.doc">A quality factor for Gamma Knife dosimetry</a> (doc; <a href="/talks/GK+dosimetry+-+figures.ppt">figures</a>, <a href="/talks/GK+dosimetry+-+charts.doc">charts</a>, <a href="/talks/Radiosurgical+Quality+Factor.ppt">talk</a>)</li>
+        </ul>
+        <p class="text-muted small">Clinical papers are listed on the <a href="/about/">about</a> page.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer mt-5 py-4">
+    <div class="container">
+      <div class="row gy-3">
+        <div class="col-md-6">
+          <p class="mb-1"><strong>The Open Healthcare Group</strong></p>
+          <p class="mb-1">Open standards and open-source software for health records, and proposals for a better-run healthcare system.</p>
+          <p class="mb-0"><a href="mailto:jonathan@openhealth.org">jonathan@openhealth.org</a></p>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <p class="mb-1"><a href="https://www.jonathanborden-md.com/jonathan-borden-cv.html">Jonathan A. Borden, MD</a></p>
+          <p class="mb-1"><a href="https://blog.openhealth.org">Blog</a> &middot; <a href="https://github.com/jab-r/openhealth">Source on GitHub</a></p>
+          <p class="mb-0 small">&copy; 2026 The Open Healthcare Group</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -199,3 +199,89 @@ footer a:hover {
     padding-right: 15px;
   }
 }
+
+/* ===================================================================
+   2026 site refresh: shared chrome, landing page, and long-form articles
+   =================================================================== */
+.navbar-dark .navbar-brand { font-family: "Vollkorn", serif; font-weight: 600; letter-spacing: .01em; }
+.navbar-dark .navbar-nav .nav-link { color: rgba(255, 255, 255, .85); font-weight: 600; }
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link.active { color: var(--accent-color); }
+
+.kicker { font-size: .78rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: #5c6b80; margin-bottom: .5rem; }
+.badge-draft { background-color: var(--accent-color); color: #3a3000; letter-spacing: .05em; vertical-align: middle; }
+
+.site-hero { padding: 2.5rem 0 1.5rem; }
+.site-hero h1 { font-family: "Vollkorn", serif; font-weight: 600; font-size: clamp(2.2rem, 5vw, 3.4rem); line-height: 1.1; color: var(--primary-color); }
+.site-hero .lead { max-width: 62ch; font-size: 1.2rem; }
+
+.page-title { font-family: "Vollkorn", serif; font-weight: 600; color: var(--primary-color); font-size: clamp(2rem, 4vw, 2.8rem); }
+.page-lead { max-width: 68ch; font-size: 1.15rem; }
+.section-heading { font-family: "Vollkorn", serif; font-weight: 600; color: var(--primary-color); margin-top: 2.5rem; margin-bottom: 1rem; }
+
+.feature-card { border: 0; border-left: .5rem solid var(--primary-color); background: #fff; }
+.feature-card .card-title { font-family: "Vollkorn", serif; font-weight: 600; font-size: 1.9rem; line-height: 1.2; color: var(--primary-color); }
+.feature-card .card-subtitle { font-family: "Vollkorn", serif; font-style: italic; font-size: 1.15rem; color: #4a5568; }
+.feature-card .btn { margin: 0 .5rem .5rem 0; }
+.feature-card:hover, .hub-card:hover, .entry-card:hover { transform: none; }
+
+.hub-card { height: 100%; }
+.hub-card .card-title { font-family: "Vollkorn", serif; font-weight: 600; color: var(--primary-color); }
+.hub-card ul { padding-left: 1.1rem; margin-bottom: .75rem; }
+.hub-card li { margin-bottom: .3rem; }
+
+.entry-card .card-title { font-family: "Vollkorn", serif; font-weight: 600; font-size: 1.6rem; line-height: 1.2; color: var(--primary-color); }
+.entry-card .card-subtitle { font-family: "Vollkorn", serif; font-style: italic; color: #4a5568; }
+.entry-card .btn { margin: 0 .5rem .5rem 0; }
+
+.archive-list dt { font-weight: 700; margin-top: .75rem; }
+.archive-list dd { margin-bottom: .5rem; color: #4a5568; }
+.era { font-size: .8rem; color: #6b7a90; font-weight: 600; margin-left: .35rem; }
+
+.site-footer { background-color: var(--primary-color); color: #fff; }
+.site-footer a { color: var(--accent-color) !important; }
+.site-footer a:hover { color: #fff !important; text-decoration: underline; }
+
+/* Long-form article (policy proposals) */
+body.page-article { position: relative; } /* Bootstrap scrollspy needs a positioned body */
+.breadcrumb a { font-weight: 600; }
+.article-header { max-width: 46rem; margin-bottom: 2rem; }
+.article-title { font-family: "Vollkorn", serif; font-weight: 600; font-size: clamp(2rem, 4.5vw, 3rem); line-height: 1.15; color: var(--primary-color); margin-bottom: .75rem; }
+.article-subtitle { font-family: "Vollkorn", serif; font-style: italic; font-size: 1.35rem; color: #4a5568; margin-bottom: .75rem; }
+.byline { font-weight: 600; margin-bottom: 1rem; }
+.article-actions .btn { margin: 0 .5rem .5rem 0; }
+.article { font-family: "Vollkorn", serif; font-size: 1.15rem; line-height: 1.7; max-width: 46rem; color: #222; }
+.article h2 { font-family: "Vollkorn", serif; font-weight: 600; font-size: 1.65rem; color: var(--primary-color); margin: 2.5rem 0 1rem; }
+.article section:first-child h2 { margin-top: 0; }
+.article section { scroll-margin-top: 1.5rem; }
+.article p { margin-bottom: 1.1rem; }
+.article a { font-weight: inherit; color: var(--primary-color); text-decoration: underline; text-decoration-color: rgba(69, 97, 143, .45); text-underline-offset: .15em; }
+.article a:hover { color: var(--secondary-color); text-decoration-color: currentColor; }
+.cite { font-size: .7em; line-height: 0; margin-left: .1em; }
+.cite a { text-decoration: none; font-weight: 700; }
+.sources { font-size: 1rem; padding-left: 2rem; }
+.sources li { margin-bottom: .6rem; padding-left: .25rem; }
+.sources li:target { background: #fff6cc; outline: .4rem solid #fff6cc; }
+.sources a { white-space: nowrap; }
+.article-colophon { font-size: .95rem; color: #5c6b80; border-top: 1px solid #dde3ea; padding-top: 1rem; margin-top: 2.5rem; }
+
+.toc { font-size: .95rem; }
+.toc .kicker { margin-bottom: .5rem; }
+.toc .nav-link { padding: .3rem 0 .3rem .75rem; border-left: 2px solid #dde3ea; color: #4a5568; font-weight: 500; line-height: 1.3; }
+.toc .nav-link:hover { color: var(--primary-color); }
+.toc .nav-link.active { border-left-color: var(--primary-color); color: var(--primary-color); font-weight: 700; }
+@media (min-width: 992px) { .toc.sticky-lg-top { position: sticky; top: 1.5rem; } }
+.toc-mobile { border: 1px solid #dde3ea; border-radius: .5rem; padding: .5rem .9rem; margin-top: 1rem; }
+.toc-mobile summary { font-weight: 700; cursor: pointer; }
+.toc-mobile .nav { margin-top: .5rem; }
+
+@media print {
+  .navbar, .site-footer, .toc, .article-actions, .breadcrumb, .article-colophon { display: none !important; }
+  body { background: #fff; color: #000; }
+  .article, .article-header { max-width: none; }
+  .article { font-size: 11.5pt; line-height: 1.5; color: #000; }
+  .article h2 { page-break-after: avoid; }
+  .sources a { white-space: normal; }
+  .sources a::after { content: " " attr(href); font-size: .85em; }
+  .cite a, .article a { color: #000; }
+}

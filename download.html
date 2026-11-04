@@ -3,66 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="open healthcare group, download, XML, healthcare, open source, XSLT, XMOP, XMTP, Borden, Jonathan, Medicine, DICOM, oncology">
-    <meta name="description" content="Download open source healthcare software and specifications from The Open Healthcare Group.">
+    <meta name="keywords" content="open healthcare group, download, XChart, XMTP, XMOP, XML, healthcare, open source">
+    <meta name="description" content="Release archive for the Open Healthcare Group's XML-era software: XChart, the XMTP reference implementation and the XMOP toolkit.">
     <title>Downloads - The Open Healthcare Group</title>
+    <link rel="canonical" href="https://openhealth.org/download.html">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="OHCG_Style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/OHCG_Style.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="/">Open Healthcare Group</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="emr.html">EMR</a></li>
-                    <li class="nav-item"><a class="nav-link" href="xml.html">XML</a></li>
-                    <li class="nav-item"><a class="nav-link" href="specs.html">Specifications</a></li>
-                    <li class="nav-item"><a class="nav-link" href="opnote">Opnote Demo</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="download.html">Download</a></li>
-                    <li class="nav-item"><a class="nav-link" href="links.html">Links</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="/">Open Healthcare Group</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#siteNav" aria-controls="siteNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="siteNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/policy/">Policy</a></li>
+          <li class="nav-item"><a class="nav-link" href="/projects/">Projects</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="/standards/">Standards</a></li>
+          <li class="nav-item"><a class="nav-link" href="/about/">About</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
     <div class="container mt-4">
         <header class="text-center my-5">
             <h1 class="display-4 text-primary">Downloads</h1>
-            <p class="lead">Open Source Healthcare Software and Specifications</p>
+            <p class="lead">Release archive, 1998 to 2001</p>
         </header>
 
         <div class="row">
             <div class="col-lg-8">
                 <div class="card mb-4">
                     <div class="card-body">
-                        <h2 class="card-title">Available Downloads</h2>
+                        <h2 class="card-title">Available downloads</h2>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
-                                <h5><a href="#">X-Chart EMR Software</a></h5>
-                                <p>Our open source Electronic Medical Record system.</p>
-                                <a href="#" class="btn btn-primary btn-sm">Download</a>
+                                <h5><a href="/XChart/">XChart</a></h5>
+                                <p>Our open-source, XML-based health record. Two releases from April 2001.</p>
+                                <a href="/download/XChart-20010420.zip" class="btn btn-primary btn-sm">XChart 2001-04-20 (zip)</a>
+                                <a href="/download/XChart-20010416.zip" class="btn btn-outline-primary btn-sm">XChart 2001-04-16 (zip)</a>
                             </li>
                             <li class="list-group-item">
-                                <h5><a href="#">XMTP Specification</a></h5>
-                                <p>XML MIME Transformation Protocol specification document.</p>
-                                <a href="#" class="btn btn-primary btn-sm">Download</a>
+                                <h5><a href="/xmtp/">XMTP reference implementation</a></h5>
+                                <p>XML MIME Transformation Protocol: a mapping of RFC 822 and MIME to XML and RDF, with Java source.</p>
+                                <a href="/xmtp/xmtp.zip" class="btn btn-primary btn-sm">Source (zip)</a>
+                                <a href="/xmtp/xmtp.jar" class="btn btn-outline-primary btn-sm">Jar</a>
+                                <a href="/xmtp/" class="btn btn-outline-primary btn-sm">Specification</a>
                             </li>
                             <li class="list-group-item">
-                                <h5><a href="#">XMOP Toolkit</a></h5>
-                                <p>XML Metadata Object Persistence toolkit and documentation.</p>
-                                <a href="#" class="btn btn-primary btn-sm">Download</a>
+                                <h5><a href="/xmop/XMOP.htm">XMOP toolkit</a></h5>
+                                <p>XML Metadata Object Persistence toolkit, with the SODL object description language and early SOAP and XML-RPC proxy generators.</p>
+                                <a href="/xmop/XMOP.jar" class="btn btn-primary btn-sm">Jar</a>
+                                <a href="/xmop/xmop_release.txt" class="btn btn-outline-primary btn-sm">Release notes</a>
+                                <a href="/xmop/" class="btn btn-outline-primary btn-sm">All files</a>
                             </li>
                             <li class="list-group-item">
-                                <h5><a href="#">XEditor</a></h5>
-                                <p>XML editor for healthcare records.</p>
-                                <a href="#" class="btn btn-primary btn-sm">Download</a>
+                                <h5><a href="/editor/">XEditor</a></h5>
+                                <p>An XML vocabulary for edit lists, compiled with XSLT. The stylesheets and examples are on the XEditor page.</p>
+                                <a href="/editor/" class="btn btn-primary btn-sm">XEditor page</a>
                             </li>
                         </ul>
                     </div>
@@ -71,32 +77,38 @@
             <div class="col-lg-4">
                 <div class="card mb-4">
                     <div class="card-header bg-primary text-white">
-                        <h5 class="card-title mb-0"><i class="fas fa-info-circle"></i> Download Information</h5>
+                        <h5 class="card-title mb-0"><i class="fas fa-info-circle"></i> About these files</h5>
                     </div>
                     <div class="card-body">
-                        <p>Our software and specifications are:</p>
+                        <p>These are historical releases, kept as published:</p>
                         <ul>
                             <li>Free to download</li>
                             <li>Open source</li>
-                            <li>Regularly updated</li>
-                            <li>Community-supported</li>
+                            <li>No longer maintained</li>
                         </ul>
-                        <p>For installation instructions and support, please visit our <a href="#">documentation page</a>.</p>
+                        <p>Current software is on the <a href="/projects/">projects</a> page; the specifications are in the <a href="/standards/">standards archive</a>.</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <footer class="bg-light mt-5 py-3">
-        <div class="container text-center">
-            <p><a href="http://www.jonathanborden-md.com/jonathan-borden-cv.html">Jonathan A. Borden, M.D.</a></p>
-            <div>
-                <a href="http://www.jonathanborden-md.com" class="text-muted me-3">Jonathan Borden</a>
-                <a href="http://www.cincinnatineurosurgery.com" class="text-muted">Cincinnati Neurosurgery</a>
-            </div>
+    <footer class="site-footer mt-5 py-4">
+    <div class="container">
+      <div class="row gy-3">
+        <div class="col-md-6">
+          <p class="mb-1"><strong>The Open Healthcare Group</strong></p>
+          <p class="mb-1">Open standards and open-source software for health records, and proposals for a better-run healthcare system.</p>
+          <p class="mb-0"><a href="mailto:jonathan@openhealth.org">jonathan@openhealth.org</a></p>
         </div>
-    </footer>
+        <div class="col-md-6 text-md-end">
+          <p class="mb-1"><a href="https://www.jonathanborden-md.com/jonathan-borden-cv.html">Jonathan A. Borden, MD</a></p>
+          <p class="mb-1"><a href="https://blog.openhealth.org">Blog</a> &middot; <a href="https://github.com/jab-r/openhealth">Source on GitHub</a></p>
+          <p class="mb-0 small">&copy; 2026 The Open Healthcare Group</p>
+        </div>
+      </div>
+    </div>
+  </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

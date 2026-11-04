@@ -1,0 +1,21 @@
+# The Open Healthcare Group
+
+> Open standards and open-source software for health records, and policy proposals on how American healthcare is paid for. Founded and maintained by Jonathan A. Borden, MD, a neurosurgeon. Everything on this site is openly available; crawling and indexing are welcome.
+
+## Policy
+
+- [Medicare Part D for All: A fair and coherent way to reduce drug prices](https://openhealth.org/policy/medicare-part-d-for-all/): a legislative proposal for national drug purchasing with an international price benchmark and competitive domestic supply when manufacturers refuse. Also available as [Markdown](https://openhealth.org/policy/medicare-part-d-for-all/Medicare_Part_D_for_All_Proposal.md) and [Word](https://openhealth.org/policy/medicare-part-d-for-all/Medicare_Part_D_for_All_Proposal.docx).
+- [All policy writing](https://openhealth.org/policy/)
+
+## Projects
+
+- [Projects](https://openhealth.org/projects/): Chart (AI assistant for clinical documentation and coding), UTHE (healthcare document transformation engine), JSON Schemas for Healthcare, Loxation.
+
+## Standards archive
+
+- [Standards archive](https://openhealth.org/standards/): RDDL, XMTP, XMOP, XSet, RDF syntax work, W3C Web Ontology contributions, ASTM XML healthcare DTDs, XChart.
+
+## About
+
+- [About and contact](https://openhealth.org/about/): jonathan@openhealth.org
+- [Sitemap](https://openhealth.org/sitemap.xml)
