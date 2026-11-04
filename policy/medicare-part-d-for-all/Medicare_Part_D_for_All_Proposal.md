@@ -1,6 +1,6 @@
 # A fair and coherent way to reduce drug prices
 
-*Medicare negotiates the drug prices for Part D and gives private plans a competitive domestic supply*
+*Medicare bluntly negotiates the drug prices for Part D and gives private plans a competitive domestic supply*
 
 Jonathan A. Borden, MD. Policy proposal, November 2026. Published at https://openhealth.org/policy/medicare-part-d-for-all/
 
