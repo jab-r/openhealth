@@ -45,7 +45,7 @@ def read_meta(docx):
     with tempfile.TemporaryDirectory() as d:
         tpl = Path(d) / "meta.html"
         tpl.write_text("$title$\n$subtitle$\n")
-        out = pandoc(str(docx), "-t", "html", "--template", str(tpl))
+        out = pandoc(str(docx), "-t", "html", "--wrap=none", "--template", str(tpl))
     lines = (out + "\n").split("\n")
     return lines[0].strip(), lines[1].strip()
 

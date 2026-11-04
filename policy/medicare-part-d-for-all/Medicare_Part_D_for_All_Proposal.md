@@ -1,6 +1,6 @@
 # A fair and coherent way to reduce drug prices
 
-*Medicare Part D for All: a proposal for national drug purchasing and*
+*Medicare Part D for All: a proposal for national drug purchasing and competitive domestic supply*
 
 Jonathan A. Borden, MD. Policy proposal, November 2026. Published at https://openhealth.org/policy/medicare-part-d-for-all/
 
