@@ -4,7 +4,7 @@
 
 ## Policy
 
-- [Medicare Part D for All: A fair and coherent way to reduce drug prices](https://openhealth.org/policy/medicare-part-d-for-all/): a legislative proposal for national drug purchasing with an international price benchmark and competitive domestic supply when manufacturers refuse. Also available as [Markdown](https://openhealth.org/policy/medicare-part-d-for-all/Medicare_Part_D_for_All_Proposal.md) and [Word](https://openhealth.org/policy/medicare-part-d-for-all/Medicare_Part_D_for_All_Proposal.docx).
+- [A fair and coherent way to reduce drug prices](https://openhealth.org/policy/medicare-part-d-for-all/): a legislative proposal in which Medicare negotiates Part D drug prices against an international benchmark, with competitive domestic supply when manufacturers refuse. Also available as [Markdown](https://openhealth.org/policy/medicare-part-d-for-all/Medicare_Part_D_for_All_Proposal.md) and [Word](https://openhealth.org/policy/medicare-part-d-for-all/Medicare_Part_D_for_All_Proposal.docx).
 - [All policy writing](https://openhealth.org/policy/)
 
 ## Projects

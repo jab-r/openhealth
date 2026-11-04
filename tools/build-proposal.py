@@ -168,7 +168,7 @@ def build(docx):
   <title>{strip_tags(title)} | The Open Healthcare Group</title>
   <meta name="description" content="{html.escape(description)}">
   <meta name="author" content="{html.escape(author)}">
-  <meta name="keywords" content="Medicare Part D for All, drug prices, prescription drug pricing, international reference pricing, 28 U.S.C. 1498, national drug purchasing, health policy, Jonathan Borden">
+  <meta name="keywords" content="Part D drug prices, Medicare negotiation, prescription drug pricing, international reference pricing, 28 U.S.C. 1498, national drug purchasing, health policy, Jonathan Borden">
   <link rel="canonical" href="{canonical}">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="The Open Healthcare Group">
@@ -209,7 +209,7 @@ def build(docx):
       <ol class="breadcrumb small">
         <li class="breadcrumb-item"><a href="/">Home</a></li>
         <li class="breadcrumb-item"><a href="/policy/">Policy</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Medicare Part D for All</li>
+        <li class="breadcrumb-item active" aria-current="page">Reducing drug prices</li>
       </ol>
     </nav>
 
