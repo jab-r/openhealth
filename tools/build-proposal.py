@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the Medicare Part D for All proposal page from its Word source.
+"""Build the drug-pricing proposal page from its Word source.
 
 Usage:
     python3 tools/build-proposal.py [path/to/proposal.docx]
@@ -27,7 +27,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_DOCX = ROOT / "policy" / "medicare-part-d-for-all" / "Medicare_Part_D_for_All_Proposal.docx"
+DEFAULT_DOCX = ROOT / "policy" / "reducing-drug-prices" / "Reducing_Drug_Prices_Proposal.docx"
 SITE = "https://openhealth.org"
 DRAFT = True            # set False when the text is final; removes the "Working draft" label
 WORDS_PER_MINUTE = 230

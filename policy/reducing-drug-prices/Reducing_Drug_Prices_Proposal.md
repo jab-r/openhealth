@@ -2,7 +2,7 @@
 
 *Medicare bluntly negotiates the drug prices for Part D and gives private plans a competitive domestic supply*
 
-Jonathan A. Borden, MD. Policy proposal, November 2026. Published at https://openhealth.org/policy/medicare-part-d-for-all/
+Jonathan A. Borden, MD. Policy proposal, November 2026. Published at https://openhealth.org/policy/reducing-drug-prices/
 
 # Executive summary
 
@@ -26,7 +26,7 @@ My work in neurosurgery, biomedical research, and open healthcare information sy
 
 I see no defensible reason why an American should be charged greatly more than a patient in the United Kingdom for the same medicine on comparable terms. The appropriate comparison is the net price paid for the drug, including payments by insurers or public purchasers, rather than the patient’s pharmacy copayment alone. The fairness question is especially pressing when grants from the National Institutes of Health, or NIH, financed research that helped make the medicine possible. Publicly supported discovery and private development both deserve recognition; neither establishes an unlimited claim on American patients and taxpayers. \[5\]
 
-Medicare Part D for All would apply a more logical purchasing framework to prescription medicines. A manufacturer would be offered access to a large national market at a defensible international price. If it refused, the government could authorize qualified domestic manufacturers to supply the medicine, subject to approval requirements and compensation for patent use. The aim is to use lower prices to expand access and reduce taxpayer costs, with those savings demonstrated through independent analysis.
+This proposal would apply a more logical purchasing framework to prescription medicines. A manufacturer would be offered access to a large national market at a defensible international price. If it refused, the government could authorize qualified domestic manufacturers to supply the medicine, subject to approval requirements and compensation for patent use. The aim is to use lower prices to expand access and reduce taxpayer costs, with those savings demonstrated through independent analysis.
 
 # Why a national purchasing program is warranted
 
@@ -114,7 +114,7 @@ A statutory review would require corrective action if prices fail to fall as pro
 
 # Conclusion
 
-Medicare Part D for All offers a focused route toward universal prescription access and stronger cost control. Its central bargain is straightforward: manufacturers can supply a large national market at a defensible international price, or face lawful competition from qualified domestic manufacturers with appropriate patent compensation.
+This proposal offers a focused route toward universal prescription access and stronger cost control. Its central bargain is straightforward: manufacturers can supply a large national market at a defensible international price, or face lawful competition from qualified domestic manufacturers with appropriate patent compensation.
 
 The United States has the capacity to create that bargaining structure through legislation. The responsible next step is to specify and independently score it. If verified purchasing savings exceed the additional costs after financing is accounted for, broader drug coverage could reduce the burden on taxpayers while improving access. That is the proposition this proposal asks Congress to test.
 
