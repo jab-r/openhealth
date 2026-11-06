@@ -38,9 +38,21 @@ Taxpayers already support the scientific foundation of many medicines. A publish
 
 Private developers contribute clinical trials, manufacturing, regulatory work, and investment in unsuccessful candidates. A sustainable policy should reward those contributions while recognizing the public contribution through affordable access. The Congressional Budget Office’s analysis of pharmaceutical research describes both the importance of basic public research and the relationship between expected revenues and private development incentives. \[7\]
 
+# Precedent and earlier proposals
+
+The precedent for this proposal is the way Medicare already pays hospitals and physicians. Congress replaced cost-based hospital reimbursement with prospectively set rates in the Social Security Amendments of 1983. It created the physician fee schedule in the Omnibus Budget Reconciliation Act of 1989, and payment under that schedule began in 1992. In both cases the largest purchaser defined what it would pay under a published method. \[2, 4\]
+
+Prescription drugs were the exception. The 2003 law that created Part D barred the Secretary of Health and Human Services from interfering in negotiations between drug manufacturers, pharmacies, and plan sponsors. Congress partly lifted that bar in the Inflation Reduction Act of 2022, and the first ten negotiated prices took effect on January 1, 2026. That program covers a limited number of selected drugs, applies only to Medicare, and enforces its offer with an excise tax, not an alternative source of supply. \[8\]
+
+The closest ancestor of the remedy I propose is the Medicare Negotiation and Competitive Licensing Act, introduced in 2019 by Senator Sherrod Brown and Representative Lloyd Doggett. That bill would have repealed the noninterference bar and required the Secretary to negotiate Part D prices. Where negotiation failed, it authorized competitors to make the drug under a competitive license, notwithstanding patents and regulatory exclusivities, with reasonable compensation to the original manufacturer. In the interim it capped the price at the average in ten large OECD economies, and it allowed priority for manufacturers producing in the United States. \[9\]
+
+Other proposals have relied on an international benchmark. The Prescription Drug Price Relief Act, from Senator Bernie Sanders and Representative Ro Khanna, would have opened a brand-name drug to generic competition when its U.S. price exceeded the median in Canada, the United Kingdom, Germany, France, and Japan. \[10\] H.R. 3, which passed the House in December 2019, limited negotiated prices to 120 percent of the average in six countries and made those prices available to commercial plans. \[11\] The executive branch has pursued most-favored-nation pricing through Medicare payment models. Courts blocked the 2020 rule because it was issued without public notice and comment, and it was later rescinded. A narrower model for Part B drugs was finalized in 2026. \[12, 13\] Legal scholars have also argued that 28 U.S.C. 1498 already allows the government to procure lower-cost versions of patented medicines. \[14\]
+
+What this proposal adds is the combination. It extends eligibility to every resident for drugs alone. It sets the ceiling at the lowest verified net price in comparable countries; the bills above used an average or a median. It directs alternative production to more than one independent supplier with U.S. capacity, and it ties expansion to an independent fiscal test. To my knowledge, no earlier proposal joins these elements. The history above is also why I frame this as legislation: an approach built on rulemaking alone has already been stopped once in court.
+
 # Coverage and financing
 
-Every U.S. resident would become eligible for the new prescription benefit, with automatic enrollment and income-related protection against premiums and cost sharing. Congress would establish the eligibility rules explicitly; current standalone Part D eligibility requires Medicare Part A or Part B. \[8\] Hospital and physician coverage would remain outside this proposal.
+Every U.S. resident would become eligible for the new prescription benefit, with automatic enrollment and income-related protection against premiums and cost sharing. Congress would establish the eligibility rules explicitly; current standalone Part D eligibility requires Medicare Part A or Part B. \[15\] Hospital and physician coverage would remain outside this proposal.
 
 The federal purchasing authority would establish prices and purchase selected medicines directly. Existing plans and pharmacy networks could administer claims and distribution under competitively awarded contracts with disclosed fees. Expanding enrollment in the current plan structure without changing purchasing authority would not create the bargaining mechanism proposed here.
 
@@ -66,11 +78,11 @@ After a defined negotiation period, the purchasing authority could authorize alt
 
 Contracts would include quality requirements, delivery milestones, inventory reserves, and transparent cost provisions. Purchase commitments could support investment in facilities and domestic ingredients. The decision to manufacture would compare the full delivered cost, including patent compensation and startup expenses, with the originator’s final offer.
 
-Existing law provides a foundation. Under 28 U.S.C. 1498, authorized patent use by or for the federal government generally gives the patent holder a compensation remedy against the government rather than an injunction against the authorized contractor. Congress should expressly authorize the proposed purchasing and production structure instead of assuming ordinary Part D reimbursement automatically meets this standard. \[9\]
+Existing law provides a foundation. Under 28 U.S.C. 1498, authorized patent use by or for the federal government generally gives the patent holder a compensation remedy against the government rather than an injunction against the authorized contractor. Congress should expressly authorize the proposed purchasing and production structure instead of assuming ordinary Part D reimbursement automatically meets this standard. \[16\]
 
 Compensation would follow the applicable statutory standard and judicial process; it would not automatically equal a generic royalty or the manufacturer’s asserted lost profits. Congress should define a transparent compensation framework consistent with constitutional and international obligations. The proposal would authorize specified uses of patents, rather than cancel patents worldwide.
 
-Patent authority alone is insufficient. Regulatory exclusivity granted by the Food and Drug Administration is distinct from patent protection, and an authorized competitor still needs an approval pathway. Legislation would address any exclusivity barriers and lawful access to necessary reference materials while retaining safety, efficacy, quality, and equivalence standards. It must not assume that patent use conveys trade secrets or manufacturing expertise. \[10\]
+Patent authority alone is insufficient. Regulatory exclusivity granted by the Food and Drug Administration is distinct from patent protection, and an authorized competitor still needs an approval pathway. Legislation would address any exclusivity barriers and lawful access to necessary reference materials while retaining safety, efficacy, quality, and equivalence standards. It must not assume that patent use conveys trade secrets or manufacturing expertise. \[17\]
 
 The first procurement cases should therefore involve medicines for which alternative production is feasible. Complex biologics and products with difficult manufacturing processes may require longer timelines and different contracts. Patients should retain access to the originator medicine until an approved and dependable replacement is available.
 
@@ -102,7 +114,7 @@ This comparison does not imply that every new surgical, robotic, or AI-assisted 
 
 A predictable pricing rule can nevertheless reduce expected returns and alter some future research investment. Policymakers should assess that possibility rather than presume either that all innovation will suffer or that no investment will change. They should track development of therapies for small populations and unmet needs. Targeted research grants, milestone prizes, or purchase commitments could support socially valuable work, with their costs included in the fiscal assessment.
 
-Future federally funded inventions could carry clearer access and licensing conditions. Those conditions should be established prospectively where possible. Existing government rights attach to particular inventions and funding arrangements; NIH support for underlying science does not create a general right to control every downstream drug. The Government Accountability Office finds that price-based march-in authority would likely reach only a limited number of medicines. \[11\]
+Future federally funded inventions could carry clearer access and licensing conditions. Those conditions should be established prospectively where possible. Existing government rights attach to particular inventions and funding arrangements; NIH support for underlying science does not create a general right to control every downstream drug. The Government Accountability Office finds that price-based march-in authority would likely reach only a limited number of medicines. \[18\]
 
 # Implementation and accountability
 
@@ -148,18 +160,46 @@ The United States has the capacity to create that bargaining structure through l
 
 [Read source](https://www.cbo.gov/publication/57126)
 
-\[8\] Centers for Medicare and Medicaid Services. Medicare Prescription Drug Eligibility and Enrollment.
+\[8\] Centers for Medicare and Medicaid Services. Medicare Drug Price Negotiation Program: Negotiated Prices for Initial Price Applicability Year 2026. See also 42 U.S.C. 1395w-111(i) and 26 U.S.C. 5000D.
+
+[Read source](https://www.cms.gov/newsroom/fact-sheets/medicare-drug-price-negotiation-program-negotiated-prices-initial-price-applicability-year-2026)
+
+\[9\] Medicare Negotiation and Competitive Licensing Act of 2019. S. 377 and H.R. 1046, 116th Congress.
+
+[Read source](https://www.govinfo.gov/app/details/BILLS-116s377is)
+
+\[10\] Prescription Drug Price Relief Act of 2019. S. 102 and H.R. 465, 116th Congress.
+
+[Read source](https://www.govinfo.gov/app/details/BILLS-116s102is)
+
+\[11\] Elijah E. Cummings Lower Drug Costs Now Act. H.R. 3, 116th Congress, as passed by the House on December 12, 2019.
+
+[Read source](https://www.govinfo.gov/app/details/BILLS-116hr3eh)
+
+\[12\] Centers for Medicare and Medicaid Services. Most Favored Nation Model. See also California Life Sciences Association v. CMS, No. 20-cv-08603 (N.D. Cal. Dec. 28, 2020).
+
+[Read source](https://www.cms.gov/priorities/innovation/innovation-models/most-favored-nation-model)
+
+\[13\] Centers for Medicare and Medicaid Services. GLOBE (Global Benchmark for Efficient Drug Pricing) Model.
+
+[Read source](https://www.cms.gov/priorities/innovation/innovation-models/globe)
+
+\[14\] Kapczynski and Kesselheim. Government Patent Use: A Legal Approach To Reducing Drug Spending. Health Affairs, 2016.
+
+[Read source](https://doi.org/10.1377/hlthaff.2015.1120)
+
+\[15\] Centers for Medicare and Medicaid Services. Medicare Prescription Drug Eligibility and Enrollment.
 
 [Read source](https://www.cms.gov/medicare/enrollment-renewal/part-d-enrollment-eligibility)
 
-\[9\] Federal Acquisition Regulation. Subpart 27.2, Patents and Copyrights; see also 28 U.S.C. 1498.
+\[16\] Federal Acquisition Regulation. Subpart 27.2, Patents and Copyrights; see also 28 U.S.C. 1498.
 
 [Read source](https://www.acquisition.gov/far/subpart-27.2)
 
-\[10\] Food and Drug Administration. How can I better understand Patents and Exclusivity.
+\[17\] Food and Drug Administration. How can I better understand Patents and Exclusivity.
 
 [Read source](https://www.fda.gov/industry/fda-basics-industry/how-can-i-better-understand-patents-and-exclusivity)
 
-\[11\] Government Accountability Office. Intellectual Property Information on Draft Guidance to Assert Government Rights Based on Price. GAO-26-107885.
+\[18\] Government Accountability Office. Intellectual Property Information on Draft Guidance to Assert Government Rights Based on Price. GAO-26-107885.
 
 [Read source](https://www.gao.gov/products/gao-26-107885)
