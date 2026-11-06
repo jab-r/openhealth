@@ -6,7 +6,7 @@ Jonathan A. Borden, MD. Policy proposal, November 2026. Published at https://ope
 
 # Executive summary
 
-Congress should establish universal prescription drug coverage built on an expanded Medicare Part D framework, with national purchasing authority and an enforceable international price benchmark. Manufacturers accepting the benchmark would retain their ordinary patent rights and obtain predictable access to a large purchasing market. When a manufacturer refuses, the government would be authorized to procure an approved equivalent from qualified domestic manufacturers, subject to compensation for the use of patented inventions.
+Congress should establish universal prescription drug coverage built on an expanded Medicare Part D framework, with national purchasing authority and an enforceable international price benchmark. Manufacturers accepting the benchmark would retain their ordinary patent rights and obtain predictable access to a large purchasing market. When a manufacturer refuses, the government would be authorized to procure an approved equivalent from qualified domestic manufacturers, subject to compensation for the use of patented inventions. That remedy follows the approach of the Medicare Negotiation and Competitive Licensing Act, introduced in 2019 by Senator Sherrod Brown and Representative Lloyd Doggett.
 
 The objective is to lower the price of medicines enough to improve access and reduce the combined burden on taxpayers, employers, and households. Substantial taxpayer savings are a hypothesis to be tested through independent budget estimates, not a result that follows automatically from universal coverage. The proposal therefore links expansion to explicit financing, independently verified savings, and reliable supply.
 
