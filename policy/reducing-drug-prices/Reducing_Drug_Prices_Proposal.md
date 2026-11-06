@@ -60,7 +60,7 @@ The federal purchasing authority would establish prices and purchase selected me
 
 Those who opt in would pay their fair share: a premium set to cover the expected cost of their coverage and its administration. That premium would replace the drug-coverage portion of what they pay today, and the expansion would require no new taxes. Existing public prescription subsidies, including those for current Medicare beneficiaries and low-income households, would continue under current law. For employers, an actuarially defined allocation would be needed because most employer premiums bundle medical and pharmacy benefits. Premiums would be set through legislation and independent estimates, rather than assuming all projected savings will occur.
 
-The biggest benefit goes to people with high drug costs, and a voluntary program will draw them first. That is its purpose, not a defect. The pool already exists and is very large: it includes everyone enrolled in Medicare Part D. Those who opt in join that pool, and the program’s purchasing leverage does not depend on who they are. This proposal does not shift costs from one group to another. It lowers the price of the medicine itself, precisely for the people who benefit most.
+The biggest benefit goes to people with high drug costs, and a voluntary program will draw them first. That is its purpose, not a defect. The pool already exists and is very large: it includes everyone enrolled in Medicare Part D, about 56 million people in 2026. \[17\] Those who opt in join that pool, and the program’s purchasing leverage does not depend on who they are. This proposal does not shift costs from one group to another. It lowers the price of the medicine itself, precisely for the people who benefit most.
 
 The transition must prevent duplicate payment. Employers that opt in would reduce or remove the corresponding insurance benefit and pay the program premium. Policymakers should measure whether premium reductions reach employees through lower deductions or compensation; those gains should not be assumed to appear immediately.
 
@@ -82,11 +82,11 @@ After a defined negotiation period, the purchasing authority could authorize alt
 
 Contracts would include quality requirements, delivery milestones, inventory reserves, and transparent cost provisions. Purchase commitments could support investment in facilities and domestic ingredients. The decision to manufacture would compare the full delivered cost, including patent compensation and startup expenses, with the originator’s final offer.
 
-Existing law provides a foundation. Under 28 U.S.C. 1498, authorized patent use by or for the federal government generally gives the patent holder a compensation remedy against the government rather than an injunction against the authorized contractor. Congress should expressly authorize the proposed purchasing and production structure instead of assuming ordinary Part D reimbursement automatically meets this standard. \[17\]
+Existing law provides a foundation. Under 28 U.S.C. 1498, authorized patent use by or for the federal government generally gives the patent holder a compensation remedy against the government rather than an injunction against the authorized contractor. Congress should expressly authorize the proposed purchasing and production structure instead of assuming ordinary Part D reimbursement automatically meets this standard. \[18\]
 
 Compensation would follow the applicable statutory standard and judicial process; it would not automatically equal a generic royalty or the manufacturer’s asserted lost profits. Congress should define a transparent compensation framework consistent with constitutional and international obligations. The proposal would authorize specified uses of patents, rather than cancel patents worldwide.
 
-Patent authority alone is insufficient. Regulatory exclusivity granted by the Food and Drug Administration is distinct from patent protection, and an authorized competitor still needs an approval pathway. Legislation would address any exclusivity barriers and lawful access to necessary reference materials while retaining safety, efficacy, quality, and equivalence standards. It must not assume that patent use conveys trade secrets or manufacturing expertise. \[18\] Senator Brown and Representative Doggett’s 2019 bill already drafted the exclusivity provision: where negotiation failed, it would have authorized use of the drug’s patents, clinical trial data, and regulatory exclusivities. \[9\]
+Patent authority alone is insufficient. Regulatory exclusivity granted by the Food and Drug Administration is distinct from patent protection, and an authorized competitor still needs an approval pathway. Legislation would address any exclusivity barriers and lawful access to necessary reference materials while retaining safety, efficacy, quality, and equivalence standards. It must not assume that patent use conveys trade secrets or manufacturing expertise. \[19\] Senator Brown and Representative Doggett’s 2019 bill already drafted the exclusivity provision: where negotiation failed, it would have authorized use of the drug’s patents, clinical trial data, and regulatory exclusivities. \[9\]
 
 The first procurement cases should therefore involve medicines for which alternative production is feasible. Complex biologics and products with difficult manufacturing processes may require longer timelines and different contracts. Patients should retain access to the originator medicine until an approved and dependable replacement is available.
 
@@ -118,7 +118,7 @@ This comparison does not imply that every new surgical, robotic, or AI-assisted 
 
 A predictable pricing rule can nevertheless reduce expected returns and alter some future research investment. Policymakers should assess that possibility rather than presume either that all innovation will suffer or that no investment will change. They should track development of therapies for small populations and unmet needs. Targeted research grants, milestone prizes, or purchase commitments could support socially valuable work, with their costs included in the fiscal assessment.
 
-Future federally funded inventions could carry clearer access and licensing conditions. Those conditions should be established prospectively where possible. Existing government rights attach to particular inventions and funding arrangements; NIH support for underlying science does not create a general right to control every downstream drug. The Government Accountability Office finds that price-based march-in authority would likely reach only a limited number of medicines. \[19\]
+Future federally funded inventions could carry clearer access and licensing conditions. Those conditions should be established prospectively where possible. Existing government rights attach to particular inventions and funding arrangements; NIH support for underlying science does not create a general right to control every downstream drug. The Government Accountability Office finds that price-based march-in authority would likely reach only a limited number of medicines. \[20\]
 
 # Implementation and accountability
 
@@ -200,14 +200,18 @@ The United States has the capacity to create that bargaining structure through l
 
 [Read source](https://www.cms.gov/medicare/enrollment-renewal/part-d-enrollment-eligibility)
 
-\[17\] Federal Acquisition Regulation. Subpart 27.2, Patents and Copyrights; see also 28 U.S.C. 1498.
+\[17\] Cubanski and Damico. Medicare Part D Enrollment, Premiums, and Cost Sharing in 2026. KFF, June 2026.
+
+[Read source](https://www.kff.org/medicare/medicare-part-d-enrollment-premiums-and-cost-sharing-in-2026/)
+
+\[18\] Federal Acquisition Regulation. Subpart 27.2, Patents and Copyrights; see also 28 U.S.C. 1498.
 
 [Read source](https://www.acquisition.gov/far/subpart-27.2)
 
-\[18\] Food and Drug Administration. How can I better understand Patents and Exclusivity.
+\[19\] Food and Drug Administration. How can I better understand Patents and Exclusivity.
 
 [Read source](https://www.fda.gov/industry/fda-basics-industry/how-can-i-better-understand-patents-and-exclusivity)
 
-\[19\] Government Accountability Office. Intellectual Property Information on Draft Guidance to Assert Government Rights Based on Price. GAO-26-107885.
+\[20\] Government Accountability Office. Intellectual Property Information on Draft Guidance to Assert Government Rights Based on Price. GAO-26-107885.
 
 [Read source](https://www.gao.gov/products/gao-26-107885)
